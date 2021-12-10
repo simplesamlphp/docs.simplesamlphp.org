@@ -2,10 +2,10 @@ name: Build and deploy documentation site to GitHub Pages based on repo contents
 
 on: 
   push:
-    branches:
-      - release
+#    branches:
+#      - release
   
-  workflow_dispatch:
+#  workflow_dispatch:
   
 jobs:
   build:
@@ -34,9 +34,9 @@ jobs:
 #      with:
 #        github_token: ${{ secrets.GITHUB_TOKEN }}
 #        repository:  simplesamlphp/simplesamlphp.github.io 
-    - name: Deploy
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        repository:  simplesamlphp/simplesamlphp.github.io 
-        publish_dir: ./_site
+#    - name: Deploy
+#      uses: peaceiris/actions-gh-pages@v3
+#      with:
+#        github_token: ${{ secrets.GITHUB_TOKEN }}
+#        repository:  simplesamlphp/simplesamlphp.github.io 
+#        publish_dir: ./_site
