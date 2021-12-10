@@ -156,7 +156,7 @@ def mkResources(root_dir, web_root):
     os.system('cp -R ' +  root_dir + 'resources/css/ ' + web_root + 'res/')
 
     # starter index.html (just a redirect to 'latest')    
-    os.system('cp ' +  root_dir + 'resources/index.html ' + web_root + 'html/index.html ')
+    os.system('cp ' +  root_dir + 'resources/index.html ' + web_root + 'index.html ')
 
 
 
@@ -195,28 +195,19 @@ mkResources(root_dir, site_root_dir)
 
 os.system('tree')
 
-exit()
-
 # Now generate contents based documentation for core simplesamlphp repo
 for ssp_version in ssp_versions:
-   print("1")
    print("Working on: " + ssp_version)
    print("Repo Root: " + repo_root_dir)
    
    version_dir = tempdir + ssp_version + "/"
    print("Version dir: " + version_dir)
-
-   print("2")
    getgitrepo('https://github.com/simplesamlphp/simplesamlphp.git', version_dir, repo_root_dir, ssp_version)
-   print("3")
    versioned_site_root =  site_root_dir + ssp_version + "/"
-   
-   os.system('ls ' +  site_root_dir)
-  
+    
    print("versioned_site_root: " + versioned_site_root)
-   
-   os.system('ls ' +  versioned_site_root)
-   print("4")
+   os.system('tree ' +  site_root_dir)
+
    # Parse main docs for this version
    #parsefiles(os.path.join(version_dir, repo_root_dir, repo_docs_dir), versioned_site_root)
 
