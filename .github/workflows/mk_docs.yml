@@ -14,9 +14,9 @@ jobs:
     steps:
     - name: checkout repo content
       uses: actions/checkout@v2 # checkout the repository content to github runner.
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        repository:  simplesamlphp/simplesamlphp.github.io 
+#      with:
+#        github_token: ${{ secrets.GITHUB_TOKEN }}
+#        repository:  simplesamlphp/simplesamlphp.github.io 
     - name: setup python
       uses: actions/setup-python@v2
       with:
