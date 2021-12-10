@@ -1,12 +1,12 @@
 name: Build and deploy documentation site to GitHub Pages based on repo contents
 
 on: 
-  workflow_dispatch
-  
   push:
     branches:
       - release
-    
+  
+  workflow_dispatch:
+  
 jobs:
   build:
     runs-on: ubuntu-latest
