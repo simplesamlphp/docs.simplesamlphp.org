@@ -151,7 +151,9 @@ def mkResources(root_dir, web_root):
     os.makedirs(os.path.join(web_root + '/res/js/'))
    
     #if not os.path.exists(os.path.join(site_root_dir + '/res/css/')):
-    os.makedirs(os.path.join(site_root_dir + '/res/css/'))
+    os.makedirs(os.path.join(web_root + '/res/css/'))
+    os.system('ls ' +  web_root)
+    
     os.system('cp -R ' +  root_dir + 'resources/js/ ' + web_root + 'res/')
     os.system('cp -R ' +  root_dir + 'resources/css/ ' + web_root + 'res/')
 
