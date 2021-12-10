@@ -195,7 +195,7 @@ with open(footer, 'r') as f:
 # Copy the starter index.html that will always redirect to "latest"
 mkResources(root_dir, site_root_dir)
 
-os.system('ls -l ' + site_root_dir)
+os.system('tree')
 
 exit()
 
