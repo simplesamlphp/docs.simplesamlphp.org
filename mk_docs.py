@@ -111,7 +111,7 @@ def getgitrepo(repo, repo_clone_dir, repo_root, version=None):
    os.chdir(repo_clone_dir + repo_root)
    
    os.system('pwd')
-   os.system('ls')
+   os.system('ls docs/')
    
    print("Working in git repo from" + os.getcwd())
    
