@@ -9,8 +9,8 @@ from bs4 import BeautifulSoup
 
 # for which versions should we generate documentation?
 # ToDo: replace with dynamic assasment based on github tags
-ssp_versions=["latest","1.19", "1.18", "1.17"]
-#ssp_versions=["latest"]
+#ssp_versions=["latest","1.19", "1.18", "1.17"]
+ssp_versions=["latest"]
 
 
 
