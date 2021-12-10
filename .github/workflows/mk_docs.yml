@@ -1,9 +1,11 @@
 name: Build and deploy documentation site to GitHub Pages based on repo contents
 
-on:
-  push:
-    branches:
-      - release
+on: workflow_dispatch
+
+#on:
+#  push:
+#    branches:
+#      - release
     
 jobs:
   build:
