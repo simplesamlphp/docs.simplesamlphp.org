@@ -101,12 +101,9 @@ def getmodulerepos():
 # clone a specific git repo to a given directory. Optionally fetch specific version
 # Target directories will be autocreated
 def getgitrepo(repo, repo_clone_dir, repo_root, version=None):
-   print("2.1")
-   
    os.makedirs(os.path.join(repo_clone_dir))
    os.chdir(repo_clone_dir)
    
-   print("2.2")
    os.system('git clone --depth=1 ' + repo)
    os.chdir(repo_clone_dir + repo_root)
    
@@ -115,7 +112,6 @@ def getgitrepo(repo, repo_clone_dir, repo_root, version=None):
    
    print("Working in git repo from" + os.getcwd())
    
-   print("2.3")
    if (version is not None):
       os.system('git checkout -b ' + version)
    os.system('git status')
@@ -215,6 +211,9 @@ for ssp_version in ssp_versions:
    getgitrepo('https://github.com/simplesamlphp/simplesamlphp.git', version_dir, repo_root_dir, ssp_version)
    print("3")
    versioned_site_root =  site_root_dir + ssp_version + "/"
+   
+   os.system('ls ' +  site_root_dir)
+  
    print("versioned_site_root: " + versioned_site_root)
    
    os.system('ls ' +  versioned_site_root)
