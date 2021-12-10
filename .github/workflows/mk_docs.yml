@@ -27,7 +27,7 @@ jobs:
     - run: pip install beautifulsoup4
     - name: execute py script # run the run.py to get the latest data
       run: |
-         python website_scripts/mk_docs.py
+         python mk_docs.py
 #    - name: push changes
 #      uses: ad-m/github-push-action@v0.6.0
 #      with:
@@ -38,4 +38,4 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         repository:  simplesamlphp/simplesamlphp.github.io 
-        publish_dir: ./site
+        publish_dir: ./_site
