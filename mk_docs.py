@@ -180,6 +180,11 @@ site_root_dir = "./_site/"
 header = "resources/header"
 footer = "resources/footer"
 
+os.system('mkdir ' +  site_root_dir)
+os.system('ls -l')
+
+
+
 
 # Housekeeping actions
 # Clean up the tempdir, just to be sure
