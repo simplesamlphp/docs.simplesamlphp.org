@@ -110,6 +110,9 @@ def getgitrepo(repo, repo_clone_dir, repo_root, version=None):
    os.system('git clone --depth=1 ' + repo)
    os.chdir(repo_clone_dir + repo_root)
    
+   os.system('pwd')
+   os.system('ls')
+   
    print("Working in git repo from" + os.getcwd())
    
    print("2.3")
