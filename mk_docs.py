@@ -152,13 +152,11 @@ def mkResources(root_dir, web_root):
    
     #if not os.path.exists(os.path.join(site_root_dir + '/res/css/')):
     os.makedirs(os.path.join(web_root + '/res/css/'))
-    os.system('ls ' +  web_root)
-    
     os.system('cp -R ' +  root_dir + 'resources/js/ ' + web_root + 'res/')
     os.system('cp -R ' +  root_dir + 'resources/css/ ' + web_root + 'res/')
 
     # starter index.html (just a redirect to 'latest')    
-    os.system('cp ' +  root_dir + 'resources/index.html ' + root_dir + 'html/index.html ')
+    os.system('cp ' +  root_dir + 'resources/index.html ' + web_root + 'html/index.html ')
 
 
 
@@ -180,8 +178,8 @@ site_root_dir = "./_site/"
 header = "resources/header"
 footer = "resources/footer"
 
+# Make sure we have a working site subdir to put stuff in
 os.system('mkdir ' +  site_root_dir)
-os.system('ls -l')
 
 # make the header and footer available as global vars
 print("reading Header")
