@@ -183,16 +183,6 @@ footer = "resources/footer"
 os.system('mkdir ' +  site_root_dir)
 os.system('ls -l')
 
-exit()
-
-
-# Housekeeping actions
-# Clean up the tempdir, just to be sure
-#os.system('rm -Rf ' +  site_root_dir + '/*')
-
-# Clean up the html dir, just to be sure
-#os.system('rm -Rf ' +  tempdir)
-
 # make the header and footer available as global vars
 print("reading Header")
 with open(header, 'r') as f:
@@ -204,6 +194,10 @@ with open(footer, 'r') as f:
 
 # Copy the starter index.html that will always redirect to "latest"
 mkResources(root_dir, site_root_dir)
+
+os.system('ls -l ' + site_root_dir)
+
+exit()
 
 # Now generate contents based documentation for core simplesamlphp repo
 for ssp_version in ssp_versions:
