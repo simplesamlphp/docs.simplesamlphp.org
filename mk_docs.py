@@ -183,7 +183,7 @@ footer = "resources/footer"
 os.system('mkdir ' +  site_root_dir)
 os.system('ls -l')
 
-
+exit()
 
 
 # Housekeeping actions
