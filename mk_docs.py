@@ -168,7 +168,7 @@ def mkResources(root_dir, web_root):
 
 # Configuration of static variables
 root_dir = "./"
-tempdir = "/tmp/ssp_tmp/"
+tempdir = "./ssp_tmp/"
 
 repo_root_dir = "simplesamlphp/"
 repo_docs_dir = "docs/"
@@ -180,6 +180,7 @@ footer = "resources/footer"
 
 # Make sure we have a working site subdir to put stuff in
 os.system('mkdir ' +  site_root_dir)
+os.system('mkdir ' +  tempdir)
 
 # make the header and footer available as global vars
 print("reading Header")
