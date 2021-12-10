@@ -208,7 +208,7 @@ for ssp_version in ssp_versions:
    versioned_site_root =  site_root_dir + ssp_version + "/"
    print("versioned_site_root: " + versioned_site_root)
    
-   
+   os.system('ls ' +  versioned_site_root)
    
    # Parse main docs for this version
    #parsefiles(os.path.join(version_dir, repo_root_dir, repo_docs_dir), versioned_site_root)
