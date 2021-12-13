@@ -122,7 +122,7 @@ def mkNavigation(versions):
     
     content = '<div id="langbar" style="clar: both"><div id="navigation">Documentation is available for the following versions: '
     for version in versions:
-        content += '<a href="/'+version+'/index.html">'+version+'</a> | '
+        content += '<a href="'+version+'/index.html">'+version+'</a> | '
     content += ' modules</div></div>'
     
     return content
@@ -204,15 +204,13 @@ for ssp_version in ssp_versions:
 
    # parse 'core' modules docs (if available)
    for module in mods:
-     #print("Working on: " + module)
-    
      module_name = os.path.basename(os.path.normpath(module))
      module_dir = os.path.join(module, "docs/")
      module_output_dir = os.path.join(versioned_site_root, module_name + "/" )
      parsefiles(module_dir, module_output_dir)
 
-# fetch and generade documentation for contributed modules as made availabe in the ssp repos
-# Contributes modules are not version dependent on the mail source and hence are generated seperately from versioned documentation
+# Fetch and generade documentation for contributed modules as made availabe in various ssp repos
+# Contributes modules are not version dependent on the main source and hence are generated seperately from versioned documentation
 contrib_mods = getmodulerepos()
 
 for module in contrib_mods:
@@ -230,8 +228,7 @@ for module in contrib_mods:
 
 
    
-# Clean up the tempdir
-#os.system('rm -Rf ' +  tempdir)
+# Dump website tree so we can see in the runner if all went well
 os.system('tree ' +  site_root_dir)
 
 
