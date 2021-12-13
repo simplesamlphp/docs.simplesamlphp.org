@@ -206,7 +206,7 @@ for ssp_version in ssp_versions:
 
    # parse 'core' modules docs (if available)
    for module in mods:
-     print("Working on: " + module)
+     #print("Working on: " + module)
     
      module_name = os.path.basename(os.path.normpath(module))
      module_dir = os.path.join(module, "docs/")
