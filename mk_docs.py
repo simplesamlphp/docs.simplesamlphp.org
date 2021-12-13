@@ -169,17 +169,10 @@ site_root_dir = root_dir + "_site/"
 header = runner_path + "resources/header"
 footer = runner_path + "resources/footer"
 
-print("Root dir: " + root_dir)
-print("Temp dir: " + tempdir)
-print("runner_path dir: " + runner_path)
-
-#os.system('pwd  $GITHUB_WORKSPACE')
-#os.system('ls  $GITHUB_WORKSPACE')
-
 # for which versions should we generate documentation?
 # ToDo: replace with dynamic assasment based on github tags
 #ssp_versions=["latest","1.19", "1.18", "1.17"]
-ssp_versions=["latest"]
+ssp_versions=["latest","1.19"]
 
 # Make sure we have a working site subdir to put stuff in
 os.system('mkdir ' +  site_root_dir)
