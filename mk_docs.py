@@ -213,6 +213,7 @@ for ssp_version in ssp_versions:
      module_output_dir = os.path.join(versioned_site_root, module_name + "/" )
      parsefiles(module_dir, module_output_dir)
 
+
 # fetch and generade documentation for contributed modules as made availabe in the ssp repos
 #contrib_mods = getmodulerepos()
 
