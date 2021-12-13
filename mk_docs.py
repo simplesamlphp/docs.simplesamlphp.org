@@ -47,13 +47,8 @@ def md2html(md_file, html_file, file_name):
        #if not p is None:
        #   desc = " - " + str(p.string)
 
-    #print(header + mkContentHeader(ssp_versions) + str(soup.prettify()) + footer)
-
-    with open("./_site/docs/latest/test", 'w+') as f:
-       f.write(header + mkContentHeader(ssp_versions) + str(soup.prettify()) + footer)
-
-#    with open(html_file, 'w+') as f:
-#       f.write(header + mkContentHeader(ssp_versions) + str(soup.prettify()) + footer)	
+    with open(html_file, 'w+') as f:
+       f.write(header + mkContentHeader(ssp_versions) + str(soup.prettify()) + footer)	
 
 # search a filesystem directory for subdirs and retum these in a list
 def getsubdirs(dir_path):
