@@ -168,8 +168,7 @@ footer = runner_path + "resources/footer"
 
 # for which versions should we generate documentation?
 # ToDo: replace with dynamic assasment based on github tags
-#ssp_versions=["latest","1.19", "1.18", "1.17"]
-ssp_versions=["latest","1.19"]
+ssp_versions=["latest","1.19", "1.18", "1.17"]
 
 # Make sure we have a working site subdir to put stuff in
 os.system('mkdir ' +  site_root_dir)
