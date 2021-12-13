@@ -33,6 +33,6 @@ jobs:
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
-#        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
 #        repository:  simplesamlphp/simplesamlphp.github.io 
         publish_dir: ./_site
