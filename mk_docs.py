@@ -7,18 +7,13 @@ import urllib.request
 import json 
 from bs4 import BeautifulSoup
 
-# for which versions should we generate documentation?
-# ToDo: replace with dynamic assasment based on github tags
-#ssp_versions=["latest","1.19", "1.18", "1.17"]
-ssp_versions=["latest"]
-
 # Some functions
 
 # Convert md file to html file
 # - make sure links remain working
 # - add header, navigation and footer to the converted file
 def md2html(md_file, html_file, file_name):
-    print("Transforming " + md_file + " into " + html_file)
+    #print("Transforming " + md_file + " into " + html_file)
     
     
     with open(md_file, 'r') as f:
@@ -173,6 +168,13 @@ footer = "resources/footer"
 
 print("Root dir: " + root_dir)
 print("Temp dir: " + tempdir)
+
+os.system('ls  ' +  root_dir)
+
+# for which versions should we generate documentation?
+# ToDo: replace with dynamic assasment based on github tags
+#ssp_versions=["latest","1.19", "1.18", "1.17"]
+ssp_versions=["latest"]
 
 # Make sure we have a working site subdir to put stuff in
 os.system('mkdir ' +  site_root_dir)
