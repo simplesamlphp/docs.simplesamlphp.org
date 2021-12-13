@@ -122,7 +122,7 @@ def mkNavigation(versions):
     
     content = '<div id="langbar" style="clar: both"><div id="navigation">Documentation is available for the following versions: '
     for version in versions:
-        content += '<a href="../'+version+'/index.html">'+version+'</a> | '
+        content += '<a href="./../'+version+'/index.html">'+version+'</a> | '
     content += ' modules</div></div>'
     
     return content
