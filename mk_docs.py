@@ -168,13 +168,13 @@ def mkResources(root_dir, web_root):
 
 # Configuration of static variables
 root_dir = os.path.expanduser('~') + "/"
-tempdir = root_dir + "/ssp_tmp/"
+tempdir = root_dir + "ssp_tmp/"
 
 repo_root_dir = "simplesamlphp/"
 repo_docs_dir = "docs/"
 repo_modules_dir = "modules/"
 
-site_root_dir = root_dir + "/_site/"
+site_root_dir = root_dir + "_site/"
 header = "resources/header"
 footer = "resources/footer"
 
