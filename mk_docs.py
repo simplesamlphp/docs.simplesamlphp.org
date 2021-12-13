@@ -12,8 +12,6 @@ from bs4 import BeautifulSoup
 #ssp_versions=["latest","1.19", "1.18", "1.17"]
 ssp_versions=["latest"]
 
-
-
 # Some functions
 
 # Convert md file to html file
@@ -240,4 +238,5 @@ for ssp_version in ssp_versions:
    
 # Clean up the tempdir
 #os.system('rm -Rf ' +  tempdir)
+os.system('tree ' +  site_root_dir)
 
