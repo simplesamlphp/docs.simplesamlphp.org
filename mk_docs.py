@@ -158,6 +158,8 @@ def mkResources(root_dir, web_root):
 root_dir = os.path.expanduser('~') + "/"
 tempdir = root_dir + "ssp_tmp/"
 
+runner_path = os.system('pwd $GITHUB_WORKSPACE')
+
 repo_root_dir = "simplesamlphp/"
 repo_docs_dir = "docs/"
 repo_modules_dir = "modules/"
@@ -168,9 +170,10 @@ footer = "resources/footer"
 
 print("Root dir: " + root_dir)
 print("Temp dir: " + tempdir)
+print("runner_path dir: " + runner_path)
 
-os.system('pwd  $GITHUB_WORKSPACE')
-os.system('ls  $GITHUB_WORKSPACE')
+#os.system('pwd  $GITHUB_WORKSPACE')
+#os.system('ls  $GITHUB_WORKSPACE')
 
 # for which versions should we generate documentation?
 # ToDo: replace with dynamic assasment based on github tags
