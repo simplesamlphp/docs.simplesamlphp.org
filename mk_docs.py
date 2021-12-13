@@ -224,7 +224,7 @@ for module in contrib_mods:
     
     getgitrepo(module["html_url"], contrib_mod_dir, module["name"])
     
-    module_name = os.path.basename(os.path.normpath(module))
+    #module_name = os.path.basename(os.path.normpath(module))
     module_dir = os.path.join(contrib_mod_dir, module["name"], "docs/")
     print(module_dir)
     module_output_dir = os.path.join(contrib_mod_web_dir, module["name"].split("-")[2] + "/" )
