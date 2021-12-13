@@ -158,7 +158,8 @@ def mkResources(root_dir, web_root):
 root_dir = os.path.expanduser('~') + "/"
 tempdir = root_dir + "ssp_tmp/"
 
-runner_path = os.popen('pwd $GITHUB_WORKSPACE').read()
+runner_path = '/home/runner/work/docs.simplesamlphp.org/docs.simplesamlphp.org'
+#os.popen('pwd $GITHUB_WORKSPACE').read()
 
 repo_root_dir = "simplesamlphp/"
 repo_docs_dir = "docs/"
