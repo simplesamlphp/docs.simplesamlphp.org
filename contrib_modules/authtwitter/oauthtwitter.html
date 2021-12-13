@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Language" content="en" />
+
+	<!-- JQuery -->
+	<!-- 
+	<script type="text/javascript" src="/res/js/jquery.js"></script>
+	<script type="text/javascript" src="/res/js/jquery-ui.js"></script>
+	-->
+
+	<style>
+	  mark {
+        background: orange;
+        color: black;
+      }
+    </style>  
+
+	
+	<!-- Foodle: CSS -->	
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/js/uitheme/jquery-ui-themeroller.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/style.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/layout.css" /> 
+
+	<title>SimpleSAMLphp Documentation</title> 
+</head>
+
+
+
+
+
+<body><!-- Red logo header --><div id="header">	<div id="logo"><a href="https://simplesamlphp.org" style="color: #fff; text-decoration: none" target="_blank">SimpleSAMLphp</a></div></div><!-- Grey header bar below --><div id="headerbar" style="clear: both"><div id="langbar" style="clar: both"><div id="navigation">Documentation is available for the following versions: <a href="/latest/index.html">latest</a> | <a href="/1.19/index.html">1.19</a> | <a href="/1.18/index.html">1.18</a> | <a href="/1.17/index.html">1.17</a> |  modules</div></div><br style="height: 0px; clear: both" /></div><!-- /#headerbar --><div id="content"><h1>
+ Using the Twitter authentication source with SimpleSAMLphp
+</h1>
+<p>
+ To get an API key and a secret, register the application at:
+</p>
+<ul>
+ <li>
+  <a href="http://twitter.com/oauth_clients">
+   http://twitter.com/oauth_clients
+  </a>
+ </li>
+</ul>
+<p>
+ Now you have you configure the authsource in
+ <code>
+  authsources.php
+ </code>
+ .
+</p>
+<pre><code>  // Twitter OAuth Authentication API.
+  // Register your application to get an API key here:
+  //  http://twitter.com/oauth_clients
+  'twitter' =&gt; [
+      'authtwitter:Twitter',
+      'key' =&gt; 'key retrieved during registration of your app',
+      'secret' =&gt; 'secret retrieved during registration of your app',
+
+      // The oAuth scope to include in the request
+      'scope' =&gt; 'read',
+
+      // Forces the user to enter their credentials to ensure the correct users account is authorized.
+      // Details: https://dev.twitter.com/docs/api/1/get/oauth/authenticate
+      'force_login' =&gt; false,
+  ],
+</code></pre>
+<h2>
+ Testing authentication
+</h2>
+<p>
+ On the SimpleSAMLphp frontpage, go to the
+ <em>
+  Authentication
+ </em>
+ tab, and use the link:
+</p>
+<pre><code>* *Test configured authentication sources*
+</code></pre>
+<p>
+ Then choose the
+ <em>
+  twitter
+ </em>
+ authentication source.
+</p>
+<p>
+ Expected behaviour would then be that you are sent to twitter, and asked to login.
+The first time a user uses your application to login, he/she is asked for consent.
+You will then be authenticated in SimpleSAMLphp and see an attribute set with data delivered by Twitter.
+</p></div>    <!-- /#content -->
+
+<div id="footer">
+    <a href="https://www.uninett.no/"><img id="ulogo" alt="notes" src="/res/uninettlogo.png" /SS></a>
+</div><!-- /#footer -->
+
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Language" content="en" />
+
+	<!-- JQuery -->
+	<!-- 
+	<script type="text/javascript" src="/res/js/jquery.js"></script>
+	<script type="text/javascript" src="/res/js/jquery-ui.js"></script>
+	-->
+
+	<style>
+	  mark {
+        background: orange;
+        color: black;
+      }
+    </style>  
+
+	
+	<!-- Foodle: CSS -->	
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/js/uitheme/jquery-ui-themeroller.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/style.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/layout.css" /> 
+
+	<title>SimpleSAMLphp Documentation</title> 
+</head>
+
+
+
+
+
+<body><!-- Red logo header --><div id="header">	<div id="logo"><a href="https://simplesamlphp.org" style="color: #fff; text-decoration: none" target="_blank">SimpleSAMLphp</a></div></div><!-- Grey header bar below --><div id="headerbar" style="clear: both"><div id="langbar" style="clar: both"><div id="navigation">Documentation is available for the following versions: <a href="/latest/index.html">latest</a> | <a href="/1.19/index.html">1.19</a> | <a href="/1.18/index.html">1.18</a> | <a href="/1.17/index.html">1.17</a> |  modules</div></div><br style="height: 0px; clear: both" /></div><!-- /#headerbar --><div id="content"><h1>
+ <code>
+  core:PHP
+ </code>
+</h1>
+<p>
+ This is a filter which makes it possible to run arbitrary PHP code to modify the attributes or state of an user.
+</p>
+<h2>
+ Parameters
+</h2>
+<p>
+ <code>
+  class
+ </code>
+ :   This is the name of the filter.
+    It must be
+ <code>
+  'core:PHP'
+ </code>
+ .
+</p>
+<p>
+ <code>
+  code
+ </code>
+ :   The PHP code that should be run. This code will have two variables available:
+</p>
+<ul>
+ <li>
+  <p>
+   <code>
+    $attributes
+   </code>
+   .
+    This is an associative array of attributes, and can be modified to add or remove attributes.
+  </p>
+ </li>
+ <li>
+  <p>
+   <code>
+    $state
+   </code>
+   .
+    This is an associative array of request state. It can be modified to adjust data related to the authentication
+    such as desired NameId, requested Attributes, authnContextRef and many more.
+  </p>
+ </li>
+</ul>
+<h2>
+ Examples
+</h2>
+<p>
+ Add the
+ <code>
+  mail
+ </code>
+ attribute based on the user's
+ <code>
+  uid
+ </code>
+ attribute:
+</p>
+<pre><code>  10 =&gt; [
+      'class' =&gt; 'core:PHP',
+      'code' =&gt; '
+          if (empty($attributes["uid"])) {
+              throw new Exception("Missing uid attribute.");
+          }
+
+          $uid = $attributes["uid"][0];
+          $mail = $uid . "@example.net";
+          $attributes["mail"] = [$mail];
+      ',
+  ],
+</code></pre>
+<p>
+ Create a random number variable:
+</p>
+<pre><code>  10 =&gt; [
+      'class' =&gt; 'core:PHP',
+      'code' =&gt; '
+          $attributes["random"] = [
+              (string)rand(),
+          ];
+      ',
+  ],
+</code></pre>
+<p>
+ Force a specific NameIdFormat. Useful if an SP misbehaves and requests (or publishes) an incorrect NameId
+</p>
+<pre><code>  90 =&gt; [
+       'class' =&gt; 'core:PHP',
+       'code' =&gt; '$state["saml:NameIDFormat"] = ["Format" =&gt; "urn:oasis:names:tc:SAML:2.0:nameid-format:transient", "AllowCreate" =&gt; true];'
+  ],
+</code></pre></div>    <!-- /#content -->
+
+<div id="footer">
+    <a href="https://www.uninett.no/"><img id="ulogo" alt="notes" src="/res/uninettlogo.png" /SS></a>
+</div><!-- /#footer -->
+
+</body>
+</html>

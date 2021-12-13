@@ -1,0 +1,250 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Language" content="en" />
+
+	<!-- JQuery -->
+	<!-- 
+	<script type="text/javascript" src="/res/js/jquery.js"></script>
+	<script type="text/javascript" src="/res/js/jquery-ui.js"></script>
+	-->
+
+	<style>
+	  mark {
+        background: orange;
+        color: black;
+      }
+    </style>  
+
+	
+	<!-- Foodle: CSS -->	
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/js/uitheme/jquery-ui-themeroller.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/style.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/layout.css" /> 
+
+	<title>SimpleSAMLphp Documentation</title> 
+</head>
+
+
+
+
+
+<body><!-- Red logo header --><div id="header">	<div id="logo"><a href="https://simplesamlphp.org" style="color: #fff; text-decoration: none" target="_blank">SimpleSAMLphp</a></div></div><!-- Grey header bar below --><div id="headerbar" style="clear: both"><div id="langbar" style="clar: both"><div id="navigation">Documentation is available for the following versions: <a href="/latest/index.html">latest</a> | <a href="/1.19/index.html">1.19</a> | <a href="/1.18/index.html">1.18</a> | <a href="/1.17/index.html">1.17</a> |  modules</div></div><br style="height: 0px; clear: both" /></div><!-- /#headerbar --><div id="content"><h1>
+ Cron
+</h1>
+<!-- 
+  This file is written in Markdown syntax. 
+  For more information about how to use the Markdown syntax, read here:
+  http://daringfireball.net/projects/markdown/syntax
+-->
+<!-- {{TOC}} -->
+<h2>
+ Introduction
+</h2>
+<p>
+ The cron module allows you to do tasks regularly, by setting up a cron
+job that calls a hook in SimpleSAMLphp.  This will invoke
+ <code>
+  hooks/hook_cron.php
+ </code>
+ in any enabled modules
+</p>
+<h2>
+ Preparations
+</h2>
+<p>
+ You need to enable the module and copy the
+ <code>
+  config-templates
+ </code>
+ files of the module into the global
+ <code>
+  config/
+ </code>
+ directory.
+</p>
+<pre><code>[root@simplesamlphp] cd /var/simplesamlphp
+[root@simplesamlphp simplesamlphp] touch modules/cron/enable
+[root@simplesamlphp simplesamlphp] cp modules/cron/config-templates/*.php config/
+</code></pre>
+<h2>
+ Configuring the cron module
+</h2>
+<p>
+ The configuration (
+ <code>
+  config/module_cron.php
+ </code>
+ ) should look similar to this:
+</p>
+<pre><code>$config = [
+       'key' =&gt; 'RANDOM_KEY',
+       'allowed_tags' =&gt; ['daily', 'hourly', 'frequent'],
+       'debug_message' =&gt; TRUE,
+       'sendemail' =&gt; TRUE,
+
+];
+</code></pre>
+<p>
+ Bear in mind that the key is used as a security feature, to restrict
+access to your cron. Therefore, you need to make sure that the string
+here is a random key available to no one but you. Additionally, make
+sure that you include here the appropriate tags - for example any tags
+that you previously told metarefresh to use in the
+ <code>
+  cron
+ </code>
+ directive.
+</p>
+<h2>
+ Triggering Cron
+</h2>
+<p>
+ You can trigger the cron hooks through HTTP or CLI.  The HTTP method
+is the original technique, and it is recommended if you don't need to
+trigger CPU or memory intensive cron hooks.  The CLI option is
+recommended if you need more control over memory, CPU limits and
+process priority.
+</p>
+<h3>
+ With HTTP
+</h3>
+<p>
+ <code>
+  cron
+ </code>
+ functionality can be invoked by making an HTTP request to the
+cron module.  Use your web browser to go to
+ <code>
+  https://YOUR_SERVER/simplesaml/module.php/cron/croninfo.php
+ </code>
+ . Make
+sure to properly set your server's address, as well as use HTTP or
+HTTPS accordingly, and also to specify the correct path to the root of
+your SimpleSAMLphp installation.
+</p>
+<p>
+ Now, copy the cron configuration suggested on that page:
+</p>
+<pre><code># Run cron [daily]
+02 0 * * * curl --silent "https://YOUR_SERVER/simplesaml/module.php/cron/cron.php?key=RANDOM_KEY&amp;tag=daily" &gt; /dev/null 2&gt;&amp;1
+# Run cron [hourly]
+01 * * * * curl --silent "https://YOUR_SERVER/simplesaml/module.php/cron/cron.php?key=RANDOM_KEY&amp;tag=hourly" &gt; /dev/null 2&gt;&amp;1
+</code></pre>
+<p>
+ Finally, add it to your crontab by going back to the terminal, and editing with:
+</p>
+<pre><code>[root@simplesamlphp config]# crontab -e
+</code></pre>
+<p>
+ This will open up your favourite editor. If an editor different than
+the one you use normally appears, exit, and configure the
+ <code>
+  EDITOR
+ </code>
+ variable to tell the command line which editor it should use:
+</p>
+<pre><code>[root@simplesamlphp config]# export EDITOR=emacs
+</code></pre>
+<p>
+ If you want to trigger a job manually, you can do
+so by going back to the cron page in the web interface. Then, just
+follow the appropriate links to execute the cron jobs you want. The
+page will take a while loading, and eventually show a blank page.
+</p>
+<h3>
+ With CLI
+</h3>
+<p>
+ You can invoke cron functionality by running
+ <code>
+  /var/simplesamlphp/modules/cron/bin/cron.php
+ </code>
+ and providing a tag
+with the
+ <code>
+  -t
+ </code>
+ argument.
+</p>
+<p>
+ It is strongly recommended that you run the cron cli script as the
+same user as the web server.  Several cron hooks created files and
+those files may have the wrong permissions if you run the job as root.
+</p>
+<p>
+ <strong>
+  note:
+ </strong>
+ Logging behavior in SSP when running from CLI varies by
+version. The latest version logs to PHP's error log and ignores any
+logging configuration from
+ <code>
+  config.php
+ </code>
+</p>
+<p>
+ Below is an example of invoking the script. It will:
+</p>
+<ul>
+ <li>
+  Run a command as the
+  <code>
+   apache
+  </code>
+  user
+  <ul>
+   <li>
+    <code>
+     -s
+    </code>
+    specifies
+    <code>
+     apache
+    </code>
+    user's shell, since the default is non-interactive
+   </li>
+  </ul>
+ </li>
+ <li>
+  Override INI entries to increase memory and execution time.
+    * This allows for processing large metadata files in metarefresh
+ </li>
+ <li>
+  Run the
+  <code>
+   cron.php
+  </code>
+  script with the
+  <code>
+   hourly
+  </code>
+  tag
+ </li>
+ <li>
+  Use
+  <code>
+   nice
+  </code>
+  to lower the priority below that of web server processes
+ </li>
+</ul>
+<p>
+ ```
+su -s "/bin/sh" \
+   -c "nice -n 10 \
+       php -d max_execution_time=120 -d memory_limit=600M \
+       /var/simplesamlphp/modules/cron/bin/cron.php -t hourly" \
+    apache
+</p>
+<p>
+ ```
+</p></div>    <!-- /#content -->
+
+<div id="footer">
+    <a href="https://www.uninett.no/"><img id="ulogo" alt="notes" src="/res/uninettlogo.png" /SS></a>
+</div><!-- /#footer -->
+
+</body>
+</html>

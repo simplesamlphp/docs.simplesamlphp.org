@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Language" content="en" />
+
+	<!-- JQuery -->
+	<!-- 
+	<script type="text/javascript" src="/res/js/jquery.js"></script>
+	<script type="text/javascript" src="/res/js/jquery-ui.js"></script>
+	-->
+
+	<style>
+	  mark {
+        background: orange;
+        color: black;
+      }
+    </style>  
+
+	
+	<!-- Foodle: CSS -->	
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/js/uitheme/jquery-ui-themeroller.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/style.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/layout.css" /> 
+
+	<title>SimpleSAMLphp Documentation</title> 
+</head>
+
+
+
+
+
+<body><!-- Red logo header --><div id="header">	<div id="logo"><a href="https://simplesamlphp.org" style="color: #fff; text-decoration: none" target="_blank">SimpleSAMLphp</a></div></div><!-- Grey header bar below --><div id="headerbar" style="clear: both"><div id="langbar" style="clar: both"><div id="navigation">Documentation is available for the following versions: <a href="/latest/index.html">latest</a> | <a href="/1.19/index.html">1.19</a> | <a href="/1.18/index.html">1.18</a> | <a href="/1.17/index.html">1.17</a> |  modules</div></div><br style="height: 0px; clear: both" /></div><!-- /#headerbar --><div id="content"><h1>
+ <code>
+  core:LanguageAdaptor
+ </code>
+</h1>
+<p>
+ SimpleSAMLphp has built in language support, and stores the preferred language in a cookie.
+</p>
+<p>
+ Identity systems also often has a specific attribute that indicates what language is understood by the user.
+MACE defines an attribute with preferred language:
+ <code>
+  preferredLanguage
+ </code>
+ .
+ <a href="https://tools.ietf.org/html/rfc2798#section-2.7">
+  Read more about the preferredLanguage attribute defined by MACE
+ </a>
+ .
+</p>
+<p>
+ The LanguageAdaptor brings these two concepts together.
+If executed early at the IdP it will check if the
+ <code>
+  preferredLanguage
+ </code>
+ attribute is among the users attributes, and if it is, SimpleSAMLphp will use that language in the user interface.
+ <strong>
+  Notice that
+ </strong>
+ the login page itself is to early to be influenced by the user attributes, because the IdP does not know any user attributes before the user logs in.
+In contrast, the consent module will be presented in the correct language based on user attribute.
+</p>
+<p>
+ The LanguageAdaptor also works the other way around.
+If the user does not have the
+ <code>
+  preferredLanguage
+ </code>
+ attribute, the user interface for the user will be set to the default for the installation.
+If this language is not correct for the user, the user may click to switch language on the login page (or any other UI page in SimpleSAMLphp).
+SimpleSAMLphp then stores the preferred language in a cookie.
+Now, the LanguageAdaptor will read the preferred language from the cookie and add a user attribute with the preferred language, that is sent to the service provider.
+</p>
+<p>
+ The name of the attribute can be changed from the default by adding the
+ <code>
+  attributename
+ </code>
+ option.
+</p>
+<h2>
+ Examples
+</h2>
+<p>
+ Default attribute (
+ <code>
+  preferredLanguage
+ </code>
+ ):
+</p>
+<pre><code>  'authproc' =&gt; [
+      50 =&gt; [
+          'class' =&gt; 'core:LanguageAdaptor',
+      ],
+  ],
+</code></pre>
+<p>
+ Custon attribute:
+</p>
+<pre><code>  'authproc' =&gt; [
+      50 =&gt; [
+          'class' =&gt; 'core:LanguageAdaptor',
+          'attributename' =&gt; 'lang',
+      ],
+  ],
+</code></pre></div>    <!-- /#content -->
+
+<div id="footer">
+    <a href="https://www.uninett.no/"><img id="ulogo" alt="notes" src="/res/uninettlogo.png" /SS></a>
+</div><!-- /#footer -->
+
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Language" content="en" />
+
+	<!-- JQuery -->
+	<!-- 
+	<script type="text/javascript" src="/res/js/jquery.js"></script>
+	<script type="text/javascript" src="/res/js/jquery-ui.js"></script>
+	-->
+
+	<style>
+	  mark {
+        background: orange;
+        color: black;
+      }
+    </style>  
+
+	
+	<!-- Foodle: CSS -->	
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/js/uitheme/jquery-ui-themeroller.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/style.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/layout.css" /> 
+
+	<title>SimpleSAMLphp Documentation</title> 
+</head>
+
+
+
+
+
+<body><!-- Red logo header --><div id="header">	<div id="logo"><a href="https://simplesamlphp.org" style="color: #fff; text-decoration: none" target="_blank">SimpleSAMLphp</a></div></div><!-- Grey header bar below --><div id="headerbar" style="clear: both"><div id="langbar" style="clar: both"><div id="navigation">Documentation is available for the following versions: <a href="/latest/index.html">latest</a> | <a href="/1.19/index.html">1.19</a> | <a href="/1.18/index.html">1.18</a> | <a href="/1.17/index.html">1.17</a> |  modules</div></div><br style="height: 0px; clear: both" /></div><!-- /#headerbar --><div id="content"><h1>
+ Metadata endpoints
+</h1>
+<p>
+ This document gives a short introduction to the various methods forms metadata endpoints can take in SimpleSAMLphp.
+</p>
+<p>
+ The endpoints we have are:
+</p>
+<p>
+ Endpoint                       | Indexed | Default binding
+-------------------------------|---------|----------------
+ <code>
+  ArtifactResolutionService
+ </code>
+ | Y       | SOAP
+ <code>
+  AssertionConsumerService
+ </code>
+ | Y       | HTTP-POST
+ <code>
+  SingleLogoutService
+ </code>
+ | N       | HTTP-Redirect
+ <code>
+  SingleSignOnService
+ </code>
+ | N       | HTTP-Redirect
+</p>
+<p>
+ The various endpoints can be specified in three different ways:
+</p>
+<pre><code>* A single string.
+* Array of strings.
+* Array of arrays.
+</code></pre>
+<h2>
+ A single string
+</h2>
+<pre><code>  'AssertionConsumerService' =&gt; 'https://sp.example.org/ACS',
+</code></pre>
+<p>
+ This is the simplest endpoint format.
+It can be used when there is only a single endpoint that uses the default binding.
+</p>
+<h2>
+ Array of strings
+</h2>
+<pre><code>  'AssertionConsumerService' =&gt; [
+      'https://site1.example.org/ACS',
+      'https://site2.example.org/ACS',
+  ],
+</code></pre>
+<p>
+ This endpoint format can be used to represent multiple endpoints, all of which use the default binding.
+</p>
+<h2>
+ Array of arrays
+</h2>
+<pre><code>  'AssertionConsumerService' =&gt; [
+      [
+          'index' =&gt; 1,
+          'isDefault' =&gt; true,
+          'Location' =&gt; 'https://sp.example.org/ACS',
+          'Binding' =&gt; 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
+      ],
+      [
+          'index' =&gt; 2,
+          'Location' =&gt; 'https://sp.example.org/ACS',
+          'Binding' =&gt; 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact',
+      ],
+  ],
+</code></pre>
+<p>
+ This endpoint format allows for specifying multiple endpoints with different bindings.
+It can also be used to specify the ResponseLocation attribute on endpoints, e.g. on
+ <code>
+  SingleLogoutService
+ </code>
+ :
+</p>
+<pre><code>  'SingleLogoutService' =&gt; [
+      [
+          'Location' =&gt; 'https://sp.example.org/LogoutRequest',
+          'ResponseLocation' =&gt; 'https://sp.example.org/LogoutResponse',
+          'Binding' =&gt; 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
+      ],
+  ],
+</code></pre></div>    <!-- /#content -->
+
+<div id="footer">
+    <a href="https://www.uninett.no/"><img id="ulogo" alt="notes" src="/res/uninettlogo.png" /SS></a>
+</div><!-- /#footer -->
+
+</body>
+</html>

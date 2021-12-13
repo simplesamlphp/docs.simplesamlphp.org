@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Language" content="en" />
+
+	<!-- JQuery -->
+	<!-- 
+	<script type="text/javascript" src="/res/js/jquery.js"></script>
+	<script type="text/javascript" src="/res/js/jquery-ui.js"></script>
+	-->
+
+	<style>
+	  mark {
+        background: orange;
+        color: black;
+      }
+    </style>  
+
+	
+	<!-- Foodle: CSS -->	
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/js/uitheme/jquery-ui-themeroller.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/style.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/layout.css" /> 
+
+	<title>SimpleSAMLphp Documentation</title> 
+</head>
+
+
+
+
+
+<body><!-- Red logo header --><div id="header">	<div id="logo"><a href="https://simplesamlphp.org" style="color: #fff; text-decoration: none" target="_blank">SimpleSAMLphp</a></div></div><!-- Grey header bar below --><div id="headerbar" style="clear: both"><div id="langbar" style="clar: both"><div id="navigation">Documentation is available for the following versions: <a href="/latest/index.html">latest</a> | <a href="/1.19/index.html">1.19</a> | <a href="/1.18/index.html">1.18</a> | <a href="/1.17/index.html">1.17</a> |  modules</div></div><br style="height: 0px; clear: both" /></div><!-- /#headerbar --><div id="content"><h1>
+ SimpleSAML\Database
+</h1>
+<!-- 
+  This file is written in Markdown syntax. 
+  For more information about how to use the Markdown syntax, read here:
+  http://daringfireball.net/projects/markdown/syntax
+-->
+<!-- {{TOC}} -->
+<h2>
+ Purpose
+</h2>
+<p>
+ This document covers the SimpleSAML\Database class and is only relevant to anyone writing code for SimpleSAMLphp, including modules, that require a database connection.
+</p>
+<p>
+ The Database class provides a single class that can be used to connect to a database which can be shared by anything within SimpleSAMLphp.
+</p>
+<h2>
+ Getting Started
+</h2>
+<p>
+ If you are just using the already configured database, which would normally be the case, all you need to do is get the global instance of the Database class.
+</p>
+<pre><code>$db = \SimpleSAML\Database::getInstance();
+</code></pre>
+<p>
+ If there is a requirement to connect to an alternate database server (ex. authenticating users that exist on a different SQL server or database) you can specify an alternate configuration.
+</p>
+<pre><code>$config = new \SimpleSAML\Configuration($myconfigarray, "mymodule/lib/Auth/Source/myauth.php");
+$db = \SimpleSAML\Database::getInstance($config);
+</code></pre>
+<p>
+ That will create a new instance of the database, separate from the global instance, specific to the configuration defined in $myconfigarray. If you are going to specify an alternate config, your configuration array must contain the same keys that exist in the primary config (database.dsn, database.username, database.password, database.prefix, etc).
+</p>
+<h2>
+ Database Prefix
+</h2>
+<p>
+ Administrators can add a prefix to all the table names that this database classes accesses and you should take that in account when querying. Assuming that a prefix has been configured as "sp_":
+</p>
+<pre><code>$table = $db-&gt;applyPrefix("saml20_idp_hosted");
+</code></pre>
+<p>
+ $table would be set to "sp_saml20_idp_hosted"
+</p>
+<h2>
+ Querying The Database
+</h2>
+<p>
+ You can query the database through two public functions read() and write() which are fairly self-explanitory when it comes to determining which one to use when querying.
+</p>
+<h3>
+ Writing to The Database
+</h3>
+<p>
+ Since the database class allows administrators to configure primary and secondary database servers, the write function will always use the primary database connection.
+</p>
+<p>
+ The write function takes 2 parameters: SQL, params.
+</p>
+<pre><code>$table = $db-&gt;applyPrefix("test");
+$values = [
+  'id' =&gt; 20,
+  'data' =&gt; 'Some data',
+];
+
+$query = $db-&gt;write("INSERT INTO $table (id, data) VALUES (:id, :data)", $values);
+</code></pre>
+<p>
+ The values specified in the $values array will be bound to the placeholders and will be executed on the primary. By default, values are binded as PDO::PARAM_STR. If you need to override this, you can specify it in the values array.
+</p>
+<pre><code>$table = $db-&gt;applyPrefix("test");
+$values = [
+  'id' =&gt; [20, PDO::PARAM_INT],
+  'data' =&gt; 'Some data',
+];
+
+$query = $db-&gt;write("INSERT INTO $table (id, data) VALUES (:id, :data)", $values);
+</code></pre>
+<p>
+ You can also skip usage of prepared statements. You should
+ <strong>
+  only
+ </strong>
+ use this if you have a statement that has no user input (ex. CREATE TABLE). If the params variable is explicity set to false, it will skip usage of prepared statements. This is only available when writing to the database.
+</p>
+<pre><code>$table = $db-&gt;applyPrefix("test");
+$query = $db-&gt;write("CREATE TABLE IF NOT EXISTS $table (id INT(16) NOT NULL, data TEXT NOT NULL)", false);
+</code></pre>
+<h3>
+ Reading The Database
+</h3>
+<p>
+ Since the database class allows administrators to configure primary and secondary database servers, the read function will randomly select a secondary server to query. If no secondaries are configured, it will read from the primary.
+</p>
+<p>
+ The read function takes 2 parameters: SQL, params.
+</p>
+<pre><code>$table = $db-&gt;applyPrefix("test");
+$values = [
+  'id' =&gt; 20,
+];
+
+$query = $db-&gt;read("SELECT * FROM $table WHERE id = :id", $values);
+</code></pre>
+<p>
+ The values specified in the $values array will be bound to the placeholders and will be executed on the selected secondary. By default, values are binded as PDO::PARAM_STR. If you need to override this, you can specify it in the values array.
+</p>
+<pre><code>$table = $db-&gt;applyPrefix("test");
+$values = [
+  'id' =&gt; [20, PDO::PARAM_INT],
+];
+
+$query = $db-&gt;read("SELECT * FROM $table WHERE id = :id", $values);
+</code></pre></div>    <!-- /#content -->
+
+<div id="footer">
+    <a href="https://www.uninett.no/"><img id="ulogo" alt="notes" src="/res/uninettlogo.png" /SS></a>
+</div><!-- /#footer -->
+
+</body>
+</html>

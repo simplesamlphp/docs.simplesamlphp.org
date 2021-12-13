@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Language" content="en" />
+
+	<!-- JQuery -->
+	<!-- 
+	<script type="text/javascript" src="/res/js/jquery.js"></script>
+	<script type="text/javascript" src="/res/js/jquery-ui.js"></script>
+	-->
+
+	<style>
+	  mark {
+        background: orange;
+        color: black;
+      }
+    </style>  
+
+	
+	<!-- Foodle: CSS -->	
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/js/uitheme/jquery-ui-themeroller.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/style.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/layout.css" /> 
+
+	<title>SimpleSAMLphp Documentation</title> 
+</head>
+
+
+
+
+
+<body><!-- Red logo header --><div id="header">	<div id="logo"><a href="https://simplesamlphp.org" style="color: #fff; text-decoration: none" target="_blank">SimpleSAMLphp</a></div></div><!-- Grey header bar below --><div id="headerbar" style="clear: both"><div id="langbar" style="clar: both"><div id="navigation">Documentation is available for the following versions: <a href="/latest/index.html">latest</a> | <a href="/1.19/index.html">1.19</a> | <a href="/1.18/index.html">1.18</a> | <a href="/1.17/index.html">1.17</a> |  modules</div></div><br style="height: 0px; clear: both" /></div><!-- /#headerbar --><div id="content"><h1>
+ SAML V2.0 Metadata Attribute Extensions
+</h1>
+<!--
+  This file is written in Markdown syntax.
+  For more information about how to use the Markdown syntax, read here:
+  http://daringfireball.net/projects/markdown/syntax
+-->
+<!-- {{TOC}} -->
+<p>
+ This is a reference for the SimpleSAMLphp implementation of the
+ <a href="http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-attribute-ext.pdf">
+  SAML
+V2.0 Attribute Extensions
+ </a>
+ defined by OASIS. A common use case is adding entity attributes
+to the generated metadata.
+</p>
+<p>
+ For an IdP
+ <code>
+  metadata/saml20-idp-hosted.php
+ </code>
+ entries are used to define the
+metadata extension items; for an SP they can be added to
+ <code>
+  config/authsources.php
+ </code>
+ .
+An example of this is:
+</p>
+<pre><code>  &lt;?php
+  $metadata['entity-id-1'] = [
+      /* ... */
+  'EntityAttributes' =&gt; [
+    'urn:simplesamlphp:v1:simplesamlphp' =&gt; ['is', 'really', 'cool'],
+    '{urn:simplesamlphp:v1}foo'          =&gt; ['bar'],
+  ],
+      /* ... */
+  ];
+</code></pre>
+<p>
+ The OASIS specification primarily defines how to include arbitrary
+ <code>
+  Attribute
+ </code>
+ and
+ <code>
+  Assertion
+ </code>
+ elements within the metadata for an entity.
+</p>
+<p>
+ <em>
+  Note
+ </em>
+ : SimpleSAMLphp does not support
+ <code>
+  Assertion
+ </code>
+ elements within the
+metadata at this time.
+</p>
+<h2>
+ Defining Attributes
+</h2>
+<p>
+ The
+ <code>
+  EntityAttributes
+ </code>
+ key is used to define the attributes in the
+metadata. Each item in the
+ <code>
+  EntityAttributes
+ </code>
+ array defines a new
+ <code>
+  &lt;Attribute&gt;
+ </code>
+ item in the metadata. The value for each key must be an
+array. Each item in this array produces a separte
+ <code>
+  &lt;AttributeValue&gt;
+ </code>
+ element within the
+ <code>
+  &lt;Attribute&gt;
+ </code>
+ element.
+</p>
+<pre><code>  'EntityAttributes' =&gt; [
+    'urn:simplesamlphp:v1:simplesamlphp' =&gt; ['is', 'really', 'cool'],
+  ],
+</code></pre>
+<p>
+ This generates:
+</p>
+<pre><code>    &lt;saml:Attribute xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" Name="urn:simplesamlphp:v1:simplesamlphp" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"&gt;
+      &lt;saml:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string"&gt;is&lt;/saml:AttributeValue&gt;
+      &lt;saml:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string"&gt;really&lt;/saml:AttributeValue&gt;
+      &lt;saml:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string"&gt;cool&lt;/saml:AttributeValue&gt;
+    &lt;/saml:Attribute&gt;
+</code></pre>
+<p>
+ Each
+ <code>
+  &lt;Attribute&gt;
+ </code>
+ element requires a
+ <code>
+  NameFormat
+ </code>
+ attribute. This is
+specified using curly braces at the beginning of the key name:
+</p>
+<pre><code>  'EntityAttributes' =&gt; [
+    '{urn:simplesamlphp:v1}foo' =&gt; ['bar'],
+  ],
+</code></pre>
+<p>
+ This generates:
+</p>
+<pre><code>    &lt;saml:Attribute xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" Name="foo" NameFormat="urn:simplesamlphp:v1"&gt;
+      &lt;saml:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string"&gt;bar&lt;/saml:AttributeValue&gt;
+    &lt;/saml:Attribute&gt;
+</code></pre>
+<p>
+ When the curly braces are omitted, the NameFormat is automatically set
+to "urn:oasis:names:tc:SAML:2.0:attrname-format:uri".
+</p>
+<h2>
+ Examples
+</h2>
+<p>
+ If given the following configuration...
+</p>
+<pre><code>  $metadata['https://www.example.com/saml/saml2/idp/metadata.php'] = [
+      'host' =&gt; 'www.example.com',
+      'certificate' =&gt; 'example.com.crt',
+      'privatekey' =&gt; 'example.com.pem',
+      'auth' =&gt; 'example-userpass',
+
+  'EntityAttributes' =&gt; [
+    'urn:simplesamlphp:v1:simplesamlphp' =&gt; ['is', 'really', 'cool'],
+    '{urn:simplesamlphp:v1}foo'          =&gt; ['bar'],
+  ],
+];
+</code></pre>
+<p>
+ ... will generate the following XML metadata:
+</p>
+<pre><code><?xml version="1.0"?>
+
+
+&lt;md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:mdattr="urn:oasis:names:tc:SAML:metadata:attribute" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mdui="urn:oasis:names:tc:SAML:metadata:ui" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" entityID="https://www.example.com/saml/saml2/idp/metadata.php"&gt;
+  &lt;md:Extensions&gt;
+  &lt;mdattr:EntityAttributes xmlns:mdattr="urn:oasis:names:tc:SAML:metadata:attribute"&gt;
+    &lt;saml:Attribute xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" Name="urn:simplesamlphp:v1:simplesamlphp" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"&gt;
+    &lt;saml:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string"&gt;is&lt;/saml:AttributeValue&gt;
+    &lt;saml:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string"&gt;really&lt;/saml:AttributeValue&gt;
+    &lt;saml:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string"&gt;cool&lt;/saml:AttributeValue&gt;
+    &lt;/saml:Attribute&gt;
+    &lt;saml:Attribute xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" Name="foo" NameFormat="urn:simplesamlphp:v1"&gt;
+    &lt;saml:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string"&gt;bar&lt;/saml:AttributeValue&gt;
+    &lt;/saml:Attribute&gt;
+  &lt;/mdattr:EntityAttributes&gt;
+  &lt;/md:Extensions&gt;
+  &lt;md:IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"&gt;
+  &lt;md:KeyDescriptor use="signing"&gt;
+    &lt;ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#"&gt;
+    &lt;ds:X509Data&gt;
+          ...
+</code></pre>
+<p>
+ An example configuration to declare Géant Data Protection Code of Conduct
+entity category support for a service provider in
+ <code>
+  authsources.php
+ </code>
+ :
+</p>
+<pre><code>  'saml:SP' =&gt; [
+      ...
+      'EntityAttributes' =&gt; [
+          'http://macedir.org/entity-category' =&gt; [
+              '{urn:oasis:names:tc:SAML:2.0:attrname-format:uri}http://www.geant.net/uri/dataprotection-code-of-conduct/v1'
+          ]
+      ],
+      'UIInfo' =&gt;[
+              'DisplayName' =&gt; [
+                  'en' =&gt; 'English name',
+                  'es' =&gt; 'Nombre en Español',
+              ],
+              'Description' =&gt; [
+                  'en' =&gt; 'English description',
+                  'es' =&gt; 'Descripción en Español',
+              ],
+              'InformationURL' =&gt; [
+                  'en' =&gt; 'http://example.com/info/en',
+                  'es' =&gt; 'http://example.com/info/es',
+              ],
+              'PrivacyStatementURL' =&gt; [
+                  'en' =&gt; 'http://example.com/privacy/en',
+                  'es' =&gt; 'http://example.com/privacy/es',
+              ],
+      ]
+  ],
+</code></pre></div>    <!-- /#content -->
+
+<div id="footer">
+    <a href="https://www.uninett.no/"><img id="ulogo" alt="notes" src="/res/uninettlogo.png" /SS></a>
+</div><!-- /#footer -->
+
+</body>
+</html>

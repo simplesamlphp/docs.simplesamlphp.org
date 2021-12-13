@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Language" content="en" />
+
+	<!-- JQuery -->
+	<!-- 
+	<script type="text/javascript" src="/res/js/jquery.js"></script>
+	<script type="text/javascript" src="/res/js/jquery-ui.js"></script>
+	-->
+
+	<style>
+	  mark {
+        background: orange;
+        color: black;
+      }
+    </style>  
+
+	
+	<!-- Foodle: CSS -->	
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/js/uitheme/jquery-ui-themeroller.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/style.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/layout.css" /> 
+
+	<title>SimpleSAMLphp Documentation</title> 
+</head>
+
+
+
+
+
+<body><!-- Red logo header --><div id="header">	<div id="logo"><a href="https://simplesamlphp.org" style="color: #fff; text-decoration: none" target="_blank">SimpleSAMLphp</a></div></div><!-- Grey header bar below --><div id="headerbar" style="clear: both"><div id="langbar" style="clar: both"><div id="navigation">Documentation is available for the following versions: <a href="/latest/index.html">latest</a> | <a href="/1.19/index.html">1.19</a> | <a href="/1.18/index.html">1.18</a> | <a href="/1.17/index.html">1.17</a> |  modules</div></div><br style="height: 0px; clear: both" /></div><!-- /#headerbar --><div id="content"><h1>
+ <code>
+  core:AttributeLimit
+ </code>
+</h1>
+<p>
+ A filter that limits the attributes (and their values) sent to a service provider.
+</p>
+<p>
+ If the configuration is empty, the filter will use the attributes configured in the
+ <code>
+  attributes
+ </code>
+ option in the SP
+metadata. The configuration is a list of attributes that should be allowed. In case you want to limit an attribute to
+release some specific values, make the name of the attribute the key of the array, and its value an array with all the
+different values allowed for it.
+</p>
+<h2>
+ Examples
+</h2>
+<p>
+ Here you will find a few examples on how to use this simple module:
+</p>
+<p>
+ Limit to the
+ <code>
+  cn
+ </code>
+ and
+ <code>
+  mail
+ </code>
+ attribute:
+</p>
+<pre><code>  'authproc' =&gt; [
+      50 =&gt; [
+          'class' =&gt; 'core:AttributeLimit',
+          'cn', 'mail'
+      ],
+  ],
+</code></pre>
+<p>
+ Allow
+ <code>
+  eduPersonTargetedID
+ </code>
+ and
+ <code>
+  eduPersonAffiliation
+ </code>
+ by default, but allow the metadata to override the limitation.
+</p>
+<pre><code>  'authproc' =&gt; [
+      50 =&gt; [
+          'class' =&gt; 'core:AttributeLimit',
+          'default' =&gt; true,
+          'eduPersonTargetedID', 'eduPersonAffiliation',
+      ],
+  ],
+</code></pre>
+<p>
+ Only allow specific values for an attribute.
+</p>
+<pre><code>  'authproc' =&gt; [
+      50 =&gt; [
+          'class' =&gt; 'core:AttributeLimit',
+          'eduPersonEntitlement' =&gt; ['urn:mace:surf.nl:surfdrive:quota:100']
+      ],
+  ],
+</code></pre>
+<p>
+ Only allow specific values for an attribute ignoring case.
+</p>
+<pre><code>  'authproc' =&gt; [
+      50 =&gt; [
+          'class' =&gt; 'core:AttributeLimit',
+          'eduPersonEntitlement' =&gt; [
+              'ignoreCase' =&gt; true,
+              'URN:mace:surf.nl:SURFDRIVE:quota:100'
+           ]
+      ],
+  ],
+</code></pre>
+<p>
+ Only allow specific values for an attribute that match a regex pattern
+</p>
+<pre><code>  'authproc' =&gt; [
+      50 =&gt; [
+          'class' =&gt; 'core:AttributeLimit',
+          'eduPersonEntitlement' =&gt; [
+              'regex' =&gt; true,
+              '/^urn:mace:surf/',
+              '/^urn:x-IGNORE_Case/i',
+          ]
+      ],
+  ],
+</code></pre>
+<p>
+ Don't allow any attributes by default, but allow the metadata to override it.
+</p>
+<pre><code>  'authproc' =&gt; [
+      50 =&gt; [
+          'class' =&gt; 'core:AttributeLimit',
+          'default' =&gt; true,
+      ],
+  ],
+</code></pre>
+<p>
+ In order to just use the list of attributes defined in the metadata for each service provider, configure the module
+like this:
+</p>
+<pre><code>  'authproc' =&gt; [
+      50 =&gt; 'core:AttributeLimit',
+  ],
+</code></pre>
+<p>
+ Then, add the allowed attributes to each service provider metadata, in the
+ <code>
+  attributes
+ </code>
+ option:
+</p>
+<pre><code>  $metadata['https://saml2sp.example.org'] = [
+      'AssertionConsumerService' =&gt; 'https://saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp',
+      'SingleLogoutService' =&gt; 'https://saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-logout.php/default-sp',
+      ...
+      'attributes' =&gt; ['cn', 'mail'],
+      ...
+  ];
+</code></pre>
+<p>
+ Now, let's look to a couple of examples on how to filter out attribute values. First, allow only the entitlements known
+to be used by a service provider (among other attributes):
+</p>
+<pre><code>  $metadata['https://saml2sp.example.org'] = [
+      'AssertionConsumerService' =&gt; 'https://saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp',
+      'SingleLogoutService' =&gt; 'https://saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-logout.php/default-sp',
+      ...
+      'attributes' =&gt; [
+          'uid',
+          'mail',
+          'eduPersonEntitlement' =&gt; [
+              'urn:mace:example.org:admin',
+              'urn:mace:example.org:user',
+          ],
+      ],
+      ...
+  ];
+</code></pre>
+<p>
+ Now, an example on how to normalize the affiliations sent from an identity provider, to make sure that no custom
+values ever reach the service providers. Bear in mind that this configuration can be overridden by metadata:
+</p>
+<pre><code>  'authproc' =&gt; [
+      50 =&gt; 'core:AttributeLimit',
+      'default' =&gt; true,
+      'eduPersonAffiliation' =&gt; [
+          'student',
+          'staff',
+          'member',
+          'faculty',
+          'employee',
+          'affiliate',
+      ],
+  ],
+</code></pre></div>    <!-- /#content -->
+
+<div id="footer">
+    <a href="https://www.uninett.no/"><img id="ulogo" alt="notes" src="/res/uninettlogo.png" /SS></a>
+</div><!-- /#footer -->
+
+</body>
+</html>

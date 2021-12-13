@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Language" content="en" />
+
+	<!-- JQuery -->
+	<!-- 
+	<script type="text/javascript" src="/res/js/jquery.js"></script>
+	<script type="text/javascript" src="/res/js/jquery-ui.js"></script>
+	-->
+
+	<style>
+	  mark {
+        background: orange;
+        color: black;
+      }
+    </style>  
+
+	
+	<!-- Foodle: CSS -->	
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/js/uitheme/jquery-ui-themeroller.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/style.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/layout.css" /> 
+
+	<title>SimpleSAMLphp Documentation</title> 
+</head>
+
+
+
+
+
+<body><!-- Red logo header --><div id="header">	<div id="logo"><a href="https://simplesamlphp.org" style="color: #fff; text-decoration: none" target="_blank">SimpleSAMLphp</a></div></div><!-- Grey header bar below --><div id="headerbar" style="clear: both"><div id="langbar" style="clar: both"><div id="navigation">Documentation is available for the following versions: <a href="/latest/index.html">latest</a> | <a href="/1.19/index.html">1.19</a> | <a href="/1.18/index.html">1.18</a> | <a href="/1.17/index.html">1.17</a> |  modules</div></div><br style="height: 0px; clear: both" /></div><!-- /#headerbar --><div id="content"><h1>
+ Using HTTP-Artifact from a SimpleSAMLphp SP
+</h1>
+<p>
+ This document describes how to use the HTTP-Artifact binding to receive authentication responses from the IdP.
+</p>
+<p>
+ Which binding the IdP should use when sending authentication responses is controlled by the
+ <code>
+  ProtocolBinding
+ </code>
+ in the SP configuration.
+To make your Service Provider (SP) request that the response from the IdP is sent using the HTTP-Artifact binding, this option must be set to the HTTP-Artifact binding.
+</p>
+<p>
+ In addition to selecting the binding, you must also add a private key and certificate to your SP.
+This is used for SSL client authentication when contacting the IdP.
+</p>
+<p>
+ To generate a private key and certificate, you may use the
+ <code>
+  openssl
+ </code>
+ commandline utility:
+</p>
+<pre><code>  openssl req -newkey rsa:3072 -new -x509 -days 3652 -nodes -out sp.example.org.crt -keyout sp.example.org.pem
+</code></pre>
+<p>
+ You can then add the private key and certificate to the SP configuration.
+When this is done, you can add the metadata of your SP to the IdP, and test the authentication.
+</p>
+<h2>
+ Example configuration
+</h2>
+<pre><code>  'artifact-sp' =&gt; [
+      'saml:SP',
+      'ProtocolBinding' =&gt; 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact',
+      'privatekey' =&gt; 'sp.example.org.pem',
+      'certificate' =&gt; 'sp.example.org.crt',
+  ],
+</code></pre>
+<p>
+ See the
+ <a href="./saml/sp.html">
+  SP configuration reference
+ </a>
+ for a description of the options.
+</p></div>    <!-- /#content -->
+
+<div id="footer">
+    <a href="https://www.uninett.no/"><img id="ulogo" alt="notes" src="/res/uninettlogo.png" /SS></a>
+</div><!-- /#footer -->
+
+</body>
+</html>

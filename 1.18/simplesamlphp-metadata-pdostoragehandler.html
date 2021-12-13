@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Language" content="en" />
+
+	<!-- JQuery -->
+	<!-- 
+	<script type="text/javascript" src="/res/js/jquery.js"></script>
+	<script type="text/javascript" src="/res/js/jquery-ui.js"></script>
+	-->
+
+	<style>
+	  mark {
+        background: orange;
+        color: black;
+      }
+    </style>  
+
+	
+	<!-- Foodle: CSS -->	
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/js/uitheme/jquery-ui-themeroller.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/style.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/layout.css" /> 
+
+	<title>SimpleSAMLphp Documentation</title> 
+</head>
+
+
+
+
+
+<body><!-- Red logo header --><div id="header">	<div id="logo"><a href="https://simplesamlphp.org" style="color: #fff; text-decoration: none" target="_blank">SimpleSAMLphp</a></div></div><!-- Grey header bar below --><div id="headerbar" style="clear: both"><div id="langbar" style="clar: both"><div id="navigation">Documentation is available for the following versions: <a href="/latest/index.html">latest</a> | <a href="/1.19/index.html">1.19</a> | <a href="/1.18/index.html">1.18</a> | <a href="/1.17/index.html">1.17</a> |  modules</div></div><br style="height: 0px; clear: both" /></div><!-- /#headerbar --><div id="content"><h1>
+ PDO Metadata Storage Handler
+</h1>
+<!-- 
+  This file is written in Markdown syntax. 
+  For more information about how to use the Markdown syntax, read here:
+  http://daringfireball.net/projects/markdown/syntax
+-->
+<!-- {{TOC}} -->
+<h2>
+ Introduction
+</h2>
+<p>
+ If you want to run a clustered SimpleSAMLphp IdP service and you would like to have centralized storage for metadata, you can use the PDO metadata storage handler.
+</p>
+<p>
+ The present document explains how to configure SimpleSAMLphp and your database.
+</p>
+<h2>
+ Preparations
+</h2>
+<p>
+ You will need to have the appropriate PDO drivers for your database and you will have to configure the database section within the config/config.php file.
+</p>
+<h2>
+ Configuring SimpleSAMLphp
+</h2>
+<p>
+ You will first need to configure a PDO metadata source.
+</p>
+<pre><code>[root@simplesamlphp simplesamlphp]# vi config/config.php
+</code></pre>
+<p>
+ Here is an example of flatfile plus PDO:
+</p>
+<pre><code>'metadata.sources' =&gt; [
+  ['type' =&gt; 'flatfile'],
+  ['type' =&gt; 'pdo'],
+],
+</code></pre>
+<h2>
+ Initializing the Database
+</h2>
+<p>
+ Once you have configured your metadata sources to include a PDO source, you will need to initialize the database. This process will create tables in the database for each type of metadata set (saml20-idp-hosted, saml20-idp-remote, saml20-sp-remote, etc).
+</p>
+<pre><code>[root@simplesamlphp simplesamlphp]# php bin/initMDSPdo.php
+</code></pre>
+<p>
+ If you connect to your database, you will see 11 new empty tables; one for each metadata set.
+</p>
+<h2>
+ Adding Metadata
+</h2>
+<p>
+ With the PDO metadata storage handler, metadata is stored in the table for the appropriate set and is stored in JSON format.
+</p>
+<p>
+ As an example, here is the saml20_idp_hosted table:
+</p>
+<p>
+ entity_id       | entity_data
+----------------|-------------------------------------------------------------------------------------------------------------------------
+ <code>
+  __DEFAULT:1__
+ </code>
+ | {"host":"__DEFAULT__","privatekey":"idp.key","certificate":"idp.crt","auth":"example-ldap","identifyingAttribute":"uid"}
+</p>
+<p>
+ Another example is the saml20_idp_remote table:
+</p>
+<p>
+ entity_id                | entity_data
+-------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+https://openidp.feide.no | {"name":{"en":"Feide OpenIdP - guest users","no":"Feide Gjestebrukere"},"description":"Here you can login with your account on Feide RnD OpenID. If you do not already have an account on this identity provider, you can create a new one by following the create new account link and follow the instructions.","SingleSignOnService":"https:\/\/openidp.feide.no\/simplesaml\/saml2\/idp\/SSOService.php","SingleLogoutService":"https:\/\/openidp.feide.no\/simplesaml\/saml2\/idp\/SingleLogoutService.php","certFingerprint":"c9ed4dfb07caf13fc21e0fec1572047eb8a7a4cb"}
+</p>
+<p>
+ There is an included script in the
+ <code>
+  bin
+ </code>
+ directory that will import all flatfile metadata files and store them in the database, but you can use an external tool to maintain the metadata in the database. This document will only cover adding metadata using the included utility, but the tables above should provide enough information if you would like to create a utility to manage your metadata externally.
+</p>
+<p>
+ To import all flatfile metadata files into the PDO database, run the following script
+</p>
+<pre><code>[root@simplesamlphp simplesamlphp]# php bin/importPdoMetadata.php
+</code></pre>
+<p>
+ In the event that you import a metadata for an entity id that already exists in the database, it will be overwritten.
+</p></div>    <!-- /#content -->
+
+<div id="footer">
+    <a href="https://www.uninett.no/"><img id="ulogo" alt="notes" src="/res/uninettlogo.png" /SS></a>
+</div><!-- /#footer -->
+
+</body>
+</html>

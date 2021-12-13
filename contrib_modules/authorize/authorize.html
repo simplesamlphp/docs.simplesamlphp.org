@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Language" content="en" />
+
+	<!-- JQuery -->
+	<!-- 
+	<script type="text/javascript" src="/res/js/jquery.js"></script>
+	<script type="text/javascript" src="/res/js/jquery-ui.js"></script>
+	-->
+
+	<style>
+	  mark {
+        background: orange;
+        color: black;
+      }
+    </style>  
+
+	
+	<!-- Foodle: CSS -->	
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/js/uitheme/jquery-ui-themeroller.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/style.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/layout.css" /> 
+
+	<title>SimpleSAMLphp Documentation</title> 
+</head>
+
+
+
+
+
+<body><!-- Red logo header --><div id="header">	<div id="logo"><a href="https://simplesamlphp.org" style="color: #fff; text-decoration: none" target="_blank">SimpleSAMLphp</a></div></div><!-- Grey header bar below --><div id="headerbar" style="clear: both"><div id="langbar" style="clar: both"><div id="navigation">Documentation is available for the following versions: <a href="/latest/index.html">latest</a> | <a href="/1.19/index.html">1.19</a> | <a href="/1.18/index.html">1.18</a> | <a href="/1.17/index.html">1.17</a> |  modules</div></div><br style="height: 0px; clear: both" /></div><!-- /#headerbar --><div id="content"><h1>
+ authorize Module
+</h1>
+<!--
+  This file is written in Markdown syntax.
+  For more information about how to use the Markdown syntax, read here:
+  http://daringfireball.net/projects/markdown/syntax
+-->
+<pre><code>* Author: Ernesto Revilla &lt;erny@yaco.es&gt;, Yaco Sistemas, Ryan Panning
+* Package: SimpleSAMLphp
+</code></pre>
+<p>
+ This module provides a user authorization filter based on attribute matching for those applications that do not cleanly separate authentication from authorization and set some default permissions for authenticated users.
+</p>
+<p>
+ <code>
+  authorize:Authorize
+ </code>
+ : Authorize certain users based on attribute matching
+</p>
+<h2>
+ <code>
+  authorize:Authorize
+ </code>
+</h2>
+<p>
+ There are three configuration options that can be defined:
+ <code>
+  deny
+ </code>
+ ,
+ <code>
+  regex
+ </code>
+ , and
+ <code>
+  reject_msg
+ </code>
+ . All other filter configuration options are considered attribute matching rules.
+</p>
+<p>
+ Unauthorized users will be shown a 403 Forbidden page.
+</p>
+<h3>
+ <code>
+  deny
+ </code>
+</h3>
+<p>
+ The default action of the filter is to authorize only if an attribute match is found (default allow). When set to TRUE, this option reverses that rule and authorizes the user unless an attribute match is found (default deny), causing an unauthorized action.
+</p>
+<p>
+ Note: This option needs to be boolean (TRUE/FALSE) else it will be considered an attribute matching rule.
+</p>
+<h3>
+ <code>
+  regex
+ </code>
+</h3>
+<p>
+ Turn regex pattern matching on or off for the attribute values defined. For backwards compatibility, this option defaults to TRUE, but can be turned off by setting it to FALSE.
+</p>
+<p>
+ Note: This option needs to be boolean (TRUE/FALSE) else it will be considered an attribute matching rule.
+</p>
+<h3>
+ <code>
+  reject_msg
+ </code>
+</h3>
+<p>
+ This option can be used to provide a localised, custom message to an unauthorised user. For example: tailored instructions on how to fix the authorisation issue, specific contact details, etc.
+</p>
+<p>
+ It should be an array of key/value pairs, with the keys as the language code. You can use HTML in the message. See below for an example.
+</p>
+<h3>
+ Attribute Rules
+</h3>
+<p>
+ Each additional filter configuration option is considered an attribute matching rule. For each attribute, you can specify a string or array of strings to match. If one of those attributes match one of the rules (OR operator), the user is authorized/unauthorized (depending on the deny config option).
+</p>
+<p>
+ Note: If regex is enabled, you must use the preg_match format, i.e. you have to enclose it with a delimiter that does not appear inside the regex (e.g. slash (/), at sign (@), number sign (#) or underscore (
+ <code>
+  _
+ </code>
+ )).
+</p>
+<h3>
+ Problems
+</h3>
+<ul>
+ <li>
+  Once you get the forbidden page, you can't logout at the IdP directly,
+   (as far as I know), you have to close the browser.
+ </li>
+</ul>
+<h3>
+ Examples
+</h3>
+<p>
+ To use this filter configure it in
+ <code>
+  config/config.php
+ </code>
+ .
+For unstructured attributes use
+ <code>
+  ^
+ </code>
+ and
+ <code>
+  $
+ </code>
+ to anchor your regex as necessary:
+</p>
+<p>
+ <code>
+  php
+'authproc.sp' =&gt; [
+    60 =&gt; [
+        'class' =&gt; 'authorize:Authorize',
+        'uid'   =&gt;  [
+            '/^.*@example.com$/',
+            // Use anchors to prevent matching 'wronguser1@example.edu.attacker.com'
+            '/^(user1|user2|user3)@example.edu$/',
+        ],
+        'schacUserStatus' =&gt; '@urn:mace:terena.org:userStatus:' .
+        'example.org:service:active.*@',
+    ]
+]
+ </code>
+</p>
+<p>
+ An alternate way of using this filter is to deny certain users. Or even use multiple filters to create a simple ACL, by first allowing a group of users but then denying a "black list" of users.
+</p>
+<p>
+ <code>
+  php
+'authproc.sp' =&gt; [
+    60 =&gt; array[
+        'class' =&gt; 'authorize:Authorize',
+        'deny'  =&gt; true,
+        'uid'   =&gt;  [
+            '/.*@students.example.edu$/',
+            '/^(stu1|stu2|stu3)@example.edu$/',
+        ]
+    ]
+]
+ </code>
+</p>
+<p>
+ The regex pattern matching can be turned off, allowing for exact attribute matching rules. This can be helpful in cases where you know what the value should be. An example of this is with the memberOf attribute or using the ldap:AttributeAddUsersGroups filter with the group attribute.
+</p>
+<p>
+ Additionally, some helpful instructions are shown.
+</p>
+<p>
+ <code>
+  php
+'authproc.sp' =&gt; [
+    60 =&gt; [
+        'class' =&gt; 'authorize:Authorize',
+        'regex' =&gt; false,
+        'group' =&gt; [
+            'CN=SimpleSAML Students,CN=Users,DC=example,DC=edu',
+            'CN=All Teachers,OU=Staff,DC=example,DC=edu',
+        ],
+        'reject_msg' =&gt; [
+            'en' =&gt; 'This service is only available to students and teachers.' .
+                'Please contact &lt;a href="mailto:support@example.edu"&gt;support&lt;/a&gt;.',
+            'nl' =&gt; 'Deze dienst is alleen beschikbaar voor studenten en docenten.' .
+                'Neem contact op met &lt;a href="mailto:support@example.edu"&gt;support&lt;/a&gt;.',
+        ]
+    ]
+]
+ </code>
+</p></div>    <!-- /#content -->
+
+<div id="footer">
+    <a href="https://www.uninett.no/"><img id="ulogo" alt="notes" src="/res/uninettlogo.png" /SS></a>
+</div><!-- /#footer -->
+
+</body>
+</html>

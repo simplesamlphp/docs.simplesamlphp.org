@@ -1,0 +1,410 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Language" content="en" />
+
+	<!-- JQuery -->
+	<!-- 
+	<script type="text/javascript" src="/res/js/jquery.js"></script>
+	<script type="text/javascript" src="/res/js/jquery-ui.js"></script>
+	-->
+
+	<style>
+	  mark {
+        background: orange;
+        color: black;
+      }
+    </style>  
+
+	
+	<!-- Foodle: CSS -->	
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/js/uitheme/jquery-ui-themeroller.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/style.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/layout.css" /> 
+
+	<title>SimpleSAMLphp Documentation</title> 
+</head>
+
+
+
+
+
+<body><!-- Red logo header --><div id="header">	<div id="logo"><a href="https://simplesamlphp.org" style="color: #fff; text-decoration: none" target="_blank">SimpleSAMLphp</a></div></div><!-- Grey header bar below --><div id="headerbar" style="clear: both"><div id="langbar" style="clar: both"><div id="navigation">Documentation is available for the following versions: <a href="/latest/index.html">latest</a> | <a href="/1.19/index.html">1.19</a> | <a href="/1.18/index.html">1.18</a> | <a href="/1.17/index.html">1.17</a> |  modules</div></div><br style="height: 0px; clear: both" /></div><!-- /#headerbar --><div id="content"><h1>
+ SAML V2.0 Metadata Extensions for Login and Discovery User Interface
+</h1>
+<!--
+    This file is written in Markdown syntax.
+    For more information about how to use the Markdown syntax, read here:
+    http://daringfireball.net/projects/markdown/syntax
+-->
+<pre><code>* Author: Timothy Ace [tace@synacor.com](mailto:tace@synacor.com)
+</code></pre>
+<!-- {{TOC}} -->
+<p>
+ This is a reference for the SimpleSAMLphp implementation of the
+ <a href="http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-metadata-ui/v1.0/sstc-saml-metadata-ui-v1.0.pdf">
+  SAML
+V2.0 Metadata Extensions for Login and Discovery User Interface
+ </a>
+ defined by OASIS.
+</p>
+<p>
+ The metadata extensions are available to both IdP and SP usage of
+SimpleSAMLphp. For an IdP, the entries are placed in
+ <code>
+  metadata/saml20-idp-hosted.php
+ </code>
+ , for an SP, they are put inside
+the relevant entry in
+ <code>
+  authsources.php
+ </code>
+ .
+</p>
+<p>
+ An example for an IdP:
+</p>
+<pre><code>  &lt;?php
+  $metadata['entity-id-1'] = [
+      /* ... */
+      'UIInfo' =&gt; [
+          'DisplayName' =&gt; [
+              'en' =&gt; 'English name',
+              'es' =&gt; 'Nombre en Español',
+          ],
+          'Description' =&gt; [
+              'en' =&gt; 'English description',
+              'es' =&gt; 'Descripción en Español',
+          ],
+          'InformationURL' =&gt; [
+              'en' =&gt; 'http://example.com/info/en',
+              'es' =&gt; 'http://example.com/info/es',
+          ],
+          'PrivacyStatementURL' =&gt; [
+              'en' =&gt; 'http://example.com/privacy/en',
+              'es' =&gt; 'http://example.com/privacy/es',
+          ],
+          'Keywords' =&gt; [
+              'en' =&gt; ['communication', 'federated session'],
+              'es' =&gt; ['comunicación', 'sesión federated'],
+          ],
+          'Logo' =&gt; [
+              [
+                  'url'    =&gt; 'http://example.com/logo1.png',
+                  'height' =&gt; 200,
+                  'width'  =&gt; 400,
+                  'lang'   =&gt; 'en',
+              ],
+              [
+                  'url'    =&gt; 'http://example.com/logo2.png',
+                  'height' =&gt; 201,
+                  'width'  =&gt; 401,
+              ],
+          ],
+      ],
+      'DiscoHints' =&gt; [
+          'IPHint'          =&gt; ['130.59.0.0/16', '2001:620::0/96'],
+          'DomainHint'      =&gt; ['example.com', 'www.example.com'],
+          'GeolocationHint' =&gt; ['geo:47.37328,8.531126', 'geo:19.34343,12.342514'],
+      ],
+      /* ... */
+  ];
+</code></pre>
+<p>
+ And for an SP it could look like this:
+</p>
+<pre><code>  &lt;?php
+  $config = [
+
+      'default-sp' =&gt; [
+          'saml:SP',
+
+          'UIInfo' =&gt; [
+              'DisplayName' =&gt; [
+                  'en' =&gt; 'English name',
+                  'es' =&gt; 'Nombre en Español'
+              ],
+              'Description' =&gt; [
+                  'en' =&gt; 'English description',
+                  'es' =&gt; 'Descripción en Español'
+              ],
+          ],
+          /* ... */
+      ],
+  ];
+</code></pre>
+<p>
+ The OASIS specification primarily defines how an entity can communicate
+metadata related to IdP or service discovery and identification. There
+are two different types of
+extensions defined. There are the
+ <code>
+  &lt;mdui:UIInfo&gt;
+ </code>
+ elements that define
+how an IdP or SP should be displayed and there are the
+ <code>
+  &lt;mdui:DiscoHints&gt;
+ </code>
+ elements that define when an IdP should be chosen/displayed.
+</p>
+<h2>
+ UIInfo Items
+</h2>
+<p>
+ These elements are used for IdP and SP discovery to determine what to display
+about an IdP or SP. These properties are all children of the
+ <code>
+  UIInfo
+ </code>
+ key.
+</p>
+<p>
+ <em>
+  Note
+ </em>
+ : Most elements are localized strings that specify the language
+using the array key as the language-code:
+</p>
+<pre><code>          'DisplayName' =&gt; [
+              'en' =&gt; 'English name',
+              'es' =&gt; 'Nombre en Español',
+          ],
+</code></pre>
+<p>
+ <code>
+  DisplayName
+ </code>
+ :   The localized list of names for this entity
+</p>
+<pre><code>          'DisplayName' =&gt; [
+              'en' =&gt; 'English name',
+              'es' =&gt; 'Nombre en Español',
+          ],
+</code></pre>
+<p>
+ <code>
+  Description
+ </code>
+ :   The localized list of statements used to describe this entity
+</p>
+<pre><code>          'Description' =&gt; [
+              'en' =&gt; 'English description',
+              'es' =&gt; 'Descripción en Español',
+          ],
+</code></pre>
+<p>
+ <code>
+  InformationURL
+ </code>
+ :   A localized list of URLs where more information about the entity is
+    located.
+</p>
+<pre><code>          'InformationURL' =&gt; [
+              'en' =&gt; 'http://example.com/info/en',
+              'es' =&gt; 'http://example.com/info/es',
+          ],
+</code></pre>
+<p>
+ <code>
+  PrivacyStatementURL
+ </code>
+ :   A localized list of URLs where the entity's privacy statement is
+    located.
+</p>
+<pre><code>          'PrivacyStatementURL' =&gt; [
+              'en' =&gt; 'http://example.com/privacy/en',
+              'es' =&gt; 'http://example.com/privacy/es',
+          ],
+</code></pre>
+<p>
+ <code>
+  Keywords
+ </code>
+ :   A localized list of keywords used to describe the entity
+</p>
+<pre><code>          'Keywords' =&gt; [
+              'en' =&gt; ['communication', 'federated session'],
+              'es' =&gt; ['comunicación', 'sesión federated'],
+          ],
+</code></pre>
+<p>
+ :
+ <em>
+  Note
+ </em>
+ : The
+ <code>
+  +
+ </code>
+ (plus) character is forbidden by specification from
+    being part of a Keyword.
+</p>
+<p>
+ <code>
+  Logo
+ </code>
+ :   The logos used to represent the entity
+</p>
+<pre><code>          'Logo' =&gt; [
+              [
+                  'url'    =&gt; 'http://example.com/logo1.png',
+                  'height' =&gt; 200,
+                  'width'  =&gt; 400,
+                  'lang'   =&gt; 'en',
+              ],
+              [
+                  'url'    =&gt; 'http://example.com/logo2.png',
+                  'height' =&gt; 201,
+                  'width'  =&gt; 401,
+              ],
+          ],
+</code></pre>
+<p>
+ :   An optional
+ <code>
+  lang
+ </code>
+ key containing a language-code is supported for
+    localized logos.
+</p>
+<h2>
+ DiscoHints Items
+</h2>
+<p>
+ These elements are only relevant when operating in the IdP role; they
+assist IdP discovery to determine when to choose or
+present an IdP. These properties are all children of the
+ <code>
+  DiscoHints
+ </code>
+ key.
+</p>
+<p>
+ <code>
+  IPHint
+ </code>
+ :   This is a list of both IPv4 and IPv6 addresses in CIDR notation
+    services by or associated with this entity.
+</p>
+<pre><code>          'IPHint' =&gt; ['130.59.0.0/16', '2001:620::0/96'],
+</code></pre>
+<p>
+ <code>
+  DomainHint
+ </code>
+ :   This specifies a list of domain names serviced by or associated with
+    this entity.
+</p>
+<pre><code>          'DomainHint' =&gt; ['example.com', 'www.example.com'],
+</code></pre>
+<p>
+ <code>
+  GeolocationHint
+ </code>
+ :   This specifies a list of geographic coordinates associated with, or
+    serviced by, the entity. Coordinates are given in URI form using the
+    geo URI scheme
+ <a href="http://www.ietf.org/rfc/rfc5870.txt">
+  RFC5870
+ </a>
+ .
+</p>
+<pre><code>          'GeolocationHint' =&gt; ['geo:47.37328,8.531126', 'geo:19.34343,12.342514'],
+</code></pre>
+<h2>
+ Generated XML Metadata Examples
+</h2>
+<p>
+ If given the following configuration...
+</p>
+<pre><code>  $metadata['https://www.example.com/saml/saml2/idp/metadata.php'] = [
+      'host' =&gt; 'www.example.com',
+      'certificate' =&gt; 'example.com.crt',
+      'privatekey' =&gt; 'example.com.pem',
+      'auth' =&gt; 'example-userpass',
+
+      'UIInfo' =&gt; [
+          'DisplayName' =&gt; [
+              'en' =&gt; 'English name',
+              'es' =&gt; 'Nombre en Español',
+          ],
+          'Description' =&gt; [
+              'en' =&gt; 'English description',
+              'es' =&gt; 'Descripción en Español',
+          ],
+          'InformationURL' =&gt; [
+              'en' =&gt; 'http://example.com/info/en',
+              'es' =&gt; 'http://example.com/info/es',
+          ],
+          'PrivacyStatementURL' =&gt; [
+              'en' =&gt; 'http://example.com/privacy/en',
+              'es' =&gt; 'http://example.com/privacy/es',
+          ],
+          'Keywords' =&gt; [
+              'en' =&gt; ['communication', 'federated session'],
+              'es' =&gt; ['comunicación', 'sesión federated'],
+          ],
+          'Logo' =&gt; [
+              [
+                  'url'    =&gt; 'http://example.com/logo1.png',
+                  'height' =&gt; 200,
+                  'width'  =&gt; 400,
+              ],
+              [
+                  'url'    =&gt; 'http://example.com/logo2.png',
+                  'height' =&gt; 201,
+                  'width'  =&gt; 401,
+              ],
+          ],
+      ],
+      'DiscoHints' =&gt; [
+          'IPHint'          =&gt; ['130.59.0.0/16', '2001:620::0/96'],
+          'DomainHint'      =&gt; ['example.com', 'www.example.com'],
+          'GeolocationHint' =&gt; ['geo:47.37328,8.531126', 'geo:19.34343,12.342514'],
+      ],
+  ];
+</code></pre>
+<p>
+ ... will generate the following XML metadata:
+</p>
+<pre><code>  &lt;?xml version="1.0"?&gt;
+  &lt;md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:mdattr="urn:oasis:names:tc:SAML:metadata:attribute" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mdui="urn:oasis:names:tc:SAML:metadata:ui" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" entityID="https://www.example.com/saml/saml2/idp/metadata.php"&gt;
+    &lt;md:IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"&gt;
+      &lt;md:Extensions&gt;
+        &lt;mdui:UIInfo xmlns:mdui="urn:oasis:names:tc:SAML:metadata:ui"&gt;
+          &lt;mdui:DisplayName xml:lang="en"&gt;English name&lt;/mdui:DisplayName&gt;
+          &lt;mdui:DisplayName xml:lang="es"&gt;Nombre en Espa&amp;#xF1;ol&lt;/mdui:DisplayName&gt;
+          &lt;mdui:Description xml:lang="en"&gt;English description&lt;/mdui:Description&gt;
+          &lt;mdui:Description xml:lang="es"&gt;Descripci&amp;#xF3;n en Espa&amp;#xF1;ol&lt;/mdui:Description&gt;
+          &lt;mdui:InformationURL xml:lang="en"&gt;http://example.com/info/en&lt;/mdui:InformationURL&gt;
+          &lt;mdui:InformationURL xml:lang="es"&gt;http://example.com/info/es&lt;/mdui:InformationURL&gt;
+          &lt;mdui:PrivacyStatementURL xml:lang="en"&gt;http://example.com/privacy/en&lt;/mdui:PrivacyStatementURL&gt;
+          &lt;mdui:PrivacyStatementURL xml:lang="es"&gt;http://example.com/privacy/es&lt;/mdui:PrivacyStatementURL&gt;
+          &lt;mdui:Keywords xml:lang="en"&gt;communication federated+session&lt;/mdui:Keywords&gt;
+          &lt;mdui:Keywords xml:lang="es"&gt;comunicaci&amp;#xF3;n sesi&amp;#xF3;n+federated&lt;/mdui:Keywords&gt;
+          &lt;mdui:Logo width="400" height="200" xml:lang="en"&gt;http://example.com/logo1.png&lt;/mdui:Logo&gt;
+          &lt;mdui:Logo width="401" height="201"&gt;http://example.com/logo2.png&lt;/mdui:Logo&gt;
+        &lt;/mdui:UIInfo&gt;
+        &lt;mdui:DiscoHints xmlns:mdui="urn:oasis:names:tc:SAML:metadata:ui"&gt;
+          &lt;mdui:IPHint&gt;130.59.0.0/16&lt;/mdui:IPHint&gt;
+          &lt;mdui:IPHint&gt;2001:620::0/96&lt;/mdui:IPHint&gt;
+          &lt;mdui:DomainHint&gt;example.com&lt;/mdui:DomainHint&gt;
+          &lt;mdui:DomainHint&gt;www.example.com&lt;/mdui:DomainHint&gt;
+          &lt;mdui:GeolocationHint&gt;geo:47.37328,8.531126&lt;/mdui:GeolocationHint&gt;
+          &lt;mdui:GeolocationHint&gt;geo:19.34343,12.342514&lt;/mdui:GeolocationHint&gt;
+        &lt;/mdui:DiscoHints&gt;
+      &lt;/md:Extensions&gt;
+      &lt;md:KeyDescriptor use="signing"&gt;
+        &lt;ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#"&gt;
+          &lt;ds:X509Data&gt;
+          ...
+</code></pre></div>    <!-- /#content -->
+
+<div id="footer">
+    <a href="https://www.uninett.no/"><img id="ulogo" alt="notes" src="/res/uninettlogo.png" /SS></a>
+</div><!-- /#footer -->
+
+</body>
+</html>

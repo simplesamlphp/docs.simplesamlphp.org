@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Language" content="en" />
+
+	<!-- JQuery -->
+	<!-- 
+	<script type="text/javascript" src="/res/js/jquery.js"></script>
+	<script type="text/javascript" src="/res/js/jquery-ui.js"></script>
+	-->
+
+	<style>
+	  mark {
+        background: orange;
+        color: black;
+      }
+    </style>  
+
+	
+	<!-- Foodle: CSS -->	
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/js/uitheme/jquery-ui-themeroller.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/style.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/layout.css" /> 
+
+	<title>SimpleSAMLphp Documentation</title> 
+</head>
+
+
+
+
+
+<body><!-- Red logo header --><div id="header">	<div id="logo"><a href="https://simplesamlphp.org" style="color: #fff; text-decoration: none" target="_blank">SimpleSAMLphp</a></div></div><!-- Grey header bar below --><div id="headerbar" style="clear: both"><div id="langbar" style="clar: both"><div id="navigation">Documentation is available for the following versions: <a href="/latest/index.html">latest</a> | <a href="/1.19/index.html">1.19</a> | <a href="/1.18/index.html">1.18</a> | <a href="/1.17/index.html">1.17</a> |  modules</div></div><br style="height: 0px; clear: both" /></div><!-- /#headerbar --><div id="content"><p>
+ Enables AD FS IdP
+Compatible with VS 2012 Identity and Access
+</p>
+<p>
+ Basic Setup Companion based on:
+http://simplesamlphp.org/docs/stable/simplesamlphp-idp
+</p>
+<ol>
+ <li>
+  Enabling the Identity Provider functionality
+ </li>
+</ol>
+<p>
+ In config/config.php, the option will be:
+'enable.adfs-idp' =&gt; true
+</p>
+<ol>
+ <li>
+  Authentication module
+ </li>
+</ol>
+<p>
+ Follow as is.
+</p>
+<ol>
+ <li>
+  Configuring the authentication module
+ </li>
+</ol>
+<p>
+ In addition to enabling authentication module,  enable adfs module by creating a file named 'enable' in modules/adfs
+</p>
+<p>
+ In unix from installation directory:
+touch modules/adfs/enable
+</p>
+<ol>
+ <li>
+  Configuring the IdP
+ </li>
+</ol>
+<p>
+ ADFS IdP is configured by metadata stored in /metadata/adfs-idp-hosted.php and metadata/adfs-sp-remote.php
+</p>
+<p>
+ If they are not present, copy them from /metadata-templates to the metadata
+directory.
+</p>
+<ol>
+ <li>
+  Using the uri NameFormat on attributes
+ </li>
+</ol>
+<p>
+ WS-FED likes a few parameters to be very specifically named. This is
+especially true if .net clients will be treating this as a Microsoft ADFS
+IdP.
+</p>
+<p>
+ The recommended settings for /metadata/adfs-idp-hosted.php is:
+</p>
+<p>
+ 'authproc' =&gt; array(
+        // Convert LDAP names to WS-Fed Claims.
+        100 =&gt; array('class' =&gt; 'core:AttributeMap', 'name2claim'),
+),
+</p>
+<ol>
+ <li>
+  Adding SPs to the IdP
+ </li>
+</ol>
+<p>
+ The minimal configuration for /metadata/adfs-sp-remote.php is:
+</p>
+<p>
+ $metadata['urn:federation:localhost'] = array(
+        'prp' =&gt; 'https://localhost/adfs/ls/',
+);
+</p>
+<ol>
+ <li>
+  Creating a SSL self signed certificate
+ </li>
+</ol>
+<p>
+ Follow as is.
+</p>
+<ol>
+ <li>
+  Adding this IdP to other SPs
+ </li>
+</ol>
+<p>
+ Metadata should be available from /module.php/adfs/idp/metadata.php
+</p>
+<ol>
+ <li>
+  This module tries its best to emulate a Microsoft ADFS endpoint, and as
+such, it is simplest to test using a .net client.
+ </li>
+</ol>
+<p>
+ To build the test client, follow the tutorial at:
+http://code.msdn.microsoft.com/Claims-Aware-Web-d94a89ca
+</p>
+<p>
+ This will build a .net app that uses a dev machine running STS (their name for
+an IdP).
+</p>
+<p>
+ To point to your SimpleSamlPHP ADFS IdP, in VS 2012:
+</p>
+<p>
+ a. Right-click the project in Solution Explorer and select the Identity and
+Access option.
+</p>
+<p>
+ b. In the Identity and Access Window, Select Use a business identity
+provider.
+</p>
+<p>
+ c. Under “Enter the path to the STS metadata document” enter the url you have
+</p>
+<p>
+ from step 8. Something like
+https://.../module.php/adfs/idp/metadata.php
+</p>
+<p>
+ d. Click Ok
+</p>
+<p>
+ For more information in regards to .NET: http://msdn.microsoft.com/en-us/library/hh377151.aspx
+</p></div>    <!-- /#content -->
+
+<div id="footer">
+    <a href="https://www.uninett.no/"><img id="ulogo" alt="notes" src="/res/uninettlogo.png" /SS></a>
+</div><!-- /#footer -->
+
+</body>
+</html>

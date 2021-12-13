@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Language" content="en" />
+
+	<!-- JQuery -->
+	<!-- 
+	<script type="text/javascript" src="/res/js/jquery.js"></script>
+	<script type="text/javascript" src="/res/js/jquery-ui.js"></script>
+	-->
+
+	<style>
+	  mark {
+        background: orange;
+        color: black;
+      }
+    </style>  
+
+	
+	<!-- Foodle: CSS -->	
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/js/uitheme/jquery-ui-themeroller.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/style.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/layout.css" /> 
+
+	<title>SimpleSAMLphp Documentation</title> 
+</head>
+
+
+
+
+
+<body><!-- Red logo header --><div id="header">	<div id="logo"><a href="https://simplesamlphp.org" style="color: #fff; text-decoration: none" target="_blank">SimpleSAMLphp</a></div></div><!-- Grey header bar below --><div id="headerbar" style="clear: both"><div id="langbar" style="clar: both"><div id="navigation">Documentation is available for the following versions: <a href="/latest/index.html">latest</a> | <a href="/1.19/index.html">1.19</a> | <a href="/1.18/index.html">1.18</a> | <a href="/1.17/index.html">1.17</a> |  modules</div></div><br style="height: 0px; clear: both" /></div><!-- /#headerbar --><div id="content"><h1>
+ Key rollover with SimpleSAMLphp
+</h1>
+<p>
+ This document gives a quick guide to doing key rollover with a SimpleSAMLphp service provider or identity provider.
+</p>
+<h2>
+ Create the new key and certificate
+</h2>
+<p>
+ First you must create the new key that you are going to use.
+To create a self signed certificate, you may use the following command:
+</p>
+<pre><code>  cd cert
+  openssl req -newkey rsa:3072 -new -x509 -days 3652 -nodes -out new.crt -keyout new.pem
+</code></pre>
+<h2>
+ Add the new key to SimpleSAMLphp
+</h2>
+<p>
+ Where you add the new key depends on whether you are doing key rollover for a service provider or an identity provider.
+If you are doing key rollover for a service provider, the new key must be added to
+ <code>
+  config/authsources.php
+ </code>
+ .
+To do key rollover for an identity provider, you must add the new key to
+ <code>
+  metadata/saml20-idp-hosted.php
+ </code>
+ .
+If you are changing the keys for both an service provider and identity provider at the same time, you must update both locations.
+</p>
+<p>
+ The new certificate, private key and private key passphrase are added to the configuration with the prefix
+ <code>
+  new_
+ </code>
+ :
+</p>
+<p>
+ When the new key is added, SimpleSAMLphp will attempt to use both the new key and the old key for decryption of messages, but only the old key will be used for signing messages.
+The metadata will be updated to list the new key for signing and encryption, and the old key will no longer listed as available for encryption.
+This ensures that both those entities that use your old metadata and those that use your new metadata will be able to send and receive messages from you.
+</p>
+<h3>
+ Examples
+</h3>
+<p>
+ In
+ <code>
+  config/authsources.php
+ </code>
+ :
+</p>
+<pre><code>  'default-sp' =&gt; [
+      'saml:SP',
+      'privatekey' =&gt; 'old.pem',
+      'certificate' =&gt; 'old.crt',
+      // When private key is passphrase protected.
+      'privatekey_pass' =&gt; '&lt;old-secret&gt;',
+
+      'new_privatekey' =&gt; 'new.pem',
+      'new_certificate' =&gt; 'new.crt',
+      // When new private key is passphrase protected.
+      'new_privatekey_pass' =&gt; '&lt;new-secret&gt;',
+  ],
+</code></pre>
+<p>
+ In
+ <code>
+  metadata/saml20-idp-hosted.php
+ </code>
+ :
+</p>
+<pre><code>  $metadata['__DYNAMIC:1__'] = [
+      'host' =&gt; '__DEFAULT__',
+      'auth' =&gt; 'example-userpass',
+      'privatekey' =&gt; 'old.pem',
+      'certificate' =&gt; 'old.crt',
+      // When private key is passphrase protected.
+      'privatekey_pass' =&gt; '&lt;old-secret&gt;',
+
+      'new_privatekey' =&gt; 'new.pem',
+      'new_certificate' =&gt; 'new.crt',
+      // When new private key is passphrase protected.
+      'new_privatekey_pass' =&gt; '&lt;new-secret&gt;',
+  ];
+</code></pre>
+<h2>
+ Distribute your new metadata
+</h2>
+<p>
+ Now, you need to make sure that all your peers are using your new metadata.
+How you go about this depends on how your peers have added your metadata.
+If your peers are configured to automatically fetch the metadata directly from you, all you need to do is to wait for all of them to fetch the new metadata.
+If you are part of an federation, you would probably either send it to the federation operators or use a federation tool to ask for the metadata to be updated.
+</p>
+<p>
+ Once the peers are using your new metadata, they will accept messages from you signed with either your old or your new key.
+If they send encrypted messages to you, they will use your new key for encryption.
+</p>
+<h2>
+ Remove the old key
+</h2>
+<p>
+ Once you are certain that all your peers are using the new metadata, you must remove the old key.
+Replace the existing
+ <code>
+  privatekey
+ </code>
+ ,
+ <code>
+  privatekey_pass
+ </code>
+ and
+ <code>
+  certificate
+ </code>
+ options in your configuration with the
+ <code>
+  new_privatekey
+ </code>
+ ,
+ <code>
+  new_privatekey_pass
+ </code>
+ and
+ <code>
+  new_certificate
+ </code>
+ options.
+This will cause your old key to be removed from your metadata.
+</p>
+<h3>
+ Examples
+</h3>
+<p>
+ In
+ <code>
+  config/authsources.php
+ </code>
+ :
+</p>
+<pre><code>  'default-sp' =&gt; [
+      'saml:SP',
+      'certificate' =&gt; 'new.crt',
+      'privatekey' =&gt; 'new.pem',
+      // When private key is passphrase protected.
+      'privatekey_pass' =&gt; '&lt;new-secret&gt;',
+  ],
+</code></pre>
+<p>
+ In
+ <code>
+  metadata/saml20-idp-hosted.php
+ </code>
+ :
+</p>
+<pre><code>  $metadata['__DYNAMIC:1__'] = [
+      'host' =&gt; '__DEFAULT__',
+      'auth' =&gt; 'example-userpass',
+      'certificate' =&gt; 'new.crt',
+      'privatekey' =&gt; 'new.pem',
+      // When private key is passphrase protected.
+      'privatekey_pass' =&gt; '&lt;new-secret&gt;',
+  ];
+</code></pre>
+<h2>
+ Distribute your final metadata
+</h2>
+<p>
+ Now you need to update the metadata of all your peers again, so that your old signing certificate is removed.
+This will cause those entities to no longer accept messages signed using your old key.
+</p></div>    <!-- /#content -->
+
+<div id="footer">
+    <a href="https://www.uninett.no/"><img id="ulogo" alt="notes" src="/res/uninettlogo.png" /SS></a>
+</div><!-- /#footer -->
+
+</body>
+</html>

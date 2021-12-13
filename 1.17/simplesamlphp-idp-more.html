@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Language" content="en" />
+
+	<!-- JQuery -->
+	<!-- 
+	<script type="text/javascript" src="/res/js/jquery.js"></script>
+	<script type="text/javascript" src="/res/js/jquery-ui.js"></script>
+	-->
+
+	<style>
+	  mark {
+        background: orange;
+        color: black;
+      }
+    </style>  
+
+	
+	<!-- Foodle: CSS -->	
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/js/uitheme/jquery-ui-themeroller.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/style.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/layout.css" /> 
+
+	<title>SimpleSAMLphp Documentation</title> 
+</head>
+
+
+
+
+
+<body><!-- Red logo header --><div id="header">	<div id="logo"><a href="https://simplesamlphp.org" style="color: #fff; text-decoration: none" target="_blank">SimpleSAMLphp</a></div></div><!-- Grey header bar below --><div id="headerbar" style="clear: both"><div id="langbar" style="clar: both"><div id="navigation">Documentation is available for the following versions: <a href="/latest/index.html">latest</a> | <a href="/1.19/index.html">1.19</a> | <a href="/1.18/index.html">1.18</a> | <a href="/1.17/index.html">1.17</a> |  modules</div></div><br style="height: 0px; clear: both" /></div><!-- /#headerbar --><div id="content"><h1>
+ SimpleSAMLphp Identity Provider Advanced Topics
+</h1>
+<!-- 
+  This file is written in Markdown syntax. 
+  For more information about how to use the Markdown syntax, read here:
+  http://daringfireball.net/projects/markdown/syntax
+-->
+<!-- {{TOC}} -->
+<h2>
+ AJAX iFrame Single Log-Out
+</h2>
+<p>
+ If you have read about the AJAX iFrame Single Log-Out approach at Andreas' blog and want to enable it, edit your saml20-idp-hosted.php metadata, and add this configuration line for the IdP:
+</p>
+<pre><code>'logouttype' =&gt; 'iframe',
+</code></pre>
+<h2>
+ Attribute Release Consent
+</h2>
+<p>
+ The attribute release consent is documented in a
+ <a href="./consent/consent.html">
+  separate document
+ </a>
+ .
+</p>
+<h2>
+ Support for bookmarking the login page
+</h2>
+<p>
+ Most SAML software crash fatally when users bookmark the login page and return later on when the cached session information is lost. This is natural as the login page happens in the middle of a SAML transaction, and the SAML software needs some references to the original request in order to be able to produce the SAML Response.
+</p>
+<p>
+ SimpleSAMLphp has implemented a graceful fallback to tackle this situation. When SimpleSAMLphp is not able to lookup a session during the login process, it falls back to the
+ <em>
+  IdP-first flow
+ </em>
+ , described in the next section, where the reference to the request is not needed.
+</p>
+<p>
+ What happens in the IdP-first flow is that a
+ <em>
+  SAML unsolicited response
+ </em>
+ is sent directly to the SP. An
+ <em>
+  unsolicited response
+ </em>
+ is a SAML Response with no reference to a SAML Request (no
+ <code>
+  InReplyTo
+ </code>
+ field).
+</p>
+<p>
+ When a SimpleSAMLphp IdP falls back to IdP-first flow, the
+ <code>
+  RelayState
+ </code>
+ parameter sent by the SP in the SAML request is also lost. The RelayState information contain a reference key for the SP to lookup where to send the user after successful authentication. The SimpleSAMLphp Service Provider supports configuring a static URL to redirect the user after a unsolicited response is received. See more information about the
+ <code>
+  RelayState
+ </code>
+ parameter in the next section:
+ <em>
+  IdP-first flow
+ </em>
+ .
+</p>
+<h2>
+ IdP-first flow
+</h2>
+<p>
+ If you do not want to start the SSO flow at the SP, you may use the IdP-first setup. To do this, redirect the user to the SSOService endpoint on the IdP with a
+ <code>
+  spentityid
+ </code>
+ parameter that matches the SP EntityID that the user should be authenticated for.
+</p>
+<p>
+ Here is an example of such a URL:
+</p>
+<pre><code>https://idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=urn:mace:feide.no:someservice
+</code></pre>
+<p>
+ You can also add a
+ <code>
+  RelayState
+ </code>
+ parameter to the IdP-first URL:
+</p>
+<pre><code>https://idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=urn:mace:feide.no:someservice&amp;RelayState=https://sp.example.org/somepage
+</code></pre>
+<p>
+ The
+ <code>
+  RelayState
+ </code>
+ parameter is often used to carry the URL the SP should redirect to after authentication. It is also possible to specify the Assertion
+Consumer URL with the
+ <code>
+  ConsumerURL
+ </code>
+ parameter.
+</p>
+<p>
+ For compatibility with certain SPs, SimpleSAMLphp will also accept the
+ <code>
+  providerId
+ </code>
+ ,
+ <code>
+  target
+ </code>
+ and
+ <code>
+  shire
+ </code>
+ parameters as aliases for
+ <code>
+  spentityid
+ </code>
+ ,
+ <code>
+  RelayState
+ </code>
+ and
+ <code>
+  ConsumerURL
+ </code>
+ , respectively.
+</p>
+<h2>
+ IdP-initiated logout
+</h2>
+<p>
+ IdP-initiated logout can be initiated by visiting the URL:
+</p>
+<pre><code>  https://idp.example.org/simplesaml/saml2/idp/SingleLogoutService.php?ReturnTo=&lt;URL to return to after logout&gt;
+</code></pre>
+<p>
+ It will send a logout request to each SP, and afterwards return the user to the URL specified in the
+ <code>
+  ReturnTo
+ </code>
+ parameter. Bear in mind that IdPs might disallow redirecting to URLs other than those of their own for security reasons, so in order to get the redirection to work, it might be necessary to ask the IdP to whitelist the URL we are planning to redirect to.
+</p></div>    <!-- /#content -->
+
+<div id="footer">
+    <a href="https://www.uninett.no/"><img id="ulogo" alt="notes" src="/res/uninettlogo.png" /SS></a>
+</div><!-- /#footer -->
+
+</body>
+</html>

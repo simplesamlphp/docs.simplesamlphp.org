@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Language" content="en" />
+
+	<!-- JQuery -->
+	<!-- 
+	<script type="text/javascript" src="/res/js/jquery.js"></script>
+	<script type="text/javascript" src="/res/js/jquery-ui.js"></script>
+	-->
+
+	<style>
+	  mark {
+        background: orange;
+        color: black;
+      }
+    </style>  
+
+	
+	<!-- Foodle: CSS -->	
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/js/uitheme/jquery-ui-themeroller.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/style.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/layout.css" /> 
+
+	<title>SimpleSAMLphp Documentation</title> 
+</head>
+
+
+
+
+
+<body><!-- Red logo header --><div id="header">	<div id="logo"><a href="https://simplesamlphp.org" style="color: #fff; text-decoration: none" target="_blank">SimpleSAMLphp</a></div></div><!-- Grey header bar below --><div id="headerbar" style="clear: both"><div id="langbar" style="clar: both"><div id="navigation">Documentation is available for the following versions: <a href="/latest/index.html">latest</a> | <a href="/1.19/index.html">1.19</a> | <a href="/1.18/index.html">1.18</a> | <a href="/1.17/index.html">1.17</a> |  modules</div></div><br style="height: 0px; clear: both" /></div><!-- /#headerbar --><div id="content"><h1>
+ Adding Enhanced Client or Proxy (ECP) Profile support to the IdP
+</h1>
+<p>
+ This document describes the necessary steps to enable support for the
+ <a href="http://docs.oasis-open.org/security/saml/Post2.0/saml-ecp/v2.0/cs01/saml-ecp-v2.0-cs01.pdf">
+  SAML V2.0 Enhanced Client or Proxy Profile Version 2.0
+ </a>
+ on a simpleSAMLphp Identity Provider (IdP).
+</p>
+<p>
+ The SAML V2.0 Enhanced Client or Proxy (ECP) profile is a SSO profile for use with HTTP, and clients with the capability to directly contact a principal's identity provider(s) without requiring discovery and redirection by the service provider, as in the case of a browser. It is particularly useful for desktop or server-side HTTP clients.
+</p>
+<h2>
+ Limitations
+</h2>
+<ul>
+ <li>
+  Authentication must be done via
+  <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#Basic_authentication_scheme">
+   HTTP Basic authentication
+  </a>
+  .
+ </li>
+ <li>
+  Authentication must not require user interaction (e.g. auth filters that require user input).
+ </li>
+ <li>
+  Channel Bindings are unsupported.
+ </li>
+ <li>
+  "Holder of Key" Subject Confirmation is unsupported.
+ </li>
+</ul>
+<p>
+ This feature has been tested to work with Microsoft Office 365, but other service providers may require features of the ECP profile that are currently unsupported!
+</p>
+<h2>
+ Enabling ECP Profile on the IdP
+</h2>
+<p>
+ To enable the IdP to send ECP assertions you must add the
+ <code>
+  saml20.ecp
+ </code>
+ option to the
+ <code>
+  saml20-idp-hosted
+ </code>
+ metadata file:
+</p>
+<pre><code>  $metadata['__DYNAMIC:1__'] = [
+      [....]
+      'auth' =&gt; 'example-userpass',
+      'saml20.ecp' =&gt; true,
+  ];
+</code></pre>
+<p>
+ Note: authentication filters that require interaction with the user will not work with ECP.
+</p>
+<h2>
+ Add new metadata to SPs
+</h2>
+<p>
+ After enabling the ECP Profile your IdP metadata will change. An additional ECP
+ <code>
+  SingleSignOnService
+ </code>
+ endpoint is added.
+You therefore need to update the metadata for your IdP at your SPs.
+The
+ <code>
+  saml20-idp-remote
+ </code>
+ metadata for simpleSAMLphp SPs should contain something like the following code:
+</p>
+<pre><code>'SingleSignOnService' =&gt;
+  array (
+    0 =&gt;
+    array (
+      'Binding' =&gt; 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
+      'Location' =&gt; 'https://idp.example.org/simplesaml/saml2/idp/SSOService.php',
+    ),
+    1 =&gt;
+    array (
+      'index' =&gt; 0,
+      'Location' =&gt; 'https://didp.example.org/simplesaml/saml2/idp/SSOService.php',
+      'Binding' =&gt; 'urn:oasis:names:tc:SAML:2.0:bindings:SOAP',
+    ),
+  ),
+</code></pre>
+<h2>
+ SP metadata on the IdP
+</h2>
+<p>
+ A SP using the ECP Profile must have an
+ <code>
+  AssertionConsumerService
+ </code>
+ endpoint supporting that profile.
+This means that you have to use the complex endpoint format in
+ <code>
+  saml20-sp-remote
+ </code>
+ metadata.
+In general, this should look like the following code:
+</p>
+<pre><code>'AssertionConsumerService' =&gt;
+  array (
+    0 =&gt;
+    array (
+      'Binding' =&gt; 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
+      'Location' =&gt; 'https://sp.example.org/Shibboleth.sso/SAML2/POST',
+      'index' =&gt; 1,
+    ),
+    1 =&gt;
+    array (
+      'Binding' =&gt; 'urn:oasis:names:tc:SAML:2.0:bindings:PAOS',
+      'Location' =&gt; 'https://sp.example.org/ECP',
+      'index' =&gt; 2,
+    ),
+  ),
+</code></pre></div>    <!-- /#content -->
+
+<div id="footer">
+    <a href="https://www.uninett.no/"><img id="ulogo" alt="notes" src="/res/uninettlogo.png" /SS></a>
+</div><!-- /#footer -->
+
+</body>
+</html>

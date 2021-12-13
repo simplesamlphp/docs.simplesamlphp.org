@@ -1,0 +1,186 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Language" content="en" />
+
+	<!-- JQuery -->
+	<!-- 
+	<script type="text/javascript" src="/res/js/jquery.js"></script>
+	<script type="text/javascript" src="/res/js/jquery-ui.js"></script>
+	-->
+
+	<style>
+	  mark {
+        background: orange;
+        color: black;
+      }
+    </style>  
+
+	
+	<!-- Foodle: CSS -->	
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/js/uitheme/jquery-ui-themeroller.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/style.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/layout.css" /> 
+
+	<title>SimpleSAMLphp Documentation</title> 
+</head>
+
+
+
+
+
+<body><!-- Red logo header --><div id="header">	<div id="logo"><a href="https://simplesamlphp.org" style="color: #fff; text-decoration: none" target="_blank">SimpleSAMLphp</a></div></div><!-- Grey header bar below --><div id="headerbar" style="clear: both"><div id="langbar" style="clar: both"><div id="navigation">Documentation is available for the following versions: <a href="/latest/index.html">latest</a> | <a href="/1.19/index.html">1.19</a> | <a href="/1.18/index.html">1.18</a> | <a href="/1.17/index.html">1.17</a> |  modules</div></div><br style="height: 0px; clear: both" /></div><!-- /#headerbar --><div id="content"><h1>
+ <code>
+  core:CardinalitySingle
+ </code>
+</h1>
+<p>
+ Ensure the correct cardinality of single-valued attributes. This filter is a special case
+of the more generic
+ <a href="./core/authproc_cardinality.html">
+  <code>
+   core:Cardinality
+  </code>
+ </a>
+ filter that allows for optional corrective measures
+when multi-valued attributes are received where single-valued ones are expected.
+</p>
+<h2>
+ Parameters
+</h2>
+<p>
+ This filter implements a number of optional parameters:
+</p>
+<p>
+ <code>
+  singleValued
+ </code>
+ :   array of attribute names that
+ <em>
+  must
+ </em>
+ be single-valued, or a 403 error is generated.
+</p>
+<p>
+ <code>
+  firstValue
+ </code>
+ :   array of attribute names where only the first value of a multi-valued assertion should be returned.
+</p>
+<p>
+ <code>
+  flatten
+ </code>
+ :   array of attribute names where a multi-valued assertion is flattened into a single delimited string.
+</p>
+<p>
+ <code>
+  flattenWith
+ </code>
+ :   the delimiter for
+ <code>
+  flatten
+ </code>
+ . Defaults to ";".
+</p>
+<p>
+ <code>
+  ignoreEntities
+ </code>
+ :   array of entity IDs that should be ignored for testing, etc purposes.
+</p>
+<p>
+ When the same attribute name appears in multiple stanzas, they are processed in the order above.
+</p>
+<h2>
+ Examples
+</h2>
+<p>
+ Abort with an error if any attribute defined as single-valued in the eduPerson or SCHAC schemas exists and has more than one value:
+</p>
+<pre><code>  'authproc' =&gt; [
+      50 =&gt; [
+          'class' =&gt; 'core:CardinalitySingle',
+          'singleValued' =&gt; [
+              /* from eduPerson (internet2-mace-dir-eduperson-201602) */
+              'eduPersonOrgDN', 'eduPersonPrimaryAffiliation', 'eduPersonPrimaryOrgUnitDN',
+              'eduPersonPrincipalName', 'eduPersonUniqueId',
+              /* from inetOrgPerson (RFC2798), referenced by internet2-mace-dir-eduperson-201602 */
+              'displayName', 'preferredLanguage',
+              /* from SCHAC-IAD Version 1.3.0 */
+              'schacMotherTongue', 'schacGender', 'schacDateOfBirth', 'schacPlaceOfBirth',
+              'schacPersonalTitle', 'schacHomeOrganization', 'schacHomeOrganizationType',
+              'schacExpiryDate',
+          ],
+      ],
+  ],
+</code></pre>
+<p>
+ Abort if multiple values are received for
+ <code>
+  eduPersonPrincipalName
+ </code>
+ , but take the first value for
+ <code>
+  eduPersonPrimaryAffiliation
+ </code>
+ :
+</p>
+<pre><code>  'authproc' =&gt; [
+      50 =&gt; [
+          'class' =&gt; 'core:CardinalitySingle',
+          'singleValued' =&gt; ['eduPersonPrincipalName'],
+          'firstValue' =&gt; ['eduPersonPrimaryAffiliation'],
+          ],
+      ],
+  ],
+</code></pre>
+<p>
+ Construct
+ <code>
+  eduPersonPrimaryAffiliation
+ </code>
+ using the first value in
+ <code>
+  eduPersonAffiliation
+ </code>
+ :
+</p>
+<pre><code>  'authproc' =&gt; [
+      50 =&gt; [
+          'class' =&gt; 'core:AttributeCopy',
+          'eduPersonAffiliation' =&gt; 'eduPersonPrimaryAffiliation',
+      ],
+      51 =&gt; [
+          'class' =&gt; 'core:CardinalitySingle',
+          'firstValue' =&gt; ['eduPersonPrimaryAffiliation'],
+      ],
+  ],
+</code></pre>
+<p>
+ Construct a single, comma-separated value version of
+ <code>
+  eduPersonAffiliation
+ </code>
+ :
+</p>
+<pre><code>  'authproc' =&gt; [
+      50 =&gt; [
+          'class' =&gt; 'core:AttributeCopy',
+          'eduPersonAffiliation' =&gt; 'eduPersonAffiliationWithCommas',
+      ],
+      51 =&gt; [
+          'class' =&gt; 'core:CardinalitySingle',
+          'flatten' =&gt; ['eduPersonAffiliationWithCommas'],
+    'flattenWith' =&gt; ',',
+      ],
+  ],
+</code></pre></div>    <!-- /#content -->
+
+<div id="footer">
+    <a href="https://www.uninett.no/"><img id="ulogo" alt="notes" src="/res/uninettlogo.png" /SS></a>
+</div><!-- /#footer -->
+
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Language" content="en" />
+
+	<!-- JQuery -->
+	<!-- 
+	<script type="text/javascript" src="/res/js/jquery.js"></script>
+	<script type="text/javascript" src="/res/js/jquery-ui.js"></script>
+	-->
+
+	<style>
+	  mark {
+        background: orange;
+        color: black;
+      }
+    </style>  
+
+	
+	<!-- Foodle: CSS -->	
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/js/uitheme/jquery-ui-themeroller.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/style.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/layout.css" /> 
+
+	<title>SimpleSAMLphp Documentation</title> 
+</head>
+
+
+
+
+
+<body><!-- Red logo header --><div id="header">	<div id="logo"><a href="https://simplesamlphp.org" style="color: #fff; text-decoration: none" target="_blank">SimpleSAMLphp</a></div></div><!-- Grey header bar below --><div id="headerbar" style="clear: both"><div id="langbar" style="clar: both"><div id="navigation">Documentation is available for the following versions: <a href="/latest/index.html">latest</a> | <a href="/1.19/index.html">1.19</a> | <a href="/1.18/index.html">1.18</a> | <a href="/1.17/index.html">1.17</a> |  modules</div></div><br style="height: 0px; clear: both" /></div><!-- /#headerbar --><div id="content"><h1>
+ Scoping
+</h1>
+<!-- 
+    This file is written in Markdown syntax. 
+    For more information about how to use the Markdown syntax, read here:
+    http://daringfireball.net/projects/markdown/syntax
+-->
+<!-- {{TOC}} -->
+<p>
+ Scoping allows a service provider to specify a list of identity providers in an
+authnRequest to a proxying identity provider. This is an indication to the 
+proxying identity provider that the service will only deal with the identity
+providers specified.
+</p>
+<p>
+ A common use is for a service provider in a hub-and-spoke architecture to 
+manage its own discovery service and being able to tell the hub/proxy-IdP which 
+(backend-end) identity provider to use. The standard discovery service in 
+SimpleSAMLphp will show the intersection of all the known IdPs and the IdPs 
+specified in the scoping element. If this intersection only contains one IdP, 
+then the request is automatically forwarded to that IdP.
+</p>
+<p>
+ Scoping is a SAML 2.0 specific option.
+</p>
+<h2>
+ Options
+</h2>
+<p>
+ SimpleSAMLphp supports scoping by allowing the following options:
+</p>
+<p>
+ <code>
+  ProxyCount
+ </code>
+ : Specifies the number of proxying indirections permissible
+between the identity provider receiving the request and the identity provider 
+who ultimately authenticates the user. A count of zero permits no proxying. If 
+ProxyCount is unspecified the number of proxy indirections is not limited.
+</p>
+<p>
+ <code>
+  IDPList
+ </code>
+ : The list of trusted IdPs, i.e. the list of entityIDs for identity providers
+that are relevant for a service provider in an authnRequest.
+</p>
+<h3>
+ Note
+</h3>
+<p>
+ SimpleSAMLphp does not support specifying the GetComplete option.
+</p>
+<h2>
+ Usage
+</h2>
+<p>
+ The ProxyCount and IDPList option can be specified in the following places:
+</p>
+<ul>
+ <li>
+  as a state parameter to the authentication source
+ </li>
+ <li>
+  in the saml:SP authentication source configuration
+ </li>
+ <li>
+  in the saml20-idp-remote metadata
+ </li>
+ <li>
+  in the saml20-sp-remote metadata
+ </li>
+</ul>
+<p>
+ Example configuration:
+</p>
+<pre><code>  # Add the IDPList
+  'IDPList' =&gt; [
+      'IdPEntityID1',
+      'IdPEntityID2',
+      'IdPEntityID3',
+  ],
+
+  # Set ProxyCount
+  'ProxyCount' =&gt; 2,
+</code></pre>
+<h2>
+ RequesterID element
+</h2>
+<p>
+ To allow an identity provider to identify the original requester and the 
+proxying identity providers, SimpleSAMLphp adds the RequesterID element to 
+the request and if necessary the scoping element even if explicit scoping is 
+not used.
+</p>
+<p>
+ The RequesterId elements are available from the state array as an array, for
+instance the authenticate method in an authentication source
+</p>
+<pre><code>  $requesterIDs = $state['saml:RequesterID'];
+</code></pre>
+<h2>
+ AuthenticatingAuthority element
+</h2>
+<p>
+ To allow a service provider to identify the authentication authorities that 
+were involved in the authentication of the user, SimpleSAMLphp adds the 
+AuthenticatingAuthority elements.
+</p>
+<p>
+ The list of authenticating authorities (the AuthenticatingAuthority element) 
+can be retrieved as an array from the authentication data.
+</p>
+<pre><code>  # Get the authentication source.
+  $as = new \SimpleSAML\Auth\Simple();
+
+  # Get the AuthenticatingAuthority
+  $aa = $as-&gt;getAuthData('saml:AuthenticatingAuthority');
+</code></pre>
+<h2>
+ Support
+</h2>
+<p>
+ If you need help to make this work, or want to discuss SimpleSAMLphp with other users of the software, you are fortunate: Around SimpleSAMLphp there is a great Open source community, and you are welcome to join! The forums are open for you to ask questions, contribute answers other further questions, request improvements or contribute with code or plugins of your own.
+</p>
+<ul>
+ <li>
+  <a href="https://simplesamlphp.org">
+   SimpleSAMLphp homepage
+  </a>
+ </li>
+ <li>
+  <a href="https://simplesamlphp.org/docs/">
+   List of all available SimpleSAMLphp documentation
+  </a>
+ </li>
+ <li>
+  <a href="https://simplesamlphp.org/lists">
+   Join the SimpleSAMLphp user's mailing list
+  </a>
+ </li>
+</ul></div>    <!-- /#content -->
+
+<div id="footer">
+    <a href="https://www.uninett.no/"><img id="ulogo" alt="notes" src="/res/uninettlogo.png" /SS></a>
+</div><!-- /#footer -->
+
+</body>
+</html>

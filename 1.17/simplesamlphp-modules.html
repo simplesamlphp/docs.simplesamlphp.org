@@ -1,0 +1,484 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Language" content="en" />
+
+	<!-- JQuery -->
+	<!-- 
+	<script type="text/javascript" src="/res/js/jquery.js"></script>
+	<script type="text/javascript" src="/res/js/jquery-ui.js"></script>
+	-->
+
+	<style>
+	  mark {
+        background: orange;
+        color: black;
+      }
+    </style>  
+
+	
+	<!-- Foodle: CSS -->	
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/js/uitheme/jquery-ui-themeroller.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/style.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/layout.css" /> 
+
+	<title>SimpleSAMLphp Documentation</title> 
+</head>
+
+
+
+
+
+<body><!-- Red logo header --><div id="header">	<div id="logo"><a href="https://simplesamlphp.org" style="color: #fff; text-decoration: none" target="_blank">SimpleSAMLphp</a></div></div><!-- Grey header bar below --><div id="headerbar" style="clear: both"><div id="langbar" style="clar: both"><div id="navigation">Documentation is available for the following versions: <a href="/latest/index.html">latest</a> | <a href="/1.19/index.html">1.19</a> | <a href="/1.18/index.html">1.18</a> | <a href="/1.17/index.html">1.17</a> |  modules</div></div><br style="height: 0px; clear: both" /></div><!-- /#headerbar --><div id="content"><h1>
+ SimpleSAMLphp modules
+</h1>
+<!-- 
+  This file is written in Markdown syntax. 
+  For more information about how to use the Markdown syntax, read here:
+  http://daringfireball.net/projects/markdown/syntax
+-->
+<!-- {{TOC}} -->
+<p>
+ This document describes how the module system in SimpleSAMLphp
+works. It descibes what types of modules there are, how they are
+configured, and how to write new modules.
+</p>
+<h2>
+ Overview
+</h2>
+<p>
+ There are currently three parts of SimpleSAMLphp which can be stored in 
+modules - authentication sources, authentication processing filters and 
+themes. There is also support for defining hooks - functions run at 
+specific times. More than one thing can be stored in a single module. 
+There is also support for storing supporting files, such as templates 
+and dictionaries, in modules.
+</p>
+<p>
+ The different functionalities which can be created as modules will be 
+described in more detail in the following sections; what follows is a 
+short introduction to what you can do with them:
+</p>
+<ul>
+ <li>
+  Authentication sources implement different methods for 
+   authenticating users, for example simple login forms which 
+   authenticate against a database backend, or login methods which use 
+   client-side certificates.
+ </li>
+ <li>
+  Authentication processing filters perform various tasks after the 
+   user is authenticated and has a set of attributes. They can add, 
+   remove and modify attributes, do additional authentication checks, 
+   ask questions of the user, +++.
+ </li>
+ <li>
+  Themes allow you to package custom templates for multiple modules 
+   into a single module.
+ </li>
+</ul>
+<h2>
+ Module layout
+</h2>
+<p>
+ Each SimpleSAMLphp module is stored in a directory under the
+ <code>
+  modules
+ </code>
+ -directory. The module directory contains the following
+directories and files:
+</p>
+<p>
+ locales
+:   This directory contains dictionaries which belong to this
+    module. To use a dictionary stored in a module, the extended tag
+    names can be used:
+ <code>
+  {&lt;module name&gt;:&lt;dictionary name&gt;:&lt;tag name&gt;}
+ </code>
+ For
+    example,
+ <code>
+  {example:login:hello}
+ </code>
+ will look up
+ <code>
+  hello
+ </code>
+ in
+ <code>
+  modules/example/locales/&lt;lang&gt;/login.po
+ </code>
+ .
+</p>
+<p>
+ :   It is also possible to specify
+ <code>
+  &lt;module name&gt;:&lt;dictionary name&gt;
+ </code>
+ as the default
+    dictionary when instantiating the
+ <code>
+  \SimpleSAML\XHTML\Template
+ </code>
+ class.
+</p>
+<p>
+ hooks
+:   This directory contains hook functions for this module. Each
+    file in this directory represents a single function. See the
+    hook-section in the documentation for more information.
+</p>
+<p>
+ lib
+:   This directory contains classes which belong to this module.
+    All classes must be named in the following pattern:
+ <code>
+  \SimpleSAML\Module\&lt;module name&gt;\&lt;class name&gt;
+ </code>
+ When looking up the filename of
+    a class, SimpleSAMLphp will search for
+ <code>
+  &lt;class name&gt;
+ </code>
+ in the
+ <code>
+  lib
+ </code>
+ directory. Underscores in the class name will be translated into
+    slashes.
+</p>
+<p>
+ :   Thus, if SimpleSAMLphp needs to load a class named
+ <code>
+  \SimpleSAML\Module\example\Auth\Source\Example
+ </code>
+ , it will load the file named
+ <code>
+  modules/example/lib/Auth/Source/Example.php
+ </code>
+ .
+</p>
+<p>
+ templates
+:   These are module-specific templates. To use one of these
+    templates, specify
+ <code>
+  &lt;module name&gt;:&lt;template file&gt;.php
+ </code>
+ as the template file in the constructor of
+ <code>
+  \SimpleSAML\XHTML\Template
+ </code>
+ . For example,
+ <code>
+  example:login-form.php
+ </code>
+ is translated to the file
+ <code>
+  modules/example/templates/default/login-form.php
+ </code>
+ . Note that
+ <code>
+  default
+ </code>
+ in the previous example is defined by the
+ <code>
+  theme.use
+ </code>
+ configuration option.
+</p>
+<p>
+ themes
+:   This directory contains themes the module defines. A single
+    module can define multiple themes, and these themes may override
+    all templates in all modules. Each subdirectory of
+ <code>
+  themes
+ </code>
+ defines
+    a theme. The theme directory contains a subdirectory for each
+    module. The templates stored under
+ <code>
+  simplesamlphp/templates
+ </code>
+ can be
+    overridden by a directory named
+ <code>
+  default
+ </code>
+ .
+</p>
+<p>
+ :   To use a theme provided by a module, the
+ <code>
+  theme.use
+ </code>
+ configuration option should be set to
+ <code>
+  &lt;module name&gt;:&lt;theme name&gt;
+ </code>
+ .
+</p>
+<p>
+ :   When using the theme
+ <code>
+  example:blue
+ </code>
+ , the template
+ <code>
+  templates/default/login.php
+ </code>
+ will be overridden by
+ <code>
+  modules/example/themes/blue/default/login.php
+ </code>
+ , while the template
+ <code>
+  modules/core/templates/default/loginuserpass.php
+ </code>
+ will be
+    overridden by
+ <code>
+  modules/example/themes/blue/core/loginuserpass.php
+ </code>
+ .
+</p>
+<p>
+ www
+:   All files stored in this directory will be available by
+    accessing the URL
+ <code>
+  https://.../simplesamlphp/module.php/&lt;module name&gt;/&lt;file name&gt;
+ </code>
+ .
+    For example, if a script named
+ <code>
+  login.php
+ </code>
+ is stored in
+ <code>
+  modules/example/www/
+ </code>
+ , it can be accessed by the URL
+ <code>
+  https://.../simplesamlphp/module.php/example/login.php
+ </code>
+ .
+</p>
+<p>
+ :   To retrieve this URL, the
+ <code>
+  SimpleSAML\Module::getModuleURL($resource)
+ </code>
+ -function can be used.
+    This function takes in a resource on the form
+ <code>
+  &lt;module&gt;/&lt;file&gt;
+ </code>
+ .
+    This function will then return a URL to the given file in the
+ <code>
+  www
+ </code>
+ -directory of
+ <code>
+  module
+ </code>
+ .
+</p>
+<h2>
+ Authentication sources
+</h2>
+<p>
+ An authentication source is used to authenticate a user and receive a 
+set of attributes belonging to this user. In a single-signon setup, the 
+authentication source will only be called once, and the attributes 
+belonging to the user will be cached until the user logs out.
+</p>
+<p>
+ Authentication sources are defined in
+ <code>
+  config/authsources.php
+ </code>
+ . This 
+file contains an array of
+ <code>
+  name =&gt; configuration
+ </code>
+ pairs. The name is 
+used to refer to the authentication source in metadata. When 
+configuring an IdP to authenticate against an authentication source, 
+\the
+ <code>
+  auth
+ </code>
+ option should be set to this name. The configuration for an 
+authentication source is an array. The first element in the array 
+identifies the class which implements the authentication source. The 
+remaining elements in the array are configuration entries for the 
+authentication source.
+</p>
+<p>
+ A typical configuration entry for an authentication source looks like 
+this:
+</p>
+<pre><code>  'example-static' =&gt; [
+    /* This maps to modules/exampleauth/lib/Auth/Source/Static.php */
+    'exampleauth:StaticSource',
+
+    /* The following is configuration which is passed on to
+     * the exampleauth:StaticSource authentication source. */
+    'uid' =&gt; 'testuser',
+    'eduPersonAffiliation' =&gt; ['member', 'employee'],
+    'cn' =&gt; ['Test User'],
+  ],
+</code></pre>
+<p>
+ To use this authentication source in a SAML 2.0 IdP, set the
+ <code>
+  auth
+ </code>
+ -option of the IdP to
+ <code>
+  'example-static'
+ </code>
+ :
+</p>
+<pre><code>  '__DYNAMIC:1__' =&gt; [
+    'host' =&gt; '__DEFAULT__',
+    'privatekey' =&gt; 'example.org.pem',
+    'certificate' =&gt; 'example.org.crt',
+    'auth' =&gt; 'example-static',
+  ],
+</code></pre>
+<h3>
+ Creating authentication sources
+</h3>
+<p>
+ This is described in a separate document:
+</p>
+<pre><code>* [Creating authentication sources](simplesamlphp-authsource)
+</code></pre>
+<h2>
+ Authentication processing filters
+</h2>
+<p>
+ <em>
+  Authentication processing filters
+ </em>
+ is explained in a separate document:
+</p>
+<pre><code>* [Authentication processing filters](simplesamlphp-authproc)
+</code></pre>
+<h2>
+ Themes
+</h2>
+<p>
+ This feature allows you to collect all your custom templates in one 
+place. The directory structure is like this:
+ <code>
+  modules/&lt;thememodule&gt;/themes/&lt;theme&gt;/&lt;module&gt;/&lt;template&gt;
+ </code>
+ <code>
+  thememodule
+ </code>
+ is the module where you store your theme, while
+ <code>
+  theme
+ </code>
+ is the name of the theme. A theme is activated by setting the
+ <code>
+  theme.use
+ </code>
+ configuration option to
+ <code>
+  &lt;thememodule&gt;:&lt;theme&gt;
+ </code>
+ .
+ <code>
+  module
+ </code>
+ is the module the template belongs to, and
+ <code>
+  template
+ </code>
+ is the template 
+in that module.
+</p>
+<p>
+ For example,
+ <code>
+  modules/example/themes/test/core/loginuserpass.php
+ </code>
+ replaces
+ <code>
+  modules/core/templates/default/loginuserpass.php
+ </code>
+ .
+ <code>
+  modules/example/themes/test/default/frontpage.php
+ </code>
+ replaces
+ <code>
+  templates/default/frontpage.php
+ </code>
+ . This theme can be activated by 
+setting
+ <code>
+  theme.use
+ </code>
+ to
+ <code>
+  example:test
+ </code>
+ .
+</p>
+<h2>
+ Hook interface
+</h2>
+<p>
+ The hook interface allows you to call a hook function in all enabled 
+modules which define that hook. Hook functions are stored in a 
+directory called 'hooks' in each module directory. Each hook is 
+stored in a file named
+ <code>
+  hook_&lt;hook name&gt;.php
+ </code>
+ , and each file defines a 
+function named
+ <code>
+  &lt;module name&gt;_hook_&lt;hook name&gt;
+ </code>
+ .
+</p>
+<p>
+ Each hook function accepts a single argument. This argument will be 
+passed by reference, which allows each hook to update that argument.
+</p>
+<p>
+ There is currently a single user of the hook interface - the front 
+page. The front page defines a hook named
+ <code>
+  frontpage
+ </code>
+ , which allows 
+modules to add things to the different sections on the front page. For 
+an example of this, see the
+ <code>
+  modules/modinfo/hooks/hook_frontpage.php
+ </code>
+ file in the
+ <a href="https://github.com/simplesamlphp/simplesamlphp-module-modinfo">
+  modinfo module
+ </a>
+ .
+</p></div>    <!-- /#content -->
+
+<div id="footer">
+    <a href="https://www.uninett.no/"><img id="ulogo" alt="notes" src="/res/uninettlogo.png" /SS></a>
+</div><!-- /#footer -->
+
+</body>
+</html>

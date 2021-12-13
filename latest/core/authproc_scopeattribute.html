@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Language" content="en" />
+
+	<!-- JQuery -->
+	<!-- 
+	<script type="text/javascript" src="/res/js/jquery.js"></script>
+	<script type="text/javascript" src="/res/js/jquery-ui.js"></script>
+	-->
+
+	<style>
+	  mark {
+        background: orange;
+        color: black;
+      }
+    </style>  
+
+	
+	<!-- Foodle: CSS -->	
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/js/uitheme/jquery-ui-themeroller.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/style.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/layout.css" /> 
+
+	<title>SimpleSAMLphp Documentation</title> 
+</head>
+
+
+
+
+
+<body><!-- Red logo header --><div id="header">	<div id="logo"><a href="https://simplesamlphp.org" style="color: #fff; text-decoration: none" target="_blank">SimpleSAMLphp</a></div></div><!-- Grey header bar below --><div id="headerbar" style="clear: both"><div id="langbar" style="clar: both"><div id="navigation">Documentation is available for the following versions: <a href="/latest/index.html">latest</a> | <a href="/1.19/index.html">1.19</a> | <a href="/1.18/index.html">1.18</a> | <a href="/1.17/index.html">1.17</a> |  modules</div></div><br style="height: 0px; clear: both" /></div><!-- /#headerbar --><div id="content"><h1>
+ <code>
+  core:ScopeAttribute
+ </code>
+</h1>
+<p>
+ A filter which combines two attributes into a scoped attribute.
+That is, the value will be
+ <code>
+  something@scope
+ </code>
+ , usually to make it globally unique.
+</p>
+<h2>
+ Parameters
+</h2>
+<p>
+ <code>
+  scopeAttribute
+ </code>
+ :   The attribute that contains the scope.
+</p>
+<p>
+ :   If the attribute contains a '@', we will take the scope from the part following the '@'.
+    Otherwise, we will use the entire value.
+</p>
+<p>
+ :   If the attribute is multi-valued, we will add all the scopes to the target.
+</p>
+<p>
+ <code>
+  sourceAttribute
+ </code>
+ :   The attribute that contains the values we shall add the scope to.
+</p>
+<p>
+ :   This attribute can be multi-valued, in which case we will add all the values.
+</p>
+<p>
+ <code>
+  targetAttribute
+ </code>
+ :   The attribute we shall add the scoped attributes to.
+</p>
+<p>
+ :   If the attribute already exists, the new values will be merged into the existing attribute.
+</p>
+<p>
+ <code>
+  onlyIfEmpty
+ </code>
+ : Only replace the targetAttribute if it is empty to begin with.
+</p>
+<p>
+ : If
+ <code>
+  true
+ </code>
+ , then the targetAttribute will only be created if it didn't already contain values. Defaults to
+ <code>
+  false
+ </code>
+ .
+</p>
+<p>
+ : This is useful if, for instance, you want to create eduPersonScopedAffiliation from eduPersonAffiliation
+ <em>
+  only
+ </em>
+ if eduPersonScopedAffiliation was not returned by the authenticaton source.
+</p>
+<h2>
+ Example
+</h2>
+<p>
+ Add eduPersonScopedAffiliation based on eduPersonAffiliation and eduPersonPrincipalName.
+</p>
+<pre><code>  10 =&gt; [
+      'class' =&gt; 'core:ScopeAttribute',
+      'scopeAttribute' =&gt; 'eduPersonPrincipalName',
+      'sourceAttribute' =&gt; 'eduPersonAffiliation',
+      'targetAttribute' =&gt; 'eduPersonScopedAffiliation',
+  ],
+</code></pre>
+<p>
+ With values being
+ <code>
+  eduPersonPrincipalName
+ </code>
+ :
+ <code>
+  jdoe@example.edu
+ </code>
+ and
+ <code>
+  eduPersonAffiliation
+ </code>
+ :
+ <code>
+  faculty
+ </code>
+ , this will result in the attribute
+ <code>
+  eduPersonScopedAffiliation
+ </code>
+ with value
+ <code>
+  faculty@example.edu
+ </code>
+ .
+</p></div>    <!-- /#content -->
+
+<div id="footer">
+    <a href="https://www.uninett.no/"><img id="ulogo" alt="notes" src="/res/uninettlogo.png" /SS></a>
+</div><!-- /#footer -->
+
+</body>
+</html>
