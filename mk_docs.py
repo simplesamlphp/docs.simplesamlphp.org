@@ -167,8 +167,8 @@ def mkResources(root_dir, web_root):
 ################################################
 
 # Configuration of static variables
-root_dir = "./"
-tempdir = "./ssp_tmp/"
+root_dir = os.path.expanduser('~')
+tempdir = root_dir + "/ssp_tmp/"
 
 repo_root_dir = "simplesamlphp/"
 repo_docs_dir = "docs/"
@@ -177,6 +177,14 @@ repo_modules_dir = "modules/"
 site_root_dir = "./_site/"
 header = "resources/header"
 footer = "resources/footer"
+
+print(root_dir)
+print(tempdir)
+print(repo_root_dir)
+print(repo_docs_dir)
+print(repo_modules_dir)
+
+
 
 # Make sure we have a working site subdir to put stuff in
 os.system('mkdir ' +  site_root_dir)
