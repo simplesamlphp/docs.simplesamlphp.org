@@ -213,23 +213,23 @@ for ssp_version in ssp_versions:
      module_output_dir = os.path.join(versioned_site_root, module_name + "/" )
      parsefiles(module_dir, module_output_dir)
 
-
 # fetch and generade documentation for contributed modules as made availabe in the ssp repos
-#contrib_mods = getmodulerepos()
+# Contributes modules are not version dependent on the mail source and hence are generated seperately from versioned documentation
+contrib_mods = getmodulerepos()
 
-#for module in contrib_mods:
-#    print("Working on: " + module["name"])
-#    contrib_mod_dir = tempdir + "contrib_modules/" + module["name"] + "/"
-#    contrib_mod_web_dir = site_root_dir + "contrib_modules" + "/"
-#    
-#    getgitrepo(module["html_url"], contrib_mod_dir, module["name"])
-#    
-#   #module_name = os.path.basename(os.path.normpath(module))
-#    module_dir = os.path.join(contrib_mod_dir, module["name"], "docs/")
-#    print(module_dir)
-#    module_output_dir = os.path.join(contrib_mod_web_dir, module["name"].split("-")[2] + "/" )
-#    print(module_output_dir)
-#    parsefiles(module_dir, module_output_dir)
+for module in contrib_mods:
+    print("Working on: " + module["name"])
+    contrib_mod_dir = tempdir + "contrib_modules/" + module["name"] + "/"
+    contrib_mod_web_dir = site_root_dir + "contrib_modules" + "/"
+    
+    getgitrepo(module["html_url"], contrib_mod_dir, module["name"])
+    
+    module_name = os.path.basename(os.path.normpath(module))
+    module_dir = os.path.join(contrib_mod_dir, module["name"], "docs/")
+    print(module_dir)
+    module_output_dir = os.path.join(contrib_mod_web_dir, module["name"].split("-")[2] + "/" )
+    print(module_output_dir)
+    parsefiles(module_dir, module_output_dir)
 
 
    
