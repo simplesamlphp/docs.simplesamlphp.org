@@ -167,14 +167,14 @@ def mkResources(root_dir, web_root):
 ################################################
 
 # Configuration of static variables
-root_dir = os.path.expanduser('~')
+root_dir = os.path.expanduser('~') + "/"
 tempdir = root_dir + "/ssp_tmp/"
 
 repo_root_dir = "simplesamlphp/"
 repo_docs_dir = "docs/"
 repo_modules_dir = "modules/"
 
-site_root_dir = "./_site/"
+site_root_dir = root_dir + "/_site/"
 header = "resources/header"
 footer = "resources/footer"
 
@@ -215,7 +215,7 @@ for ssp_version in ssp_versions:
    versioned_site_root =  site_root_dir + ssp_version + "/"
     
    print("versioned_site_root: " + versioned_site_root)
-   os.system('tree ' + root_dir)
+   #os.system('tree ' + root_dir)
 
    # Parse main docs for this version
    #parsefiles(os.path.join(version_dir, repo_root_dir, repo_docs_dir), versioned_site_root)
