@@ -160,7 +160,7 @@ repo_root_dir = "simplesamlphp/"
 repo_docs_dir = "docs/"
 repo_modules_dir = "modules/"
 
-site_root_dir = root_dir + "_site/"
+site_root_dir = runner_path + "_site/"
 header = runner_path + "resources/header"
 footer = runner_path + "resources/footer"
 
@@ -233,4 +233,5 @@ for module in contrib_mods:
 # Clean up the tempdir
 #os.system('rm -Rf ' +  tempdir)
 os.system('tree ' +  site_root_dir)
+
 
