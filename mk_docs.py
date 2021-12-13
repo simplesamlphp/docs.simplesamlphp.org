@@ -49,14 +49,12 @@ def getsubdirs(dir_path):
 
 # search a filesystem directory for markdown (md) files and parse these into html using the md2html function
 def parsefiles(docsdir, outputdir):
-    print("parsing files from '" + docsdir + "' into '" + outputdir + "'")
+    #print("parsing files from '" + docsdir + "' into '" + outputdir + "'")
 
     if os.path.isdir(docsdir):
 
       if not os.path.isdir(outputdir):
         os.makedirs(outputdir)
-
-      print("OutputDir? " + str(os.path.isdir(outputdir)))
 
       os.chdir(docsdir)
 
@@ -224,11 +222,10 @@ for module in contrib_mods:
     
     getgitrepo(module["html_url"], contrib_mod_dir, module["name"])
     
-    #module_name = os.path.basename(os.path.normpath(module))
     module_dir = os.path.join(contrib_mod_dir, module["name"], "docs/")
-    print(module_dir)
+    #print(module_dir)
     module_output_dir = os.path.join(contrib_mod_web_dir, module["name"].split("-")[2] + "/" )
-    print(module_output_dir)
+    #print(module_output_dir)
     parsefiles(module_dir, module_output_dir)
 
 
