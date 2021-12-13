@@ -189,29 +189,29 @@ mkResources(runner_path, site_root_dir)
 # Now generate contents based documentation for core simplesamlphp repo
 for ssp_version in ssp_versions:
    print("Working on: " + ssp_version)
-   print("Repo Root: " + repo_root_dir)
+   #print("Repo Root: " + repo_root_dir)
    
    version_dir = tempdir + ssp_version + "/"
-   print("Version dir: " + version_dir)
+   #print("Version dir: " + version_dir)
    getgitrepo('https://github.com/simplesamlphp/simplesamlphp.git', version_dir, repo_root_dir, ssp_version)
    versioned_site_root =  site_root_dir + ssp_version + "/"
     
-   print("versioned_site_root: " + versioned_site_root)
+   #print("versioned_site_root: " + versioned_site_root)
 
    # Parse main docs for this version
    parsefiles(os.path.join(version_dir, repo_root_dir, repo_docs_dir), versioned_site_root)
 
    # get all the modules in this version
-   #mods = getsubdirs(os.path.join(os.path.join(version_dir, repo_root_dir, repo_modules_dir)))
+   mods = getsubdirs(os.path.join(os.path.join(version_dir, repo_root_dir, repo_modules_dir)))
 
    # parse 'core' modules docs (if available)
-   #for module in mods:
-    #print("Working on: " + module)
+   for module in mods:
+     print("Working on: " + module)
     
-    #module_name = os.path.basename(os.path.normpath(module))
-    #module_dir = os.path.join(module, "docs/")
-    #module_output_dir = os.path.join(versioned_site_root, module_name + "/" )
-    #parsefiles(module_dir, module_output_dir)
+     module_name = os.path.basename(os.path.normpath(module))
+     module_dir = os.path.join(module, "docs/")
+     module_output_dir = os.path.join(versioned_site_root, module_name + "/" )
+     parsefiles(module_dir, module_output_dir)
 
 # fetch and generade documentation for contributed modules as made availabe in the ssp repos
 #contrib_mods = getmodulerepos()
