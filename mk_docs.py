@@ -169,7 +169,8 @@ footer = "resources/footer"
 print("Root dir: " + root_dir)
 print("Temp dir: " + tempdir)
 
-os.system('ls  ' +  root_dir)
+os.system('pwd  ' +  $GITHUB_WORKSPACE)
+os.system('ls  ' +  $GITHUB_WORKSPACE)
 
 # for which versions should we generate documentation?
 # ToDo: replace with dynamic assasment based on github tags
