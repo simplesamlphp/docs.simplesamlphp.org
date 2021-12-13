@@ -197,8 +197,6 @@ with open(footer, 'r') as f:
 # Copy the starter index.html that will always redirect to "latest"
 mkResources(root_dir, site_root_dir)
 
-os.system('tree')
-
 # Now generate contents based documentation for core simplesamlphp repo
 for ssp_version in ssp_versions:
    print("Working on: " + ssp_version)
@@ -210,10 +208,9 @@ for ssp_version in ssp_versions:
    versioned_site_root =  site_root_dir + ssp_version + "/"
     
    print("versioned_site_root: " + versioned_site_root)
-   #os.system('tree ' + root_dir)
 
    # Parse main docs for this version
-   #parsefiles(os.path.join(version_dir, repo_root_dir, repo_docs_dir), versioned_site_root)
+   parsefiles(os.path.join(version_dir, repo_root_dir, repo_docs_dir), versioned_site_root)
 
    # get all the modules in this version
    #mods = getsubdirs(os.path.join(os.path.join(version_dir, repo_root_dir, repo_modules_dir)))
