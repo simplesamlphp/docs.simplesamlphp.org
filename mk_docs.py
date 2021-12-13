@@ -165,8 +165,8 @@ repo_docs_dir = "docs/"
 repo_modules_dir = "modules/"
 
 site_root_dir = root_dir + "_site/"
-header = "resources/header"
-footer = "resources/footer"
+header = runner_path + "resources/header"
+footer = runner_path + "resources/footer"
 
 print("Root dir: " + root_dir)
 print("Temp dir: " + tempdir)
@@ -194,7 +194,7 @@ with open(footer, 'r') as f:
   footer = f.read()
 
 # Copy the starter index.html that will always redirect to "latest"
-mkResources(root_dir, site_root_dir)
+mkResources(runner_path, site_root_dir)
 
 # Now generate contents based documentation for core simplesamlphp repo
 for ssp_version in ssp_versions:
