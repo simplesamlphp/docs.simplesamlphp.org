@@ -178,13 +178,8 @@ site_root_dir = root_dir + "/_site/"
 header = "resources/header"
 footer = "resources/footer"
 
-print(root_dir)
-print(tempdir)
-print(repo_root_dir)
-print(repo_docs_dir)
-print(repo_modules_dir)
-
-
+print("Root dir: " + root_dir)
+print("Temp dir: " + tempdir)
 
 # Make sure we have a working site subdir to put stuff in
 os.system('mkdir ' +  site_root_dir)
