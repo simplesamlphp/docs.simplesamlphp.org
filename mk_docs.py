@@ -148,9 +148,13 @@ def mkcontribmodsindex(contrib_mods, module_index_file):
     module_index += "SimpleSAMLphp Contributed modules\n"
     module_index += "===========================\n\n"
 
+    # now find all the contents taht 
+    
+    
+    
     for module in contrib_mods:
-      module_index += " * ["+ module["name"] + "](" + module["html_url"] + ") - " + module["description"] + "\n"
-
+      module_index += " * ["+ module["name"] + "](" + module["html_url"] + ") \n" + module["description"] + "\n"
+      
     with open(module_index_file, 'w+') as f:
        f.write(module_index)
 	
@@ -236,6 +240,13 @@ for module in contrib_mods:
     module_output_dir = os.path.join(contrib_mod_web_dir, module["name"].split("-")[2] + "/" )
     #print(module_output_dir)
     parsefiles(module_dir, module_output_dir)
+    
+    os.chdir(module_output_dir)
+    
+    for file in glob.glob('*.html'):
+        print(file)
+        #md_file = docsdir + file
+        #html_file = outputdir + file[:-3] + '.html'
 
 mkcontribmodsindex(contrib_mods, module_index_file)
 md2html(module_index_file, site_root_dir + 'contributed_modules.html', 'contributed_modules.html')
