@@ -150,8 +150,8 @@ def mkcontribmodsindex(contrib_mods, module_index_file):
 
     for module in contrib_mods:
       module_index += " * ["+ module["name"] + "](" + module["html_url"] + ") - " + module["description"] + "\n"
-	
-	with open(module_index_file, 'w+') as f:
+
+    with open(module_index_file, 'w+') as f:
        f.write(module_index)
 	
 ################################################
