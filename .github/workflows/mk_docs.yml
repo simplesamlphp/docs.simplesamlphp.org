@@ -1,5 +1,8 @@
 name: Build and deploy documentation site to GitHub Pages based on repo contents
 
+# This runner generated documentation using a python script
+# For the methodology on publishing the documentation on the same github pages account as the main site, see this: https://deanattali.com/blog/multiple-github-pages-domains/
+
 on: 
   push:
 #    branches:
@@ -14,17 +17,18 @@ jobs:
     steps:
     - name: checkout repo content
       uses: actions/checkout@v2 # checkout the repository content to github runner.
+
     - name: setup python
       uses: actions/setup-python@v2
       with:
         python-version: 3.8 #install the python needed
+
     - run: pip install markdown glob2 urllib3 beautifulsoup4
-#    - run: pip install glob2
-#    - run: pip install urllib3
-#    - run: pip install beautifulsoup4
+
     - name: execute py script # run the run.py to get the latest data
       run: |
          python mk_docs.py
+
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:

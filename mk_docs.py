@@ -118,7 +118,7 @@ def mkContentHeader(versions):
     return content
 
 # make a navigation structure based on the versions we have doucmentation for    
-def mkNavigation(versions):
+def mkNavigation(versions, this_version):
     
     content = '<div id="langbar" style="clar: both"><div id="navigation">Documentation is available for the following versions: '
     for version in versions:
@@ -181,7 +181,7 @@ print("reading Footer")
 with open(footer, 'r') as f:
   footer = f.read()
 
-# Copy the starter index.html that will always redirect to "latest"
+# Copy over resources like js and css files and a the starter index.html that will always redirect to "latest"
 mkResources(runner_path, site_root_dir)
 
 # Now generate contents based documentation for core simplesamlphp repo
@@ -193,8 +193,6 @@ for ssp_version in ssp_versions:
    #print("Version dir: " + version_dir)
    getgitrepo('https://github.com/simplesamlphp/simplesamlphp.git', version_dir, repo_root_dir, ssp_version)
    versioned_site_root =  site_root_dir + ssp_version + "/"
-    
-   #print("versioned_site_root: " + versioned_site_root)
 
    # Parse main docs for this version
    parsefiles(os.path.join(version_dir, repo_root_dir, repo_docs_dir), versioned_site_root)
@@ -209,19 +207,22 @@ for ssp_version in ssp_versions:
      module_output_dir = os.path.join(versioned_site_root, module_name + "/" )
      parsefiles(module_dir, module_output_dir)
 
-# Fetch and generade documentation for contributed modules as made availabe in various ssp repos
+# Fetch and generate documentation for contributed modules as made availabe in various ssp repos
 # Contributes modules are not version dependent on the main source and hence are generated seperately from versioned documentation
 contrib_mods = getmodulerepos()
+print(contrib_mods)
+
 
 for module in contrib_mods:
     print("Working on: " + module["name"])
     contrib_mod_dir = tempdir + "contrib_modules/" + module["name"] + "/"
     contrib_mod_web_dir = site_root_dir + "contrib_modules" + "/"
     
+    # We assume contributes modules live in te simplesampphph repo and are named 'simplesamlphp-module-*' 
     getgitrepo(module["html_url"], contrib_mod_dir, module["name"])
     
     module_dir = os.path.join(contrib_mod_dir, module["name"], "docs/")
-    #print(module_dir)
+    #    print(module_dir)
     module_output_dir = os.path.join(contrib_mod_web_dir, module["name"].split("-")[2] + "/" )
     #print(module_output_dir)
     parsefiles(module_dir, module_output_dir)
