@@ -140,7 +140,19 @@ def mkResources(root_dir, web_root):
     # starter index.html (just a redirect to 'latest')    
     os.system('cp ' +  root_dir + 'resources/index.html ' + web_root + 'index.html ')
 
-
+def mkcontribmodsindex(contrib_mods):
+	module_index = " ---\nlayout: default\ntitle: Documentation\n---"
+    module_index += "SimpleSAMLphp Contributed modules\n"
+    module_index += "===========================\n\n"
+	
+	for module in contrib_mods:
+		print("Name: " + module["name"])
+		print("Desc: " + module["description"])
+		print("URL: " + module["html_url"])
+        print("===========================================")
+        
+        module_index += " * ["+ module["name"] + "](module["html_url"]) - " + module["description"]
+	return 	module_index
 
 ################################################
 #
@@ -209,8 +221,6 @@ for ssp_version in ssp_versions:
 # Fetch and generate documentation for contributed modules as made availabe in various ssp repos
 # Contributes modules are not version dependent on the main source and hence are generated seperately from versioned documentation
 contrib_mods = getmodulerepos()
-print(contrib_mods)
-
 
 for module in contrib_mods:
     print("Working on: " + module["name"])
@@ -226,7 +236,7 @@ for module in contrib_mods:
     #print(module_output_dir)
     parsefiles(module_dir, module_output_dir)
 
-
+print(mkcontribmodsindex(contrib_mods))
    
 # Dump website tree so we can see in the runner if all went well
 os.system('tree ' +  site_root_dir)
