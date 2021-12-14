@@ -140,19 +140,20 @@ def mkResources(root_dir, web_root):
     # starter index.html (just a redirect to 'latest')    
     os.system('cp ' +  root_dir + 'resources/index.html ' + web_root + 'index.html ')
 
-def mkcontribmodsindex(contrib_mods):
+def mkcontribmodsindex(contrib_mods, module_index_file):
     module_index = "---\n"
-    module_index = "layout: default\n"
-    module_index = "title: Documentation\n---\n"
-    module_index = "---\n"
+    module_index += "layout: default\n"
+    module_index += "title: Documentation\n---\n"
+    module_index += "---\n"
     module_index += "SimpleSAMLphp Contributed modules\n"
     module_index += "===========================\n\n"
 
     for module in contrib_mods:
       module_index += " * ["+ module["name"] + "](" + module["html_url"] + ") - " + module["description"] + "\n"
 	
-    return 	module_index
-
+	with open(module_index_file, 'w+') as f:
+       f.write(module_index)
+	
 ################################################
 #
 # MAIN
@@ -220,6 +221,7 @@ for ssp_version in ssp_versions:
 # Fetch and generate documentation for contributed modules as made availabe in various ssp repos
 # Contributes modules are not version dependent on the main source and hence are generated seperately from versioned documentation
 contrib_mods = getmodulerepos()
+module_index_file = tempdir + "contributed_modules.md"
 
 for module in contrib_mods:
     print("Working on: " + module["name"])
@@ -235,7 +237,7 @@ for module in contrib_mods:
     #print(module_output_dir)
     parsefiles(module_dir, module_output_dir)
 
-print(mkcontribmodsindex(contrib_mods))
+md2html(module_index_file, web_root + 'contributed_modules.html', 'contributed_modules.html')
    
 # Dump website tree so we can see in the runner if all went well
 os.system('tree ' +  site_root_dir)
