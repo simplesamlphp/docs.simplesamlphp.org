@@ -110,7 +110,6 @@ def mkContentHeader(versions):
     content += '<!-- Grey header bar below -->'
     content += '<div id="headerbar" style="clear: both">'
     content += mkNavigation(versions)
-    #content += '<p id="breadcrumb">Home</p><div class="mtoolbar"><div class="menuitem first"><a href="/download">Download</a></div><div class="menuitem"><a href="/docs">Documentation</a></div><div class="menuitem"><a href="/security">Security</a></div><div class="menuitem"><a href="/modules">Modules</a></div><div class="menuitem"><a href="/translation">Translation</a></div><div class="menuitem"><a href="/developers">Developers</a></div><div class="menuitem"><a href="/releaseplan">Roadmap</a></div><div class="menuitem"><a href="/awards">Awards</a></div><div class="menuitem"><a href="/users">Users</a></div><div class="menuitem"><a href="/lists">Mailing lists</a></div><div class="menuitem last"><a href="/support">Support</a></div></div><br style="clear: both; height: 0px; width: 0px" />'
     content += '<br style="height: 0px; clear: both" />'
     content += '</div><!-- /#headerbar -->'
     content += '<div id="content">'
@@ -118,7 +117,7 @@ def mkContentHeader(versions):
     return content
 
 # make a navigation structure based on the versions we have doucmentation for    
-def mkNavigation(versions, this_version):
+def mkNavigation(versions):
     
     content = '<div id="langbar" style="clar: both"><div id="navigation">Documentation is available for the following versions: '
     for version in versions:
