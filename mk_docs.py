@@ -146,12 +146,7 @@ def mkcontribmodsindex(contrib_mods):
     module_index += "===========================\n\n"
 
     for module in contrib_mods:
-      print("Name: " + module["name"])
-      print("Desc: " + module["description"])
-      print("URL: " + module["html_url"])
-      print("===========================================")
-  
-      module_index += " * ["+ module["name"] + "](module["html_url"]) - " + module["description"]
+      module_index += " * ["+ module["name"] + "](" + module["html_url"] + ") - " + module["description"]
 	
     return 	module_index
 
