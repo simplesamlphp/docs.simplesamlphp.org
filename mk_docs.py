@@ -237,7 +237,7 @@ for module in contrib_mods:
     #print(module_output_dir)
     parsefiles(module_dir, module_output_dir)
 
-md2html(module_index_file, web_root + 'contributed_modules.html', 'contributed_modules.html')
+md2html(module_index_file, site_root_dir + 'contributed_modules.html', 'contributed_modules.html')
    
 # Dump website tree so we can see in the runner if all went well
 os.system('tree ' +  site_root_dir)
