@@ -141,18 +141,19 @@ def mkResources(root_dir, web_root):
     os.system('cp ' +  root_dir + 'resources/index.html ' + web_root + 'index.html ')
 
 def mkcontribmodsindex(contrib_mods):
-	module_index = " ---\nlayout: default\ntitle: Documentation\n---"
+    module_index = " ---\nlayout: default\ntitle: Documentation\n---"
     module_index += "SimpleSAMLphp Contributed modules\n"
     module_index += "===========================\n\n"
+
+    for module in contrib_mods:
+      print("Name: " + module["name"])
+      print("Desc: " + module["description"])
+      print("URL: " + module["html_url"])
+      print("===========================================")
+  
+      module_index += " * ["+ module["name"] + "](module["html_url"]) - " + module["description"]
 	
-	for module in contrib_mods:
-		print("Name: " + module["name"])
-		print("Desc: " + module["description"])
-		print("URL: " + module["html_url"])
-        print("===========================================")
-        
-        module_index += " * ["+ module["name"] + "](module["html_url"]) - " + module["description"]
-	return 	module_index
+    return 	module_index
 
 ################################################
 #
