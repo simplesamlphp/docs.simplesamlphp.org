@@ -122,7 +122,7 @@ def mkNavigation(versions):
     content = '<div id="langbar" style="clar: both"><div id="navigation">Documentation is available for the following versions: '
     for version in versions:
         content += '<a href="./../'+version+'/index.html">'+version+'</a> | '
-    content += ' <a href="./contributed_modules.html"> Contributed modules</a></div></div>'
+    content += ' <a href="./../contributed_modules.html"> Contributed modules</a></div></div>'
     
     return content
 
@@ -141,11 +141,11 @@ def mkResources(root_dir, web_root):
     os.system('cp ' +  root_dir + 'resources/index.html ' + web_root + 'index.html ')
 
 def mkcontribmodsindex(contrib_mods, module_index_file, contrib_mods_files):
-    module_index = "---\n"
-    module_index += "layout: default\n"
-    module_index += "title: Documentation\n---\n"
-    module_index += "---\n"
-    module_index += "SimpleSAMLphp Contributed modules\n"
+    #module_index = "---\n"
+    #module_index += "layout: default\n"
+    #module_index += "title: Documentation\n---\n"
+    #module_index += "---\n"
+    module_index = "SimpleSAMLphp Contributed modules\n"
     module_index += "===========================\n\n"
 
     pages = {}
@@ -162,11 +162,11 @@ def mkcontribmodsindex(contrib_mods, module_index_file, contrib_mods_files):
     
   
     for module in contrib_mods:
-      module_index += " * ["+ module["name"] + "](" + module["html_url"] + ") \n" + module["description"] + "\n"
+      module_index += " * ["+ module["name"] + "](" + module["html_url"] + ") - " + module["description"] + "\n"
 
       try:
         for page in pages[module["name"]]:
-          module_index += "   * ["+ page + "]\n"
+          module_index += "   * ["+ page + "](contrib_modules/"+ page +")\n"
       except KeyError:
 		# some modules do not have documantation, just ignore them      
         pass
