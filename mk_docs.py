@@ -248,7 +248,7 @@ for module in contrib_mods:
 
 
 f = []
-for (dirpath, dirnames, filenames) in walk(site_root_dir + "contrib_modules" + "/"):
+for (dirpath, dirnames, filenames) in os.walk(site_root_dir + "contrib_modules" + "/"):
     f.extend(filenames)
     
 print(f)
