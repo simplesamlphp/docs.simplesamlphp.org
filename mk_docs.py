@@ -157,6 +157,7 @@ def mkcontribmodsindex(contrib_mods, module_index_file, contrib_mods_files):
       for page in pages:
         module_index += "   * ["+ page + "]\n"
           
+    print(module_index)  
       
     with open(module_index_file, 'w+') as f:
        f.write(module_index)
