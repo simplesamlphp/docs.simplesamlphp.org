@@ -243,18 +243,19 @@ for module in contrib_mods:
       #print(module_output_dir)
       parsefiles(module_dir, module_output_dir)
     
-      os.chdir(module_output_dir)
-    
-      for file in glob.glob('*.html'):
-        print(file)
-        #md_file = docsdir + file
-        #html_file = outputdir + file[:-3] + '.html'
     else:
         print("No docs found for '" + module["name"] +"'")
 
 
+f = []
+for (dirpath, dirnames, filenames) in walk(site_root_dir + "contrib_modules" + "/"):
+    f.extend(filenames)
+    
+print(f)
+
+
 # Dump website tree so we can see in the runner if all went well
-os.system('tree ' +  site_root_dir)
+# os.system('tree ' +  site_root_dir)
 
 #mkcontribmodsindex(contrib_mods, module_index_file)
 #md2html(module_index_file, site_root_dir + 'contributed_modules.html', 'contributed_modules.html')
