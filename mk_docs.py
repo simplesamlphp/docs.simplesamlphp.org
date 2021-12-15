@@ -154,7 +154,8 @@ def mkcontribmodsindex(contrib_mods, module_index_file, contrib_mods_files):
       module_index += " * ["+ module["name"] + "](" + module["html_url"] + ") \n" + module["description"] + "\n"
       
       pages = [x for x in contrib_mods_files if all(y not in x for y in list(module["name"]))]
-      module_index += "   * "+ pages + "\n"
+      for page in pages:
+        module_index += "   * ["+ page + "]\n"
           
       
     with open(module_index_file, 'w+') as f:
