@@ -141,11 +141,11 @@ def mkResources(root_dir, web_root):
     os.system('cp ' +  root_dir + 'resources/index.html ' + web_root + 'index.html ')
 
 def mkcontribmodsindex(contrib_mods, module_index_file, contrib_mods_files):
-    #module_index = "---\n"
-    #module_index += "layout: default\n"
-    #module_index += "title: Documentation\n---\n"
-    #module_index += "---\n"
-    module_index = "SimpleSAMLphp Contributed modules\n"
+    module_index = "---\n"
+    module_index += "layout: default\n"
+    module_index += "title: Documentation\n---\n"
+    module_index += "---\n"
+    module_index += "SimpleSAMLphp Contributed modules\n"
     module_index += "===========================\n\n"
 
     # now find all the contents taht 
