@@ -148,7 +148,7 @@ def mkcontribmodsindex(contrib_mods, module_index_file, contrib_mods_files):
     module_index += "SimpleSAMLphp Contributed modules\n"
     module_index += "===========================\n\n"
 
-    # now find all the contents taht 
+    print(contrib_mods_files)
         
     for module in contrib_mods:
       module_index += " * ["+ module["name"] + "](" + module["html_url"] + ") \n" + module["description"] + "\n"
@@ -276,7 +276,7 @@ md2html(module_index_file, site_root_dir + 'contributed_modules.html', 'contribu
 
 
 # Dump website tree so we can see in the runner if all went well
-os.system('tree ' +  site_root_dir)
+#os.system('tree ' +  site_root_dir)
 
    
 
