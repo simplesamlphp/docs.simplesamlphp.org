@@ -248,10 +248,12 @@ for module in contrib_mods:
         #md_file = docsdir + file
         #html_file = outputdir + file[:-3] + '.html'
 
+# Dump website tree so we can see in the runner if all went well
+os.system('tree ' +  site_root_dir)
+
 mkcontribmodsindex(contrib_mods, module_index_file)
 md2html(module_index_file, site_root_dir + 'contributed_modules.html', 'contributed_modules.html')
    
-# Dump website tree so we can see in the runner if all went well
-os.system('tree ' +  site_root_dir)
+
 
 
