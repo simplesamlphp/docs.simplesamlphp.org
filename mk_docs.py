@@ -236,17 +236,21 @@ for module in contrib_mods:
     getgitrepo(module["html_url"], contrib_mod_dir, module["name"])
     
     module_dir = os.path.join(contrib_mod_dir, module["name"], "docs/")
-    #    print(module_dir)
-    module_output_dir = os.path.join(contrib_mod_web_dir, module["name"].split("-")[2] + "/" )
-    #print(module_output_dir)
-    parsefiles(module_dir, module_output_dir)
+    print(module_dir)
+    if os.path.isdir(docsdir):
+      module_output_dir = os.path.join(contrib_mod_web_dir, module["name"].split("-")[2] + "/" )
+      #print(module_output_dir)
+      parsefiles(module_dir, module_output_dir)
     
-    os.chdir(module_output_dir)
+      os.chdir(module_output_dir)
     
-    for file in glob.glob('*.html'):
+      for file in glob.glob('*.html'):
         print(file)
         #md_file = docsdir + file
         #html_file = outputdir + file[:-3] + '.html'
+    else:
+		print("No docs found for '" + module["name"] +"'")
+
 
 # Dump website tree so we can see in the runner if all went well
 os.system('tree ' +  site_root_dir)
