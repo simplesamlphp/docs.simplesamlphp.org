@@ -152,7 +152,7 @@ def mkcontribmodsindex(contrib_mods, module_index_file, contrib_mods_files):
     
     for page in contrib_mods_files:
       s = page.split("/")
-      mod_name = s[len(s) -2]
+      mod_name = "simplesamlphp-module-" + s[len(s) -2]
       page_name = s[len(s) -1]
   
       if mod_name not in pages.keys():
@@ -163,9 +163,8 @@ def mkcontribmodsindex(contrib_mods, module_index_file, contrib_mods_files):
   
     for module in contrib_mods:
       module_index += " * ["+ module["name"] + "](" + module["html_url"] + ") \n" + module["description"] + "\n"
-      
-      mod = "simplesamlphp-module-" + page
-      for mod in pages[module["name"]]:
+
+      for page in pages[module["name"]]:
         module_index += "   * ["+ page + "]\n"
           
     print(module_index)  
