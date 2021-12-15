@@ -140,20 +140,22 @@ def mkResources(root_dir, web_root):
     # starter index.html (just a redirect to 'latest')    
     os.system('cp ' +  root_dir + 'resources/index.html ' + web_root + 'index.html ')
 
-def mkcontribmodsindex(contrib_mods, module_index_file):
-    module_index = "---\n"
-    module_index += "layout: default\n"
-    module_index += "title: Documentation\n---\n"
-    module_index += "---\n"
+def mkcontribmodsindex(contrib_mods, module_index_file, contrib_mods_files):
+    #module_index = "---\n"
+    #module_index += "layout: default\n"
+    #module_index += "title: Documentation\n---\n"
+    #module_index += "---\n"
     module_index += "SimpleSAMLphp Contributed modules\n"
     module_index += "===========================\n\n"
 
     # now find all the contents taht 
-    
-    
-    
+        
     for module in contrib_mods:
       module_index += " * ["+ module["name"] + "](" + module["html_url"] + ") \n" + module["description"] + "\n"
+      
+      pages = [x for x in contrib_mods_files if all(y not in x for y in list(module["name"]))]
+      module_index += "   * "+ pages + "\n"
+          
       
     with open(module_index_file, 'w+') as f:
        f.write(module_index)
@@ -262,18 +264,17 @@ for module in contrib_mods:
     
     else:
         print("No docs found for '" + module["name"] +"'")
-
-f= getListOfFiles(site_root_dir + "contrib_modules" + "/")  
-print(f)
-
+        
+# Now build an index of generated documents
+contrib_mods_files= getListOfFiles(site_root_dir + "contrib_modules" + "/")  
+mkcontribmodsindex(contrib_mods, module_index_file, contrib_mods_files)
+md2html(module_index_file, site_root_dir + 'contributed_modules.html', 'contributed_modules.html')
 
 
 
 # Dump website tree so we can see in the runner if all went well
 # os.system('tree ' +  site_root_dir)
 
-#mkcontribmodsindex(contrib_mods, module_index_file)
-#md2html(module_index_file, site_root_dir + 'contributed_modules.html', 'contributed_modules.html')
    
 
 
