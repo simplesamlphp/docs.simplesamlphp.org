@@ -274,7 +274,7 @@ md2html(module_index_file, site_root_dir + 'contributed_modules.html', 'contribu
 
 
 # Dump website tree so we can see in the runner if all went well
-# os.system('tree ' +  site_root_dir)
+os.system('tree ' +  site_root_dir)
 
    
 
