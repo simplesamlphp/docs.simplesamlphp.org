@@ -157,6 +157,23 @@ def mkcontribmodsindex(contrib_mods, module_index_file):
       
     with open(module_index_file, 'w+') as f:
        f.write(module_index)
+
+def getListOfFiles(dirName):
+    # create a list of file and sub directories 
+    # names in the given directory 
+    listOfFile = os.listdir(dirName)
+    allFiles = list()
+    # Iterate over all the entries
+    for entry in listOfFile:
+        # Create full path
+        fullPath = os.path.join(dirName, entry)
+        # If entry is a directory then get the list of files in this directory 
+        if os.path.isdir(fullPath):
+            allFiles = allFiles + getListOfFiles(fullPath)
+        else:
+            allFiles.append(fullPath)
+                
+    return allFiles
 	
 ################################################
 #
@@ -246,12 +263,10 @@ for module in contrib_mods:
     else:
         print("No docs found for '" + module["name"] +"'")
 
-
-f = []
-for (dirpath, dirnames, filenames) in os.walk(site_root_dir + "contrib_modules" + "/"):
-    f.extend(filenames)
-    
+f= getListOfFiles(site_root_dir + "contrib_modules" + "/")  
 print(f)
+
+
 
 
 # Dump website tree so we can see in the runner if all went well
