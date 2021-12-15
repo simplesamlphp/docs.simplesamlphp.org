@@ -159,6 +159,7 @@ def mkcontribmodsindex(contrib_mods, module_index_file, contrib_mods_files):
         pages[mod_name] = []
 
       pages[mod_name].append(page_name)
+    print(pages)
   
     for module in contrib_mods:
       module_index += " * ["+ module["name"] + "](" + module["html_url"] + ") \n" + module["description"] + "\n"
