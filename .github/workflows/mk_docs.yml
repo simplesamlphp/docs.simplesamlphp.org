@@ -27,7 +27,7 @@ jobs:
 
     - name: execute py script # run the run.py to get the latest data
       run: |
-         python mk_docs.py
+         python mk_docs.py 2>&1
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
