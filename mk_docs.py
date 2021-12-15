@@ -122,7 +122,7 @@ def mkNavigation(versions):
     content = '<div id="langbar" style="clar: both"><div id="navigation">Documentation is available for the following versions: '
     for version in versions:
         content += '<a href="./../'+version+'/index.html">'+version+'</a> | '
-    content += ' modules</div></div>'
+    content += ' <a href="./contributed_modules.html"> Contributed modules</a></div></div>'
     
     return content
 
@@ -155,6 +155,7 @@ def mkcontribmodsindex(contrib_mods, module_index_file, contrib_mods_files):
       
       pages = [x for x in contrib_mods_files if all(y not in x for y in list(module["name"]))]
       for page in pages:
+        print(page) 
         module_index += "   * ["+ page + "]\n"
           
     print(module_index)  
