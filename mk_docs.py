@@ -149,7 +149,8 @@ def mkcontribmodsindex(contrib_mods, module_index_file, contrib_mods_files):
     
     for page in contrib_mods_files:
       s = page.split("/")
-      mod_name = "simplesamlphp-module-" + s[len(s) -2]
+      #mod_name = "simplesamlphp-module-" + s[len(s) -2]
+      mod_name = s[len(s) -2]
       page_name = s[len(s) -1]
   
       if mod_name not in pages.keys():
@@ -160,7 +161,7 @@ def mkcontribmodsindex(contrib_mods, module_index_file, contrib_mods_files):
   
     for module in contrib_mods:
       module_index += " * ["+ module["name"] + "](" + module["html_url"] + ")"
-      if module["description"] is not None:
+      if module["description"] is not "None":
          module_index += " - " + module["description"] + "\n"
 
       try:
@@ -287,7 +288,7 @@ md2html(module_index_file, site_root_dir + 'contributed_modules.html', 'contribu
 
 
 # Dump website tree so we can see in the runner if all went well
-#os.system('tree ' +  site_root_dir)
+os.system('tree ' +  site_root_dir)
 
    
 
