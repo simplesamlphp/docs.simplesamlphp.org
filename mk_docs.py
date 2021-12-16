@@ -163,7 +163,7 @@ def mkcontribmodsindex(contrib_mods, module_index_file, contrib_mods_files):
       module_index += " * "+ module["name"]  + "\n"
       
       if module["description"] is not None:
-         module_index += " - " + module["description"] + "\n"
+         module_index += ": " + module["description"] + "\n"
 
       module_index += "   * [Repository](" + module["html_url"] + ")" + "\n"
 
