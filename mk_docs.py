@@ -166,7 +166,7 @@ def mkcontribmodsindex(contrib_mods, module_index_file, contrib_mods_files):
       if module["description"] is not None:
          module_index += " - " + module["description"] + "\n"
 
-      module_index += "   * [Repository](" + module["html_url"] + ")"
+      module_index += "   * [Repository](" + module["html_url"] + ")" + "\n"
 
       try:
         for page in pages[module["name"]]:
