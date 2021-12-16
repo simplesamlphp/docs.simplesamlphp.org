@@ -158,6 +158,7 @@ def mkcontribmodsindex(contrib_mods, module_index_file, contrib_mods_files):
 
       pages[mod_name].append(page_name)
     
+    
   
     for module in contrib_mods:
       module_index += " * ["+ module["name"] + "](" + module["html_url"] + ")"
@@ -168,7 +169,7 @@ def mkcontribmodsindex(contrib_mods, module_index_file, contrib_mods_files):
         for page in pages[module["name"]]:
           module_index += "   * ["+ page + "](contrib_modules/"+ page +")\n"
       except KeyError:
-		# some modules do not have documantation, just ignore them      
+		# some modules do not have documentation, just ignore them      
         pass
       
     with open(module_index_file, 'w+') as f:
@@ -273,7 +274,7 @@ for module in contrib_mods:
     
     if os.path.isdir(module_dir):
       #module_output_dir = os.path.join(contrib_mod_web_dir, module["name"].split("-")[2] + "/" )
-      module_output_dir = os.path.join(contrib_mod_web_dir, module["name"])
+      module_output_dir = os.path.join(contrib_mod_web_dir, module["name"]+ "/")
       #print(module_output_dir)
       parsefiles(module_dir, module_output_dir)
     
