@@ -64,7 +64,7 @@ def parsefiles(docsdir, outputdir):
 
         md2html(md_file, html_file, file)
 
-# get a list of all repositories in the ssp github project
+# get a list of all module repositories in the ssp github project
 def getmodulerepos():
     module_repos = []
     
@@ -72,13 +72,14 @@ def getmodulerepos():
        repos = json.loads(url.read().decode())
     
     for repo in repos:
-      a_repo = {"name": [], "description": [], "html_url": []}
+      a_repo = {"name": [], "description": [], "html_url": [], "short_name": []}
 	
       # we assume all module will have a name that starts with 'simplesamlphp-module-' 
       if (repo['name'].find('simplesamlphp-module-') == 0):
         a_repo['name'] = str(repo['name'])
         a_repo['description'] = str(repo['description'])
         a_repo['html_url'] = str(repo['html_url'])
+        a_repo['short_name'] = a_repo['name'].split("-")[2]
 
         module_repos.append(a_repo)       
     
@@ -141,10 +142,6 @@ def mkResources(root_dir, web_root):
     os.system('cp ' +  root_dir + 'resources/index.html ' + web_root + 'index.html ')
 
 def mkcontribmodsindex(contrib_mods, module_index_file, contrib_mods_files):
-    #module_index = "---\n"
-    #module_index += "layout: default\n"
-    #module_index += "title: Documentation\n---\n"
-    #module_index += "---\n"
     module_index = "SimpleSAMLphp Contributed modules\n"
     module_index += "===========================\n\n"
 
@@ -162,7 +159,9 @@ def mkcontribmodsindex(contrib_mods, module_index_file, contrib_mods_files):
     
   
     for module in contrib_mods:
-      module_index += " * ["+ module["name"] + "](" + module["html_url"] + ") - " + module["description"] + "\n"
+      module_index += " * ["+ module["name"] + "](" + module["html_url"] + ")"
+      if module["description"] is not None:
+         module_index += " - " + module["description"] + "\n"
 
       try:
         for page in pages[module["name"]]:
@@ -265,14 +264,15 @@ for module in contrib_mods:
     contrib_mod_dir = tempdir + "contrib_modules/" + module["name"] + "/"
     contrib_mod_web_dir = site_root_dir + "contrib_modules" + "/"
     
-    # We assume contributes modules live in te simplesampphph repo and are named 'simplesamlphp-module-*' 
+    # We assume contributes modules live in the ssp repo and are named 'simplesamlphp-module-*' 
     getgitrepo(module["html_url"], contrib_mod_dir, module["name"])
     
     module_dir = os.path.join(contrib_mod_dir, module["name"], "docs/")
     print(module_dir)
     
     if os.path.isdir(module_dir):
-      module_output_dir = os.path.join(contrib_mod_web_dir, module["name"].split("-")[2] + "/" )
+      #module_output_dir = os.path.join(contrib_mod_web_dir, module["name"].split("-")[2] + "/" )
+      module_output_dir = os.path.join(contrib_mod_web_dir, module["name"])
       #print(module_output_dir)
       parsefiles(module_dir, module_output_dir)
     
