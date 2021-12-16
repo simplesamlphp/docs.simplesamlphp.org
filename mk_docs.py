@@ -65,6 +65,7 @@ def parsefiles(docsdir, outputdir):
         md2html(md_file, html_file, file)
 
 # get a list of all module repositories in the ssp github project
+# filter out the ones that do not have a ssp module
 def getmodulerepos():
     module_repos = []
     
@@ -127,7 +128,7 @@ def mkNavigation(versions):
     
     return content
 
-# make sure some hard coded resources like css, js and some images are put in the right place for teh website
+# make sure some resources like css, js and some images are put in the right place for the website
 def mkResources(root_dir, web_root):
     # Copy over the website js and css resources
     #if not os.path.exists(os.path.join(site_root_dir + '/res/js/')):
@@ -141,6 +142,7 @@ def mkResources(root_dir, web_root):
     # starter index.html (just a redirect to 'latest')    
     os.system('cp ' +  root_dir + 'resources/index.html ' + web_root + 'index.html ')
 
+# Builds an index.md file of all the contributed repository documetation (if available)
 def mkcontribmodsindex(contrib_mods, module_index_file, contrib_mods_files):
     module_index = "SimpleSAMLphp Contributed modules\n"
     module_index += "===========================\n\n"
@@ -178,6 +180,7 @@ def mkcontribmodsindex(contrib_mods, module_index_file, contrib_mods_files):
     with open(module_index_file, 'w+') as f:
        f.write(module_index)
 
+# reads files and (sub)dirs from a given directory
 def getListOfFiles(dirName):
     # create a list of file and sub directories 
     # names in the given directory 
@@ -218,7 +221,8 @@ footer = runner_path + "resources/footer"
 
 # for which versions should we generate documentation?
 # ToDo: replace with dynamic assasment based on github tags
-ssp_versions=["latest","1.19", "1.18", "1.17"]
+# Or a seperate json file that holds this list
+ssp_versions=["latest","1.19", "1.18", "1.17", "1.16"]
 
 # Make sure we have a working site subdir to put stuff in
 os.system('mkdir ' +  site_root_dir)
@@ -288,8 +292,6 @@ for module in contrib_mods:
 contrib_mods_files= getListOfFiles(site_root_dir + "contrib_modules" + "/")  
 mkcontribmodsindex(contrib_mods, module_index_file, contrib_mods_files)
 md2html(module_index_file, site_root_dir + 'contributed_modules.html', 'contributed_modules.html')
-
-
 
 # Dump website tree so we can see in the runner if all went well
 os.system('tree ' +  site_root_dir)
