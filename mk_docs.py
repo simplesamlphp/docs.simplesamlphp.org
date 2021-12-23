@@ -150,17 +150,17 @@ def mkNavigation(versions):
 
     content = '<div class="mtoolbar">'
     for version in versions:
-      if version is 'latest':
-        content += '<div class="menuitem first">'
-      else:
-        content += '<div class="menuitem">'  
+       if version is 'latest':
+          content += '<div class="menuitem first">'
+       else:
+          content += '<div class="menuitem">'  
 
-      content += '<a href="./../'+version+'/index.html">'+version+'</a>'
-      content += '</div>'
+       content += '<a href="./../'+version+'/index.html">'+version+'</a>'
+       content += '</div>'
     
-     content += ' <div class="menuitem last">'
-     content += '   <a href="./../contributed_modules.html"> Contributed modules</a>'
-     content += ' </div>'
+    content += ' <div class="menuitem last">'
+    content += '   <a href="./../contributed_modules.html"> Contributed modules</a>'
+    content += ' </div>'
     
     content += '</div>'
     
