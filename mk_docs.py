@@ -140,7 +140,9 @@ def mkContentHeader(versions):
     content += '<div id="content">'
     content += '</header>'
    
-    return content
+    s = BeautifulSoup(content)   
+   
+    return s.prettify()
 
 # make a navigation structure based on the versions we have doucmentation for    
 def mkNavigation(versions):
