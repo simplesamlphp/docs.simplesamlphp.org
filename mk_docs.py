@@ -128,6 +128,7 @@ def mkContentHeader(versions):
     content += '      <span class="simple">php</span>'
     content += '    </a>'
     content += '  </div>'
+    content += ' </div>'
     content += '</div>'
     content += '<!-- Grey header bar below -->'
     content += '<nav>'
