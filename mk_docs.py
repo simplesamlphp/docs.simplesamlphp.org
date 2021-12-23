@@ -131,7 +131,7 @@ def mkContentHeader(versions):
     content += '</div>'
     content += '<!-- Grey header bar below -->'
     content += '<div id="headerbar" style="clear: both">'
-    content += '<p id="breadcrumb"><a href="https://simplesamlphp.github.io">Home</a> » Home</p>'
+    #content += '<p id="breadcrumb"><a href="https://simplesamlphp.github.io">Home</a> » Home</p>'
     content += mkNavigation(versions)
     #content += '<br style="height: 0px; clear: both" />'
     content += '</div><!-- /#headerbar -->'
@@ -143,10 +143,32 @@ def mkContentHeader(versions):
 # make a navigation structure based on the versions we have doucmentation for    
 def mkNavigation(versions):
     
-    content = '<div id="langbar" style="clar: both"><div id="navigation">Documentation is available for the following versions: '
+    #content = '<div id="langbar" style="clar: both"><div id="navigation">Documentation is available for the following versions: '
+    #for version in versions:
+    #    content += '<a href="./../'+version+'/index.html">'+version+'</a> | '
+    #content += ' <a href="./../contributed_modules.html"> Contributed modules</a></div></div>'
+
+    content = '<div class="mtoolbar">'
     for version in versions:
-        content += '<a href="./../'+version+'/index.html">'+version+'</a> | '
-    content += ' <a href="./../contributed_modules.html"> Contributed modules</a></div></div>'
+      if version is 'latest':
+        content += '<div class="menuitem first">'
+      else:
+		content += '<div class="menuitem">'  
+		
+      content += '<a href="./../'+version+'/index.html">'+version+'</a>'
+      content += '</div>'
+    
+     content += ' <div class="menuitem last">'
+     content += '   <a href="./../contributed_modules.html"> Contributed modules</a>'
+     content += ' </div>'
+    
+    
+    
+    content += '</div>'
+
+
+
+
     
     return content
 
