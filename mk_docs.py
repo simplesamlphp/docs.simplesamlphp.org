@@ -130,11 +130,13 @@ def mkContentHeader(versions):
     content += '  </div>'
     content += '</div>'
     content += '<!-- Grey header bar below -->'
+    content += '<nav>'
     content += '<div id="headerbar" style="clear: both">'
     #content += '<p id="breadcrumb"><a href="https://simplesamlphp.github.io">Home</a> » Home</p>'
     content += mkNavigation(versions)
     #content += '<br style="height: 0px; clear: both" />'
     content += '</div><!-- /#headerbar -->'
+    content += '</nav>'
     content += '<div id="content">'
     content += '</header>'
    
