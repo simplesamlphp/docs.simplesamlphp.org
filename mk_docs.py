@@ -153,8 +153,8 @@ def mkNavigation(versions):
       if version is 'latest':
         content += '<div class="menuitem first">'
       else:
-		content += '<div class="menuitem">'  
-		
+        content += '<div class="menuitem">'  
+
       content += '<a href="./../'+version+'/index.html">'+version+'</a>'
       content += '</div>'
     
@@ -162,13 +162,7 @@ def mkNavigation(versions):
      content += '   <a href="./../contributed_modules.html"> Contributed modules</a>'
      content += ' </div>'
     
-    
-    
     content += '</div>'
-
-
-
-
     
     return content
 
