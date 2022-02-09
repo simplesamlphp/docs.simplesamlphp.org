@@ -107,7 +107,7 @@
   </div>
  </header>
 </body><h1>
- Setting up a SimpleSAMLphp SAML 2.0 IdP to use with Google Workspace (G Suite / Google Apps) for Education
+ Setting up a SimpleSAMLphp SAML 2.0 IdP to use with Google Apps / G Suite for Education
 </h1>
 <!-- 
   This file is written in Markdown syntax. 
@@ -137,15 +137,14 @@
  Introduction
 </h2>
 <p>
- This article describes how to configure a Google Workspace (formerly G Suite, formerly Google Apps)
-instance as a service provider to use with a SimpleSAMLphp identity provider.
-This article assumes that you have already read the SimpleSAMLphp installation manual, and installed
-a version of SimpleSAMLphp at your server.
+ This article assumes that you have already read the SimpleSAMLphp installation manual, and installed a version of SimpleSAMLphp at your
+server.
 </p>
 <p>
- In this example we will setup this server as an IdP for Google Workspace:
-  dev2.andreas.feide.no
+ In this example we will setup this server as an IdP for Google Apps for Education:
 </p>
+<pre><code>dev2.andreas.feide.no
+</code></pre>
 <h2>
  Enabling the Identity Provider functionality
 </h2>
@@ -157,6 +156,7 @@ a version of SimpleSAMLphp at your server.
  , and enable the SAML 2.0 IdP:
 </p>
 <pre><code>  'enable.saml20-idp' =&gt; true,
+  'enable.shib13-idp' =&gt; false,
 </code></pre>
 <h2>
  Setting up a signing certificate
@@ -165,7 +165,7 @@ a version of SimpleSAMLphp at your server.
  You must generate a certificate for your IdP.
 Here is an example of an openssl command to generate a new key and a self signed certificate to use for signing SAML messages:
 </p>
-<pre><code>  openssl req -newkey rsa:3072 -new -x509 -days 3652 -nodes -out googleworkspaceidp.crt -keyout googleworkspaceidp.pem
+<pre><code>  openssl req -newkey rsa:2048 -new -x509 -days 3652 -nodes -out googleappsidp.crt -keyout googleappsidp.pem
 </code></pre>
 <p>
  The certificate above will be valid for 10 years.
@@ -255,32 +255,25 @@ Here is an example of an openssl command to generate a new key and a self signed
  <code>
   exampleauth:UserPass
  </code>
- authentication module is part of the
+ authentication source is part of the
  <code>
   exampleauth
  </code>
- module. This module isn't enabled by default, so you will have to enable it. In
+ module. This module isn't enabled by default, so you will have to enable it. This is done by creating a file named
  <code>
-  config.php
+  enable
  </code>
- , search for the
+ in
  <code>
-  module.enable
+  modules/exampleauth/
  </code>
- key and set
- <code>
-  exampleauth
- </code>
- to true:
+ .
 </p>
 <p>
- <code>
-  'module.enable' =&gt; [
-         'exampleauth' =&gt; true,
-         …
-    ],
- </code>
+ On unix, this can be done by running (from the SimpleSAMLphp installation directory):
 </p>
+<pre><code>  touch modules/exampleauth/enable
+</code></pre>
 <p>
  The next step is to create an authentication source with this module. An authentication source is an authentication module with a specific configuration. Each authentication source has a name, which is used to refer to this specific configuration in the IdP configuration. Configuration for authentication sources can be found in
  <code>
@@ -296,17 +289,17 @@ Here is an example of an openssl command to generate a new key and a self signed
  , and hence that section is what matters and will be used.
 </p>
 <pre><code><?php
-  $config = [
-    'example-userpass' => [
+  $config = array(
+    'example-userpass' => array(
       'exampleauth:UserPass',
-      'student:studentpass' =&gt; [
-        'uid' =&gt; ['student'],
-      ],
-      'employee:employeepass' =&gt; [
-        'uid' =&gt; ['employee'],
-      ],
-    ],
-  ];
+      'student:studentpass' =&gt; array(
+        'uid' =&gt; array('student'),
+      ),
+      'employee:employeepass' =&gt; array(
+        'uid' =&gt; array('employee'),
+      ),
+    ),
+  );
   ?&gt;
 
 </code></pre>
@@ -345,7 +338,7 @@ Here is an example of an openssl command to generate a new key and a self signed
  Configuring metadata for an SAML 2.0 IdP
 </h2>
 <p>
- If you want to setup a SAML 2.0 IdP for Google Workspace, you need to configure two metadata files:
+ If you want to setup a SAML 2.0 IdP for Google Apps, you need to configure two metadata files:
  <code>
   saml20-idp-hosted.php
  </code>
@@ -362,17 +355,17 @@ Here is an example of an openssl command to generate a new key and a self signed
  This is the configuration of the IdP itself. Here is some example config:
 </p>
 <pre><code>// The SAML entity ID is the index of this config. Dynamic:X will automatically generate an entity ID (recommended)
-$metadata['__DYNAMIC:1__'] =&gt; [
+$metadata['__DYNAMIC:1__'] =&gt; array(
 
   // The hostname of the server (VHOST) that this SAML entity will use.
   'host'        =&gt;  '__DEFAULT__',
 
   // X.509 key and certificate. Relative to the cert directory.
-  'privatekey'   =&gt; 'googleworkspaceidp.pem',
+  'privatekey'   =&gt; 'googleappsidp.pem',
   'certificate'  =&gt; 'googleappsidp.crt',
 
   'auth' =&gt; 'example-userpass',
-]
+)
 </code></pre>
 <p>
  <strong>
@@ -392,23 +385,23 @@ $metadata['__DYNAMIC:1__'] =&gt; [
  <code>
   saml20-sp-remote.php
  </code>
- file we will configure an entry for Google Workspace for Education. There is already an entry for Google Workspace in the template, but we will change the domain name:
+ file we will configure an entry for G Suite (Google Apps) for Education. There is already an entry for G Suite in the template, but we will change the domain name:
 </p>
 <pre><code>    /*
-     * This example shows an example config that works with Google Workspace (G Suite / Google Apps) for education.
+     * This example shows an example config that works with G Suite (Google Apps) for education.
      * What is important is that you have an attribute in your IdP that maps to the local part of the email address
-     * at Google Workspace. E.g. if your google account is foo.com, and you have a user with email john@foo.com, then you
+     * at G Suite. E.g. if your google account is foo.com, and you have a user with email john@foo.com, then you
      * must set the simplesaml.nameidattribute to be the name of an attribute that for this user has the value of 'john'.
      */
-    $metadata['https://www.google.com/a/g.feide.no'] =&gt; [
+    $metadata['https://www.google.com/a/g.feide.no'] =&gt; array(
       'AssertionConsumerService'   =&gt; 'https://www.google.com/a/g.feide.no/acs', 
       'NameIDFormat'               =&gt; 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress',
       'simplesaml.nameidattribute' =&gt; 'uid',
       'simplesaml.attributes'      =&gt; false
-    ];
+    );
 </code></pre>
 <p>
- You must also map some attributes received from the authentication module into email field sent to Google Workspace. In this example, the
+ You must also map some attributes received from the authentication module into email field sent to Google Apps. In this example, the
  <code>
   uid
  </code>
@@ -456,10 +449,10 @@ $metadata['__DYNAMIC:1__'] =&gt; [
  .
 </p>
 <h2>
- Configure Google Workspace
+ Configure G Suite for education
 </h2>
 <p>
- Start by logging in to our Google Workspace for education account panel.
+ Start by logging in to our G SUite for education account panel.
 Then select "Advanced tools":
 </p>
 <p>
@@ -480,7 +473,7 @@ Then select "Advanced tools":
 </p>
 <p>
  <img alt="We go to setup SSO" src="resources/simplesamlphp-googleapps/googleapps-sso.png"/>
- Upload a certificate, such as the googleworkspaceidp.crt created above:
+ Upload a certificate, such as the googleappsidp.crt created above:
 </p>
 <p>
  <strong>
@@ -524,7 +517,7 @@ You will find this in your metadata XML in the tag
 </p>
 <p>
  The network mask determines which IP addresses will be asked for SSO login.
-IP addresses not matching this mask will be presented with the normal Google Workspace login page.
+IP addresses not matching this mask will be presented with the normal G Suite login page.
 It is normally best to leave this field empty to enable authentication for all URLs.
 </p>
 <p>
@@ -539,7 +532,7 @@ It is normally best to leave this field empty to enable authentication for all U
  Add a user in G Suite that is known to the IdP
 </h3>
 <p>
- Before we can test login, a new user must be defined in Google Workspace. This user must have a mail field matching the email prefix mapped from the attribute as described above in the metadata section.
+ Before we can test login, a new user must be defined in G Suite. This user must have a mail field matching the email prefix mapped from the attribute as described above in the metadata section.
 </p>
 <h2>
  Test to login to G Suite for education
@@ -550,7 +543,7 @@ It is normally best to leave this field empty to enable authentication for all U
 <pre><code>http://mail.google.com/a/yourgoogleappsdomain.com
 </code></pre>
 <p>
- replacing the last part with your own Google Workspace domain name.
+ replacing the last part with your own G Suite domain name.
 </p>
 <h2>
  Security Considerations

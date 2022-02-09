@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Language" content="en" />
+
+	<!-- JQuery -->
+	<!-- 
+	<script type="text/javascript" src="/res/js/jquery.js"></script>
+	<script type="text/javascript" src="/res/js/jquery-ui.js"></script>
+	-->
+
+	<style>
+	  mark {
+        background: orange;
+        color: black;
+      }
+    </style>  
+
+	
+	<!-- Foodle: CSS -->	
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/js/uitheme/jquery-ui-themeroller.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/style.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/layout.css" /> 
+
+	<title>SimpleSAMLphp Documentation</title> 
+</head>
+
+
+
+
+
+<body>
+ <!-- Red logo header -->
+ <header>
+  <div id="header">
+   <div class="right">
+    <form action="https://www.google.com/cse" method="get" style="margin-top: 2.5rem; margin-right: 2rem">
+     <input name="cx" type="hidden" value="004202914224971217557:8ks4jjstupq"/>
+     <input name="siteurl" type="hidden" value="www.google.com/cse/home?cx=004202914224971217557:8ks4jjstupq"/>
+     <input name="adkw" type="hidden" value="AELymgVJ6Sk-kOvUjbxvgShTLwiFlma2evFuVCh0r8q23vn_4eVnkcdnPfbgMvYUTpJpVlb-KkGAKkbn0i-AlWHsVRR9O0J4CNb6cXFkEKRdjXxsC_NlVD4"/>
+     <input name="q" placeholder="Search" type="search" value=""/>
+    </form>
+   </div>
+   <div class="v-center logo-header">
+    <div id="logo">
+     <a href="https://simplesamlphp.github.io" style="color: #fff; text-decoration: none">
+      <span class="simple">
+       Simple
+      </span>
+      <span class="saml">
+       SAML
+      </span>
+      <span class="simple">
+       php
+      </span>
+     </a>
+    </div>
+   </div>
+  </div>
+  <!-- Grey header bar below -->
+  <nav>
+   <div id="headerbar" style="clear: both">
+    <p id="breadcrumb">
+     <a href="https://simplesamlphp.github.io">
+      Home
+     </a>
+     » Documentation
+    </p>
+    <div class="mtoolbar">
+     <div class="menuitem first">
+      <a href="./../latest/index.html">
+       latest
+      </a>
+     </div>
+     <div class="menuitem">
+      <a href="./../1.19/index.html">
+       1.19
+      </a>
+     </div>
+     <div class="menuitem">
+      <a href="./../1.18/index.html">
+       1.18
+      </a>
+     </div>
+     <div class="menuitem">
+      <a href="./../1.17/index.html">
+       1.17
+      </a>
+     </div>
+     <div class="menuitem">
+      <a href="./../1.16/index.html">
+       1.16
+      </a>
+     </div>
+     <div class="menuitem last">
+      <a href="./../contributed_modules.html">
+       Contributed modules
+      </a>
+     </div>
+    </div>
+    <br style="height: 0px; clear: both"/>
+   </div>
+   <!-- /#headerbar -->
+  </nav>
+  <div id="content">
+  </div>
+ </header>
+</body><h1>
+ <code>
+  core:AttributeRealm
+ </code>
+</h1>
+<p>
+ <em>
+  NOTE:
+ </em>
+ This filter has been deprecated and will be removed in a future release. Please use
+ <code>
+  core:ScopeFromAttribute
+ </code>
+ instead.
+</p>
+<p>
+ This filter creates a new attribute with the realm of the user.
+</p>
+<p>
+ The new attribute is names
+ <code>
+  realm
+ </code>
+ by default, but can be controlled by the
+ <code>
+  attributename
+ </code>
+ option.
+The realm is extracted from the attribute set as the user ID (eduPersonPrincipalName by default).
+The user ID attribute can be changed with the
+ <code>
+  userid.attribute
+ </code>
+ option in the IdP metadata.
+</p>
+<h2>
+ Examples
+</h2>
+<p>
+ Create the
+ <code>
+  realm
+ </code>
+ attribute.
+</p>
+<pre><code>  'authproc' =&gt; array(
+      50 =&gt; array(
+          'class' =&gt; 'core:AttributeRealm',
+      ),
+  ),
+</code></pre>
+<p>
+ Set the
+ <code>
+  schacHomeOrganization
+ </code>
+ attribute.
+</p>
+<pre><code>  'authproc' =&gt; array(
+      50 =&gt; array(
+          'class' =&gt; 'core:AttributeRealm',
+          'attributename' =&gt; 'schacHomeOrganization',
+      ),
+  ),
+</code></pre></div>    <!-- /#content -->
+
+<div id="footer">
+    <a href="https://www.uninett.no/"><img id="ulogo" alt="notes" src="/res/uninettlogo.png" /SS></a>
+</div><!-- /#footer -->
+
+</body>
+</html>

@@ -156,38 +156,38 @@
 <p>
  Minimal configuration:
 </p>
-<pre><code>  'default-sp' =&gt; [
+<pre><code>  'default-sp' =&gt; array(
       'saml:SP',
-      'authproc' =&gt; [
+      'authproc' =&gt; array(
           20 =&gt; 'saml:NameIDAttribute',
-      ],
-  ],
+      ),
+  ),
 </code></pre>
 <p>
  Custom attribute name:
 </p>
-<pre><code>  'default-sp' =&gt; [
+<pre><code>  'default-sp' =&gt; array(
       'saml:SP',
-      'authproc' =&gt; [
-          20 =&gt; [
+      'authproc' =&gt; array(
+          20 =&gt; array(
               'class' =&gt; 'saml:NameIDAttribute',
               'attribute' =&gt; 'someattributename',
-          ],
-      ],
-  ],
+          ),
+      ),
+  ),
 </code></pre>
 <p>
  Only extract the value of the NameID.
 </p>
-<pre><code>  'default-sp' =&gt; [
+<pre><code>  'default-sp' =&gt; array(
       'saml:SP',
-      'authproc' =&gt; [
-          20 =&gt; [
+      'authproc' =&gt; array(
+          20 =&gt; array(
               'class' =&gt; 'saml:NameIDAttribute',
               'format' =&gt; '%V',
-          ],
-      ],
-  ],
+          ),
+      ),
+  ),
 </code></pre>
 <h2>
  See also

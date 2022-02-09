@@ -1,0 +1,323 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Language" content="en" />
+
+	<!-- JQuery -->
+	<!-- 
+	<script type="text/javascript" src="/res/js/jquery.js"></script>
+	<script type="text/javascript" src="/res/js/jquery-ui.js"></script>
+	-->
+
+	<style>
+	  mark {
+        background: orange;
+        color: black;
+      }
+    </style>  
+
+	
+	<!-- Foodle: CSS -->	
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/js/uitheme/jquery-ui-themeroller.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/style.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/layout.css" /> 
+
+	<title>SimpleSAMLphp Documentation</title> 
+</head>
+
+
+
+
+
+<body>
+ <!-- Red logo header -->
+ <header>
+  <div id="header">
+   <div class="right">
+    <form action="https://www.google.com/cse" method="get" style="margin-top: 2.5rem; margin-right: 2rem">
+     <input name="cx" type="hidden" value="004202914224971217557:8ks4jjstupq"/>
+     <input name="siteurl" type="hidden" value="www.google.com/cse/home?cx=004202914224971217557:8ks4jjstupq"/>
+     <input name="adkw" type="hidden" value="AELymgVJ6Sk-kOvUjbxvgShTLwiFlma2evFuVCh0r8q23vn_4eVnkcdnPfbgMvYUTpJpVlb-KkGAKkbn0i-AlWHsVRR9O0J4CNb6cXFkEKRdjXxsC_NlVD4"/>
+     <input name="q" placeholder="Search" type="search" value=""/>
+    </form>
+   </div>
+   <div class="v-center logo-header">
+    <div id="logo">
+     <a href="https://simplesamlphp.github.io" style="color: #fff; text-decoration: none">
+      <span class="simple">
+       Simple
+      </span>
+      <span class="saml">
+       SAML
+      </span>
+      <span class="simple">
+       php
+      </span>
+     </a>
+    </div>
+   </div>
+  </div>
+  <!-- Grey header bar below -->
+  <nav>
+   <div id="headerbar" style="clear: both">
+    <p id="breadcrumb">
+     <a href="https://simplesamlphp.github.io">
+      Home
+     </a>
+     » Documentation
+    </p>
+    <div class="mtoolbar">
+     <div class="menuitem first">
+      <a href="./../latest/index.html">
+       latest
+      </a>
+     </div>
+     <div class="menuitem">
+      <a href="./../1.19/index.html">
+       1.19
+      </a>
+     </div>
+     <div class="menuitem">
+      <a href="./../1.18/index.html">
+       1.18
+      </a>
+     </div>
+     <div class="menuitem">
+      <a href="./../1.17/index.html">
+       1.17
+      </a>
+     </div>
+     <div class="menuitem">
+      <a href="./../1.16/index.html">
+       1.16
+      </a>
+     </div>
+     <div class="menuitem last">
+      <a href="./../contributed_modules.html">
+       Contributed modules
+      </a>
+     </div>
+    </div>
+    <br style="height: 0px; clear: both"/>
+   </div>
+   <!-- /#headerbar -->
+  </nav>
+  <div id="content">
+  </div>
+ </header>
+</body><h1>
+ The SimpleSAMLphp statistics module
+</h1>
+<!-- 
+  This file is written in Markdown syntax. 
+  For more information about how to use the Markdown syntax, read here:
+  http://daringfireball.net/projects/markdown/syntax
+-->
+<pre><code>* Andreas Åkre Solberg &lt;andreas.solberg@uninett.no&gt;
+</code></pre>
+<h2>
+ Configure your logs
+</h2>
+<p>
+ It's recommended to use syslog for logging, then a separate log level is
+dedicated to statistics. You need to get all statistics log entries
+in one log file. Here is how I do it in syslog.conf:
+</p>
+<pre><code>  # SimpleSAMLphp logging
+  local5.*                        /var/log/simplesamlphp.log
+  # Notice level is reserved for statistics only...
+  local5.=notice                  /var/log/simplesamlphp.stat
+</code></pre>
+<p>
+ Then make sure you have configured this correctly such that you
+have one log file like this:
+</p>
+<pre><code>  # ls -la /var/log/simplesamlphp.stat
+  -rw-r--r-- 1 root root 76740 Nov 15 13:37 /var/log/simplesamlphp.stat
+</code></pre>
+<p>
+ With content that looks like this:
+</p>
+<pre><code>  # tail /var/log/simplesamlphp.stat
+  Nov 15 12:01:49 www1 simplesamlphp-foodle[31960]: 5 STAT [77013b4b6e] saml20-sp-SSO urn:mace:feide.no:services:no.feide.foodle sam.feide.no andreas@uninett.no
+  Nov 15 13:01:14 www1 simplesamlphp-openwiki[2247]: 5 STAT [50292b9d04] saml20-sp-SSO urn:mace:feide.no:services:no.feide.openwikicore sam.feide.no NA
+  Nov 15 13:16:39 www1 simplesamlphp-openwiki[2125]: 5 STAT [3493d5d87f] saml20-sp-SSO urn:mace:feide.no:services:no.feide.openwikicore sam.feide.no NA
+  Nov 15 13:37:27 www1 simplesamlphp-foodle[3146]: 5 STAT [77013b4b6e] AUTH-login-admin OK
+</code></pre>
+<p>
+ Here you can see that I collect statistics in one file for several installations. You could easily separate each instance of SimpleSAMLphp into separate files (your preference).
+</p>
+<h2>
+ Configure the statistics module
+</h2>
+<p>
+ First enable the statistics module, as you enable any other module:
+</p>
+<pre><code>  cd modules/statistics
+  touch enable
+</code></pre>
+<p>
+ Then take the configuration template:
+</p>
+<pre><code>  cp modules/statistics/config-templates/*.php config/
+</code></pre>
+<p>
+ Configure the path of the log file:
+</p>
+<pre><code>  'inputfile' =&gt; '/var/log/simplesamlphp.stat',
+</code></pre>
+<p>
+ Make sure the stat dir is writable. SimpleSAMLphp will write data here:
+</p>
+<pre><code>  'statdir' =&gt; '/var/lib/simplesamlphp/stats/',
+</code></pre>
+<h3>
+ Configuring the syntax of the logfile
+</h3>
+<p>
+ Syslog uses different date formats on different environments, so you need to do some manual tweaking to make sure that SimpleSAMLphp knows how to interpret the logs.
+</p>
+<p>
+ There are three parameter values you need to make sure are correct.
+</p>
+<pre><code>'datestart'  =&gt; 1,
+'datelength' =&gt; 15,
+'offsetspan' =&gt; 21,
+</code></pre>
+<p>
+ The first
+ <code>
+  datestart
+ </code>
+ is 1 when the date starts from the beginning of the line. The
+ <code>
+  datelength
+ </code>
+ parameter tells how many characters long the date is.
+</p>
+<p>
+ The
+ <code>
+  offsetspan
+ </code>
+ parameter shows on which character the first column starts, such that the STAT keyword becomes column number 3.
+</p>
+<p>
+ Use the
+ <code>
+  loganalyzer
+ </code>
+ script with the
+ <code>
+  --debug
+ </code>
+ parameter to debug whether your configuration is correct. If not, then it easy to see what is wrong, for example if the STAT keyword is not in column 3.
+</p>
+<p>
+ Here is some example output:
+</p>
+<pre><code>$ cd modules/statistics/bin
+$ ./loganalyzer.php --debug
+Statistics directory   : /var/lib/simplesamlphp/stats/
+Input file             : /Users/andreas/Desktop/simplesamlphp.log
+Offset                 : 4237200
+----------------------------------------
+Log line: Feb 11 11:32:57 moria-app1 syslog_moria-app1[6630]: 5 STAT [2d41ee3f1e] AUTH-login-admin Failed
+Date parse [Feb 11 11:32:57] to [Wed, 11 Feb 09 11:32:57 +0100]
+Array
+(
+  [0] =&gt; moria-app1
+  [1] =&gt; syslog_moria-app1[6630]:
+  [2] =&gt; 5
+  [3] =&gt; STAT
+  [4] =&gt; [2d41ee3f1e]
+  [5] =&gt; AUTH-login-admin
+  [6] =&gt; Failed
+)
+</code></pre>
+<p>
+ In the debug output, please verify four things:
+</p>
+<ol>
+ <li>
+  That the first field in the date parse line contains all the characters that are part of the timestamp, compared with the log line on the line above.
+ </li>
+ <li>
+  Verify that the second field in the date parse line is correct: corresponding to the input timestamp.
+ </li>
+ <li>
+  That the first
+  <code>
+   [0]
+  </code>
+  field contains all the characters from the first column.
+ </li>
+ <li>
+  That column
+  <code>
+   [3]
+  </code>
+  is STAT.
+ </li>
+</ol>
+<h3>
+ Setup cron
+</h3>
+<p>
+ You also should setup the cron module:
+</p>
+<pre><code>  cd modules/cron
+  touch enable
+</code></pre>
+<h3>
+ Alternative to using the cron module
+</h3>
+<p>
+ As an alternative to using the cron module you can run the
+script
+ <code>
+  statistics/bin/loganalyzer.php
+ </code>
+ manually.
+</p>
+<h2>
+ Presentation of the statistics
+</h2>
+<p>
+ At the Installation page there will be a link "show statistics", go there and if SimpleSAMLphp finds the statistics files in the
+ <code>
+  statdir
+ </code>
+ generated from cron or the script you will see statistics. Enjoy.
+</p>
+<h2>
+ Support
+</h2>
+<p>
+ If you need help to make this work, or want to discuss SimpleSAMLphp with other users of the software, you are fortunate: Around SimpleSAMLphp there is a great Open source community, and you are welcome to join! The forums are open for you to ask questions, contribute answers other further questions, request improvements or contribute with code or plugins of your own.
+</p>
+<ul>
+ <li>
+  <a href="http://simplesamlphp.org">
+   SimpleSAMLphp homepage
+  </a>
+ </li>
+ <li>
+  <a href="http://simplesamlphp.org/docs/stable/">
+   List of all available SimpleSAMLphp documentation
+  </a>
+ </li>
+ <li>
+  <a href="http://simplesamlphp.org/lists">
+   Join the SimpleSAMLphp user's mailing list
+  </a>
+ </li>
+</ul></div>    <!-- /#content -->
+
+<div id="footer">
+    <a href="https://www.uninett.no/"><img id="ulogo" alt="notes" src="/res/uninettlogo.png" /SS></a>
+</div><!-- /#footer -->
+
+</body>
+</html>

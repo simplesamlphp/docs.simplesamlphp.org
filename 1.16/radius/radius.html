@@ -1,0 +1,242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Language" content="en" />
+
+	<!-- JQuery -->
+	<!-- 
+	<script type="text/javascript" src="/res/js/jquery.js"></script>
+	<script type="text/javascript" src="/res/js/jquery-ui.js"></script>
+	-->
+
+	<style>
+	  mark {
+        background: orange;
+        color: black;
+      }
+    </style>  
+
+	
+	<!-- Foodle: CSS -->	
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/js/uitheme/jquery-ui-themeroller.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/style.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/layout.css" /> 
+
+	<title>SimpleSAMLphp Documentation</title> 
+</head>
+
+
+
+
+
+<body>
+ <!-- Red logo header -->
+ <header>
+  <div id="header">
+   <div class="right">
+    <form action="https://www.google.com/cse" method="get" style="margin-top: 2.5rem; margin-right: 2rem">
+     <input name="cx" type="hidden" value="004202914224971217557:8ks4jjstupq"/>
+     <input name="siteurl" type="hidden" value="www.google.com/cse/home?cx=004202914224971217557:8ks4jjstupq"/>
+     <input name="adkw" type="hidden" value="AELymgVJ6Sk-kOvUjbxvgShTLwiFlma2evFuVCh0r8q23vn_4eVnkcdnPfbgMvYUTpJpVlb-KkGAKkbn0i-AlWHsVRR9O0J4CNb6cXFkEKRdjXxsC_NlVD4"/>
+     <input name="q" placeholder="Search" type="search" value=""/>
+    </form>
+   </div>
+   <div class="v-center logo-header">
+    <div id="logo">
+     <a href="https://simplesamlphp.github.io" style="color: #fff; text-decoration: none">
+      <span class="simple">
+       Simple
+      </span>
+      <span class="saml">
+       SAML
+      </span>
+      <span class="simple">
+       php
+      </span>
+     </a>
+    </div>
+   </div>
+  </div>
+  <!-- Grey header bar below -->
+  <nav>
+   <div id="headerbar" style="clear: both">
+    <p id="breadcrumb">
+     <a href="https://simplesamlphp.github.io">
+      Home
+     </a>
+     » Documentation
+    </p>
+    <div class="mtoolbar">
+     <div class="menuitem first">
+      <a href="./../latest/index.html">
+       latest
+      </a>
+     </div>
+     <div class="menuitem">
+      <a href="./../1.19/index.html">
+       1.19
+      </a>
+     </div>
+     <div class="menuitem">
+      <a href="./../1.18/index.html">
+       1.18
+      </a>
+     </div>
+     <div class="menuitem">
+      <a href="./../1.17/index.html">
+       1.17
+      </a>
+     </div>
+     <div class="menuitem">
+      <a href="./../1.16/index.html">
+       1.16
+      </a>
+     </div>
+     <div class="menuitem last">
+      <a href="./../contributed_modules.html">
+       Contributed modules
+      </a>
+     </div>
+    </div>
+    <br style="height: 0px; clear: both"/>
+   </div>
+   <!-- /#headerbar -->
+  </nav>
+  <div id="content">
+  </div>
+ </header>
+</body><h1>
+ RADIUS module
+</h1>
+<p>
+ The RADIUS module provides a single authentication module:
+</p>
+<p>
+ <code>
+  radius:Radius
+ </code>
+ : Authenticate a user against a RADIUS server.
+</p>
+<p>
+ This authentication module contacts a RADIUS server, and authenticates
+the user by using username &amp; password authentication.
+</p>
+<p>
+ To use this module, enable the radius module by creating a file named
+ <code>
+  enable
+ </code>
+ in the
+ <code>
+  modules/radius/
+ </code>
+ -directory. Then you need to add a
+authentication source which uses the
+ <code>
+  radius:Radius
+ </code>
+ module to
+ <code>
+  config/authsources.php
+ </code>
+ :
+</p>
+<pre><code>  'example-radius' =&gt; array(
+      'radius:Radius',
+
+      /*
+       * An array with the radius servers to use, up to 10.
+       * The options are:
+       *  - hostname: the hostname of the radius server, or its IP address. Required.
+       *  - port: the port of the radius server. Optional, defaults to 1812.
+       *  - secret: the radius secret to use with this server. Required.
+       */
+      'servers' =&gt; array(array('hostname' =&gt; 'radius1.example.org',
+                               'port' =&gt; 1812,
+                               'secret' =&gt; 'topsecret'),
+                         array('hostname' =&gt; 'radius2.example.org',
+                               'port' =&gt; 1812,
+                               'secret' =&gt; 'topsecret')),
+
+      /*
+       * The timeout for contacting the RADIUS server, in seconds.
+       * Optional, defaults to 5 seconds.
+       */
+      'timeout' =&gt; 5,
+
+      /*
+       * The number of times we should retry connections to the RADIUS server.
+       * Please note that retries would be attempted with each server before
+       * trying with the next server in the queue, so if you want not to wait
+       * before trying the next server, retries should be set to 1.
+       * Optional, defaults to 3 attempts.
+       */
+      'retries' =&gt; 3,
+
+      /*
+       * The NAS identifier to use when querying the radius server.
+       * Optional, defaults to the current host name.
+       */
+      'nas_identifier' =&gt; 'client.example.org',
+
+      /*
+       * An optional realm that will be suffixed to the username entered
+       * by the user. When set to "example.edu", and the user enters
+       * "bob" as their username, the radius server will be queried for
+       * the username "bob@example.edu".
+       * Optional, defaults to NULL.
+       */
+      'realm' =&gt; 'example.edu',
+
+      /*
+       * The attribute name we should store the username in. Ths username
+       * will not be saved in any attribute if this is NULL.
+       * Optional, defaults to NULL.
+       */
+      'username_attribute' =&gt; 'eduPersonPrincipalName',
+  ),
+</code></pre>
+<h2>
+ User attributes
+</h2>
+<p>
+ If the RADIUS server is configured to include attributes for the user in
+the response, this module may be able to extract them. This requires the
+attributes to be stored in a vendor-specific attribute in the response
+from the RADIUS server.
+</p>
+<p>
+ The code expects one vendor-attribute with a specific vendor and a specific
+vendor attribute type for each user attribute. The vendor-attribute must
+contain a value of the form
+ <code>
+  &amp;lt;name&amp;gt;=&amp;lt;value&amp;gt;
+ </code>
+ .
+</p>
+<p>
+ The following configuration options are available for user attributes:
+</p>
+<pre><code>      /*
+       * This is the vendor for the vendor-specific attribute which contains
+       * the attributes for this user. This can be NULL if no attributes are
+       * included in the response.
+       * Optional, defaults to NULL.
+       */
+      'attribute_vendor' =&gt; 23735,
+
+      /*
+       * The vendor attribute-type of the attribute which contains the
+       * attributes for the user.
+       * Required if 'vendor' is set.
+       */
+      'attribute_vendor_type' =&gt; 4,
+</code></pre></div>    <!-- /#content -->
+
+<div id="footer">
+    <a href="https://www.uninett.no/"><img id="ulogo" alt="notes" src="/res/uninettlogo.png" /SS></a>
+</div><!-- /#footer -->
+
+</body>
+</html>

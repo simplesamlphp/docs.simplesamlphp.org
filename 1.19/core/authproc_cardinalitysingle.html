@@ -175,10 +175,10 @@ when multi-valued attributes are received where single-valued ones are expected.
 <p>
  Abort with an error if any attribute defined as single-valued in the eduPerson or SCHAC schemas exists and has more than one value:
 </p>
-<pre><code>  'authproc' =&gt; [
-      50 =&gt; [
+<pre><code>  'authproc' =&gt; array(
+      50 =&gt; array(
           'class' =&gt; 'core:CardinalitySingle',
-          'singleValued' =&gt; [
+          'singleValued' =&gt; array(
               /* from eduPerson (internet2-mace-dir-eduperson-201602) */
               'eduPersonOrgDN', 'eduPersonPrimaryAffiliation', 'eduPersonPrimaryOrgUnitDN',
               'eduPersonPrincipalName', 'eduPersonUniqueId',
@@ -188,9 +188,9 @@ when multi-valued attributes are received where single-valued ones are expected.
               'schacMotherTongue', 'schacGender', 'schacDateOfBirth', 'schacPlaceOfBirth',
               'schacPersonalTitle', 'schacHomeOrganization', 'schacHomeOrganizationType',
               'schacExpiryDate',
-          ],
-      ],
-  ],
+          ),
+      ),
+  ),
 </code></pre>
 <p>
  Abort if multiple values are received for
@@ -203,14 +203,14 @@ when multi-valued attributes are received where single-valued ones are expected.
  </code>
  :
 </p>
-<pre><code>  'authproc' =&gt; [
-      50 =&gt; [
+<pre><code>  'authproc' =&gt; array(
+      50 =&gt; array(
           'class' =&gt; 'core:CardinalitySingle',
-          'singleValued' =&gt; ['eduPersonPrincipalName'],
-          'firstValue' =&gt; ['eduPersonPrimaryAffiliation'],
-          ],
-      ],
-  ],
+          'singleValued' =&gt; array('eduPersonPrincipalName'),
+          'firstValue' =&gt; array('eduPersonPrimaryAffiliation'),
+          ),
+      ),
+  ),
 </code></pre>
 <p>
  Construct
@@ -223,16 +223,16 @@ when multi-valued attributes are received where single-valued ones are expected.
  </code>
  :
 </p>
-<pre><code>  'authproc' =&gt; [
-      50 =&gt; [
+<pre><code>  'authproc' =&gt; array(
+      50 =&gt; array(
           'class' =&gt; 'core:AttributeCopy',
           'eduPersonAffiliation' =&gt; 'eduPersonPrimaryAffiliation',
-      ],
-      51 =&gt; [
+      ),
+      51 =&gt; array(
           'class' =&gt; 'core:CardinalitySingle',
-          'firstValue' =&gt; ['eduPersonPrimaryAffiliation'],
-      ],
-  ],
+          'firstValue' =&gt; array('eduPersonPrimaryAffiliation'),
+      ),
+  ),
 </code></pre>
 <p>
  Construct a single, comma-separated value version of
@@ -241,17 +241,17 @@ when multi-valued attributes are received where single-valued ones are expected.
  </code>
  :
 </p>
-<pre><code>  'authproc' =&gt; [
-      50 =&gt; [
+<pre><code>  'authproc' =&gt; array(
+      50 =&gt; array(
           'class' =&gt; 'core:AttributeCopy',
           'eduPersonAffiliation' =&gt; 'eduPersonAffiliationWithCommas',
-      ],
-      51 =&gt; [
+      ),
+      51 =&gt; array(
           'class' =&gt; 'core:CardinalitySingle',
-          'flatten' =&gt; ['eduPersonAffiliationWithCommas'],
+          'flatten' =&gt; array('eduPersonAffiliationWithCommas'),
     'flattenWith' =&gt; ',',
-      ],
-  ],
+      ),
+  ),
 </code></pre></div>    <!-- /#content -->
 
 <div id="footer">

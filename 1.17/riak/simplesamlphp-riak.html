@@ -1,0 +1,266 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Language" content="en" />
+
+	<!-- JQuery -->
+	<!-- 
+	<script type="text/javascript" src="/res/js/jquery.js"></script>
+	<script type="text/javascript" src="/res/js/jquery-ui.js"></script>
+	-->
+
+	<style>
+	  mark {
+        background: orange;
+        color: black;
+      }
+    </style>  
+
+	
+	<!-- Foodle: CSS -->	
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/js/uitheme/jquery-ui-themeroller.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/style.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/layout.css" /> 
+
+	<title>SimpleSAMLphp Documentation</title> 
+</head>
+
+
+
+
+
+<body>
+ <!-- Red logo header -->
+ <header>
+  <div id="header">
+   <div class="right">
+    <form action="https://www.google.com/cse" method="get" style="margin-top: 2.5rem; margin-right: 2rem">
+     <input name="cx" type="hidden" value="004202914224971217557:8ks4jjstupq"/>
+     <input name="siteurl" type="hidden" value="www.google.com/cse/home?cx=004202914224971217557:8ks4jjstupq"/>
+     <input name="adkw" type="hidden" value="AELymgVJ6Sk-kOvUjbxvgShTLwiFlma2evFuVCh0r8q23vn_4eVnkcdnPfbgMvYUTpJpVlb-KkGAKkbn0i-AlWHsVRR9O0J4CNb6cXFkEKRdjXxsC_NlVD4"/>
+     <input name="q" placeholder="Search" type="search" value=""/>
+    </form>
+   </div>
+   <div class="v-center logo-header">
+    <div id="logo">
+     <a href="https://simplesamlphp.github.io" style="color: #fff; text-decoration: none">
+      <span class="simple">
+       Simple
+      </span>
+      <span class="saml">
+       SAML
+      </span>
+      <span class="simple">
+       php
+      </span>
+     </a>
+    </div>
+   </div>
+  </div>
+  <!-- Grey header bar below -->
+  <nav>
+   <div id="headerbar" style="clear: both">
+    <p id="breadcrumb">
+     <a href="https://simplesamlphp.github.io">
+      Home
+     </a>
+     » Documentation
+    </p>
+    <div class="mtoolbar">
+     <div class="menuitem first">
+      <a href="./../latest/index.html">
+       latest
+      </a>
+     </div>
+     <div class="menuitem">
+      <a href="./../1.19/index.html">
+       1.19
+      </a>
+     </div>
+     <div class="menuitem">
+      <a href="./../1.18/index.html">
+       1.18
+      </a>
+     </div>
+     <div class="menuitem">
+      <a href="./../1.17/index.html">
+       1.17
+      </a>
+     </div>
+     <div class="menuitem">
+      <a href="./../1.16/index.html">
+       1.16
+      </a>
+     </div>
+     <div class="menuitem last">
+      <a href="./../contributed_modules.html">
+       Contributed modules
+      </a>
+     </div>
+    </div>
+    <br style="height: 0px; clear: both"/>
+   </div>
+   <!-- /#headerbar -->
+  </nav>
+  <div id="content">
+  </div>
+ </header>
+</body><h1>
+ Riak Store module
+</h1>
+<!--
+  This file is written in Markdown syntax.
+  For more information about how to use the Markdown syntax, read here:
+  http://daringfireball.net/projects/markdown/syntax
+-->
+<!-- {{TOC}} -->
+<h2>
+ Introduction
+</h2>
+<p>
+ The riak module implements a Store that can be used as a backend
+for SimpleSAMLphp session data like the phpsession, sql, or memcache
+backends.
+</p>
+<h2>
+ Preparations
+</h2>
+<p>
+ The obvious first step for using Riak as a backend is to install
+and configure a Riak cluster for SimpleSAMLphp to use. Please refer
+to the Riak documentation for this.
+</p>
+<p>
+ This module requires the use of a Riak backend that supports secondary
+indexes. Refer to the Riak documentation on how to enable an
+appropriate backend for use by this module. Currently the only
+storage backend that supports secondary indexes is leveldb.
+</p>
+<p>
+ Next, you will need to install the Riak PHP Client library, available
+from https://github.com/basho/riak-php-client.
+</p>
+<p>
+ Finally, you need to config SimpleSAMLphp to for the riak Store by
+enabling the following modules:
+</p>
+<ol>
+ <li>
+  cron
+ </li>
+ <li>
+  riak
+ </li>
+</ol>
+<p>
+ The cron module allows you to do tasks regularly by setting up a
+cronjob that calls hooks in SimpleSAMLphp. This is required by the
+riak module to remove expired entries in the store.
+</p>
+<p>
+ Enabling the riak module allows it to be loaded and used as a storage
+backend.
+</p>
+<p>
+ You also need to copy the
+ <code>
+  config-templates
+ </code>
+ files from the cron
+module above into the global
+ <code>
+  config/
+ </code>
+ directory.
+</p>
+<pre><code>$ cd /var/simplesamlphp
+$ touch modules/cron/enable
+$ cp modules/cron/config-templates/*.php config/
+$ touch modules/riak/enable
+$ cp modules/riak/config-templates/*.php config/
+</code></pre>
+<h2>
+ Configuring the cron module
+</h2>
+<p>
+ At
+ <code>
+  /var/simplesamlphp/config
+ </code>
+</p>
+<pre><code>$ vi module_cron.php
+</code></pre>
+<p>
+ edit:
+</p>
+<pre><code>$config = array (
+  'key' =&gt; 'secret',
+  'allowed_tags' =&gt; array('daily', 'hourly', 'frequent'),
+  'debug_message' =&gt; TRUE,
+  'sendemail' =&gt; TRUE,
+);
+</code></pre>
+<p>
+ Then: With your browser go to =&gt; https://simplesamlphp_machine/simplesaml/module.php/cron/croninfo.php
+</p>
+<p>
+ And copy the cron's sugestion:
+</p>
+<pre><code>-------------------------------------------------------------------------------------------------------------------
+Cron is a way to run things regularly on unix systems.
+
+Here is a suggestion for a crontab file:
+
+# Run cron [daily]
+02 0 * * * curl --silent "https://simplesamlphp_machine/simplesaml/module.php/cron/cron.php?key=secret&amp;tag=daily" &gt; /dev/null 2&gt;&amp;1
+# Run cron [hourly]
+01 * * * * curl --silent "https://simplesamlphp_machine/simplesaml/module.php/cron/cron.php?key=secret&amp;tag=hourly" &gt; /dev/null 2&gt;&amp;1
+# Run cron [frequent]
+XXXXXXXXXX curl --silent "https://simplesamlphp_machine/simplesaml/module.php/cron/cron.php?key=secret&amp;tag=frequent" &gt; /dev/null 2&gt;&amp;1
+  Click here to run the cron jobs:
+
+Run cron [daily]
+Run cron [hourly]
+Run cron [frequent]
+-------------------------------------------------------------------------------------------------------------------
+</code></pre>
+<p>
+ Add to CRON with
+</p>
+<pre><code># crontab -e
+</code></pre>
+<h2>
+ Configuring the riak module
+</h2>
+<p>
+ The riak module uses the following configuration options specified
+in
+ <code>
+  config/module_riak.php
+ </code>
+ . The defaults are listed:
+</p>
+<pre><code>$config = array(
+  'path' =&gt; 'riak-php-client/riak.php',
+  'host' =&gt; 'localhost',
+  'port' =&gt; 8098,
+  'bucket' =&gt; 'SimpleSAMLphp',
+);
+</code></pre>
+<p>
+ Finally, the module can be specified as the Store in
+ <code>
+  config/config.php
+ </code>
+ with the following setting:
+</p>
+<pre><code>  'store.type' =&gt; 'riak:Store',
+</code></pre></div>    <!-- /#content -->
+
+<div id="footer">
+    <a href="https://www.uninett.no/"><img id="ulogo" alt="notes" src="/res/uninettlogo.png" /SS></a>
+</div><!-- /#footer -->
+
+</body>
+</html>

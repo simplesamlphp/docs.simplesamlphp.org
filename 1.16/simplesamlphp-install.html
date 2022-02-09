@@ -110,11 +110,14 @@
  SimpleSAMLphp Installation and Configuration
 </h1>
 <!-- 
-This file is written in Markdown syntax. 
-For more information about how to use the Markdown syntax, read here:
-http://daringfireball.net/projects/markdown/syntax
+  This file is written in Markdown syntax. 
+  For more information about how to use the Markdown syntax, read here:
+  http://daringfireball.net/projects/markdown/syntax
 -->
 <!-- {{TOC}} -->
+<h2>
+ SimpleSAMLphp news and documentation
+</h2>
 <p>
  This document is part of the SimpleSAMLphp documentation suite.
 </p>
@@ -130,12 +133,14 @@ http://daringfireball.net/projects/markdown/syntax
   </a>
  </li>
 </ul>
+<h2>
+ Development version
+</h2>
 <p>
- This document covers the installation of the latest stable version of SimpleSAMLphp.
-If you want to install the development version, take a look at the instructions for
- <a href="simplesamlphp-install-repo.html">
-  installing SimpleSAMLphp from the 
-repository
+ This document is about the latest stable version of SimpleSAMLphp.
+If you want to install the development version, look at the instructions for
+ <a href="simplesamlphp-install-repo.md.html">
+  installing SimpleSAMLphp from the repository
  </a>
  .
 </p>
@@ -144,10 +149,10 @@ repository
 </h2>
 <ul>
  <li>
-  A web server capable of executing PHP scripts.
+  Some webserver capable of executing PHP scripts.
  </li>
  <li>
-  PHP version &gt;= 7.2.0.
+  PHP version &gt;= 5.4.0.
  </li>
  <li>
   Support for the following PHP extensions:
@@ -201,19 +206,19 @@ repository
     </code>
    </li>
    <li>
-    When authenticating against an LDAP server:
+    When authenticating against LDAP server:
     <code>
      ldap
     </code>
    </li>
    <li>
-    When authenticating against a RADIUS server:
+    When authenticating against RADIUS server:
     <code>
      radius
     </code>
    </li>
    <li>
-    When using the native PHP session handler:
+    When using native PHP session handler:
     <code>
      session
     </code>
@@ -228,7 +233,7 @@ repository
     When using databases:
     <ul>
      <li>
-      Always required:
+      Always:
       <code>
        PDO
       </code>
@@ -267,79 +272,46 @@ repository
  Download and install SimpleSAMLphp
 </h2>
 <p>
- The most recent release of SimpleSAMLphp can always be found at
+ The most recent release of SimpleSAMLphp is found at
  <a href="https://simplesamlphp.org/download">
   https://simplesamlphp.org/download
  </a>
  .
 </p>
 <p>
- Go to the directory where you want to install SimpleSAMLphp and extract the archive file you just downloaded:
+ Go to the directory where you want to install SimpleSAMLphp, and extract the archive file you just downloaded:
 </p>
-<p>
- <code>
-  cd /var
-    tar xzf simplesamlphp-x.y.z.tar.gz
-    mv simplesamlphp-x.y.z simplesamlphp
- </code>
-</p>
+<pre><code>  cd /var
+  tar xzf simplesamlphp-1.x.y.tar.gz
+  mv simplesamlphp-1.x.y simplesamlphp
+</code></pre>
 <h2>
  Upgrading from a previous version of SimpleSAMLphp
 </h2>
 <p>
- Before starting the upgrade, review the relevant
- <a href="simplesamlphp-upgrade-notes.html">
-  upgrade notes
- </a>
- for any relevant
-changes.
-</p>
-<p>
  Extract the new version:
 </p>
-<p>
- <code>
-  cd /var
-    tar xzf simplesamlphp-x.y.z.tar.gz
- </code>
-</p>
+<pre><code>  cd /var
+  tar xzf simplesamlphp-1.x.y.tar.gz
+</code></pre>
 <p>
  Copy the configuration files from the previous version (in case the configuration directory is inside SimpleSAMLphp,
 keep reading for other alternatives):
 </p>
-<p>
- <code>
-  cd /var/simplesamlphp-x.y.z
-    rm -rf config metadata
-    cp -rv ../simplesamlphp/config config
-    cp -rv ../simplesamlphp/metadata metadata
- </code>
-</p>
-<p>
- If you have installed any
- <a href="https://simplesamlphp.org/modules">
-  third-party modules
- </a>
- or
- <a href="simplesamlphp-theming.md.html">
-  customised the theme
- </a>
- , 
-you should check whether your third-party modules need upgrading and then copy or replace those directories too.
-</p>
+<pre><code>  cd /var/simplesamlphp-1.x.y
+  rm -rf config metadata
+  cp -rv ../simplesamlphp/config config
+  cp -rv ../simplesamlphp/metadata metadata
+</code></pre>
 <p>
  Replace the old version with the new version:
 </p>
+<pre><code>  cd /var
+  mv simplesamlphp simplesamlphp.old
+  mv simplesamlphp-1.x.y simplesamlphp
+</code></pre>
 <p>
- <code>
-  cd /var
-    mv simplesamlphp simplesamlphp.old
-    mv simplesamlphp-x.y.z simplesamlphp
- </code>
-</p>
-<p>
- If the format of the config files or metadata has changed from your previous version of SimpleSAMLphp (check the
-upgrade notes), you may have to update your configuration and metadata after updating the SimpleSAMLphp code.
+ If the format of the config files or metadata has changed from your previous version of SimpleSAMLphp (check the revision log), you may have to update your configuration and metadata after updating the SimpleSAMLphp code:
 </p>
 <h3>
  Upgrading configuration files
@@ -361,25 +333,17 @@ upgrade notes), you may have to update your configuration and metadata after upd
  <code>
   config-templates/config.php
  </code>
- , and apply relevant modifications to the new template. This will ensure that all new 
-entries in the latest version of config.php are included, as well as preserve your local modifications.
+ , and apply relevant modifications to the new template.
+This will ensure that all new entries in the latest version of config.php are included, as well as preserve your local modifications.
 </p>
 <h3>
  Upgrading metadata files
 </h3>
 <p>
- Most likely the metadata format is backwards compatible. If not, you should receive a very clear error message at
-startup indicating how and what you need to update. You should look through the metadata in the
- <code>
-  metadata-templates
- </code>
- directory after the upgrade to see whether recommended defaults have been changed.
+ Most likely the metadata format is backwards compatible. If not, you should receive a very clear error message at startup indicating how and what you need to update. You should look through the metadata in the metadata-templates directory after the upgrade to see whether recommended defaults have been changed.
 </p>
-<h2>
- Configuration
-</h2>
 <h3>
- Location of configuration files
+ Alternative location for configuration files
 </h3>
 <p>
  By default, SimpleSAMLphp looks for its configuration in the
@@ -387,19 +351,14 @@ startup indicating how and what you need to update. You should look through the 
   config
  </code>
  directory in the root of its own directory. This
-has some drawbacks, like making it harder to update SimpleSAMLphp or to install it as a composer dependency, or to 
-package it for different operating systems.
+has some drawbacks, like making it harder to use SimpleSAMLphp as a composer dependency, or to package it for different
+operating systems.
 </p>
 <p>
- In order to avoid this limitations, it is possible to specify an alternative location for the configuration directory
-by setting the
- <code>
-  SIMPLESAMLPHP_CONFIG_DIR
- </code>
- environment variable to point to this location. This way, the configuration 
-directory doesn't need to be inside the library's directory, making it easier to manage and to update. The simplest way
-to set this environment variable is to set it in your web server's configuration. See the next section for more
-information.
+ However, it is now possible to specify an alternate location for the configuration directory by setting an environment
+variable with this location. This way, the configuration directory doesn't need to be inside the library's directory,
+making it easier to manage and to update. The simplest way to set this environment variable is to set it in your web
+server's configuration. See the next section for more information.
 </p>
 <h2>
  Configuring Apache
@@ -409,13 +368,7 @@ information.
  <code>
   /var/simplesamlphp
  </code>
- . You may choose
-another location, but this requires a path update in a few files. See Appendix
- <em>
-  Installing SimpleSAMLphp 
-in alternative locations
- </em>
- for more details.
+ . You may choose another location, but this requires a path update in a few files. See Appendix for details ‹Installing SimpleSAMLphp in alternative locations›.
 </p>
 <p>
  The only subdirectory of
@@ -426,33 +379,32 @@ in alternative locations
  <code>
   www
  </code>
- . There are several ways of
-exposing SimpleSAMLphp depending on the way web sites are structured on your Apache web server. The following is just
-one possible configuration.
+ . There are several ways of exposing SimpleSAMLphp depending on the way web sites are structured on your Apache web server. The following is just one possible configuration.
 </p>
 <p>
- Find the Apache configuration file for the virtual hosts where you want to run SimpleSAMLphp. The configuration may
-look like this:
+ Find the Apache configuration file for the virtual hosts where you want to run SimpleSAMLphp. The configuration may look like this:
 </p>
-<p>
- ```
- <virtualhost *="">
-  ServerName service.example.com
-            DocumentRoot /var/www/service.example.com
- </virtualhost>
-</p>
-<pre><code>          SetEnv SIMPLESAMLPHP_CONFIG_DIR /var/simplesamlphp/config
+<pre><code>  &lt;VirtualHost *&gt;
+          ServerName service.example.com
+          DocumentRoot /var/www/service.example.com
+
+          SetEnv SIMPLESAMLPHP_CONFIG_DIR /var/simplesamlphp/config
 
           Alias /simplesaml /var/simplesamlphp/www
 
           &lt;Directory /var/simplesamlphp/www&gt;
+              &lt;IfModule !mod_authz_core.c&gt;
+              # For Apache 2.2:
+              Order allow,deny
+              Allow from all
+              &lt;/IfModule&gt;
+              &lt;IfModule mod_authz_core.c&gt;
+              # For Apache 2.4:
               Require all granted
+              &lt;/IfModule&gt;
           &lt;/Directory&gt;
   &lt;/VirtualHost&gt;
 </code></pre>
-<p>
- ```
-</p>
 <p>
  Note the
  <code>
@@ -462,64 +414,50 @@ look like this:
  <code>
   http(s)://service.example.com/simplesaml/*
  </code>
- . SimpleSAMLphp makes several SAML interfaces available on the web; all of
-them are accessible through the
+ . SimpleSAMLphp makes several SAML interfaces available on the web; all of them are included in the
  <code>
   www
  </code>
- subdirectory of your SimpleSAMLphp installation. You can name the alias 
-whatever you want, but the name must be specified in the
- <code>
-  baseurlpath
- </code>
- configuration option in the
+ subdirectory of your SimpleSAMLphp installation. You can name the alias whatever you want, but the name must be specified in the
  <code>
   config.php
  </code>
- file of 
-SimpleSAMLphp as described in
- <a href="#section_6.html" title="SimpleSAMLphp configuration: config.php">
+ file of SimpleSAMLphp as described in
+ <a href="#sect.config.html" title="SimpleSAMLphp configuration: config.php">
   the section called “SimpleSAMLphp configuration: config.php”
  </a>
- .
-Here is an example of how this configuration may look like in
+ . Here is an example of how this configuration may look like in
  <code>
   config.php
  </code>
  :
 </p>
-<p>
- <code>
-  $config = [
-    [...]
-    'baseurlpath' =&gt; 'simplesaml/',
-    [...]
-]
- </code>
-</p>
+<pre><code>  $config = array (
+  [...]
+          'baseurlpath'                   =&gt; 'simplesaml/',
+</code></pre>
 <p>
  Note also the
  <code>
   SetEnv
  </code>
- directive in the Apache configuration. It sets the
+ directive. It sets the
  <code>
   SIMPLESAMLPHP_CONFIG_DIR
  </code>
- environment 
-variable, in this case, to the default location for the configuration directory. You can omit this environment
-variable, and SimpleSAMLphp will then look for the
+ environment variable, in this case, to the
+default location for the configuration directory. You can omit this environment variable, and SimpleSAMLphp will
+then look for the
  <code>
   config
  </code>
- directory inside its own directory. If you need to move
-your configuration to a different location, you can use this environment variable to tell SimpleSAMLphp where to look
-for configuration files. This works only for the
+ directory inside its own directory. If you need to move your configuration to a different
+location, you can use this environment variable to tell SimpleSAMLphp where to look for configuration files.
+This works only for the
  <code>
   config
  </code>
- directory. If you need your metadata to be in a different
-directory too, use the
+ directory. If you need your metadata to be in a different directory too, use the
  <code>
   metadatadir
  </code>
@@ -528,7 +466,7 @@ directory too, use the
 <p>
  This is just the basic configuration to get things working. For a checklist
 further completing your documentation, please see
- <a href="simplesamlphp-maintenance#section_5.html">
+ <a href="simplesamlphp-maintenance.md#apache-configuration.html">
   Maintenance and configuration: Apache
  </a>
  .
@@ -541,13 +479,7 @@ further completing your documentation, please see
  <code>
   /var/simplesamlphp
  </code>
- . You may choose
-another location, but this requires a path update in a few files. See Appendix
- <em>
-  Installing SimpleSAMLphp 
-in alternative locations
- </em>
- for more details.
+ . You may choose another location, but this requires a path update in a few files. See Appendix for details ‹Installing SimpleSAMLphp in alternative locations›.
 </p>
 <p>
  The only subdirectory of
@@ -558,49 +490,42 @@ in alternative locations
  <code>
   www
  </code>
- . There are several ways of
-exposing SimpleSAMLphp depending on the way web sites are structured on your Nginx web server. The following is just
-one possible configuration.
+ . There are several ways of exposing SimpleSAMLphp depending on the way web sites are structured on your Nginx web server. The following is just one possible configuration.
 </p>
 <p>
- Find the Nginx configuration file for the virtual hosts where you want to run SimpleSAMLphp. The configuration may
-look like this:
+ Find the Nginx configuration file for the virtual hosts where you want to run SimpleSAMLphp. The configuration may look like this:
 </p>
-<p>
- ```
-    server {
-        listen 443 ssl;
-        server_name idp.example.com;
-</p>
-<pre><code>      ssl_certificate        /etc/pki/tls/certs/idp.example.com.crt;
+<pre><code>  server {
+      listen 443 ssl;
+      server_name idp.example.com;
+
+      ssl_certificate        /etc/pki/tls/certs/idp.example.com.crt;
       ssl_certificate_key    /etc/pki/tls/private/idp.example.com.key;
-      ssl_protocols          TLSv1.3 TLSv1.2;
-      ssl_ciphers            EECDH+AESGCM:EDH+AESGCM;
+      ssl_protocols          TLSv1.1 TLSv1.2;
+      ssl_ciphers            HIGH:!aNULL:!MD5;
 
-      location ^~ /simplesaml {
-          alias /var/simplesamlphp/www;
+      location / {
+          root     /var/simplesamlphp/www;
+          index    index.php;
+      }
 
-          location ~^(?&lt;prefix&gt;/simplesaml)(?&lt;phpfile&gt;.+?\.php)(?&lt;pathinfo&gt;/.*)?$ {
-              include          fastcgi_params;
-              fastcgi_pass     $fastcgi_pass;
-              fastcgi_param SCRIPT_FILENAME $document_root$phpfile;
-
-              # Must be prepended with the baseurlpath
-              fastcgi_param SCRIPT_NAME /simplesaml$phpfile;
-
-              fastcgi_param PATH_INFO $pathinfo if_not_empty;
-          }
+      location ~ \.php$ {
+          root             /var/simplesamlphp/www;
+          fastcgi_pass     127.0.0.1:9000;
+          fastcgi_index    index.php;
+          fastcgi_param    SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+          fastcgi_split_path_info ^(.+?\.php)(/.*)$;
+          fastcgi_param    PATH_INFO $fastcgi_path_info;
+          include          fastcgi_params;
       }
   }
 </code></pre>
-<p>
- ```
-</p>
 <h2>
  SimpleSAMLphp configuration: config.php
 </h2>
 <p>
- There are a few steps that you should complete in the main configuration file,
+ There is a few steps that you should edit in the main configuration
+file,
  <code>
   config.php
  </code>
@@ -609,159 +534,56 @@ look like this:
 <ul>
  <li>
   <p>
-   Set the
-   <code>
-    baseurlpath
-   </code>
-   configuration option. Make it point to the canonical URL of your deployment, where
-   SimpleSAMLphp can be reached:
+   Set a administrator password. This is needed to access some of the pages in your SimpleSAMLphp installation web interface.
   </p>
-  <p>
-   <code>
-    'baseurlpath' =&gt; 'https://your.canonical.host.name/simplesaml/',
-   </code>
-  </p>
-  <p>
-   Please note that your canonical URL should always use HTTPS in order to protect your users. Additionally, if you
- are running behind a
-   <strong>
-    reverse proxy
-   </strong>
-   and you are offloading TLS to it, the proper way to tell SimpleSAMLphp that
- its base URL should use HTTPS is to set the
-   <code>
-    baseurlpath
-   </code>
-   configuration option properly. SimpleSAMLphp deliberately
-   <strong>
-    ignores
-   </strong>
-   the
-   <code>
-    X-Forwarded-*
-   </code>
-   set of headers that your proxy might be setting, so
-   <strong>
-    do not rely on those
-   </strong>
-   .
-  </p>
- </li>
- <li>
-  <p>
-   Set an administrator password. This is needed to access some of the pages in your SimpleSAMLphp installation web
-   interface.
-  </p>
+  <pre><code>'auth.adminpassword'        =&gt; 'setnewpasswordhere',
+</code></pre>
   <p>
    Hashed passwords can also be used here. See the
-   <a href="./authcrypt/authcrypt.html">
+   <a href="../modules/authcrypt/docs/authcrypt.md.html">
     <code>
      authcrypt
     </code>
    </a>
-   documentation
- for more information.
-  </p>
-  <p>
-   <code>
-    'auth.adminpassword' =&gt; 'setnewpasswordhere',
-   </code>
+   documentation for more information.
   </p>
  </li>
  <li>
   <p>
-   Set a secret salt. This should be a random string. Some parts of the SimpleSAMLphp needs this salt to generate
-   cryptographically secure hashes. SimpleSAMLphp will give an error if the salt is not changed from the default value.
-   The command below can help you to generated a random string on (some) unix systems:
+   Set a secret salt. This should be a random string. Some parts of the SimpleSAMLphp needs this salt to generate cryptographically secure hashes. SimpleSAMLphp will give an error if the salt is not changed from the default value. The command below can help you to generated a random string on (some) unix systems:
   </p>
-  <p>
-   <code>
-    tr -c -d '0123456789abcdefghijklmnopqrstuvwxyz' &lt;/dev/urandom | dd bs=32 count=1 2&gt;/dev/null;echo
-   </code>
-  </p>
-  <p>
-   Here is an example of the configuration option:
-  </p>
-  <p>
-   <code>
-    'secretsalt' =&gt; 'randombytesinsertedhere',
-   </code>
-  </p>
-  <p>
-   <strong>
-    Please note that changing the secret salt may break access to services for your users
-   </strong>
-   .
-  </p>
+  <pre><code>tr -c -d '0123456789abcdefghijklmnopqrstuvwxyz' &lt;/dev/urandom | dd bs=32 count=1 2&gt;/dev/null;echo
+
+Here is an example of the config option:
+
+'secretsalt' =&gt; 'randombytesinsertedhere',
+</code></pre>
  </li>
  <li>
-  <p>
-   Configure your data storage. You can do this by editing the
-   <code>
-    store.type
-   </code>
-   configuration option, and setting it to
-   one of the supported values. Now configure the backend of your choice with the relevant options, if needed.
-  </p>
+  <pre><code>  Set technical contact information. This information will be
+  available in the generated metadata. The e-mail address will also
+  be used for receiving error reports sent automatically by
+  SimpleSAMLphp. Here is an example:
+
+'technicalcontact_name'     =&gt; 'John Smith',
+'technicalcontact_email'    =&gt; 'john.smith@example.com',
+</code></pre>
  </li>
  <li>
-  <p>
-   Configure your sessions. You have to configure your sessions with the appropriate parameters so that the cookies
-   used by SimpleSAMLphp to track users are always delivered to the software. You may do this by editing the
-   <code>
-    session.*
-   </code>
-   configuration options. Note that if you are using the
-   <code>
-    phpsession
-   </code>
-   data storage, the cookie-related
-   configuration options are configured in the
-   <code>
-    session.phpsession.*
-   </code>
-   options.
-  </p>
+  <pre><code>  If you use SimpleSAMLphp in a country where English is not
+  widespread, you may want to change the default language from
+  English to something else:
+
+'language.default'      =&gt; 'no',
+</code></pre>
  </li>
  <li>
-  <p>
-   Set technical contact information. This information will be available in the generated metadata. The e-mail address
-   will also be used for receiving error reports sent automatically by SimpleSAMLphp. Here is an example:
-  </p>
-  <p>
-   <code>
-    'technicalcontact_name' =&gt; 'John Smith',
-     'technicalcontact_email' =&gt; 'john.smith@example.com',
-   </code>
-  </p>
- </li>
- <li>
-  <p>
-   If you use SimpleSAMLphp in a country where English is not widespread, you may want to change the default language
-   from English to something else:
-  </p>
-  <p>
-   <code>
-    'language.default' =&gt; 'no',
-   </code>
-  </p>
- </li>
- <li>
-  <p>
-   Set your timezone
-  </p>
-  <p>
-   <code>
+  <pre><code>  Set the timezone which you use:
+
     'timezone' =&gt; 'Europe/Oslo',
-   </code>
-  </p>
-  <p>
-   You can see
-   <a href="http://php.net/manual/en/timezones.php">
-    a list of Supported Timezones at php.net
-   </a>
-   .
-  </p>
+
+* [List of Supported Timezones at php.net](http://php.net/manual/en/timezones.php)
+</code></pre>
  </li>
 </ul>
 <h2>
@@ -771,97 +593,61 @@ look like this:
  Sending e-mails from PHP
 </h3>
 <p>
- Some parts of SimpleSAMLphp will allow you to send e-mails. For example, sending error reports to the technical admin. If
-you want to make use of this functionality, you should make sure your PHP installation is configured to be able to
-send e-mails.
-</p>
-<p>
- By default SimpleSAMLphp uses the PHP
- <code>
-  mail()
- </code>
- function, which you can configure via
- <code>
-  php.ini
- </code>
- .
-For more advanced configuration, including using a remote SMTP server, see the
- <code>
-  mail.*
- </code>
- options in
- <code>
-  config.php
- </code>
- .
+ Some parts of SimpleSAMLphp will allow you to send e-mails. In example sending error reports to technical admin, as well as sending in metadata to the federation administrators. If you want to make use of this functionality, you should make sure your PHP installation is configured to be able to send e-mails. It's a common problem that PHP is not configured to send e-mails properly. The configuration differs from system to system. On UNIX, PHP is using sendmail, on Windows SMTP.
 </p>
 <h2>
- Enabling and disabling modules
+ Enable modules
 </h2>
 <p>
- If you want to enable some of the modules that are installed with SimpleSAMLphp, but are disabled by default, you 
-can do that in the configuration:
-</p>
-<p>
- <code>
-  'module.enable' =&gt; [
-         'exampleauth' =&gt; true, // Setting to TRUE enables.
-         'saml' =&gt; false, // Setting to FALSE disables.
-         'core' =&gt; null, // Unset or NULL uses default for this module.
-    ],
- </code>
-</p>
-<p>
- Set to
- <code>
-  true
- </code>
- the modules you want to enable, and to
- <code>
-  false
- </code>
- those that you want to disable.
-</p>
-<p>
- Prior to SSP V2 you could enable or disable modules by setting empty files with names (
+ If you want to enable some of the modules that are installed with SimpleSAMLphp, but are disabled by default, you should create an empty file in the module directory named
  <code>
   enable
  </code>
- ,
+ .
+</p>
+<pre><code>  # Enabling the consent module
+  cd modules
+  ls -l
+  cd consent
+  touch enable
+</code></pre>
+<p>
+ If you later want to disable the module, rename the
+ <code>
+  enable
+ </code>
+ file
+to
  <code>
   disable
  </code>
- ,
- <code>
-  default-enable
- </code>
- ) in the module's root directory. You need to now use the
- <code>
-  module.enable
- </code>
- config option.
+ .
 </p>
+<pre><code>  cd modules/consent
+  mv enable disable
+</code></pre>
 <h2>
- The SimpleSAMLphp installation web page
+ The SimpleSAMLphp installation webpage
 </h2>
 <p>
- After installing SimpleSAMLphp, you can access the homepage of your installation, which contains some information and
-a few links to the test services. The URL of an installation can be e.g.:
+ After installing SimpleSAMLphp, you can access the homepage of your installation, which contains some information and a few links to the test services. The URL of an installation can be e.g.:
 </p>
-<pre><code>  https://service.example.org/simplesaml/
+<pre><code>https://service.example.org/simplesaml/
 </code></pre>
 <p>
- The exact URL depends on how you set it up with your web server, and of course on your hostname.
+ The exact link depends on how you set it up with Apache, and of course on your hostname.
+</p>
+<h3>
+ Warning
+</h3>
+<p>
+ Don't click on any of the links yet, because they require you to
+either have setup SimpleSAMLphp as an Service Provider or as an
+Identity Provider.
 </p>
 <p>
- <strong>
-  Warning
- </strong>
- : before you can actually use SimpleSAMLphp for something useful, you need to configure it either as a 
-Service Provider or as an Identity Provider, depending on your use case.
-</p>
-<p>
- Here is an example screenshot of what the SimpleSAMLphp page looks like:
+ Here is an example screenshot of what the SimpleSAMLphp page looks
+like:
 </p>
 <p>
  <img alt="Screenshot of the SimpleSAMLphp installation page." src="resources/simplesamlphp-install/screenshot-installationpage.png"/>
@@ -870,78 +656,66 @@ Service Provider or as an Identity Provider, depending on your use case.
  Check your PHP environment
 </h3>
 <p>
- At the bottom of the installation page there are some green lights. SimpleSAMLphp runs some tests to see whether the 
-required and recommended prerequisites are met. If any of the lights are red, you may have to install some PHP 
-extensions or external PHP packages (e.g. you need the PHP LDAP extension to use the LDAP authentication module).
-</p>
-<h2>
- Building assets
-</h2>
-<p>
- Run the following commands to build the default theme.
-</p>
-<p>
- <code>
-  npm install
-npm run build
- </code>
+ At the bottom of the installation page are some green lights. simpleSAML runs some tests to see whether required and recommended prerequisites are met. If any of the lights are red, you may have to add some extensions or modules to PHP, e.g. you need the PHP LDAP extension to use the LDAP authentication module.
 </p>
 <h2>
  Next steps
 </h2>
 <p>
- You have now successfully installed SimpleSAMLphp, and the next steps depend on whether you want to setup a Service
-Provider (in order to protect access to an existing application) or an Identity Provider (which you would connect to 
-a user database where your users can authenticate). Documentation on bridging between federation protocols is found 
-in a separate document.
+ You have now successfully installed SimpleSAMLphp, and the next steps depends on whether you want to setup a service provider, to protect a website by authentication or if you want to setup an identity provider and connect it to a user catalog. Documentation on bridging between federation protocols is found in a separate document.
 </p>
 <ul>
  <li>
   <a href="simplesamlphp-sp.html">
-   Using SimpleSAMLphp as a Service Provider (SP)
+   Using SimpleSAMLphp as a SAML Service Provider
   </a>
   <ul>
    <li>
     <a href="simplesamlphp-reference-idp-remote.html">
-     Remote IdP reference
+     IdP remote reference
     </a>
    </li>
    <li>
     <a href="simplesamlphp-ukaccess.html">
-     Connecting to the UK Access Federation or InCommon
+     Connecting SimpleSAMLphp as a SP to UK Access Federation or InCommon
+    </a>
+   </li>
+   <li>
+    <a href="simplesamlphp-sp-migration.html">
+     Upgrading - migration to use the SAML authentication source
     </a>
    </li>
   </ul>
  </li>
  <li>
   <a href="simplesamlphp-idp.html">
-   Using SimpleSAMLphp as an Identity Provider (IdP)
+   Identity Provider QuickStart
   </a>
   <ul>
    <li>
     <a href="simplesamlphp-reference-idp-hosted.html">
-     Hosted IdP reference
+     IdP hosted reference
     </a>
    </li>
    <li>
     <a href="simplesamlphp-reference-sp-remote.html">
-     Remote SP reference
+     SP remote reference
     </a>
    </li>
    <li>
     <a href="simplesamlphp-googleapps.html">
-     Setting up an IdP for Google Workspace (G Suite / Google Apps)
+     Use case: Setting up an IdP for G Suite (Google Apps)
     </a>
    </li>
    <li>
     <a href="simplesamlphp-idp-more.html">
-     Advanced Topics
+     Identity Provider Advanced Topics
     </a>
    </li>
   </ul>
  </li>
  <li>
-  <a href="./metarefresh/simplesamlphp-automated_metadata.html">
+  <a href="simplesamlphp-automated_metadata.html">
    Automated Metadata Management
   </a>
  </li>
@@ -955,71 +729,65 @@ in a separate document.
  Support
 </h2>
 <p>
- If you need help to make this work, or want to discuss SimpleSAMLphp with other users of the software, you are
-in luck: there is a great Open Source community around SimpleSAMLphp, and you are welcome to join! The forums are open 
-for you to ask questions, help others by answering their questions, request improvements or contribute with 
-code or plugins of your own.
+ If you need help to make this work, or want to discuss SimpleSAMLphp with other users of the software, you are fortunate: Around SimpleSAMLphp there is a great Open source community, and you are welcome to join! The forums are open for you to ask questions, contribute answers other further questions, request improvements or contribute with code or plugins of your own.
 </p>
 <ul>
  <li>
   <a href="https://simplesamlphp.org">
-   Homepage
+   SimpleSAMLphp homepage
   </a>
  </li>
  <li>
   <a href="https://simplesamlphp.org/docs/">
-   Documentation
+   List of all available SimpleSAMLphp documentation
   </a>
  </li>
  <li>
   <a href="https://simplesamlphp.org/lists">
-   Mailing lists
+   Join the SimpleSAMLphp user's mailing list
   </a>
  </li>
 </ul>
 <h2>
- Appendix: Installing SimpleSAMLphp in alternative locations
+ Installing SimpleSAMLphp in alternative locations
 </h2>
 <p>
- There may be several reasons why you want to install SimpleSAMLphp in an alternative way.
+ There may be several reasons why you want to install SimpleSAMLphp
+in an alternative way.
 </p>
-<ul>
+<ol>
  <li>
   <p>
-   You are installing SimpleSAMLphp in a hosted environment where you do not have root access, and cannot change
-   Apache configuration. You can still install SimpleSAMLphp, keep on reading!
+   You are installing SimpleSAMLphp in a hosted environment where you
+  do not have root access, and cannot change Apache configuration.
+  Still you can install SimpleSAMLphp - keep on reading.
   </p>
  </li>
  <li>
   <p>
-   You have full permissions to the server, but cannot edit web server configuration for some reason like internal 
-policies.
+   You have full permissions to the server, but cannot edit Apache
+  configuration for some reason, politics, policy or whatever.
   </p>
  </li>
-</ul>
+</ol>
 <p>
- The SimpleSAMLphp package contains one folder named
- <code>
-  simplesamlphp-x.y.z
- </code>
- (where
- <code>
-  x.y.z
- </code>
- is the version number). In 
-this folder there are a lot of subfolders for library, metadata, configuration, etc. One of these folders is named
- <code>
-  www
- </code>
- .
- <strong>
-  Only this folder should be exposed on the web
- </strong>
- . The recommended configuration is to put the whole
+ The SimpleSAMLphp code contains one folder named
  <code>
   simplesamlphp
  </code>
- folder outside the web root, and then link to the
+ . In this folder there are a lot of subfolders for library, metadata, configuration and much more. One of these folders is named
+ <code>
+  www
+ </code>
+ . This and
+ <em>
+  only this
+ </em>
+ folder should be exposed on the web. The recommended configuration is to put the whole
+ <code>
+  simplesamlphp
+ </code>
+ folder outside the webroot, and then link in the
  <code>
   www
  </code>
@@ -1027,98 +795,66 @@ this folder there are a lot of subfolders for library, metadata, configuration, 
  <code>
   Alias
  </code>
- directive, as 
-described in
- <a href="#section_4.html" title="Configuring Apache">
+ directive, as described in
+ <a href="#sect.apacheconfig.html" title="Configuring Apache">
   the section called “Configuring Apache”
  </a>
- . This is not the only
-possible way, though.
+ . But this is not the only possible way.
 </p>
 <p>
  As an example, let's see how you can install SimpleSAMLphp in your home directory on a shared hosting server.
 </p>
-<ol>
- <li>
-  <p>
-   Extract the SimpleSAMLphp archive in your home directory:
-  </p>
-  <p>
-   <code>
-    cd ~
- tar xzf simplesamlphp-1.x.y.tar.gz
- mv simplesamlphp-1.x.y simplesamlphp
-   </code>
-  </p>
- </li>
- <li>
-  <p>
-   Then you can try to make a symlink into the
-   <code>
-    public_html
-   </code>
-   directory.
-  </p>
-  <p>
-   <code>
-    cd ~/public_html
- ln -s ../simplesamlphp/www simplesaml
-   </code>
-  </p>
- </li>
- <li>
-  <p>
-   Next, you need to set the
-   <code>
-    baseurlpath
-   </code>
-   configuration option with the URL pointing to the
-   <code>
-    simplesaml
-   </code>
-   link you 
-just created in your
-   <code>
-    public_html
-   </code>
-   directory. For example, if your home directory is reachable in
-   <code>
-    https://host.example/~myaccount/
-   </code>
-   , set the base URL path accordingly:
-  </p>
-  <p>
-   <code>
-    'baseurlpath' =&gt; 'https://host.example/~myaccount/simplesaml/',
-   </code>
-  </p>
-  <p>
-   Now, you can go to the URL of your installation and check if things work:
-  </p>
-  <pre><code>   https://host.example/~myaccount/simplesaml/
-</code></pre>
- </li>
-</ol>
-<h4>
- Tip
-</h4>
 <p>
- Symlinking may fail, because some Apache configurations do not allow you to link to files from outside the
+ Extract the SimpleSAMLphp archive in your home directory:
+</p>
+<pre><code>  cd ~
+  tar xzf simplesamlphp-1.x.y.tar.gz
+  mv simplesamlphp-1.x.y simplesamlphp
+</code></pre>
+<p>
+ Then you can try to make a symlink into the
  <code>
-  public_html
+  public\_html
  </code>
- folder. If so, you can move the
+ directory.
+</p>
+<pre><code>  cd ~/public_html
+  ln -s ../simplesamlphp/www simplesaml
+</code></pre>
+<p>
+ Next, you need to update the configuration of paths in
+ <code>
+  simplesamlphp/config/config.php
+ </code>
+ :
+</p>
+<p>
+ And, then we need to set the
+ <code>
+  baseurlpath
+ </code>
+ parameter to match the base path of the URLs to the content of your
  <code>
   www
  </code>
- folder instead of symlinking it:
+ folder:
 </p>
+<pre><code>  'baseurlpath' =&gt; '/simplesaml/',
+</code></pre>
 <p>
- <code>
-  cd ~/public_html
-    mv ../simplesamlphp/www simplesaml
- </code>
+ Now, you can go to the URL of your installation and check if things work:
 </p>
+<pre><code>  http://yourcompany.com/simplesaml/
+</code></pre>
+<h3>
+ Tip
+</h3>
+<p>
+ Symlinking may fail, because some Apache configurations do not allow you to link in files from outside the public_html folder. If so, move the folder instead of symlinking:
+</p>
+<pre><code>  cd ~/public_html
+  mv ../simplesamlphp/www simplesaml
+</code></pre>
 <p>
  Now you have the following directory structure.
 </p>
@@ -1131,25 +867,10 @@ just created in your
   </p>
  </li>
  <li>
-  <p>
-   <code>
-    ~/public_html/simplesaml
-   </code>
-   where
-   <code>
-    simplesaml
-   </code>
-   is the
-   <code>
-    www
-   </code>
-   directory from the
-   <code>
-    simplesamlphp
-   </code>
-   installation directory,
-  either moved or a symlink.
-  </p>
+  <pre><code>  `~/public_html/simplesaml` where `simplesaml` is the `www`
+  directory from the `simplesamlphp` installation directory, either
+  moved or a symlink.
+</code></pre>
  </li>
 </ul>
 <p>
@@ -1162,29 +883,29 @@ just created in your
 <p>
  Change the two lines from:
 </p>
-<p>
- <code>
-  require_once(dirname(dirname(__FILE__)) . '/lib/_autoload.php');
- </code>
-</p>
+<pre><code>  require_once(dirname(dirname(__FILE__)) . '/lib/_autoload.php');
+</code></pre>
 <p>
  to something like:
 </p>
+<pre><code>  require_once('/var/www/simplesamlphp/lib/_autoload.php');
+</code></pre>
 <p>
- <code>
-  require_once(dirname(dirname(dirname(__FILE__))) . '/lib/_autoload.php');
- </code>
+ And then at the end of the file, you need to change another line
+from:
 </p>
+<pre><code>  $configdir = dirname(dirname(__FILE__)) . '/config';
+</code></pre>
 <p>
- <strong>
-  Warning
- </strong>
- : note that this will make upgrading SimpleSAMLphp much more difficult, since you will need to move the
- <code>
-  www
- </code>
- directory and manually edit files every time you upgrade. It is also possible that this method does not work in
-future versions of SimpleSAMLphp, and therefore it is discouraged and should be used only as a last resort.
+ to:
+</p>
+<pre><code>  $configdir = '/var/www/simplesamlphp/config';
+</code></pre>
+<h3>
+ Note
+</h3>
+<p>
+ In a future version of SimpleSAMLphp we'll make this a bit easier, and let you only change the path one place, instead of three as described above.
 </p></div>    <!-- /#content -->
 
 <div id="footer">

@@ -182,24 +182,24 @@
  </code>
  .
 </p>
-<pre><code>  'authproc' =&gt; [
-      50 =&gt; [
+<pre><code>  'authproc' =&gt; array(
+      50 =&gt; array(
           'class' =&gt; 'core:Cardinality',
-          'givenName' =&gt; ['min' =&gt; 1],
-          'mail' =&gt; ['max' =&gt; 2[,
-          'eduPersonScopedAffiliation' =&gt; ['min' =&gt; 2, 'max' =&gt; 4],
-      ],
-  ],
+          'givenName' =&gt; array('min' =&gt; 1),
+          'mail' =&gt; array('max' =&gt; 2),
+          'eduPersonScopedAffiliation' =&gt; array('min' =&gt; 2, 'max' =&gt; 4),
+      ),
+  ),
 </code></pre>
 <p>
  Use the shorthand notation for min, max:
 </p>
-<pre><code>  'authproc' =&gt; [
-      50 =&gt; [
+<pre><code>  'authproc' =&gt; array(
+      50 =&gt; array(
           'class' =&gt; 'core:Cardinality',
-          'mail' =&gt; [0, 2],
-      ],
-  ],
+          'mail' =&gt; array(0, 2),
+      ),
+  ),
 </code></pre></div>    <!-- /#content -->
 
 <div id="footer">

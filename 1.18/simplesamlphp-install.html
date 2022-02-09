@@ -147,7 +147,7 @@ repository
   A web server capable of executing PHP scripts.
  </li>
  <li>
-  PHP version &gt;= 7.2.0.
+  PHP version &gt;= 5.6.0.
  </li>
  <li>
   Support for the following PHP extensions:
@@ -287,14 +287,6 @@ repository
  Upgrading from a previous version of SimpleSAMLphp
 </h2>
 <p>
- Before starting the upgrade, review the relevant
- <a href="simplesamlphp-upgrade-notes.html">
-  upgrade notes
- </a>
- for any relevant
-changes.
-</p>
-<p>
  Extract the new version:
 </p>
 <p>
@@ -314,18 +306,6 @@ keep reading for other alternatives):
     cp -rv ../simplesamlphp/config config
     cp -rv ../simplesamlphp/metadata metadata
  </code>
-</p>
-<p>
- If you have installed any
- <a href="https://simplesamlphp.org/modules">
-  third-party modules
- </a>
- or
- <a href="simplesamlphp-theming.md.html">
-  customised the theme
- </a>
- , 
-you should check whether your third-party modules need upgrading and then copy or replace those directories too.
 </p>
 <p>
  Replace the old version with the new version:
@@ -375,11 +355,8 @@ startup indicating how and what you need to update. You should look through the 
  </code>
  directory after the upgrade to see whether recommended defaults have been changed.
 </p>
-<h2>
- Configuration
-</h2>
 <h3>
- Location of configuration files
+ Alternative location for configuration files
 </h3>
 <p>
  By default, SimpleSAMLphp looks for its configuration in the
@@ -580,7 +557,7 @@ look like this:
       location ^~ /simplesaml {
           alias /var/simplesamlphp/www;
 
-          location ~^(?&lt;prefix&gt;/simplesaml)(?&lt;phpfile&gt;.+?\.php)(?&lt;pathinfo&gt;/.*)?$ {
+          location ~ ^(?&lt;prefix&gt;/simplesaml)(?&lt;phpfile&gt;.+?\.php)(?&lt;pathinfo&gt;/.*)?$ {
               include          fastcgi_params;
               fastcgi_pass     $fastcgi_pass;
               fastcgi_param SCRIPT_FILENAME $document_root$phpfile;
@@ -823,23 +800,43 @@ can do that in the configuration:
  those that you want to disable.
 </p>
 <p>
- Prior to SSP V2 you could enable or disable modules by setting empty files with names (
+ Alternatively, you can enable or disable modules by setting empty files with given names in the module's root 
+directory. For example, in order to enable the
+ <em>
+  consent
+ </em>
+ module:
+</p>
+<p>
+ <code>
+  cd modules/consent
+    touch enable
+ </code>
+</p>
+<p>
+ If you later want to disable the module, you can rename the
  <code>
   enable
  </code>
- ,
+ file to
  <code>
   disable
  </code>
- ,
+ .
+</p>
+<p>
  <code>
-  default-enable
+  cd modules/consent
+    mv enable disable
  </code>
- ) in the module's root directory. You need to now use the
- <code>
-  module.enable
- </code>
- config option.
+</p>
+<p>
+ This is the traditional way of enabling and disabling modules, but it is
+ <strong>
+  deprecated
+ </strong>
+ . Please do not rely on this in
+new installations of the software.
 </p>
 <h2>
  The SimpleSAMLphp installation web page
@@ -873,18 +870,6 @@ Service Provider or as an Identity Provider, depending on your use case.
  At the bottom of the installation page there are some green lights. SimpleSAMLphp runs some tests to see whether the 
 required and recommended prerequisites are met. If any of the lights are red, you may have to install some PHP 
 extensions or external PHP packages (e.g. you need the PHP LDAP extension to use the LDAP authentication module).
-</p>
-<h2>
- Building assets
-</h2>
-<p>
- Run the following commands to build the default theme.
-</p>
-<p>
- <code>
-  npm install
-npm run build
- </code>
 </p>
 <h2>
  Next steps
@@ -930,7 +915,7 @@ in a separate document.
    </li>
    <li>
     <a href="simplesamlphp-googleapps.html">
-     Setting up an IdP for Google Workspace (G Suite / Google Apps)
+     Setting up an IdP for G Suite (Google Apps)
     </a>
    </li>
    <li>
@@ -941,7 +926,7 @@ in a separate document.
   </ul>
  </li>
  <li>
-  <a href="./metarefresh/simplesamlphp-automated_metadata.html">
+  <a href="https://github.com/simplesamlphp/simplesamlphp-module-metarefresh/blob/master/docs/simplesamlphp-automated_metadata.md">
    Automated Metadata Management
   </a>
  </li>

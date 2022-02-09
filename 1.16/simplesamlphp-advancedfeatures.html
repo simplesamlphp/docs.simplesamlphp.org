@@ -165,9 +165,9 @@ The SAML 2.0 SP talks to the SAML 2.0 IdP, which hands the request over to the S
  </code>
  :
 </p>
-<pre><code>  'default-sp' =&gt; [
+<pre><code>  'default-sp' =&gt; array(
       'saml:SP',
-  ],
+  ),
 </code></pre>
 <h2>
  Attribute control
@@ -191,7 +191,7 @@ The SAML 2.0 SP talks to the SAML 2.0 IdP, which hands the request over to the S
  </code>
  module is the preferred method for doing this.
 Please see the
- <a href="./metarefresh/simplesamlphp-automated_metadata.html">
+ <a href="simplesamlphp-automated_metadata.html">
   metarefresh documentation
  </a>
  .
@@ -332,7 +332,7 @@ Please see the
       }
 
       if ($init) {
-          $session-&gt;setData($data_type, $data_key, $remote_addr, \SimpleSAML\Session::DATA_TIMEOUT_SESSION_END);
+          $session-&gt;setData($data_type, $data_key, $remote_addr, SimpleSAML_Session::DATA_TIMEOUT_SESSION_END);
           return;
       }
 
@@ -352,7 +352,7 @@ Please see the
 
       if ($country_a === $country_b) {
           if ($stored_remote_addr !== $remote_addr) {
-              $session-&gt;setData($data_type, $data_key, $remote_addr, \SimpleSAML\Session::DATA_TIMEOUT_SESSION_END);
+              $session-&gt;setData($data_type, $data_key, $remote_addr, SimpleSAML_Session::DATA_TIMEOUT_SESSION_END);
           }
 
           return TRUE;

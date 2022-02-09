@@ -116,7 +116,7 @@
 -->
 <!-- {{TOC}} -->
 <p>
- In SimpleSAMLphp every part that needs to interact with the user by using a web page, uses templates to present the HTML. SimpleSAMLphp comes with a default set of templates that presents a anonymous look.
+ In SimpleSAMLphp every part that needs to interact with the user by using a web page, uses templates to present the XHTML. SimpleSAMLphp comes with a default set of templates that presents a anonymous look.
 </p>
 <p>
  You may create your own theme, where you add one or more template files that will override the default ones. This document explains how to achieve that.
@@ -129,7 +129,7 @@
  <strong>
   theme
  </strong>
- . A theme is a set of templates that can be configured to override the default templates. Themes are a special type of SimpleSAMLphp module.
+ . A theme is a set of templates that can be configured to override the default templates.
 </p>
 <h3>
  Configuring which theme to use
@@ -139,14 +139,9 @@
  <code>
   config.php
  </code>
- there is a configuration option that controls theming. You need to set that option and enable the module that contains the theme. Here is an example:
+ there is a configuration option that controls theming. Here is an example:
 </p>
-<pre><code>   'module.enable' =&gt; [
-       ...
-       'fancymodule' =&gt; true,
-   ],
-
-   'theme.use' =&gt; 'fancymodule:fancytheme',
+<pre><code>'theme.use'     =&gt; 'fancymodule:fancytheme',
 </code></pre>
 <p>
  The
@@ -155,11 +150,11 @@
  </code>
  parameter points to which theme that will be used. If some functionality in SimpleSAMLphp needs to present UI in example with the
  <code>
-  logout.twig
+  logout.php
  </code>
  template, it will first look for
  <code>
-  logout.twig
+  logout.php
  </code>
  in the
  <code>
@@ -167,16 +162,41 @@
  </code>
  theme, and if not found it will all fallback to look for the base templates.
 </p>
+<p>
+ All required templates SHOULD be available as a base in the
+ <code>
+  templates
+ </code>
+ folder, and you SHOULD never change the base templates. To customize UI, add a new theme within a module that overrides the base templates, instead of modifying it.
+</p>
 <h3>
- Override only specific templates
+ Templates that include other files
 </h3>
 <p>
- The SimpleSAMLphp templates are derived from a base template and include other templates as building blocks. You only need to override the templates or building blocks needed for your change.
-SimpleSAMLphp allows themes to override the included templates files only, if needed. That means you can create a new theme
+ A template file may
+ <em>
+  include
+ </em>
+ other files. For example all the default templates will include a header and footer: the
+ <code>
+  login.php
+ </code>
+ template will first include
+ <code>
+  includes/header.php
+ </code>
+ then present the login page, and then include
+ <code>
+  includes/footer.php
+ </code>
+ .
+</p>
+<p>
+ SimpleSAMLphp allows themes to override the included templates files only, if needed. That means you can create a new theme
  <code>
   fancytheme
  </code>
- that includes only a header and footer template. These templates may refer to your own CSS files, which means that a simple way of making a new look on SimpleSAMLphp is to create a new theme, and copy the existing header, but point to your own CSS instead of the default CSS. This means that for many theme requirements, you only need to specify a new header and footer template, and leave all other templates to SimpleSAMLphp's base versions.
+ that includes only a header and footer. The header file refers to the CSS files, which means that a simple way of making a new look on SimpleSAMLphp is to create a new theme, and copy the existing header, but point to your own CSS instead of the default CSS.
 </p>
 <h2>
  Creating your first theme
@@ -186,8 +206,8 @@ SimpleSAMLphp allows themes to override the included templates files only, if ne
 </p>
 <pre><code>cd modules
 mkdir mymodule
-
-Enable the module by setting `$config['module.enable' =&gt; ['mymodule' =&gt; true]]`
+cd mymodule
+touch default-enable
 </code></pre>
 <p>
  Then within this module, you can create a new theme named
@@ -197,7 +217,7 @@ Enable the module by setting `$config['module.enable' =&gt; ['mymodule' =&gt; tr
  .
 </p>
 <pre><code>cd modules/mymodule
-mkdir -p themes/fancytheme/default/
+mkdir -p themes/fancytheme
 </code></pre>
 <p>
  Now, configure SimpleSAMLphp to use your new theme in
@@ -209,94 +229,133 @@ mkdir -p themes/fancytheme/default/
 <pre><code>'theme.use'     =&gt; 'mymodule:fancytheme',
 </code></pre>
 <p>
- Next, we copy the header file from the base theme:
+ Next, we create
+ <code>
+  themes/fancytheme/default/includes
+ </code>
+ , and copy the header file from the base theme:
 </p>
-<pre><code>cp templates/_header.twig modules/mymodule/themes/fancytheme/default/
+<pre><code>cp templates/includes/header.php modules/mymodule/themes/fancytheme/default/includes/
 </code></pre>
 <p>
  In the
  <code>
-  modules/mymodule/themes/fancytheme/default/_header.twig
+  modules/mymodule/themes/fancytheme/default/includes/header.php
  </code>
- file, type in something and go to the SimpleSAMLphp front page to see that your new theme is in use.
+ type in something and go to the SimpleSAMLphp front page to see that your new theme is in use.
 </p>
+<p>
+ A good start is to modify the reference to the default CSS:
+</p>
+<pre><code>&lt;link rel="stylesheet" type="text/css" href="/&lt;?php echo $this-&gt;data['baseurlpath']; ?&gt;resources/default.css" /&gt;
+</code></pre>
+<p>
+ to in example:
+</p>
+<pre><code>&lt;link rel="stylesheet" type="text/css" href="/&lt;?php echo $this-&gt;data['baseurlpath']; ?&gt;resources/fancytheme/default.css" /&gt;
+</code></pre>
+<h2>
+ Examples
+</h2>
+<p>
+ To override the frontpage body, add the file:
+</p>
+<pre><code>modules/mymodule/themes/fancytheme/default/frontpage.php
+</code></pre>
+<p>
+ In the path above
+ <code>
+  default
+ </code>
+ means that the frontpage template is not part of any modules. If you are replacing a template that is part of a module, then use the module name instead of
+ <code>
+  default
+ </code>
+ .
+</p>
+<p>
+ For example, to override the
+ <code>
+  preprodwarning
+ </code>
+ template, (the file is located in
+ <code>
+  modules/preprodwarning/templates/warning.php
+ </code>
+ ), you need to add a new file:
+</p>
+<pre><code>modules/mymodule/themes/fancytheme/preprodwarning/warning.php
+</code></pre>
+<p>
+ Say in a module
+ <code>
+  foomodule
+ </code>
+ , some code requests to present the
+ <code>
+  bar.php
+ </code>
+ template, SimpleSAMLphp will:
+</p>
+<ol>
+ <li>
+  first look in your theme for a replacement:
+  <code>
+   modules/mymodule/themes/fancytheme/foomodule/bar.php
+  </code>
+  .
+ </li>
+ <li>
+  If not found, it will use the base template of that module:
+  <code>
+   modules/foomodule/templates/bar.php
+  </code>
+ </li>
+</ol>
 <h2>
  Adding resource files
 </h2>
 <p>
- You can put resource files within the
- <code>
-  www/assets
- </code>
- folder of your module, to make your module completely independent with included css, icons etc.
+ You can put resource files within the www folder of your module, to make your module completely independent with included css, icons etc.
 </p>
 <p>
  <code>
   modules
 └───mymodule
-    └───lib
     └───themes
     └───www
-        └───assets
-            └───logo.svg
-            └───style.css
+        └───logo.png
+        └───style.css
  </code>
 </p>
 <p>
- Reference these resources in your custom templates under
+ Reference these resources in your custom PHP templates under
  <code>
   themes/fancytheme
  </code>
- by using a generator for the URL.
-Example for a custom CSS stylesheet file:
- <code>
-  {% block preload %}
-&lt;link rel="stylesheet" href="{{ asset('style.css', 'mymodule') }}"&gt;
-{% endblock %}
- </code>
+ by using a generator for the URL:
+```php
 </p>
-<h2>
- A custom theme controller
-</h2>
+<?php echo SimpleSAML\Module::getModuleURL('mymodule/logo.png'); ?>
 <p>
- If you have very specific requirements for your theme, you can define a custom theme controller
-in
- <code>
-  config.php
- </code>
- :
-</p>
-<pre><code>  'theme.controller' =&gt; '\SimpleSAML\Module\mymodule\FancyThemeController',
-</code></pre>
-<p>
- This requires you to implement
- <code>
-  \SimpleSAML\XHTML\TemplateControllerInterface.php
- </code>
- in your module's
- <code>
-  lib
- </code>
- -directory.
-The class can then modify the Twig Environment and the variables passed to the theme's templates. In short, this allows you to set additional global variables and to write your own Twig filters and functions.
+ ```
 </p>
 <p>
- See the
- <a href="https://twig.symfony.com/doc/2.x/templates.html">
-  Twig documentation
- </a>
- for more information on using variables and expressions in Twig templates, and the SimpleSAMLphp wiki for
- <a href="https://github.com/simplesamlphp/simplesamlphp/wiki/Twig-conventions">
-  our conventions
- </a>
- .
+ Example for a custom CSS stylesheet file:
+ <code>
+  html
+&lt;link rel="stylesheet" type="text/css" href="&lt;?php echo SimpleSAML\Module::getModuleURL('mymodule/style.css'); ?&gt;" /&gt;
+ </code>
 </p>
 <h2>
  Migrating to Twig templates
 </h2>
 <p>
- For existing themes that have been created before SimpleSAMLphp 2.0, you may need to upgrade them to the Twig
-templating enging to be compatible with SimpleSAMLphp 2.0.
+ In version 1.15, a new templating system based on
+ <a href="https://twig.symfony.com/">
+  Twig
+ </a>
+ was introduced. As modules migrate, it will become necessary for themes to include both the old templating style described above and new Twig-based templates.
 </p>
 <p>
  Twig works by extending a base template, which can itself include other partial templates. Some of the content of the old
@@ -333,47 +392,17 @@ templating enging to be compatible with SimpleSAMLphp 2.0.
  <code>
   {{baseurlpath}}module.php/mymodule/...
  </code>
- or the
- <code>
-  asset()
- </code>
- function like shown above.
-If you want to use the
- <code>
-  asset()
- </code>
- function, you need to move the asserts from
- <code>
-  www/
- </code>
- to
- <code>
-  www/assets/
- </code>
- .
 </p>
 <p>
- Within templates each module is defined as a separate namespace matching the module name. This allows one template to reference templates from other modules using Twig's
- <code>
-  @namespace_name/template_path
- </code>
- notation. For instance, a template in
- <code>
-  mymodule
- </code>
- can include the widget template from the
- <code>
-  yourmodule
- </code>
- module using the notation
- <code>
-  @yourmodule/widget.twig
- </code>
- . A special namespace,
- <code>
-  __parent__
- </code>
- , exists to allow theme developers to more easily extend a module's stock template.
+ See the
+ <a href="https://twig.symfony.com/doc/1.x/templates.html">
+  Twig documentation
+ </a>
+ for more information on using variables and expressions in Twig templates, and the SimpleSAMLphp wiki for
+ <a href="https://github.com/simplesamlphp/simplesamlphp/wiki/Twig-conventions">
+  our conventions
+ </a>
+ .
 </p>
 <p>
  The wiki also includes some information on

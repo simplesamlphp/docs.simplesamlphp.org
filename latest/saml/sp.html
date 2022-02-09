@@ -626,6 +626,21 @@ The following attributes are available:
 </p>
 <p>
  <code>
+  key_name
+ </code>
+ :   The name of the certificate. It is possible the IDP requires your certificate to have a name.
+    If provided, it will be exposed in the SAML 2.0 metadata as
+ <code>
+  KeyName
+ </code>
+ inside the
+ <code>
+  KeyDescriptor
+ </code>
+ . This also requires a certificate to be provided.
+</p>
+<p>
+ <code>
   name
  </code>
  :   The name of this SP.

@@ -268,28 +268,28 @@ configuration file:
 <p>
  Service Provider:
 </p>
-<pre><code>  'default-sp' =&gt; [
+<pre><code>  'default-sp' =&gt; array(
       'saml:SP',
       'entityID' =&gt; NULL,
       ...
-      'RegistrationInfo' =&gt; [
+      'RegistrationInfo' =&gt; array(
           'authority' =&gt; 'urn:mace:sp.example.org',
           'instant' =&gt; '2008-01-17T11:28:03.577Z',
-          'policies' =&gt; ['en' =&gt; 'http://sp.example.org/policy', 'es' =&gt; 'http://sp.example.org/politica'],
-      ],
-  ],
+          'policies' =&gt; array('en' =&gt; 'http://sp.example.org/policy', 'es' =&gt; 'http://sp.example.org/politica'),
+      ),
+  ),
 </code></pre>
 <p>
  Identity Provider:
 </p>
-<pre><code>  $metadata['__DYNAMIC:1__'] = [
+<pre><code>  $metadata['__DYNAMIC:1__'] = array(
       'host' =&gt; '__DEFAULT__',
       ...
-      'RegistrationInfo' =&gt; [
+      'RegistrationInfo' =&gt; array(
           'authority' =&gt; 'urn:mace:idp.example.org',
           'instant' =&gt; '2008-01-17T11:28:03.577Z',
-      ],
-  ];
+      ),
+  );
 </code></pre>
 <p>
  <code>
@@ -297,19 +297,19 @@ configuration file:
  </code>
  module:
 </p>
-<pre><code>  $config = [
-      'aggregators' =&gt; [
+<pre><code>  $config = array(
+      'aggregators' =&gt; array(
           ...
-      ],
+      ),
       'maxDuration'   =&gt; 60*60*24*5,
       'reconstruct' =&gt; FALSE,
       ...
-      'RegistrationInfo' =&gt; [
+      'RegistrationInfo' =&gt; array(
           'authority' =&gt; 'urn:mace:example.federation',
           'instant' =&gt; '2008-01-17T11:28:03Z',
-          'policies' =&gt; ['en' =&gt; 'http://example.org/federation_policy', 'es' =&gt; 'https://example.org/politica_federacion'],
-      ],
-  ];
+          'policies' =&gt; array('en' =&gt; 'http://example.org/federation_policy', 'es' =&gt; 'https://example.org/politica_federacion'),
+      ),
+  );
 </code></pre>
 <p>
  <code>
@@ -317,17 +317,17 @@ configuration file:
  </code>
  module:
 </p>
-<pre><code>  $config = [
-      'example.org' =&gt; [
-          'sources' =&gt; [
+<pre><code>  $config = array(
+      'example.org' =&gt; array(
+          'sources' =&gt; array(
               ...
-          ],
-          'RegistrationInfo' =&gt; [
+          ),
+          'RegistrationInfo' =&gt; array(
               'authority' =&gt; 'urn:mace:example.federation',
-              'policies' =&gt; ['en' =&gt; 'http://example.org/federation_policy', 'es' =&gt; 'https://example.org/politica_federacion'],
-          ],
-      ],
-  ];
+              'policies' =&gt; array('en' =&gt; 'http://example.org/federation_policy', 'es' =&gt; 'https://example.org/politica_federacion'),
+          ),
+      ),
+  );
 </code></pre></div>    <!-- /#content -->
 
 <div id="footer">

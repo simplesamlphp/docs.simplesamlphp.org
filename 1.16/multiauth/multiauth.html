@@ -148,41 +148,39 @@ cases and then switch to the
  in a text editor, and add an entry for the
 authentication source:
 </p>
-<pre><code>  'example-multi' =&gt; [
+<pre><code>  'example-multi' =&gt; array(
       'multiauth:MultiAuth',
 
       /*
        * The available authentication sources.
        * They must be defined in this authsources.php file.
        */
-      'sources' =&gt; [
-          'example-saml' =&gt; [
-              'text' =&gt; [
+      'sources' =&gt; array(
+          'example-saml' =&gt; array(
+              'text' =&gt; array(
                   'en' =&gt; 'Log in using a SAML SP',
                   'es' =&gt; 'Entrar usando un SP SAML',
-              ],
+              ),
               'css-class' =&gt; 'SAML',
-              'AuthnContextClassRef' =&gt; ['urn:oasis:names:tc:SAML:2.0:ac:classes:SmartcardPKI', 'urn:oasis:names:tc:SAML:2.0:ac:classes:MobileTwoFactorContract'],
-          ],
-          'example-admin' =&gt; [
-              'text' =&gt; [
+          ),
+          'example-admin' =&gt; array(
+              'text' =&gt; array(
                   'en' =&gt; 'Log in using the admin password',
                   'es' =&gt; 'Entrar usando la contraseña de administrador',
-              ],
-              'AuthnContextClassRef' =&gt; 'urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport',
-          ],
-      ],
-  ],
+              ),
+          ),
+      ),
+  ),
 
-  'example-saml' =&gt; [
+  'example-saml' =&gt; array(
       'saml:SP',
       'entityId' =&gt; 'my-entity-id',
       'idp' =&gt; 'my-idp',
-  ],
+  ),
 
-  'example-admin' =&gt; [
+  'example-admin' =&gt; array(
       'core:AdminPassword',
-  ],
+  ),
 </code></pre>
 <p>
  You should update the name of this authentication source
@@ -219,7 +217,7 @@ compatible fashion so both cases should work.
 <p>
  Each source in the sources array has a key and a value. As
 mentioned above the key is the authsource identifier and the value
-is another array with optional keys: 'text', 'css-class', 'help', and 'AuthnContextClassRef'.
+is another array with two optional keys: 'text' and 'css-class'.
 The text element is another array with localized strings for one
 or more languages. These texts will be shown in the selectsource.php
 view. Note that you should at least enter the text in the default
@@ -229,18 +227,7 @@ the &lt;li&gt; element in the selectsource.php view. By default the
 authtype of the authsource is used as the css class with colons
 replaced by dashes. So in the previous example, the css class used
 in the 'example-admin' authentication source would be
-'core-AdminPassword'. The help element is another array with localized
-strings for one or more languages. These texts will be shown in the
-selectsource.php view. The AuthnContextClassRef is either a string or
-an array of strings containing
- <a href="https://docs.oasis-open.org/security/saml/v2.0/saml-authn-context-2.0-os.pdf">
-  context class ref names
- </a>
- .
-If an SP sets AuthnContextClassRef the list of authsources will be
-filtered to only those containing context class refs that are part of the list set by the SP.
-If a single authsource results from this filtering the user will be taken directly to the
-authentication page for that source, and will never be shown the multiauth select page.
+'core-AdminPassword'.
 </p>
 <p>
  It is possible to add the parameter
@@ -268,50 +255,10 @@ don't have redirections during the authentication process.
  You can also use the multiauth:preselect parameter to the login call:
 </p>
 <pre><code>  $as = new \SimpleSAML\Auth\Simple('my-multiauth-authsource');
-  $as-&gt;login([
+  $as-&gt;login(array(
       'multiauth:preselect' =&gt; 'default-sp',
-  ]);
-</code></pre>
-<p>
- Or add the
- <code>
-  preselect
- </code>
- option in the filter:
-</p>
-<pre><code>  'example-multi' =&gt; [
-      'multiauth:MultiAuth',
-
-      /*
-       * The available authentication sources.
-       * They must be defined in this authsources.php file.
-       */
-      'sources' =&gt; [
-          'example-saml' =&gt; [
-          // ...
-          ],
-          'example-admin' =&gt; [
-          // ...
-          ],
-      ],
-      'preselect' =&gt; 'example-saml',
-  ),
-</code></pre>
-<p>
- The order of priority, in case more than one option was used is:
- <code>
-  source
- </code>
- url parameter,
- <code>
-  multiauth:preselect
- </code>
- login state and
- <code>
-  preselect
- </code>
- filter option.
-</p></div>    <!-- /#content -->
+  ));
+</code></pre></div>    <!-- /#content -->
 
 <div id="footer">
     <a href="https://www.uninett.no/"><img id="ulogo" alt="notes" src="/res/uninettlogo.png" /SS></a>

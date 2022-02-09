@@ -114,21 +114,6 @@
  This document describes the \SimpleSAML\Auth\Simple API.
 This is the preferred API for integrating SimpleSAMLphp with other applications.
 </p>
-<h3>
- Note on PHP sessions and SimpleSAMLphp API calls
-</h3>
-<p>
- Some SimpleSAMLphp calls replace the current active PHP session. If you previously started a session and wish to write to it, then you must cleanup the SimpleSAMLphp session before you can write to your session. If you do not need to modify your own session, then you can leave the cleanup call out; however, forgetting to call cleanup is a common source of hard to find bugs.
-</p>
-<pre><code>  session_start();
-  // ...
-  $auth = new \SimpleSAML\Auth\Simple('default-sp');
-  $auth-&gt;isAuthenticated(); // Replaces our session with the SimpleSAMLphp one
-  // $_SESSION['key'] = 'value'; // This would save to the SimpleSAMLphp session which isn't what we want
-  SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup(); // Reverts to our PHP session
-  // Save to our session
-  $_SESSION['key'] = 'value';
-</code></pre>
 <h2>
  Constructor
 </h2>
@@ -175,7 +160,6 @@ This authentication source must exist in
  Example
 </h3>
 <pre><code>  if (!$auth-&gt;isAuthenticated()) {
-      SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup();
       /* Show login link. */
       print('&lt;a href="/login"&gt;Login&lt;/a&gt;');
   }
@@ -185,7 +169,7 @@ This authentication source must exist in
   requireAuth
  </code>
 </h2>
-<pre><code>  void requireAuth(array $params = [])
+<pre><code>  void requireAuth(array $params = array())
 </code></pre>
 <p>
  Make sure that the user is authenticated.
@@ -210,7 +194,6 @@ See the documentation for the
  Example 1
 </h3>
 <pre><code>  $auth-&gt;requireAuth();
-  SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup();
   print("Hello, authenticated user!");
 </code></pre>
 <h3>
@@ -220,11 +203,10 @@ See the documentation for the
    * Return the user to the frontpage after authentication, don't post
    * the current POST data.
    */
-  $auth-&gt;requireAuth([
+  $auth-&gt;requireAuth(array(
       'ReturnTo' =&gt; 'https://sp.example.org/',
       'KeepPost' =&gt; FALSE,
-  ]);
-  SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup();
+  ));
   print("Hello, authenticated user!");
 </code></pre>
 <h2>
@@ -232,7 +214,7 @@ See the documentation for the
   login
  </code>
 </h2>
-<pre><code>  void login(array $params = [])
+<pre><code>  void login(array $params = array())
 </code></pre>
 <p>
  Start a login operation.
@@ -319,11 +301,10 @@ This function will always start a new authentication process.
  Example
 </h3>
 <pre><code>  # Send a passive authentication request.
-  $auth-&gt;login([
+  $auth-&gt;login(array(
       'isPassive' =&gt; TRUE,
       'ErrorURL' =&gt; 'https://.../error_handler.php',
-  ]);
-  SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup();
+  ));
 </code></pre>
 <h2>
  <code>
@@ -364,7 +345,6 @@ This function never returns.
  Logout, and redirect to the specified URL.
 </p>
 <pre><code>  $auth-&gt;logout('https://sp.example.org/logged_out.php');
-  SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup();
 </code></pre>
 <h3>
  Example 2
@@ -372,17 +352,16 @@ This function never returns.
 <p>
  Same as the previous, but check the result of the logout operation afterwards.
 </p>
-<pre><code>  $auth-&gt;logout([
+<pre><code>  $auth-&gt;logout(array(
       'ReturnTo' =&gt; 'https://sp.example.org/logged_out.php',
       'ReturnStateParam' =&gt; 'LogoutState',
       'ReturnStateStage' =&gt; 'MyLogoutState',
-  ]);
-  SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup();
+  ));
 </code></pre>
 <p>
  And in logged_out.php:
 </p>
-<pre><code>  $state = \SimpleSAML\Auth\State::loadState((string)$_REQUEST['LogoutState'], 'MyLogoutState');
+<pre><code>  $state = SimpleSAML_Auth_State::loadState((string)$_REQUEST['LogoutState'], 'MyLogoutState');
   $ls = $state['saml:sp:LogoutStatus']; /* Only works for SAML SP */
   if ($ls['Code'] === 'urn:oasis:names:tc:SAML:2.0:status:Success' &amp;&amp; !isset($ls['SubCode'])) {
       /* Successful logout. */
@@ -406,10 +385,10 @@ If the user isn't authenticated, an empty array will be returned.
 <p>
  The attributes will be returned as an associative array with the name of the attribute as the key and the value as an array of one or more strings:
 </p>
-<pre><code>  [
-      'uid' =&gt; ['testuser'],
-      'eduPersonAffiliation' =&gt; ['student', 'member'],
-  ]
+<pre><code>  array(
+      'uid' =&gt; array('testuser'),
+      'eduPersonAffiliation' =&gt; array('student', 'member'),
+  )
 </code></pre>
 <h3>
  Example
@@ -447,8 +426,7 @@ See the
  Example
 </h3>
 <pre><code>  $idp = $auth-&gt;getAuthData('saml:sp:IdP');
-  $nameID = $auth-&gt;getAuthData('saml:sp:NameID')-&gt;getValue();
-  printf('You are %s, logged in from %s', htmlspecialchars($nameID), htmlspecialchars($idp));
+  print('You are logged in from: ' . htmlspecialchars($idp));
 </code></pre>
 <h2>
  <code>

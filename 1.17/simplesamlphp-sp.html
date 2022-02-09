@@ -211,6 +211,10 @@ openssl req -newkey rsa:3072 -new -x509 -days 3652 -nodes -out saml.crt -keyout 
  <code>
   metadata/saml20-idp-remote.php
  </code>
+ and
+ <code>
+  metadata/shib13-idp-remote.php
+ </code>
  .
 This is a minimal example of a
  <code>
@@ -310,13 +314,14 @@ parsed metadata and paste it with a text editor into the
 directory.
 </p>
 <p>
- If you intend to add your SP to a federation, the procedure for managing trust in federations will differ, but the common part is that you would need to provide the
+ If you intend to add your SP to a federation, the procedure for managing trust in federations differ, but the common part is
+that you would need to provide the
  <em>
   SAML 2.0 metadata of your SP
  </em>
  , and register that with the federation administration.
 You will probably be required too to consume the federation metadata periodically. Read more about
- <a href="./metarefresh/simplesamlphp-automated_metadata.html">
+ <a href="simplesamlphp-automated_metadata.html">
   automated metadata management
  </a>
  to learn more about that.
@@ -428,30 +433,6 @@ your own session after calling SimpleSAMLphp, you can do so by cleaning up the s
  If you don't cleanup SimpleSAMLphp's session and try to use $_SESSION afterwards, you won't be using your own session
 and all your data is likely to get lost or inaccessible.
 </p>
-<p>
- Note that if your application uses a
- <a href="https://www.php.net/manual/en/function.session-set-save-handler.php">
-  custom session handler
- </a>
- , SimpleSAMLphp will use it as well. This can lead to problems because SimpleSAMLphp's stand-alone web UI uses the default PHP session handlers. Therefore, you may need to unset the custom handler before making any calls to SimpleSAMLphp:
-</p>
-<pre><code>  // use custom save handler
-  session_set_save_handler($handler);
-  session_start();
-
-  // close session and restore default handler
-  session_write_close();
-  session_set_save_handler(new SessionHandler(), true);
-
-  // use SimpleSAML\Session
-  $session = \SimpleSAML\Session::getSessionFromRequest();
-  $session-&gt;cleanup();
-  session_write_close();
-
-  // back to custom save handler
-  session_set_save_handler($handler);
-  session_start();
-</code></pre>
 <h2>
  Support
 </h2>

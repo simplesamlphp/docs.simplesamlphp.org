@@ -211,6 +211,10 @@ openssl req -newkey rsa:3072 -new -x509 -days 3652 -nodes -out saml.crt -keyout 
  <code>
   metadata/saml20-idp-remote.php
  </code>
+ and
+ <code>
+  metadata/shib13-idp-remote.php
+ </code>
  .
 This is a minimal example of a
  <code>
@@ -316,7 +320,7 @@ directory.
  </em>
  , and register that with the federation administration.
 You will probably be required too to consume the federation metadata periodically. Read more about
- <a href="./metarefresh/simplesamlphp-automated_metadata.html">
+ <a href="https://github.com/simplesamlphp/simplesamlphp-module-metarefresh/blob/master/docs/simplesamlphp-automated_metadata.md">
   automated metadata management
  </a>
  to learn more about that.

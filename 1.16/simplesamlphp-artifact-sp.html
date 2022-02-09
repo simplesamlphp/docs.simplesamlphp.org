@@ -131,7 +131,7 @@ This is used for SSL client authentication when contacting the IdP.
  </code>
  commandline utility:
 </p>
-<pre><code>  openssl req -newkey rsa:3072 -new -x509 -days 3652 -nodes -out sp.example.org.crt -keyout sp.example.org.pem
+<pre><code>  openssl req -newkey rsa:2048 -new -x509 -days 3652 -nodes -out sp.example.org.crt -keyout sp.example.org.pem
 </code></pre>
 <p>
  You can then add the private key and certificate to the SP configuration.
@@ -140,12 +140,12 @@ When this is done, you can add the metadata of your SP to the IdP, and test the 
 <h2>
  Example configuration
 </h2>
-<pre><code>  'artifact-sp' =&gt; [
+<pre><code>  'artifact-sp' =&gt; array(
       'saml:SP',
       'ProtocolBinding' =&gt; 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact',
       'privatekey' =&gt; 'sp.example.org.pem',
       'certificate' =&gt; 'sp.example.org.crt',
-  ],
+  ),
 </code></pre>
 <p>
  See the

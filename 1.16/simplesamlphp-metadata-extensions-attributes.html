@@ -107,45 +107,41 @@
   </div>
  </header>
 </body><h1>
- SAML V2.0 Metadata Attribute Extensions
+ SAML V2.0 Metadata Extensions for Login and Discovery User Interface
 </h1>
 <!--
   This file is written in Markdown syntax.
   For more information about how to use the Markdown syntax, read here:
   http://daringfireball.net/projects/markdown/syntax
 -->
+<pre><code>* Author: Timothy Ace [tace@synacor.com](mailto:tace@synacor.com)
+</code></pre>
 <!-- {{TOC}} -->
 <p>
- This is a reference for the SimpleSAMLphp implementation of the
+ This is a reference for the SimpleSAMLphp implemenation of the
  <a href="http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-attribute-ext.pdf">
   SAML
 V2.0 Attribute Extensions
  </a>
- defined by OASIS. A common use case is adding entity attributes
-to the generated metadata.
+ defined by OASIS.
 </p>
 <p>
- For an IdP
+ The
  <code>
   metadata/saml20-idp-hosted.php
  </code>
  entries are used to define the
-metadata extension items; for an SP they can be added to
- <code>
-  config/authsources.php
- </code>
- .
-An example of this is:
+metadata extension items. An example of this is:
 </p>
 <pre><code>  &lt;?php
-  $metadata['entity-id-1'] = [
+  $metadata['entity-id-1'] = array(
       /* ... */
-  'EntityAttributes' =&gt; [
-    'urn:simplesamlphp:v1:simplesamlphp' =&gt; ['is', 'really', 'cool'],
-    '{urn:simplesamlphp:v1}foo'          =&gt; ['bar'],
-  ],
+  'EntityAttributes' =&gt; array(
+    'urn:simplesamlphp:v1:simplesamlphp' =&gt; array('is', 'really', 'cool'),
+    '{urn:simplesamlphp:v1}foo'          =&gt; array('bar'),
+  ),
       /* ... */
-  ];
+  );
 </code></pre>
 <p>
  The OASIS specification primarily defines how to include arbitrary
@@ -156,7 +152,7 @@ An example of this is:
  <code>
   Assertion
  </code>
- elements within the metadata for an entity.
+ elements within the metadata for an IdP.
 </p>
 <p>
  <em>
@@ -197,9 +193,9 @@ array. Each item in this array produces a separte
  </code>
  element.
 </p>
-<pre><code>  'EntityAttributes' =&gt; [
-    'urn:simplesamlphp:v1:simplesamlphp' =&gt; ['is', 'really', 'cool'],
-  ],
+<pre><code>  'EntityAttributes' =&gt; array(
+    'urn:simplesamlphp:v1:simplesamlphp' =&gt; array('is', 'really', 'cool'),
+  ),
 </code></pre>
 <p>
  This generates:
@@ -222,9 +218,9 @@ array. Each item in this array produces a separte
  attribute. This is
 specified using curly braces at the beginning of the key name:
 </p>
-<pre><code>  'EntityAttributes' =&gt; [
-    '{urn:simplesamlphp:v1}foo' =&gt; ['bar'],
-  ],
+<pre><code>  'EntityAttributes' =&gt; array(
+    '{urn:simplesamlphp:v1}foo' =&gt; array('bar'),
+  ),
 </code></pre>
 <p>
  This generates:
@@ -238,22 +234,22 @@ specified using curly braces at the beginning of the key name:
 to "urn:oasis:names:tc:SAML:2.0:attrname-format:uri".
 </p>
 <h2>
- Examples
+ Generated XML Metadata Examples
 </h2>
 <p>
  If given the following configuration...
 </p>
-<pre><code>  $metadata['https://www.example.com/saml/saml2/idp/metadata.php'] = [
+<pre><code>  $metadata['https://www.example.com/saml/saml2/idp/metadata.php'] = array(
       'host' =&gt; 'www.example.com',
       'certificate' =&gt; 'example.com.crt',
       'privatekey' =&gt; 'example.com.pem',
       'auth' =&gt; 'example-userpass',
 
-  'EntityAttributes' =&gt; [
-    'urn:simplesamlphp:v1:simplesamlphp' =&gt; ['is', 'really', 'cool'],
-    '{urn:simplesamlphp:v1}foo'          =&gt; ['bar'],
-  ],
-];
+  'EntityAttributes' =&gt; array(
+    'urn:simplesamlphp:v1:simplesamlphp' =&gt; array('is', 'really', 'cool'),
+    '{urn:simplesamlphp:v1}foo'          =&gt; array('bar'),
+  ),
+);
 </code></pre>
 <p>
  ... will generate the following XML metadata:
@@ -279,41 +275,6 @@ to "urn:oasis:names:tc:SAML:2.0:attrname-format:uri".
     &lt;ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#"&gt;
     &lt;ds:X509Data&gt;
           ...
-</code></pre>
-<p>
- An example configuration to declare Géant Data Protection Code of Conduct
-entity category support for a service provider in
- <code>
-  authsources.php
- </code>
- :
-</p>
-<pre><code>  'saml:SP' =&gt; [
-      ...
-      'EntityAttributes' =&gt; [
-          'http://macedir.org/entity-category' =&gt; [
-              '{urn:oasis:names:tc:SAML:2.0:attrname-format:uri}http://www.geant.net/uri/dataprotection-code-of-conduct/v1'
-          ]
-      ],
-      'UIInfo' =&gt;[
-              'DisplayName' =&gt; [
-                  'en' =&gt; 'English name',
-                  'es' =&gt; 'Nombre en Español',
-              ],
-              'Description' =&gt; [
-                  'en' =&gt; 'English description',
-                  'es' =&gt; 'Descripción en Español',
-              ],
-              'InformationURL' =&gt; [
-                  'en' =&gt; 'http://example.com/info/en',
-                  'es' =&gt; 'http://example.com/info/es',
-              ],
-              'PrivacyStatementURL' =&gt; [
-                  'en' =&gt; 'http://example.com/privacy/en',
-                  'es' =&gt; 'http://example.com/privacy/es',
-              ],
-      ]
-  ],
 </code></pre></div>    <!-- /#content -->
 
 <div id="footer">

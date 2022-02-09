@@ -119,11 +119,16 @@
  attribute for the user.
 </p>
 <p>
- This filter will use the contents of the attribute set by the
+ By default, this filter will use the contents of the attribute set by the
+ <code>
+  userid.attribute
+ </code>
+ metadata option as the unique user ID.
+You can also use a different attribute by setting the
  <code>
   attributename
  </code>
- option as the unique user ID.
+ option,
 </p>
 <h2>
  Parameters
@@ -133,16 +138,19 @@
   attributename
  </code>
  :   The name of the attribute we should use for the unique user identifier.
+    Optional, will use the attribute set by the
+ <code>
+  userid.attribute
+ </code>
+ metadata option by default.
 </p>
-<pre><code>  Note: only the first value of the specified attribute is being used for the generation of the identifier.
-</code></pre>
 <p>
  <code>
   nameId
  </code>
  :   Set this option to
  <code>
-  true
+  TRUE
  </code>
  to generate the attribute as in SAML 2 NameID format.
     This can be used to generate an Internet2 compatible
@@ -152,7 +160,7 @@
  attribute.
     Optional, defaults to
  <code>
-  false
+  FALSE
  </code>
  .
 </p>
@@ -160,14 +168,27 @@
  Examples
 </h2>
 <p>
+ Using the attribute from
+ <code>
+  userid.attribute
+ </code>
+ :
+</p>
+<pre><code>  'authproc' =&gt; array(
+      50 =&gt; array(
+          'class' =&gt; 'core:TargetedID',
+      ),
+  ),
+</code></pre>
+<p>
  A custom attribute:
 </p>
-<pre><code>  'authproc' =&gt; [
-      50 =&gt; [
+<pre><code>  'authproc' =&gt; array(
+      50 =&gt; array(
           'class' =&gt; 'core:TargetedID',
           'attributename' =&gt; 'eduPersonPrincipalName'
-      ],
-  ],
+      ),
+  ),
 </code></pre>
 <p>
  Internet2 compatible
@@ -177,25 +198,25 @@
  :
 </p>
 <pre><code>  /* In saml20-idp-hosted.php. */
-  $metadata['__DYNAMIC:1__'] = [
+  $metadata['__DYNAMIC:1__'] = array(
       'host' =&gt; '__DEFAULT__',
       'auth' =&gt; 'example-static',
 
-      'authproc' =&gt; [
-          60 =&gt; [
+      'authproc' =&gt; array(
+          60 =&gt; array(
               'class' =&gt; 'core:TargetedID',
-              'nameId' =&gt; true,
-          ],
-          90 =&gt; [
+              'nameId' =&gt; TRUE,
+          ),
+          90 =&gt; array(
               'class' =&gt; 'core:AttributeMap',
               'name2oid',
-          ],
-      ],
+          ),
+      ),
       'attributes.NameFormat' =&gt; 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
-      'attributeencodings' =&gt; [
+      'attributeencodings' =&gt; array(
           'urn:oid:1.3.6.1.4.1.5923.1.1.1.10' =&gt; 'raw', /* eduPersonTargetedID with oid NameFormat. */
-      ],
-  ];
+      ),
+  );
 </code></pre></div>    <!-- /#content -->
 
 <div id="footer">

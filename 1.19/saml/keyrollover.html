@@ -136,6 +136,10 @@ To do key rollover for an identity provider, you must add the new key to
  <code>
   metadata/saml20-idp-hosted.php
  </code>
+ and/or
+ <code>
+  metadata/shib13-idp-hosted.php
+ </code>
  .
 If you are changing the keys for both an service provider and identity provider at the same time, you must update both locations.
 </p>
@@ -161,7 +165,7 @@ This ensures that both those entities that use your old metadata and those that 
  </code>
  :
 </p>
-<pre><code>  'default-sp' =&gt; [
+<pre><code>  'default-sp' =&gt; array(
       'saml:SP',
       'privatekey' =&gt; 'old.pem',
       'certificate' =&gt; 'old.crt',
@@ -172,7 +176,7 @@ This ensures that both those entities that use your old metadata and those that 
       'new_certificate' =&gt; 'new.crt',
       // When new private key is passphrase protected.
       'new_privatekey_pass' =&gt; '&lt;new-secret&gt;',
-  ],
+  ),
 </code></pre>
 <p>
  In
@@ -181,7 +185,7 @@ This ensures that both those entities that use your old metadata and those that 
  </code>
  :
 </p>
-<pre><code>  $metadata['__DYNAMIC:1__'] = [
+<pre><code>  $metadata['__DYNAMIC:1__'] = array(
       'host' =&gt; '__DEFAULT__',
       'auth' =&gt; 'example-userpass',
       'privatekey' =&gt; 'old.pem',
@@ -193,7 +197,7 @@ This ensures that both those entities that use your old metadata and those that 
       'new_certificate' =&gt; 'new.crt',
       // When new private key is passphrase protected.
       'new_privatekey_pass' =&gt; '&lt;new-secret&gt;',
-  ];
+  );
 </code></pre>
 <h2>
  Distribute your new metadata
@@ -250,13 +254,13 @@ This will cause your old key to be removed from your metadata.
  </code>
  :
 </p>
-<pre><code>  'default-sp' =&gt; [
+<pre><code>  'default-sp' =&gt; array(
       'saml:SP',
       'certificate' =&gt; 'new.crt',
       'privatekey' =&gt; 'new.pem',
       // When private key is passphrase protected.
       'privatekey_pass' =&gt; '&lt;new-secret&gt;',
-  ],
+  ),
 </code></pre>
 <p>
  In
@@ -265,14 +269,14 @@ This will cause your old key to be removed from your metadata.
  </code>
  :
 </p>
-<pre><code>  $metadata['__DYNAMIC:1__'] = [
+<pre><code>  $metadata['__DYNAMIC:1__'] = array(
       'host' =&gt; '__DEFAULT__',
       'auth' =&gt; 'example-userpass',
       'certificate' =&gt; 'new.crt',
       'privatekey' =&gt; 'new.pem',
       // When private key is passphrase protected.
       'privatekey_pass' =&gt; '&lt;new-secret&gt;',
-  ];
+  );
 </code></pre>
 <h2>
  Distribute your final metadata

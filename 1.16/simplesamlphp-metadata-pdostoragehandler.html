@@ -141,10 +141,10 @@
 <p>
  Here is an example of flatfile plus PDO:
 </p>
-<pre><code>'metadata.sources' =&gt; [
-  ['type' =&gt; 'flatfile'],
-  ['type' =&gt; 'pdo'],
-],
+<pre><code>'metadata.sources' =&gt; array(
+  array('type' =&gt; 'flatfile'),
+  array('type' =&gt; 'pdo'),
+),
 </code></pre>
 <h2>
  Initializing the Database
@@ -172,7 +172,7 @@
  <code>
   __DEFAULT:1__
  </code>
- | {"host":"__DEFAULT__","privatekey":"idp.key","certificate":"idp.crt","auth":"example-ldap","identifyingAttribute":"uid"}
+ | {"host":"__DEFAULT__","privatekey":"idp.key","certificate":"idp.crt","auth":"example-ldap","userid.attribute":"uid"}
 </p>
 <p>
  Another example is the saml20_idp_remote table:

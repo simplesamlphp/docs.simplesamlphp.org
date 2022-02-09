@@ -153,10 +153,28 @@ with different IP address/port combinations.
  Setting up the authX509 module
 </h2>
 <p>
- The first thing you need to do is to enable the module:
+ The first thing you need to do is to enable the module: in
+ <code>
+  config.php
+ </code>
+ , search for the
+ <code>
+  module.enable
+ </code>
+ key and set
+ <code>
+  authX509
+ </code>
+ to true:
 </p>
-<pre><code>  touch modules/authX509/enable
-</code></pre>
+<p>
+ <code>
+  'module.enable' =&gt; [
+         'authX509' =&gt; true,
+         …
+    ],
+ </code>
+</p>
 <p>
  Then you must add it as an authentication source. Here is an
 example authsources.php entry:

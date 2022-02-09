@@ -166,7 +166,33 @@ short introduction to what you can do with them:
 directories and files:
 </p>
 <p>
- locales
+ default-disable
+:   The presence of this file indicates that the module is disabled
+    by default. It can be enabled using the
+ <code>
+  module.enable
+ </code>
+ option in
+ <code>
+  config.php
+ </code>
+ .
+</p>
+<p>
+ default-enable
+:   The presence of this file indicates that the module is enabled
+    by default. It can be disabled using the
+ <code>
+  module.enable
+ </code>
+ option in
+ <code>
+  config.php
+ </code>
+ .
+</p>
+<p>
+ dictionaries
 :   This directory contains dictionaries which belong to this
     module. To use a dictionary stored in a module, the extended tag
     names can be used:
@@ -184,7 +210,7 @@ directories and files:
  </code>
  in
  <code>
-  modules/example/locales/&lt;lang&gt;/login.po
+  modules/example/dictionaries/login.php
  </code>
  .
 </p>
@@ -196,7 +222,7 @@ directories and files:
  as the default
     dictionary when instantiating the
  <code>
-  \SimpleSAML\XHTML\Template
+  SimpleSAML_XHTML_Template
  </code>
  class.
 </p>
@@ -211,7 +237,7 @@ directories and files:
 :   This directory contains classes which belong to this module.
     All classes must be named in the following pattern:
  <code>
-  \SimpleSAML\Module\&lt;module name&gt;\&lt;class name&gt;
+  sspmod_&lt;module name&gt;_&lt;class name&gt;
  </code>
  When looking up the filename of
     a class, SimpleSAMLphp will search for
@@ -228,7 +254,7 @@ directories and files:
 <p>
  :   Thus, if SimpleSAMLphp needs to load a class named
  <code>
-  \SimpleSAML\Module\example\Auth\Source\Example
+  sspmod_example_Auth_Source_Example
  </code>
  , it will load the file named
  <code>
@@ -245,7 +271,7 @@ directories and files:
  </code>
  as the template file in the constructor of
  <code>
-  \SimpleSAML\XHTML\Template
+  SimpleSAML_XHTML_Template
  </code>
  . For example,
  <code>
@@ -400,16 +426,16 @@ authentication source.
  A typical configuration entry for an authentication source looks like 
 this:
 </p>
-<pre><code>  'example-static' =&gt; [
+<pre><code>  'example-static' =&gt; array(
     /* This maps to modules/exampleauth/lib/Auth/Source/Static.php */
-    'exampleauth:StaticSource',
+    'exampleauth:Static',
 
     /* The following is configuration which is passed on to
-     * the exampleauth:StaticSource authentication source. */
+     * the exampleauth:Static authentication source. */
     'uid' =&gt; 'testuser',
-    'eduPersonAffiliation' =&gt; ['member', 'employee'],
-    'cn' =&gt; ['Test User'],
-  ],
+    'eduPersonAffiliation' =&gt; array('member', 'employee'),
+    'cn' =&gt; array('Test User'),
+  ),
 </code></pre>
 <p>
  To use this authentication source in a SAML 2.0 IdP, set the
@@ -422,12 +448,12 @@ this:
  </code>
  :
 </p>
-<pre><code>  '__DYNAMIC:1__' =&gt; [
+<pre><code>  '__DYNAMIC:1__' =&gt; array(
     'host' =&gt; '__DEFAULT__',
     'privatekey' =&gt; 'example.org.pem',
     'certificate' =&gt; 'example.org.crt',
     'auth' =&gt; 'example-static',
-  ],
+  ),
 </code></pre>
 <h3>
  Creating authentication sources

@@ -534,21 +534,12 @@ function named
 passed by reference, which allows each hook to update that argument.
 </p>
 <p>
- There is currently a single user of the hook interface - the front 
-page. The front page defines a hook named
+ For an example of hook usage, see the cron module, which adds a link
+to its information page in the Configuration section of the admin
+module, through the file
  <code>
-  frontpage
+  modules/cron/hooks/hook_configpage.php
  </code>
- , which allows 
-modules to add things to the different sections on the front page. For 
-an example of this, see the
- <code>
-  modules/modinfo/hooks/hook_frontpage.php
- </code>
- file in the
- <a href="https://github.com/simplesamlphp/simplesamlphp-module-modinfo">
-  modinfo module
- </a>
  .
 </p></div>    <!-- /#content -->
 

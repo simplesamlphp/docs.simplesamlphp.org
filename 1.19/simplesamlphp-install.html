@@ -147,7 +147,7 @@ repository
   A web server capable of executing PHP scripts.
  </li>
  <li>
-  PHP version &gt;= 7.2.0.
+  PHP version &gt;= 7.1.0.
  </li>
  <li>
   Support for the following PHP extensions:
@@ -580,7 +580,7 @@ look like this:
       location ^~ /simplesaml {
           alias /var/simplesamlphp/www;
 
-          location ~^(?&lt;prefix&gt;/simplesaml)(?&lt;phpfile&gt;.+?\.php)(?&lt;pathinfo&gt;/.*)?$ {
+          location ~ ^(?&lt;prefix&gt;/simplesaml)(?&lt;phpfile&gt;.+?\.php)(?&lt;pathinfo&gt;/.*)?$ {
               include          fastcgi_params;
               fastcgi_pass     $fastcgi_pass;
               fastcgi_param SCRIPT_FILENAME $document_root$phpfile;
@@ -823,23 +823,43 @@ can do that in the configuration:
  those that you want to disable.
 </p>
 <p>
- Prior to SSP V2 you could enable or disable modules by setting empty files with names (
+ Alternatively, you can enable or disable modules by setting empty files with given names in the module's root 
+directory. For example, in order to enable the
+ <em>
+  consent
+ </em>
+ module:
+</p>
+<p>
+ <code>
+  cd modules/consent
+    touch enable
+ </code>
+</p>
+<p>
+ If you later want to disable the module, you can rename the
  <code>
   enable
  </code>
- ,
+ file to
  <code>
   disable
  </code>
- ,
+ .
+</p>
+<p>
  <code>
-  default-enable
+  cd modules/consent
+    mv enable disable
  </code>
- ) in the module's root directory. You need to now use the
- <code>
-  module.enable
- </code>
- config option.
+</p>
+<p>
+ This is the traditional way of enabling and disabling modules, but it is
+ <strong>
+  deprecated
+ </strong>
+ . Please do not rely on this in
+new installations of the software.
 </p>
 <h2>
  The SimpleSAMLphp installation web page
@@ -941,7 +961,7 @@ in a separate document.
   </ul>
  </li>
  <li>
-  <a href="./metarefresh/simplesamlphp-automated_metadata.html">
+  <a href="https://github.com/simplesamlphp/simplesamlphp-module-metarefresh/blob/master/docs/simplesamlphp-automated_metadata.md">
    Automated Metadata Management
   </a>
  </li>

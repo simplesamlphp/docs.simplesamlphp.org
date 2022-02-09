@@ -112,7 +112,7 @@
  </code>
 </h1>
 <p>
- This is a filter which makes it possible to run arbitrary PHP code to modify the attributes or state of an user.
+ This is a filter which makes it possible to run arbitrary PHP code to modify the attributes of an user.
 </p>
 <h2>
  Parameters
@@ -132,29 +132,13 @@
  <code>
   code
  </code>
- :   The PHP code that should be run. This code will have two variables available:
-</p>
-<ul>
- <li>
-  <p>
-   <code>
-    $attributes
-   </code>
-   .
+ :   The PHP code that should be run. This code will have only one variable available:
+ <code>
+  $attributes
+ </code>
+ .
     This is an associative array of attributes, and can be modified to add or remove attributes.
-  </p>
- </li>
- <li>
-  <p>
-   <code>
-    $state
-   </code>
-   .
-    This is an associative array of request state. It can be modified to adjust data related to the authentication
-    such as desired NameId, requested Attributes, authnContextRef and many more.
-  </p>
- </li>
-</ul>
+</p>
 <h2>
  Examples
 </h2>
@@ -169,7 +153,7 @@
  </code>
  attribute:
 </p>
-<pre><code>  10 =&gt; [
+<pre><code>  10 =&gt; array(
       'class' =&gt; 'core:PHP',
       'code' =&gt; '
           if (empty($attributes["uid"])) {
@@ -178,29 +162,21 @@
 
           $uid = $attributes["uid"][0];
           $mail = $uid . "@example.net";
-          $attributes["mail"] = [$mail];
+          $attributes["mail"] = array($mail);
       ',
-  ],
+  ),
 </code></pre>
 <p>
  Create a random number variable:
 </p>
-<pre><code>  10 =&gt; [
+<pre><code>  10 =&gt; array(
       'class' =&gt; 'core:PHP',
       'code' =&gt; '
-          $attributes["random"] = [
+          $attributes["random"] = array(
               (string)rand(),
-          ];
+          );
       ',
-  ],
-</code></pre>
-<p>
- Force a specific NameIdFormat. Useful if an SP misbehaves and requests (or publishes) an incorrect NameId
-</p>
-<pre><code>  90 =&gt; [
-       'class' =&gt; 'core:PHP',
-       'code' =&gt; '$state["saml:NameIDFormat"] = ["Format" =&gt; "urn:oasis:names:tc:SAML:2.0:nameid-format:transient", "AllowCreate" =&gt; true];'
-  ],
+  ),
 </code></pre></div>    <!-- /#content -->
 
 <div id="footer">

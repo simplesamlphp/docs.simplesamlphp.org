@@ -139,7 +139,7 @@
 $db = \SimpleSAML\Database::getInstance($config);
 </code></pre>
 <p>
- That will create a new instance of the database, separate from the global instance, specific to the configuration defined in $myconfigarray. If you are going to specify an alternate config, your configuration array must contain the same keys that exist in the primary config (database.dsn, database.username, database.password, database.prefix, etc).
+ That will create a new instance of the database, separate from the global instance, specific to the configuration defined in $myconfigarray. If you are going to specify an alternate config, your configuration array must contain the same keys that exist in the master config (database.dsn, database.username, database.password, database.prefix, etc).
 </p>
 <h2>
  Database Prefix
@@ -162,7 +162,7 @@ $db = \SimpleSAML\Database::getInstance($config);
  Writing to The Database
 </h3>
 <p>
- Since the database class allows administrators to configure primary and secondary database servers, the write function will always use the primary database connection.
+ Since the database class allows administrators to configure master and slave database servers, the write function will always use the master database connection.
 </p>
 <p>
  The write function takes 2 parameters: SQL, params.
@@ -176,7 +176,7 @@ $values = [
 $query = $db-&gt;write("INSERT INTO $table (id, data) VALUES (:id, :data)", $values);
 </code></pre>
 <p>
- The values specified in the $values array will be bound to the placeholders and will be executed on the primary. By default, values are binded as PDO::PARAM_STR. If you need to override this, you can specify it in the values array.
+ The values specified in the $values array will be bound to the placeholders and will be executed on the master. By default, values are binded as PDO::PARAM_STR. If you need to override this, you can specify it in the values array.
 </p>
 <pre><code>$table = $db-&gt;applyPrefix("test");
 $values = [
@@ -200,7 +200,7 @@ $query = $db-&gt;write("CREATE TABLE IF NOT EXISTS $table (id INT(16) NOT NULL, 
  Reading The Database
 </h3>
 <p>
- Since the database class allows administrators to configure primary and secondary database servers, the read function will randomly select a secondary server to query. If no secondaries are configured, it will read from the primary.
+ Since the database class allows administrators to configure master and slave database servers, the read function will randomly select a slave server to query. If no slaves are configured, it will read from the master.
 </p>
 <p>
  The read function takes 2 parameters: SQL, params.
@@ -213,7 +213,7 @@ $values = [
 $query = $db-&gt;read("SELECT * FROM $table WHERE id = :id", $values);
 </code></pre>
 <p>
- The values specified in the $values array will be bound to the placeholders and will be executed on the selected secondary. By default, values are binded as PDO::PARAM_STR. If you need to override this, you can specify it in the values array.
+ The values specified in the $values array will be bound to the placeholders and will be executed on the selected slave. By default, values are binded as PDO::PARAM_STR. If you need to override this, you can specify it in the values array.
 </p>
 <pre><code>$table = $db-&gt;applyPrefix("test");
 $values = [

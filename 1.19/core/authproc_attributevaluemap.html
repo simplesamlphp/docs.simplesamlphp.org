@@ -171,19 +171,19 @@ The '
  </code>
  to replace them).
 </p>
-<pre><code>  'authproc' =&gt; [
-      50 =&gt; [
+<pre><code>  'authproc' =&gt; array(
+      50 =&gt; array(
           'class' =&gt; 'core:AttributeValueMap',
           'sourceattribute' =&gt; 'memberOf',
           'targetattribute' =&gt; 'eduPersonAffiliation',
-          'values' =&gt; [
-              'student' =&gt; [
+          'values' =&gt; array(
+              'student' =&gt; array(
                   'cn=student,o=some,o=organization,dc=org',
                   'cn=student,o=other,o=organization,dc=org',
-              ],
-          ],
-      ],
-  ],
+              ),
+          ),
+      ),
+  )
 </code></pre>
 <h3>
  Multiple assignments
@@ -207,31 +207,31 @@ The '
  </code>
  attribute.
 </p>
-<pre><code>  'authproc' =&gt; [
-      50 =&gt; [
+<pre><code>  'authproc' =&gt; array(
+      50 =&gt; array(
           'class' =&gt; 'core:AttributeValueMap',
           'sourceattribute' =&gt; 'memberOf',
           'targetattribute' =&gt; 'eduPersonAffiliation',
-          'values' =&gt; [
-              'student' =&gt; [
+          'values' =&gt; array(
+              'student' =&gt; array(
                   'cn=student,o=some,o=organization,dc=org',
                   'cn=student,o=other,o=organization,dc=org',
-              ],
-              'employee' =&gt; [
+              ),
+              'employee' =&gt; array(
                   'cn=employees,o=some,o=organization,dc=org',
                   'cn=employee,o=other,o=organization,dc=org',
                   'cn=workers,o=any,o=organization,dc=org',
-              ],
-              'both' =&gt; [
+              ),
+              'both' =&gt; array(
                   'cn=student,o=some,o=organization,dc=org',
                   'cn=student,o=other,o=organization,dc=org',
                   'cn=employees,o=some,o=organization,dc=org',
                   'cn=employee,o=other,o=organization,dc=org',
                   'cn=workers,o=any,o=organization,dc=org',
-              ],
-          ],
-      ],
-  ],
+              ),
+          ),
+      ),
+  )
 </code></pre>
 <h3>
  Replace and Keep
@@ -247,26 +247,26 @@ The '
  </code>
  ' attribute.
 </p>
-<pre><code>  'authproc' =&gt; [
-      50 =&gt; [
+<pre><code>  'authproc' =&gt; array(
+      50 =&gt; array(
           'class' =&gt; 'core:AttributeValueMap',
           'sourceattribute' =&gt; 'groups',
           'targetattribute' =&gt; 'affiliation',
           '%replace',
           '%keep',
-          'values' =&gt; [
-              'student' =&gt; [
+          'values' =&gt; array(
+              'student' =&gt; array(
                   'cn=student,o=some,o=organization,dc=org',
                   'cn=student,o=other,o=organization,dc=org',
-              ],
-              'employee' =&gt; [
+              ),
+              'employee' =&gt; array(
                   'cn=employees,o=some,o=organization,dc=org',
                   'cn=employee,o=other,o=organization,dc=org',
                   'cn=workers,o=any,o=organization,dc=org',
-              ],
-          ],
-      ],
-  ],
+              ),
+          ),
+      ),
+  )
 </code></pre></div>    <!-- /#content -->
 
 <div id="footer">

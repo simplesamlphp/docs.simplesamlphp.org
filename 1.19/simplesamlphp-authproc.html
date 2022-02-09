@@ -159,9 +159,9 @@
 </p>
 <pre><code>* Globally in `config.php`
 * On the SP: Specific for only the SP in `authsources.php`
-* On the SP: Specific for only one remote IdP in `saml20-idp-remote`
-* On the IdP: Specific for only one hosted IdP in `saml20-idp-hosted`
-* On the IdP: Specific for only one remote SP in `saml20-sp-remote`
+* On the SP: Specific for only one remote IdP in `saml20-idp-remote` or `shib13-idp-remote`
+* On the IdP: Specific for only one hosted IdP in `saml20-idp-hosted` or `shib13-idp-hosted`
+* On the IdP: Specific for only one remote SP in `saml20-sp-remote` or `shib13-sp-remote`
 </code></pre>
 <p>
  The configuration of
@@ -406,6 +406,14 @@
    </code>
   </a>
   : Change the name of the attributes.
+ </li>
+ <li>
+  <a href="./core/authproc_attributerealm.html">
+   <code>
+    core:AttributeRealm
+   </code>
+  </a>
+  : (deprecated) Create an attribute with the realm of the user.
  </li>
  <li>
   <a href="./core/authproc_attributevaluemap.html">

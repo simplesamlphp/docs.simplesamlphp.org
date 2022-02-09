@@ -113,15 +113,7 @@
  These are some notes about running SimpleSAMLphp from the repository.
 </p>
 <h2>
- Prerequisites
-</h2>
-<ul>
- <li>
-  NodeJS version &gt;= 10.0.
- </li>
-</ul>
-<h2>
- Installing from git
+ Installing from github
 </h2>
 <p>
  Go to the directory where you want to install SimpleSAMLphp:
@@ -142,19 +134,13 @@
 </code></pre>
 <p>
  Install the external dependencies with Composer (you can refer to
- <a href="https://getcomposer.org/">
+ <a href="http://getcomposer.org/">
   getcomposer.org
  </a>
  to get detailed
-instructions on how to install Composer itself) and npm:
+instructions on how to install Composer itself):
 </p>
 <pre><code>  php composer.phar install
-  npm install
-</code></pre>
-<p>
- Build the assets:
-</p>
-<pre><code>  npm run build
 </code></pre>
 <h2>
  Upgrading
@@ -171,12 +157,34 @@ instructions on how to install Composer itself) and npm:
   git pull origin master
 </code></pre>
 <p>
- Install or upgrade the external dependencies with Composer and npm:
+ Install or upgrade the external dependencies with Composer (
+ <a href="http://getcomposer.org/">
+  get composer
+ </a>
+ ):
 </p>
 <pre><code>  php composer.phar install
-  npm install
-  npm run build
-</code></pre></div>    <!-- /#content -->
+</code></pre>
+<h2>
+ Migrating from Subversion
+</h2>
+<p>
+ If you installed SimpleSAMLphp from subversion, and want to keep updated on the development, you will have to migrate
+your installation to git. First, follow the steps to get a fresh install from github in a different directory. Skip the
+steps regarding configuration and metadata initialization, and copy all the files you might have modified instead (not
+only configuration and metadata, but also any custom modules or templates). Finally, proceed to install Composer and
+install all the dependencies with it. You may want to add all your custom files to the '.gitignore' file.
+</p>
+<p>
+ If you really want to use subversion instead of git, or it is impossible for you to migrate (you cannot install git, for
+example), you might want to do a fresh install like the one described here, but using github's subversion interface.
+Refer to
+ <a href="https://help.github.com/articles/support-for-subversion-clients">
+  github's documentation
+ </a>
+ for detailed
+instructions on how to do that.
+</p></div>    <!-- /#content -->
 
 <div id="footer">
     <a href="https://www.uninett.no/"><img id="ulogo" alt="notes" src="/res/uninettlogo.png" /SS></a>

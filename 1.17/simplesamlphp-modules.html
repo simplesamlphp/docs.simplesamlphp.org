@@ -166,7 +166,33 @@ short introduction to what you can do with them:
 directories and files:
 </p>
 <p>
- locales
+ default-disable
+:   The presence of this file indicates that the module is disabled
+    by default. It can be enabled using the
+ <code>
+  module.enable
+ </code>
+ option in
+ <code>
+  config.php
+ </code>
+ .
+</p>
+<p>
+ default-enable
+:   The presence of this file indicates that the module is enabled
+    by default. It can be disabled using the
+ <code>
+  module.enable
+ </code>
+ option in
+ <code>
+  config.php
+ </code>
+ .
+</p>
+<p>
+ dictionaries
 :   This directory contains dictionaries which belong to this
     module. To use a dictionary stored in a module, the extended tag
     names can be used:
@@ -184,7 +210,7 @@ directories and files:
  </code>
  in
  <code>
-  modules/example/locales/&lt;lang&gt;/login.po
+  modules/example/dictionaries/login.php
  </code>
  .
 </p>
@@ -402,10 +428,10 @@ this:
 </p>
 <pre><code>  'example-static' =&gt; [
     /* This maps to modules/exampleauth/lib/Auth/Source/Static.php */
-    'exampleauth:StaticSource',
+    'exampleauth:Static',
 
     /* The following is configuration which is passed on to
-     * the exampleauth:StaticSource authentication source. */
+     * the exampleauth:Static authentication source. */
     'uid' =&gt; 'testuser',
     'eduPersonAffiliation' =&gt; ['member', 'employee'],
     'cn' =&gt; ['Test User'],

@@ -141,24 +141,24 @@ also be used by specifying the file with the
 <p>
  Attribute maps embedded as parameters:
 </p>
-<pre><code>  'authproc' =&gt; [
-      50 =&gt; [
+<pre><code>  'authproc' =&gt; array(
+      50 =&gt; array(
           'class' =&gt; 'core:AttributeMap',
           'mail' =&gt; 'email',
           'uid' =&gt; 'user'
-          'cn' =&gt; ['name', 'displayName'],
-      ],
-  ],
+          'cn' =&gt; array('name', 'displayName'),
+      ),
+  ),
 </code></pre>
 <p>
  Attribute map in separate file:
 </p>
-<pre><code>  'authproc' =&gt; [
-      50 =&gt; [
+<pre><code>  'authproc' =&gt; array(
+      50 =&gt; array(
           'class' =&gt; 'core:AttributeMap',
           'name2oid',
-      ],
-  ],
+      ),
+  ),
 </code></pre>
 <p>
  This filter will use the map file from
@@ -170,12 +170,12 @@ also be used by specifying the file with the
 <p>
  Attribute map in a file contained in a module:
 </p>
-<pre><code>  'authproc' =&gt; [
-      50 =&gt; [
+<pre><code>  'authproc' =&gt; array(
+      50 =&gt; array(
           'class' =&gt; 'core:AttributeMap',
           'module:src2dst'
-      ],
-  ],
+      ),
+  ),
 </code></pre>
 <p>
  This filter will use the map file from
@@ -187,13 +187,13 @@ also be used by specifying the file with the
 <p>
  Duplicate attributes based on a map file:
 </p>
-<pre><code>  'authproc' =&gt; [
-      50 =&gt; [
+<pre><code>  'authproc' =&gt; array(
+      50 =&gt; array(
           'class' =&gt; 'core:AttributeMap',
           'name2urn', 'name2oid',
           '%duplicate',
-      ],
-  ],
+      ),
+  ),
 </code></pre></div>    <!-- /#content -->
 
 <div id="footer">

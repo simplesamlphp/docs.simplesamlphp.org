@@ -1,0 +1,591 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Language" content="en" />
+
+	<!-- JQuery -->
+	<!-- 
+	<script type="text/javascript" src="/res/js/jquery.js"></script>
+	<script type="text/javascript" src="/res/js/jquery-ui.js"></script>
+	-->
+
+	<style>
+	  mark {
+        background: orange;
+        color: black;
+      }
+    </style>  
+
+	
+	<!-- Foodle: CSS -->	
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/js/uitheme/jquery-ui-themeroller.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/style.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/layout.css" /> 
+
+	<title>SimpleSAMLphp Documentation</title> 
+</head>
+
+
+
+
+
+<body>
+ <!-- Red logo header -->
+ <header>
+  <div id="header">
+   <div class="right">
+    <form action="https://www.google.com/cse" method="get" style="margin-top: 2.5rem; margin-right: 2rem">
+     <input name="cx" type="hidden" value="004202914224971217557:8ks4jjstupq"/>
+     <input name="siteurl" type="hidden" value="www.google.com/cse/home?cx=004202914224971217557:8ks4jjstupq"/>
+     <input name="adkw" type="hidden" value="AELymgVJ6Sk-kOvUjbxvgShTLwiFlma2evFuVCh0r8q23vn_4eVnkcdnPfbgMvYUTpJpVlb-KkGAKkbn0i-AlWHsVRR9O0J4CNb6cXFkEKRdjXxsC_NlVD4"/>
+     <input name="q" placeholder="Search" type="search" value=""/>
+    </form>
+   </div>
+   <div class="v-center logo-header">
+    <div id="logo">
+     <a href="https://simplesamlphp.github.io" style="color: #fff; text-decoration: none">
+      <span class="simple">
+       Simple
+      </span>
+      <span class="saml">
+       SAML
+      </span>
+      <span class="simple">
+       php
+      </span>
+     </a>
+    </div>
+   </div>
+  </div>
+  <!-- Grey header bar below -->
+  <nav>
+   <div id="headerbar" style="clear: both">
+    <p id="breadcrumb">
+     <a href="https://simplesamlphp.github.io">
+      Home
+     </a>
+     » Documentation
+    </p>
+    <div class="mtoolbar">
+     <div class="menuitem first">
+      <a href="./../latest/index.html">
+       latest
+      </a>
+     </div>
+     <div class="menuitem">
+      <a href="./../1.19/index.html">
+       1.19
+      </a>
+     </div>
+     <div class="menuitem">
+      <a href="./../1.18/index.html">
+       1.18
+      </a>
+     </div>
+     <div class="menuitem">
+      <a href="./../1.17/index.html">
+       1.17
+      </a>
+     </div>
+     <div class="menuitem">
+      <a href="./../1.16/index.html">
+       1.16
+      </a>
+     </div>
+     <div class="menuitem last">
+      <a href="./../contributed_modules.html">
+       Contributed modules
+      </a>
+     </div>
+    </div>
+    <br style="height: 0px; clear: both"/>
+   </div>
+   <!-- /#headerbar -->
+  </nav>
+  <div id="content">
+  </div>
+ </header>
+</body><h1>
+ Consent module
+</h1>
+<!-- {{TOC}} -->
+<p>
+ The consent module is implemented as an Authentication Processing Filter. That 
+means it can be configured in the global config.php file or the SP remote or 
+IdP hosted metadata.
+</p>
+<p>
+ It is recommended to run the consent module at the IdP, and configure the 
+filter to run after all attribute mangling filters have completed, to show the 
+user the exact same attributes that are sent to the SP.
+</p>
+<pre><code>* [Read more about processing filters in SimpleSAMLphp](simplesamlphp-authproc)
+</code></pre>
+<h2>
+ How to setup the consent module
+</h2>
+<p>
+ In order to generate the privacy preserving hashes in the consent module, you 
+need to name one attribute that is always available and that is unique to all 
+users. An example of such an attribute is eduPersonPrincipalName.
+</p>
+<p>
+ In your
+ <code>
+  saml20-idp-hosted.php
+ </code>
+ add the name of the user ID attribute:
+</p>
+<pre><code>'userid.attribute' =&gt; 'uid',
+</code></pre>
+<p>
+ If the attribute defined above is not available for a user, an error message 
+will be shown, and the user will not be allowed through the filter. So make 
+sure that you select an attribute that is available to all users.
+</p>
+<p>
+ Next you need to enable the consent module; touch an
+ <code>
+  enable
+ </code>
+ file, in the
+consent module:
+</p>
+<pre><code>  touch modules/consent/enable
+</code></pre>
+<p>
+ The simplest way to setup the consent module is to not use any storage at 
+all. This means that the user will always be asked to give consent each time 
+the user logs in.
+</p>
+<p>
+ Example:
+</p>
+<pre><code>  90 =&gt; array(
+      'class' =&gt; 'consent:Consent',
+  ),
+</code></pre>
+<h2>
+ Using storage
+</h2>
+<p>
+ The consent module is shipped with two storage options, Cookie and Database.
+</p>
+<h3>
+ Using cookies as storage
+</h3>
+<p>
+ In order to use a storage backend, you need to set the
+ <code>
+  store
+ </code>
+ option. To use
+cookies as storage you need to set the
+ <code>
+  store
+ </code>
+ option to
+ <code>
+  consent:Cookie
+ </code>
+ .
+</p>
+<p>
+ Example:
+</p>
+<pre><code>90 =&gt; array(
+  'class'   =&gt; 'consent:Consent', 
+  'store'   =&gt; 'consent:Cookie', 
+),
+</code></pre>
+<h3>
+ Using a database as storage
+</h3>
+<p>
+ In order to use a database backend storage, you first need to setup the
+database.
+</p>
+<p>
+ Here is the initialization SQL script:
+</p>
+<pre><code>CREATE TABLE consent (
+  consent_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  usage_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  hashed_user_id VARCHAR(80) NOT NULL,
+  service_id VARCHAR(255) NOT NULL,
+  attribute VARCHAR(80) NOT NULL,
+  UNIQUE (hashed_user_id, service_id)
+);
+</code></pre>
+<p>
+ The
+ <code>
+  consent:Database
+ </code>
+ backend storage has the following options:
+</p>
+<p>
+ <code>
+  class
+ </code>
+ :   Must be set to
+ <code>
+  consent:Database
+ </code>
+ .
+</p>
+<p>
+ <code>
+  dsn
+ </code>
+ :   Data Source Name must comply to the syntax for the PHP PDO layer.
+</p>
+<p>
+ <code>
+  username
+ </code>
+ :   Username for the database user to be used for the connection.
+</p>
+<p>
+ <code>
+  password
+ </code>
+ :   Password for the database user used for the connection.
+</p>
+<p>
+ <code>
+  table
+ </code>
+ :   Name of the table used for storing the consents. This option is optional
+and defaults to
+ <code>
+  consent
+ </code>
+ .
+</p>
+<p>
+ <code>
+  timeout
+ </code>
+ :   The number of seconds to wait for a connection to the database server. This option is optional. If unset, it uses the default from the database-driver.
+</p>
+<p>
+ Example config using PostgreSQL database:
+</p>
+<pre><code>  90 =&gt; array(
+      'class' =&gt; 'consent:Consent', 
+      'store' =&gt; array(
+          'consent:Database', 
+          'dsn' =&gt; 'pgsql:host=sql.example.org;dbname=consent',
+          'username' =&gt; 'simplesaml',
+          'password' =&gt; 'sdfsdf',
+      ),
+  ),
+</code></pre>
+<p>
+ Example config using MySQL database:
+</p>
+<pre><code>  90 =&gt; array(
+      'class' =&gt; 'consent:Consent', 
+      'store' =&gt; array(
+          'consent:Database', 
+          'dsn' =&gt; 'mysql:host=db.example.org;dbname=simplesaml',
+          'username' =&gt; 'simplesaml',
+          'password' =&gt; 'sdfsdf',
+      ),
+  ),
+</code></pre>
+<h2>
+ Options
+</h2>
+<p>
+ The following options can be used when configuring the Consent module:
+</p>
+<p>
+ <code>
+  includeValues
+ </code>
+ :   Boolean value that indicates whether the values of the attributes should be 
+    used in calculating the unique hashes that identifies the consent. If 
+    includeValues is set and the value of an attribute changes, then the 
+    consent becomes invalid. This option is optional and defaults to FALSE.
+</p>
+<p>
+ <code>
+  checked
+ </code>
+ :   Boolean value that indicates whether the "Remember" consent checkbox is
+    checked by default. This option is optional and defaults to FALSE.
+</p>
+<p>
+ <code>
+  focus
+ </code>
+ :   Indicates whether the "Yes" or "No" button is in focus by default. This
+    option is optional and can take the value 'yes' or 'no' as strings. If 
+    omitted neither will receive focus.
+</p>
+<p>
+ <code>
+  store
+ </code>
+ :   Configuration of the Consent storage backend. The store option is given in 
+    the format
+ <module>
+  :
+  <class>
+   and refers to the class 
+    \SimpleSAML\Module\
+   <module>
+    \Consent\Store\
+    <class>
+     . The consent module comes with two 
+    built in storage backends: 'consent:Cookie' and 'consent:Database'. See 
+    the separate section on setting up consent using different storage methods. 
+    This option is optional. If the option is not set, then the user is asked to 
+    consent, but the consent is not saved.
+    </class>
+   </module>
+  </class>
+ </module>
+</p>
+<p>
+ <code>
+  hiddenAttributes
+ </code>
+ :   Whether the value of the attributes should be hidden. Set to an array of
+    the attributes that should have their value hidden. Default behaviour is that 
+    all attribute values are shown.
+</p>
+<p>
+ <code>
+  attributes.exclude
+ </code>
+ :   Allows certain attributes to be excluded from the attribute hash when
+ <code>
+  includeValues
+ </code>
+ is
+ <code>
+  true
+ </code>
+ (and as a side effect, to be hidden from display
+    as
+ <code>
+  hiddenAttributes
+ </code>
+ does). Set to an array of the attributes that should
+    be excluded. Default behaviour is to include all values in the hash.
+</p>
+<p>
+ <code>
+  showNoConsentAboutService
+ </code>
+ :   Whether we will show a link to more information about the service from the
+    no consent page. Defaults to
+ <code>
+  true
+ </code>
+ .
+</p>
+<h2>
+ External options
+</h2>
+<p>
+ The following options can be set in other places in SimpleSAMLphp:
+</p>
+<p>
+ <code>
+  privacypolicy
+ </code>
+ :   This is an absolute URL for where a user can find a privacy policy for the SP.
+    If set, this will be shown on the consent page. %SPENTITYID% in the URL 
+    will be replaced with the entityID of the service provider.
+</p>
+<pre><code>  This option can be set in 
+  [SP-remote metadata](./simplesamlphp-reference-sp-remote) and in 
+  [IdP-hosted metadata](./simplesamlphp-reference-idp-hosted). The entry in 
+  the SP-remote metadata overrides the option in the IdP-hosted metadata.
+</code></pre>
+<p>
+ <code>
+  consent.disable
+ </code>
+ :   Disable consent for a set of services. See section
+ <code>
+  Disabling consent
+ </code>
+ .
+</p>
+<p>
+ <code>
+  userid.attribute
+ </code>
+ :   Unique identifier that is released for all users. See section
+ <code>
+  Configure
+    the user ID
+ </code>
+ .
+</p>
+<h2>
+ Disabling consent
+</h2>
+<p>
+ Consent can be disabled either in the IdP metadata or in the SP metadata.
+To disable consent for one or more SPs for a given IdP, add the
+ <code>
+  consent.disable
+ </code>
+ -option to the IdP metadata. To disable consent for one or
+more IdPs for a given SP, add the
+ <code>
+  consent.disable
+ </code>
+ -option to the SP metadata.
+</p>
+<h3>
+ Examples
+</h3>
+<p>
+ Disable consent for a given IdP:
+</p>
+<pre><code>  $metadata['https://idp.example.org/'] = array(
+      [...],
+      'consent.disable' =&gt; TRUE,
+  );
+</code></pre>
+<p>
+ Disable consent for some SPs connected to a given IdP:
+</p>
+<pre><code>  $metadata['https://idp.example.org/'] = array(
+      [...],
+      'consent.disable' =&gt; array(
+          'https://sp1.example.org/',
+          'https://sp2.example.org/',
+      ),
+  );
+</code></pre>
+<p>
+ Disable consent for a given SP:
+</p>
+<pre><code>  $metadata['https://sp.example.org'] = array(
+      [...]
+      'consent.disable' =&gt; TRUE,
+  ),
+</code></pre>
+<p>
+ Disable consent for some IdPs for a given SP:
+</p>
+<pre><code>  $metadata['https://sp.example.org'] = array(
+      [...]
+      'consent.disable' =&gt; array(
+          'https://idp1.example.org/',
+          'https://idp2.example.org/',
+      ),
+  ),
+</code></pre>
+<h3>
+ Regular expression support
+</h3>
+<p>
+ You can use regular expressions to evaluate the entityId of either the IdP
+or the SP.  It makes it possible to disable consent for an entire domain or
+for a range of specific entityIds.  Just use an array instead of a flat string
+with the following format (note that flat string and array entries are allowed
+at the same time) :
+</p>
+<pre><code>  $metadata['https://sp.example.org'] = array(
+      [...]
+      'consent.disable' =&gt; array(
+          'https://idp1.example.org/',
+          array('type'=&gt;'regex', 'pattern'=&gt;'/.*\.mycompany\.com.*/i'),
+      ),
+  ),
+</code></pre>
+<h2>
+ Attribute presentation
+</h2>
+<p>
+ It is possible to change the way the attributes are represented in the consent
+page. This is done by implementing an attribute array reordering function.
+</p>
+<p>
+ To create this function, you have to create a file named
+</p>
+<pre><code>  hook_attributepresentation.php
+</code></pre>
+<p>
+ and place it under the
+</p>
+<pre><code>  &lt;module_name&gt;/hooks
+</code></pre>
+<p>
+ directory. To be found and called, the function must be named
+</p>
+<pre><code>  &lt;module_name&gt;_hook_attributepresentation(&amp;$para).
+</code></pre>
+<p>
+ The parameter
+ <code>
+  $para
+ </code>
+ is a reference to the attribute array. By manipulating 
+this array you can change the way the attributes are presented to the user on 
+the consent and status page.
+</p>
+<p>
+ If you want the attributes to be listed in more than one level, you can make 
+the function add a
+ <code>
+  child_
+ </code>
+ prefix to the root node attribute name in a recursive 
+attribute tree.
+</p>
+<h3>
+ Examples
+</h3>
+<p>
+ These values will be listed as an bullet list
+</p>
+<pre><code>  Array (
+      [objectClass] =&gt; Array (
+          [0] =&gt; top
+          [1] =&gt; person
+      )
+  )
+</code></pre>
+<p>
+ This array has two child arrays. These will be listed in two separate sub
+tables.
+</p>
+<pre><code>  Array (
+      [child_eduPersonOrgUnitDN] =&gt; Array (
+          [0] =&gt; Array (
+              [ou] =&gt; Array (
+                  [0] =&gt; ET
+              )
+              [cn] =&gt; Array (
+                  [0] =&gt; Eksterne tjenester
+              )
+          )
+          [1] =&gt; Array (
+              [ou] =&gt; Array (
+                  [0] =&gt; TA
+              )
+              [cn] =&gt; Array (
+                  [0] =&gt; Tjenesteavdeling
+              )
+          )
+      )
+  )
+</code></pre></div>    <!-- /#content -->
+
+<div id="footer">
+    <a href="https://www.uninett.no/"><img id="ulogo" alt="notes" src="/res/uninettlogo.png" /SS></a>
+</div><!-- /#footer -->
+
+</body>
+</html>

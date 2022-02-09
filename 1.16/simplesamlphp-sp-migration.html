@@ -1,0 +1,572 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Language" content="en" />
+
+	<!-- JQuery -->
+	<!-- 
+	<script type="text/javascript" src="/res/js/jquery.js"></script>
+	<script type="text/javascript" src="/res/js/jquery-ui.js"></script>
+	-->
+
+	<style>
+	  mark {
+        background: orange;
+        color: black;
+      }
+    </style>  
+
+	
+	<!-- Foodle: CSS -->	
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/js/uitheme/jquery-ui-themeroller.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/style.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/layout.css" /> 
+
+	<title>SimpleSAMLphp Documentation</title> 
+</head>
+
+
+
+
+
+<body>
+ <!-- Red logo header -->
+ <header>
+  <div id="header">
+   <div class="right">
+    <form action="https://www.google.com/cse" method="get" style="margin-top: 2.5rem; margin-right: 2rem">
+     <input name="cx" type="hidden" value="004202914224971217557:8ks4jjstupq"/>
+     <input name="siteurl" type="hidden" value="www.google.com/cse/home?cx=004202914224971217557:8ks4jjstupq"/>
+     <input name="adkw" type="hidden" value="AELymgVJ6Sk-kOvUjbxvgShTLwiFlma2evFuVCh0r8q23vn_4eVnkcdnPfbgMvYUTpJpVlb-KkGAKkbn0i-AlWHsVRR9O0J4CNb6cXFkEKRdjXxsC_NlVD4"/>
+     <input name="q" placeholder="Search" type="search" value=""/>
+    </form>
+   </div>
+   <div class="v-center logo-header">
+    <div id="logo">
+     <a href="https://simplesamlphp.github.io" style="color: #fff; text-decoration: none">
+      <span class="simple">
+       Simple
+      </span>
+      <span class="saml">
+       SAML
+      </span>
+      <span class="simple">
+       php
+      </span>
+     </a>
+    </div>
+   </div>
+  </div>
+  <!-- Grey header bar below -->
+  <nav>
+   <div id="headerbar" style="clear: both">
+    <p id="breadcrumb">
+     <a href="https://simplesamlphp.github.io">
+      Home
+     </a>
+     » Documentation
+    </p>
+    <div class="mtoolbar">
+     <div class="menuitem first">
+      <a href="./../latest/index.html">
+       latest
+      </a>
+     </div>
+     <div class="menuitem">
+      <a href="./../1.19/index.html">
+       1.19
+      </a>
+     </div>
+     <div class="menuitem">
+      <a href="./../1.18/index.html">
+       1.18
+      </a>
+     </div>
+     <div class="menuitem">
+      <a href="./../1.17/index.html">
+       1.17
+      </a>
+     </div>
+     <div class="menuitem">
+      <a href="./../1.16/index.html">
+       1.16
+      </a>
+     </div>
+     <div class="menuitem last">
+      <a href="./../contributed_modules.html">
+       Contributed modules
+      </a>
+     </div>
+    </div>
+    <br style="height: 0px; clear: both"/>
+   </div>
+   <!-- /#headerbar -->
+  </nav>
+  <div id="content">
+  </div>
+ </header>
+</body><h1>
+ Migrating to the
+ <code>
+  saml
+ </code>
+ module
+</h1>
+<!-- {{TOC}} -->
+<p>
+ This document describes how you can migrate your code to use the
+ <code>
+  saml
+ </code>
+ module for authentication against SAML 2.0 and SAML 1.1 IdPs.
+It assumes that you have previously set up a SP by using redirects to
+ <code>
+  saml2/sp/initSSO.php
+ </code>
+ .
+</p>
+<p>
+ The steps we are going to follow are:
+</p>
+<ol>
+ <li>
+  Create a new authentication source.
+ </li>
+ <li>
+  Add the metadata for this authentication source to the IdP.
+ </li>
+ <li>
+  Test the new authentication source.
+ </li>
+ <li>
+  Convert the application to use the new API.
+ </li>
+ <li>
+  Test the application.
+ </li>
+ <li>
+  Remove the old metadata from the IdP.
+ </li>
+ <li>
+  Disable the old SAML 2 SP.
+ </li>
+</ol>
+<h2>
+ Create a new authentication source
+</h2>
+<p>
+ In this step we are going to create an authentication source which uses the
+ <code>
+  saml
+ </code>
+ module for authentication.
+To do this, we open
+ <code>
+  config/authsources.php
+ </code>
+ . Create the file if it does not exist.
+If you create the file, it should look like this:
+</p>
+<pre><code>  &lt;?php
+  $config = array(
+      /* Here we can add entries for authentication sources we want to use. */
+  );
+</code></pre>
+<p>
+ We are going to add an entry to this file.
+The entry should look something like this:
+</p>
+<pre><code>  'default-sp' =&gt; array(
+      'saml:SP',
+
+      /*
+       * The entity ID of this SP.
+       * Can be NULL/unset, in which case an entity ID is generated based on the metadata URL.
+       */
+      'entityID' =&gt; NULL,
+
+      /*
+       * The entity ID of the IdP this should SP should contact.
+       * Can be NULL/unset, in which case the user will be shown a list of available IdPs.
+       */
+      'idp' =&gt; NULL,
+
+      /* Here you can add other options to the SP. */
+  ),
+</code></pre>
+<p>
+ <code>
+  default-sp
+ </code>
+ is the name of the authentication source.
+It is used to refer to this authentication source when we use it.
+ <code>
+  saml:SP
+ </code>
+ tells SimpleSAMLphp that authentication with this authentication source is handled by the
+ <code>
+  saml
+ </code>
+ module.
+</p>
+<p>
+ The
+ <code>
+  idp
+ </code>
+ option should be set to the same value that is set in
+ <code>
+  default-saml20-idp
+ </code>
+ in
+ <code>
+  config.php
+ </code>
+ .
+</p>
+<p>
+ To ease migration, you probably want the entity ID on the new SP to be different than on the old SP.
+This makes it possible to have both the old and the new SP active on the IdP at the same time.
+</p>
+<p>
+ You can also add other options this authentication source.
+See the
+ <a href="./saml/sp.html">
+  <code>
+   saml:SP
+  </code>
+ </a>
+ documentation for more information.
+</p>
+<h2>
+ Add the metadata for this authentication source to the IdP
+</h2>
+<p>
+ After adding the authentication source on the SP, you need to register the metadata on the IdP.
+To retrieve the metadata, open the frontpage of your SimpleSAMLphp installation, and go to the federation tab.
+You should have a list of metadata entries, and one will be marked with the name of the new authentication source.
+In our case, that was
+ <code>
+  default-sp
+ </code>
+ .
+</p>
+<p>
+ Click the
+ <code>
+  Show metadata
+ </code>
+ link, and you will arrive on a web page with the metadata for that service provider.
+How you proceed from here depends on which IdP you are connecting to.
+</p>
+<p>
+ If you use a SimpleSAMLphp IdP, you can use the metadata in the flat file format at the bottom of the page.
+That metadata should be added to
+ <code>
+  saml20-sp-remote.php
+ </code>
+ on the IdP.
+For other IdPs you probably want to use the XML metadata.
+</p>
+<h2>
+ Test the new authentication source
+</h2>
+<p>
+ You should now be able to log in using the new authentication source.
+Go to the frontpage of your SimpleSAMLphp installation and open the authentication tab.
+There you will find a link to test authentication sources.
+Click that link, and select the name of your authentication source (
+ <code>
+  default-sp
+ </code>
+ in our case).
+</p>
+<p>
+ You should be able to log in using that authentication source, and receive the attributes from the IdP.
+</p>
+<h2>
+ Convert the application to use the new API
+</h2>
+<p>
+ This section will go through some common changes that you need to do when you are using SimpleSAMLphp from a different application.
+</p>
+<h3>
+ <code>
+  _include.php
+ </code>
+</h3>
+<p>
+ You should also no longer include
+ <code>
+  .../simplesamlphp/www/_include.php
+ </code>
+ .
+Instead, you should include
+ <code>
+  .../simplesamlphp/lib/_autoload.php
+ </code>
+ .
+</p>
+<p>
+ This means that you replace lines like:
+</p>
+<pre><code>  require_once('.../simplesamlphp/www/_include.php');
+</code></pre>
+<p>
+ with:
+</p>
+<pre><code>  require_once('.../simplesamlphp/lib/_autoload.php');
+</code></pre>
+<p>
+ <code>
+  _autoload.php
+ </code>
+ will register an autoloader function for the SimpleSAMLphp classes.
+This makes it possible to access the classes from your application.
+ <code>
+  _include.php
+ </code>
+ does the same, but also has some side-effects that you may not want in your application.
+</p>
+<p>
+ If you load any SimpleSAMLphp class files directly, you should remove those lines.
+That means that you should remove lines like the following:
+</p>
+<pre><code>  require_once('SimpleSAML/Utilities.php');
+  require_once('SimpleSAML/Session.php');
+  require_once('SimpleSAML/XHTML/Template.php');
+</code></pre>
+<h3>
+ Authentication API
+</h3>
+<p>
+ There is a new authentication API in SimpleSAMLphp which can be used to authenticate against authentication sources.
+This API is designed to handle the common operations.
+</p>
+<h4>
+ Overview
+</h4>
+<p>
+ This is a quick overview of the API:
+</p>
+<pre><code>  /* Get a reference to our authentication source. */
+  $as = new \SimpleSAML\Auth\Simple('default-sp');
+
+  /* Require the user to be authentcated. */
+  $as-&gt;requireAuth();
+  /* When that function returns, we have an authenticated user. */
+
+  /*
+   * Retrieve attributes of the user.
+   *
+   * Note: If the user isn't authenticated when getAttributes() is
+   * called, an empty array will be returned.
+   */
+  $attributes = $as-&gt;getAttributes();
+
+  /* Log the user out. */
+  $as-&gt;logout();
+</code></pre>
+<h4>
+ <code>
+  $config
+ </code>
+ and
+ <code>
+  $session
+ </code>
+</h4>
+<p>
+ Generally, if you have:
+</p>
+<pre><code>  $config = SimpleSAML_Configuration::getInstance();
+  $session = SimpleSAML_Session::getSessionFromRequest();
+</code></pre>
+<p>
+ you should replace it with this single line:
+</p>
+<pre><code>  $as = new \SimpleSAML\Auth\Simple('default-sp');
+</code></pre>
+<h4>
+ Requiring authentication
+</h4>
+<p>
+ Blocks of code like the following:
+</p>
+<pre><code>  /* Check if valid local session exists.. */
+  if (!isset($session) || !$session-&gt;isValid('saml2') ) {
+    SimpleSAML_Utilities::redirect(
+      '/' . $config-&gt;getBaseURL() .
+      'saml2/sp/initSSO.php',
+      array('RelayState' =&gt; SimpleSAML_Utilities::selfURL())
+      );
+  }
+</code></pre>
+<p>
+ should be replaced with a single call to
+ <code>
+  requireAuth()
+ </code>
+ :
+</p>
+<pre><code>  $as-&gt;requireAuth();
+</code></pre>
+<h4>
+ Fetching attributes
+</h4>
+<p>
+ Where you previously called:
+</p>
+<pre><code>  $session-&gt;getAttributes();
+</code></pre>
+<p>
+ you should now call:
+</p>
+<pre><code>  $as-&gt;getAttributes();
+</code></pre>
+<h4>
+ Logging out
+</h4>
+<p>
+ Redirecting to the initSLO-script:
+</p>
+<pre><code>  SimpleSAML_Utilities::redirect(
+      '/' . $config-&gt;getBaseURL() .
+      'saml2/sp/initSLO.php',
+      array('RelayState' =&gt; SimpleSAML_Utilities::selfURL())
+      );
+</code></pre>
+<p>
+ should be replaced with a call to
+ <code>
+  logout()
+ </code>
+ :
+</p>
+<pre><code>  $as-&gt;logout();
+</code></pre>
+<p>
+ If you want to return to a specific URL after logging out, you should include that URL as a parameter to the logout function:
+</p>
+<pre><code>  $as-&gt;logout('https://example.org/');
+</code></pre>
+<p>
+ Please make sure the URL is trusted. If you obtain the URL from the user input, make sure it is trusted before
+calling $as-&gt;logout(), by using the SimpleSAML_Utilities::checkURLAllowed() method.
+</p>
+<h4>
+ Login link
+</h4>
+<p>
+ If you have any links to the initSSO-script, those links must be replaced with links to a new script.
+The URL to the new script is
+ <code>
+  https://.../simplesaml/module.php/core/as_login.php
+ </code>
+ .
+It has two mandatory parameters:
+</p>
+<pre><code>* `AuthId`: The id of the authentication source.
+* `ReturnTo`: The URL the user should be redirected to after authentication.
+</code></pre>
+<h4>
+ Logout link
+</h4>
+<p>
+ Any links to the initSLO-script must be replaced with links to a new script.
+The URL to the new script is
+ <code>
+  https://.../simplesaml/module.php/core/as_logout.php
+ </code>
+ .
+It has two mandatory parameters:
+</p>
+<pre><code>* `AuthId`: The id of the authentication source.
+* `ReturnTo`: The URL the user should be redirected to after logout.
+</code></pre>
+<h2>
+ Test the application
+</h2>
+<p>
+ How you test the application is highly dependent on the application, but here are the elements you should test:
+</p>
+<h3>
+ SP initiated login
+</h3>
+<p>
+ Make sure that it is still possible to log into the application.
+</p>
+<h3>
+ IdP initiated login
+</h3>
+<p>
+ If you use a SimpleSAMLphp IdP, and you want users to be able to bookmark the login page, you need to test IdP initiated login.
+To test IdP initiated login from a SimpleSAMLphp IdP, you can access:
+</p>
+<pre><code>  https://.../simplesaml/saml2/idp/SSOService.php?spentityid=&lt;entity ID of your SP&gt;&amp;RelayState=&lt;URL the user should be sent to after login&gt;
+</code></pre>
+<p>
+ Note that the RelayState parameter is only supported if the IdP runs version 1.5 of SimpleSAMLphp.
+If it isn't supported by the IdP, you need to configure the
+ <code>
+  RelayState
+ </code>
+ option in the authentication source configuration.
+</p>
+<h3>
+ SP initiated logout
+</h3>
+<p>
+ Make sure that logging out of your application also logs out of the IdP.
+If this does not work, users who log out of your application can log in again without entering any username or password.
+</p>
+<h3>
+ IdP initiated logout
+</h3>
+<p>
+ This is used by the IdP if the user logs out of a different SP connected to the IdP.
+In this case, the user should also be logged out of your application.
+</p>
+<p>
+ The easiest way to test this is if you have two SPs connected to the IdP.
+You can then log out of one SP and check that you are also logged out of the other.
+</p>
+<h2>
+ Remove the old metadata from the IdP
+</h2>
+<p>
+ Once the new SP works correctly, you can remove the metadata for the old SP from the IdP.
+How you do that depends on the IdP.
+If you are running a SimpleSAMLphp IdP, you can remove the entry for the old SP in
+ <code>
+  metadata/saml20-sp-remote.php
+ </code>
+ .
+</p>
+<h2>
+ Disable the old SAML 2 SP
+</h2>
+<p>
+ You may also want to disable the old SP code in SimpleSAMLphp.
+To do that, open
+ <code>
+  config/config.php
+ </code>
+ , and change the
+ <code>
+  enable.saml20-sp
+ </code>
+ option to
+ <code>
+  FALSE
+ </code>
+ .
+</p></div>    <!-- /#content -->
+
+<div id="footer">
+    <a href="https://www.uninett.no/"><img id="ulogo" alt="notes" src="/res/uninettlogo.png" /SS></a>
+</div><!-- /#footer -->
+
+</body>
+</html>

@@ -154,13 +154,13 @@ job that calls a hook in SimpleSAMLphp.  This will invoke
  </code>
  ) should look similar to this:
 </p>
-<pre><code>$config = [
+<pre><code>$config = array (
        'key' =&gt; 'RANDOM_KEY',
-       'allowed_tags' =&gt; ['daily', 'hourly', 'frequent'],
+       'allowed_tags' =&gt; array('daily', 'hourly', 'frequent'),
        'debug_message' =&gt; TRUE,
        'sendemail' =&gt; TRUE,
 
-];
+);
 </code></pre>
 <p>
  Bear in mind that the key is used as a security feature, to restrict
@@ -307,7 +307,7 @@ logging configuration from
  </li>
 </ul>
 <p>
- ```
+ ```bash
 su -s "/bin/sh" \
    -c "nice -n 10 \
        php -d max_execution_time=120 -d memory_limit=600M \

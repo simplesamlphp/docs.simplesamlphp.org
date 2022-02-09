@@ -124,10 +124,28 @@ database to store the consents.
  Setting up the consentAdmin module
 </h2>
 <p>
- The first thing you need to do is to enable the consentAdmin module:
+ The first thing you need to do is to enable the consentAdmin module: in
+ <code>
+  config.php
+ </code>
+ , search for the
+ <code>
+  module.enable
+ </code>
+ key and set
+ <code>
+  consentAdmin
+ </code>
+ to true:
 </p>
-<pre><code>  touch modules/consentAdmin/enable
-</code></pre>
+<p>
+ <code>
+  'module.enable' =&gt; [
+         'consentAdmin' =&gt; true,
+         …
+    ],
+ </code>
+</p>
 <p>
  Next you need to copy the module config file to the config directory:
 </p>

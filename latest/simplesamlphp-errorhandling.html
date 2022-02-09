@@ -123,7 +123,7 @@ The basic goal is to be able to throw an exception during authentication, and th
  This means that internal SimpleSAMLphp exceptions must be mapped to transport specific error codes for the various transports that are supported by SimpleSAMLphp.
 E.g.: When a
  <code>
-  \SimpleSAML\Error\NoPassive
+  \SAML2\Exception\Protocol\NoPassiveException
  </code>
  error is thrown by an authentication processing filter in a SAML 2.0 IdP, we want to map that exception to the
  <code>
@@ -223,7 +223,7 @@ The
 In some cases, you may want to convert the exception to a specific SAML 2 status code.
 For example, the
  <code>
-  \SimpleSAML\Error\NoPassive
+  \SAML2\Exception\Protocol\NoPassiveException
  </code>
  exception should be converted to a SAML 2 status code with the following properties:
 </p>
@@ -342,7 +342,7 @@ The result is that generic exceptions are thrown from that authentication source
  </code>
  errors will be converted back to instances of
  <code>
-  \SimpleSAML\Error\NoPassive
+  \SAML2\Exception\Protocol\NoPassiveException
  </code>
  .
 </p>

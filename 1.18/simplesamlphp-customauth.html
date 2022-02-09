@@ -146,8 +146,27 @@ It will be located under
   mkdir mymodule
 </code></pre>
 <p>
- Since this is a custom module, it should always be enabled in the configuration.
-Now that we have our own module, we can move on to creating an authentication source.
+ Since this is a custom module, it should always be enabled.
+Therefore we create a
+ <code>
+  default-enable
+ </code>
+ file in the module.
+We do that by copying the
+ <code>
+  default-enable
+ </code>
+ file from the
+ <code>
+  core
+ </code>
+ module.
+</p>
+<pre><code>  cd mymodule
+  cp ../core/default-enable .
+</code></pre>
+<p>
+ Now that we have our own module, we can move on to creating an authentication source.
 </p>
 <h2>
  Creating a basic authentication source

@@ -123,7 +123,7 @@ The basic goal is to be able to throw an exception during authentication, and th
  This means that internal SimpleSAMLphp exceptions must be mapped to transport specific error codes for the various transports that are supported by SimpleSAMLphp.
 E.g.: When a
  <code>
-  \SimpleSAML\Error\NoPassive
+  SimpleSAML_Error_NoPassive
  </code>
  error is thrown by an authentication processing filter in a SAML 2.0 IdP, we want to map that exception to the
  <code>
@@ -149,8 +149,8 @@ The simplest case is if you want to throw it during the
 In those methods, you can just throw an exception:
 </p>
 <pre><code>  public function process(&amp;$state) {
-      if ($state['something'] === false) {
-          throw new \SimpleSAML\Error\Exception('Something is wrong...');
+      if ($state['something'] === FALSE) {
+          throw new SimpleSAML_Error_Exception('Something is wrong...');
       }
   }
 </code></pre>
@@ -160,21 +160,21 @@ In those methods, you can just throw an exception:
 <p>
  If you want to throw an exception outside of those methods, i.e. after you have done a redirect, you need to use the
  <code>
-  \SimpleSAML\Auth\State::throwException()
+  SimpleSAML_Auth_State::throwException()
  </code>
  function:
 </p>
 <pre><code>  &lt;?php
   $id = $_REQUEST['StateId'];
-  $state = \SimpleSAML\Auth\State::loadState($id, 'somestage...');
-  \SimpleSAML\Auth\State::throwException($state,
-      new \SimpleSAML\Error\Exception('Something is wrong...'));
+  $state = SimpleSAML_Auth_State::loadState($id, 'somestage...');
+  SimpleSAML_Auth_State::throwException($state,
+      new SimpleSAML_Error_Exception('Something is wrong...'));
   ?&gt;
 </code></pre>
 <p>
  The
  <code>
-  \SimpleSAML\Auth\State::throwException
+  SimpleSAML_Auth_State::throwException
  </code>
  function will then transfer your exception to the appropriate error handler.
 </p>
@@ -184,7 +184,7 @@ In those methods, you can just throw an exception:
 <p>
  Note that we use the
  <code>
-  \SimpleSAML\Error\Exception
+  SimpleSAML_Error_Exception
  </code>
  class in both cases.
 This is because the delivery of the exception may require a redirect to a different web page.
@@ -198,20 +198,20 @@ The normal
 <p>
  If you throw an exception that isn't a subclass of the
  <code>
-  \SimpleSAML\Error\Exception
+  SimpleSAML_Error_Exception
  </code>
  class, your exception will be converted to an instance of
  <code>
-  \SimpleSAML\Error\UnserializableException
+  SimpleSAML_Error_UnserializableException
  </code>
  .
 The
  <code>
-  \SimpleSAML\Auth\State::throwException
+  SimpleSAML_Auth_State::throwException
  </code>
  function does not accept any exceptions that does not subclass the
  <code>
-  \SimpleSAML\Error\Exception
+  SimpleSAML_Error_Exception
  </code>
  class.
 </p>
@@ -223,7 +223,7 @@ The
 In some cases, you may want to convert the exception to a specific SAML 2 status code.
 For example, the
  <code>
-  \SimpleSAML\Error\NoPassive
+  SimpleSAML_Error_NoPassive
  </code>
  exception should be converted to a SAML 2 status code with the following properties:
 </p>
@@ -249,7 +249,7 @@ For example, the
 <p>
  The
  <code>
-  \SimpleSAML\Module\saml\Error
+  sspmod_saml_Error
  </code>
  class represents SAML 2 errors.
 It represents a SAML 2 status code with three elements: the top-level status code, the second-level status code and the status message.
@@ -262,7 +262,7 @@ The second-level status code and the status message is optional, and can be
 <p>
  The
  <code>
-  \SimpleSAML\Module\saml\Error
+  sspmod_saml_Error
  </code>
  class contains a helper function named
  <code>
@@ -288,7 +288,7 @@ If it is unable to convert the exception, it will return a generic SAML 2 error 
  <li>
   Create a new exception class for your error. This exception class must subclass
   <code>
-   \SimpleSAML\Error\Exception
+   SimpleSAML_Error_Exception
   </code>
   .
  </li>
@@ -325,7 +325,7 @@ This is handled by the
  </code>
  method in
  <code>
-  \SimpleSAML\Module\saml\Error
+  sspmod_saml_Error
  </code>
  .
 The assertion consumer script of the SAML 2 authentication source (
@@ -342,7 +342,7 @@ The result is that generic exceptions are thrown from that authentication source
  </code>
  errors will be converted back to instances of
  <code>
-  \SimpleSAML\Error\NoPassive
+  SimpleSAML_Error_NoPassive
  </code>
  .
 </p>
@@ -361,13 +361,13 @@ To eventually support other protocols was a goal when designing this framework.
 </p>
 <h3>
  <code>
-  \SimpleSAML\Error\Exception
+  SimpleSAML_Error_Exception
  </code>
 </h3>
 <p>
  The
  <code>
-  \SimpleSAML\Error\Exception
+  SimpleSAML_Error_Exception
  </code>
  class extends the normal PHP
  <code>
@@ -430,7 +430,7 @@ It is therefore recommended to use the getBacktrace() method.
 </p>
 <h3>
  <code>
-  \SimpleSAML\Auth\State
+  SimpleSAML_Auth_State
  </code>
 </h3>
 <p>
@@ -459,6 +459,10 @@ It is therefore recommended to use the getBacktrace() method.
  This method delivers the exception to the code that initialized the exception handling in the authentication state.
 That would be
  <code>
+  SimpleSAML_Auth_Default
+ </code>
+ for authtentication sources, and
+ <code>
   www/saml2/idp/SSOService.php
  </code>
  for processing filters.
@@ -467,13 +471,13 @@ To configure how and where the exception should be delivered, there are two fiel
 <ul>
  <li>
   <code>
-   \SimpleSAML\Auth\State::EXCEPTION_HANDLER_FUNC
+   SimpleSAML_Auth_State::EXCEPTION_HANDLER_FUNC
   </code>
   , in which case the exception will be delivered by a function call to the function specified in that field.
  </li>
  <li>
   <code>
-   \SimpleSAML\Auth\State::EXCEPTION_HANDLER_URL
+   SimpleSAML_Auth_State::EXCEPTION_HANDLER_URL
   </code>
   , in which case the exception will be delivered by a redirect to the URL specified in that field.
  </li>
@@ -482,14 +486,14 @@ To configure how and where the exception should be delivered, there are two fiel
  If the exception is delivered by a function call, the function will be called with two parameters: The exception and the state array.
 </p>
 <p>
- If the exception is delivered by a redirect, \SimpleSAML\Auth\State will save the exception in a field in the state array, pass a parameter with the id of the state array to the URL.
+ If the exception is delivered by a redirect, SimpleSAML_Auth_State will save the exception in a field in the state array, pass a parameter with the id of the state array to the URL.
 The
  <code>
-  \SimpleSAML\Auth\State::EXCEPTION_PARAM
+  SimpleSAML_Auth_State::EXCEPTION_PARAM
  </code>
  constant contains the name of that parameter, while the
  <code>
-  \SimpleSAML\Auth\State::EXCEPTION_DATA
+  SimpleSAML_Auth_State::EXCEPTION_DATA
  </code>
  constant holds the name of the field where the exception is saved.
 </p>
@@ -501,26 +505,65 @@ The
 <p>
  To retrieve the exception, the application should check for the state parameter in the request, and then retrieve the state array by calling
  <code>
-  \SimpleSAML\Auth\State::loadExceptionState()
+  SimpleSAML_Auth_State::loadExceptionState()
  </code>
  .
 The exception can be located in a field named
  <code>
-  \SimpleSAML\Auth\State::EXCEPTION_DATA
+  SimpleSAML_Auth_State::EXCEPTION_DATA
  </code>
  .
 The following code illustrates this behaviour:
 </p>
-<pre><code>  if (array_key_exists(\SimpleSAML\Auth\State::EXCEPTION_PARAM, $_REQUEST)) {
-      $state = \SimpleSAML\Auth\State::loadExceptionState();
-      $exception = $state[\SimpleSAML\Auth\State::EXCEPTION_DATA];
+<pre><code>  if (array_key_exists(SimpleSAML_Auth_State::EXCEPTION_PARAM, $_REQUEST)) {
+      $state = SimpleSAML_Auth_State::loadExceptionState();
+      $exception = $state[SimpleSAML_Auth_State::EXCEPTION_DATA];
 
       /* Process exception. */
   }
 </code></pre>
 <h3>
  <code>
-  \SimpleSAML\Auth\ProcessingChain
+  SimpleSAML_Auth_Default
+ </code>
+</h3>
+<p>
+ This class accepts an
+ <code>
+  $errorURL
+ </code>
+ parameter to the
+ <code>
+  initLogin()
+ </code>
+ function.
+This parameter is stored in the
+ <code>
+  SimpleSAML_Auth_State::EXCEPTION_HANDLER_URL
+ </code>
+ of the state array.
+Exceptions thrown by the authentication source will be delivered to that URL.
+</p>
+<p>
+ It also wraps the call to the
+ <code>
+  authenticate()
+ </code>
+ function inside a try-catch block.
+Any exceptions thrown during that function call will be delivered to the URL specified in the
+ <code>
+  $errorURL
+ </code>
+ parameter.
+This is done for consistency, since
+ <code>
+  SimpleSAML_Auth_Default
+ </code>
+ never transfers control back to the caller by returning.
+</p>
+<h3>
+ <code>
+  SimpleSAML_Auth_ProcessingChain
  </code>
 </h3>
 <p>
@@ -543,9 +586,9 @@ The result will be delivered directly if it is possible, but if not, it will be 
 <p>
  The code for handling this becomes something like:
 </p>
-<pre><code>  if (array_key_exists(\SimpleSAML\Auth\State::EXCEPTION_PARAM, $_REQUEST)) {
-      $state = \SimpleSAML\Auth\State::loadExceptionState();
-      $exception = $state[\SimpleSAML\Auth\State::EXCEPTION_DATA];
+<pre><code>  if (array_key_exists(SimpleSAML_Auth_State::EXCEPTION_PARAM, $_REQUEST)) {
+      $state = SimpleSAML_Auth_State::loadExceptionState();
+      $exception = $state[SimpleSAML_Auth_State::EXCEPTION_DATA];
 
       /* Handle exception... */
       [...]
@@ -553,15 +596,15 @@ The result will be delivered directly if it is possible, but if not, it will be 
 
   $procChain = [...];
 
-  $state = [
-      'ReturnURL' =&gt; \SimpleSAML\Utils\HTTP::getSelfURLNoQuery(),
-      \SimpleSAML\Auth\State::EXCEPTION_HANDLER_URL =&gt; \SimpleSAML\Utils\HTTP::getSelfURLNoQuery(),
+  $state = array(
+      'ReturnURL' =&gt; SimpleSAML_Utilities::selfURLNoQuery(),
+      SimpleSAML_Auth_State::EXCEPTION_HANDLER_URL =&gt; SimpleSAML_Utilities::selfURLNoQuery(),
       [...],
-  ]
+  )
 
   try {
       $procChain-&gt;processState($state);
-  } catch (\SimpleSAML\Error\Exception $e) {
+  } catch (SimpleSAML_Error_Exception $e) {
       /* Handle exception. */
       [...];
   }
@@ -572,11 +615,11 @@ The result will be delivered directly if it is possible, but if not, it will be 
 <p>
  An exception which isn't a subclass of
  <code>
-  \SimpleSAML\Error\Exception
+  SimpleSAML_Error_Exception
  </code>
  will be converted to the
  <code>
-  \SimpleSAML\Error\UnserializedException
+  SimpleSAML_Error_UnserializedException
  </code>
  class.
 This happens regardless of whether the exception is delivered directly or through the error handler.
@@ -586,15 +629,15 @@ This is done to be consistent in what the application receives - now it will alw
  Custom error show function
 </h2>
 <p>
- Optional custom error show function, called from \SimpleSAML\Error\Error::show, is defined with 'errors.show_function' in config.php.
+ Optional custom error show function, called from SimpleSAML_Error_Error::show, is defined with 'errors.show_function' in config.php.
 </p>
 <p>
- Example code for this function, which implements the same functionality as \SimpleSAML\Error\Error::show, looks something like:
+ Example code for this function, which implements the same functionality as SimpleSAML_Error_Error::show, looks something like:
 </p>
-<pre><code>  public static function show(\SimpleSAML\Configuration $config, array $data) {
-      $t = new \SimpleSAML\XHTML\Template($config, 'error.php', 'errors');
+<pre><code>  public static function show(SimpleSAML_Configuration $config, array $data) {
+      $t = new SimpleSAML_XHTML_Template($config, 'error.php', 'errors');
       $t-&gt;data = array_merge($t-&gt;data, $data);
-      $t-&gt;send();
+      $t-&gt;show();
       exit;
   }
 </code></pre></div>    <!-- /#content -->

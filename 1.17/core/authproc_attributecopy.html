@@ -128,12 +128,12 @@
  </code>
  ):
 </p>
-<pre><code>  'authproc' =&gt; [
-      50 =&gt; [
+<pre><code>  'authproc' =&gt; array(
+      50 =&gt; array(
           'class' =&gt; 'core:AttributeCopy',
           'uid' =&gt; 'username',
-      ],
-  ],
+      ),
+  ),
 </code></pre>
 <p>
  Copy a single attribute to more then one attribute (user's
@@ -150,12 +150,12 @@
  </code>
  )
 </p>
-<pre><code>  'authproc' =&gt; [
-      50 =&gt; [
+<pre><code>  'authproc' =&gt; array(
+      50 =&gt; array(
           'class' =&gt; 'core:AttributeCopy',
-          'uid' =&gt; ['username', 'urn:mace:dir:attribute-def:uid'],
-      ],
-  ],
+          'uid' =&gt; array('username', 'urn:mace:dir:attribute-def:uid'),
+      ),
+  ),
 </code></pre></div>    <!-- /#content -->
 
 <div id="footer">

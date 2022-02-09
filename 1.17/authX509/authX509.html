@@ -1,0 +1,270 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Language" content="en" />
+
+	<!-- JQuery -->
+	<!-- 
+	<script type="text/javascript" src="/res/js/jquery.js"></script>
+	<script type="text/javascript" src="/res/js/jquery-ui.js"></script>
+	-->
+
+	<style>
+	  mark {
+        background: orange;
+        color: black;
+      }
+    </style>  
+
+	
+	<!-- Foodle: CSS -->	
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/js/uitheme/jquery-ui-themeroller.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/style.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/layout.css" /> 
+
+	<title>SimpleSAMLphp Documentation</title> 
+</head>
+
+
+
+
+
+<body>
+ <!-- Red logo header -->
+ <header>
+  <div id="header">
+   <div class="right">
+    <form action="https://www.google.com/cse" method="get" style="margin-top: 2.5rem; margin-right: 2rem">
+     <input name="cx" type="hidden" value="004202914224971217557:8ks4jjstupq"/>
+     <input name="siteurl" type="hidden" value="www.google.com/cse/home?cx=004202914224971217557:8ks4jjstupq"/>
+     <input name="adkw" type="hidden" value="AELymgVJ6Sk-kOvUjbxvgShTLwiFlma2evFuVCh0r8q23vn_4eVnkcdnPfbgMvYUTpJpVlb-KkGAKkbn0i-AlWHsVRR9O0J4CNb6cXFkEKRdjXxsC_NlVD4"/>
+     <input name="q" placeholder="Search" type="search" value=""/>
+    </form>
+   </div>
+   <div class="v-center logo-header">
+    <div id="logo">
+     <a href="https://simplesamlphp.github.io" style="color: #fff; text-decoration: none">
+      <span class="simple">
+       Simple
+      </span>
+      <span class="saml">
+       SAML
+      </span>
+      <span class="simple">
+       php
+      </span>
+     </a>
+    </div>
+   </div>
+  </div>
+  <!-- Grey header bar below -->
+  <nav>
+   <div id="headerbar" style="clear: both">
+    <p id="breadcrumb">
+     <a href="https://simplesamlphp.github.io">
+      Home
+     </a>
+     » Documentation
+    </p>
+    <div class="mtoolbar">
+     <div class="menuitem first">
+      <a href="./../latest/index.html">
+       latest
+      </a>
+     </div>
+     <div class="menuitem">
+      <a href="./../1.19/index.html">
+       1.19
+      </a>
+     </div>
+     <div class="menuitem">
+      <a href="./../1.18/index.html">
+       1.18
+      </a>
+     </div>
+     <div class="menuitem">
+      <a href="./../1.17/index.html">
+       1.17
+      </a>
+     </div>
+     <div class="menuitem">
+      <a href="./../1.16/index.html">
+       1.16
+      </a>
+     </div>
+     <div class="menuitem last">
+      <a href="./../contributed_modules.html">
+       Contributed modules
+      </a>
+     </div>
+    </div>
+    <br style="height: 0px; clear: both"/>
+   </div>
+   <!-- /#headerbar -->
+  </nav>
+  <div id="content">
+  </div>
+ </header>
+</body><h1>
+ Using the X509 authentication source with SimpleSAMLphp
+</h1>
+<p>
+ The authX509 module provides X509 authentication with certificate
+validation. For now there is only one authentication source:
+</p>
+<ul>
+ <li>
+  authX509userCert Validate against LDAP userCertificate attribute
+ </li>
+</ul>
+<p>
+ More validation schemes (OCSP, CRL, local list) might be added later.
+</p>
+<h2>
+ Configuring Apache
+</h2>
+<p>
+ This module assumes that the server requests a client certificate, and
+stores it in the environment variable SSL_CLIENT_CERT. This can be achieved
+with such a configuration:
+</p>
+<pre><code>  SSLEngine on
+  SSLCertificateFile /etc/openssl/certs/server.crt
+  SSLCertificateKeyFile /etc/openssl/private/server.key
+  SSLCACertificateFile /etc/openssl/certs/ca.crt
+  SSLVerifyClient require
+  SSLVerifyDepth 2
+  SSLOptions +ExportCertData
+</code></pre>
+<p>
+ Note that SSLVerifyClient can be set to optional if you want to support
+both certificate and plain login authentication at the same time (more on
+this later).
+</p>
+<p>
+ If your server or your client (or both!) have TLS renegotiation disabled
+as a workaround for CVE-2009-3555, then the configuration directive above
+must not appear in a &lt;Directory&gt;, &lt;Location&gt;, or in a name-based
+&lt;VirtualHost&gt;. You can only use them server-wide, or in &lt;VirtualHost&gt;s
+with different IP address/port combinations.
+</p>
+<h2>
+ Setting up the authX509 module
+</h2>
+<p>
+ The first thing you need to do is to enable the module:
+</p>
+<pre><code>  touch modules/authX509/enable
+</code></pre>
+<p>
+ Then you must add it as an authentication source. Here is an
+example authsources.php entry:
+</p>
+<pre><code>  'x509' =&gt; array(
+      'authX509:X509userCert',
+      'hostname' =&gt; 'ldaps://ldap.example.net',
+      'enable_tls' =&gt; false,
+      'attributes' =&gt; array('cn', 'uid', 'mail', 'ou', 'sn'),
+      'search.enable' =&gt; true,
+      'search.attributes' =&gt; array('uid', 'mail'),
+      'search.base' =&gt; 'dc=example,dc=net',
+      'authX509:x509attributes' =&gt; array('UID' =&gt; 'uid'),
+      'authX509:ldapusercert' =&gt; array('userCertificate;binary'),
+  ),
+</code></pre>
+<p>
+ The configuration is the same as for the LDAP module, except for
+two options:
+</p>
+<ul>
+ <li>
+  x509attributes is used to map a certificate subject attribute to
+                 an LDAP attribute. It is used to find the certificate
+                 owner in LDAP from the certificate subject. If multiple
+                 mappings are provided, any mapping will match (this
+                 is a logical OR). Default is array('UID' =&gt; 'uid').
+ </li>
+ <li>
+  ldapusercert   the LDAP attribute in which the user certificate will
+                 be found. Default is userCertificate;binary. This can
+                 be set to NULL to avoid looking up the certificate in
+                 LDAP.
+ </li>
+</ul>
+<h2>
+ Uploading certificate in LDAP
+</h2>
+<p>
+ Certificates are usually stored in LDAP as DER, in binary. Here is
+how to convert from PEM to DER:
+</p>
+<pre><code>  openssl x509 -in cert.pem -inform PEM -outform DER -out cert.der
+</code></pre>
+<p>
+ Here is some LDIF to upload the certificate in the directory:
+</p>
+<pre><code>  dn: uid=jdoe,dc=example,dc=net
+  changetype: modify
+  add: userCertificate;binary
+  userCertificate;binary:&lt; file:///path/to/cert.der
+</code></pre>
+<h1>
+ Supporting both certificate and login authentication
+</h1>
+<p>
+ In your Apache configuration, set SSLVerifyClient to optional. Then you
+can hack your metadata/saml20-idp-hosted.php file that way:
+</p>
+<pre><code>  $auth_source = empty($_SERVER['SSL_CLIENT_CERT']) ? 'ldap' : 'x509';
+  $metadata = array(
+      '__DYNAMIC:1__' =&gt; array(
+          'host'          =&gt;      '__DEFAULT__',
+          'privatekey'    =&gt;      'server.key',
+          'certificate'   =&gt;      'server.crt',
+          'auth'          =&gt;       $auth_source,
+          'authority'     =&gt;      'login',
+          'userid.attribute' =&gt;   'uid',
+          'logouttype'    =&gt;      'iframe',
+          'attributes.NameFormat' =&gt;
+                          'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+  )
+</code></pre>
+<h1>
+ Checking certificate expiry
+</h1>
+<p>
+ To issue warnings to users whose certificate is about to expire, configure an authproc filter.
+</p>
+<p>
+ Example:
+</p>
+<pre><code>   10 =&gt; array(
+       'class' =&gt; 'authX509:ExpiryWarning',
+       'warndaysbefore' =&gt; '30',
+       'renewurl' =&gt; 'https://myca.com/renew',
+   ),
+</code></pre>
+<p>
+ Parameter
+ <code>
+  warndaysbefore
+ </code>
+ specifies the number of days the user's certificate needs to be valid before a warning is
+issued. The default is 30.
+</p>
+<p>
+ Parameter
+ <code>
+  renewurl
+ </code>
+ specifies the URL of your Certification Authority. If specified, the user is suggested to renew the
+certificate immediately.
+</p></div>    <!-- /#content -->
+
+<div id="footer">
+    <a href="https://www.uninett.no/"><img id="ulogo" alt="notes" src="/res/uninettlogo.png" /SS></a>
+</div><!-- /#footer -->
+
+</body>
+</html>

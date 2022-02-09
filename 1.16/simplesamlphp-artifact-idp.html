@@ -162,7 +162,7 @@ The default configuration on Debian is for the memcache server to be accessible 
  Once the memcache server is configured, you can configure simplesamlphp to use it to store sessions.
 You can do this by setting the
  <code>
-  store.type
+  session.handler
  </code>
  option in
  <code>
@@ -197,11 +197,11 @@ If you are running memcache on a different server than the IdP, you must also ch
  </code>
  metadata file:
 </p>
-<pre><code>  $metadata['__DYNAMIC:1__'] = [
+<pre><code>  $metadata['__DYNAMIC:1__'] = array(
       [....]
       'auth' =&gt; 'example-userpass',
       'saml20.sendartifact' =&gt; TRUE,
-  ];
+  );
 </code></pre>
 <h2>
  Add new metadata to SPs
@@ -214,13 +214,13 @@ You therefore need to update the metadata for your IdP at your SPs.
  </code>
  metadata for SimpleSAMLphp SPs should contain something like:
 </p>
-<pre><code>  'ArtifactResolutionService' =&gt; [
-      [
+<pre><code>  'ArtifactResolutionService' =&gt; array(
+      array(
           'index' =&gt; 0,
           'Location' =&gt; 'https://idp.example.org/simplesaml/saml2/idp/ArtifactResolutionService.php',
           'Binding' =&gt; 'urn:oasis:names:tc:SAML:2.0:bindings:SOAP',
-      ],
-  ],
+      ),
+  ),
 </code></pre>
 <h2>
  SP metadata on the IdP
@@ -235,16 +235,16 @@ This means that you must use the complex endpoint format in
 In general, that should look something like:
 </p>
 <pre><code>  'AssertionConsumerService' =&gt; array (
-      [
+      array(
           'Binding' =&gt; 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
           'Location' =&gt; 'https://sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp',
           'index' =&gt; 0,
-      ],
-      [
+      ),
+      array(
           'Binding' =&gt; 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact',
           'Location' =&gt; 'https://sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp',
           'index' =&gt; 2,
-      ],
+      ),
   ),
 </code></pre>
 <p>
@@ -267,12 +267,12 @@ To do this, you need to set the
  metadata file.
 That option should refer to a file containing the webserver certificate.
 </p>
-<pre><code>  $metadata['__DYNAMIC:1__'] = [
+<pre><code>  $metadata['__DYNAMIC:1__'] = array(
       [....]
       'auth' =&gt; 'example-userpass',
       'saml20.sendartifact' =&gt; TRUE,
       'https.certificate' =&gt; '/etc/apache2/webserver.crt',
-  ];
+  );
 </code></pre></div>    <!-- /#content -->
 
 <div id="footer">

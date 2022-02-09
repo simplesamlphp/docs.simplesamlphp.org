@@ -150,7 +150,8 @@ order to process the NameID, a SAML2_XML_saml_NameID object can be used:
 </p>
 <p>
  <code>
-  $attributes = $as-&gt;getAttributes();
+  php
+$attributes = $as-&gt;getAttributes();
 $eptid = $attributes['eduPersonTargetedID'][0]-&gt;item(0);
 $nameID = new SAML2_XML_saml_NameID($eptid);
  </code>

@@ -140,7 +140,116 @@ the only diffrence is this is authentication module and not a script.
 
   ),
 ),
-</code></pre></div>    <!-- /#content -->
+</code></pre>
+<h2>
+ Querying Attributes
+</h2>
+<p>
+ CAS V3 (since 2017) supports querying attributes. Those have to be published for the service you're calling. Here the service publishes
+ <code>
+  sn
+ </code>
+ ,
+ <code>
+  firstName
+ </code>
+ and
+ <code>
+  mail
+ </code>
+ .
+</p>
+<p>
+ To get them, call
+ <code>
+  serviceValidate
+ </code>
+ , either directly:
+</p>
+<p>
+ <code>
+  'cas' =&gt; array(
+    'serviceValidate' =&gt; 'https://cas.example.com/serviceValidate',
+ </code>
+</p>
+<p>
+ or you might have to call serviceValidate for Protocol 3 via
+ <strong>
+  /p3/
+ </strong>
+ :
+</p>
+<p>
+ <code>
+  'cas' =&gt; array(
+    'serviceValidate' =&gt; 'https://cas.example.com/p3/serviceValidate',
+ </code>
+</p>
+<p>
+ which would return something like
+</p>
+<p>
+ <code>
+  &lt;cas:authenticationSuccess&gt;
+        &lt;cas:user&gt;jdoe&lt;/cas:user&gt;
+        &lt;cas:attributes&gt;
+            &lt;cas:credentialType&gt;UsernamePasswordCredential&lt;/cas:credentialType&gt;
+            &lt;cas:isFromNewLogin&gt;false&lt;/cas:isFromNewLogin&gt;
+            &lt;cas:mail&gt;john.doe@example.com&lt;/cas:mail&gt;
+            &lt;cas:authenticationDate&gt;2021-01-19T08:38:49.624+01:00[Europe/Paris]&lt;/cas:authenticationDate&gt;
+            &lt;cas:authenticationMethod&gt;LdapAuthenticationHandler&lt;/cas:authenticationMethod&gt;
+            &lt;cas:firstName&gt;John&lt;/cas:firstName&gt;
+            &lt;cas:successfulAuthenticationHandlers&gt;LdapAuthenticationHandler&lt;/cas:successfulAuthenticationHandlers&gt;
+            &lt;cas:longTermAuthenticationRequestTokenUsed&gt;false&lt;/cas:longTermAuthenticationRequestTokenUsed&gt;
+            &lt;cas:sn&gt;Doe&lt;/cas:sn&gt;
+            &lt;/cas:attributes&gt;
+    &lt;/cas:authenticationSuccess&gt;
+ </code>
+</p>
+<p>
+ So we can query for attributes in
+ <code>
+  authsources.php
+ </code>
+ , providing the XPath for each value:
+</p>
+<p>
+ <code>
+  'cas' =&gt; array(
+    'attributes' =&gt; [
+        'uid' =&gt; '/cas:serviceResponse/cas:authenticationSuccess/cas:user',
+        'sn' =&gt; '/cas:serviceResponse/cas:authenticationSuccess/cas:attributes/cas:sn',
+        'givenName' =&gt; '/cas:serviceResponse/cas:authenticationSuccess/cas:attributes/cas:firstname',
+        'mail' =&gt; '/cas:serviceResponse/cas:authenticationSuccess/cas:attributes/cas:mail',
+        ],
+ </code>
+</p>
+<p>
+ and even some custom attributes if they're set:
+</p>
+<pre><code>      'customabc' =&gt; '/cas:serviceResponse/cas:authenticationSuccess/custom:abc',
+</code></pre>
+<p>
+ You'll probably want to avoid querying LDAP for attributes: set
+ <code>
+  ldap
+ </code>
+ to a null array (but
+ <code>
+  ldap
+ </code>
+ MUST be set):
+</p>
+<p>
+ <code>
+  'example-cas' =&gt; array(
+  'cas:CAS',
+  'cas' =&gt; array(
+            ...
+  ),
+  'ldap' =&gt; []
+ </code>
+</p></div>    <!-- /#content -->
 
 <div id="footer">
     <a href="https://www.uninett.no/"><img id="ulogo" alt="notes" src="/res/uninettlogo.png" /SS></a>

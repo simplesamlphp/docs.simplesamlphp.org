@@ -120,7 +120,7 @@
 To create a self signed certificate, you may use the following command:
 </p>
 <pre><code>  cd cert
-  openssl req -newkey rsa:3072 -new -x509 -days 3652 -nodes -out new.crt -keyout new.pem
+  openssl req -newkey rsa:2048 -new -x509 -days 3652 -nodes -out new.crt -keyout new.pem
 </code></pre>
 <h2>
  Add the new key to SimpleSAMLphp
@@ -136,11 +136,15 @@ To do key rollover for an identity provider, you must add the new key to
  <code>
   metadata/saml20-idp-hosted.php
  </code>
+ and/or
+ <code>
+  metadata/shib13-idp-hosted.php
+ </code>
  .
 If you are changing the keys for both an service provider and identity provider at the same time, you must update both locations.
 </p>
 <p>
- The new certificate, private key and private key passphrase are added to the configuration with the prefix
+ The new certificate and key is added to the configuration with the prefix
  <code>
   new_
  </code>
@@ -161,18 +165,13 @@ This ensures that both those entities that use your old metadata and those that 
  </code>
  :
 </p>
-<pre><code>  'default-sp' =&gt; [
+<pre><code>  'default-sp' =&gt; array(
       'saml:SP',
       'privatekey' =&gt; 'old.pem',
       'certificate' =&gt; 'old.crt',
-      // When private key is passphrase protected.
-      'privatekey_pass' =&gt; '&lt;old-secret&gt;',
-
       'new_privatekey' =&gt; 'new.pem',
       'new_certificate' =&gt; 'new.crt',
-      // When new private key is passphrase protected.
-      'new_privatekey_pass' =&gt; '&lt;new-secret&gt;',
-  ],
+  ),
 </code></pre>
 <p>
  In
@@ -181,19 +180,14 @@ This ensures that both those entities that use your old metadata and those that 
  </code>
  :
 </p>
-<pre><code>  $metadata['__DYNAMIC:1__'] = [
+<pre><code>  $metadata['__DYNAMIC:1__'] = array(
       'host' =&gt; '__DEFAULT__',
       'auth' =&gt; 'example-userpass',
       'privatekey' =&gt; 'old.pem',
       'certificate' =&gt; 'old.crt',
-      // When private key is passphrase protected.
-      'privatekey_pass' =&gt; '&lt;old-secret&gt;',
-
       'new_privatekey' =&gt; 'new.pem',
       'new_certificate' =&gt; 'new.crt',
-      // When new private key is passphrase protected.
-      'new_privatekey_pass' =&gt; '&lt;new-secret&gt;',
-  ];
+  );
 </code></pre>
 <h2>
  Distribute your new metadata
@@ -217,10 +211,6 @@ Replace the existing
  <code>
   privatekey
  </code>
- ,
- <code>
-  privatekey_pass
- </code>
  and
  <code>
   certificate
@@ -228,10 +218,6 @@ Replace the existing
  options in your configuration with the
  <code>
   new_privatekey
- </code>
- ,
- <code>
-  new_privatekey_pass
  </code>
  and
  <code>
@@ -250,13 +236,11 @@ This will cause your old key to be removed from your metadata.
  </code>
  :
 </p>
-<pre><code>  'default-sp' =&gt; [
+<pre><code>  'default-sp' =&gt; array(
       'saml:SP',
-      'certificate' =&gt; 'new.crt',
       'privatekey' =&gt; 'new.pem',
-      // When private key is passphrase protected.
-      'privatekey_pass' =&gt; '&lt;new-secret&gt;',
-  ],
+      'certificate' =&gt; 'new.crt',
+  ),
 </code></pre>
 <p>
  In
@@ -265,14 +249,12 @@ This will cause your old key to be removed from your metadata.
  </code>
  :
 </p>
-<pre><code>  $metadata['__DYNAMIC:1__'] = [
+<pre><code>  $metadata['__DYNAMIC:1__'] = array(
       'host' =&gt; '__DEFAULT__',
       'auth' =&gt; 'example-userpass',
-      'certificate' =&gt; 'new.crt',
       'privatekey' =&gt; 'new.pem',
-      // When private key is passphrase protected.
-      'privatekey_pass' =&gt; '&lt;new-secret&gt;',
-  ];
+      'certificate' =&gt; 'new.crt',
+  );
 </code></pre>
 <h2>
  Distribute your final metadata

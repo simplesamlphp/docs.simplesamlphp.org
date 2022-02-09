@@ -221,12 +221,26 @@
  : Authenticates an user to a Radius server.
 </p>
 <p>
+ <a href="https://github.com/simplesamlphp/simplesamlphp-module-infocard/blob/master/README.md">
+  <code>
+   InfoCard:ICAuth
+  </code>
+ </a>
+ : Authenticate with an InfoCard.
+</p>
+<p>
  <a href="./multiauth/multiauth.html">
   <code>
    multiauth:MultiAuth
   </code>
  </a>
  : Allow the user to select from a list of authentication sources.
+</p>
+<p>
+ <code>
+  openid:OpenIDConsumer
+ </code>
+ : Authenticate against an OpenID provider.
 </p>
 <p>
  <a href="./saml/sp.html">
@@ -289,28 +303,22 @@
  <code>
   exampleauth
  </code>
- module. This module isn't enabled by default, so you will have to enable it. In
+ module. This module isn't enabled by default, so you will have to enable it. This is done by creating a file named
  <code>
-  config.php
+  enable
  </code>
- , search for the
+ in
  <code>
-  module.enable
+  modules/exampleauth/
  </code>
- key and set
- <code>
-  exampleauth
- </code>
- to true:
+ .
 </p>
 <p>
- <code>
-  'module.enable' =&gt; [
-         'exampleauth' =&gt; true,
-         …
-    ],
- </code>
+ On unix, this can be done by running (from the SimpleSAMLphp
+installation directory):
 </p>
+<pre><code>  touch modules/exampleauth/enable
+</code></pre>
 <p>
  The next step is to create an authentication source with this module. An authentication source is an authentication module with a specific configuration. Each authentication source has a name, which is used to refer to this specific configuration in the IdP configuration. Configuration for authentication sources can be found in
  <code>

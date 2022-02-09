@@ -594,7 +594,7 @@ This is done to be consistent in what the application receives - now it will alw
 <pre><code>  public static function show(\SimpleSAML\Configuration $config, array $data) {
       $t = new \SimpleSAML\XHTML\Template($config, 'error.php', 'errors');
       $t-&gt;data = array_merge($t-&gt;data, $data);
-      $t-&gt;send();
+      $t-&gt;show();
       exit;
   }
 </code></pre></div>    <!-- /#content -->

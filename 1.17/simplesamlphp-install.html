@@ -147,7 +147,7 @@ repository
   A web server capable of executing PHP scripts.
  </li>
  <li>
-  PHP version &gt;= 7.2.0.
+  PHP version &gt;= 5.5.0.
  </li>
  <li>
   Support for the following PHP extensions:
@@ -287,14 +287,6 @@ repository
  Upgrading from a previous version of SimpleSAMLphp
 </h2>
 <p>
- Before starting the upgrade, review the relevant
- <a href="simplesamlphp-upgrade-notes.html">
-  upgrade notes
- </a>
- for any relevant
-changes.
-</p>
-<p>
  Extract the new version:
 </p>
 <p>
@@ -314,18 +306,6 @@ keep reading for other alternatives):
     cp -rv ../simplesamlphp/config config
     cp -rv ../simplesamlphp/metadata metadata
  </code>
-</p>
-<p>
- If you have installed any
- <a href="https://simplesamlphp.org/modules">
-  third-party modules
- </a>
- or
- <a href="simplesamlphp-theming.md.html">
-  customised the theme
- </a>
- , 
-you should check whether your third-party modules need upgrading and then copy or replace those directories too.
 </p>
 <p>
  Replace the old version with the new version:
@@ -375,11 +355,8 @@ startup indicating how and what you need to update. You should look through the 
  </code>
  directory after the upgrade to see whether recommended defaults have been changed.
 </p>
-<h2>
- Configuration
-</h2>
 <h3>
- Location of configuration files
+ Alternative location for configuration files
 </h3>
 <p>
  By default, SimpleSAMLphp looks for its configuration in the
@@ -435,7 +412,7 @@ one possible configuration.
 look like this:
 </p>
 <p>
- ```
+ ```apacheconfig
  <virtualhost *="">
   ServerName service.example.com
             DocumentRoot /var/www/service.example.com
@@ -446,7 +423,15 @@ look like this:
           Alias /simplesaml /var/simplesamlphp/www
 
           &lt;Directory /var/simplesamlphp/www&gt;
+              &lt;IfModule !mod_authz_core.c&gt;
+              # For Apache 2.2:
+              Order allow,deny
+              Allow from all
+              &lt;/IfModule&gt;
+              &lt;IfModule mod_authz_core.c&gt;
+              # For Apache 2.4:
               Require all granted
+              &lt;/IfModule&gt;
           &lt;/Directory&gt;
   &lt;/VirtualHost&gt;
 </code></pre>
@@ -490,7 +475,8 @@ Here is an example of how this configuration may look like in
 </p>
 <p>
  <code>
-  $config = [
+  php
+$config = [
     [...]
     'baseurlpath' =&gt; 'simplesaml/',
     [...]
@@ -574,21 +560,20 @@ look like this:
 </p>
 <pre><code>      ssl_certificate        /etc/pki/tls/certs/idp.example.com.crt;
       ssl_certificate_key    /etc/pki/tls/private/idp.example.com.key;
-      ssl_protocols          TLSv1.3 TLSv1.2;
-      ssl_ciphers            EECDH+AESGCM:EDH+AESGCM;
+      ssl_protocols          TLSv1.1 TLSv1.2;
+      ssl_ciphers            HIGH:!aNULL:!MD5;
 
       location ^~ /simplesaml {
           alias /var/simplesamlphp/www;
 
-          location ~^(?&lt;prefix&gt;/simplesaml)(?&lt;phpfile&gt;.+?\.php)(?&lt;pathinfo&gt;/.*)?$ {
+          location ~ \.php(/|$) {
+              root             /var/simplesamlphp/www;
+              fastcgi_pass     127.0.0.1:9000;
+              fastcgi_index    index.php;
+              fastcgi_param    SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+              fastcgi_split_path_info ^(.+?\.php)(/.*)$;
+              fastcgi_param    PATH_INFO $fastcgi_path_info;
               include          fastcgi_params;
-              fastcgi_pass     $fastcgi_pass;
-              fastcgi_param SCRIPT_FILENAME $document_root$phpfile;
-
-              # Must be prepended with the baseurlpath
-              fastcgi_param SCRIPT_NAME /simplesaml$phpfile;
-
-              fastcgi_param PATH_INFO $pathinfo if_not_empty;
           }
       }
   }
@@ -618,7 +603,8 @@ look like this:
   </p>
   <p>
    <code>
-    'baseurlpath' =&gt; 'https://your.canonical.host.name/simplesaml/',
+    php
+     'baseurlpath' =&gt; 'https://your.canonical.host.name/simplesaml/',
    </code>
   </p>
   <p>
@@ -664,7 +650,8 @@ look like this:
   </p>
   <p>
    <code>
-    'auth.adminpassword' =&gt; 'setnewpasswordhere',
+    php
+     'auth.adminpassword' =&gt; 'setnewpasswordhere',
    </code>
   </p>
  </li>
@@ -684,7 +671,8 @@ look like this:
   </p>
   <p>
    <code>
-    'secretsalt' =&gt; 'randombytesinsertedhere',
+    php
+     'secretsalt' =&gt; 'randombytesinsertedhere',
    </code>
   </p>
   <p>
@@ -730,7 +718,8 @@ look like this:
   </p>
   <p>
    <code>
-    'technicalcontact_name' =&gt; 'John Smith',
+    php
+     'technicalcontact_name' =&gt; 'John Smith',
      'technicalcontact_email' =&gt; 'john.smith@example.com',
    </code>
   </p>
@@ -742,7 +731,8 @@ look like this:
   </p>
   <p>
    <code>
-    'language.default' =&gt; 'no',
+    php
+     'language.default' =&gt; 'no',
    </code>
   </p>
  </li>
@@ -752,7 +742,8 @@ look like this:
   </p>
   <p>
    <code>
-    'timezone' =&gt; 'Europe/Oslo',
+    php
+     'timezone' =&gt; 'Europe/Oslo',
    </code>
   </p>
   <p>
@@ -771,29 +762,10 @@ look like this:
  Sending e-mails from PHP
 </h3>
 <p>
- Some parts of SimpleSAMLphp will allow you to send e-mails. For example, sending error reports to the technical admin. If
+ Some parts of SimpleSAMLphp will allow you to send e-mails. For example, sending error reports to technical admin. If
 you want to make use of this functionality, you should make sure your PHP installation is configured to be able to
-send e-mails.
-</p>
-<p>
- By default SimpleSAMLphp uses the PHP
- <code>
-  mail()
- </code>
- function, which you can configure via
- <code>
-  php.ini
- </code>
- .
-For more advanced configuration, including using a remote SMTP server, see the
- <code>
-  mail.*
- </code>
- options in
- <code>
-  config.php
- </code>
- .
+send e-mails. It's a common problem that PHP is not configured to send e-mails properly. The configuration differs
+from system to system. On UNIX, PHP is using sendmail, on Windows SMTP.
 </p>
 <h2>
  Enabling and disabling modules
@@ -804,7 +776,8 @@ can do that in the configuration:
 </p>
 <p>
  <code>
-  'module.enable' =&gt; [
+  php
+    'module.enable' =&gt; [
          'exampleauth' =&gt; true, // Setting to TRUE enables.
          'saml' =&gt; false, // Setting to FALSE disables.
          'core' =&gt; null, // Unset or NULL uses default for this module.
@@ -823,23 +796,43 @@ can do that in the configuration:
  those that you want to disable.
 </p>
 <p>
- Prior to SSP V2 you could enable or disable modules by setting empty files with names (
+ Alternatively, you can enable or disable modules by setting empty files with given names in the module's root 
+directory. For example, in order to enable the
+ <em>
+  consent
+ </em>
+ module:
+</p>
+<p>
+ <code>
+  cd modules/consent
+    touch enable
+ </code>
+</p>
+<p>
+ If you later want to disable the module, you can rename the
  <code>
   enable
  </code>
- ,
+ file to
  <code>
   disable
  </code>
- ,
+ .
+</p>
+<p>
  <code>
-  default-enable
+  cd modules/consent
+    mv enable disable
  </code>
- ) in the module's root directory. You need to now use the
- <code>
-  module.enable
- </code>
- config option.
+</p>
+<p>
+ This is the traditional way of enabling and disabling modules, but it is
+ <strong>
+  deprecated
+ </strong>
+ . Please do not rely on this in
+new installations of the software.
 </p>
 <h2>
  The SimpleSAMLphp installation web page
@@ -873,18 +866,6 @@ Service Provider or as an Identity Provider, depending on your use case.
  At the bottom of the installation page there are some green lights. SimpleSAMLphp runs some tests to see whether the 
 required and recommended prerequisites are met. If any of the lights are red, you may have to install some PHP 
 extensions or external PHP packages (e.g. you need the PHP LDAP extension to use the LDAP authentication module).
-</p>
-<h2>
- Building assets
-</h2>
-<p>
- Run the following commands to build the default theme.
-</p>
-<p>
- <code>
-  npm install
-npm run build
- </code>
 </p>
 <h2>
  Next steps
@@ -930,7 +911,7 @@ in a separate document.
    </li>
    <li>
     <a href="simplesamlphp-googleapps.html">
-     Setting up an IdP for Google Workspace (G Suite / Google Apps)
+     Setting up an IdP for G Suite (Google Apps)
     </a>
    </li>
    <li>
@@ -941,7 +922,7 @@ in a separate document.
   </ul>
  </li>
  <li>
-  <a href="./metarefresh/simplesamlphp-automated_metadata.html">
+  <a href="simplesamlphp-automated_metadata.html">
    Automated Metadata Management
   </a>
  </li>
@@ -1089,7 +1070,8 @@ just created in your
   </p>
   <p>
    <code>
-    'baseurlpath' =&gt; 'https://host.example/~myaccount/simplesaml/',
+    php
+     'baseurlpath' =&gt; 'https://host.example/~myaccount/simplesaml/',
    </code>
   </p>
   <p>
@@ -1164,7 +1146,8 @@ just created in your
 </p>
 <p>
  <code>
-  require_once(dirname(dirname(__FILE__)) . '/lib/_autoload.php');
+  php
+    require_once(dirname(dirname(__FILE__)) . '/lib/_autoload.php');
  </code>
 </p>
 <p>
@@ -1172,7 +1155,8 @@ just created in your
 </p>
 <p>
  <code>
-  require_once(dirname(dirname(dirname(__FILE__))) . '/lib/_autoload.php');
+  php
+    require_once(dirname(dirname(dirname(__FILE__))) . '/lib/_autoload.php');
  </code>
 </p>
 <p>

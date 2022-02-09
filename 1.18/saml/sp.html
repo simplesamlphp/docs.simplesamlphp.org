@@ -112,7 +112,7 @@
  </code>
 </h1>
 <p>
- This authentication source is used to authenticate against SAML 2 IdPs.
+ This authentication source is used to authenticate against SAML 1 and SAML 2 IdPs.
 </p>
 <h2>
  Metadata
@@ -142,6 +142,13 @@ All these parameters override the equivalent option from the configuration.
  :   The AuthnContextClassRef that will be sent in the login request.
 </p>
 <p>
+ :
+ <em>
+  Note
+ </em>
+ : SAML 2 specific.
+</p>
+<p>
  <code>
   saml:AuthnContextComparison
  </code>
@@ -159,10 +166,24 @@ All these parameters override the equivalent option from the configuration.
   * `SAML2\Constants::COMPARISON_MAXIMUM`
 </code></pre>
 <p>
+ :
+ <em>
+  Note
+ </em>
+ : SAML 2 specific.
+</p>
+<p>
  <code>
   ForceAuthn
  </code>
  :   Force authentication allows you to force re-authentication of users even if the user has a SSO session at the IdP.
+</p>
+<p>
+ :
+ <em>
+  Note
+ </em>
+ : SAML 2 specific.
 </p>
 <p>
  <code>
@@ -177,16 +198,24 @@ All these parameters override the equivalent option from the configuration.
  :   Send a passive authentication request.
 </p>
 <p>
- <code>
-  saml:Extensions
- </code>
- :   The samlp:Extensions (an XML chunk) that will be sent in the login request.
+ :
+ <em>
+  Note
+ </em>
+ : SAML 2 specific.
 </p>
 <p>
  <code>
-  saml:logout:Extensions
+  saml:Extensions
  </code>
- :   The samlp:Extensions (an XML chunk) that will be sent in the logout request.
+ :   The samlp:Extensions that will be sent in the login request.
+</p>
+<p>
+ :
+ <em>
+  Note
+ </em>
+ : SAML 2 specific.
 </p>
 <p>
  <code>
@@ -196,12 +225,19 @@ All these parameters override the equivalent option from the configuration.
     This must be a \SAML2\XML\saml\NameID object.
 </p>
 <p>
+ :
+ <em>
+  Note
+ </em>
+ : SAML 2 specific.
+</p>
+<p>
  <code>
   saml:NameIDPolicy
  </code>
  :   The format of the NameID we request from the IdP: an array in the form of
  <code>
-  [ 'Format' =&gt; the format, 'AllowCreate' =&gt; true or false ]
+  [ 'Format' =&gt; the format, 'allowcreate' =&gt; true or false ]
  </code>
  .
     Set to
@@ -220,11 +256,25 @@ All these parameters override the equivalent option from the configuration.
     can be defined as a string instead of an array. These variants are deprecated.
 </p>
 <p>
+ :
+ <em>
+  Note
+ </em>
+ : SAML 2 specific.
+</p>
+<p>
  <code>
   saml:Audience
  </code>
  :   Add a Conditions element to the SAML AuthnRequest containing an
     AudienceRestriction with one or more audiences.
+</p>
+<p>
+ :
+ <em>
+  Note
+ </em>
+ : SAML 2 specific.
 </p>
 <h2>
  Authentication data
@@ -272,7 +322,9 @@ The following attributes are available:
 : Possible values:
 </p>
 <pre><code>  * `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST`
+  * `urn:oasis:names:tc:SAML:1.0:profiles:browser-post`
   * `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact`
+  * `urn:oasis:names:tc:SAML:1.0:profiles:artifact-01`
   * `urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser`
 </code></pre>
 <p>
@@ -281,17 +333,24 @@ The following attributes are available:
  </code>
  :   Whether assertions received by this SP must be encrypted. The default value is
  <code>
-  false
+  FALSE
  </code>
  .
     If this option is set to
  <code>
-  true
+  TRUE
  </code>
  , unencrypted assertions will be rejected.
 </p>
 <p>
  :   Note that this option can be overridden for a specific IdP in saml20-idp-remote.
+</p>
+<p>
+ :
+ <em>
+  Note
+ </em>
+ : SAML 2 specific.
 </p>
 <p>
  <code>
@@ -302,16 +361,7 @@ The following attributes are available:
  <a href="./simplesamlphp-metadata-endpoints.html">
   Metadata endpoints
  </a>
- documentation. Note that this list is taken at face value, so it's not useful to list
-    anything here that the SP auth source does not actually support (unless the URLs point
-    externally).
-</p>
-<p>
- <code>
-  AssertionConsumerServiceIndex
- </code>
- :   The Assertion Consumer Service Index to be used in the AuthnRequest in place of the Assertion
-    Service Consumer URL.
+ documentation.
 </p>
 <p>
  <code>
@@ -406,6 +456,13 @@ The following attributes are available:
     One example of usage could be if the IdP supports both username/password authentication as well as software-PKI.
 </p>
 <p>
+ :
+ <em>
+  Note
+ </em>
+ : SAML 2 specific.
+</p>
+<p>
  <code>
   AuthnContextComparison
  </code>
@@ -422,6 +479,13 @@ The following attributes are available:
   * `SAML2\Constants::COMPARISON_MINIMUM`
   * `SAML2\Constants::COMPARISON_MAXIMUM`
 </code></pre>
+<p>
+ :
+ <em>
+  Note
+ </em>
+ : SAML 2 specific.
+</p>
 <p>
  <code>
   authproc
@@ -466,16 +530,16 @@ The following attributes are available:
 <p>
  :   For example, specifying a support contact:
 </p>
-<pre><code>      'contacts' =&gt; [
-          [
+<pre><code>      'contacts' =&gt; array(
+          array(
               'contactType'       =&gt; 'support',
               'emailAddress'      =&gt; 'support@example.org',
               'givenName'         =&gt; 'John',
               'surName'           =&gt; 'Doe',
               'telephoneNumber'   =&gt; '+31(0)12345678',
               'company'           =&gt; 'Example Inc.',
-          ],
-      ],
+          )
+      ),
 </code></pre>
 <p>
  :   Valid values for
@@ -519,10 +583,10 @@ The following attributes are available:
 <p>
  :   This option can be translated into multiple languages by specifying the value as an array of language-code to translated description:
 </p>
-<pre><code>      'description' =&gt; [
+<pre><code>      'description' =&gt; array(
           'en' =&gt; 'A service',
           'no' =&gt; 'En tjeneste',
-      ],
+      ),
 </code></pre>
 <p>
  :
@@ -545,12 +609,12 @@ The following attributes are available:
  </code>
  :    Whether sending of samlp:Scoping elements in authentication requests should be suppressed. The default value is
  <code>
-  false
+  FALSE
  </code>
  .
      When set to
  <code>
-  true
+  TRUE
  </code>
  , no scoping elements will be sent. This does not comply with the SAML2 specification, but allows
      interoperability with ADFS which
@@ -571,7 +635,7 @@ The following attributes are available:
  :   Set which IdP discovery service this SP should use.
     If this is unset, the IdP discovery service specified in the global option
  <code>
-  idpdisco.url.saml20
+  idpdisco.url.{saml20|shib13}
  </code>
  in
  <code>
@@ -594,6 +658,13 @@ The following attributes are available:
  .
 </p>
 <p>
+ :
+ <em>
+  Note
+ </em>
+ : SAML 2 specific.
+</p>
+<p>
  <code>
   entityID
  </code>
@@ -608,6 +679,13 @@ The following attributes are available:
   ForceAuthn
  </code>
  :   Force authentication allows you to force re-authentication of users even if the user has a SSO session at the IdP.
+</p>
+<p>
+ :
+ <em>
+  Note
+ </em>
+ : SAML 2 specific.
 </p>
 <p>
  <code>
@@ -625,6 +703,13 @@ The following attributes are available:
  :   IsPassive allows you to enable passive authentication by default for this SP.
 </p>
 <p>
+ :
+ <em>
+  Note
+ </em>
+ : SAML 2 specific.
+</p>
+<p>
  <code>
   name
  </code>
@@ -634,10 +719,10 @@ The following attributes are available:
 <p>
  :   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
 </p>
-<pre><code>      'name' =&gt; [
+<pre><code>      'name' =&gt; array(
           'en' =&gt; 'A service',
           'no' =&gt; 'En tjeneste',
-      ],,
+      ),
 </code></pre>
 <p>
  :
@@ -657,7 +742,7 @@ The following attributes are available:
  :   Whether NameIDs sent from this SP should be encrypted. The default
     value is
  <code>
-  false
+  FALSE
  </code>
  .
 </p>
@@ -667,6 +752,13 @@ The following attributes are available:
   IdP-remote metadata
  </a>
  .
+</p>
+<p>
+ :
+ <em>
+  Note
+ </em>
+ : SAML 2 specific.
 </p>
 <p>
  <code>
@@ -693,49 +785,96 @@ The following attributes are available:
     can be defined as a string instead of an array. These variants are deprecated.
 </p>
 <p>
+ :
+ <em>
+  Note
+ </em>
+ : SAML 2 specific.
+</p>
+<p>
  <code>
   OrganizationName
  </code>
- ,
- <code>
-  OrganizationDisplayName
- </code>
- ,
- <code>
-  OrganizationURL
- </code>
- :   The name and URL of the organization responsible for this IdP.
-    You need to either specify
- <em>
-  all three
- </em>
- or none of these options.
-</p>
-<p>
- :   The Name does not need to be suitable for display to end users, the DisplayName should be.
-    The URL is a website the user can access for more information about the organization.
+ :   The name of the organization responsible for this SP.
+    This name does not need to be suitable for display to end users.
 </p>
 <p>
  :   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
 </p>
-<pre><code>      'OrganizationName' =&gt; [
-          'en' =&gt; 'Voorbeeld Organisatie Foundation b.a.',
-          'nl' =&gt; 'Stichting Voorbeeld Organisatie b.a.',
-      ],
-      'OrganizationDisplayName' =&gt; [
+<pre><code>      'OrganizationName' =&gt; array(
           'en' =&gt; 'Example organization',
-          'nl' =&gt; 'Voorbeeldorganisatie',
-      ],
-      'OrganizationURL' =&gt; [
-          'en' =&gt; 'https://example.com',
-          'nl' =&gt; 'https://example.com/nl',
-      ],
+          'no' =&gt; 'Eksempel organisation',
+      ),
 </code></pre>
+<p>
+ :
+ <em>
+  Note
+ </em>
+ : If you specify this option, you must also specify the
+ <code>
+  OrganizationURL
+ </code>
+ option.
+</p>
+<p>
+ <code>
+  OrganizationDisplayName
+ </code>
+ :   The name of the organization responsible for this SP.
+    This name must be suitable for display to end users.
+    If this option isn't specified,
+ <code>
+  OrganizationName
+ </code>
+ will be used instead.
+</p>
+<p>
+ :   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name.
+</p>
+<p>
+ :
+ <em>
+  Note
+ </em>
+ : If you specify this option, you must also specify the
+ <code>
+  OrganizationName
+ </code>
+ option.
+</p>
+<p>
+ <code>
+  OrganizationURL
+ </code>
+ :   A URL the end user can access for more information about the organization.
+</p>
+<p>
+ :   This option can be translated into multiple languages by specifying the value as an array of language-code to translated URL.
+</p>
+<p>
+ :
+ <em>
+  Note
+ </em>
+ : If you specify this option, you must also specify the
+ <code>
+  OrganizationName
+ </code>
+ option.
+</p>
 <p>
  <code>
   privatekey
  </code>
  :   File name of private key to be used for signing messages and decrypting messages from the IdP. This option is only required if you use encrypted assertions or if you enable signing of messages.
+</p>
+<p>
+ :
+ <em>
+  Note
+ </em>
+ : SAML 2 specific.
 </p>
 <p>
  <code>
@@ -744,10 +883,11 @@ The following attributes are available:
  :   The passphrase for the private key, if it is encrypted. If the private key is unencrypted, this can be left out.
 </p>
 <p>
- <code>
-  ProviderName
- </code>
- :   Human readable name of the local SP sent with the authentication request.
+ :
+ <em>
+  Note
+ </em>
+ : SAML 2 specific.
 </p>
 <p>
  <code>
@@ -758,12 +898,19 @@ The following attributes are available:
     By default the HTTP-Post binding is used.
 </p>
 <p>
+ :
+ <em>
+  Note
+ </em>
+ : SAML 2 specific.
+</p>
+<p>
  <code>
   redirect.sign
  </code>
  :   Whether authentication requests, logout requests and logout responses sent from this SP should be signed. The default is
  <code>
-  false
+  FALSE
  </code>
  .
     If set, the
@@ -782,14 +929,28 @@ The following attributes are available:
  option in any metadata generated for this SP.
 </p>
 <p>
+ :
+ <em>
+  Note
+ </em>
+ : SAML 2 specific.
+</p>
+<p>
  <code>
   redirect.validate
  </code>
  :   Whether logout requests and logout responses received by this SP should be validated. The default is
  <code>
-  false
+  FALSE
  </code>
  .
+</p>
+<p>
+ :
+ <em>
+  Note
+ </em>
+ : SAML 2 specific.
 </p>
 <p>
  <code>
@@ -808,6 +969,24 @@ The following attributes are available:
  :   The page the user should be redirected to after an IdP initiated SSO.
 </p>
 <p>
+ :
+ <em>
+  Note
+ </em>
+ : SAML 2 specific.
+    For SAML 1.1 SPs, you must specify the
+ <code>
+  TARGET
+ </code>
+ parameter in the authentication response.
+    How to set that parameter is depends on the IdP.
+    For SimpleSAMLphp, see the documentation for
+ <a href="./simplesamlphp-idp-more#section_4_1.html">
+  IdP-first flow
+ </a>
+ .
+</p>
+<p>
  <code>
   saml.SOAPClient.certificate
  </code>
@@ -821,7 +1000,7 @@ The following attributes are available:
 <p>
  :   This option can also be set to
  <code>
-  false
+  FALSE
  </code>
  , in which case no client certificate will be used.
 </p>
@@ -834,6 +1013,31 @@ The following attributes are available:
   saml.SOAPClient.certificate
  </code>
  .
+</p>
+<p>
+ <code>
+  saml1.useartifact
+ </code>
+ :   Request that the IdP returns the result to the artifact binding.
+    The default is to use the POST binding, set this option to TRUE to use the artifact binding instead.
+</p>
+<p>
+ :   This option can also be set in the
+ <code>
+  shib13-idp-remote
+ </code>
+ metadata, in which case the setting in
+ <code>
+  shib13-idp-remote
+ </code>
+ takes precedence.
+</p>
+<p>
+ :
+ <em>
+  Note
+ </em>
+ : SAML 1 specific.
 </p>
 <p>
  <code>
@@ -866,6 +1070,13 @@ The following attributes are available:
     in the SP configuration.
 </p>
 <p>
+ :
+ <em>
+  Note
+ </em>
+ : SAML 2 specific.
+</p>
+<p>
  <code>
   sign.logout
  </code>
@@ -875,6 +1086,13 @@ The following attributes are available:
  :   Note that this option also exists in the IdP-remote metadata, and
     any value in the IdP-remote metadata overrides the one configured
     in the SP configuration.
+</p>
+<p>
+ :
+ <em>
+  Note
+ </em>
+ : SAML 2 specific.
 </p>
 <p>
  <code>
@@ -894,12 +1112,12 @@ The following attributes are available:
  <code>
   SingleLogoutServiceBinding
  </code>
- : List of SingleLogoutService bindings the SP will claim support for (can be empty).
+ : List of SingleLogoutService bindings the IdP will claim support for.
 : Possible values:
 </p>
 <pre><code>  * `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect`
   * `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST`
-  * `urn:oasis:names:tc:SAML:2.0:bindings:SOAP`
+* `urn:oasis:names:tc:SAML:2.0:bindings:SOAP`
 </code></pre>
 <p>
  <code>
@@ -907,6 +1125,20 @@ The following attributes are available:
  </code>
  :   The Single Logout Service URL published in the generated metadata.
 </p>
+<p>
+ <code>
+  url
+ </code>
+ :   A URL to your service provider. Will be added as an OrganizationURL-element in the metadata.
+</p>
+<p>
+ :   This option can be translated into multiple languages by specifying the value as an array of language-code to language-specific URL:
+</p>
+<pre><code>      'url' =&gt; array(
+          'en' =&gt; 'http://sp.example.net/en/info.html',
+          'no' =&gt; 'http://sp.example.net/no/info.html',
+      ),
+</code></pre>
 <p>
  <code>
   validate.logout
@@ -919,12 +1151,19 @@ The following attributes are available:
     in the IdP metadata.
 </p>
 <p>
+ :
+ <em>
+  Note
+ </em>
+ : SAML 2 specific.
+</p>
+<p>
  <code>
   WantAssertionsSigned
  </code>
  :   Whether assertions received by this SP must be signed. The default value is
  <code>
-  false
+  FALSE
  </code>
  .
     The value set for this option will be used to set the
@@ -947,82 +1186,83 @@ The following attributes are available:
 <h3>
  Minimal
 </h3>
-<pre><code>  'example-minimal' =&gt; [
+<pre><code>  'example-minimal' =&gt; array(
       'saml:SP',
-  ],
+  ),
 </code></pre>
 <h3>
  Connecting to a specific IdP
 </h3>
-<pre><code>  'example' =&gt; [
+<pre><code>  'example' =&gt; array(
       'saml:SP',
       'idp' =&gt; 'https://idp.example.net/',
-  ],
+  ),
 </code></pre>
 <h3>
  Using a specific entity ID
 </h3>
-<pre><code>  'example' =&gt; [
+<pre><code>  'example' =&gt; array(
       'saml:SP',
       'entityID' =&gt; 'https://sp.example.net',
-  ],
+  ),
 </code></pre>
 <h3>
  Encryption and signing
 </h3>
 <pre><code>  This SP will accept encrypted assertions, and will sign and validate all messages.
 
-  'example-enc' =&gt; [
+  'example-enc' =&gt; array(
       'saml:SP',
 
       'certificate' =&gt; 'example.crt',
       'privatekey' =&gt; 'example.key',
       'privatekey_pass' =&gt; 'secretpassword',
-      'redirect.sign' =&gt; true,
-      'redirect.validate' =&gt; true,
-  ],
+      'redirect.sign' =&gt; TRUE,
+      'redirect.validate' =&gt; TRUE,
+  ),
 </code></pre>
 <h3>
  Specifying attributes and required attributes
 </h3>
 <pre><code>  An SP that wants eduPersonPrincipalName and mail, where eduPersonPrincipalName should be listed as required:
 
-  'example-attributes =&gt; [
+  'example-attributes =&gt; array(
       'saml:SP',
-      'name' =&gt; [ // Name required for AttributeConsumingService-element.
+      'name' =&gt; array( // Name required for AttributeConsumingService-element.
           'en' =&gt; 'Example service',
           'no' =&gt; 'Eksempeltjeneste',
-      ],
-      'attributes' =&gt; [
+      ),
+      'attributes' =&gt; array(
           'eduPersonPrincipalName',
           'mail',
           // Specify friendly names for these attributes:
           'sn' =&gt; 'urn:oid:2.5.4.4',
           'givenName' =&gt; 'urn:oid:2.5.4.42',
-      ],
-      'attributes.required' =&gt; [
+      ),
+      'attributes.required' =&gt; array (
           'eduPersonPrincipalName',
-      ],
+      ),
       'attributes.NameFormat' =&gt; 'urn:oasis:names:tc:SAML:2.0:attrname-format:basic',
-  ],
+  ),
 </code></pre>
 <h3>
  Limiting supported AssertionConsumerService endpoint bindings
 </h3>
-<pre><code>  'example-acs-limit' =&gt; [
+<pre><code>  'example-acs-limit' =&gt; array(
       'saml:SP',
-      'acs.Bindings' =&gt; [
+      'acs.Bindings' =&gt; array(
           'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
-      ],
-  ],
+          'urn:oasis:names:tc:SAML:1.0:profiles:browser-post',
+      ),
+  ),
 </code></pre>
 <h3>
  Requesting a specific authentication method.
 </h3>
 <pre><code>  $auth = new \SimpleSAML\Auth\Simple('default-sp');
-  $auth-&gt;login([
+  $auth-&gt;login(array(
       'saml:AuthnContextClassRef' =&gt; 'urn:oasis:names:tc:SAML:2.0:ac:classes:Password',
-  ]);
+  ));
 </code></pre>
 <h3>
  Using samlp:Extensions
@@ -1032,9 +1272,9 @@ The following attributes are available:
   $ext[] = new \SAML2\XML\Chunk($ce);
 
   $auth = new \SimpleSAML\Auth\Simple('default-sp');
-  $auth-&gt;login([
+  $auth-&gt;login(array(
       'saml:Extensions' =&gt; $ext,
-  ]);
+  ));
 </code></pre></div>    <!-- /#content -->
 
 <div id="footer">

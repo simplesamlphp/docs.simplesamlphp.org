@@ -116,12 +116,12 @@
  </code>
  directory in a module, and the class name is
  <code>
-  \SimpleSAML\Module\&lt;module&gt;\Auth\Source\&lt;name&gt;
+  sspmod_&lt;module&gt;_Auth_Source_&lt;name&gt;
  </code>
  .
 The authentication source must extend the
  <code>
-  \SimpleSAML\Auth\Source
+  SimpleSAML_Auth_Source
  </code>
  class or one of its subclasses.
 </p>
@@ -151,7 +151,7 @@ There are only two requirements:
   If the module is able to authenticate the user without doing any redirects, it should just update the state-array and return.
   If the module does a redirect, it must call
    <code>
-    \SimpleSAML\Auth\Source::completeAuth()
+    SimpleSAML_Auth_Source::completeAuth()
    </code>
    with the updated state array.
   </p>
@@ -162,7 +162,7 @@ There are only two requirements:
 If the module needs to redirect the user, for example because it needs to show the user a page asking for credentials, it needs to save the state array.
 For that we have the
  <code>
-  \SimpleSAML\Auth\State
+  SimpleSAML_Auth_State
  </code>
  class.
 This is only a convenience class, and you are not required to use it (but its use is encouraged, since it handles some potential pitfalls).
@@ -173,7 +173,7 @@ This is only a convenience class, and you are not required to use it (but its us
 <p>
  The
  <code>
-  \SimpleSAML\Auth\State
+  SimpleSAML_Auth_State
  </code>
  class has two functions that you should use:
  <code>
@@ -209,7 +209,7 @@ It is used to prevent a malicious user from taking a state you save in one locat
  Since username/password authentication is quite a common operation, a base class has been created for this.
 This is the
  <code>
-  \SimpleSAML\Module\core\Auth\UserPassBase
+  sspmod_core_Auth_UserPassBase
  </code>
  class, which is can be found as
  <code>
@@ -226,7 +226,7 @@ This is the
 This function receives the username and password the user entered, and is expected to return the attributes of that user.
 If the username or password is incorrect, it should throw an error saying so:
 </p>
-<pre><code>  throw new \SimpleSAML\Error\Error('WRONGUSERPASS');
+<pre><code>  throw new SimpleSAML_Error_Error('WRONGUSERPASS');
 </code></pre>
 <p>
  "
@@ -240,7 +240,7 @@ If the username or password is incorrect, it should throw an error saying so:
 </h2>
 <ul>
  <li>
-  <pre><code>Must be derived from the `\SimpleSAML\Auth\Source`-class.
+  <pre><code>Must be derived from the `SimpleSAML_Auth_Source`-class.
 
 **Rationale**:
  - Deriving all authentication sources from a single base class allows us extend all authentication sources by extending the base class.
@@ -252,7 +252,7 @@ If the username or password is incorrect, it should throw an error saying so:
 
 **Rationale**:
  - PHP doesn't automatically call any parent constructor, so it needs to be done manually.
- - The `$info`-array is used to provide information to the `\SimpleSAML\Auth\Source` base class, and therefore needs to be included.
+ - The `$info`-array is used to provide information to the `SimpleSAML_Auth_Source` base class, and therefore needs to be included.
  - Including the `$config`-array makes it possible to add generic configuration options that are valid for all authentication sources.
 </code></pre>
  </li>
@@ -266,7 +266,7 @@ If the username or password is incorrect, it should throw an error saying so:
 </code></pre>
  </li>
  <li>
-  <pre><code>  If the `authenticate`-function does not return, it must at a later time call `\SimpleSAML\Auth\Source::completeAuth` with the new state array.
+  <pre><code>  If the `authenticate`-function does not return, it must at a later time call `SimpleSAML_Auth_Source::completeAuth` with the new state array.
   The state array must be an update of the array passed to the `authenticate`-function.
 
 **Rationale**:

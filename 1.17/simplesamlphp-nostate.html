@@ -158,9 +158,9 @@ were unable to find it in the session of the user.
 with session storage. Here we will outline some generic alternatives, and
 possible solutions.
 </p>
-<h3>
+<h4>
  The domain name changed during authentication
-</h3>
+</h4>
 <p>
  The domain name the IdP sends the response to is configured in the metadata of
 the IdP. This means that it may not match up with the domain name the user
@@ -241,9 +241,9 @@ application uses the same domain when it sets the cookie. How that is done
 depends on your application. (See the section about mismatch between
 application PHP session settings and SimpleSAMLphp session settings.)
 </p>
-<h3>
+<h4>
  Hopping between http and https
-</h3>
+</h4>
 <p>
  If a cookie is set during a HTTPS session, it is not available when the same
 URL is later accessed over http. If your site is available over both http and
@@ -251,9 +251,9 @@ https, check that you're using https consistently throughout the configuration.
 The best and most secure is to make your complete site available on https only,
 and redirect any http requests to https.
 </p>
-<h3>
+<h4>
  Mismatch between PHP session settings for the application and SimpleSAMLphp
-</h3>
+</h4>
 <p>
  If both the application you are trying to add SAML 2.0 support to and
 SimpleSAMLphp uses PHP session for session storage, and they don't agree on all
@@ -341,35 +341,9 @@ way to determine it may be to look for calls to
  in
 the application, and look at what parameters it uses.
 </p>
-<h3>
- Browsers with SameSite=Lax as default
-</h3>
-<p>
- Some browsers, notably Chrome, will default the cookie SameSite attribute to "Lax" if it
-is not set. Specifically in the context of SAML this means that cookies will not be sent
-when a POST request is performed between websites, which is typical for the SAML WebSSO
-flow. The lack of cookies will cause SimpleSAMLphp's session to be lost when receiving an
-assertion via the HTTP-POST binding.
-</p>
-<p>
- To resolve this, you can set the
- <code>
-  session.cookie.samesite
- </code>
- attribute in
- <code>
-  config.php
- </code>
- to
- <code>
-  None
- </code>
- . Starting with SimpleSAMLphp 1.19, the config template contains a way to
-set this dynamically based on the user's browser support for this attribute.
-</p>
-<h3>
+<h4>
  A generic problem saving sessions
-</h3>
+</h4>
 <p>
  Sometimes the problem is caused by SimpleSAMLphp being unable to load and/or save
 sessions. This can be caused by the session settings being incorrect, or by a

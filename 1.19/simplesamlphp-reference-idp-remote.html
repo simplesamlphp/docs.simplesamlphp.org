@@ -115,7 +115,11 @@
  <code>
   metadata/saml20-idp-remote.php
  </code>
- . The file has the following format:
+ and
+ <code>
+  metadata/shib13-idp-remote.php
+ </code>
+ . Both files have the following format:
 </p>
 <pre><code>  &lt;?php
   /* The index of the array is the entity ID of this IdP. */
@@ -128,42 +132,10 @@
   /* ... */
 </code></pre>
 <h2>
- Options
+ Common options
 </h2>
 <p>
- <code>
-  AuthnContextClassRef
- </code>
- :    The AuthnContextClassRef that will be sent in the login request.
-</p>
-<p>
- :   Note that this option also exists in the SP configuration. This
-    entry in the IdP-remote metadata overrides the option in the
- <a href="./saml/sp.html">
-  SP configuration
- </a>
- .
-</p>
-<p>
- <code>
-  AuthnContextComparison
- </code>
-</p>
-<p>
- :    The Comparison attribute of the AuthnContext that will be sent in the login request. This parameter won't be used unless AuthnContextClassRef is set and contains one or more values. Possible values:
-</p>
-<pre><code>      SAML2\Constants::COMPARISON_EXACT (default)
-      SAML2\Constants::COMPARISON_BETTER
-      SAML2\Constants::COMPARISON_MINIMUM
-      SAML2\Constants::COMPARISON_MAXIMUM
-</code></pre>
-<p>
- :   Note that this option also exists in the SP configuration. This
-    entry in the IdP-remote metadata overrides the option in the
- <a href="./saml/sp.html">
-  SP configuration
- </a>
- .
+ The following options are common between both the SAML 2.0 protocol and Shibboleth 1.3 protocol:
 </p>
 <p>
  <code>
@@ -238,74 +210,9 @@
 </p>
 <p>
  <code>
-  disable_scoping
- </code>
- :    Whether sending of samlp:Scoping elements in authentication requests should be suppressed. The default value is
- <code>
-  FALSE
- </code>
- .
-     When set to
- <code>
-  TRUE
- </code>
- , no scoping elements will be sent. This does not comply with the SAML2 specification, but allows 
-     interoperability with ADFS which
- <a href="https://docs.microsoft.com/en-za/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#scoping">
-  does not support Scoping elements
- </a>
- .
-</p>
-<p>
- :   Note that this option also exists in the SP configuration. This
-    entry in the IdP-remote metadata overrides the option in the
- <a href="./saml/sp.html">
-  SP configuration
- </a>
- .
-</p>
-<p>
- <code>
-  encryption.blacklisted-algorithms
- </code>
- :   Blacklisted encryption algorithms. This is an array containing the algorithm identifiers.
-</p>
-<p>
- :   Note that this option also exists in the SP configuration. This
-    entry in the IdP-remote metadata overrides the option in the
- <a href="./saml/sp.html">
-  SP configuration
- </a>
- .
-</p>
-<p>
- :   The RSA encryption algorithm with PKCS#1 v1.5 padding is blacklisted by default for security reasons. Any assertions
-    encrypted with this algorithm will therefore fail to decrypt. You can override this limitation by defining an empty
-    array in this option (or blacklisting any other algorithms not including that one). However, it is strongly
-    discouraged to do so. For your own safety, please include the string 'http://www.w3.org/2001/04/xmlenc#rsa-1_5' if
-    you make use of this option.
-</p>
-<p>
- <code>
-  hide.from.discovery
- </code>
- :   Whether to hide hide this IdP from the local discovery or not. Set to true to hide it. Defaults to false.
-</p>
-<p>
- <code>
   icon
  </code>
  :   A logo which will be shown next to this IdP in the discovery service.
-</p>
-<p>
- <code>
-  IDPList
- </code>
- :   The IdP is allowed to respond to an
- <code>
-  AuthNRequest
- </code>
- originally sent to entityIDs in this list.
 </p>
 <p>
  <code>
@@ -324,49 +231,6 @@
           'no' =&gt; 'En tjeneste',
       ],
 </code></pre>
-<p>
- <code>
-  nameid.encryption
- </code>
- :   Whether NameIDs sent to this IdP should be encrypted. The default
-    value is
- <code>
-  FALSE
- </code>
- .
-</p>
-<p>
- :   Note that this option also exists in the SP configuration. This
-    entry in the IdP-remote metadata overrides the option in the
- <a href="./saml/sp.html">
-  SP configuration
- </a>
- .
-</p>
-<p>
- <code>
-  NameIDPolicy
- </code>
- :   The format of the NameID we request from this IdP: an array in the form of
- <code>
-  [ 'Format' =&gt; the format, 'AllowCreate' =&gt; true or false ]
- </code>
- .
-    Set to
- <code>
-  false
- </code>
- instead of an array to omit sending any specific NameIDPolicy
-    in the AuthnRequest.
-</p>
-<p>
- :   For compatibility purposes,
- <code>
-  null
- </code>
- is equivalent to Transient and a format
-    can be defined as a string instead of an array. These variants are deprecated.
-</p>
 <p>
  <code>
   OrganizationName
@@ -461,6 +325,168 @@
 </p>
 <p>
  <code>
+  SingleSignOnService
+ </code>
+ :   Endpoint URL for sign on. You should obtain this from the IdP. For SAML 2.0, SimpleSAMLphp will use the HTTP-Redirect binding when contacting this endpoint.
+</p>
+<p>
+ :   The value of this option is specified in one of several
+ <a href="./simplesamlphp-metadata-endpoints.html">
+  endpoint formats
+ </a>
+ .
+</p>
+<h2>
+ SAML 2.0 options
+</h2>
+<p>
+ The following SAML 2.0 options are available:
+</p>
+<p>
+ <code>
+  AuthnContextClassRef
+ </code>
+ :    The AuthnContextClassRef that will be sent in the login request.
+</p>
+<p>
+ :   Note that this option also exists in the SP configuration. This
+    entry in the IdP-remote metadata overrides the option in the
+ <a href="./saml/sp.html">
+  SP configuration
+ </a>
+ .
+</p>
+<p>
+ <code>
+  AuthnContextComparison
+ </code>
+</p>
+<p>
+ :    The Comparison attribute of the AuthnContext that will be sent in the login request. This parameter won't be used unless AuthnContextClassRef is set and contains one or more values. Possible values:
+</p>
+<pre><code>      SAML2\Constants::COMPARISON_EXACT (default)
+      SAML2\Constants::COMPARISON_BETTER
+      SAML2\Constants::COMPARISON_MINIMUM
+      SAML2\Constants::COMPARISON_MAXIMUM
+</code></pre>
+<p>
+ :   Note that this option also exists in the SP configuration. This
+    entry in the IdP-remote metadata overrides the option in the
+ <a href="./saml/sp.html">
+  SP configuration
+ </a>
+ .
+</p>
+<p>
+ <code>
+  disable_scoping
+ </code>
+ :    Whether sending of samlp:Scoping elements in authentication requests should be suppressed. The default value is
+ <code>
+  FALSE
+ </code>
+ .
+     When set to
+ <code>
+  TRUE
+ </code>
+ , no scoping elements will be sent. This does not comply with the SAML2 specification, but allows 
+     interoperability with ADFS which
+ <a href="https://docs.microsoft.com/en-za/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#scoping">
+  does not support Scoping elements
+ </a>
+ .
+</p>
+<p>
+ :   Note that this option also exists in the SP configuration. This
+    entry in the IdP-remote metadata overrides the option in the
+ <a href="./saml/sp.html">
+  SP configuration
+ </a>
+ .
+</p>
+<p>
+ <code>
+  encryption.blacklisted-algorithms
+ </code>
+ :   Blacklisted encryption algorithms. This is an array containing the algorithm identifiers.
+</p>
+<p>
+ :   Note that this option also exists in the SP configuration. This
+    entry in the IdP-remote metadata overrides the option in the
+ <a href="./saml/sp.html">
+  SP configuration
+ </a>
+ .
+</p>
+<p>
+ :   The RSA encryption algorithm with PKCS#1 v1.5 padding is blacklisted by default for security reasons. Any assertions
+    encrypted with this algorithm will therefore fail to decrypt. You can override this limitation by defining an empty
+    array in this option (or blacklisting any other algorithms not including that one). However, it is strongly
+    discouraged to do so. For your own safety, please include the string 'http://www.w3.org/2001/04/xmlenc#rsa-1_5' if
+    you make use of this option.
+</p>
+<p>
+ <code>
+  hide.from.discovery
+ </code>
+ :   Whether to hide hide this IdP from the local discovery or not. Set to true to hide it. Defaults to false.
+</p>
+<p>
+ <code>
+  IDPList
+ </code>
+ :   The IdP is allowed to respond to an
+ <code>
+  AuthNRequest
+ </code>
+ originally sent to entityIDs in this list.
+</p>
+<p>
+ <code>
+  nameid.encryption
+ </code>
+ :   Whether NameIDs sent to this IdP should be encrypted. The default
+    value is
+ <code>
+  FALSE
+ </code>
+ .
+</p>
+<p>
+ :   Note that this option also exists in the SP configuration. This
+    entry in the IdP-remote metadata overrides the option in the
+ <a href="./saml/sp.html">
+  SP configuration
+ </a>
+ .
+</p>
+<p>
+ <code>
+  NameIDPolicy
+ </code>
+ :   The format of the NameID we request from this IdP: an array in the form of
+ <code>
+  [ 'Format' =&gt; the format, 'AllowCreate' =&gt; true or false ]
+ </code>
+ .
+    Set to
+ <code>
+  false
+ </code>
+ instead of an array to omit sending any specific NameIDPolicy
+    in the AuthnRequest.
+</p>
+<p>
+ :   For compatibility purposes,
+ <code>
+  null
+ </code>
+ is equivalent to Transient and a format
+    can be defined as a string instead of an array. These variants are deprecated.
+</p>
+<p>
+ <code>
   signature.algorithm
  </code>
  :   The algorithm to use when signing any message sent to this specific identity provider. Defaults to RSA-SHA256.
@@ -517,19 +543,6 @@
   SingleLogoutService
  </code>
  -option for responses.
-</p>
-<p>
- <code>
-  SingleSignOnService
- </code>
- :   Endpoint URL for sign on. You should obtain this from the IdP. For SAML 2.0, SimpleSAMLphp will use the HTTP-Redirect binding when contacting this endpoint.
-</p>
-<p>
- :   The value of this option is specified in one of several
- <a href="./simplesamlphp-metadata-endpoints.html">
-  endpoint formats
- </a>
- .
 </p>
 <p>
  <code>
@@ -643,7 +656,48 @@
 </p>
 <pre><code>  'redirect.validate' =&gt; TRUE,
   'certificate' =&gt; 'example.org.crt',
-</code></pre></div>    <!-- /#content -->
+</code></pre>
+<h2>
+ Shibboleth 1.3 options
+</h2>
+<p>
+ Note that Shibboleth 1.3 support is deprecated and will be removed in the next major release of SimpleSAMLphp.
+</p>
+<p>
+ <code>
+  caFile
+ </code>
+ :   Alternative to specifying a certificate. Allows you to specify a file with root certificates, and responses from the service be validated against these certificates. Note that SimpleSAMLphp doesn't support chains with any itermediate certificates between the root and the certificate used to sign the response. Support for PKIX in SimpleSAMLphp is experimental, and we encourage users to not rely on PKIX for validation of signatures; for background information review
+ <a href="http://docs.oasis-open.org/security/saml/Post2.0/sstc-metadata-iop-cd-01.pdf">
+  the SAML 2.0 Metadata Interoperability Profile
+ </a>
+ .
+</p>
+<p>
+ <code>
+  saml1.useartifact
+ </code>
+ :   Request that the IdP returns the result to the artifact binding.
+    The default is to use the POST binding, set this option to TRUE to use the artifact binding instead.
+</p>
+<p>
+ :   This option can be set for all IdPs connected to a SP by setting it in the entry for the SP in
+ <code>
+  config/authsources.php
+ </code>
+ .
+</p>
+<p>
+ :
+ <em>
+  Note
+ </em>
+ : This option only works with the
+ <code>
+  saml:SP
+ </code>
+ authentication source.
+</p></div>    <!-- /#content -->
 
 <div id="footer">
     <a href="https://www.uninett.no/"><img id="ulogo" alt="notes" src="/res/uninettlogo.png" /SS></a>

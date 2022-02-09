@@ -1,0 +1,450 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Language" content="en" />
+
+	<!-- JQuery -->
+	<!-- 
+	<script type="text/javascript" src="/res/js/jquery.js"></script>
+	<script type="text/javascript" src="/res/js/jquery-ui.js"></script>
+	-->
+
+	<style>
+	  mark {
+        background: orange;
+        color: black;
+      }
+    </style>  
+
+	
+	<!-- Foodle: CSS -->	
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/js/uitheme/jquery-ui-themeroller.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/style.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/layout.css" /> 
+
+	<title>SimpleSAMLphp Documentation</title> 
+</head>
+
+
+
+
+
+<body>
+ <!-- Red logo header -->
+ <header>
+  <div id="header">
+   <div class="right">
+    <form action="https://www.google.com/cse" method="get" style="margin-top: 2.5rem; margin-right: 2rem">
+     <input name="cx" type="hidden" value="004202914224971217557:8ks4jjstupq"/>
+     <input name="siteurl" type="hidden" value="www.google.com/cse/home?cx=004202914224971217557:8ks4jjstupq"/>
+     <input name="adkw" type="hidden" value="AELymgVJ6Sk-kOvUjbxvgShTLwiFlma2evFuVCh0r8q23vn_4eVnkcdnPfbgMvYUTpJpVlb-KkGAKkbn0i-AlWHsVRR9O0J4CNb6cXFkEKRdjXxsC_NlVD4"/>
+     <input name="q" placeholder="Search" type="search" value=""/>
+    </form>
+   </div>
+   <div class="v-center logo-header">
+    <div id="logo">
+     <a href="https://simplesamlphp.github.io" style="color: #fff; text-decoration: none">
+      <span class="simple">
+       Simple
+      </span>
+      <span class="saml">
+       SAML
+      </span>
+      <span class="simple">
+       php
+      </span>
+     </a>
+    </div>
+   </div>
+  </div>
+  <!-- Grey header bar below -->
+  <nav>
+   <div id="headerbar" style="clear: both">
+    <p id="breadcrumb">
+     <a href="https://simplesamlphp.github.io">
+      Home
+     </a>
+     » Documentation
+    </p>
+    <div class="mtoolbar">
+     <div class="menuitem first">
+      <a href="./../latest/index.html">
+       latest
+      </a>
+     </div>
+     <div class="menuitem">
+      <a href="./../1.19/index.html">
+       1.19
+      </a>
+     </div>
+     <div class="menuitem">
+      <a href="./../1.18/index.html">
+       1.18
+      </a>
+     </div>
+     <div class="menuitem">
+      <a href="./../1.17/index.html">
+       1.17
+      </a>
+     </div>
+     <div class="menuitem">
+      <a href="./../1.16/index.html">
+       1.16
+      </a>
+     </div>
+     <div class="menuitem last">
+      <a href="./../contributed_modules.html">
+       Contributed modules
+      </a>
+     </div>
+    </div>
+    <br style="height: 0px; clear: both"/>
+   </div>
+   <!-- /#headerbar -->
+  </nav>
+  <div id="content">
+  </div>
+ </header>
+</body><h1>
+ Automated Metadata Management
+</h1>
+<!-- 
+  This file is written in Markdown syntax. 
+  For more information about how to use the Markdown syntax, read here:
+  http://daringfireball.net/projects/markdown/syntax
+-->
+<!-- {{TOC}} -->
+<h2>
+ Introduction
+</h2>
+<p>
+ If you want to connect an Identity Provider, or a Service Provider to a
+ <strong>
+  federation
+ </strong>
+ , you need to setup metadata for the entries that you trust. In many federations, in particular federations based upon the Shibboleth software, it is normal to setup automated distribution of metadata using the SAML 2.0 Metadata XML Format.
+</p>
+<p>
+ Some central administration or authority, provides a URL with a SAML 2.0 document including metadata for all entities in the federation.
+</p>
+<p>
+ The present document explains how to setup automated downloading and parsing of a metadata document on a specific URL.
+</p>
+<h2>
+ Preparations
+</h2>
+<p>
+ You need to enable the following modules:
+</p>
+<ol>
+ <li>
+  <a href="./cron/cron.html">
+   cron
+  </a>
+ </li>
+ <li>
+  metarefresh
+ </li>
+</ol>
+<p>
+ The cron module allows you to do tasks regularly, by setting up a cron job that calls a hook in SimpleSAMLphp.
+</p>
+<p>
+ The metarefresh module will download and parse the metadata document and store it in metadata files cached locally.
+</p>
+<p>
+ First, you will need to copy the
+ <code>
+  config-templates
+ </code>
+ files of the two modules above into the global
+ <code>
+  config/
+ </code>
+ directory.
+</p>
+<pre><code>[root@simplesamlphp] cd /var/simplesamlphp
+[root@simplesamlphp simplesamlphp] touch modules/cron/enable
+[root@simplesamlphp simplesamlphp] cp modules/cron/config-templates/*.php config/
+[root@simplesamlphp simplesamlphp] touch modules/metarefresh/enable
+[root@simplesamlphp simplesamlphp] cp modules/metarefresh/config-templates/*.php config/
+</code></pre>
+<h2>
+ Testing it manually
+</h2>
+<p>
+ It is often useful to verify that the metadata sources we want to use can be parsed and verified by metarefresh, before actually
+configuring it. We can do so in the command line, by invoking metarefresh with the URL of the metadata set we want to check. For
+instance, if we want to configure the metadata of the SWITCH AAI Test Federation:
+</p>
+<pre><code>cd modules/metarefresh/bin
+./metarefresh.php -s http://metadata.aai.switch.ch/metadata.aaitest.xml
+</code></pre>
+<p>
+ The
+ <code>
+  -s
+ </code>
+ option sends the output to the console (for testing purposes). If the output makes sense, continue. If you get a lot of error messages, try to read them and fix the problems that might be causing them. If you are having problems and you can't figure out the cause, you can always send an e-mail to the SimpleSAMLphp mailing list and ask for advice.
+</p>
+<h2>
+ Configuring the metarefresh module
+</h2>
+<p>
+ Now we are going to proceed to configure the metarefresh module. First, edit the appropriate configuration file:
+</p>
+<pre><code>[root@simplesamlphp simplesamlphp]# vi config/config-metarefresh.php
+</code></pre>
+<p>
+ Here's an example of a possible configuration for both the Kalmar Federation and UK Access Management Federation:
+</p>
+<pre><code>$config = array(
+  'sets' =&gt; array(
+    'kalmar' =&gt; array(
+      'cron'    =&gt; array('hourly'),
+      'sources' =&gt; array(
+        array(
+          'src' =&gt; 'https://kalmar.feide.no/simplesaml/module.php/aggregator/?id=kalmarcentral&amp;mimetype=text/plain&amp;exclude=norway',
+          'certificates' =&gt; array(
+            'current.crt',
+            'rollover.crt',
+          ),
+          'template' =&gt; array(
+            'tags'  =&gt; array('kalmar'),
+            'authproc' =&gt; array(
+              51 =&gt; array('class' =&gt; 'core:AttributeMap', 'oid2name'),
+            ),
+          ),
+        ),
+      ),
+      'expireAfter'     =&gt; 60*60*24*4, // Maximum 4 days cache time.
+      'outputDir'   =&gt; 'metadata/metarefresh-kalmar/',
+      'outputFormat' =&gt; 'flatfile',
+    ),
+    'uk' =&gt; array(
+      'cron'    =&gt; array('hourly'),
+      'sources' =&gt; array(
+        array(
+          'src' =&gt; 'http://metadata.ukfederation.org.uk/ukfederation-metadata.xml',
+          'validateFingerprint' =&gt; 'D0:E8:40:25:F0:B1:2A:CC:74:22:ED:C3:87:04:BC:29:BB:7B:9A:40',
+        ),
+      ),
+      'expireAfter'     =&gt; 60*60*24*4, // Maximum 4 days cache time.
+      'outputDir'   =&gt; 'metadata/metarefresh-ukaccess/',
+      'outputFormat' =&gt; 'serialize',
+    ),
+  )
+);
+</code></pre>
+<p>
+ The configuration consists of one or more metadata sets. Each metadata set has its own configuration, representing a metadata set of sources.
+Some federations will provide you with detailed instructions on how to configure metarefresh to fetch their metadata automatically, like,
+for instance,
+ <a href="https://spaces.internet2.edu/x/eYHFAg">
+  the InCommon federation in the US
+ </a>
+ . Whenever a federation provides you with specific
+instructions to configure metarefresh, be sure to use them from the authoritative source.
+</p>
+<p>
+ The metarefresh module supports the following configuration options:
+</p>
+<p>
+ <code>
+  cron
+ </code>
+ :   Which cron tags will refresh this metadata set.
+</p>
+<p>
+ <code>
+  sources
+ </code>
+ :   An array of metadata sources that will be included in this
+    metadata set. The contents of this option will be described later in more detail.
+</p>
+<p>
+ <code>
+  expireAfter
+ </code>
+ :   The maximum number of seconds a metadata entry will be valid.
+</p>
+<p>
+ <code>
+  outputDir
+ </code>
+ :   The directory where the generated metadata will be stored. The path
+    is relative to the SimpleSAMLphp base directory.
+</p>
+<p>
+ <code>
+  outputFormat
+ </code>
+ :   The format of the generated metadata files. This must match the
+    metadata source added in
+ <code>
+  config.php
+ </code>
+ .
+</p>
+<p>
+ <code>
+  types
+ </code>
+ : The sets of entities to load. An array containing strings identifying the different types of entities that will be
+  loaded. Valid types are:
+</p>
+<pre><code>* saml20-idp-remote
+* saml20-sp-remote
+* shib13-idp-remote
+* shib13-sp-remote
+* attributeauthority-remote
+
+All entity types will be loaded by default.
+</code></pre>
+<p>
+ Each metadata source has the following options:
+</p>
+<p>
+ <code>
+  src
+ </code>
+ :   The source URL where the metadata will be fetched from.
+</p>
+<p>
+ <code>
+  certificates
+ </code>
+ :   An array of certificate files, the filename is relative to the
+ <code>
+  cert/
+ </code>
+ -directory,
+    that will be used to verify the signature of the metadata. The public key will
+    be extracted from the certificate and everything else will be ignored. So it is
+    possible to use a self signed certificate that has expired. Add more than one
+    certificate to be able to handle key rollover. This takes precedence over
+    validateFingerprint.
+</p>
+<p>
+ <code>
+  validateFingerprint
+ </code>
+ :   The fingerprint of the certificate used to sign the metadata. You
+    don't need this option if you don't want to validate the signature
+    on the metadata.
+</p>
+<p>
+ <code>
+  template
+ </code>
+ :   This is an array which will be combined with the metadata fetched to
+    generate the final metadata array.
+</p>
+<p>
+ <code>
+  types
+ </code>
+ : Same as the option with the same name at the metadata set level. This option has precedence when both are specified,
+  allowing a more fine grained configuration for every metadata source.
+</p>
+<p>
+ After you have configured the metadata sources, you need to give the
+web-server write access to the output directories. Following the previous example:
+</p>
+<pre><code>chown www-data /var/simplesamlphp/metadata/metarefresh-kalmar/
+chown www-data /var/simplesamlphp/metadata/metarefresh-ukaccess/
+</code></pre>
+<p>
+ Now you can configure SimpleSAMLphp to use the metadata fetched by metarefresh. Edit the main
+config.php file, and modify the
+ <code>
+  metadata.sources
+ </code>
+ directive accordingly:
+</p>
+<pre><code>'metadata.sources' =&gt; array(
+  array('type' =&gt; 'flatfile'),
+  array('type' =&gt; 'flatfile', 'directory' =&gt; 'metadata/metarefresh-kalmar'),
+  array('type' =&gt; 'serialize', 'directory' =&gt; 'metadata/metarefresh-ukaccess'),
+),
+</code></pre>
+<p>
+ Remember that the
+ <code>
+  type
+ </code>
+ parameter here must match the
+ <code>
+  outputFormat
+ </code>
+ in the configuration of the module.
+</p>
+<h2>
+ Configuring the cron module
+</h2>
+<p>
+ See the
+ <a href="./cron/cron.html">
+  cron module documentation
+ </a>
+ to configure
+ <code>
+  cron
+ </code>
+</p>
+<p>
+ Once you have invoked cron, and if this operation seems to run fine, navigate to the
+ <strong>
+  SimpleSAMLphp Front page
+ </strong>
+ ›
+ <strong>
+  Federation
+ </strong>
+ . Here you will see a list of all the Identity Providers trusted. They will be listed with information about the maximum duration of their cached version, such as
+ <em>
+  (expires in 96.0 hours)
+ </em>
+ .
+</p>
+<p>
+ You
+ <em>
+  may
+ </em>
+ need to adjust the below php.ini setings if the metadata files you consume are quite large.
+</p>
+<ul>
+ <li>
+  <code>
+   memory_limit
+  </code>
+ </li>
+ <li>
+  <code>
+   max_execution_time
+  </code>
+ </li>
+</ul>
+<h2>
+ Metadata duration
+</h2>
+<p>
+ SAML metadata may supply a
+ <code>
+  cacheDuration
+ </code>
+ attribute which indicates the maximum time to keep metadata cached. Because this module is run from cron, it cannot decide how often it is run and enforce this duration on its own. Make sure to run metarefresh from cron at least as often as the shortest
+ <code>
+  cacheDuration
+ </code>
+ in your metadata sources.
+</p></div>    <!-- /#content -->
+
+<div id="footer">
+    <a href="https://www.uninett.no/"><img id="ulogo" alt="notes" src="/res/uninettlogo.png" /SS></a>
+</div><!-- /#footer -->
+
+</body>
+</html>

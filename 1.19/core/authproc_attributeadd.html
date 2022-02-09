@@ -128,44 +128,44 @@ If you instead want to replace the existing attribute, you may add the
 <p>
  Add a single-valued attributes:
 </p>
-<pre><code>  'authproc' =&gt; [
-      50 =&gt; [
+<pre><code>  'authproc' =&gt; array(
+      50 =&gt; array(
           'class' =&gt; 'core:AttributeAdd',
-          'source' =&gt; ['myidp'],
-      ],
-  ],
+          'source' =&gt; array('myidp'),
+      ),
+  ),
 </code></pre>
 <p>
  Add a multi-valued attribute:
 </p>
-<pre><code>  'authproc' =&gt; [
-      50 =&gt; [
+<pre><code>  'authproc' =&gt; array(
+      50 =&gt; array(
           'class' =&gt; 'core:AttributeAdd',
-          'groups' =&gt; ['users', 'members'],
-      ],
-  ],
+          'groups' =&gt; array('users', 'members'),
+      ),
+  ),
 </code></pre>
 <p>
  Add multiple attributes:
 </p>
-<pre><code>  'authproc' =&gt; [
-      50 =&gt; [
+<pre><code>  'authproc' =&gt; array(
+      50 =&gt; array(
           'class' =&gt; 'core:AttributeAdd',
-          'eduPersonPrimaryAffiliation' =&gt; 'student',
-          'eduPersonAffiliation' =&gt; ['student', 'employee', 'members'],
-      ],
-  ],
+    'eduPersonPrimaryAffiliation' =&gt; 'student',
+          'eduPersonAffiliation' =&gt; array('student', 'employee', 'members'),
+      ),
+  ),
 </code></pre>
 <p>
  Replace an existing attributes:
 </p>
-<pre><code>  'authproc' =&gt; [
-      50 =&gt; [
+<pre><code>  'authproc' =&gt; array(
+      50 =&gt; array(
           'class' =&gt; 'core:AttributeAdd',
           '%replace',
-          'uid' =&gt; ['guest'],
-      ],
-  ],
+          'uid' =&gt; array('guest'),
+      ),
+  ),
 </code></pre></div>    <!-- /#content -->
 
 <div id="footer">

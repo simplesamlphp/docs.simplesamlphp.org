@@ -124,15 +124,15 @@ If the given AuthnContextClassRef does not match any accepted value, the user wi
 <h2>
  Examples
 </h2>
-<pre><code>  'authproc.sp' =&gt; [
-    91 =&gt; [
+<pre><code>  'authproc.sp' =&gt; array(
+    91 =&gt; array(
       'class' =&gt; 'saml:ExpectedAuthnContextClassRef',
-      'accepted' =&gt; [
+      'accepted' =&gt; array(
         'urn:oasis:names:tc:SAML:2.0:post:ac:classes:nist-800-63:3',
         'urn:oasis:names:tc:SAML:2.0:ac:classes:Password',
-      ],
-    ],
-  ],
+      ),
+    ),
+  ),
 </code></pre></div>    <!-- /#content -->
 
 <div id="footer">

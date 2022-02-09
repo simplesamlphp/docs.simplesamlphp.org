@@ -146,8 +146,27 @@ It will be located under
   mkdir mymodule
 </code></pre>
 <p>
- Since this is a custom module, it should always be enabled in the configuration.
-Now that we have our own module, we can move on to creating an authentication source.
+ Since this is a custom module, it should always be enabled.
+Therefore we create a
+ <code>
+  default-enable
+ </code>
+ file in the module.
+We do that by copying the
+ <code>
+  default-enable
+ </code>
+ file from the
+ <code>
+  core
+ </code>
+ module.
+</p>
+<pre><code>  cd mymodule
+  cp ../core/default-enable .
+</code></pre>
+<p>
+ Now that we have our own module, we can move on to creating an authentication source.
 </p>
 <h2>
  Creating a basic authentication source
@@ -174,8 +193,6 @@ Create the file
  with the following contents:
 </p>
 <pre><code>  &lt;?php
-  namespace SimpleSAML\Module\mymodule\Auth\Source;
-
   class MyAuth extends \SimpleSAML\Module\core\Auth\UserPassBase {
       protected function login($username, $password) {
           if ($username !== 'theusername' || $password !== 'thepassword') {
@@ -195,7 +212,7 @@ Create the file
 <pre><code>- The classname is `\SimpleSAML\Module\mymodule\Auth\Source\MyAuth`.
   This tells SimpleSAMLphp to look for the class in `modules/mymodule/lib/Auth/Source/MyAuth.php`.
 
-- Our authentication source subclasses `\SimpleSAML\Module\core\Auth\UserPassBase`.
+- Our authentication source subclassese `\SimpleSAML\Module\core\Auth\UserPassBase`.
   This is a helper-class that implements much of the common code needed for username/password authentication.
 
 - The `login` function receives the username and password the user enters.

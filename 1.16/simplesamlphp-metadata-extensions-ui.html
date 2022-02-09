@@ -142,73 +142,73 @@ the relevant entry in
  An example for an IdP:
 </p>
 <pre><code>  &lt;?php
-  $metadata['entity-id-1'] = [
+  $metadata['entity-id-1'] = array(
       /* ... */
-      'UIInfo' =&gt; [
-          'DisplayName' =&gt; [
+      'UIInfo' =&gt; array(
+          'DisplayName' =&gt; array(
               'en' =&gt; 'English name',
               'es' =&gt; 'Nombre en Español',
-          ],
-          'Description' =&gt; [
+          ),
+          'Description' =&gt; array(
               'en' =&gt; 'English description',
               'es' =&gt; 'Descripción en Español',
-          ],
-          'InformationURL' =&gt; [
+          ),
+          'InformationURL' =&gt; array(
               'en' =&gt; 'http://example.com/info/en',
               'es' =&gt; 'http://example.com/info/es',
-          ],
-          'PrivacyStatementURL' =&gt; [
+          ),
+          'PrivacyStatementURL' =&gt; array(
               'en' =&gt; 'http://example.com/privacy/en',
               'es' =&gt; 'http://example.com/privacy/es',
-          ],
-          'Keywords' =&gt; [
-              'en' =&gt; ['communication', 'federated session'],
-              'es' =&gt; ['comunicación', 'sesión federated'],
-          ],
-          'Logo' =&gt; [
-              [
+          ),
+          'Keywords' =&gt; array(
+              'en' =&gt; array('communication', 'federated session'),
+              'es' =&gt; array('comunicación', 'sesión federated'),
+          ),
+          'Logo' =&gt; array(
+              array(
                   'url'    =&gt; 'http://example.com/logo1.png',
                   'height' =&gt; 200,
                   'width'  =&gt; 400,
                   'lang'   =&gt; 'en',
-              ],
-              [
+              ),
+              array(
                   'url'    =&gt; 'http://example.com/logo2.png',
                   'height' =&gt; 201,
                   'width'  =&gt; 401,
-              ],
-          ],
-      ],
-      'DiscoHints' =&gt; [
-          'IPHint'          =&gt; ['130.59.0.0/16', '2001:620::0/96'],
-          'DomainHint'      =&gt; ['example.com', 'www.example.com'],
-          'GeolocationHint' =&gt; ['geo:47.37328,8.531126', 'geo:19.34343,12.342514'],
-      ],
+              ),
+          ),
+      ),
+      'DiscoHints' =&gt; array(
+          'IPHint'          =&gt; array('130.59.0.0/16', '2001:620::0/96'),
+          'DomainHint'      =&gt; array('example.com', 'www.example.com'),
+          'GeolocationHint' =&gt; array('geo:47.37328,8.531126', 'geo:19.34343,12.342514'),
+      ),
       /* ... */
-  ];
+  );
 </code></pre>
 <p>
  And for an SP it could look like this:
 </p>
 <pre><code>  &lt;?php
-  $config = [
+  $config = array(
 
-      'default-sp' =&gt; [
+      'default-sp' =&gt; array(
           'saml:SP',
 
-          'UIInfo' =&gt; [
-              'DisplayName' =&gt; [
+          'UIInfo' =&gt; array(
+              'DisplayName' =&gt; array(
                   'en' =&gt; 'English name',
                   'es' =&gt; 'Nombre en Español'
-              ],
-              'Description' =&gt; [
+              ),
+              'Description' =&gt; array(
                   'en' =&gt; 'English description',
                   'es' =&gt; 'Descripción en Español'
-              ],
-          ],
+              ),
+          ),
           /* ... */
-      ],
-  ];
+      ),
+  );
 </code></pre>
 <p>
  The OASIS specification primarily defines how an entity can communicate
@@ -243,10 +243,10 @@ about an IdP or SP. These properties are all children of the
  : Most elements are localized strings that specify the language
 using the array key as the language-code:
 </p>
-<pre><code>          'DisplayName' =&gt; [
+<pre><code>          'DisplayName' =&gt; array(
               'en' =&gt; 'English name',
               'es' =&gt; 'Nombre en Español',
-          ],
+          ),
 </code></pre>
 <p>
  <code>
@@ -254,10 +254,10 @@ using the array key as the language-code:
  </code>
  :   The localized list of names for this entity
 </p>
-<pre><code>          'DisplayName' =&gt; [
+<pre><code>          'DisplayName' =&gt; array(
               'en' =&gt; 'English name',
               'es' =&gt; 'Nombre en Español',
-          ],
+          ),
 </code></pre>
 <p>
  <code>
@@ -265,10 +265,10 @@ using the array key as the language-code:
  </code>
  :   The localized list of statements used to describe this entity
 </p>
-<pre><code>          'Description' =&gt; [
+<pre><code>          'Description' =&gt; array(
               'en' =&gt; 'English description',
               'es' =&gt; 'Descripción en Español',
-          ],
+          ),
 </code></pre>
 <p>
  <code>
@@ -277,10 +277,10 @@ using the array key as the language-code:
  :   A localized list of URLs where more information about the entity is
     located.
 </p>
-<pre><code>          'InformationURL' =&gt; [
+<pre><code>          'InformationURL' =&gt; array(
               'en' =&gt; 'http://example.com/info/en',
               'es' =&gt; 'http://example.com/info/es',
-          ],
+          ),
 </code></pre>
 <p>
  <code>
@@ -289,10 +289,10 @@ using the array key as the language-code:
  :   A localized list of URLs where the entity's privacy statement is
     located.
 </p>
-<pre><code>          'PrivacyStatementURL' =&gt; [
+<pre><code>          'PrivacyStatementURL' =&gt; array(
               'en' =&gt; 'http://example.com/privacy/en',
               'es' =&gt; 'http://example.com/privacy/es',
-          ],
+          ),
 </code></pre>
 <p>
  <code>
@@ -300,10 +300,10 @@ using the array key as the language-code:
  </code>
  :   A localized list of keywords used to describe the entity
 </p>
-<pre><code>          'Keywords' =&gt; [
-              'en' =&gt; ['communication', 'federated session'],
-              'es' =&gt; ['comunicación', 'sesión federated'],
-          ],
+<pre><code>          'Keywords' =&gt; array(
+              'en' =&gt; array('communication', 'federated session'),
+              'es' =&gt; array('comunicación', 'sesión federated'),
+          ),
 </code></pre>
 <p>
  :
@@ -323,19 +323,19 @@ using the array key as the language-code:
  </code>
  :   The logos used to represent the entity
 </p>
-<pre><code>          'Logo' =&gt; [
-              [
+<pre><code>          'Logo' =&gt; array(
+              array(
                   'url'    =&gt; 'http://example.com/logo1.png',
                   'height' =&gt; 200,
                   'width'  =&gt; 400,
                   'lang'   =&gt; 'en',
-              ],
-              [
+              ),
+              array(
                   'url'    =&gt; 'http://example.com/logo2.png',
                   'height' =&gt; 201,
                   'width'  =&gt; 401,
-              ],
-          ],
+              ),
+          ),
 </code></pre>
 <p>
  :   An optional
@@ -364,7 +364,7 @@ present an IdP. These properties are all children of the
  :   This is a list of both IPv4 and IPv6 addresses in CIDR notation
     services by or associated with this entity.
 </p>
-<pre><code>          'IPHint' =&gt; ['130.59.0.0/16', '2001:620::0/96'],
+<pre><code>          'IPHint' =&gt; array('130.59.0.0/16', '2001:620::0/96'),
 </code></pre>
 <p>
  <code>
@@ -373,7 +373,7 @@ present an IdP. These properties are all children of the
  :   This specifies a list of domain names serviced by or associated with
     this entity.
 </p>
-<pre><code>          'DomainHint' =&gt; ['example.com', 'www.example.com'],
+<pre><code>          'DomainHint' =&gt; array('example.com', 'www.example.com'),
 </code></pre>
 <p>
  <code>
@@ -387,7 +387,7 @@ present an IdP. These properties are all children of the
  </a>
  .
 </p>
-<pre><code>          'GeolocationHint' =&gt; ['geo:47.37328,8.531126', 'geo:19.34343,12.342514'],
+<pre><code>          'GeolocationHint' =&gt; array('geo:47.37328,8.531126', 'geo:19.34343,12.342514'),
 </code></pre>
 <h2>
  Generated XML Metadata Examples
@@ -395,52 +395,52 @@ present an IdP. These properties are all children of the
 <p>
  If given the following configuration...
 </p>
-<pre><code>  $metadata['https://www.example.com/saml/saml2/idp/metadata.php'] = [
+<pre><code>  $metadata['https://www.example.com/saml/saml2/idp/metadata.php'] = array(
       'host' =&gt; 'www.example.com',
       'certificate' =&gt; 'example.com.crt',
       'privatekey' =&gt; 'example.com.pem',
       'auth' =&gt; 'example-userpass',
 
-      'UIInfo' =&gt; [
-          'DisplayName' =&gt; [
+      'UIInfo' =&gt; array(
+          'DisplayName' =&gt; array(
               'en' =&gt; 'English name',
               'es' =&gt; 'Nombre en Español',
-          ],
-          'Description' =&gt; [
+          ),
+          'Description' =&gt; array(
               'en' =&gt; 'English description',
               'es' =&gt; 'Descripción en Español',
-          ],
-          'InformationURL' =&gt; [
+          ),
+          'InformationURL' =&gt; array(
               'en' =&gt; 'http://example.com/info/en',
               'es' =&gt; 'http://example.com/info/es',
-          ],
-          'PrivacyStatementURL' =&gt; [
+          ),
+          'PrivacyStatementURL' =&gt; array(
               'en' =&gt; 'http://example.com/privacy/en',
               'es' =&gt; 'http://example.com/privacy/es',
-          ],
-          'Keywords' =&gt; [
-              'en' =&gt; ['communication', 'federated session'],
-              'es' =&gt; ['comunicación', 'sesión federated'],
-          ],
-          'Logo' =&gt; [
-              [
+          ),
+          'Keywords' =&gt; array(
+              'en' =&gt; array('communication', 'federated session'),
+              'es' =&gt; array('comunicación', 'sesión federated'),
+          ),
+          'Logo' =&gt; array(
+              array(
                   'url'    =&gt; 'http://example.com/logo1.png',
                   'height' =&gt; 200,
                   'width'  =&gt; 400,
-              ],
-              [
+              ),
+              array(
                   'url'    =&gt; 'http://example.com/logo2.png',
                   'height' =&gt; 201,
                   'width'  =&gt; 401,
-              ],
-          ],
-      ],
-      'DiscoHints' =&gt; [
-          'IPHint'          =&gt; ['130.59.0.0/16', '2001:620::0/96'],
-          'DomainHint'      =&gt; ['example.com', 'www.example.com'],
-          'GeolocationHint' =&gt; ['geo:47.37328,8.531126', 'geo:19.34343,12.342514'],
-      ],
-  ];
+              ),
+          ),
+      ),
+      'DiscoHints' =&gt; array(
+          'IPHint'          =&gt; array('130.59.0.0/16', '2001:620::0/96'),
+          'DomainHint'      =&gt; array('example.com', 'www.example.com'),
+          'GeolocationHint' =&gt; array('geo:47.37328,8.531126', 'geo:19.34343,12.342514'),
+      ),
+  );
 </code></pre>
 <p>
  ... will generate the following XML metadata:

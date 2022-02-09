@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Language" content="en" />
+
+	<!-- JQuery -->
+	<!-- 
+	<script type="text/javascript" src="/res/js/jquery.js"></script>
+	<script type="text/javascript" src="/res/js/jquery-ui.js"></script>
+	-->
+
+	<style>
+	  mark {
+        background: orange;
+        color: black;
+      }
+    </style>  
+
+	
+	<!-- Foodle: CSS -->	
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/js/uitheme/jquery-ui-themeroller.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/style.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/layout.css" /> 
+
+	<title>SimpleSAMLphp Documentation</title> 
+</head>
+
+
+
+
+
+<body>
+ <!-- Red logo header -->
+ <header>
+  <div id="header">
+   <div class="right">
+    <form action="https://www.google.com/cse" method="get" style="margin-top: 2.5rem; margin-right: 2rem">
+     <input name="cx" type="hidden" value="004202914224971217557:8ks4jjstupq"/>
+     <input name="siteurl" type="hidden" value="www.google.com/cse/home?cx=004202914224971217557:8ks4jjstupq"/>
+     <input name="adkw" type="hidden" value="AELymgVJ6Sk-kOvUjbxvgShTLwiFlma2evFuVCh0r8q23vn_4eVnkcdnPfbgMvYUTpJpVlb-KkGAKkbn0i-AlWHsVRR9O0J4CNb6cXFkEKRdjXxsC_NlVD4"/>
+     <input name="q" placeholder="Search" type="search" value=""/>
+    </form>
+   </div>
+   <div class="v-center logo-header">
+    <div id="logo">
+     <a href="https://simplesamlphp.github.io" style="color: #fff; text-decoration: none">
+      <span class="simple">
+       Simple
+      </span>
+      <span class="saml">
+       SAML
+      </span>
+      <span class="simple">
+       php
+      </span>
+     </a>
+    </div>
+   </div>
+  </div>
+  <!-- Grey header bar below -->
+  <nav>
+   <div id="headerbar" style="clear: both">
+    <p id="breadcrumb">
+     <a href="https://simplesamlphp.github.io">
+      Home
+     </a>
+     » Documentation
+    </p>
+    <div class="mtoolbar">
+     <div class="menuitem first">
+      <a href="./../latest/index.html">
+       latest
+      </a>
+     </div>
+     <div class="menuitem">
+      <a href="./../1.19/index.html">
+       1.19
+      </a>
+     </div>
+     <div class="menuitem">
+      <a href="./../1.18/index.html">
+       1.18
+      </a>
+     </div>
+     <div class="menuitem">
+      <a href="./../1.17/index.html">
+       1.17
+      </a>
+     </div>
+     <div class="menuitem">
+      <a href="./../1.16/index.html">
+       1.16
+      </a>
+     </div>
+     <div class="menuitem last">
+      <a href="./../contributed_modules.html">
+       Contributed modules
+      </a>
+     </div>
+    </div>
+    <br style="height: 0px; clear: both"/>
+   </div>
+   <!-- /#headerbar -->
+  </nav>
+  <div id="content">
+  </div>
+ </header>
+</body><h1>
+ expirycheck module
+</h1>
+<p>
+ The expirycheck module validates user's expiry date attribute by showing
+warning to the user whose NetID is about to expire or denying access if NetID
+has already expired.
+</p>
+<p>
+ The expirycheck module is implemented as an Authentication Processing Filter.
+That means it can be configured in the global config.php file or the SP remote
+or IdP hosted metadata.
+</p>
+<p>
+ It is recommended to run the expirycheck module at the IdP, and configure the
+filter to run before all the other filters you may have enabled.
+</p>
+<h2>
+ How to setup the expirycheck module
+</h2>
+<p>
+ First you need to enable the expirycheck module, touch an
+ <code>
+  enable
+ </code>
+ file, in the
+expirycheck module:
+</p>
+<pre><code>  touch modules/expirycheck/enable
+</code></pre>
+<p>
+ Then you need to set filter parameters in your config.php file.
+</p>
+<p>
+ Example:
+</p>
+<pre><code>10 =&gt; array(
+  'class'     =&gt; 'expirycheck:ExpiryDate',
+  'netid_attr'    =&gt; 'eduPersonPrincipalName',
+  'expirydate_attr' =&gt; 'schacExpiryDate',
+  'warndaysbefore'  =&gt; '60',
+  'date_format'     =&gt; 'd.m.Y',
+),
+</code></pre>
+<p>
+ Parameter netid_attr represents (ldap) attribute name which has user's NetID stored in it,
+parameter expirydate_attr represents (ldap) attribute name which has user's expiry date
+(date must be formated as YYYYMMDDHHMMSSZ, e.g. 20111011235959Z) stored in it. Those two
+attributes needs to be part of the attribute set, which is retrived from ldap during
+authentication process.
+Parameter warndaysbefore set as a number, which represents how many days before expiry
+date the "about to expire" warning will show to the user.
+Parameter date_format defines date representation format. PHP Date() syntax
+is used. More info: http://php.net/manual/en/function.date.php
+</p>
+<p>
+ P.S.
+</p>
+<p>
+ Comments and bug reports please send to Alex Mihičinac
+ <a href="mailto/alexm@arnes.si.html">
+  alexm@arnes.si
+ </a>
+</p></div>    <!-- /#content -->
+
+<div id="footer">
+    <a href="https://www.uninett.no/"><img id="ulogo" alt="notes" src="/res/uninettlogo.png" /SS></a>
+</div><!-- /#footer -->
+
+</body>
+</html>

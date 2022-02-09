@@ -459,6 +459,10 @@ It is therefore recommended to use the getBacktrace() method.
  This method delivers the exception to the code that initialized the exception handling in the authentication state.
 That would be
  <code>
+  \SimpleSAML\Auth\DefaultAuth
+ </code>
+ for authtentication sources, and
+ <code>
   www/saml2/idp/SSOService.php
  </code>
  for processing filters.
@@ -518,6 +522,45 @@ The following code illustrates this behaviour:
       /* Process exception. */
   }
 </code></pre>
+<h3>
+ <code>
+  \SimpleSAML\Auth\DefaultAuth
+ </code>
+</h3>
+<p>
+ This class accepts an
+ <code>
+  $errorURL
+ </code>
+ parameter to the
+ <code>
+  initLogin()
+ </code>
+ function.
+This parameter is stored in the
+ <code>
+  \SimpleSAML\Auth\State::EXCEPTION_HANDLER_URL
+ </code>
+ of the state array.
+Exceptions thrown by the authentication source will be delivered to that URL.
+</p>
+<p>
+ It also wraps the call to the
+ <code>
+  authenticate()
+ </code>
+ function inside a try-catch block.
+Any exceptions thrown during that function call will be delivered to the URL specified in the
+ <code>
+  $errorURL
+ </code>
+ parameter.
+This is done for consistency, since
+ <code>
+  \SimpleSAML\Auth\DefaultAuth
+ </code>
+ never transfers control back to the caller by returning.
+</p>
 <h3>
  <code>
   \SimpleSAML\Auth\ProcessingChain
@@ -594,7 +637,7 @@ This is done to be consistent in what the application receives - now it will alw
 <pre><code>  public static function show(\SimpleSAML\Configuration $config, array $data) {
       $t = new \SimpleSAML\XHTML\Template($config, 'error.php', 'errors');
       $t-&gt;data = array_merge($t-&gt;data, $data);
-      $t-&gt;send();
+      $t-&gt;show();
       exit;
   }
 </code></pre></div>    <!-- /#content -->

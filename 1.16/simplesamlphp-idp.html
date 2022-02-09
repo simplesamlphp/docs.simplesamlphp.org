@@ -221,12 +221,26 @@
  : Authenticates an user to a Radius server.
 </p>
 <p>
+ <a href="https://github.com/simplesamlphp/simplesamlphp-module-infocard/blob/master/README.md">
+  <code>
+   InfoCard:ICAuth
+  </code>
+ </a>
+ : Authenticate with an InfoCard.
+</p>
+<p>
  <a href="./multiauth/multiauth.html">
   <code>
    multiauth:MultiAuth
   </code>
  </a>
  : Allow the user to select from a list of authentication sources.
+</p>
+<p>
+ <code>
+  openid:OpenIDConsumer
+ </code>
+ : Authenticate against an OpenID provider.
 </p>
 <p>
  <a href="./saml/sp.html">
@@ -289,28 +303,22 @@
  <code>
   exampleauth
  </code>
- module. This module isn't enabled by default, so you will have to enable it. In
+ module. This module isn't enabled by default, so you will have to enable it. This is done by creating a file named
  <code>
-  config.php
+  enable
  </code>
- , search for the
+ in
  <code>
-  module.enable
+  modules/exampleauth/
  </code>
- key and set
- <code>
-  exampleauth
- </code>
- to true:
+ .
 </p>
 <p>
- <code>
-  'module.enable' =&gt; [
-         'exampleauth' =&gt; true,
-         …
-    ],
- </code>
+ On unix, this can be done by running (from the SimpleSAMLphp
+installation directory):
 </p>
+<pre><code>  touch modules/exampleauth/enable
+</code></pre>
 <p>
  The next step is to create an authentication source with this module. An authentication source is an authentication module with a specific configuration. Each authentication source has a name, which is used to refer to this specific configuration in the IdP configuration. Configuration for authentication sources can be found in
  <code>
@@ -322,19 +330,19 @@
  In this setup, this file should contain a single entry:
 </p>
 <pre><code>&lt;?php
-$config = [
-  'example-userpass' =&gt; [
+$config = array(
+  'example-userpass' =&gt; array(
     'exampleauth:UserPass',
-    'student:studentpass' =&gt; [
-      'uid' =&gt; ['student'],
-      'eduPersonAffiliation' =&gt; ['member', 'student'],
-    ],
-    'employee:employeepass' =&gt; [
-      'uid' =&gt; ['employee'],
-      'eduPersonAffiliation' =&gt; ['member', 'employee'],
-    ],
-  ],
-];
+    'student:studentpass' =&gt; array(
+      'uid' =&gt; array('student'),
+      'eduPersonAffiliation' =&gt; array('member', 'student'),
+    ),
+    'employee:employeepass' =&gt; array(
+      'uid' =&gt; array('employee'),
+      'eduPersonAffiliation' =&gt; array('member', 'employee'),
+    ),
+  ),
+);
 </code></pre>
 <p>
  This configuration creates two users -
@@ -353,7 +361,7 @@ $config = [
  <code>
   employeepass
  </code>
- . The username and password are stored in the array index (
+ . The username and password is stored in the array index (
  <code>
   student:studentpass
  </code>
@@ -361,34 +369,30 @@ $config = [
  <code>
   student
  </code>
- -user). The attributes for each user are configured in the array referenced by the index. So for the student user, these are:
+ -user. The attributes for each user is configured in the array referenced by the index. For the student user, these are:
 </p>
-<pre><code>[
-  'uid' =&gt; ['student'],
-  'eduPersonAffiliation' =&gt; ['member', 'student'],
-],
+<pre><code>array(
+  'uid' =&gt; array('student'),
+  'eduPersonAffiliation' =&gt; array('member', 'student'),
+),
 </code></pre>
 <p>
  The attributes will be returned by the IdP when the user logs on.
 </p>
 <h2>
- Creating a self signed certificate
+ Creating a SSL self signed certificate
 </h2>
 <p>
- The IdP needs a certificate to sign its SAML assertions with. Here is an example of an
+ Here is an example of an
  <code>
   openssl
  </code>
- -command which can be used to generate a new private key key and the corresponding self-signed certificate. The private key and certificate go into the directory defined in the certdir setting (defaults to
- <code>
-  cert/
- </code>
- )
+ -command which can be used to generate a new private key key and the corresponding self-signed certificate.
 </p>
 <p>
  This key and certificate can be used to sign SAML messages:
 </p>
-<pre><code>  openssl req -newkey rsa:3072 -new -x509 -days 3652 -nodes -out example.org.crt -keyout example.org.pem
+<pre><code>  openssl req -newkey rsa:2048 -new -x509 -days 3652 -nodes -out example.org.crt -keyout example.org.pem
 </code></pre>
 <p>
  The certificate above will be valid for 10 years.
@@ -411,7 +415,7 @@ $config = [
 This is a minimal configuration:
 </p>
 <pre><code>  &lt;?php
-  $metadata['__DYNAMIC:1__'] = [
+  $metadata['__DYNAMIC:1__'] = array(
       /*
        * The hostname for this IdP. This makes it possible to run multiple
        * IdPs from the same configuration. '__DEFAULT__' means that this one
@@ -431,7 +435,7 @@ This is a minimal configuration:
        * user. This must match one of the entries in config/authsources.php.
        */
       'auth' =&gt; 'example-userpass',
-  ];
+  );
 </code></pre>
 <p>
  For more information about available options in the idp-hosted metadata
@@ -450,7 +454,7 @@ files, see the
 </h2>
 <p>
  The
- <a href="https://kantarainitiative.github.io/SAMLprofiles/saml2int.html">
+ <a href="http://saml2int.org/profile/current">
   interoperable SAML 2 profile
  </a>
  specifies that attributes should be delivered using the
@@ -462,10 +466,10 @@ We therefore recommended enabling this in new installations.
 This can be done by adding the following to the saml20-idp-hosted configuration:
 </p>
 <pre><code>  'attributes.NameFormat' =&gt; 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
-  'authproc' =&gt; [
+  'authproc' =&gt; array(
       // Convert LDAP names to oids.
-      100 =&gt; ['class' =&gt; 'core:AttributeMap', 'name2oid'],
-  ],
+      100 =&gt; array('class' =&gt; 'core:AttributeMap', 'name2oid'),
+  ),
 </code></pre>
 <h2>
  Adding SPs to the IdP
@@ -484,10 +488,10 @@ This is a minimal example of a
  metadata file for a SimpleSAMLphp SP:
 </p>
 <pre><code>  &lt;?php
-  $metadata['https://sp.example.org/simplesaml/module.php/saml/sp/metadata.php/default-sp'] = [
+  $metadata['https://sp.example.org/simplesaml/module.php/saml/sp/metadata.php/default-sp'] = array(
       'AssertionConsumerService' =&gt; 'https://sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp',
       'SingleLogoutService'      =&gt; 'https://sp.example.org/simplesaml/module.php/saml/sp/saml2-logout.php/default-sp',
-  ];
+  );
 </code></pre>
 <p>
  Note that the URI in the entityID and the URLs to the AssertionConsumerService and SingleLogoutService endpoints change between different service providers.
@@ -600,10 +604,10 @@ To send the RelayState parameter from a SimpleSAMLphp IdP, specify it in the que
  </code>
  :
 </p>
-<pre><code>  'default-sp' =&gt; [
+<pre><code>  'default-sp' =&gt; array(
       'saml:SP',
       'RelayState' =&gt; 'https://sp.example.org/welcome.php',
-  ],
+  ),
 </code></pre></div>    <!-- /#content -->
 
 <div id="footer">

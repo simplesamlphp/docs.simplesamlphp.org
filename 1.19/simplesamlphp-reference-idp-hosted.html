@@ -111,9 +111,13 @@
 </h1>
 <!-- {{TOC}} -->
 <p>
- This is a reference for the metadata file
+ This is a reference for the metadata files
  <code>
   metadata/saml20-idp-hosted.php
+ </code>
+ and
+ <code>
+  metadata/shib13-idp-hosted.php
  </code>
  .
 Both files have the following format:
@@ -266,41 +270,102 @@ entry matches.
  <code>
   OrganizationName
  </code>
- ,
- <code>
-  OrganizationDisplayName
- </code>
- ,
- <code>
-  OrganizationURL
- </code>
- :   The name and URL of the organization responsible for this IdP.
-    You need to either specify
- <em>
-  all three
- </em>
- or none of these options.
-</p>
-<p>
- :   The Name does not need to be suitable for display to end users, the DisplayName should be.
-    The URL is a website the user can access for more information about the organization.
+ :   The name of the organization responsible for this IdP.
+    This name does not need to be suitable for display to end users.
 </p>
 <p>
  :   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
 </p>
 <pre><code>      'OrganizationName' =&gt; [
-          'en' =&gt; 'Voorbeeld Organisatie Foundation b.a.',
-          'nl' =&gt; 'Stichting Voorbeeld Organisatie b.a.',
-      ],
-      'OrganizationDisplayName' =&gt; [
           'en' =&gt; 'Example organization',
-          'nl' =&gt; 'Voorbeeldorganisatie',
-      ],
-      'OrganizationURL' =&gt; [
-          'en' =&gt; 'https://example.com',
-          'nl' =&gt; 'https://example.com/nl',
+          'no' =&gt; 'Eksempel organisation',
       ],
 </code></pre>
+<p>
+ :
+ <em>
+  Note
+ </em>
+ : If you specify this option, you must also specify the
+ <code>
+  OrganizationURL
+ </code>
+ option.
+</p>
+<p>
+ <code>
+  OrganizationDisplayName
+ </code>
+ :   The name of the organization responsible for this IdP.
+    This name must be suitable for display to end users.
+    If this option isn't specified,
+ <code>
+  OrganizationName
+ </code>
+ will be used instead.
+</p>
+<p>
+ :   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name.
+</p>
+<p>
+ :
+ <em>
+  Note
+ </em>
+ : If you specify this option, you must also specify the
+ <code>
+  OrganizationName
+ </code>
+ option.
+</p>
+<p>
+ <code>
+  OrganizationURL
+ </code>
+ :   A URL the end user can access for more information about the organization.
+</p>
+<p>
+ :   This option can be translated into multiple languages by specifying the value as an array of language-code to translated URL.
+</p>
+<p>
+ :
+ <em>
+  Note
+ </em>
+ : If you specify this option, you must also specify the
+ <code>
+  OrganizationName
+ </code>
+ option.
+</p>
+<p>
+ <code>
+  privacypolicy
+ </code>
+ :   This is an absolute URL for where an user can find a
+    privacypolicy. If set, this will be shown on the consent page.
+ <code>
+  %SPENTITYID%
+ </code>
+ in the URL will be replaced with the entity id of
+    the service the user is accessing.
+</p>
+<p>
+ :   Note that this option also exists in the SP-remote metadata, and
+    any value in the SP-remote metadata overrides the one configured
+    in the IdP metadata.
+</p>
+<p>
+ :
+ <em>
+  Note
+ </em>
+ :
+ <strong>
+  deprecated
+ </strong>
+ Will be removed in a future release; use the MDUI-extension instead
+</p>
 <p>
  <code>
   privatekey
@@ -327,6 +392,20 @@ entry matches.
     The scopes will be added to the generated XML metadata.
     A scope can either be a domain name or a regular expression
     matching a number of domains.
+</p>
+<p>
+ <code>
+  userid.attribute
+ </code>
+ :   The attribute name of an attribute which uniquely identifies
+    the user. This attribute is used if SimpleSAMLphp needs to generate
+    a persistent unique identifier for the user. This option can be set
+    in both the IdP-hosted and the SP-remote metadata. The value in the
+    SP-remote metadata has the highest priority. The default value is
+ <code>
+  eduPersonPrincipalName
+ </code>
+ .
 </p>
 <h2>
  SAML 2.0 options
@@ -410,7 +489,7 @@ entry matches.
 <p>
  :   The default value is:
  <code>
-  urn:oasis:names:tc:SAML:2.0:attrname-format:uri
+  urn:oasis:names:tc:SAML:2.0:attrname-format:basic
  </code>
 </p>
 <p>
@@ -424,7 +503,7 @@ entry matches.
  </code>
 </p>
 <pre><code>  -   `urn:oasis:names:tc:SAML:2.0:attrname-format:uri` (The default
-      in Shibboleth 2.0, mandatory as per SAML2INT)
+      in Shibboleth 2.0)
 
   -   `urn:oasis:names:tc:SAML:2.0:attrname-format:basic` (The
       default in Sun Access Manager)
@@ -436,6 +515,13 @@ entry matches.
  :   Note that this option also exists in the SP-remote metadata, and
     any value in the SP-remote metadata overrides the one configured
     in the IdP metadata.
+</p>
+<p>
+ :   (This option was previously named
+ <code>
+  AttributeNameFormat
+ </code>
+ .)
 </p>
 <p>
  <code>
@@ -746,12 +832,7 @@ entry matches.
   validate.authnrequest
  </code>
  :   Whether we require signatures on authentication requests sent to this IdP.
-    Set it to:
 </p>
-<pre><code>  true: authnrequest must be signed (and signature will be validated)
-  null: authnrequest may be signed, if it is, signature will be validated
-  false: authnrequest signature is never checked
-</code></pre>
 <p>
  :   Note that this option also exists in the SP-remote metadata, and
     any value in the SP-remote metadata overrides the one configured
@@ -825,6 +906,51 @@ messages from that SP.
 <pre><code>   'redirect.sign' =&gt; true,
 </code></pre>
 <h2>
+ Shibboleth 1.3 options
+</h2>
+<p>
+ Note that Shibboleth 1.3 support is deprecated and will be removed in the next major release of SimpleSAMLphp.
+</p>
+<p>
+ The following options for Shibboleth 1.3 IdP's are avaiblable:
+</p>
+<p>
+ <code>
+  scopedattributes
+ </code>
+ :   Array with names of attributes which should be scoped. Scoped
+    attributes will receive a
+ <code>
+  Scope
+ </code>
+ -attribute on the
+ <code>
+  AttributeValue
+ </code>
+ -element. The value of the Scope-attribute will
+    be taken from the attribute value:
+</p>
+<p>
+ :
+ <code>
+  &lt;AttributeValue&gt;someuser@example.org&lt;/AttributeValue&gt;
+ </code>
+</p>
+<p>
+ :   will be transformed into
+</p>
+<p>
+ :
+ <code>
+  &lt;AttributeValue Scope="example.org"&gt;someuser&lt;/AttributeValue&gt;
+ </code>
+</p>
+<p>
+ :   By default, no attributes are scoped. Note that this option also
+    exists in the SP-remote metadata, and any value in the SP-remote
+    metadata overrides the one configured in the IdP metadata.
+</p>
+<h2>
  Metadata extensions
 </h2>
 <p>
@@ -835,27 +961,6 @@ See the documentation for those extensions for more details:
 * [MDRPI extension](./simplesamlphp-metadata-extensions-rpi)
 * [EntityAttributes](./simplesamlphp-metadata-extensions-attributes)
 </code></pre>
-<p>
- For other metadata extensions, you can use the
- <code>
-  saml:Extensions
- </code>
- option:
-</p>
-<p>
- <code>
-  saml:Extensions
- </code>
- :   An array of
- <code>
-  \SAML2\XML\Chunk
- </code>
- s to include in the IdP metadata extensions, at the same level as
- <code>
-  EntityAttributes
- </code>
- .
-</p>
 <h2>
  Examples
 </h2>
@@ -863,7 +968,7 @@ See the documentation for those extensions for more details:
  These are some examples of IdP metadata
 </p>
 <h3>
- Minimal SAML 2.0 IdP
+ Minimal SAML 2.0 / Shibboleth 1.3 IdP
 </h3>
 <pre><code>  &lt;?php
   /*
@@ -887,64 +992,7 @@ See the documentation for those extensions for more details:
        */
       'auth' =&gt; 'example-userpass',
   ];
-</code></pre>
-<h3>
- A custom metadata extension (eduGAIN republish request)
-</h3>
-<p>
- ```
-&lt;?php
-</p>
-<p>
- $dom = \SAML2\DOMDocumentFactory::create();
-$republishRequest = $dom-&gt;createElementNS('http://eduid.cz/schema/metadata/1.0', 'eduidmd:RepublishRequest');
-$republishTarget = $dom-&gt;createElementNS('http://eduid.cz/schema/metadata/1.0', 'eduidmd:RepublishTarget', 'http://edugain.org/');
-$republishRequest-&gt;appendChild($republishTarget);
-$ext = [new \SAML2\XML\Chunk($republishRequest)];
-</p>
-<p>
- $metadata['
- <strong>
-  DYNAMIC:1
- </strong>
- '] = [
-    'host' =&gt; '
- <strong>
-  DEFAULT
- </strong>
- ',
-    'certificate' =&gt; 'example.org.crt',
-    'privatekey' =&gt; 'example.org.pem',
-    'auth' =&gt; 'example-userpass',
-</p>
-<pre><code>  /*
-   * The custom metadata extensions.
-   */
-  'saml:Extensions' =&gt; $ext,
-</code></pre>
-<p>
- ];
-```
-</p>
-<p>
- this generates the following metadata:
-</p>
-<p>
- ```
- <entitydescriptor entityid="...">
-  <extensions xmlns="urn:oasis:names:tc:SAML:2.0:metadata">
-   <eduidmd:republishrequest xmlns:eduidmd="http://eduid.cz/schema/metadata/1.0">
-    <eduidmd:republishtarget>
-     http://edugain.org/
-    </eduidmd:republishtarget>
-   </eduidmd:republishrequest>
-  </extensions>
-  <!-- rest of metadata -->
- </entitydescriptor>
-</p>
-<p>
- ```
-</p></div>    <!-- /#content -->
+</code></pre></div>    <!-- /#content -->
 
 <div id="footer">
     <a href="https://www.uninett.no/"><img id="ulogo" alt="notes" src="/res/uninettlogo.png" /SS></a>

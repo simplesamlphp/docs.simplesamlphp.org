@@ -1,0 +1,297 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Language" content="en" />
+
+	<!-- JQuery -->
+	<!-- 
+	<script type="text/javascript" src="/res/js/jquery.js"></script>
+	<script type="text/javascript" src="/res/js/jquery-ui.js"></script>
+	-->
+
+	<style>
+	  mark {
+        background: orange;
+        color: black;
+      }
+    </style>  
+
+	
+	<!-- Foodle: CSS -->	
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/js/uitheme/jquery-ui-themeroller.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/style.css" /> 
+	<link rel="stylesheet" media="screen" type="text/css" href="/res/css/layout.css" /> 
+
+	<title>SimpleSAMLphp Documentation</title> 
+</head>
+
+
+
+
+
+<body>
+ <!-- Red logo header -->
+ <header>
+  <div id="header">
+   <div class="right">
+    <form action="https://www.google.com/cse" method="get" style="margin-top: 2.5rem; margin-right: 2rem">
+     <input name="cx" type="hidden" value="004202914224971217557:8ks4jjstupq"/>
+     <input name="siteurl" type="hidden" value="www.google.com/cse/home?cx=004202914224971217557:8ks4jjstupq"/>
+     <input name="adkw" type="hidden" value="AELymgVJ6Sk-kOvUjbxvgShTLwiFlma2evFuVCh0r8q23vn_4eVnkcdnPfbgMvYUTpJpVlb-KkGAKkbn0i-AlWHsVRR9O0J4CNb6cXFkEKRdjXxsC_NlVD4"/>
+     <input name="q" placeholder="Search" type="search" value=""/>
+    </form>
+   </div>
+   <div class="v-center logo-header">
+    <div id="logo">
+     <a href="https://simplesamlphp.github.io" style="color: #fff; text-decoration: none">
+      <span class="simple">
+       Simple
+      </span>
+      <span class="saml">
+       SAML
+      </span>
+      <span class="simple">
+       php
+      </span>
+     </a>
+    </div>
+   </div>
+  </div>
+  <!-- Grey header bar below -->
+  <nav>
+   <div id="headerbar" style="clear: both">
+    <p id="breadcrumb">
+     <a href="https://simplesamlphp.github.io">
+      Home
+     </a>
+     » Documentation
+    </p>
+    <div class="mtoolbar">
+     <div class="menuitem first">
+      <a href="./../latest/index.html">
+       latest
+      </a>
+     </div>
+     <div class="menuitem">
+      <a href="./../1.19/index.html">
+       1.19
+      </a>
+     </div>
+     <div class="menuitem">
+      <a href="./../1.18/index.html">
+       1.18
+      </a>
+     </div>
+     <div class="menuitem">
+      <a href="./../1.17/index.html">
+       1.17
+      </a>
+     </div>
+     <div class="menuitem">
+      <a href="./../1.16/index.html">
+       1.16
+      </a>
+     </div>
+     <div class="menuitem last">
+      <a href="./../contributed_modules.html">
+       Contributed modules
+      </a>
+     </div>
+    </div>
+    <br style="height: 0px; clear: both"/>
+   </div>
+   <!-- /#headerbar -->
+  </nav>
+  <div id="content">
+  </div>
+ </header>
+</body><h1>
+ SmartAttributes module
+</h1>
+<p>
+ The SmartAttributes module provides authentication processing filters to add attributes.
+The logic in this filter exceeds what is possible with the standard filters such, as [
+ <code>
+  core:AttributeAdd
+ </code>
+ ], [
+ <code>
+  core:AttributeAlter
+ </code>
+ ], and [
+ <code>
+  core:AttributeMap
+ </code>
+ ].
+</p>
+<h1>
+ <code>
+  smartattributes:SmartID
+ </code>
+</h1>
+<p>
+ A filter to add an identifier attribute, based on the first non-empty attribute from a given list of attribute names.
+This is useful when there are multiple SAML IdPs configured, and there is no common identifier among them.
+For example some IdPs send eduPersonPrincipalName, while others send eduPersonTargetedID. If any of the social networks are configured as an authsource, they will send yet another identifier.
+The filter has the following configuration options:
+</p>
+<ul>
+ <li>
+  <code>
+   candidates
+  </code>
+  . An array of attributes names to consider as the identifier attribute. Defaults to:
+  <ul>
+   <li>
+    eduPersonTargetedID
+   </li>
+   <li>
+    eduPersonPrincipalName
+   </li>
+   <li>
+    pairwise-id
+   </li>
+   <li>
+    subject-id
+   </li>
+   <li>
+    openid
+   </li>
+   <li>
+    facebook_targetedID
+   </li>
+   <li>
+    twitter_targetedID
+   </li>
+   <li>
+    windowslive_targetedID
+   </li>
+   <li>
+    linkedin_targetedID
+   </li>
+  </ul>
+ </li>
+ <li>
+  <code>
+   id_attribute
+  </code>
+  . A string to use as the name of the newly added attribute. Defaults to
+  <code>
+   smart_id
+  </code>
+  .
+ </li>
+ <li>
+  <code>
+   add_authority
+  </code>
+  . A boolean to indicate whether or not to append the SAML AuthenticatingAuthority to the resulting identifier. This can be useful to indicate what SAML IdP was used, in case the original identifier is not scoped. Defaults to
+  <code>
+   TRUE
+  </code>
+  .
+ </li>
+ <li>
+  <code>
+   add_candidate
+  </code>
+  . A boolean to indicate whether or not to prepend the candidate attribute name to the resulting identifier. This can be useful to indicate the attribute originating the identifier. Defaults to
+  <code>
+   TRUE
+  </code>
+  .
+ </li>
+</ul>
+<p>
+ The generated identifiers have the following form:
+</p>
+<p>
+ <code>
+  AttributeName:AttributeValue!AuthenticatingAuthority
+ </code>
+</p>
+<p>
+ For example:
+</p>
+<p>
+ <code>
+  eduPersonTargetedID:c4bcbe7ca8eac074f65291fd5524caa88f3115c8!https://login.terena.org/idp/saml2/idp/metadata.php
+ </code>
+</p>
+<h2>
+ Examples
+</h2>
+<p>
+ Without any configuration:
+</p>
+<pre><code>'authproc' =&gt; array(
+  50 =&gt; array(
+    'class' =&gt; 'smartattributes:SmartID'
+  ),
+),
+</code></pre>
+<p>
+ This will add an attribute called
+ <code>
+  smart_id
+ </code>
+ with a value looking like, for example:
+</p>
+<p>
+ <code>
+  eduPersonTargetedID:c4bcbe7ca8eac074f65291fd5524caa88f3115c8!https://login.terena.org/idp/saml2/idp/metadata.php
+ </code>
+</p>
+<p>
+ Custom configuration:
+</p>
+<pre><code>'authproc' =&gt; array(
+  50 =&gt; array(
+    'class' =&gt; 'smartattributes:SmartID',
+    'candidates' =&gt; array('eduPersonTargetedID', 'eduPersonPrincipalName'),
+    'id_attribute' =&gt; 'FooUniversityLocalID',
+    'add_authority' =&gt; FALSE,
+  ),
+),
+</code></pre>
+<p>
+ This will add an attribute called
+ <code>
+  FooUniversityLocalID
+ </code>
+ with a value like:
+</p>
+<p>
+ <code>
+  eduPersonTargetedID:c4bcbe7ca8eac074f65291fd5524caa88f3115c8
+ </code>
+</p>
+<p>
+ If you also want to remove the name of the originating attribute, you could configure it like this:
+</p>
+<pre><code>'authproc' =&gt; array(
+  50 =&gt; array(
+    'class' =&gt; 'smartattributes:SmartID',
+    'candidates' =&gt; array('eduPersonTargetedID', 'eduPersonPrincipalName'),
+    'id_attribute' =&gt; 'FooUniversityLocalID',
+    'add_authority' =&gt; FALSE,
+    'add_candidate' =&gt; FALSE,
+  ),
+),
+</code></pre>
+<p>
+ Resulting in:
+</p>
+<p>
+ <code>
+  c4bcbe7ca8eac074f65291fd5524caa88f3115c8
+ </code>
+</p></div>    <!-- /#content -->
+
+<div id="footer">
+    <a href="https://www.uninett.no/"><img id="ulogo" alt="notes" src="/res/uninettlogo.png" /SS></a>
+</div><!-- /#footer -->
+
+</body>
+</html>
