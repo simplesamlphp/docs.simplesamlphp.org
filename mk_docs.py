@@ -92,7 +92,7 @@ def getgitrepo(repo, repo_clone_dir, repo_root, version=None):
    os.makedirs(os.path.join(repo_clone_dir))
    os.chdir(repo_clone_dir)
    
-   if (version is not None):
+   if (version is not None or version == 'latest'):
       os.system('git clone --depth=1 --branch simplesamlphp-' + version + ' ' + repo)
    else:
       os.system('git clone --depth=1 ' + repo)
@@ -156,7 +156,7 @@ def mkNavigation(versions):
 
     content = '<div class="mtoolbar">'
     for version in versions:
-       if version is 'latest':
+       if version == 'latest':
           content += '<div class="menuitem first">'
        else:
           content += '<div class="menuitem">'  
