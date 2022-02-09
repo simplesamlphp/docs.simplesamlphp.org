@@ -92,13 +92,14 @@ def getgitrepo(repo, repo_clone_dir, repo_root, version=None):
    os.makedirs(os.path.join(repo_clone_dir))
    os.chdir(repo_clone_dir)
    
-   os.system('git clone --depth=1 ' + repo)
+   if (version is not None):
+      os.system('git clone --depth=1 --branch simplesamlphp-' + version + ' ' + repo)
+   else:
+      os.system('git clone --depth=1 ' + repo)
    os.chdir(repo_clone_dir + repo_root)
    
    print("Working in git repo from" + os.getcwd())
    
-   if (version is not None):
-      os.system('git checkout -b ' + version)
    os.system('git status')
 
 # make the header and headerbad div contents for indjection into each documentation page
@@ -249,7 +250,7 @@ root_dir = os.path.expanduser('~') + "/"
 tempdir = root_dir + "ssp_tmp/"
 
 #Runner path eequals $GITHUB_WORKSPACE
-runner_path = '/home/runner/work/docs.simplesamlphp.org/docs.simplesamlphp.org/'
+runner_path = '/home/runner/work/docs/docs/'
 
 repo_root_dir = "simplesamlphp/"
 repo_docs_dir = "docs/"
