@@ -92,10 +92,10 @@ def getgitrepo(repo, repo_clone_dir, repo_root, version=None):
    os.makedirs(os.path.join(repo_clone_dir))
    os.chdir(repo_clone_dir)
    
-   if (version is not None or version == 'latest'):
-      os.system('git clone --depth=1 --branch simplesamlphp-' + version + ' ' + repo)
-   else:
+   if (version is None or version == 'latest'):
       os.system('git clone --depth=1 ' + repo)
+   else:
+      os.system('git clone --depth=1 --branch simplesamlphp-' + version + ' ' + repo)
    os.chdir(repo_clone_dir + repo_root)
    
    print("Working in git repo from" + os.getcwd())
