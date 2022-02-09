@@ -123,7 +123,7 @@ def mkContentHeader(versions):
     content += '</div>'
     content += '<div class="v-center logo-header">'
     content += '  <div id="logo">'
-    content += '   <a href="https://simplesamlphp.github.io" style="color: #fff; text-decoration: none">'
+    content += '   <a href="https://simplesamlphp.org" style="color: #fff; text-decoration: none">'
     content += '     <span class="simple">Simple</span>'
     content += '      <span class="saml">SAML</span>'
     content += '      <span class="simple">php</span>'
@@ -134,7 +134,7 @@ def mkContentHeader(versions):
     content += '<!-- Grey header bar below -->'
     content += '<nav>'
     content += '<div id="headerbar" style="clear: both">'
-    content += '<p id="breadcrumb"><a href="https://simplesamlphp.github.io">Home</a> » Documentation</p>'
+    content += '<p id="breadcrumb"><a href="https://simplesamlphp.org">Home</a> » Documentation</p>'
     content += mkNavigation(versions)
     content += '<br style="height: 0px; clear: both" />'
     content += '</div><!-- /#headerbar -->'
@@ -151,8 +151,8 @@ def mkNavigation(versions):
     
     #content = '<div id="langbar" style="clar: both"><div id="navigation">Documentation is available for the following versions: '
     #for version in versions:
-    #    content += '<a href="./../'+version+'/index.html">'+version+'</a> | '
-    #content += ' <a href="./../contributed_modules.html"> Contributed modules</a></div></div>'
+    #    content += '<a href="/docs/'+version+'/index.html">'+version+'</a> | '
+    #content += ' <a href="/docs/contributed_modules.html"> Contributed modules</a></div></div>'
 
     content = '<div class="mtoolbar">'
     for version in versions:
@@ -161,11 +161,11 @@ def mkNavigation(versions):
        else:
           content += '<div class="menuitem">'  
 
-       content += '<a href="./../'+version+'/index.html">'+version+'</a>'
+       content += '<a href="'+site_base_path+version+'/index.html">'+version+'</a>'
        content += '</div>'
     
     content += ' <div class="menuitem last">'
-    content += '   <a href="./../contributed_modules.html"> Contributed modules</a>'
+    content += '   <a href="' + site_base_path + 'contributed_modules.html"> Contributed modules</a>'
     content += ' </div>'
     
     content += '</div>'
@@ -259,6 +259,8 @@ repo_modules_dir = "modules/"
 site_root_dir = runner_path + "_site/"
 header = runner_path + "resources/header"
 footer = runner_path + "resources/footer"
+
+site_base_path = '/docs/'
 
 # for which versions should we generate documentation?
 # ToDo: replace with dynamic assasment based on github tags
