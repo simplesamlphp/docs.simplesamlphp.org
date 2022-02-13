@@ -172,17 +172,8 @@ def mkNavigation(versions):
     
     return content
 
-# make sure some resources like css, js and some images are put in the right place for the website
+# make sure some resources are put in the right place for the website
 def mkResources(root_dir, web_root):
-    # Copy over the website js and css resources
-    #if not os.path.exists(os.path.join(site_root_dir + '/res/js/')):
-    os.makedirs(os.path.join(web_root + '/res/js/'))
-   
-    #if not os.path.exists(os.path.join(site_root_dir + '/res/css/')):
-    os.makedirs(os.path.join(web_root + '/res/css/'))
-    os.system('cp -R ' +  root_dir + 'resources/js/ ' + web_root + 'res/')
-    os.system('cp -R ' +  root_dir + 'resources/css/ ' + web_root + 'res/')
-
     # starter index.html (just a redirect to 'latest')    
     os.system('cp ' +  root_dir + 'resources/index.html ' + web_root + 'index.html ')
 
@@ -280,7 +271,7 @@ print("reading Footer")
 with open(footer, 'r') as f:
   footer = f.read()
 
-# Copy over resources like js and css files and a the starter index.html that will always redirect to "latest"
+# Copy over resources like the starter index.html that will always redirect to "latest"
 mkResources(runner_path, site_root_dir)
 
 # Now generate contents based documentation for core simplesamlphp repo
