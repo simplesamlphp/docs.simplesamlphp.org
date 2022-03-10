@@ -15,11 +15,12 @@ from bs4 import BeautifulSoup
 def md2html(md_file, html_file, file_name):
     #print("Transforming " + md_file + " into " + html_file)
     
+    pymd = markdown.Markdown(extensions=['toc'], tab_length=2)
     
     with open(md_file, 'r') as f:
        text = f.read()
 
-       html = markdown.markdown(text, tab_length=2)
+       html = pymd.convert(text)
        soup = BeautifulSoup(html, 'html.parser')
        for a in soup.findAll('a'):
          
