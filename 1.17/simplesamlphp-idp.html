@@ -90,7 +90,7 @@
   <div id="content">
   </div>
  </header>
-</body><h1>
+</body><h1 id="simplesamlphp-identity-provider-quickstart">
  SimpleSAMLphp Identity Provider QuickStart
 </h1>
 <!-- 
@@ -105,7 +105,7 @@
   the SimpleSAMLphp installation instructions
  </a>
 </p>
-<h2>
+<h2 id="enabling-the-identity-provider-functionality">
  Enabling the Identity Provider functionality
 </h2>
 <p>
@@ -125,7 +125,7 @@
 </p>
 <pre><code>  'enable.saml20-idp' =&gt; true,
 </code></pre>
-<h2>
+<h2 id="authentication-module">
  Authentication module
 </h2>
 <p>
@@ -275,7 +275,7 @@
  </code>
  authentication module. This module does not have any dependencies, and is therefore simple to set up.
 </p>
-<h2>
+<h2 id="configuring-the-authentication-module">
  Configuring the authentication module
 </h2>
 <p>
@@ -363,7 +363,7 @@ $config = [
 <p>
  The attributes will be returned by the IdP when the user logs on.
 </p>
-<h2>
+<h2 id="creating-a-ssl-self-signed-certificate">
  Creating a SSL self signed certificate
 </h2>
 <p>
@@ -381,13 +381,13 @@ $config = [
 <p>
  The certificate above will be valid for 10 years.
 </p>
-<h3>
+<h3 id="note">
  Note
 </h3>
 <p>
  SimpleSAMLphp will only work with RSA certificates. DSA certificates are not supported.
 </p>
-<h2>
+<h2 id="configuring-the-idp">
  Configuring the IdP
 </h2>
 <p>
@@ -429,7 +429,7 @@ files, see the
  </a>
  .
 </p>
-<h2>
+<h2 id="using-the-uri-nameformat-on-attributes">
  Using the
  <code>
   uri
@@ -455,7 +455,7 @@ This can be done by adding the following to the saml20-idp-hosted configuration:
       100 =&gt; ['class' =&gt; 'core:AttributeMap', 'name2oid'],
   ],
 </code></pre>
-<h2>
+<h2 id="adding-sps-to-the-idp">
  Adding SPs to the IdP
 </h2>
 <p>
@@ -492,7 +492,7 @@ If you have the metadata of the remote SP as an XML file, you can use the built-
  </a>
  .
 </p>
-<h2>
+<h2 id="adding-this-idp-to-other-sps">
  Adding this IdP to other SPs
 </h2>
 <p>
@@ -502,7 +502,7 @@ If you have the metadata of the remote SP as an XML file, you can use the built-
  </code>
  .
 </p>
-<h2>
+<h2 id="testing-the-idp">
  Testing the IdP
 </h2>
 <p>
@@ -513,7 +513,7 @@ on the same machine. See the instructions for
  </a>
  .
 </p>
-<h3>
+<h3 id="note_1">
  Note
 </h3>
 <p>
@@ -523,7 +523,7 @@ on the same machine. See the instructions for
  </strong>
  be configured with different hostnames. This prevents cookies from the SP to interfere with cookies from the IdP.
 </p>
-<h2>
+<h2 id="support">
  Support
 </h2>
 <p>
@@ -546,7 +546,7 @@ on the same machine. See the instructions for
   </a>
  </li>
 </ul>
-<h2>
+<h2 id="a-idp-first-setup">
  A. IdP-first setup
 </h2>
 <p>

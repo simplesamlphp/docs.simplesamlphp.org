@@ -90,7 +90,7 @@
   <div id="content">
   </div>
  </header>
-</body><h1>
+</body><h1 id="samlsp">
  <code>
   saml:SP
  </code>
@@ -98,7 +98,7 @@
 <p>
  This authentication source is used to authenticate against SAML 1 and SAML 2 IdPs.
 </p>
-<h2>
+<h2 id="metadata">
  Metadata
 </h2>
 <p>
@@ -111,7 +111,7 @@ See the documentation for those extensions for more details:
 <pre><code>* [MDUI extension](./simplesamlphp-metadata-extensions-ui)
 * [MDRPI extension](./simplesamlphp-metadata-extensions-rpi)
 </code></pre>
-<h2>
+<h2 id="parameters">
  Parameters
 </h2>
 <p>
@@ -259,7 +259,7 @@ All these parameters override the equivalent option from the configuration.
  </em>
  : SAML 2 specific.
 </p>
-<h2>
+<h2 id="authentication-data">
  Authentication data
 </h2>
 <p>
@@ -294,7 +294,7 @@ The following attributes are available:
  </code>
  :   The SessionIndex we received from the IdP.
 </p>
-<h2>
+<h2 id="options">
  Options
 </h2>
 <p>
@@ -1143,20 +1143,20 @@ The following attributes are available:
  element in
     the exported SAML 2.0 metadata.
 </p>
-<h2>
+<h2 id="examples">
  Examples
 </h2>
 <p>
  Here we will list some examples for this authentication source.
 </p>
-<h3>
+<h3 id="minimal">
  Minimal
 </h3>
 <pre><code>  'example-minimal' =&gt; array(
       'saml:SP',
   ),
 </code></pre>
-<h3>
+<h3 id="connecting-to-a-specific-idp">
  Connecting to a specific IdP
 </h3>
 <pre><code>  'example' =&gt; array(
@@ -1164,7 +1164,7 @@ The following attributes are available:
       'idp' =&gt; 'https://idp.example.net/',
   ),
 </code></pre>
-<h3>
+<h3 id="using-a-specific-entity-id">
  Using a specific entity ID
 </h3>
 <pre><code>  'example' =&gt; array(
@@ -1172,7 +1172,7 @@ The following attributes are available:
       'entityID' =&gt; 'https://sp.example.net',
   ),
 </code></pre>
-<h3>
+<h3 id="encryption-and-signing">
  Encryption and signing
 </h3>
 <pre><code>  This SP will accept encrypted assertions, and will sign and validate all messages.
@@ -1187,7 +1187,7 @@ The following attributes are available:
       'redirect.validate' =&gt; TRUE,
   ),
 </code></pre>
-<h3>
+<h3 id="specifying-attributes-and-required-attributes">
  Specifying attributes and required attributes
 </h3>
 <pre><code>  An SP that wants eduPersonPrincipalName and mail, where eduPersonPrincipalName should be listed as required:
@@ -1211,7 +1211,7 @@ The following attributes are available:
       'attributes.NameFormat' =&gt; 'urn:oasis:names:tc:SAML:2.0:attrname-format:basic',
   ),
 </code></pre>
-<h3>
+<h3 id="limiting-supported-assertionconsumerservice-endpoint-bindings">
  Limiting supported AssertionConsumerService endpoint bindings
 </h3>
 <pre><code>  'example-acs-limit' =&gt; array(
@@ -1222,7 +1222,7 @@ The following attributes are available:
       ),
   ),
 </code></pre>
-<h3>
+<h3 id="requesting-a-specific-authentication-method">
  Requesting a specific authentication method.
 </h3>
 <pre><code>  $auth = new \SimpleSAML\Auth\Simple('default-sp');
@@ -1230,7 +1230,7 @@ The following attributes are available:
       'saml:AuthnContextClassRef' =&gt; 'urn:oasis:names:tc:SAML:2.0:ac:classes:Password',
   ));
 </code></pre>
-<h3>
+<h3 id="using-samlpextensions">
  Using samlp:Extensions
 </h3>
 <pre><code>  $dom = \SAML2\DOMDocumentFactory::create();

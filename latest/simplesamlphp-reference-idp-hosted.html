@@ -90,7 +90,7 @@
   <div id="content">
   </div>
  </header>
-</body><h1>
+</body><h1 id="idp-hosted-metadata-reference">
  IdP hosted metadata reference
 </h1>
 <!-- {{TOC}} -->
@@ -144,7 +144,7 @@ have the host
  . This entry will be used when no other
 entry matches.
 </p>
-<h2>
+<h2 id="common-options">
  Common options
 </h2>
 <p>
@@ -312,7 +312,7 @@ entry matches.
     A scope can either be a domain name or a regular expression
     matching a number of domains.
 </p>
-<h2>
+<h2 id="saml-20-options">
  SAML 2.0 options
 </h2>
 <p>
@@ -752,7 +752,7 @@ entry matches.
     any value in the SP-remote metadata overrides the one configured
     in the IdP metadata.
 </p>
-<h3>
+<h3 id="fields-for-signing-and-validating-messages">
  Fields for signing and validating messages
 </h3>
 <p>
@@ -808,7 +808,7 @@ messages from that SP.
 </p>
 <pre><code>   'redirect.sign' =&gt; true,
 </code></pre>
-<h2>
+<h2 id="metadata-extensions">
  Metadata extensions
 </h2>
 <p>
@@ -840,13 +840,13 @@ See the documentation for those extensions for more details:
  </code>
  .
 </p>
-<h2>
+<h2 id="examples">
  Examples
 </h2>
 <p>
  These are some examples of IdP metadata
 </p>
-<h3>
+<h3 id="minimal-saml-20-idp">
  Minimal SAML 2.0 IdP
 </h3>
 <pre><code>  &lt;?php
@@ -872,7 +872,7 @@ See the documentation for those extensions for more details:
       'auth' =&gt; 'example-userpass',
   ];
 </code></pre>
-<h3>
+<h3 id="a-custom-metadata-extension-edugain-republish-request">
  A custom metadata extension (eduGAIN republish request)
 </h3>
 <p>

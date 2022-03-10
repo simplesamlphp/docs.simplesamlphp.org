@@ -90,7 +90,7 @@
   <div id="content">
   </div>
  </header>
-</body><h1>
+</body><h1 id="migrating-to-the-saml-module">
  Migrating to the
  <code>
   saml
@@ -136,7 +136,7 @@ It assumes that you have previously set up a SP by using redirects to
   Disable the old SAML 2 SP.
  </li>
 </ol>
-<h2>
+<h2 id="create-a-new-authentication-source">
  Create a new authentication source
 </h2>
 <p>
@@ -223,7 +223,7 @@ See the
  </a>
  documentation for more information.
 </p>
-<h2>
+<h2 id="add-the-metadata-for-this-authentication-source-to-the-idp">
  Add the metadata for this authentication source to the IdP
 </h2>
 <p>
@@ -253,7 +253,7 @@ That metadata should be added to
  on the IdP.
 For other IdPs you probably want to use the XML metadata.
 </p>
-<h2>
+<h2 id="test-the-new-authentication-source">
  Test the new authentication source
 </h2>
 <p>
@@ -269,13 +269,13 @@ Click that link, and select the name of your authentication source (
 <p>
  You should be able to log in using that authentication source, and receive the attributes from the IdP.
 </p>
-<h2>
+<h2 id="convert-the-application-to-use-the-new-api">
  Convert the application to use the new API
 </h2>
 <p>
  This section will go through some common changes that you need to do when you are using SimpleSAMLphp from a different application.
 </p>
-<h3>
+<h3 id="_includephp">
  <code>
   _include.php
  </code>
@@ -321,14 +321,14 @@ That means that you should remove lines like the following:
   require_once('SimpleSAML/Session.php');
   require_once('SimpleSAML/XHTML/Template.php');
 </code></pre>
-<h3>
+<h3 id="authentication-api">
  Authentication API
 </h3>
 <p>
  There is a new authentication API in SimpleSAMLphp which can be used to authenticate against authentication sources.
 This API is designed to handle the common operations.
 </p>
-<h4>
+<h4 id="overview">
  Overview
 </h4>
 <p>
@@ -352,7 +352,7 @@ This API is designed to handle the common operations.
   /* Log the user out. */
   $as-&gt;logout();
 </code></pre>
-<h4>
+<h4 id="config-and-session">
  <code>
   $config
  </code>
@@ -372,7 +372,7 @@ This API is designed to handle the common operations.
 </p>
 <pre><code>  $as = new \SimpleSAML\Auth\Simple('default-sp');
 </code></pre>
-<h4>
+<h4 id="requiring-authentication">
  Requiring authentication
 </h4>
 <p>
@@ -396,7 +396,7 @@ This API is designed to handle the common operations.
 </p>
 <pre><code>  $as-&gt;requireAuth();
 </code></pre>
-<h4>
+<h4 id="fetching-attributes">
  Fetching attributes
 </h4>
 <p>
@@ -409,7 +409,7 @@ This API is designed to handle the common operations.
 </p>
 <pre><code>  $as-&gt;getAttributes();
 </code></pre>
-<h4>
+<h4 id="logging-out">
  Logging out
 </h4>
 <p>
@@ -439,7 +439,7 @@ This API is designed to handle the common operations.
  Please make sure the URL is trusted. If you obtain the URL from the user input, make sure it is trusted before
 calling $as-&gt;logout(), by using the SimpleSAML_Utilities::checkURLAllowed() method.
 </p>
-<h4>
+<h4 id="login-link">
  Login link
 </h4>
 <p>
@@ -454,7 +454,7 @@ It has two mandatory parameters:
 <pre><code>* `AuthId`: The id of the authentication source.
 * `ReturnTo`: The URL the user should be redirected to after authentication.
 </code></pre>
-<h4>
+<h4 id="logout-link">
  Logout link
 </h4>
 <p>
@@ -469,19 +469,19 @@ It has two mandatory parameters:
 <pre><code>* `AuthId`: The id of the authentication source.
 * `ReturnTo`: The URL the user should be redirected to after logout.
 </code></pre>
-<h2>
+<h2 id="test-the-application">
  Test the application
 </h2>
 <p>
  How you test the application is highly dependent on the application, but here are the elements you should test:
 </p>
-<h3>
+<h3 id="sp-initiated-login">
  SP initiated login
 </h3>
 <p>
  Make sure that it is still possible to log into the application.
 </p>
-<h3>
+<h3 id="idp-initiated-login">
  IdP initiated login
 </h3>
 <p>
@@ -498,14 +498,14 @@ If it isn't supported by the IdP, you need to configure the
  </code>
  option in the authentication source configuration.
 </p>
-<h3>
+<h3 id="sp-initiated-logout">
  SP initiated logout
 </h3>
 <p>
  Make sure that logging out of your application also logs out of the IdP.
 If this does not work, users who log out of your application can log in again without entering any username or password.
 </p>
-<h3>
+<h3 id="idp-initiated-logout">
  IdP initiated logout
 </h3>
 <p>
@@ -516,7 +516,7 @@ In this case, the user should also be logged out of your application.
  The easiest way to test this is if you have two SPs connected to the IdP.
 You can then log out of one SP and check that you are also logged out of the other.
 </p>
-<h2>
+<h2 id="remove-the-old-metadata-from-the-idp">
  Remove the old metadata from the IdP
 </h2>
 <p>
@@ -528,7 +528,7 @@ If you are running a SimpleSAMLphp IdP, you can remove the entry for the old SP 
  </code>
  .
 </p>
-<h2>
+<h2 id="disable-the-old-saml-2-sp">
  Disable the old SAML 2 SP
 </h2>
 <p>

@@ -90,13 +90,13 @@
   <div id="content">
   </div>
  </header>
-</body><h1>
+</body><h1 id="key-rollover-with-simplesamlphp">
  Key rollover with SimpleSAMLphp
 </h1>
 <p>
  This document gives a quick guide to doing key rollover with a SimpleSAMLphp service provider or identity provider.
 </p>
-<h2>
+<h2 id="create-the-new-key-and-certificate">
  Create the new key and certificate
 </h2>
 <p>
@@ -106,7 +106,7 @@ To create a self signed certificate, you may use the following command:
 <pre><code>  cd cert
   openssl req -newkey rsa:3072 -new -x509 -days 3652 -nodes -out new.crt -keyout new.pem
 </code></pre>
-<h2>
+<h2 id="add-the-new-key-to-simplesamlphp">
  Add the new key to SimpleSAMLphp
 </h2>
 <p>
@@ -135,7 +135,7 @@ If you are changing the keys for both an service provider and identity provider 
 The metadata will be updated to list the new key for signing and encryption, and the old key will no longer listed as available for encryption.
 This ensures that both those entities that use your old metadata and those that use your new metadata will be able to send and receive messages from you.
 </p>
-<h3>
+<h3 id="examples">
  Examples
 </h3>
 <p>
@@ -179,7 +179,7 @@ This ensures that both those entities that use your old metadata and those that 
       'new_privatekey_pass' =&gt; '&lt;new-secret&gt;',
   ];
 </code></pre>
-<h2>
+<h2 id="distribute-your-new-metadata">
  Distribute your new metadata
 </h2>
 <p>
@@ -192,7 +192,7 @@ If you are part of an federation, you would probably either send it to the feder
  Once the peers are using your new metadata, they will accept messages from you signed with either your old or your new key.
 If they send encrypted messages to you, they will use your new key for encryption.
 </p>
-<h2>
+<h2 id="remove-the-old-key">
  Remove the old key
 </h2>
 <p>
@@ -224,7 +224,7 @@ Replace the existing
  options.
 This will cause your old key to be removed from your metadata.
 </p>
-<h3>
+<h3 id="examples_1">
  Examples
 </h3>
 <p>
@@ -258,7 +258,7 @@ This will cause your old key to be removed from your metadata.
       'privatekey_pass' =&gt; '&lt;new-secret&gt;',
   ];
 </code></pre>
-<h2>
+<h2 id="distribute-your-final-metadata">
  Distribute your final metadata
 </h2>
 <p>

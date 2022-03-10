@@ -90,7 +90,7 @@
   <div id="content">
   </div>
  </header>
-</body><h1>
+</body><h1 id="simplesamlphp-service-provider-quickstart">
  SimpleSAMLphp Service Provider QuickStart
 </h1>
 <!-- 
@@ -106,7 +106,7 @@
  </a>
  .
 </p>
-<h2>
+<h2 id="configuring-the-sp">
  Configuring the SP
 </h2>
 <p>
@@ -158,7 +158,7 @@
   'entityID' =&gt; 'https://sp2.example.org/',
 ),
 </code></pre>
-<h3>
+<h3 id="enabling-a-certificate-for-your-service-provider">
  Enabling a certificate for your Service Provider
 </h3>
 <p>
@@ -187,7 +187,7 @@ openssl req -newkey rsa:2048 -new -x509 -days 3652 -nodes -out saml.crt -keyout 
     'certificate' =&gt; 'saml.crt',
 ),
 </code></pre>
-<h2>
+<h2 id="adding-idps-to-the-sp">
  Adding IdPs to the SP
 </h2>
 <p>
@@ -240,7 +240,7 @@ This is a minimal example of a
 <p>
  Note that the idp-remote file lists all IdPs you trust. You should remove all IdPs that you don't use.
 </p>
-<h2>
+<h2 id="setting-the-default-idp">
  Setting the default IdP
 </h2>
 <p>
@@ -265,7 +265,7 @@ This is the
       ),
   );
 </code></pre>
-<h2>
+<h2 id="exchange-metadata-with-the-idp">
  Exchange metadata with the IdP
 </h2>
 <p>
@@ -310,7 +310,7 @@ You will probably be required too to consume the federation metadata periodicall
  </a>
  to learn more about that.
 </p>
-<h2>
+<h2 id="test-the-sp">
  Test the SP
 </h2>
 <p>
@@ -334,7 +334,7 @@ The test page should contain a list of your attributes:
  module
 contained in the SimpleSAMLphp distribution.
 </p>
-<h2>
+<h2 id="integrating-authentication-with-your-own-application">
  Integrating authentication with your own application
 </h2>
 <p>
@@ -417,7 +417,7 @@ your own session after calling SimpleSAMLphp, you can do so by cleaning up the s
  If you don't cleanup SimpleSAMLphp's session and try to use $_SESSION afterwards, you won't be using your own session
 and all your data is likely to get lost or inaccessible.
 </p>
-<h2>
+<h2 id="support">
  Support
 </h2>
 <p>

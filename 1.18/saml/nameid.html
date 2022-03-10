@@ -90,13 +90,13 @@
   <div id="content">
   </div>
  </header>
-</body><h1>
+</body><h1 id="nameid-generation-filters">
  NameID generation filters
 </h1>
 <p>
  This document describes the NameID generation filters in the saml module.
 </p>
-<h2>
+<h2 id="common-options">
  Common options
 </h2>
 <p>
@@ -147,7 +147,7 @@
  </code>
  , which means that we will use the SP entity ID.
 </p>
-<h2>
+<h2 id="samlattributenameid">
  <code>
   saml:AttributeNameID
  </code>
@@ -155,7 +155,7 @@
 <p>
  Uses the value of an attribute to generate a NameID.
 </p>
-<h3>
+<h3 id="options">
  Options
 </h3>
 <p>
@@ -174,7 +174,7 @@
  </code>
  attribute of the generated NameID.
 </p>
-<h2>
+<h2 id="samlpersistentnameid">
  <code>
   saml:PersistentNameID
  </code>
@@ -200,7 +200,7 @@ The filter will take the user ID from the attribute described in the
  , and the SP and IdP entity ID.
 The resulting hash is sent as the persistent NameID.
 </p>
-<h3>
+<h3 id="options_1">
  Options
 </h3>
 <p>
@@ -209,7 +209,7 @@ The resulting hash is sent as the persistent NameID.
  </code>
  :   The name of the attribute we should use as the unique user ID.
 </p>
-<h2>
+<h2 id="samltransientnameid">
  <code>
   saml:TransientNameID
  </code>
@@ -224,7 +224,7 @@ The resulting hash is sent as the persistent NameID.
 <p>
  No extra options are available for this filter.
 </p>
-<h2>
+<h2 id="samlsqlpersistentnameid">
  <code>
   saml:SQLPersistentNameID
  </code>
@@ -250,7 +250,7 @@ See the
  </code>
  .
 </p>
-<h3>
+<h3 id="options_2">
  Options
 </h3>
 <p>
@@ -342,7 +342,7 @@ See the
  </code>
  (and other NameID generation filters), at the expense of creating unnecessary entries in the SQL datastore.
 </p>
-<h2>
+<h2 id="samlpersistentnameid2targetedid">
  <code>
   saml:PersistentNameID2TargetedID
  </code>
@@ -363,7 +363,7 @@ This can be used to set the
  </code>
  -attribute to the same value as the persistent NameID.
 </p>
-<h3>
+<h3 id="options_3">
  Options
 </h3>
 <p>
@@ -388,7 +388,7 @@ This can be used to set the
  </code>
  .
 </p>
-<h2>
+<h2 id="example">
  Example
 </h2>
 <p>

@@ -90,7 +90,7 @@
   <div id="content">
   </div>
  </header>
-</body><h1>
+</body><h1 id="using-the-x509-authentication-source-with-simplesamlphp">
  Using the X509 authentication source with SimpleSAMLphp
 </h1>
 <p>
@@ -105,7 +105,7 @@ validation. For now there is only one authentication source:
 <p>
  More validation schemes (OCSP, CRL, local list) might be added later.
 </p>
-<h2>
+<h2 id="configuring-apache">
  Configuring Apache
 </h2>
 <p>
@@ -133,7 +133,7 @@ must not appear in a &lt;Directory&gt;, &lt;Location&gt;, or in a name-based
 &lt;VirtualHost&gt;. You can only use them server-wide, or in &lt;VirtualHost&gt;s
 with different IP address/port combinations.
 </p>
-<h2>
+<h2 id="setting-up-the-authx509-module">
  Setting up the authX509 module
 </h2>
 <p>
@@ -176,7 +176,7 @@ two options:
                  LDAP.
  </li>
 </ul>
-<h2>
+<h2 id="uploading-certificate-in-ldap">
  Uploading certificate in LDAP
 </h2>
 <p>
@@ -193,7 +193,7 @@ how to convert from PEM to DER:
   add: userCertificate;binary
   userCertificate;binary:&lt; file:///path/to/cert.der
 </code></pre>
-<h1>
+<h1 id="supporting-both-certificate-and-login-authentication">
  Supporting both certificate and login authentication
 </h1>
 <p>
@@ -214,7 +214,7 @@ can hack your metadata/saml20-idp-hosted.php file that way:
                           'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
   )
 </code></pre>
-<h1>
+<h1 id="checking-certificate-expiry">
  Checking certificate expiry
 </h1>
 <p>

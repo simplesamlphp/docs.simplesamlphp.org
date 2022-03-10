@@ -90,7 +90,7 @@
   <div id="content">
   </div>
  </header>
-</body><h1>
+</body><h1 id="theming-the-user-interface-in-simplesamlphp">
  Theming the user interface in SimpleSAMLphp
 </h1>
 <!--
@@ -105,7 +105,7 @@
 <p>
  You may create your own theme, where you add one or more template files that will override the default ones. This document explains how to achieve that.
 </p>
-<h2>
+<h2 id="how-themes-work">
  How themes work
 </h2>
 <p>
@@ -115,7 +115,7 @@
  </strong>
  . A theme is a set of templates that can be configured to override the default templates. Themes are a special type of SimpleSAMLphp module.
 </p>
-<h3>
+<h3 id="configuring-which-theme-to-use">
  Configuring which theme to use
 </h3>
 <p>
@@ -151,7 +151,7 @@
  </code>
  theme, and if not found it will all fallback to look for the base templates.
 </p>
-<h3>
+<h3 id="override-only-specific-templates">
  Override only specific templates
 </h3>
 <p>
@@ -162,7 +162,7 @@ SimpleSAMLphp allows themes to override the included templates files only, if ne
  </code>
  that includes only a header and footer template. These templates may refer to your own CSS files, which means that a simple way of making a new look on SimpleSAMLphp is to create a new theme, and copy the existing header, but point to your own CSS instead of the default CSS. This means that for many theme requirements, you only need to specify a new header and footer template, and leave all other templates to SimpleSAMLphp's base versions.
 </p>
-<h2>
+<h2 id="creating-your-first-theme">
  Creating your first theme
 </h2>
 <p>
@@ -204,7 +204,7 @@ mkdir -p themes/fancytheme/default/
  </code>
  file, type in something and go to the SimpleSAMLphp front page to see that your new theme is in use.
 </p>
-<h2>
+<h2 id="adding-resource-files">
  Adding resource files
 </h2>
 <p>
@@ -239,7 +239,7 @@ Example for a custom CSS stylesheet file:
 {% endblock %}
  </code>
 </p>
-<h2>
+<h2 id="a-custom-theme-controller">
  A custom theme controller
 </h2>
 <p>
@@ -275,7 +275,7 @@ The class can then modify the Twig Environment and the variables passed to the t
  </a>
  .
 </p>
-<h2>
+<h2 id="migrating-to-twig-templates">
  Migrating to Twig templates
 </h2>
 <p>

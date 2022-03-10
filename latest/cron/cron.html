@@ -90,7 +90,7 @@
   <div id="content">
   </div>
  </header>
-</body><h1>
+</body><h1 id="cron">
  Cron
 </h1>
 <!-- 
@@ -99,7 +99,7 @@
   http://daringfireball.net/projects/markdown/syntax
 -->
 <!-- {{TOC}} -->
-<h2>
+<h2 id="introduction">
  Introduction
 </h2>
 <p>
@@ -110,7 +110,7 @@ job that calls a hook in SimpleSAMLphp.  This will invoke
  </code>
  in any enabled modules
 </p>
-<h2>
+<h2 id="preparations">
  Preparations
 </h2>
 <p>
@@ -128,7 +128,7 @@ job that calls a hook in SimpleSAMLphp.  This will invoke
 [root@simplesamlphp simplesamlphp] touch modules/cron/enable
 [root@simplesamlphp simplesamlphp] cp modules/cron/config-templates/*.php config/
 </code></pre>
-<h2>
+<h2 id="configuring-the-cron-module">
  Configuring the cron module
 </h2>
 <p>
@@ -157,7 +157,7 @@ that you previously told metarefresh to use in the
  </code>
  directive.
 </p>
-<h2>
+<h2 id="triggering-cron">
  Triggering Cron
 </h2>
 <p>
@@ -167,7 +167,7 @@ trigger CPU or memory intensive cron hooks.  The CLI option is
 recommended if you need more control over memory, CPU limits and
 process priority.
 </p>
-<h3>
+<h3 id="with-http">
  With HTTP
 </h3>
 <p>
@@ -213,7 +213,7 @@ so by going back to the cron page in the web interface. Then, just
 follow the appropriate links to execute the cron jobs you want. The
 page will take a while loading, and eventually show a blank page.
 </p>
-<h3>
+<h3 id="with-cli">
  With CLI
 </h3>
 <p>

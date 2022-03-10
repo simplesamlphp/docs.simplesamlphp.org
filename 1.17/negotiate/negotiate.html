@@ -90,7 +90,7 @@
   <div id="content">
   </div>
  </header>
-</body><h1>
+</body><h1 id="negotiate-module">
  Negotiate module
 </h1>
 <p>
@@ -104,7 +104,7 @@ implements.
  </code>
  : Authenticates users via HTTP authentication
 </p>
-<h2>
+<h2 id="negotiatenegotiate">
  <code>
   negotiate:Negotiate
  </code>
@@ -185,7 +185,7 @@ client.
            'search.enable' =&gt; FALSE
    ],
 </code></pre>
-<h3>
+<h3 id="php_krb5">
  <code>
   php_krb5
  </code>
@@ -246,7 +246,7 @@ php_krb5 to read the HTTP_AUTHORIZATION header:
        echo 'apache passes them to PHP';
    }
 </code></pre>
-<h3>
+<h3 id="ldap">
  LDAP
 </h3>
 <p>
@@ -268,7 +268,7 @@ Negotiate implements 'adminUser' and 'adminPassword'. adminUser must
 be a DN to an object with access to search for all relevant user
 objects and to look up attributes needed by the SP.
 </p>
-<h3>
+<h3 id="subnet-filtering">
  Subnet filtering
 </h3>
 <p>
@@ -292,7 +292,7 @@ purpose of this module.
 currently in the domain should be the only ones that are promted with
 WWW-Authenticate: Negotiate.
 </p>
-<h3>
+<h3 id="enablingdisabling-negotiate-from-a-web-browser">
  Enabling/disabling Negotiate from a web browser
 </h3>
 <p>
@@ -302,7 +302,7 @@ a cookie that Negotiate will look for when a client attempts AuthN.
 The help text in the JSON files should be locally overwritten to fully
 explain which clients are accepted by Negotiate.
 </p>
-<h3>
+<h3 id="logoutlogin-loop-and-reauthenticating">
  Logout/Login loop and reauthenticating
 </h3>
 <p>
@@ -384,10 +384,10 @@ this:
 Negotiate-&gt;authenticate() but remaining code in retry.php will be
 discarded. Other side-effects may occur.
 </p>
-<h3>
+<h3 id="clients">
  Clients
 </h3>
-<h4>
+<h4 id="internet-explorer">
  Internet Explorer
 </h4>
 <p>
@@ -396,7 +396,7 @@ Options" -&gt; "Security" -&gt; "Local intranet" -&gt; "Sites" -&gt; "Advanced".
 You also need "Internet Options" -&gt; "Advanced" -&gt; "Security" -&gt; Enable
 Integrated Windows Authentication" enabled.
 </p>
-<h4>
+<h4 id="firefox">
  Firefox
 </h4>
 <p>
@@ -404,13 +404,13 @@ Integrated Windows Authentication" enabled.
 this is true (on a Windows machine). Next locate
 "network.negotiate-auth.trusted-uris" and insert your IdP.
 </p>
-<h4>
+<h4 id="safari">
  Safari
 </h4>
 <p>
  TODO
 </p>
-<h4>
+<h4 id="chromium">
  Chromium
 </h4>
 <p>

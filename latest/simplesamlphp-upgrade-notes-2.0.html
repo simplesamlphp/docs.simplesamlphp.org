@@ -90,7 +90,7 @@
   <div id="content">
   </div>
  </header>
-</body><h1>
+</body><h1 id="upgrade-notes-for-simplesamlphp-20">
  Upgrade notes for SimpleSAMLphp 2.0
 </h1>
 <p>
@@ -98,7 +98,7 @@
 lot of things that have been marked deprecated in previous SimpleSAMLphp
 releases. The following changes are relevant for installers and/or developers.
 </p>
-<h2>
+<h2 id="software-requirements">
  Software requirements
 </h2>
 <ul>
@@ -109,7 +109,7 @@ releases. The following changes are relevant for installers and/or developers.
   Dropped support for Symfony 4 and Twig 2.
  </li>
 </ul>
-<h2>
+<h2 id="not-all-modules-included-by-default">
  Not all modules included by default
 </h2>
 <p>
@@ -119,7 +119,7 @@ For example, to use the LDAP module:
 </p>
 <pre><code>composer require simplesamlphp/simplesamlphp-module-ldap --update-no-dev
 </code></pre>
-<h2>
+<h2 id="functional-changes">
  Functional changes
 </h2>
 <ul>
@@ -181,13 +181,14 @@ For example, to use the LDAP module:
   <code>
    sharedkey_algorithm
   </code>
-  . Note however that CBC is vulnerable to the Padding oracle attack.
+  .
+  Note however that CBC is vulnerable to the Padding oracle attack.
  </li>
  <li>
   All support for the Shibboleth 1.3 / SAML 1.1 protocol has been removed.
  </li>
 </ul>
-<h2>
+<h2 id="configuration-changes">
  Configuration changes
 </h2>
 <p>
@@ -215,8 +216,9 @@ deprecated
  Configuration options that have been removed:
  - languages[priorities]
  - attributes.extradictionaries. Add an attributes.po to your configured theme instead.
+ - admin.protectindexpage. Replaced by the admin module which always requires login.
 </p>
-<h2>
+<h2 id="changes-relevant-for-module-developers">
  Changes relevant for (module) developers
 </h2>
 <p>

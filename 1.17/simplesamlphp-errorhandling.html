@@ -90,7 +90,7 @@
   <div id="content">
   </div>
  </header>
-</body><h1>
+</body><h1 id="exception-and-error-handling-in-simplesamlphp">
  Exception and error handling in SimpleSAMLphp
 </h1>
 <!--
@@ -116,7 +116,7 @@ E.g.: When a
  status code.
 That status code should then be returned to the SP.
 </p>
-<h2>
+<h2 id="throwing-exceptions">
  Throwing exceptions
 </h2>
 <p>
@@ -162,7 +162,7 @@ In those methods, you can just throw an exception:
  </code>
  function will then transfer your exception to the appropriate error handler.
 </p>
-<h3>
+<h3 id="note">
  Note
 </h3>
 <p>
@@ -199,7 +199,7 @@ The
  </code>
  class.
 </p>
-<h2>
+<h2 id="returning-specific-saml-2-errors">
  Returning specific SAML 2 errors
 </h2>
 <p>
@@ -291,14 +291,14 @@ If it is unable to convert the exception, it will return a generic SAML 2 error 
   in the same file. (See the next section.)
  </li>
 </ul>
-<h3>
+<h3 id="note_1">
  Note
 </h3>
 <p>
  While it is possible to throw SAML 2 errors directly from within authentication sources and processing filters, this practice is discouraged.
 Throwing SAML 2 errors will tie your code directly to the SAML 2 protocol, and it may be more difficult to use with other protocols.
 </p>
-<h2>
+<h2 id="converting-saml-2-errors-to-normal-exceptions">
  Converting SAML 2 errors to normal exceptions
 </h2>
 <p>
@@ -330,20 +330,20 @@ The result is that generic exceptions are thrown from that authentication source
  </code>
  .
 </p>
-<h2>
+<h2 id="other-protocols">
  Other protocols
 </h2>
 <p>
  The error handling code has not yet been added to other protocols, but the framework should be easy to adapt for other protocols.
 To eventually support other protocols was a goal when designing this framework.
 </p>
-<h2>
+<h2 id="technical-details">
  Technical details
 </h2>
 <p>
  This section attempts to describe the internals of the error handling framework.
 </p>
-<h3>
+<h3 id="simplesamlerrorexception">
  <code>
   \SimpleSAML\Error\Exception
  </code>
@@ -396,7 +396,7 @@ This variable can be accessed through the
  method.
 It returns an array with one line of text for each function call in the stack, ending on the point where the exception was created.
 </p>
-<h4>
+<h4 id="note_2">
  Note
 </h4>
 <p>
@@ -412,7 +412,7 @@ This may be confusing since the new stack trace leads into the
  function.
 It is therefore recommended to use the getBacktrace() method.
 </p>
-<h3>
+<h3 id="simplesamlauthstate">
  <code>
   \SimpleSAML\Auth\State
  </code>
@@ -434,7 +434,7 @@ It is therefore recommended to use the getBacktrace() method.
   , which restores a state containing an exception.
  </li>
 </ul>
-<h4>
+<h4 id="throwexception">
  <code>
   throwException
  </code>
@@ -481,7 +481,7 @@ The
  </code>
  constant holds the name of the field where the exception is saved.
 </p>
-<h4>
+<h4 id="loadexception">
  <code>
   loadException
  </code>
@@ -506,7 +506,7 @@ The following code illustrates this behaviour:
       /* Process exception. */
   }
 </code></pre>
-<h3>
+<h3 id="simplesamlauthdefaultauth">
  <code>
   \SimpleSAML\Auth\DefaultAuth
  </code>
@@ -545,7 +545,7 @@ This is done for consistency, since
  </code>
  never transfers control back to the caller by returning.
 </p>
-<h3>
+<h3 id="simplesamlauthprocessingchain">
  <code>
   \SimpleSAML\Auth\ProcessingChain
  </code>
@@ -593,7 +593,7 @@ The result will be delivered directly if it is possible, but if not, it will be 
       [...];
   }
 </code></pre>
-<h4>
+<h4 id="note_3">
  Note
 </h4>
 <p>
@@ -609,7 +609,7 @@ The result will be delivered directly if it is possible, but if not, it will be 
 This happens regardless of whether the exception is delivered directly or through the error handler.
 This is done to be consistent in what the application receives - now it will always receive the same exception, regardless of whether it is delivered directly or through a redirect.
 </p>
-<h2>
+<h2 id="custom-error-show-function">
  Custom error show function
 </h2>
 <p>

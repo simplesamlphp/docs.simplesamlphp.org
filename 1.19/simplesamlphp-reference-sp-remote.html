@@ -90,7 +90,7 @@
   <div id="content">
   </div>
  </header>
-</body><h1>
+</body><h1 id="sp-remote-metadata-reference">
  SP remote metadata reference
 </h1>
 <!-- {{TOC}} -->
@@ -116,7 +116,7 @@ Both files have the following format:
   ];
   /* ... */
 </code></pre>
-<h2>
+<h2 id="common-options">
  Common options
 </h2>
 <p>
@@ -309,7 +309,7 @@ and Shibboleth 1.3 protocol:
  </code>
  .
 </p>
-<h2>
+<h2 id="saml-20-options">
  SAML 2.0 options
 </h2>
 <p>
@@ -799,7 +799,7 @@ and Shibboleth 1.3 protocol:
  :   Note that this option also exists in the IdP-hosted metadata.
     The value in the SP-remote metadata overrides the value in the IdP-hosted metadata.
 </p>
-<h3>
+<h3 id="encrypting-assertions">
  Encrypting assertions
 </h3>
 <p>
@@ -858,7 +858,7 @@ of the SP.
   * http://www.w3.org/2009/xmlenc11#aes192-gcm
   * http://www.w3.org/2009/xmlenc11#aes256-gcm
 </code></pre>
-<h3>
+<h3 id="fields-for-signing-and-validating-messages">
  Fields for signing and validating messages
 </h3>
 <p>
@@ -911,7 +911,7 @@ can be enabled by the
 <pre><code>  'redirect.validate' =&gt; TRUE,
   'certificate' =&gt; 'example.org.crt',
 </code></pre>
-<h3>
+<h3 id="fields-for-scoping">
  Fields for scoping
 </h3>
 <p>
@@ -937,7 +937,7 @@ idp is in the intersection the discoveryservice will go directly to the idp.
 </p>
 <pre><code>   'IDPList' =&gt; ['https://idp1.wayf.dk', 'https://idp2.wayf.dk'],
 </code></pre>
-<h2>
+<h2 id="shibboleth-13-options">
  Shibboleth 1.3 options
 </h2>
 <p>

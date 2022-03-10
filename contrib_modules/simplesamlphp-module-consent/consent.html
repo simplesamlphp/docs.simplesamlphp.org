@@ -90,7 +90,7 @@
   <div id="content">
   </div>
  </header>
-</body><h1>
+</body><h1 id="consent-module">
  Consent module
 </h1>
 <!-- {{TOC}} -->
@@ -106,7 +106,7 @@ user the exact same attributes that are sent to the SP.
 </p>
 <pre><code>* [Read more about processing filters in SimpleSAMLphp](simplesamlphp-authproc)
 </code></pre>
-<h2>
+<h2 id="how-to-setup-the-consent-module">
  How to setup the consent module
 </h2>
 <p>
@@ -159,13 +159,13 @@ list, specifying the attribute you've selected.
  This setup uses no persistent storage at all. This means that the user will
 always be asked to give consent each time she logs in.
 </p>
-<h2>
+<h2 id="using-storage">
  Using storage
 </h2>
 <p>
  The consent module is shipped with two storage options, Cookie and Database.
 </p>
-<h3>
+<h3 id="using-cookies-as-storage">
  Using cookies as storage
 </h3>
 <p>
@@ -210,7 +210,7 @@ cookies as storage you need to set the
           ],
 ],
 </code></pre>
-<h3>
+<h3 id="using-a-database-as-storage">
  Using a database as storage
 </h3>
 <p>
@@ -309,7 +309,7 @@ and defaults to
       ],
   ],
 </code></pre>
-<h2>
+<h2 id="options">
  Options
 </h2>
 <p>
@@ -406,7 +406,7 @@ and defaults to
  </code>
  .
 </p>
-<h2>
+<h2 id="external-options">
  External options
 </h2>
 <p>
@@ -445,7 +445,7 @@ and defaults to
  </code>
  .
 </p>
-<h2>
+<h2 id="disabling-consent">
  Disabling consent
 </h2>
 <p>
@@ -461,7 +461,7 @@ more IdPs for a given SP, add the
  </code>
  -option to the SP metadata.
 </p>
-<h3>
+<h3 id="examples">
  Examples
 </h3>
 <p>
@@ -502,7 +502,7 @@ more IdPs for a given SP, add the
       ],
   ],
 </code></pre>
-<h3>
+<h3 id="regular-expression-support">
  Regular expression support
 </h3>
 <p>
@@ -520,7 +520,7 @@ at the same time) :
       ],
   ],
 </code></pre>
-<h2>
+<h2 id="attribute-presentation">
  Attribute presentation
 </h2>
 <p>
@@ -560,7 +560,7 @@ the function add a
  prefix to the root node attribute name in a recursive 
 attribute tree.
 </p>
-<h3>
+<h3 id="examples_1">
  Examples
 </h3>
 <p>

@@ -90,7 +90,7 @@
   <div id="content">
   </div>
  </header>
-</body><h1>
+</body><h1 id="simplesamlphp-installation-and-configuration">
  SimpleSAMLphp Installation and Configuration
 </h1>
 <!-- 
@@ -123,7 +123,7 @@ repository
  </a>
  .
 </p>
-<h2>
+<h2 id="prerequisites">
  Prerequisites
 </h2>
 <ul>
@@ -247,7 +247,7 @@ repository
 <p>
  What actual packages are required for the various extensions varies between different platforms and distributions.
 </p>
-<h2>
+<h2 id="download-and-install-simplesamlphp">
  Download and install SimpleSAMLphp
 </h2>
 <p>
@@ -267,7 +267,7 @@ repository
     mv simplesamlphp-x.y.z simplesamlphp
  </code>
 </p>
-<h2>
+<h2 id="upgrading-from-a-previous-version-of-simplesamlphp">
  Upgrading from a previous version of SimpleSAMLphp
 </h2>
 <p>
@@ -325,7 +325,7 @@ you should check whether your third-party modules need upgrading and then copy o
  If the format of the config files or metadata has changed from your previous version of SimpleSAMLphp (check the
 upgrade notes), you may have to update your configuration and metadata after updating the SimpleSAMLphp code.
 </p>
-<h3>
+<h3 id="upgrading-configuration-files">
  Upgrading configuration files
 </h3>
 <p>
@@ -348,7 +348,7 @@ upgrade notes), you may have to update your configuration and metadata after upd
  , and apply relevant modifications to the new template. This will ensure that all new 
 entries in the latest version of config.php are included, as well as preserve your local modifications.
 </p>
-<h3>
+<h3 id="upgrading-metadata-files">
  Upgrading metadata files
 </h3>
 <p>
@@ -359,10 +359,10 @@ startup indicating how and what you need to update. You should look through the 
  </code>
  directory after the upgrade to see whether recommended defaults have been changed.
 </p>
-<h2>
+<h2 id="configuration">
  Configuration
 </h2>
-<h3>
+<h3 id="location-of-configuration-files">
  Location of configuration files
 </h3>
 <p>
@@ -385,7 +385,7 @@ directory doesn't need to be inside the library's directory, making it easier to
 to set this environment variable is to set it in your web server's configuration. See the next section for more
 information.
 </p>
-<h2>
+<h2 id="configuring-apache">
  Configuring Apache
 </h2>
 <p>
@@ -517,7 +517,7 @@ further completing your documentation, please see
  </a>
  .
 </p>
-<h2>
+<h2 id="configuring-nginx">
  Configuring Nginx
 </h2>
 <p>
@@ -580,7 +580,7 @@ look like this:
 <p>
  ```
 </p>
-<h2>
+<h2 id="simplesamlphp-configuration-configphp">
  SimpleSAMLphp configuration: config.php
 </h2>
 <p>
@@ -748,10 +748,10 @@ look like this:
   </p>
  </li>
 </ul>
-<h2>
+<h2 id="configuring-php">
  Configuring PHP
 </h2>
-<h3>
+<h3 id="sending-e-mails-from-php">
  Sending e-mails from PHP
 </h3>
 <p>
@@ -779,7 +779,7 @@ For more advanced configuration, including using a remote SMTP server, see the
  </code>
  .
 </p>
-<h2>
+<h2 id="enabling-and-disabling-modules">
  Enabling and disabling modules
 </h2>
 <p>
@@ -845,7 +845,7 @@ directory. For example, in order to enable the
  . Please do not rely on this in
 new installations of the software.
 </p>
-<h2>
+<h2 id="the-simplesamlphp-installation-web-page">
  The SimpleSAMLphp installation web page
 </h2>
 <p>
@@ -870,7 +870,7 @@ Service Provider or as an Identity Provider, depending on your use case.
 <p>
  <img alt="Screenshot of the SimpleSAMLphp installation page." src="resources/simplesamlphp-install/screenshot-installationpage.png"/>
 </p>
-<h3>
+<h3 id="check-your-php-environment">
  Check your PHP environment
 </h3>
 <p>
@@ -878,7 +878,7 @@ Service Provider or as an Identity Provider, depending on your use case.
 required and recommended prerequisites are met. If any of the lights are red, you may have to install some PHP 
 extensions or external PHP packages (e.g. you need the PHP LDAP extension to use the LDAP authentication module).
 </p>
-<h2>
+<h2 id="building-assets">
  Building assets
 </h2>
 <p>
@@ -890,7 +890,7 @@ extensions or external PHP packages (e.g. you need the PHP LDAP extension to use
 npm run build
  </code>
 </p>
-<h2>
+<h2 id="next-steps">
  Next steps
 </h2>
 <p>
@@ -955,7 +955,7 @@ in a separate document.
   </a>
  </li>
 </ul>
-<h2>
+<h2 id="support">
  Support
 </h2>
 <p>
@@ -981,7 +981,7 @@ code or plugins of your own.
   </a>
  </li>
 </ul>
-<h2>
+<h2 id="appendix-installing-simplesamlphp-in-alternative-locations">
  Appendix: Installing SimpleSAMLphp in alternative locations
 </h2>
 <p>
@@ -1103,7 +1103,7 @@ just created in your
 </code></pre>
  </li>
 </ol>
-<h4>
+<h4 id="tip">
  Tip
 </h4>
 <p>

@@ -90,7 +90,7 @@
   <div id="content">
   </div>
  </header>
-</body><h1>
+</body><h1 id="debugging-state-information-lost-errors">
  Debugging "State Information Lost" errors
 </h1>
 <p>
@@ -110,7 +110,7 @@ possible causes. This document will attempt to describe what this error
 actually means, and some of the situations that can cause it.
 </p>
 <!-- {{TOC}} -->
-<h2>
+<h2 id="what-is-state-information">
  What is "state information"?
 </h2>
 <p>
@@ -127,14 +127,14 @@ the IdP, but it can also be other requests.
  ", and is saved in the session of
 the user.
 </p>
-<h2>
+<h2 id="what-does-it-mean-that-it-was-lost">
  What does it mean that it was lost?
 </h2>
 <p>
  This means that we tried to load state information with a specified ID, but
 were unable to find it in the session of the user.
 </p>
-<h2>
+<h2 id="what-can-cause-it-to-be-lost">
  What can cause it to be lost?
 </h2>
 <p>
@@ -142,7 +142,7 @@ were unable to find it in the session of the user.
 with session storage. Here we will outline some generic alternatives, and
 possible solutions.
 </p>
-<h3>
+<h3 id="the-domain-name-changed-during-authentication">
  The domain name changed during authentication
 </h3>
 <p>
@@ -225,7 +225,7 @@ application uses the same domain when it sets the cookie. How that is done
 depends on your application. (See the section about mismatch between
 application PHP session settings and SimpleSAMLphp session settings.)
 </p>
-<h3>
+<h3 id="hopping-between-http-and-https">
  Hopping between http and https
 </h3>
 <p>
@@ -235,7 +235,7 @@ https, check that you're using https consistently throughout the configuration.
 The best and most secure is to make your complete site available on https only,
 and redirect any http requests to https.
 </p>
-<h3>
+<h3 id="mismatch-between-php-session-settings-for-the-application-and-simplesamlphp">
  Mismatch between PHP session settings for the application and SimpleSAMLphp
 </h3>
 <p>
@@ -325,7 +325,7 @@ way to determine it may be to look for calls to
  in
 the application, and look at what parameters it uses.
 </p>
-<h3>
+<h3 id="browsers-with-samesitelax-as-default">
  Browsers with SameSite=Lax as default
 </h3>
 <p>
@@ -350,7 +350,7 @@ assertion via the HTTP-POST binding.
  </code>
  .
 </p>
-<h3>
+<h3 id="a-generic-problem-saving-sessions">
  A generic problem saving sessions
 </h3>
 <p>

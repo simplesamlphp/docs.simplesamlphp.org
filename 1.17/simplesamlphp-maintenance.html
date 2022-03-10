@@ -90,7 +90,7 @@
   <div id="content">
   </div>
  </header>
-</body><h1>
+</body><h1 id="simplesamlphp-maintenance">
  SimpleSAMLphp Maintenance
 </h1>
 <!--
@@ -99,7 +99,7 @@
   http://daringfireball.net/projects/markdown/syntax
 -->
 <!-- {{TOC}} -->
-<h2>
+<h2 id="simplesamlphp-news-and-documentation">
  SimpleSAMLphp news and documentation
 </h2>
 <p>
@@ -127,7 +127,7 @@
   </a>
  </li>
 </ul>
-<h2>
+<h2 id="session-management">
  Session management
 </h2>
 <p>
@@ -151,7 +151,7 @@
 
   'store.type' =&gt; 'phpsession',
 </code></pre>
-<h3>
+<h3 id="configuring-php-sessions">
  Configuring PHP sessions
 </h3>
 <p>
@@ -212,7 +212,7 @@ settings by leaving these options unset or setting them to
  </a>
  .
 </p>
-<h3>
+<h3 id="configuring-memcache">
  Configuring memcache
 </h3>
 <p>
@@ -344,7 +344,7 @@ settings by leaving these options unset or setting them to
 <p>
  Set this value to 0 if you don't want data to expire.
 </p>
-<h4>
+<h4 id="note">
  Note
 </h4>
 <p>
@@ -361,7 +361,7 @@ out of storage space.
 </p>
 <pre><code>  'memcache_store.expires' =&gt;  36 * (60*60), // 36 hours.
 </code></pre>
-<h4>
+<h4 id="memcache-php-configuration">
  Memcache PHP configuration
 </h4>
 <p>
@@ -374,7 +374,7 @@ configured in
 </p>
 <pre><code>  memcache.allow_failover = Off
 </code></pre>
-<h4>
+<h4 id="environmental-configuration">
  Environmental configuration
 </h4>
 <p>
@@ -383,7 +383,7 @@ configured in
 <p>
  Because SimpleSAMLphp uses a timestamp to check which session is most recent in a fail-over setup, it is very important to run synchronized clocks on all web servers where you run SimpleSAMLphp.
 </p>
-<h3>
+<h3 id="configuring-sql-storage">
  Configuring SQL storage
 </h3>
 <p>
@@ -427,7 +427,7 @@ Username and password for accessing the database can be configured in the
  </code>
  option to prevent conflicts.
 </p>
-<h3>
+<h3 id="configuring-redis-storage">
  Configuring Redis storage
 </h3>
 <p>
@@ -472,7 +472,7 @@ Username and password for accessing the database can be configured in the
  </code>
  option.
 </p>
-<h2>
+<h2 id="metadata-storage">
  Metadata storage
 </h2>
 <p>
@@ -563,7 +563,7 @@ a look at the
  </a>
  module.
 </p>
-<h2>
+<h2 id="logging-and-statistics">
  Logging and statistics
 </h2>
 <p>
@@ -574,7 +574,7 @@ a look at the
  logging. As an
 alternative, you may log to flat files.
 </p>
-<h2>
+<h2 id="apache-configuration">
  Apache configuration
 </h2>
 <p>
@@ -611,7 +611,7 @@ However, your IdP or SP is most likely a valuable website that you want to confi
   .
  </li>
 </ul>
-<h2>
+<h2 id="php-configuration">
  PHP configuration
 </h2>
 <p>
@@ -620,7 +620,7 @@ However, your IdP or SP is most likely a valuable website that you want to confi
 <p>
  Turn off PHPSESSID in query string.
 </p>
-<h2>
+<h2 id="getting-ready-for-production">
  Getting ready for production
 </h2>
 <p>
@@ -643,13 +643,13 @@ However, your IdP or SP is most likely a valuable website that you want to confi
   Block access to your servers on anything except port 443. SimpleSAMLphp only uses plain HTTP(S), so there is no need to open ports for SOAP or other communication.
  </li>
 </ol>
-<h2>
+<h2 id="error-handling-error-reporting-and-metadata-reporting">
  Error handling, error reporting and metadata reporting
 </h2>
 <p>
  SimpleSAMLphp supports allowing the user when encountering errors to send an e-mail to the administrator. You can turn off this feature in the config.php file.
 </p>
-<h2>
+<h2 id="multi-language-support">
  Multi-language support
 </h2>
 <p>
@@ -695,7 +695,7 @@ However, your IdP or SP is most likely a valuable website that you want to confi
 <p>
  You can translate as many of the texts as you would like; a full translation is not required unless you want to make this the default language. From the end users point of view, it looks best if all text fragments used in a given screen or form is in one single language.
 </p>
-<h2>
+<h2 id="customizing-the-web-frontend-with-themes">
  Customizing the web frontend with themes
 </h2>
 <p>
@@ -705,7 +705,7 @@ However, your IdP or SP is most likely a valuable website that you want to confi
  </a>
  .
 </p>
-<h2>
+<h2 id="support">
  Support
 </h2>
 <p>

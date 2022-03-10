@@ -90,7 +90,7 @@
   <div id="content">
   </div>
  </header>
-</body><h1>
+</body><h1 id="simplesamlphp-sp-api-reference">
  SimpleSAMLphp SP API reference
 </h1>
 <!-- {{TOC}} -->
@@ -98,7 +98,7 @@
  This document describes the \SimpleSAML\Auth\Simple API.
 This is the preferred API for integrating SimpleSAMLphp with other applications.
 </p>
-<h2>
+<h2 id="constructor">
  Constructor
 </h2>
 <pre><code>  new \SimpleSAML\Auth\Simple(string $authSource)
@@ -106,7 +106,7 @@ This is the preferred API for integrating SimpleSAMLphp with other applications.
 <p>
  The constructor initializes a \SimpleSAML\Auth\Simple object.
 </p>
-<h3>
+<h3 id="parameters">
  Parameters
 </h3>
 <p>
@@ -117,12 +117,12 @@ This authentication source must exist in
  </code>
  .
 </p>
-<h3>
+<h3 id="example">
  Example
 </h3>
 <pre><code>  $auth = new \SimpleSAML\Auth\Simple('default-sp');
 </code></pre>
-<h2>
+<h2 id="isauthenticated">
  <code>
   isAuthenticated
  </code>
@@ -140,7 +140,7 @@ This authentication source must exist in
  </code>
  if not.
 </p>
-<h3>
+<h3 id="example_1">
  Example
 </h3>
 <pre><code>  if (!$auth-&gt;isAuthenticated()) {
@@ -148,7 +148,7 @@ This authentication source must exist in
       print('&lt;a href="/login"&gt;Login&lt;/a&gt;');
   }
 </code></pre>
-<h2>
+<h2 id="requireauth">
  <code>
   requireAuth
  </code>
@@ -160,7 +160,7 @@ This authentication source must exist in
 This function will only return if the user is authenticated.
 If the user isn't authenticated, this function will start the authentication process.
 </p>
-<h3>
+<h3 id="parameters_1">
  Parameters
 </h3>
 <p>
@@ -174,13 +174,13 @@ See the documentation for the
  </code>
  -function for a description of the parameters.
 </p>
-<h3>
+<h3 id="example-1">
  Example 1
 </h3>
 <pre><code>  $auth-&gt;requireAuth();
   print("Hello, authenticated user!");
 </code></pre>
-<h3>
+<h3 id="example-2">
  Example 2
 </h3>
 <pre><code>  /*
@@ -193,7 +193,7 @@ See the documentation for the
   ));
   print("Hello, authenticated user!");
 </code></pre>
-<h2>
+<h2 id="login">
  <code>
   login
  </code>
@@ -204,7 +204,7 @@ See the documentation for the
  Start a login operation.
 This function will always start a new authentication process.
 </p>
-<h3>
+<h3 id="parameters_2">
  Parameters
 </h3>
 <p>
@@ -281,7 +281,7 @@ This function will always start a new authentication process.
  </a>
  authentication source also defines some parameters.
 </p>
-<h3>
+<h3 id="example_2">
  Example
 </h3>
 <pre><code>  # Send a passive authentication request.
@@ -290,7 +290,7 @@ This function will always start a new authentication process.
       'ErrorURL' =&gt; 'https://.../error_handler.php',
   ));
 </code></pre>
-<h2>
+<h2 id="logout">
  <code>
   logout
  </code>
@@ -302,7 +302,7 @@ This function will always start a new authentication process.
 After logging out, the user will either be redirected to another page, or a function will be called.
 This function never returns.
 </p>
-<h3>
+<h3 id="parameters_3">
  Parameters
 </h3>
 <p>
@@ -322,7 +322,7 @@ This function never returns.
 
   The `ReturnState` parameters allow access to the result of the logout operation after it completes.
 </code></pre>
-<h3>
+<h3 id="example-1_1">
  Example 1
 </h3>
 <p>
@@ -330,7 +330,7 @@ This function never returns.
 </p>
 <pre><code>  $auth-&gt;logout('https://sp.example.org/logged_out.php');
 </code></pre>
-<h3>
+<h3 id="example-2_1">
  Example 2
 </h3>
 <p>
@@ -355,7 +355,7 @@ This function never returns.
       echo("We were unable to log you out of all your sessions. To be completely sure that you are logged out, you need to close your web browser.");
   }
 </code></pre>
-<h2>
+<h2 id="getattributes">
  <code>
   getAttributes
  </code>
@@ -374,7 +374,7 @@ If the user isn't authenticated, an empty array will be returned.
       'eduPersonAffiliation' =&gt; array('student', 'member'),
   )
 </code></pre>
-<h3>
+<h3 id="example_3">
  Example
 </h3>
 <pre><code>  $attrs = $auth-&gt;getAttributes();
@@ -385,7 +385,7 @@ If the user isn't authenticated, an empty array will be returned.
 
   print('Hello, ' . htmlspecialchars($name));
 </code></pre>
-<h2>
+<h2 id="getauthdata">
  <code>
   getAuthData
  </code>
@@ -406,13 +406,13 @@ See the
  </a>
  reference for information about available SAML authentication data.
 </p>
-<h3>
+<h3 id="example_4">
  Example
 </h3>
 <pre><code>  $idp = $auth-&gt;getAuthData('saml:sp:IdP');
   print('You are logged in from: ' . htmlspecialchars($idp));
 </code></pre>
-<h2>
+<h2 id="getloginurl">
  <code>
   getLoginURL
  </code>
@@ -422,7 +422,7 @@ See the
 <p>
  Retrieve a URL that can be used to start authentication.
 </p>
-<h3>
+<h3 id="parameters_4">
  Parameters
 </h3>
 <p>
@@ -434,14 +434,14 @@ See the
  :   The URL the user should be returned to after authentication.
     The default is the current page.
 </p>
-<h3>
+<h3 id="example_5">
  Example
 </h3>
 <pre><code>  $url = $auth-&gt;getLoginURL();
 
   print('&lt;a href="' . htmlspecialchars($url) . '"&gt;Login&lt;/a&gt;');
 </code></pre>
-<h3>
+<h3 id="note">
  Note
 </h3>
 <p>
@@ -451,7 +451,7 @@ The URL should be:
 </p>
 <pre><code>   .../simplesaml/module.php/core/as_login.php?AuthId=&lt;authentication source&gt;&amp;ReturnTo=&lt;return URL&gt;
 </code></pre>
-<h2>
+<h2 id="getlogouturl">
  <code>
   getLogoutURL
  </code>
@@ -461,7 +461,7 @@ The URL should be:
 <p>
  Retrieve a URL that can be used to trigger logout.
 </p>
-<h3>
+<h3 id="parameters_5">
  Parameters
 </h3>
 <p>
@@ -473,14 +473,14 @@ The URL should be:
  :   The URL the user should be returned to after logout.
     The default is the current page.
 </p>
-<h3>
+<h3 id="example_6">
  Example
 </h3>
 <pre><code>  $url = $auth-&gt;getLogoutURL();
 
   print('&lt;a href="' . htmlspecialchars($url) . '"&gt;Logout&lt;/a&gt;');
 </code></pre>
-<h3>
+<h3 id="note_1">
  Note
 </h3>
 <p>

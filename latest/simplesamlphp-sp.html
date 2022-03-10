@@ -90,14 +90,9 @@
   <div id="content">
   </div>
  </header>
-</body><h1>
+</body><h1 id="simplesamlphp-service-provider-quickstart">
  SimpleSAMLphp Service Provider QuickStart
 </h1>
-<!-- 
-  This file is written in Markdown syntax. 
-  For more information about how to use the Markdown syntax, read here:
-  http://daringfireball.net/projects/markdown/syntax
--->
 <!-- {{TOC}} -->
 <p>
  This guide will describe how to configure SimpleSAMLphp as a service provider (SP). You should previously have installed SimpleSAMLphp as described in
@@ -106,7 +101,7 @@
  </a>
  .
 </p>
-<h2>
+<h2 id="configuring-the-sp">
  Configuring the SP
 </h2>
 <p>
@@ -158,7 +153,7 @@
   'entityID' =&gt; 'https://sp2.example.org/',
 ],
 </code></pre>
-<h3>
+<h3 id="enabling-a-certificate-for-your-service-provider">
  Enabling a certificate for your Service Provider
 </h3>
 <p>
@@ -187,7 +182,7 @@ openssl req -newkey rsa:3072 -new -x509 -days 3652 -nodes -out saml.crt -keyout 
     'certificate' =&gt; 'saml.crt',
 ],
 </code></pre>
-<h2>
+<h2 id="adding-idps-to-the-sp">
  Adding IdPs to the SP
 </h2>
 <p>
@@ -236,7 +231,7 @@ This is a minimal example of a
 <p>
  Note that the idp-remote file lists all IdPs you trust. You should remove all IdPs that you don't use.
 </p>
-<h2>
+<h2 id="setting-the-default-idp">
  Setting the default IdP
 </h2>
 <p>
@@ -261,7 +256,7 @@ This is the
       ],
   ];
 </code></pre>
-<h2>
+<h2 id="exchange-metadata-with-the-idp">
  Exchange metadata with the IdP
 </h2>
 <p>
@@ -305,13 +300,13 @@ You will probably be required too to consume the federation metadata periodicall
  </a>
  to learn more about that.
 </p>
-<h2>
+<h2 id="test-the-sp">
  Test the SP
 </h2>
 <p>
  After the metadata is configured on the IdP, you should be able to test the configuration.
-The installation page of SimpleSAMLphp has a link to test authentication sources.
-When you click the link, you should receive a list of authentication sources, including the one you have created for the SP.
+The admin module of SimpleSAMLphp has a tab to test authentication sources.
+There you should a list of authentication sources, including the one you have created for the SP.
 </p>
 <p>
  After you click the link for that authentication source, you will be redirected to the IdP.
@@ -326,10 +321,9 @@ The test page should contain a list of your attributes:
  <code>
   discopower
  </code>
- module
-contained in the SimpleSAMLphp distribution.
+ module.
 </p>
-<h2>
+<h2 id="integrating-authentication-with-your-own-application">
  Integrating authentication with your own application
 </h2>
 <p>
@@ -345,17 +339,13 @@ lines of PHP code:
 </p>
 <ul>
  <li>
-  <p>
-   Register the SimpleSAMLphp classes with the PHP autoloader.
-  </p>
+  Register the SimpleSAMLphp classes with the PHP autoloader.
  </li>
  <li>
-  <pre><code>  Require authentication of the user for those places it is required.
-</code></pre>
+  Require authentication of the user for those places it is required.
  </li>
  <li>
-  <pre><code>  Access the users attributes.
-</code></pre>
+  Access the users attributes.
  </li>
 </ul>
 <p>
@@ -436,7 +426,7 @@ and all your data is likely to get lost or inaccessible.
   session_set_save_handler($handler);
   session_start();
 </code></pre>
-<h2>
+<h2 id="support">
  Support
 </h2>
 <p>

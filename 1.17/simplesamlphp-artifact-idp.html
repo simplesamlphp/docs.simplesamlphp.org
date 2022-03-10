@@ -90,7 +90,7 @@
   <div id="content">
   </div>
  </header>
-</body><h1>
+</body><h1 id="adding-http-artifact-support-to-the-idp">
  Adding HTTP-Artifact support to the IdP
 </h1>
 <p>
@@ -111,7 +111,7 @@
   Add the webserver certificate to the generated metadata.
  </li>
 </ol>
-<h2>
+<h2 id="memcache">
  Memcache
 </h2>
 <p>
@@ -167,7 +167,7 @@ If you are running memcache on a different server than the IdP, you must also ch
  </code>
  .
 </p>
-<h2>
+<h2 id="enabling-artifact-on-the-idp">
  Enabling artifact on the IdP
 </h2>
 <p>
@@ -187,7 +187,7 @@ If you are running memcache on a different server than the IdP, you must also ch
       'saml20.sendartifact' =&gt; TRUE,
   ];
 </code></pre>
-<h2>
+<h2 id="add-new-metadata-to-sps">
  Add new metadata to SPs
 </h2>
 <p>
@@ -206,7 +206,7 @@ You therefore need to update the metadata for your IdP at your SPs.
       ],
   ],
 </code></pre>
-<h2>
+<h2 id="sp-metadata-on-the-idp">
  SP metadata on the IdP
 </h2>
 <p>
@@ -234,7 +234,7 @@ In general, that should look something like:
 <p>
  (The specific values of the various fields will vary depending on the SP.)
 </p>
-<h2>
+<h2 id="certificate-in-metadata">
  Certificate in metadata
 </h2>
 <p>

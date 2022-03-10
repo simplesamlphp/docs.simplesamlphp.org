@@ -90,7 +90,7 @@
   <div id="content">
   </div>
  </header>
-</body><h1>
+</body><h1 id="pdo-metadata-storage-handler">
  PDO Metadata Storage Handler
 </h1>
 <!-- 
@@ -99,7 +99,7 @@
   http://daringfireball.net/projects/markdown/syntax
 -->
 <!-- {{TOC}} -->
-<h2>
+<h2 id="introduction">
  Introduction
 </h2>
 <p>
@@ -108,13 +108,13 @@
 <p>
  The present document explains how to configure SimpleSAMLphp and your database.
 </p>
-<h2>
+<h2 id="preparations">
  Preparations
 </h2>
 <p>
  You will need to have the appropriate PDO drivers for your database and you will have to configure the database section within the config/config.php file.
 </p>
-<h2>
+<h2 id="configuring-simplesamlphp">
  Configuring SimpleSAMLphp
 </h2>
 <p>
@@ -130,7 +130,7 @@
   array('type' =&gt; 'pdo'),
 ),
 </code></pre>
-<h2>
+<h2 id="initializing-the-database">
  Initializing the Database
 </h2>
 <p>
@@ -141,7 +141,7 @@
 <p>
  If you connect to your database, you will see 11 new empty tables; one for each metadata set.
 </p>
-<h2>
+<h2 id="adding-metadata">
  Adding Metadata
 </h2>
 <p>

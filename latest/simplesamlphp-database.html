@@ -90,7 +90,7 @@
   <div id="content">
   </div>
  </header>
-</body><h1>
+</body><h1 id="simplesamldatabase">
  SimpleSAML\Database
 </h1>
 <!-- 
@@ -99,7 +99,7 @@
   http://daringfireball.net/projects/markdown/syntax
 -->
 <!-- {{TOC}} -->
-<h2>
+<h2 id="purpose">
  Purpose
 </h2>
 <p>
@@ -108,7 +108,7 @@
 <p>
  The Database class provides a single class that can be used to connect to a database which can be shared by anything within SimpleSAMLphp.
 </p>
-<h2>
+<h2 id="getting-started">
  Getting Started
 </h2>
 <p>
@@ -125,7 +125,7 @@ $db = \SimpleSAML\Database::getInstance($config);
 <p>
  That will create a new instance of the database, separate from the global instance, specific to the configuration defined in $myconfigarray. If you are going to specify an alternate config, your configuration array must contain the same keys that exist in the primary config (database.dsn, database.username, database.password, database.prefix, etc).
 </p>
-<h2>
+<h2 id="database-prefix">
  Database Prefix
 </h2>
 <p>
@@ -136,13 +136,13 @@ $db = \SimpleSAML\Database::getInstance($config);
 <p>
  $table would be set to "sp_saml20_idp_hosted"
 </p>
-<h2>
+<h2 id="querying-the-database">
  Querying The Database
 </h2>
 <p>
  You can query the database through two public functions read() and write() which are fairly self-explanitory when it comes to determining which one to use when querying.
 </p>
-<h3>
+<h3 id="writing-to-the-database">
  Writing to The Database
 </h3>
 <p>
@@ -180,7 +180,7 @@ $query = $db-&gt;write("INSERT INTO $table (id, data) VALUES (:id, :data)", $val
 <pre><code>$table = $db-&gt;applyPrefix("test");
 $query = $db-&gt;write("CREATE TABLE IF NOT EXISTS $table (id INT(16) NOT NULL, data TEXT NOT NULL)", false);
 </code></pre>
-<h3>
+<h3 id="reading-the-database">
  Reading The Database
 </h3>
 <p>

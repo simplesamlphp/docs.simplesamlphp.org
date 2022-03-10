@@ -90,7 +90,7 @@
   <div id="content">
   </div>
  </header>
-</body><h1>
+</body><h1 id="implementing-custom-usernamepassword-authentication">
  Implementing custom username/password authentication
 </h1>
 <p>
@@ -102,7 +102,7 @@
 An authentication source is responsible for authenticating the user, typically by getting a username and password, and looking it up in some sort of database.
 </p>
 <!-- {{TOC}} -->
-<h2>
+<h2 id="create-a-custom-module">
  Create a custom module
 </h2>
 <p>
@@ -152,7 +152,7 @@ We do that by copying the
 <p>
  Now that we have our own module, we can move on to creating an authentication source.
 </p>
-<h2>
+<h2 id="creating-a-basic-authentication-source">
  Creating a basic authentication source
 </h2>
 <p>
@@ -209,7 +209,7 @@ Create the file
 - Attributes are returned as an associative array of `name =&gt; values` pairs.
   All attributes can have multiple values, so the values are always stored in an array.
 </code></pre>
-<h2>
+<h2 id="configuring-our-authentication-source">
  Configuring our authentication source
 </h2>
 <p>
@@ -261,7 +261,7 @@ This tells SimpleSAMLphp to look for the
  </code>
  class.
 </p>
-<h2>
+<h2 id="testing-our-authentication-source">
  Testing our authentication source
 </h2>
 <p>
@@ -294,7 +294,7 @@ You should then arrive on a page listing the attributes we return from the
 <p>
  Next, you should log out by following the log out link.
 </p>
-<h2>
+<h2 id="using-our-authentication-source-in-an-idp">
  Using our authentication source in an IdP
 </h2>
 <p>
@@ -330,7 +330,7 @@ In that file you should locate the
  You can then test logging in to the IdP.
 If you have logged in previously, you may need to log out first.
 </p>
-<h2>
+<h2 id="adding-configuration-to-our-authentication-source">
  Adding configuration to our authentication source
 </h2>
 <p>
@@ -420,7 +420,7 @@ The complete class file should look like this:
 Note that we have updated the username &amp; password to "theconfigusername" and "theconfigpassword".
 (You may need to log out first before you can log in again.)
 </p>
-<h2>
+<h2 id="a-more-complete-example-custom-database-authentication">
  A more complete example - custom database authentication
 </h2>
 <p>

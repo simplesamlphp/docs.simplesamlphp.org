@@ -90,7 +90,7 @@
   <div id="content">
   </div>
  </header>
-</body><h1>
+</body><h1 id="setting-up-a-simplesamlphp-saml-20-idp-to-use-with-google-workspace-g-suite-google-apps-for-education">
  Setting up a SimpleSAMLphp SAML 2.0 IdP to use with Google Workspace (G Suite / Google Apps) for Education
 </h1>
 <!-- 
@@ -99,7 +99,7 @@
   http://daringfireball.net/projects/markdown/syntax
 -->
 <!-- {{TOC}} -->
-<h2>
+<h2 id="simplesamlphp-news-and-documentation">
  SimpleSAMLphp news and documentation
 </h2>
 <p>
@@ -117,7 +117,7 @@
   </a>
  </li>
 </ul>
-<h2>
+<h2 id="introduction">
  Introduction
 </h2>
 <p>
@@ -130,7 +130,7 @@ a version of SimpleSAMLphp at your server.
  In this example we will setup this server as an IdP for Google Workspace:
   dev2.andreas.feide.no
 </p>
-<h2>
+<h2 id="enabling-the-identity-provider-functionality">
  Enabling the Identity Provider functionality
 </h2>
 <p>
@@ -142,7 +142,7 @@ a version of SimpleSAMLphp at your server.
 </p>
 <pre><code>  'enable.saml20-idp' =&gt; true,
 </code></pre>
-<h2>
+<h2 id="setting-up-a-signing-certificate">
  Setting up a signing certificate
 </h2>
 <p>
@@ -176,7 +176,7 @@ Here is an example of an openssl command to generate a new key and a self signed
  </strong>
  : SimpleSAMLphp will only work with RSA and not DSA certificates.
 </p>
-<h2>
+<h2 id="authentication-source">
  Authentication source
 </h2>
 <p>
@@ -231,7 +231,7 @@ Here is an example of an openssl command to generate a new key and a self signed
  </code>
  is the most common authentication source.)
 </p>
-<h2>
+<h2 id="configuring-the-authentication-source">
  Configuring the authentication source
 </h2>
 <p>
@@ -325,7 +325,7 @@ Here is an example of an openssl command to generate a new key and a self signed
  </code>
  in this example) will be returned by the IdP when the user logs on.
 </p>
-<h2>
+<h2 id="configuring-metadata-for-an-saml-20-idp">
  Configuring metadata for an SAML 2.0 IdP
 </h2>
 <p>
@@ -339,7 +339,7 @@ Here is an example of an openssl command to generate a new key and a self signed
  </code>
  .
 </p>
-<h3>
+<h3 id="configuring-saml-20-idp-hosted-metadata">
  Configuring SAML 2.0 IdP Hosted metadata
 </h3>
 <p>
@@ -368,7 +368,7 @@ $metadata['__DYNAMIC:1__'] =&gt; [
  </code>
  , therefore you should replace the existing entry with this one, instead of adding this entry as a new entry in the file.
 </p>
-<h3>
+<h3 id="configuring-saml-20-sp-remote-metadata">
  Configuring SAML 2.0 SP Remote metadata
 </h3>
 <p>
@@ -439,7 +439,7 @@ $metadata['__DYNAMIC:1__'] =&gt; [
  </a>
  .
 </p>
-<h2>
+<h2 id="configure-google-workspace">
  Configure Google Workspace
 </h2>
 <p>
@@ -519,13 +519,13 @@ It is normally best to leave this field empty to enable authentication for all U
 <p>
  <img alt="Fill out the remaining fields" src="resources/simplesamlphp-googleapps/googleapps-ssoconfig.png"/>
 </p>
-<h3>
+<h3 id="add-a-user-in-g-suite-that-is-known-to-the-idp">
  Add a user in G Suite that is known to the IdP
 </h3>
 <p>
  Before we can test login, a new user must be defined in Google Workspace. This user must have a mail field matching the email prefix mapped from the attribute as described above in the metadata section.
 </p>
-<h2>
+<h2 id="test-to-login-to-g-suite-for-education">
  Test to login to G Suite for education
 </h2>
 <p>
@@ -536,13 +536,13 @@ It is normally best to leave this field empty to enable authentication for all U
 <p>
  replacing the last part with your own Google Workspace domain name.
 </p>
-<h2>
+<h2 id="security-considerations">
  Security Considerations
 </h2>
 <p>
  Make sure that your IdP server runs HTTPS (TLS). The Apache documentation contains information for how to configure HTTPS.
 </p>
-<h2>
+<h2 id="support">
  Support
 </h2>
 <p>

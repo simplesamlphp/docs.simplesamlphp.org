@@ -90,7 +90,7 @@
   <div id="content">
   </div>
  </header>
-</body><h1>
+</body><h1 id="adding-holder-of-key-web-browser-sso-profile-support-to-the-idp">
  Adding Holder-of-Key Web Browser SSO Profile support to the IdP
 </h1>
 <p>
@@ -108,7 +108,7 @@ while preserving maximum compatibility with existing deployments on client and s
  When using this profile the communication between the user and the IdP is required to be protected by the TLS protocol. Additionally, the user needs a TLS client certificate.
 This certificate is usually selfsigned and stored in the certificate store of the browser or the underlying operating system.
 </p>
-<h2>
+<h2 id="configuring-apache">
  Configuring Apache
 </h2>
 <p>
@@ -128,7 +128,7 @@ environment variable
  </code>
  of the webserver. The IdP embeds the client certificate into the created HoK assertion.
 </p>
-<h2>
+<h2 id="enabling-hok-sso-profile-on-the-idp">
  Enabling HoK SSO Profile on the IdP
 </h2>
 <p>
@@ -148,7 +148,7 @@ environment variable
       'saml20.hok.assertion' =&gt; TRUE,
   );
 </code></pre>
-<h2>
+<h2 id="add-new-metadata-to-sps">
  Add new metadata to SPs
 </h2>
 <p>
@@ -176,7 +176,7 @@ The
   ),
 ),
 </code></pre>
-<h2>
+<h2 id="sp-metadata-on-the-idp">
  SP metadata on the IdP
 </h2>
 <p>

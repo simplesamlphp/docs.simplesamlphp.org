@@ -90,7 +90,7 @@
   <div id="content">
   </div>
  </header>
-</body><h1>
+</body><h1 id="automated-metadata-management">
  Automated Metadata Management
 </h1>
 <!-- 
@@ -99,7 +99,7 @@
   http://daringfireball.net/projects/markdown/syntax
 -->
 <!-- {{TOC}} -->
-<h2>
+<h2 id="introduction">
  Introduction
 </h2>
 <p>
@@ -115,7 +115,7 @@
 <p>
  The present document explains how to setup automated downloading and parsing of a metadata document on a specific URL.
 </p>
-<h2>
+<h2 id="preparations">
  Preparations
 </h2>
 <p>
@@ -154,7 +154,7 @@
 [root@simplesamlphp simplesamlphp] touch modules/metarefresh/enable
 [root@simplesamlphp simplesamlphp] cp modules/metarefresh/config-templates/*.php config/
 </code></pre>
-<h2>
+<h2 id="testing-it-manually">
  Testing it manually
 </h2>
 <p>
@@ -172,7 +172,7 @@ instance, if we want to configure the metadata of the SWITCH AAI Test Federation
  </code>
  option sends the output to the console (for testing purposes). If the output makes sense, continue. If you get a lot of error messages, try to read them and fix the problems that might be causing them. If you are having problems and you can't figure out the cause, you can always send an e-mail to the SimpleSAMLphp mailing list and ask for advice.
 </p>
-<h2>
+<h2 id="configuring-the-metarefresh-module">
  Configuring the metarefresh module
 </h2>
 <p>
@@ -364,7 +364,7 @@ config.php file, and modify the
  </code>
  in the configuration of the module.
 </p>
-<h2>
+<h2 id="configuring-the-cron-module">
  Configuring the cron module
 </h2>
 <p>
@@ -411,7 +411,7 @@ config.php file, and modify the
   </code>
  </li>
 </ul>
-<h2>
+<h2 id="metadata-duration">
  Metadata duration
 </h2>
 <p>

@@ -90,7 +90,7 @@
   <div id="content">
   </div>
  </header>
-</body><h1>
+</body><h1 id="scoping">
  Scoping
 </h1>
 <!-- 
@@ -116,7 +116,7 @@ then the request is automatically forwarded to that IdP.
 <p>
  Scoping is a SAML 2.0 specific option.
 </p>
-<h2>
+<h2 id="options">
  Options
 </h2>
 <p>
@@ -138,13 +138,13 @@ ProxyCount is unspecified the number of proxy indirections is not limited.
  : The list of trusted IdPs, i.e. the list of entityIDs for identity providers
 that are relevant for a service provider in an authnRequest.
 </p>
-<h3>
+<h3 id="note">
  Note
 </h3>
 <p>
  SimpleSAMLphp does not support specifying the GetComplete option.
 </p>
-<h2>
+<h2 id="usage">
  Usage
 </h2>
 <p>
@@ -177,7 +177,7 @@ that are relevant for a service provider in an authnRequest.
   # Set ProxyCount
   'ProxyCount' =&gt; 2,
 </code></pre>
-<h2>
+<h2 id="requesterid-element">
  RequesterID element
 </h2>
 <p>
@@ -192,7 +192,7 @@ instance the authenticate method in an authentication source
 </p>
 <pre><code>  $requesterIDs = $state['saml:RequesterID'];
 </code></pre>
-<h2>
+<h2 id="authenticatingauthority-element">
  AuthenticatingAuthority element
 </h2>
 <p>
@@ -210,7 +210,7 @@ can be retrieved as an array from the authentication data.
   # Get the AuthenticatingAuthority
   $aa = $as-&gt;getAuthData('saml:AuthenticatingAuthority');
 </code></pre>
-<h2>
+<h2 id="support">
  Support
 </h2>
 <p>

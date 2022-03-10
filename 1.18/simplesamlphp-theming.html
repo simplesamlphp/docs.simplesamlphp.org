@@ -90,7 +90,7 @@
   <div id="content">
   </div>
  </header>
-</body><h1>
+</body><h1 id="theming-the-user-interface-in-simplesamlphp">
  Theming the user interface in SimpleSAMLphp
 </h1>
 <!--
@@ -105,7 +105,7 @@
 <p>
  You may create your own theme, where you add one or more template files that will override the default ones. This document explains how to achieve that.
 </p>
-<h2>
+<h2 id="how-themes-work">
  How themes work
 </h2>
 <p>
@@ -115,7 +115,7 @@
  </strong>
  . A theme is a set of templates that can be configured to override the default templates.
 </p>
-<h3>
+<h3 id="configuring-which-theme-to-use">
  Configuring which theme to use
 </h3>
 <p>
@@ -153,7 +153,7 @@
  </code>
  folder, and you SHOULD never change the base templates. To customize UI, add a new theme within a module that overrides the base templates, instead of modifying it.
 </p>
-<h3>
+<h3 id="templates-that-include-other-files">
  Templates that include other files
 </h3>
 <p>
@@ -182,7 +182,7 @@
  </code>
  that includes only a header and footer. The header file refers to the CSS files, which means that a simple way of making a new look on SimpleSAMLphp is to create a new theme, and copy the existing header, but point to your own CSS instead of the default CSS.
 </p>
-<h2>
+<h2 id="creating-your-first-theme">
  Creating your first theme
 </h2>
 <p>
@@ -238,7 +238,7 @@ mkdir -p themes/fancytheme
 </p>
 <pre><code>&lt;link rel="stylesheet" type="text/css" href="/&lt;?php echo $this-&gt;data['baseurlpath']; ?&gt;resources/fancytheme/default.css" /&gt;
 </code></pre>
-<h2>
+<h2 id="examples">
  Examples
 </h2>
 <p>
@@ -296,7 +296,7 @@ mkdir -p themes/fancytheme
   </code>
  </li>
 </ol>
-<h2>
+<h2 id="adding-resource-files">
  Adding resource files
 </h2>
 <p>
@@ -331,7 +331,7 @@ mkdir -p themes/fancytheme
   &lt;link rel="stylesheet" href="&lt;?php echo SimpleSAML\Module::getModuleURL('mymodule/style.css'); ?&gt;"&gt;
  </code>
 </p>
-<h2>
+<h2 id="migrating-to-twig-templates">
  Migrating to Twig templates
 </h2>
 <p>
