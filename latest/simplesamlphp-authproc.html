@@ -90,11 +90,6 @@
 </header><h1 id="authentication-processing-filters-in-simplesamlphp">
  Authentication Processing Filters in SimpleSAMLphp
 </h1>
-<!-- 
-  This file is written in Markdown syntax. 
-  For more information about how to use the Markdown syntax, read here:
-  http://daringfireball.net/projects/markdown/syntax
--->
 <!-- {{TOC}} -->
 <p>
  In SimpleSAMLphp, there is an API where you can
@@ -109,19 +104,43 @@
 <p>
  Examples of neat things to do using Authentication Processing Filters:
 </p>
-<pre><code>* Filter out a subset of available attributes that are sent to a SP.
-* Modify the name of attributes.
-* Generate new attributes that are composed of others, for example eduPersonTargetedID.
-* Ask the user for consent, before the user is sent back to a service.
-* Implement basic Access Control on the IdP (not neccessarily a good idea), limiting access for some users to some SPs.
-</code></pre>
+<ul>
+ <li>
+  Filter out a subset of available attributes that are sent to a SP.
+ </li>
+ <li>
+  Modify the name of attributes.
+ </li>
+ <li>
+  Generate new attributes that are composed of others, for example eduPersonTargetedID.
+ </li>
+ <li>
+  Ask the user for consent, before the user is sent back to a service.
+ </li>
+ <li>
+  Implement basic Access Control on the IdP (not neccessarily a good idea), limiting access for some users to some SPs.
+ </li>
+</ul>
 <p>
  Be aware that Authentication Proccessing Filters do replace some of the previous features in SimpleSAMLphp, named:
 </p>
-<pre><code>* `attributemap`
-* `attributealter`
-* `attribute filter`
-</code></pre>
+<ul>
+ <li>
+  <code>
+   attributemap
+  </code>
+ </li>
+ <li>
+  <code>
+   attributealter
+  </code>
+ </li>
+ <li>
+  <code>
+   attribute filter
+  </code>
+ </li>
+</ul>
 <p>
  Later in this document, we will desribe in detail the alternative Authentication Proccessing Filters that will replicate these functionalities.
 </p>
@@ -138,12 +157,38 @@
  </em>
  :
 </p>
-<pre><code>* Globally in `config.php`
-* On the SP: Specific for only the SP in `authsources.php`
-* On the SP: Specific for only one remote IdP in `saml20-idp-remote`
-* On the IdP: Specific for only one hosted IdP in `saml20-idp-hosted`
-* On the IdP: Specific for only one remote SP in `saml20-sp-remote`
-</code></pre>
+<ul>
+ <li>
+  Globally in
+  <code>
+   config.php
+  </code>
+ </li>
+ <li>
+  On the SP: Specific for only the SP in
+  <code>
+   authsources.php
+  </code>
+ </li>
+ <li>
+  On the SP: Specific for only one remote IdP in
+  <code>
+   saml20-idp-remote
+  </code>
+ </li>
+ <li>
+  On the IdP: Specific for only one hosted IdP in
+  <code>
+   saml20-idp-hosted
+  </code>
+ </li>
+ <li>
+  On the IdP: Specific for only one remote SP in
+  <code>
+   saml20-sp-remote
+  </code>
+ </li>
+</ul>
 <p>
  The configuration of
  <em>
@@ -293,9 +338,19 @@
 <p>
  There are two config parameters:
 </p>
-<pre><code>* `authproc.idp` and
-* `authproc.sp`
-</code></pre>
+<ul>
+ <li>
+  <code>
+   authproc.idp
+  </code>
+  and
+ </li>
+ <li>
+  <code>
+   authproc.sp
+  </code>
+ </li>
+</ul>
 <p>
  The filters in
  <code>
