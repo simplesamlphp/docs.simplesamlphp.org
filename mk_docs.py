@@ -105,8 +105,6 @@ def getgitrepo(repo, repo_clone_dir, repo_root, version=None):
 
 # make the header and headerbad div contents for indjection into each documentation page
 def mkContentHeader(versions):
-    content = '<body>'
-
     content += '<!-- Red logo header -->'
 #    content += '<div id="header">'
 #    content += '	<div id="logo"><a href="https://simplesamlphp.org" style="color: #fff; text-decoration: none" target="_blank">SimpleSAMLphp</a></div>'
