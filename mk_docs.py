@@ -10,9 +10,6 @@ from bs4 import BeautifulSoup
 # Set up the markdown converter
 md_ext = ['toc']
 md_ext_confs = {
-  'toc': {
-    'marker': '<!-- {{TOC}} -->'
-  }
 }
 pymd = markdown.Markdown(extensions=md_ext,extension_configs=md_ext_confs, tab_length=2)
 
