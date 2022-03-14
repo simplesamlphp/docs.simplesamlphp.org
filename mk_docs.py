@@ -7,15 +7,20 @@ import urllib.request
 import json 
 from bs4 import BeautifulSoup
 
-# Some functions
+# Set up the markdown converter
+md_ext = ['toc']
+md_ext_confs = {
+  'toc': {
+    'marker': '<!-- {{TOC}} -->'
+  }
+}
+pymd = markdown.Markdown(extensions=md_ext,extension_configs=md_ext_confs, tab_length=2)
 
 # Convert md file to html file
 # - make sure links remain working
 # - add header, navigation and footer to the converted file
 def md2html(md_file, html_file, file_name):
     #print("Transforming " + md_file + " into " + html_file)
-    
-    pymd = markdown.Markdown(extensions=['toc'], tab_length=2)
     
     with open(md_file, 'r') as f:
        text = f.read()
