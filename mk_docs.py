@@ -44,7 +44,7 @@ def md2html(md_file, html_file, file_name):
        #   desc = " - " + str(p.string)
 
     with open(html_file, 'w+') as f:
-       f.write(header + mkContentHeader(ssp_versions) + str(soup.prettify()) + footer)	
+       f.write(header + mkContentHeader(ssp_versions) + '<main>' + str(soup.prettify()) + '</main>' + footer)
 
 # search a filesystem directory for subdirs and retum these in a list
 def getsubdirs(dir_path):
