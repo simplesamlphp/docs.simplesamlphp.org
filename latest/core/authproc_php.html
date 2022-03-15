@@ -150,7 +150,7 @@
  </code>
  attribute:
 </p>
-<pre><code>  10 =&gt; [
+<pre class="codehilite"><code>  10 =&gt; [
       'class' =&gt; 'core:PHP',
       'code' =&gt; '
           if (empty($attributes["uid"])) {
@@ -166,7 +166,7 @@
 <p>
  Create a random number variable:
 </p>
-<pre><code>  10 =&gt; [
+<pre class="codehilite"><code>  10 =&gt; [
       'class' =&gt; 'core:PHP',
       'code' =&gt; '
           $attributes["random"] = [
@@ -178,7 +178,7 @@
 <p>
  Force a specific NameIdFormat. Useful if an SP misbehaves and requests (or publishes) an incorrect NameId
 </p>
-<pre><code>  90 =&gt; [
+<pre class="codehilite"><code>  90 =&gt; [
        'class' =&gt; 'core:PHP',
        'code' =&gt; '$state["saml:NameIDFormat"] = ["Format" =&gt; "urn:oasis:names:tc:SAML:2.0:nameid-format:transient", "AllowCreate" =&gt; true];'
   ],

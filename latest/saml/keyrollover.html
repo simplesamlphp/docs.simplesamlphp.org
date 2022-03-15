@@ -100,7 +100,7 @@
  First you must create the new key that you are going to use.
 To create a self signed certificate, you may use the following command:
 </p>
-<pre><code>  cd cert
+<pre class="codehilite"><code>  cd cert
   openssl req -newkey rsa:3072 -new -x509 -days 3652 -nodes -out new.crt -keyout new.pem
 </code></pre>
 <h2 id="add-the-new-key-to-simplesamlphp">
@@ -142,7 +142,7 @@ This ensures that both those entities that use your old metadata and those that 
  </code>
  :
 </p>
-<pre><code>  'default-sp' =&gt; [
+<pre class="codehilite"><code>  'default-sp' =&gt; [
       'saml:SP',
       'privatekey' =&gt; 'old.pem',
       'certificate' =&gt; 'old.crt',
@@ -162,7 +162,7 @@ This ensures that both those entities that use your old metadata and those that 
  </code>
  :
 </p>
-<pre><code>  $metadata['__DYNAMIC:1__'] = [
+<pre class="codehilite"><code>  $metadata['__DYNAMIC:1__'] = [
       'host' =&gt; '__DEFAULT__',
       'auth' =&gt; 'example-userpass',
       'privatekey' =&gt; 'old.pem',
@@ -231,7 +231,7 @@ This will cause your old key to be removed from your metadata.
  </code>
  :
 </p>
-<pre><code>  'default-sp' =&gt; [
+<pre class="codehilite"><code>  'default-sp' =&gt; [
       'saml:SP',
       'certificate' =&gt; 'new.crt',
       'privatekey' =&gt; 'new.pem',
@@ -246,7 +246,7 @@ This will cause your old key to be removed from your metadata.
  </code>
  :
 </p>
-<pre><code>  $metadata['__DYNAMIC:1__'] = [
+<pre class="codehilite"><code>  $metadata['__DYNAMIC:1__'] = [
       'host' =&gt; '__DEFAULT__',
       'auth' =&gt; 'example-userpass',
       'certificate' =&gt; 'new.crt',

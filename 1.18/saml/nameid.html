@@ -391,7 +391,7 @@ This can be used to set the
 <p>
  This example makes three NameIDs available:
 </p>
-<pre><code>  'authproc' =&gt; array(
+<pre class="codehilite"><code>  'authproc' =&gt; array(
       1 =&gt; array(
           'class' =&gt; 'saml:TransientNameID',
       ),
@@ -409,7 +409,7 @@ This can be used to set the
 <p>
  Storing persistent NameIDs in a SQL database:
 </p>
-<pre><code>  'authproc' =&gt; array(
+<pre class="codehilite"><code>  'authproc' =&gt; array(
       1 =&gt; array(
           'class' =&gt; 'saml:TransientNameID',
       ),
@@ -422,7 +422,7 @@ This can be used to set the
 <p>
  Generating Persistent NameID and eduPersonTargetedID.
 </p>
-<pre><code>  'authproc' =&gt; array(
+<pre class="codehilite"><code>  'authproc' =&gt; array(
       // Generate the persistent NameID.
       2 =&gt; array(
           'class' =&gt; 'saml:PersistentNameID',

@@ -115,7 +115,7 @@
  </code>
  :   The name of the attribute we should use for the unique user identifier.
 </p>
-<pre><code>  Note: only the first value of the specified attribute is being used for the generation of the identifier.
+<pre class="codehilite"><code>  Note: only the first value of the specified attribute is being used for the generation of the identifier.
 </code></pre>
 <p>
  <code>
@@ -143,7 +143,7 @@
 <p>
  A custom attribute:
 </p>
-<pre><code>  'authproc' =&gt; [
+<pre class="codehilite"><code>  'authproc' =&gt; [
       50 =&gt; [
           'class' =&gt; 'core:TargetedID',
           'attributename' =&gt; 'eduPersonPrincipalName'
@@ -157,7 +157,7 @@
  </code>
  :
 </p>
-<pre><code>  /* In saml20-idp-hosted.php. */
+<pre class="codehilite"><code>  /* In saml20-idp-hosted.php. */
   $metadata['__DYNAMIC:1__'] = [
       'host' =&gt; '__DEFAULT__',
       'auth' =&gt; 'example-static',

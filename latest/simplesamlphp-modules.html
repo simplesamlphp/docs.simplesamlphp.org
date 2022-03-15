@@ -95,7 +95,54 @@
   For more information about how to use the Markdown syntax, read here:
   http://daringfireball.net/projects/markdown/syntax
 -->
-<!-- {{TOC}} -->
+<div class="toc">
+ <ul>
+  <li>
+   <a href="#simplesamlphp-modules.html">
+    SimpleSAMLphp modules
+   </a>
+   <ul>
+    <li>
+     <a href="#overview.html">
+      Overview
+     </a>
+    </li>
+    <li>
+     <a href="#module-layout.html">
+      Module layout
+     </a>
+    </li>
+    <li>
+     <a href="#authentication-sources.html">
+      Authentication sources
+     </a>
+     <ul>
+      <li>
+       <a href="#creating-authentication-sources.html">
+        Creating authentication sources
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#authentication-processing-filters.html">
+      Authentication processing filters
+     </a>
+    </li>
+    <li>
+     <a href="#themes.html">
+      Themes
+     </a>
+    </li>
+    <li>
+     <a href="#hook-interface.html">
+      Hook interface
+     </a>
+    </li>
+   </ul>
+  </li>
+ </ul>
+</div>
 <p>
  This document describes how the module system in SimpleSAMLphp
 works. It descibes what types of modules there are, how they are
@@ -381,7 +428,7 @@ authentication source.
  A typical configuration entry for an authentication source looks like 
 this:
 </p>
-<pre><code>  'example-static' =&gt; [
+<pre class="codehilite"><code>  'example-static' =&gt; [
     /* This maps to modules/exampleauth/lib/Auth/Source/Static.php */
     'exampleauth:StaticSource',
 
@@ -403,7 +450,7 @@ this:
  </code>
  :
 </p>
-<pre><code>  '__DYNAMIC:1__' =&gt; [
+<pre class="codehilite"><code>  '__DYNAMIC:1__' =&gt; [
     'host' =&gt; '__DEFAULT__',
     'privatekey' =&gt; 'example.org.pem',
     'certificate' =&gt; 'example.org.crt',
@@ -416,7 +463,7 @@ this:
 <p>
  This is described in a separate document:
 </p>
-<pre><code>* [Creating authentication sources](simplesamlphp-authsource)
+<pre class="codehilite"><code>* [Creating authentication sources](simplesamlphp-authsource)
 </code></pre>
 <h2 id="authentication-processing-filters">
  Authentication processing filters
@@ -427,7 +474,7 @@ this:
  </em>
  is explained in a separate document:
 </p>
-<pre><code>* [Authentication processing filters](simplesamlphp-authproc)
+<pre class="codehilite"><code>* [Authentication processing filters](simplesamlphp-authproc)
 </code></pre>
 <h2 id="themes">
  Themes

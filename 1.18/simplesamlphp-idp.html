@@ -120,7 +120,7 @@
  </code>
  to them:
 </p>
-<pre><code>  'enable.saml20-idp' =&gt; true,
+<pre class="codehilite"><code>  'enable.saml20-idp' =&gt; true,
 </code></pre>
 <h2 id="authentication-module">
  Authentication module
@@ -298,7 +298,7 @@
  On unix, this can be done by running (from the SimpleSAMLphp
 installation directory):
 </p>
-<pre><code>  touch modules/exampleauth/enable
+<pre class="codehilite"><code>  touch modules/exampleauth/enable
 </code></pre>
 <p>
  The next step is to create an authentication source with this module. An authentication source is an authentication module with a specific configuration. Each authentication source has a name, which is used to refer to this specific configuration in the IdP configuration. Configuration for authentication sources can be found in
@@ -310,7 +310,7 @@ installation directory):
 <p>
  In this setup, this file should contain a single entry:
 </p>
-<pre><code>&lt;?php
+<pre class="codehilite"><code>&lt;?php
 $config = [
   'example-userpass' =&gt; [
     'exampleauth:UserPass',
@@ -352,7 +352,7 @@ $config = [
  </code>
  -user). The attributes for each user are configured in the array referenced by the index. So for the student user, these are:
 </p>
-<pre><code>[
+<pre class="codehilite"><code>[
   'uid' =&gt; ['student'],
   'eduPersonAffiliation' =&gt; ['member', 'student'],
 ],
@@ -377,7 +377,7 @@ $config = [
 <p>
  This key and certificate can be used to sign SAML messages:
 </p>
-<pre><code>  openssl req -newkey rsa:3072 -new -x509 -days 3652 -nodes -out example.org.crt -keyout example.org.pem
+<pre class="codehilite"><code>  openssl req -newkey rsa:3072 -new -x509 -days 3652 -nodes -out example.org.crt -keyout example.org.pem
 </code></pre>
 <p>
  The certificate above will be valid for 10 years.
@@ -399,7 +399,7 @@ $config = [
  .
 This is a minimal configuration:
 </p>
-<pre><code>  &lt;?php
+<pre class="codehilite"><code>  &lt;?php
   $metadata['__DYNAMIC:1__'] = [
       /*
        * The hostname for this IdP. This makes it possible to run multiple
@@ -450,7 +450,7 @@ files, see the
 We therefore recommended enabling this in new installations.
 This can be done by adding the following to the saml20-idp-hosted configuration:
 </p>
-<pre><code>  'attributes.NameFormat' =&gt; 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+<pre class="codehilite"><code>  'attributes.NameFormat' =&gt; 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
   'authproc' =&gt; [
       // Convert LDAP names to oids.
       100 =&gt; ['class' =&gt; 'core:AttributeMap', 'name2oid'],
@@ -472,7 +472,7 @@ This is a minimal example of a
  </code>
  metadata file for a SimpleSAMLphp SP:
 </p>
-<pre><code>  &lt;?php
+<pre class="codehilite"><code>  &lt;?php
   $metadata['https://sp.example.org/simplesaml/module.php/saml/sp/metadata.php/default-sp'] = [
       'AssertionConsumerService' =&gt; 'https://sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp',
       'SingleLogoutService'      =&gt; 'https://sp.example.org/simplesaml/module.php/saml/sp/saml2-logout.php/default-sp',
@@ -560,7 +560,7 @@ on the same machine. See the instructions for
 <p>
  Here is an example of such a URL:
 </p>
-<pre><code>https://idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=sp.example.org
+<pre class="codehilite"><code>https://idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=sp.example.org
 </code></pre>
 <p>
  If the SP is a SimpleSAMLphp SP, you must also specify a
@@ -580,7 +580,7 @@ The
  , or it can be sent from the IdP.
 To send the RelayState parameter from a SimpleSAMLphp IdP, specify it in the query string to SSOService.php:
 </p>
-<pre><code>  https://idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=sp.example.org&amp;RelayState=https://sp.example.org/welcome.php
+<pre class="codehilite"><code>  https://idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=sp.example.org&amp;RelayState=https://sp.example.org/welcome.php
 </code></pre>
 <p>
  To set it in the SP configuration, add it to
@@ -589,7 +589,7 @@ To send the RelayState parameter from a SimpleSAMLphp IdP, specify it in the que
  </code>
  :
 </p>
-<pre><code>  'default-sp' =&gt; [
+<pre class="codehilite"><code>  'default-sp' =&gt; [
       'saml:SP',
       'RelayState' =&gt; 'https://sp.example.org/welcome.php',
   ],

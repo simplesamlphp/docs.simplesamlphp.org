@@ -127,7 +127,7 @@ Hashes can be generated with the included command line tool
  .
 This tool will interactively ask for a password, a hashing algorithm , and whether or not you want to use a salt:
 </p>
-<pre><code>  [user@server simplesamlphp]$ bin/pwgen.php
+<pre class="codehilite"><code>  [user@server simplesamlphp]$ bin/pwgen.php
   Enter password: hackme
   The following hashing algorithms are available:
   md2          md4          md5          sha1         sha224       sha256
@@ -150,7 +150,7 @@ This tool will interactively ask for a password, a hashing algorithm , and wheth
  </code>
  and use the resulting string as the password:
 </p>
-<pre><code>  'example-hashed' =&gt; array(
+<pre class="codehilite"><code>  'example-hashed' =&gt; array(
       'authCrypt:Hash',
       'student:{SSHA256}y1mj3xsZ4/+LoQyPNVJzXUFfBcLHfwcHx1xxltxeQ1C5MeyEX/RxWA==' =&gt; array(
           'uid' =&gt; array('student'),
@@ -179,7 +179,7 @@ This tool will interactively ask for a password, a hashing algorithm , and wheth
  </code>
  for the administrative password:
 </p>
-<pre><code>  'auth.adminpassword'        =&gt; '{SSHA256}y1mj3xsZ4/+LoQyPNVJzXUFfBcLHfwcHx1xxltxeQ1C5MeyEX/RxWA==',
+<pre class="codehilite"><code>  'auth.adminpassword'        =&gt; '{SSHA256}y1mj3xsZ4/+LoQyPNVJzXUFfBcLHfwcHx1xxltxeQ1C5MeyEX/RxWA==',
 </code></pre>
 <p>
  Instead of generating hashes, you can also use existing ones from OpenLDAP, provided that the
@@ -216,7 +216,7 @@ This tool will interactively ask for a password, a hashing algorithm , and wheth
  </code>
  could look like this:
 </p>
-<pre><code>  'htpasswd' =&gt; array(
+<pre class="codehilite"><code>  'htpasswd' =&gt; array(
       'authcrypt:Htpasswd',
           'htpasswd_file' =&gt; '/var/www/foo.edu/legacy_app/.htpasswd',
           'static_attributes' =&gt; array(

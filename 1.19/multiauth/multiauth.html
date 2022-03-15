@@ -129,7 +129,7 @@ cases and then switch to the
  in a text editor, and add an entry for the
 authentication source:
 </p>
-<pre><code>  'example-multi' =&gt; array(
+<pre class="codehilite"><code>  'example-multi' =&gt; array(
       'multiauth:MultiAuth',
 
       /*
@@ -238,7 +238,7 @@ select the correct authentication source.
 <p>
  For example:
 </p>
-<pre><code>  htttps://example.com/service/?source=saml
+<pre class="codehilite"><code>  htttps://example.com/service/?source=saml
 </code></pre>
 <p>
  will take you directly to the SAML authentication source, instead 
@@ -248,7 +248,7 @@ don't have redirections during the authentication process.
 <p>
  You can also use the multiauth:preselect parameter to the login call:
 </p>
-<pre><code>  $as = new \SimpleSAML\Auth\Simple('my-multiauth-authsource');
+<pre class="codehilite"><code>  $as = new \SimpleSAML\Auth\Simple('my-multiauth-authsource');
   $as-&gt;login(array(
       'multiauth:preselect' =&gt; 'default-sp',
   ));
@@ -260,7 +260,7 @@ don't have redirections during the authentication process.
  </code>
  option in the filter:
 </p>
-<pre><code>  'example-multi' =&gt; array(
+<pre class="codehilite"><code>  'example-multi' =&gt; array(
       'multiauth:MultiAuth',
 
       /*

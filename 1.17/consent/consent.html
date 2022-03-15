@@ -101,7 +101,7 @@ IdP hosted metadata.
 filter to run after all attribute mangling filters have completed, to show the 
 user the exact same attributes that are sent to the SP.
 </p>
-<pre><code>* [Read more about processing filters in SimpleSAMLphp](simplesamlphp-authproc)
+<pre class="codehilite"><code>* [Read more about processing filters in SimpleSAMLphp](simplesamlphp-authproc)
 </code></pre>
 <h2 id="how-to-setup-the-consent-module">
  How to setup the consent module
@@ -118,7 +118,7 @@ users. An example of such an attribute is eduPersonPrincipalName.
  </code>
  add the name of the user ID attribute:
 </p>
-<pre><code>'userid.attribute' =&gt; 'uid',
+<pre class="codehilite"><code>'userid.attribute' =&gt; 'uid',
 </code></pre>
 <p>
  If the attribute defined above is not available for a user, an error message 
@@ -133,7 +133,7 @@ sure that you select an attribute that is available to all users.
  file, in the
 consent module:
 </p>
-<pre><code>  touch modules/consent/enable
+<pre class="codehilite"><code>  touch modules/consent/enable
 </code></pre>
 <p>
  The simplest way to setup the consent module is to not use any storage at 
@@ -143,7 +143,7 @@ the user logs in.
 <p>
  Example:
 </p>
-<pre><code>  90 =&gt; array(
+<pre class="codehilite"><code>  90 =&gt; array(
       'class' =&gt; 'consent:Consent',
   ),
 </code></pre>
@@ -175,7 +175,7 @@ cookies as storage you need to set the
 <p>
  Example:
 </p>
-<pre><code>90 =&gt; array(
+<pre class="codehilite"><code>90 =&gt; array(
   'class'   =&gt; 'consent:Consent', 
   'store'   =&gt; 'consent:Cookie', 
 ),
@@ -190,7 +190,7 @@ database.
 <p>
  Here is the initialization SQL script:
 </p>
-<pre><code>CREATE TABLE consent (
+<pre class="codehilite"><code>CREATE TABLE consent (
   consent_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   usage_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   hashed_user_id VARCHAR(80) NOT NULL,
@@ -254,7 +254,7 @@ and defaults to
 <p>
  Example config using PostgreSQL database:
 </p>
-<pre><code>  90 =&gt; array(
+<pre class="codehilite"><code>  90 =&gt; array(
       'class' =&gt; 'consent:Consent', 
       'store' =&gt; array(
           'consent:Database', 
@@ -267,7 +267,7 @@ and defaults to
 <p>
  Example config using MySQL database:
 </p>
-<pre><code>  90 =&gt; array(
+<pre class="codehilite"><code>  90 =&gt; array(
       'class' =&gt; 'consent:Consent', 
       'store' =&gt; array(
           'consent:Database', 
@@ -384,7 +384,7 @@ and defaults to
     If set, this will be shown on the consent page. %SPENTITYID% in the URL 
     will be replaced with the entityID of the service provider.
 </p>
-<pre><code>  This option can be set in 
+<pre class="codehilite"><code>  This option can be set in 
   [SP-remote metadata](./simplesamlphp-reference-sp-remote) and in 
   [IdP-hosted metadata](./simplesamlphp-reference-idp-hosted). The entry in 
   the SP-remote metadata overrides the option in the IdP-hosted metadata.
@@ -432,7 +432,7 @@ more IdPs for a given SP, add the
 <p>
  Disable consent for a given IdP:
 </p>
-<pre><code>  $metadata['https://idp.example.org/'] = array(
+<pre class="codehilite"><code>  $metadata['https://idp.example.org/'] = array(
       [...],
       'consent.disable' =&gt; TRUE,
   );
@@ -440,7 +440,7 @@ more IdPs for a given SP, add the
 <p>
  Disable consent for some SPs connected to a given IdP:
 </p>
-<pre><code>  $metadata['https://idp.example.org/'] = array(
+<pre class="codehilite"><code>  $metadata['https://idp.example.org/'] = array(
       [...],
       'consent.disable' =&gt; array(
           'https://sp1.example.org/',
@@ -451,7 +451,7 @@ more IdPs for a given SP, add the
 <p>
  Disable consent for a given SP:
 </p>
-<pre><code>  $metadata['https://sp.example.org'] = array(
+<pre class="codehilite"><code>  $metadata['https://sp.example.org'] = array(
       [...]
       'consent.disable' =&gt; TRUE,
   ),
@@ -459,7 +459,7 @@ more IdPs for a given SP, add the
 <p>
  Disable consent for some IdPs for a given SP:
 </p>
-<pre><code>  $metadata['https://sp.example.org'] = array(
+<pre class="codehilite"><code>  $metadata['https://sp.example.org'] = array(
       [...]
       'consent.disable' =&gt; array(
           'https://idp1.example.org/',
@@ -477,7 +477,7 @@ for a range of specific entityIds.  Just use an array instead of a flat string
 with the following format (note that flat string and array entries are allowed
 at the same time) :
 </p>
-<pre><code>  $metadata['https://sp.example.org'] = array(
+<pre class="codehilite"><code>  $metadata['https://sp.example.org'] = array(
       [...]
       'consent.disable' =&gt; array(
           'https://idp1.example.org/',
@@ -495,17 +495,17 @@ page. This is done by implementing an attribute array reordering function.
 <p>
  To create this function, you have to create a file named
 </p>
-<pre><code>  hook_attributepresentation.php
+<pre class="codehilite"><code>  hook_attributepresentation.php
 </code></pre>
 <p>
  and place it under the
 </p>
-<pre><code>  &lt;module_name&gt;/hooks
+<pre class="codehilite"><code>  &lt;module_name&gt;/hooks
 </code></pre>
 <p>
  directory. To be found and called, the function must be named
 </p>
-<pre><code>  &lt;module_name&gt;_hook_attributepresentation(&amp;$para).
+<pre class="codehilite"><code>  &lt;module_name&gt;_hook_attributepresentation(&amp;$para).
 </code></pre>
 <p>
  The parameter
@@ -531,7 +531,7 @@ attribute tree.
 <p>
  These values will be listed as an bullet list
 </p>
-<pre><code>  Array (
+<pre class="codehilite"><code>  Array (
       [objectClass] =&gt; Array (
           [0] =&gt; top
           [1] =&gt; person
@@ -542,7 +542,7 @@ attribute tree.
  This array has two child arrays. These will be listed in two separate sub
 tables.
 </p>
-<pre><code>  Array (
+<pre class="codehilite"><code>  Array (
       [child_eduPersonOrgUnitDN] =&gt; Array (
           [0] =&gt; Array (
               [ou] =&gt; Array (

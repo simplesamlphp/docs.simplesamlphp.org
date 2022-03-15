@@ -164,7 +164,7 @@ that are relevant for a service provider in an authnRequest.
 <p>
  Example configuration:
 </p>
-<pre><code>  # Add the IDPList
+<pre class="codehilite"><code>  # Add the IDPList
   'IDPList' =&gt; array(
       'IdPEntityID1',
       'IdPEntityID2',
@@ -187,7 +187,7 @@ not used.
  The RequesterId elements are available from the state array as an array, for
 instance the authenticate method in an authentication source
 </p>
-<pre><code>  $requesterIDs = $state['saml:RequesterID'];
+<pre class="codehilite"><code>  $requesterIDs = $state['saml:RequesterID'];
 </code></pre>
 <h2 id="authenticatingauthority-element">
  AuthenticatingAuthority element
@@ -201,7 +201,7 @@ AuthenticatingAuthority elements.
  The list of authenticating authorities (the AuthenticatingAuthority element) 
 can be retrieved as an array from the authentication data.
 </p>
-<pre><code>  # Get the authentication source.
+<pre class="codehilite"><code>  # Get the authentication source.
   $as = new \SimpleSAML\Auth\Simple();
 
   # Get the AuthenticatingAuthority

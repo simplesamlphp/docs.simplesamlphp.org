@@ -95,7 +95,7 @@
     For more information about how to use the Markdown syntax, read here:
     http://daringfireball.net/projects/markdown/syntax
 -->
-<pre><code>* Author: Timothy Ace [tace@synacor.com](mailto:tace@synacor.com)
+<pre class="codehilite"><code>* Author: Timothy Ace [tace@synacor.com](mailto:tace@synacor.com)
 </code></pre>
 <!-- {{TOC}} -->
 <p>
@@ -122,7 +122,7 @@ the relevant entry in
 <p>
  An example for an IdP:
 </p>
-<pre><code>  &lt;?php
+<pre class="codehilite"><code>  &lt;?php
   $metadata['entity-id-1'] = [
       /* ... */
       'UIInfo' =&gt; [
@@ -171,7 +171,7 @@ the relevant entry in
 <p>
  And for an SP it could look like this:
 </p>
-<pre><code>  &lt;?php
+<pre class="codehilite"><code>  &lt;?php
   $config = [
 
       'default-sp' =&gt; [
@@ -224,7 +224,7 @@ about an IdP or SP. These properties are all children of the
  : Most elements are localized strings that specify the language
 using the array key as the language-code:
 </p>
-<pre><code>          'DisplayName' =&gt; [
+<pre class="codehilite"><code>          'DisplayName' =&gt; [
               'en' =&gt; 'English name',
               'es' =&gt; 'Nombre en Español',
           ],
@@ -235,7 +235,7 @@ using the array key as the language-code:
  </code>
  :   The localized list of names for this entity
 </p>
-<pre><code>          'DisplayName' =&gt; [
+<pre class="codehilite"><code>          'DisplayName' =&gt; [
               'en' =&gt; 'English name',
               'es' =&gt; 'Nombre en Español',
           ],
@@ -246,7 +246,7 @@ using the array key as the language-code:
  </code>
  :   The localized list of statements used to describe this entity
 </p>
-<pre><code>          'Description' =&gt; [
+<pre class="codehilite"><code>          'Description' =&gt; [
               'en' =&gt; 'English description',
               'es' =&gt; 'Descripción en Español',
           ],
@@ -258,7 +258,7 @@ using the array key as the language-code:
  :   A localized list of URLs where more information about the entity is
     located.
 </p>
-<pre><code>          'InformationURL' =&gt; [
+<pre class="codehilite"><code>          'InformationURL' =&gt; [
               'en' =&gt; 'http://example.com/info/en',
               'es' =&gt; 'http://example.com/info/es',
           ],
@@ -270,7 +270,7 @@ using the array key as the language-code:
  :   A localized list of URLs where the entity's privacy statement is
     located.
 </p>
-<pre><code>          'PrivacyStatementURL' =&gt; [
+<pre class="codehilite"><code>          'PrivacyStatementURL' =&gt; [
               'en' =&gt; 'http://example.com/privacy/en',
               'es' =&gt; 'http://example.com/privacy/es',
           ],
@@ -281,7 +281,7 @@ using the array key as the language-code:
  </code>
  :   A localized list of keywords used to describe the entity
 </p>
-<pre><code>          'Keywords' =&gt; [
+<pre class="codehilite"><code>          'Keywords' =&gt; [
               'en' =&gt; ['communication', 'federated session'],
               'es' =&gt; ['comunicación', 'sesión federated'],
           ],
@@ -304,7 +304,7 @@ using the array key as the language-code:
  </code>
  :   The logos used to represent the entity
 </p>
-<pre><code>          'Logo' =&gt; [
+<pre class="codehilite"><code>          'Logo' =&gt; [
               [
                   'url'    =&gt; 'http://example.com/logo1.png',
                   'height' =&gt; 200,
@@ -345,7 +345,7 @@ present an IdP. These properties are all children of the
  :   This is a list of both IPv4 and IPv6 addresses in CIDR notation
     services by or associated with this entity.
 </p>
-<pre><code>          'IPHint' =&gt; ['130.59.0.0/16', '2001:620::0/96'],
+<pre class="codehilite"><code>          'IPHint' =&gt; ['130.59.0.0/16', '2001:620::0/96'],
 </code></pre>
 <p>
  <code>
@@ -354,7 +354,7 @@ present an IdP. These properties are all children of the
  :   This specifies a list of domain names serviced by or associated with
     this entity.
 </p>
-<pre><code>          'DomainHint' =&gt; ['example.com', 'www.example.com'],
+<pre class="codehilite"><code>          'DomainHint' =&gt; ['example.com', 'www.example.com'],
 </code></pre>
 <p>
  <code>
@@ -368,7 +368,7 @@ present an IdP. These properties are all children of the
  </a>
  .
 </p>
-<pre><code>          'GeolocationHint' =&gt; ['geo:47.37328,8.531126', 'geo:19.34343,12.342514'],
+<pre class="codehilite"><code>          'GeolocationHint' =&gt; ['geo:47.37328,8.531126', 'geo:19.34343,12.342514'],
 </code></pre>
 <h2 id="generated-xml-metadata-examples">
  Generated XML Metadata Examples
@@ -376,7 +376,7 @@ present an IdP. These properties are all children of the
 <p>
  If given the following configuration...
 </p>
-<pre><code>  $metadata['https://www.example.com/saml/saml2/idp/metadata.php'] = [
+<pre class="codehilite"><code>  $metadata['https://www.example.com/saml/saml2/idp/metadata.php'] = [
       'host' =&gt; 'www.example.com',
       'certificate' =&gt; 'example.com.crt',
       'privatekey' =&gt; 'example.com.pem',
@@ -426,7 +426,7 @@ present an IdP. These properties are all children of the
 <p>
  ... will generate the following XML metadata:
 </p>
-<pre><code>  &lt;?xml version="1.0"?&gt;
+<pre class="codehilite"><code>  &lt;?xml version="1.0"?&gt;
   &lt;md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:mdattr="urn:oasis:names:tc:SAML:metadata:attribute" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mdui="urn:oasis:names:tc:SAML:metadata:ui" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" entityID="https://www.example.com/saml/saml2/idp/metadata.php"&gt;
     &lt;md:IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"&gt;
       &lt;md:Extensions&gt;

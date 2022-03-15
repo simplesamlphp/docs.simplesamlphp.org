@@ -90,12 +90,104 @@
 </header><h1 id="exception-and-error-handling-in-simplesamlphp">
  Exception and error handling in SimpleSAMLphp
 </h1>
-<!--
-  This file is written in Markdown syntax.
-  For more information about how to use the Markdown syntax, read here:
-  http://daringfireball.net/projects/markdown/syntax
--->
-<!-- {{TOC}} -->
+<div class="toc">
+ <ul>
+  <li>
+   <a href="#exception-and-error-handling-in-simplesamlphp.html">
+    Exception and error handling in SimpleSAMLphp
+   </a>
+   <ul>
+    <li>
+     <a href="#throwing-exceptions.html">
+      Throwing exceptions
+     </a>
+     <ul>
+      <li>
+       <a href="#note.html">
+        Note
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#returning-specific-saml-2-errors.html">
+      Returning specific SAML 2 errors
+     </a>
+     <ul>
+      <li>
+       <a href="#note_1.html">
+        Note
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#converting-saml-2-errors-to-normal-exceptions.html">
+      Converting SAML 2 errors to normal exceptions
+     </a>
+    </li>
+    <li>
+     <a href="#other-protocols.html">
+      Other protocols
+     </a>
+    </li>
+    <li>
+     <a href="#technical-details.html">
+      Technical details
+     </a>
+     <ul>
+      <li>
+       <a href="#simplesamlerrorexception.html">
+        \SimpleSAML\Error\Exception
+       </a>
+       <ul>
+        <li>
+         <a href="#note_2.html">
+          Note
+         </a>
+        </li>
+       </ul>
+      </li>
+      <li>
+       <a href="#simplesamlauthstate.html">
+        \SimpleSAML\Auth\State
+       </a>
+       <ul>
+        <li>
+         <a href="#throwexception.html">
+          throwException
+         </a>
+        </li>
+        <li>
+         <a href="#loadexception.html">
+          loadException
+         </a>
+        </li>
+       </ul>
+      </li>
+      <li>
+       <a href="#simplesamlauthprocessingchain.html">
+        \SimpleSAML\Auth\ProcessingChain
+       </a>
+       <ul>
+        <li>
+         <a href="#note_3.html">
+          Note
+         </a>
+        </li>
+       </ul>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#custom-error-show-function.html">
+      Custom error show function
+     </a>
+    </li>
+   </ul>
+  </li>
+ </ul>
+</div>
 <p>
  This document describes the way errors and exceptions are handled in authentication sources and authentication processing filters.
 The basic goal is to be able to throw an exception during authentication, and then have that exception transported back to the SP in a way that the SP understands.
@@ -129,7 +221,8 @@ The simplest case is if you want to throw it during the
  -method in a processing filter.
 In those methods, you can just throw an exception:
 </p>
-<pre><code>  public function process(&amp;$state) {
+<pre class="codehilite"><code>  public function process(array &amp;$state): void
+  {
       if ($state['something'] === false) {
           throw new \SimpleSAML\Error\Exception('Something is wrong...');
       }
@@ -145,12 +238,11 @@ In those methods, you can just throw an exception:
  </code>
  function:
 </p>
-<pre><code>  &lt;?php
+<pre class="codehilite"><code>  &lt;?php
   $id = $_REQUEST['StateId'];
   $state = \SimpleSAML\Auth\State::loadState($id, 'somestage...');
   \SimpleSAML\Auth\State::throwException($state,
       new \SimpleSAML\Error\Exception('Something is wrong...'));
-  ?&gt;
 </code></pre>
 <p>
  The
@@ -492,7 +584,7 @@ The exception can be located in a field named
  .
 The following code illustrates this behaviour:
 </p>
-<pre><code>  if (array_key_exists(\SimpleSAML\Auth\State::EXCEPTION_PARAM, $_REQUEST)) {
+<pre class="codehilite"><code>  if (array_key_exists(\SimpleSAML\Auth\State::EXCEPTION_PARAM, $_REQUEST)) {
       $state = \SimpleSAML\Auth\State::loadExceptionState();
       $exception = $state[\SimpleSAML\Auth\State::EXCEPTION_DATA];
 
@@ -524,7 +616,7 @@ The result will be delivered directly if it is possible, but if not, it will be 
 <p>
  The code for handling this becomes something like:
 </p>
-<pre><code>  if (array_key_exists(\SimpleSAML\Auth\State::EXCEPTION_PARAM, $_REQUEST)) {
+<pre class="codehilite"><code>  if (array_key_exists(\SimpleSAML\Auth\State::EXCEPTION_PARAM, $_REQUEST)) {
       $state = \SimpleSAML\Auth\State::loadExceptionState();
       $exception = $state[\SimpleSAML\Auth\State::EXCEPTION_DATA];
 
@@ -572,8 +664,9 @@ This is done to be consistent in what the application receives - now it will alw
 <p>
  Example code for this function, which implements the same functionality as \SimpleSAML\Error\Error::show, looks something like:
 </p>
-<pre><code>  public static function show(\SimpleSAML\Configuration $config, array $data) {
-      $t = new \SimpleSAML\XHTML\Template($config, 'error.php', 'errors');
+<pre class="codehilite"><code>  public static function show(\SimpleSAML\Configuration $config, array $data)
+  {
+      $t = new \SimpleSAML\XHTML\Template($config, 'error.twig', 'errors');
       $t-&gt;data = array_merge($t-&gt;data, $data);
       $t-&gt;send();
       exit;

@@ -149,7 +149,7 @@ To do this, we open
  . Create the file if it does not exist.
 If you create the file, it should look like this:
 </p>
-<pre><code>  &lt;?php
+<pre class="codehilite"><code>  &lt;?php
   $config = array(
       /* Here we can add entries for authentication sources we want to use. */
   );
@@ -158,7 +158,7 @@ If you create the file, it should look like this:
  We are going to add an entry to this file.
 The entry should look something like this:
 </p>
-<pre><code>  'default-sp' =&gt; array(
+<pre class="codehilite"><code>  'default-sp' =&gt; array(
       'saml:SP',
 
       /*
@@ -292,12 +292,12 @@ Instead, you should include
 <p>
  This means that you replace lines like:
 </p>
-<pre><code>  require_once('.../simplesamlphp/www/_include.php');
+<pre class="codehilite"><code>  require_once('.../simplesamlphp/www/_include.php');
 </code></pre>
 <p>
  with:
 </p>
-<pre><code>  require_once('.../simplesamlphp/lib/_autoload.php');
+<pre class="codehilite"><code>  require_once('.../simplesamlphp/lib/_autoload.php');
 </code></pre>
 <p>
  <code>
@@ -314,7 +314,7 @@ This makes it possible to access the classes from your application.
  If you load any SimpleSAMLphp class files directly, you should remove those lines.
 That means that you should remove lines like the following:
 </p>
-<pre><code>  require_once('SimpleSAML/Utilities.php');
+<pre class="codehilite"><code>  require_once('SimpleSAML/Utilities.php');
   require_once('SimpleSAML/Session.php');
   require_once('SimpleSAML/XHTML/Template.php');
 </code></pre>
@@ -331,7 +331,7 @@ This API is designed to handle the common operations.
 <p>
  This is a quick overview of the API:
 </p>
-<pre><code>  /* Get a reference to our authentication source. */
+<pre class="codehilite"><code>  /* Get a reference to our authentication source. */
   $as = new \SimpleSAML\Auth\Simple('default-sp');
 
   /* Require the user to be authentcated. */
@@ -361,13 +361,13 @@ This API is designed to handle the common operations.
 <p>
  Generally, if you have:
 </p>
-<pre><code>  $config = SimpleSAML_Configuration::getInstance();
+<pre class="codehilite"><code>  $config = SimpleSAML_Configuration::getInstance();
   $session = SimpleSAML_Session::getSessionFromRequest();
 </code></pre>
 <p>
  you should replace it with this single line:
 </p>
-<pre><code>  $as = new \SimpleSAML\Auth\Simple('default-sp');
+<pre class="codehilite"><code>  $as = new \SimpleSAML\Auth\Simple('default-sp');
 </code></pre>
 <h4 id="requiring-authentication">
  Requiring authentication
@@ -375,7 +375,7 @@ This API is designed to handle the common operations.
 <p>
  Blocks of code like the following:
 </p>
-<pre><code>  /* Check if valid local session exists.. */
+<pre class="codehilite"><code>  /* Check if valid local session exists.. */
   if (!isset($session) || !$session-&gt;isValid('saml2') ) {
     SimpleSAML_Utilities::redirect(
       '/' . $config-&gt;getBaseURL() .
@@ -391,7 +391,7 @@ This API is designed to handle the common operations.
  </code>
  :
 </p>
-<pre><code>  $as-&gt;requireAuth();
+<pre class="codehilite"><code>  $as-&gt;requireAuth();
 </code></pre>
 <h4 id="fetching-attributes">
  Fetching attributes
@@ -399,12 +399,12 @@ This API is designed to handle the common operations.
 <p>
  Where you previously called:
 </p>
-<pre><code>  $session-&gt;getAttributes();
+<pre class="codehilite"><code>  $session-&gt;getAttributes();
 </code></pre>
 <p>
  you should now call:
 </p>
-<pre><code>  $as-&gt;getAttributes();
+<pre class="codehilite"><code>  $as-&gt;getAttributes();
 </code></pre>
 <h4 id="logging-out">
  Logging out
@@ -412,7 +412,7 @@ This API is designed to handle the common operations.
 <p>
  Redirecting to the initSLO-script:
 </p>
-<pre><code>  SimpleSAML_Utilities::redirect(
+<pre class="codehilite"><code>  SimpleSAML_Utilities::redirect(
       '/' . $config-&gt;getBaseURL() .
       'saml2/sp/initSLO.php',
       array('RelayState' =&gt; SimpleSAML_Utilities::selfURL())
@@ -425,12 +425,12 @@ This API is designed to handle the common operations.
  </code>
  :
 </p>
-<pre><code>  $as-&gt;logout();
+<pre class="codehilite"><code>  $as-&gt;logout();
 </code></pre>
 <p>
  If you want to return to a specific URL after logging out, you should include that URL as a parameter to the logout function:
 </p>
-<pre><code>  $as-&gt;logout('https://example.org/');
+<pre class="codehilite"><code>  $as-&gt;logout('https://example.org/');
 </code></pre>
 <p>
  Please make sure the URL is trusted. If you obtain the URL from the user input, make sure it is trusted before
@@ -448,7 +448,7 @@ The URL to the new script is
  .
 It has two mandatory parameters:
 </p>
-<pre><code>* `AuthId`: The id of the authentication source.
+<pre class="codehilite"><code>* `AuthId`: The id of the authentication source.
 * `ReturnTo`: The URL the user should be redirected to after authentication.
 </code></pre>
 <h4 id="logout-link">
@@ -463,7 +463,7 @@ The URL to the new script is
  .
 It has two mandatory parameters:
 </p>
-<pre><code>* `AuthId`: The id of the authentication source.
+<pre class="codehilite"><code>* `AuthId`: The id of the authentication source.
 * `ReturnTo`: The URL the user should be redirected to after logout.
 </code></pre>
 <h2 id="test-the-application">
@@ -485,7 +485,7 @@ It has two mandatory parameters:
  If you use a SimpleSAMLphp IdP, and you want users to be able to bookmark the login page, you need to test IdP initiated login.
 To test IdP initiated login from a SimpleSAMLphp IdP, you can access:
 </p>
-<pre><code>  https://.../simplesaml/saml2/idp/SSOService.php?spentityid=&lt;entity ID of your SP&gt;&amp;RelayState=&lt;URL the user should be sent to after login&gt;
+<pre class="codehilite"><code>  https://.../simplesaml/saml2/idp/SSOService.php?spentityid=&lt;entity ID of your SP&gt;&amp;RelayState=&lt;URL the user should be sent to after login&gt;
 </code></pre>
 <p>
  Note that the RelayState parameter is only supported if the IdP runs version 1.5 of SimpleSAMLphp.

@@ -99,17 +99,17 @@
 <p>
  Go to the directory where you want to install SimpleSAMLphp:
 </p>
-<pre><code>  cd /var
+<pre class="codehilite"><code>  cd /var
 </code></pre>
 <p>
  Then do a git clone:
 </p>
-<pre><code>  git clone git@github.com:simplesamlphp/simplesamlphp.git simplesamlphp
+<pre class="codehilite"><code>  git clone git@github.com:simplesamlphp/simplesamlphp.git simplesamlphp
 </code></pre>
 <p>
  Initialize configuration and metadata:
 </p>
-<pre><code>  cd /var/simplesamlphp
+<pre class="codehilite"><code>  cd /var/simplesamlphp
   cp -r config-templates/* config/
   cp -r metadata-templates/* metadata/
 </code></pre>
@@ -121,7 +121,7 @@
  to get detailed
 instructions on how to install Composer itself):
 </p>
-<pre><code>  php composer.phar install
+<pre class="codehilite"><code>  php composer.phar install
 </code></pre>
 <h2 id="upgrading">
  Upgrading
@@ -129,12 +129,12 @@ instructions on how to install Composer itself):
 <p>
  Go to the root directory of your SimpleSAMLphp installation:
 </p>
-<pre><code>  cd /var/simplesamlphp
+<pre class="codehilite"><code>  cd /var/simplesamlphp
 </code></pre>
 <p>
  Ask git to update to the latest version:
 </p>
-<pre><code>  git fetch origin
+<pre class="codehilite"><code>  git fetch origin
   git pull origin master
 </code></pre>
 <p>
@@ -144,7 +144,7 @@ instructions on how to install Composer itself):
  </a>
  ):
 </p>
-<pre><code>  php composer.phar install
+<pre class="codehilite"><code>  php composer.phar install
 </code></pre>
 <h2 id="migrating-from-subversion">
  Migrating from Subversion

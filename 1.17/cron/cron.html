@@ -121,7 +121,7 @@ job that calls a hook in SimpleSAMLphp.  This will invoke
  </code>
  directory.
 </p>
-<pre><code>[root@simplesamlphp] cd /var/simplesamlphp
+<pre class="codehilite"><code>[root@simplesamlphp] cd /var/simplesamlphp
 [root@simplesamlphp simplesamlphp] touch modules/cron/enable
 [root@simplesamlphp simplesamlphp] cp modules/cron/config-templates/*.php config/
 </code></pre>
@@ -135,7 +135,7 @@ job that calls a hook in SimpleSAMLphp.  This will invoke
  </code>
  ) should look similar to this:
 </p>
-<pre><code>$config = array (
+<pre class="codehilite"><code>$config = array (
        'key' =&gt; 'RANDOM_KEY',
        'allowed_tags' =&gt; array('daily', 'hourly', 'frequent'),
        'debug_message' =&gt; TRUE,
@@ -184,7 +184,7 @@ your SimpleSAMLphp installation.
 <p>
  Now, copy the cron configuration suggested on that page:
 </p>
-<pre><code># Run cron [daily]
+<pre class="codehilite"><code># Run cron [daily]
 02 0 * * * curl --silent "https://YOUR_SERVER/simplesaml/module.php/cron/cron.php?key=RANDOM_KEY&amp;tag=daily" &gt; /dev/null 2&gt;&amp;1
 # Run cron [hourly]
 01 * * * * curl --silent "https://YOUR_SERVER/simplesaml/module.php/cron/cron.php?key=RANDOM_KEY&amp;tag=hourly" &gt; /dev/null 2&gt;&amp;1
@@ -192,7 +192,7 @@ your SimpleSAMLphp installation.
 <p>
  Finally, add it to your crontab by going back to the terminal, and editing with:
 </p>
-<pre><code>[root@simplesamlphp config]# crontab -e
+<pre class="codehilite"><code>[root@simplesamlphp config]# crontab -e
 </code></pre>
 <p>
  This will open up your favourite editor. If an editor different than
@@ -202,7 +202,7 @@ the one you use normally appears, exit, and configure the
  </code>
  variable to tell the command line which editor it should use:
 </p>
-<pre><code>[root@simplesamlphp config]# export EDITOR=emacs
+<pre class="codehilite"><code>[root@simplesamlphp config]# export EDITOR=emacs
 </code></pre>
 <p>
  If you want to trigger a job manually, you can do
@@ -287,15 +287,10 @@ logging configuration from
   to lower the priority below that of web server processes
  </li>
 </ul>
-<p>
- ```bash
-su -s "/bin/sh" \
+<pre class="codehilite"><code class="language-bash">su -s "/bin/sh" \
    -c "nice -n 10 \
        php -d max_execution_time=120 -d memory_limit=600M \
        /var/simplesamlphp/modules/cron/bin/cron.php -t hourly" \
     apache
-</p>
-<p>
- ```
-</p></body>
+</code></pre></body>
 </html>

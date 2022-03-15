@@ -110,7 +110,7 @@ validation. For now there is only one authentication source:
 stores it in the environment variable SSL_CLIENT_CERT. This can be achieved
 with such a configuration:
 </p>
-<pre><code>  SSLEngine on
+<pre class="codehilite"><code>  SSLEngine on
   SSLCertificateFile /etc/openssl/certs/server.crt
   SSLCertificateKeyFile /etc/openssl/private/server.key
   SSLCACertificateFile /etc/openssl/certs/ca.crt
@@ -136,13 +136,13 @@ with different IP address/port combinations.
 <p>
  The first thing you need to do is to enable the module:
 </p>
-<pre><code>  touch modules/authX509/enable
+<pre class="codehilite"><code>  touch modules/authX509/enable
 </code></pre>
 <p>
  Then you must add it as an authentication source. Here is an
 example authsources.php entry:
 </p>
-<pre><code>  'x509' =&gt; array(
+<pre class="codehilite"><code>  'x509' =&gt; array(
       'authX509:X509userCert',
       'hostname' =&gt; 'ldaps://ldap.example.net',
       'enable_tls' =&gt; false,
@@ -180,12 +180,12 @@ two options:
  Certificates are usually stored in LDAP as DER, in binary. Here is
 how to convert from PEM to DER:
 </p>
-<pre><code>  openssl x509 -in cert.pem -inform PEM -outform DER -out cert.der
+<pre class="codehilite"><code>  openssl x509 -in cert.pem -inform PEM -outform DER -out cert.der
 </code></pre>
 <p>
  Here is some LDIF to upload the certificate in the directory:
 </p>
-<pre><code>  dn: uid=jdoe,dc=example,dc=net
+<pre class="codehilite"><code>  dn: uid=jdoe,dc=example,dc=net
   changetype: modify
   add: userCertificate;binary
   userCertificate;binary:&lt; file:///path/to/cert.der
@@ -197,7 +197,7 @@ how to convert from PEM to DER:
  In your Apache configuration, set SSLVerifyClient to optional. Then you
 can hack your metadata/saml20-idp-hosted.php file that way:
 </p>
-<pre><code>  $auth_source = empty($_SERVER['SSL_CLIENT_CERT']) ? 'ldap' : 'x509';
+<pre class="codehilite"><code>  $auth_source = empty($_SERVER['SSL_CLIENT_CERT']) ? 'ldap' : 'x509';
   $metadata = array(
       '__DYNAMIC:1__' =&gt; array(
           'host'          =&gt;      '__DEFAULT__',
@@ -220,7 +220,7 @@ can hack your metadata/saml20-idp-hosted.php file that way:
 <p>
  Example:
 </p>
-<pre><code>   10 =&gt; array(
+<pre class="codehilite"><code>   10 =&gt; array(
        'class' =&gt; 'authX509:ExpiryWarning',
        'warndaysbefore' =&gt; '30',
        'renewurl' =&gt; 'https://myca.com/renew',

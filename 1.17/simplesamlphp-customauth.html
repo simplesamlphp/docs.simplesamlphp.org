@@ -123,7 +123,7 @@ It will be located under
 <p>
  First we need to create the module directory:
 </p>
-<pre><code>  cd modules
+<pre class="codehilite"><code>  cd modules
   mkdir mymodule
 </code></pre>
 <p>
@@ -143,7 +143,7 @@ We do that by copying the
  </code>
  module.
 </p>
-<pre><code>  cd mymodule
+<pre class="codehilite"><code>  cd mymodule
   cp ../core/default-enable .
 </code></pre>
 <p>
@@ -173,7 +173,7 @@ Create the file
  </code>
  with the following contents:
 </p>
-<pre><code>  &lt;?php
+<pre class="codehilite"><code>  &lt;?php
   class MyAuth extends \SimpleSAML\Module\core\Auth\UserPassBase {
       protected function login($username, $password) {
           if ($username !== 'theusername' || $password !== 'thepassword') {
@@ -190,7 +190,7 @@ Create the file
 <p>
  Some things to note:
 </p>
-<pre><code>- The classname is `\SimpleSAML\Module\mymodule\Auth\Source\MyAuth`.
+<pre class="codehilite"><code>- The classname is `\SimpleSAML\Module\mymodule\Auth\Source\MyAuth`.
   This tells SimpleSAMLphp to look for the class in `modules/mymodule/lib/Auth/Source/MyAuth.php`.
 
 - Our authentication source subclassese `\SimpleSAML\Module\core\Auth\UserPassBase`.
@@ -221,14 +221,14 @@ Create the file
 <p>
  The entry looks like this:
 </p>
-<pre><code>  'myauthinstance' =&gt; [
+<pre class="codehilite"><code>  'myauthinstance' =&gt; [
       'mymodule:MyAuth',
   ],
 </code></pre>
 <p>
  You can add it to the beginning of the list, so that the file looks something like this:
 </p>
-<pre><code>  &lt;?php
+<pre class="codehilite"><code>  &lt;?php
   $config = [
       'myauthinstance' =&gt; [
           'mymodule:MyAuth',
@@ -309,7 +309,7 @@ In that file you should locate the
  </code>
  :
 </p>
-<pre><code>  &lt;?php
+<pre class="codehilite"><code>  &lt;?php
   /* ... */
   $metadata['__DYNAMIC:1__'] = [
       /* ... */
@@ -339,14 +339,14 @@ We are now going to extend our authentication source to allow us to configure th
 <p>
  First, we need to define the properties in the class that should hold our configuration:
 </p>
-<pre><code>  private $username;
+<pre class="codehilite"><code>  private $username;
   private $password;
 </code></pre>
 <p>
  Next, we create a constructor for the class.
 The constructor is responsible for parsing the configuration and storing it in the properties.
 </p>
-<pre><code>  public function __construct($info, $config) {
+<pre class="codehilite"><code>  public function __construct($info, $config) {
       parent::__construct($info, $config);
       if (!is_string($config['username'])) {
           throw new Exception('Missing or invalid username option in config.');
@@ -366,7 +366,7 @@ The constructor is responsible for parsing the configuration and storing it in t
  function.
 The complete class file should look like this:
 </p>
-<pre><code>  &lt;?php
+<pre class="codehilite"><code>  &lt;?php
   class MyAuth extends \SimpleSAML\Module\core\Auth\UserPassBase {
 
       private $username;
@@ -404,7 +404,7 @@ The complete class file should look like this:
  </code>
  with the configuration options:
 </p>
-<pre><code>  'myauthinstance' =&gt; [
+<pre class="codehilite"><code>  'myauthinstance' =&gt; [
       'mymodule:MyAuth',
       'username' =&gt; 'theconfigusername',
       'password' =&gt; 'theconfigpassword',
@@ -430,7 +430,7 @@ What follows is an example of an authentication source that fetches an user from
 <p>
  This code assumes that the database contains a table that looks like this:
 </p>
-<pre><code>  CREATE TABLE userdb (
+<pre class="codehilite"><code>  CREATE TABLE userdb (
       username VARCHAR(32) PRIMARY KEY NOT NULL,
       password_hash VARCHAR(64) NOT NULL,
       full_name TEXT NOT NULL);
@@ -438,7 +438,7 @@ What follows is an example of an authentication source that fetches an user from
 <p>
  An example user (with password "secret"):
 </p>
-<pre><code>  INSERT INTO userdb (username, password_hash, full_name)
+<pre class="codehilite"><code>  INSERT INTO userdb (username, password_hash, full_name)
       VALUES('exampleuser', 'QwVYkvlrAMsXIgULyQ/pDDwDI3dF2aJD4XeVxg==', 'Example User');
 </code></pre>
 <p>
@@ -449,7 +449,7 @@ What follows is an example of an authentication source that fetches an user from
  contains a base64 encoded SSHA password.
 A SSHA password is created like this:
 </p>
-<pre><code>  $password = 'secret';
+<pre class="codehilite"><code>  $password = 'secret';
   $numSalt = 8; /* Number of bytes with salt. */
   $salt = '';
   for ($i = 0; $i &lt; $numSalt; $i++) {
@@ -461,7 +461,7 @@ A SSHA password is created like this:
 <p>
  The class follows:
 </p>
-<pre><code>  &lt;?php
+<pre class="codehilite"><code>  &lt;?php
   class MyAuth extends \SimpleSAML\Module\core\Auth\UserPassBase {
 
       /* The database DSN.
@@ -570,7 +570,7 @@ A SSHA password is created like this:
  </code>
  :
 </p>
-<pre><code>  'myauthinstance' =&gt; [
+<pre class="codehilite"><code>  'myauthinstance' =&gt; [
       'mymodule:MyAuth',
       'dsn' =&gt; 'mysql:host=sql.example.org;dbname=userdatabase',
       'username' =&gt; 'db_username',

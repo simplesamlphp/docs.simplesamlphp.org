@@ -133,7 +133,7 @@ server with all the users. To create an LDAP authentication source, open
  in a text editor, and add an entry for the
 authentication source:
 </p>
-<pre><code>'example-ldap' =&gt; array(
+<pre class="codehilite"><code>'example-ldap' =&gt; array(
   'ldap:LDAP',
 
   /* The hostname of the LDAP server. */
@@ -345,7 +345,7 @@ This enables the builtin LDAP failover in OpenLDAP.
 To avoid a very long wait, it is recommended to change the timeouts.
 This can be done in the system-wide ldap configuration file.
 </p>
-<pre><code>  NETWORK_TIMEOUT 10
+<pre class="codehilite"><code>  NETWORK_TIMEOUT 10
   TIMELIMIT       15
   TIMEOUT         20
 </code></pre>
@@ -356,7 +356,7 @@ This can be done in the system-wide ldap configuration file.
 <h4 id="example">
  Example
 </h4>
-<pre><code>  /* Configuration that uses two ldap servers. */
+<pre class="codehilite"><code>  /* Configuration that uses two ldap servers. */
   'example-ldap' =&gt; array(
       'ldap:LDAP',
       /* The hostname of the LDAP server. */
@@ -379,7 +379,7 @@ authentication module, open
  in a text editor,
 and add an entry which uses this module:
 </p>
-<pre><code>'example-ldapmulti' =&gt; array(
+<pre class="codehilite"><code>'example-ldapmulti' =&gt; array(
   'ldap:LDAPMulti',
 
   /*
@@ -464,7 +464,7 @@ and will be shown to the user in a dropdown list on the login page.
  -option can also be an array with descriptions in
 different languages:
 </p>
-<pre><code>'description' =&gt; array(
+<pre class="codehilite"><code>'description' =&gt; array(
   'en' =&gt; 'Employees',
   'no' =&gt; 'Ansatte',
 ),
@@ -489,7 +489,7 @@ an LDAP directory. In addition to all the configuration options available
 in the ldap:AttributeAddUsersGroups filter (below), these are the filter
 specific configuration options:
 </p>
-<pre><code>50 = array(
+<pre class="codehilite"><code>50 = array(
   'class' =&gt; 'ldap:AttributeAddFromLDAP',
 
   /**
@@ -552,7 +552,7 @@ style is deprecated now and will be removed in 2.0.
 authsource for all LDAP connection information and queries LDAP for
 the specific attributes requested.
 </p>
-<pre><code>50 =&gt; array(
+<pre class="codehilite"><code>50 =&gt; array(
   'class' =&gt; 'ldap:AttributeAddFromLDAP',
   'authsource' =&gt; 'example-ldap',
   'attributes' =&gt; array('displayName' =&gt; 'cn', 'jpegPhoto'),
@@ -564,7 +564,7 @@ the specific attributes requested.
 using the filter configuration. Note: Not all of the options below are
 required, see the config options for ldap:AttributeAddFromLDAP above.
 </p>
-<pre><code>50 =&gt; array(
+<pre class="codehilite"><code>50 =&gt; array(
   'class' =&gt; 'ldap:AttributeAddFromLDAP',
   'ldap.hostname' =&gt; 'ldap.example.org',
   'ldap.username' =&gt; 'CN=LDAP User,CN=Users,DC=example,DC=org',
@@ -588,7 +588,7 @@ checking the hierarchy for all groups the user would technically be
 a member of. This can be helpful for other filters to know. Below is
 a listing of all configuration options and their details.
 </p>
-<pre><code>50 =&gt; array(
+<pre class="codehilite"><code>50 =&gt; array(
   'class' =&gt; 'ldap:AttributeAddUsersGroups',
 
 
@@ -779,7 +779,7 @@ a listing of all configuration options and their details.
 authsource for all LDAP connection information and manually search
 the hierarchy for the users group memberships.
 </p>
-<pre><code>50 =&gt; array(
+<pre class="codehilite"><code>50 =&gt; array(
   'class' =&gt; 'ldap:AttributeAddUsersGroups',
   'authsource' =&gt; 'example-ldap'
 )
@@ -788,7 +788,7 @@ the hierarchy for the users group memberships.
  By making one small change we can optimize the filter to use better
 group search methods and eliminate un-needed LDAP queries.
 </p>
-<pre><code>50 =&gt; array(
+<pre class="codehilite"><code>50 =&gt; array(
   'class' =&gt; 'ldap:AttributeAddUsersGroups',
   'authsource' =&gt; 'example-ldap',
   'ldap.product' =&gt; 'ActiveDirectory'
@@ -799,7 +799,7 @@ group search methods and eliminate un-needed LDAP queries.
 using the filter configuration. Note: Not all of the options below are
 required, see the config info above for details.
 </p>
-<pre><code>50 =&gt; array(
+<pre class="codehilite"><code>50 =&gt; array(
   'class' =&gt; 'ldap:AttributeAddUsersGroups',
   'ldap.hostname' =&gt; 'ldap.example.org',
   'ldap.username' =&gt; 'CN=LDAP User,CN=Users,DC=example,DC=org',
@@ -823,7 +823,7 @@ Intention is to filter in
  </code>
  (=name of the group).
 </p>
-<pre><code>  50 =&gt; array(
+<pre class="codehilite"><code>  50 =&gt; array(
       'class' =&gt; 'ldap:AttributeAddUsersGroups',
       'ldap.product' =&gt; 'OpenLDAP',
       'ldap.basedn' =&gt; 'ou=groups,dc=example,dc=org',

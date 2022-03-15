@@ -90,7 +90,127 @@
 </header><h1 id="simplesamlphp-installation-and-configuration">
  SimpleSAMLphp Installation and Configuration
 </h1>
-<!-- {{TOC}} -->
+<div class="toc">
+ <ul>
+  <li>
+   <a href="#simplesamlphp-installation-and-configuration.html">
+    SimpleSAMLphp Installation and Configuration
+   </a>
+   <ul>
+    <li>
+     <a href="#prerequisites.html">
+      Prerequisites
+     </a>
+    </li>
+    <li>
+     <a href="#download-and-install-simplesamlphp.html">
+      Download and install SimpleSAMLphp
+     </a>
+    </li>
+    <li>
+     <a href="#upgrading-from-a-previous-version-of-simplesamlphp.html">
+      Upgrading from a previous version of SimpleSAMLphp
+     </a>
+     <ul>
+      <li>
+       <a href="#upgrading-configuration-files.html">
+        Upgrading configuration files
+       </a>
+      </li>
+      <li>
+       <a href="#upgrading-metadata-files.html">
+        Upgrading metadata files
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#configuration.html">
+      Configuration
+     </a>
+     <ul>
+      <li>
+       <a href="#location-of-configuration-files.html">
+        Location of configuration files
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#configuring-apache.html">
+      Configuring Apache
+     </a>
+    </li>
+    <li>
+     <a href="#configuring-nginx.html">
+      Configuring Nginx
+     </a>
+    </li>
+    <li>
+     <a href="#simplesamlphp-configuration-configphp.html">
+      SimpleSAMLphp configuration: config.php
+     </a>
+    </li>
+    <li>
+     <a href="#configuring-php.html">
+      Configuring PHP
+     </a>
+     <ul>
+      <li>
+       <a href="#sending-e-mails-from-php.html">
+        Sending e-mails from PHP
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#enabling-and-disabling-modules.html">
+      Enabling and disabling modules
+     </a>
+    </li>
+    <li>
+     <a href="#the-simplesamlphp-admin-interface.html">
+      The SimpleSAMLphp admin interface
+     </a>
+     <ul>
+      <li>
+       <a href="#check-your-php-environment.html">
+        Check your PHP environment
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#building-assets.html">
+      Building assets
+     </a>
+    </li>
+    <li>
+     <a href="#next-steps.html">
+      Next steps
+     </a>
+    </li>
+    <li>
+     <a href="#support.html">
+      Support
+     </a>
+    </li>
+    <li>
+     <a href="#appendix-installing-simplesamlphp-in-alternative-locations.html">
+      Appendix: Installing SimpleSAMLphp in alternative locations
+     </a>
+     <ul>
+      <li>
+       <a href="#tip.html">
+        Tip
+       </a>
+      </li>
+     </ul>
+    </li>
+   </ul>
+  </li>
+ </ul>
+</div>
 <p>
  This document is part of the SimpleSAMLphp documentation suite.
 </p>
@@ -256,13 +376,10 @@ repository
 <p>
  Go to the directory where you want to install SimpleSAMLphp and extract the archive file you just downloaded:
 </p>
-<p>
- <code>
-  cd /var
+<pre class="codehilite"><code>    cd /var
     tar xzf simplesamlphp-x.y.z.tar.gz
     mv simplesamlphp-x.y.z simplesamlphp
- </code>
-</p>
+</code></pre>
 <h2 id="upgrading-from-a-previous-version-of-simplesamlphp">
  Upgrading from a previous version of SimpleSAMLphp
 </h2>
@@ -277,24 +394,18 @@ changes.
 <p>
  Extract the new version:
 </p>
-<p>
- <code>
-  cd /var
+<pre class="codehilite"><code>    cd /var
     tar xzf simplesamlphp-x.y.z.tar.gz
- </code>
-</p>
+</code></pre>
 <p>
  Copy the configuration files from the previous version (in case the configuration directory is inside SimpleSAMLphp,
 keep reading for other alternatives):
 </p>
-<p>
- <code>
-  cd /var/simplesamlphp-x.y.z
+<pre class="codehilite"><code>    cd /var/simplesamlphp-x.y.z
     rm -rf config metadata
     cp -rv ../simplesamlphp/config config
     cp -rv ../simplesamlphp/metadata metadata
- </code>
-</p>
+</code></pre>
 <p>
  If you have installed any
  <a href="https://simplesamlphp.org/modules">
@@ -310,13 +421,10 @@ you should check whether your third-party modules need upgrading and then copy o
 <p>
  Replace the old version with the new version:
 </p>
-<p>
- <code>
-  cd /var
+<pre class="codehilite"><code>    cd /var
     mv simplesamlphp simplesamlphp.old
     mv simplesamlphp-x.y.z simplesamlphp
- </code>
-</p>
+</code></pre>
 <p>
  If the format of the config files or metadata has changed from your previous version of SimpleSAMLphp (check the
 upgrade notes), you may have to update your configuration and metadata after updating the SimpleSAMLphp code.
@@ -414,25 +522,19 @@ one possible configuration.
  Find the Apache configuration file for the virtual hosts where you want to run SimpleSAMLphp. The configuration may
 look like this:
 </p>
-<p>
- ```
- <virtualhost *="">
-  ServerName service.example.com
+<pre class="codehilite"><code>    &lt;VirtualHost *&gt;
+            ServerName service.example.com
             DocumentRoot /var/www/service.example.com
- </virtualhost>
-</p>
-<pre><code>          SetEnv SIMPLESAMLPHP_CONFIG_DIR /var/simplesamlphp/config
 
-          Alias /simplesaml /var/simplesamlphp/www
+            SetEnv SIMPLESAMLPHP_CONFIG_DIR /var/simplesamlphp/config
 
-          &lt;Directory /var/simplesamlphp/www&gt;
-              Require all granted
-          &lt;/Directory&gt;
-  &lt;/VirtualHost&gt;
+            Alias /simplesaml /var/simplesamlphp/www
+
+            &lt;Directory /var/simplesamlphp/www&gt;
+                Require all granted
+            &lt;/Directory&gt;
+    &lt;/VirtualHost&gt;
 </code></pre>
-<p>
- ```
-</p>
 <p>
  Note the
  <code>
@@ -468,15 +570,12 @@ Here is an example of how this configuration may look like in
  </code>
  :
 </p>
-<p>
- <code>
-  $config = [
+<pre class="codehilite"><code>$config = [
     [...]
     'baseurlpath' =&gt; 'simplesaml/',
     [...]
 ]
- </code>
-</p>
+</code></pre>
 <p>
  Note also the
  <code>
@@ -546,36 +645,31 @@ one possible configuration.
  Find the Nginx configuration file for the virtual hosts where you want to run SimpleSAMLphp. The configuration may
 look like this:
 </p>
-<p>
- ```
-    server {
+<pre class="codehilite"><code>    server {
         listen 443 ssl;
         server_name idp.example.com;
-</p>
-<pre><code>      ssl_certificate        /etc/pki/tls/certs/idp.example.com.crt;
-      ssl_certificate_key    /etc/pki/tls/private/idp.example.com.key;
-      ssl_protocols          TLSv1.3 TLSv1.2;
-      ssl_ciphers            EECDH+AESGCM:EDH+AESGCM;
 
-      location ^~ /simplesaml {
-          alias /var/simplesamlphp/www;
+        ssl_certificate        /etc/pki/tls/certs/idp.example.com.crt;
+        ssl_certificate_key    /etc/pki/tls/private/idp.example.com.key;
+        ssl_protocols          TLSv1.3 TLSv1.2;
+        ssl_ciphers            EECDH+AESGCM:EDH+AESGCM;
 
-          location ~^(?&lt;prefix&gt;/simplesaml)(?&lt;phpfile&gt;.+?\.php)(?&lt;pathinfo&gt;/.*)?$ {
-              include          fastcgi_params;
-              fastcgi_pass     $fastcgi_pass;
-              fastcgi_param SCRIPT_FILENAME $document_root$phpfile;
+        location ^~ /simplesaml {
+            alias /var/simplesamlphp/www;
 
-              # Must be prepended with the baseurlpath
-              fastcgi_param SCRIPT_NAME /simplesaml$phpfile;
+            location ~^(?&lt;prefix&gt;/simplesaml)(?&lt;phpfile&gt;.+?\.php)(?&lt;pathinfo&gt;/.*)?$ {
+                include          fastcgi_params;
+                fastcgi_pass     $fastcgi_pass;
+                fastcgi_param SCRIPT_FILENAME $document_root$phpfile;
 
-              fastcgi_param PATH_INFO $pathinfo if_not_empty;
-          }
-      }
-  }
+                # Must be prepended with the baseurlpath
+                fastcgi_param SCRIPT_NAME /simplesaml$phpfile;
+
+                fastcgi_param PATH_INFO $pathinfo if_not_empty;
+            }
+        }
+    }
 </code></pre>
-<p>
- ```
-</p>
 <h2 id="simplesamlphp-configuration-configphp">
  SimpleSAMLphp configuration: config.php
 </h2>
@@ -782,15 +876,12 @@ For more advanced configuration, including using a remote SMTP server, see the
  If you want to enable some of the modules that are installed with SimpleSAMLphp, but are disabled by default, you 
 can do that in the configuration:
 </p>
-<p>
- <code>
-  'module.enable' =&gt; [
+<pre class="codehilite"><code>    'module.enable' =&gt; [
          'exampleauth' =&gt; true, // Setting to TRUE enables.
          'saml' =&gt; false, // Setting to FALSE disables.
          'core' =&gt; null, // Unset or NULL uses default for this module.
     ],
- </code>
-</p>
+</code></pre>
 <p>
  Set to
  <code>
@@ -828,7 +919,7 @@ can do that in the configuration:
  After installing SimpleSAMLphp, you can access the homepage of your installation, which by default does
 not show much information:
 </p>
-<pre><code>  https://service.example.org/simplesaml/
+<pre class="codehilite"><code>  https://service.example.org/simplesaml/
 </code></pre>
 <p>
  The exact URL depends on how you set it up with your web server, and of course on your hostname.
@@ -838,7 +929,7 @@ If this works, you can now also acceas the admin module by adding
  </code>
  to your base URL:
 </p>
-<pre><code>  https://service.example.org/simplesaml/admin/
+<pre class="codehilite"><code>  https://service.example.org/simplesaml/admin/
 </code></pre>
 <p>
  <strong>
@@ -867,12 +958,9 @@ extensions or external PHP packages (e.g. you need the PHP LDAP extension to use
 <p>
  Run the following commands to build the default theme.
 </p>
-<p>
- <code>
-  npm install
+<pre class="codehilite"><code>npm install
 npm run build
- </code>
-</p>
+</code></pre>
 <h2 id="next-steps">
  Next steps
 </h2>
@@ -1082,7 +1170,7 @@ just created in your
   <p>
    Now, you can go to the URL of your installation and check if things work:
   </p>
-  <pre><code>   https://host.example/~myaccount/simplesaml/
+  <pre class="codehilite"><code>   https://host.example/~myaccount/simplesaml/
 </code></pre>
  </li>
 </ol>
@@ -1100,12 +1188,9 @@ just created in your
  </code>
  folder instead of symlinking it:
 </p>
-<p>
- <code>
-  cd ~/public_html
+<pre class="codehilite"><code>    cd ~/public_html
     mv ../simplesamlphp/www simplesaml
- </code>
-</p>
+</code></pre>
 <p>
  Now you have the following directory structure.
 </p>
@@ -1149,19 +1234,13 @@ just created in your
 <p>
  Change the two lines from:
 </p>
-<p>
- <code>
-  require_once(dirname(dirname(__FILE__)) . '/lib/_autoload.php');
- </code>
-</p>
+<pre class="codehilite"><code>    require_once(dirname(dirname(__FILE__)) . '/lib/_autoload.php');
+</code></pre>
 <p>
  to something like:
 </p>
-<p>
- <code>
-  require_once(dirname(dirname(dirname(__FILE__))) . '/lib/_autoload.php');
- </code>
-</p>
+<pre class="codehilite"><code>    require_once(dirname(dirname(dirname(__FILE__))) . '/lib/_autoload.php');
+</code></pre>
 <p>
  <strong>
   Warning

@@ -102,7 +102,7 @@
  </code>
  . Both files have the following format:
 </p>
-<pre><code>  &lt;?php
+<pre class="codehilite"><code>  &lt;?php
   /* The index of the array is the entity ID of this IdP. */
   $metadata['entity-id-1'] = [
       /* Configuration options for the first IdP. */
@@ -207,7 +207,7 @@
 <p>
  :   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
 </p>
-<pre><code>      'name' =&gt; [
+<pre class="codehilite"><code>      'name' =&gt; [
           'en' =&gt; 'A service',
           'no' =&gt; 'En tjeneste',
       ],
@@ -222,7 +222,7 @@
 <p>
  :   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
 </p>
-<pre><code>      'OrganizationName' =&gt; [
+<pre class="codehilite"><code>      'OrganizationName' =&gt; [
           'en' =&gt; 'Example organization',
           'no' =&gt; 'Eksempel organisation',
       ],
@@ -345,7 +345,7 @@
 <p>
  :    The Comparison attribute of the AuthnContext that will be sent in the login request. This parameter won't be used unless AuthnContextClassRef is set and contains one or more values. Possible values:
 </p>
-<pre><code>      SAML2\Constants::COMPARISON_EXACT (default)
+<pre class="codehilite"><code>      SAML2\Constants::COMPARISON_EXACT (default)
       SAML2\Constants::COMPARISON_BETTER
       SAML2\Constants::COMPARISON_MINIMUM
       SAML2\Constants::COMPARISON_MAXIMUM
@@ -475,7 +475,7 @@
     This value in the IdP remote metadata overrides the value in the SP configuration.
 :   Possible values:
 </p>
-<pre><code>  * `http://www.w3.org/2000/09/xmldsig#rsa-sha1`
+<pre class="codehilite"><code>  * `http://www.w3.org/2000/09/xmldsig#rsa-sha1`
      *Note*: the use of SHA1 is **deprecated** and will be disallowed in the future.
   * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256`
     The default.
@@ -622,7 +622,7 @@
   Example: Configuration for validating messages
  </strong>
 </p>
-<pre><code>  'redirect.validate' =&gt; TRUE,
+<pre class="codehilite"><code>  'redirect.validate' =&gt; TRUE,
   'certificate' =&gt; 'example.org.crt',
 </code></pre>
 <h2 id="shibboleth-13-options">

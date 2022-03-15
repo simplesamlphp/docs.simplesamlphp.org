@@ -119,7 +119,7 @@ You need both a memcache server and a the PHP memcached client (extension).
  How this is done depends on the distribution.
 If you are running Debian or Ubuntu, you can install this by running:
 </p>
-<pre><code>  apt install memcached php-memcached
+<pre class="codehilite"><code>  apt install memcached php-memcached
 </code></pre>
 <p>
  simpleSAMLphp also supports the legacy
@@ -178,7 +178,7 @@ If you are running memcache on a different server than the IdP, you must also ch
  </code>
  metadata file:
 </p>
-<pre><code>  $metadata['__DYNAMIC:1__'] = [
+<pre class="codehilite"><code>  $metadata['__DYNAMIC:1__'] = [
       [....]
       'auth' =&gt; 'example-userpass',
       'saml20.sendartifact' =&gt; TRUE,
@@ -195,7 +195,7 @@ You therefore need to update the metadata for your IdP at your SPs.
  </code>
  metadata for SimpleSAMLphp SPs should contain something like:
 </p>
-<pre><code>  'ArtifactResolutionService' =&gt; [
+<pre class="codehilite"><code>  'ArtifactResolutionService' =&gt; [
       [
           'index' =&gt; 0,
           'Location' =&gt; 'https://idp.example.org/simplesaml/saml2/idp/ArtifactResolutionService.php',
@@ -215,7 +215,7 @@ This means that you must use the complex endpoint format in
  metadata.
 In general, that should look something like:
 </p>
-<pre><code>  'AssertionConsumerService' =&gt; array (
+<pre class="codehilite"><code>  'AssertionConsumerService' =&gt; array (
       [
           'Binding' =&gt; 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
           'Location' =&gt; 'https://sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp',
@@ -248,7 +248,7 @@ To do this, you need to set the
  metadata file.
 That option should refer to a file containing the webserver certificate.
 </p>
-<pre><code>  $metadata['__DYNAMIC:1__'] = [
+<pre class="codehilite"><code>  $metadata['__DYNAMIC:1__'] = [
       [....]
       'auth' =&gt; 'example-userpass',
       'saml20.sendartifact' =&gt; TRUE,

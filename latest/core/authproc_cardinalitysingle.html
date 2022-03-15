@@ -156,7 +156,7 @@ when multi-valued attributes are received where single-valued ones are expected.
 <p>
  Abort with an error if any attribute defined as single-valued in the eduPerson or SCHAC schemas exists and has more than one value:
 </p>
-<pre><code>  'authproc' =&gt; [
+<pre class="codehilite"><code>  'authproc' =&gt; [
       50 =&gt; [
           'class' =&gt; 'core:CardinalitySingle',
           'singleValued' =&gt; [
@@ -184,7 +184,7 @@ when multi-valued attributes are received where single-valued ones are expected.
  </code>
  :
 </p>
-<pre><code>  'authproc' =&gt; [
+<pre class="codehilite"><code>  'authproc' =&gt; [
       50 =&gt; [
           'class' =&gt; 'core:CardinalitySingle',
           'singleValued' =&gt; ['eduPersonPrincipalName'],
@@ -204,7 +204,7 @@ when multi-valued attributes are received where single-valued ones are expected.
  </code>
  :
 </p>
-<pre><code>  'authproc' =&gt; [
+<pre class="codehilite"><code>  'authproc' =&gt; [
       50 =&gt; [
           'class' =&gt; 'core:AttributeCopy',
           'eduPersonAffiliation' =&gt; 'eduPersonPrimaryAffiliation',
@@ -222,7 +222,7 @@ when multi-valued attributes are received where single-valued ones are expected.
  </code>
  :
 </p>
-<pre><code>  'authproc' =&gt; [
+<pre class="codehilite"><code>  'authproc' =&gt; [
       50 =&gt; [
           'class' =&gt; 'core:AttributeCopy',
           'eduPersonAffiliation' =&gt; 'eduPersonAffiliationWithCommas',

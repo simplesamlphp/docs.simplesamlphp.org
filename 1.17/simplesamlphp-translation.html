@@ -102,7 +102,7 @@
 <p>
  Here is an example of how two terms are included in a template from dictionary files:
 </p>
-<pre><code>  &lt;h2&gt;&lt;?php echo $this-&gt;t('{core:frontpage:about_header}'); ?&gt;&lt;/h2&gt;
+<pre class="codehilite"><code>  &lt;h2&gt;&lt;?php echo $this-&gt;t('{core:frontpage:about_header}'); ?&gt;&lt;/h2&gt;
   &lt;p&gt;&lt;?php echo $this-&gt;t('{core:frontpage:about_text}'); ?&gt;&lt;/p&gt;
 </code></pre>
 <p>
@@ -136,13 +136,13 @@
 <p>
  When the template library is about to lookup the translation of a term, it will lookup
 </p>
-<pre><code>* the definition file, for the English translation, and 
+<pre class="codehilite"><code>* the definition file, for the English translation, and 
 * the translation file, for translation to other languages.
 </code></pre>
 <p>
  SimpleSAMLphp will always fallback to the English translation using the definition file, both:
 </p>
-<pre><code>* when the term is not translated into the *current selected language*, and
+<pre class="codehilite"><code>* when the term is not translated into the *current selected language*, and
 * when the translation file is not available at all.
 </code></pre>
 <p>
@@ -178,7 +178,7 @@
 <p>
  Here is an example of a definition file with three terms:
 </p>
-<pre><code>  {
+<pre class="codehilite"><code>  {
       "header": {
           "en": "Missing cookie"
       },
@@ -197,7 +197,7 @@
  </code>
  index is used in order to at a later point in time introduce more meta information for each term, like in example:
 </p>
-<pre><code>  "header": {
+<pre class="codehilite"><code>  "header": {
       "en": "Missing cookie",
       "_note": "This text shows up on the error page when the browser do not support cookies."
   },
@@ -205,7 +205,7 @@
 <p>
  To summarize the pattern of the definition file is as follows:
 </p>
-<pre><code>  {
+<pre class="codehilite"><code>  {
       "TERM1": {
           "en": "English text 1"
       },
@@ -227,7 +227,7 @@
  </code>
  , but the actual langauge that is translated:
 </p>
-<pre><code>  {
+<pre class="codehilite"><code>  {
       "TERM1": {
           "no": "Norsk tekst 1",
           "da": "Dansk tekst 1"

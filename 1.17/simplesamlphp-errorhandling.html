@@ -129,7 +129,7 @@ The simplest case is if you want to throw it during the
  -method in a processing filter.
 In those methods, you can just throw an exception:
 </p>
-<pre><code>  public function process(&amp;$state) {
+<pre class="codehilite"><code>  public function process(&amp;$state) {
       if ($state['something'] === false) {
           throw new \SimpleSAML\Error\Exception('Something is wrong...');
       }
@@ -145,7 +145,7 @@ In those methods, you can just throw an exception:
  </code>
  function:
 </p>
-<pre><code>  &lt;?php
+<pre class="codehilite"><code>  &lt;?php
   $id = $_REQUEST['StateId'];
   $state = \SimpleSAML\Auth\State::loadState($id, 'somestage...');
   \SimpleSAML\Auth\State::throwException($state,
@@ -496,7 +496,7 @@ The exception can be located in a field named
  .
 The following code illustrates this behaviour:
 </p>
-<pre><code>  if (array_key_exists(\SimpleSAML\Auth\State::EXCEPTION_PARAM, $_REQUEST)) {
+<pre class="codehilite"><code>  if (array_key_exists(\SimpleSAML\Auth\State::EXCEPTION_PARAM, $_REQUEST)) {
       $state = \SimpleSAML\Auth\State::loadExceptionState();
       $exception = $state[\SimpleSAML\Auth\State::EXCEPTION_DATA];
 
@@ -567,7 +567,7 @@ The result will be delivered directly if it is possible, but if not, it will be 
 <p>
  The code for handling this becomes something like:
 </p>
-<pre><code>  if (array_key_exists(\SimpleSAML\Auth\State::EXCEPTION_PARAM, $_REQUEST)) {
+<pre class="codehilite"><code>  if (array_key_exists(\SimpleSAML\Auth\State::EXCEPTION_PARAM, $_REQUEST)) {
       $state = \SimpleSAML\Auth\State::loadExceptionState();
       $exception = $state[\SimpleSAML\Auth\State::EXCEPTION_DATA];
 
@@ -615,7 +615,7 @@ This is done to be consistent in what the application receives - now it will alw
 <p>
  Example code for this function, which implements the same functionality as \SimpleSAML\Error\Error::show, looks something like:
 </p>
-<pre><code>  public static function show(\SimpleSAML\Configuration $config, array $data) {
+<pre class="codehilite"><code>  public static function show(\SimpleSAML\Configuration $config, array $data) {
       $t = new \SimpleSAML\XHTML\Template($config, 'error.php', 'errors');
       $t-&gt;data = array_merge($t-&gt;data, $data);
       $t-&gt;show();

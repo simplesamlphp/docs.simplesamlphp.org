@@ -165,7 +165,7 @@ client.
 <p>
  All configuration is handled in authsources.php:
 </p>
-<pre><code>   'weblogin' =&gt; array(
+<pre class="codehilite"><code>   'weblogin' =&gt; array(
            'negotiate:Negotiate',
            'keytab' =&gt; '/path/to/keytab-file',
            'fallback' =&gt; 'ldap',
@@ -203,14 +203,14 @@ negotiate_auth.c:101.
  Depending on you apache config you may need a rewrite rule to allow
 php_krb5 to read the HTTP_AUTHORIZATION header:
 </p>
-<pre><code>   RewriteEngine on
+<pre class="codehilite"><code>   RewriteEngine on
    RewriteCond %{HTTP:Authorization}  !^$
    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization},L]
 </code></pre>
 <p>
  Test the Kerberos setup with the following script:
 </p>
-<pre><code>   &lt;?php
+<pre class="codehilite"><code>   &lt;?php
    if(!extension_loaded('krb5')) {
            die('KRB5 Extension not installed');
    }
@@ -280,7 +280,7 @@ WWW-Authenticate request.
 <p>
  Syntax is:
 </p>
-<pre><code>   'subnet' =&gt; array('127.0.0.0/16','192.168.0.0/16'),
+<pre class="codehilite"><code>   'subnet' =&gt; array('127.0.0.0/16','192.168.0.0/16'),
 </code></pre>
 <p>
  Browsers, especially IE, behave erratically when they encounter a
@@ -403,7 +403,7 @@ security check in SSP's state handling library. If you omit this and
 pass on the original state you will see a warning in the log like
 this:
 </p>
-<pre><code>  Sep 27 13:47:36 simplesamlphp WARNING [b99e6131ee] Wrong stage in state. Was 'foo', should be 'sspmod_negotiate_Auth_Source_Negotiate.StageId'.
+<pre class="codehilite"><code>  Sep 27 13:47:36 simplesamlphp WARNING [b99e6131ee] Wrong stage in state. Was 'foo', should be 'sspmod_negotiate_Auth_Source_Negotiate.StageId'.
 </code></pre>
 <p>
  It will work as loadState will take controll and call

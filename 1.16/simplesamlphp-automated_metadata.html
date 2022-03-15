@@ -145,7 +145,7 @@
  </code>
  directory.
 </p>
-<pre><code>[root@simplesamlphp] cd /var/simplesamlphp
+<pre class="codehilite"><code>[root@simplesamlphp] cd /var/simplesamlphp
 [root@simplesamlphp simplesamlphp] touch modules/cron/enable
 [root@simplesamlphp simplesamlphp] cp modules/cron/config-templates/*.php config/
 [root@simplesamlphp simplesamlphp] touch modules/metarefresh/enable
@@ -159,7 +159,7 @@
 configuring it. We can do so in the command line, by invoking metarefresh with the URL of the metadata set we want to check. For
 instance, if we want to configure the metadata of the SWITCH AAI Test Federation:
 </p>
-<pre><code>cd modules/metarefresh/bin
+<pre class="codehilite"><code>cd modules/metarefresh/bin
 ./metarefresh.php -s http://metadata.aai.switch.ch/metadata.aaitest.xml
 </code></pre>
 <p>
@@ -175,12 +175,12 @@ instance, if we want to configure the metadata of the SWITCH AAI Test Federation
 <p>
  Now we are going to proceed to configure the metarefresh module. First, edit the appropriate configuration file:
 </p>
-<pre><code>[root@simplesamlphp simplesamlphp]# vi config/config-metarefresh.php
+<pre class="codehilite"><code>[root@simplesamlphp simplesamlphp]# vi config/config-metarefresh.php
 </code></pre>
 <p>
  Here's an example of a possible configuration for both the Kalmar Federation and UK Access Management Federation:
 </p>
-<pre><code>$config = array(
+<pre class="codehilite"><code>$config = array(
   'sets' =&gt; array(
     'kalmar' =&gt; array(
       'cron'    =&gt; array('hourly'),
@@ -275,7 +275,7 @@ instructions to configure metarefresh, be sure to use them from the authoritativ
  : The sets of entities to load. An array containing strings identifying the different types of entities that will be
   loaded. Valid types are:
 </p>
-<pre><code>* saml20-idp-remote
+<pre class="codehilite"><code>* saml20-idp-remote
 * saml20-sp-remote
 * shib13-idp-remote
 * shib13-sp-remote
@@ -333,7 +333,7 @@ All entity types will be loaded by default.
  After you have configured the metadata sources, you need to give the
 web-server write access to the output directories. Following the previous example:
 </p>
-<pre><code>chown www-data /var/simplesamlphp/metadata/metarefresh-kalmar/
+<pre class="codehilite"><code>chown www-data /var/simplesamlphp/metadata/metarefresh-kalmar/
 chown www-data /var/simplesamlphp/metadata/metarefresh-ukaccess/
 </code></pre>
 <p>
@@ -344,7 +344,7 @@ config.php file, and modify the
  </code>
  directive accordingly:
 </p>
-<pre><code>'metadata.sources' =&gt; array(
+<pre class="codehilite"><code>'metadata.sources' =&gt; array(
   array('type' =&gt; 'flatfile'),
   array('type' =&gt; 'flatfile', 'directory' =&gt; 'metadata/metarefresh-kalmar'),
   array('type' =&gt; 'serialize', 'directory' =&gt; 'metadata/metarefresh-ukaccess'),

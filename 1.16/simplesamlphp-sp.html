@@ -120,7 +120,7 @@
  </code>
  for a SP:
 </p>
-<pre><code>  &lt;?php
+<pre class="codehilite"><code>  &lt;?php
   $config = array(
 
       /* This is the name of this authentication source, and will be used to access it later. */
@@ -146,7 +146,7 @@
  </code>
  configuration. If so remember to set the EntityID explicitly. Here is an example:
 </p>
-<pre><code>'sp1' =&gt; array(
+<pre class="codehilite"><code>'sp1' =&gt; array(
     'saml:SP',
   'entityID' =&gt; 'https://sp1.example.org/',
 ),
@@ -168,7 +168,7 @@
  </code>
  directory.
 </p>
-<pre><code>cd cert
+<pre class="codehilite"><code>cd cert
 openssl req -newkey rsa:2048 -new -x509 -days 3652 -nodes -out saml.crt -keyout saml.pem
 </code></pre>
 <p>
@@ -178,7 +178,7 @@ openssl req -newkey rsa:2048 -new -x509 -days 3652 -nodes -out saml.crt -keyout 
  </code>
  entry, and add references to your certificate:
 </p>
-<pre><code>'default-sp' =&gt; array(
+<pre class="codehilite"><code>'default-sp' =&gt; array(
     'saml:SP',
     'privatekey' =&gt; 'saml.pem',
     'certificate' =&gt; 'saml.crt',
@@ -203,7 +203,7 @@ This is a minimal example of a
  </code>
  metadata file:
 </p>
-<pre><code>  &lt;?php
+<pre class="codehilite"><code>  &lt;?php
   $metadata['https://example.com'] = array(
       'SingleSignOnService'  =&gt; 'https://example.com/simplesaml/saml2/idp/SSOService.php',
       'SingleLogoutService'  =&gt; 'https://example.com/simplesaml/saml2/idp/SingleLogoutService.php',
@@ -248,7 +248,7 @@ This is the
  </code>
  option.
 </p>
-<pre><code>  &lt;?php
+<pre class="codehilite"><code>  &lt;?php
   $config = array(
 
       'default-sp' =&gt; array(
@@ -352,11 +352,11 @@ lines of PHP code:
   </p>
  </li>
  <li>
-  <pre><code>  Require authentication of the user for those places it is required.
+  <pre class="codehilite"><code>  Require authentication of the user for those places it is required.
 </code></pre>
  </li>
  <li>
-  <pre><code>  Access the users attributes.
+  <pre class="codehilite"><code>  Access the users attributes.
 </code></pre>
  </li>
 </ul>
@@ -366,22 +366,22 @@ lines of PHP code:
 <p>
  We start off with loading a file which registers the SimpleSAMLphp classes with the autoloader.
 </p>
-<pre><code>  require_once('../../lib/_autoload.php');
+<pre class="codehilite"><code>  require_once('../../lib/_autoload.php');
 </code></pre>
 <p>
  We select our authentication source:
 </p>
-<pre><code>  $as = new \SimpleSAML\Auth\Simple('default-sp');
+<pre class="codehilite"><code>  $as = new \SimpleSAML\Auth\Simple('default-sp');
 </code></pre>
 <p>
  We then require authentication:
 </p>
-<pre><code>  $as-&gt;requireAuth();
+<pre class="codehilite"><code>  $as-&gt;requireAuth();
 </code></pre>
 <p>
  And print the attributes:
 </p>
-<pre><code>  $attributes = $as-&gt;getAttributes();
+<pre class="codehilite"><code>  $attributes = $as-&gt;getAttributes();
   print_r($attributes);
 </code></pre>
 <p>
@@ -390,7 +390,7 @@ lines of PHP code:
 <p>
  We can also request authentication with a specific IdP:
 </p>
-<pre><code>  $as-&gt;login(array(
+<pre class="codehilite"><code>  $as-&gt;login(array(
       'saml:idp' =&gt; 'https://idp.example.org/',
   ));
 </code></pre>
@@ -407,7 +407,7 @@ Take a look in the documentation for the
 existing session when invoked for the first time, and its own session will prevail afterwards. If you want to restore
 your own session after calling SimpleSAMLphp, you can do so by cleaning up the session like this:
 </p>
-<pre><code>  $session = SimpleSAML_Session::getSessionFromRequest();
+<pre class="codehilite"><code>  $session = SimpleSAML_Session::getSessionFromRequest();
   $session-&gt;cleanup();
 </code></pre>
 <p>

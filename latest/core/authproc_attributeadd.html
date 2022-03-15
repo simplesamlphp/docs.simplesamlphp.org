@@ -109,7 +109,7 @@ If you instead want to replace the existing attribute, you may add the
 <p>
  Add a single-valued attributes:
 </p>
-<pre><code>  'authproc' =&gt; [
+<pre class="codehilite"><code>  'authproc' =&gt; [
       50 =&gt; [
           'class' =&gt; 'core:AttributeAdd',
           'source' =&gt; ['myidp'],
@@ -119,7 +119,7 @@ If you instead want to replace the existing attribute, you may add the
 <p>
  Add a multi-valued attribute:
 </p>
-<pre><code>  'authproc' =&gt; [
+<pre class="codehilite"><code>  'authproc' =&gt; [
       50 =&gt; [
           'class' =&gt; 'core:AttributeAdd',
           'groups' =&gt; ['users', 'members'],
@@ -129,7 +129,7 @@ If you instead want to replace the existing attribute, you may add the
 <p>
  Add multiple attributes:
 </p>
-<pre><code>  'authproc' =&gt; [
+<pre class="codehilite"><code>  'authproc' =&gt; [
       50 =&gt; [
           'class' =&gt; 'core:AttributeAdd',
           'eduPersonPrimaryAffiliation' =&gt; 'student',
@@ -140,7 +140,7 @@ If you instead want to replace the existing attribute, you may add the
 <p>
  Replace an existing attributes:
 </p>
-<pre><code>  'authproc' =&gt; [
+<pre class="codehilite"><code>  'authproc' =&gt; [
       50 =&gt; [
           'class' =&gt; 'core:AttributeAdd',
           '%replace',

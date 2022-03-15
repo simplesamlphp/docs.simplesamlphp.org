@@ -90,7 +90,44 @@
 </header><h1 id="authentication-processing-filters-in-simplesamlphp">
  Authentication Processing Filters in SimpleSAMLphp
 </h1>
-<!-- {{TOC}} -->
+<div class="toc">
+ <ul>
+  <li>
+   <a href="#authentication-processing-filters-in-simplesamlphp.html">
+    Authentication Processing Filters in SimpleSAMLphp
+   </a>
+   <ul>
+    <li>
+     <a href="#how-to-configure-auth-proc-filters.html">
+      How to configure Auth Proc Filters
+     </a>
+     <ul>
+      <li>
+       <a href="#filters-in-configphp.html">
+        Filters in config.php
+       </a>
+      </li>
+      <li>
+       <a href="#filters-in-metadata.html">
+        Filters in metadata
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#auth-proc-filters-included-in-the-simplesamlphp-distribution.html">
+      Auth Proc Filters included in the SimpleSAMLphp distribution
+     </a>
+    </li>
+    <li>
+     <a href="#writing-your-own-auth-proc-filter.html">
+      Writing your own Auth Proc Filter
+     </a>
+    </li>
+   </ul>
+  </li>
+ </ul>
+</div>
 <p>
  In SimpleSAMLphp, there is an API where you can
  <em>
@@ -208,7 +245,7 @@
  </code>
  :
 </p>
-<pre><code>'authproc.idp' =&gt; [
+<pre class="codehilite"><code>'authproc.idp' =&gt; [
   10 =&gt; [
     'class' =&gt; 'core:AttributeMap', 
     'addurnprefix'
@@ -287,12 +324,12 @@
 <p>
  When you know the class definition of a filter, and the priority, the simple way to configure the filter is:
 </p>
-<pre><code>20 =&gt; 'core:TargetedID',
+<pre class="codehilite"><code>20 =&gt; 'core:TargetedID',
 </code></pre>
 <p>
  This is analogous to:
 </p>
-<pre><code>20 =&gt; [
+<pre class="codehilite"><code>20 =&gt; [
   'class' =&gt; 'core:TargetedID'
 ],
 </code></pre>
@@ -311,7 +348,7 @@
  </em>
  , you need to choose the second of the two alernatives above. Here is an example of provided parameters to the consent module:
 </p>
-<pre><code>90 =&gt; [
+<pre class="codehilite"><code>90 =&gt; [
   'class'   =&gt; 'consent:Consent', 
   'store'   =&gt; 'consent:Cookie', 
   'focus'   =&gt; 'yes', 
@@ -379,7 +416,7 @@
  </code>
  metadata. Here is an example of a filter added in a metadata file:
 </p>
-<pre><code>'__DYNAMIC:1__' =&gt; [
+<pre class="codehilite"><code>'__DYNAMIC:1__' =&gt; [
   'host'        =&gt;  '__DEFAULT_',
   'privatekey'    =&gt;  'example.org.pem',
   'certificate'   =&gt;  'example.org.crt',

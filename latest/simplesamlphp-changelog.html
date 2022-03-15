@@ -90,7 +90,1494 @@
 </header><h1 id="simplesamlphp-changelog">
  SimpleSAMLphp changelog
 </h1>
-<!-- {{TOC}} -->
+<div class="toc">
+ <ul>
+  <li>
+   <a href="#simplesamlphp-changelog.html">
+    SimpleSAMLphp changelog
+   </a>
+   <ul>
+    <li>
+     <a href="#version-200.html">
+      Version 2.0.0
+     </a>
+    </li>
+    <li>
+     <a href="#version-1191.html">
+      Version 1.19.1
+     </a>
+     <ul>
+      <li>
+       <a href="#memcachemonitor.html">
+        memcacheMonitor
+       </a>
+      </li>
+      <li>
+       <a href="#negotiate.html">
+        negotiate
+       </a>
+      </li>
+      <li>
+       <a href="#statistics.html">
+        statistics
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#version-1190.html">
+      Version 1.19.0
+     </a>
+    </li>
+    <li>
+     <a href="#version-1188.html">
+      Version 1.18.8
+     </a>
+     <ul>
+      <li>
+       <a href="#authcrypt.html">
+        authcrypt
+       </a>
+      </li>
+      <li>
+       <a href="#authx509.html">
+        authx509
+       </a>
+      </li>
+      <li>
+       <a href="#cron.html">
+        cron
+       </a>
+      </li>
+      <li>
+       <a href="#ldap.html">
+        ldap
+       </a>
+      </li>
+      <li>
+       <a href="#metarefresh.html">
+        metarefresh
+       </a>
+      </li>
+      <li>
+       <a href="#negotiate_1.html">
+        negotiate
+       </a>
+      </li>
+      <li>
+       <a href="#saml2-library.html">
+        saml2 library
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#version-1187.html">
+      Version 1.18.7
+     </a>
+     <ul>
+      <li>
+       <a href="#adfs.html">
+        adfs
+       </a>
+      </li>
+      <li>
+       <a href="#ldap_1.html">
+        ldap
+       </a>
+      </li>
+      <li>
+       <a href="#oauth.html">
+        oauth
+       </a>
+      </li>
+      <li>
+       <a href="#preprodwarning.html">
+        preprodwarning
+       </a>
+      </li>
+      <li>
+       <a href="#sanitycheck.html">
+        sanitycheck
+       </a>
+      </li>
+      <li>
+       <a href="#saml.html">
+        saml
+       </a>
+      </li>
+      <li>
+       <a href="#saml2-library_1.html">
+        saml2 library
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#version-1186.html">
+      Version 1.18.6
+     </a>
+    </li>
+    <li>
+     <a href="#version-1185.html">
+      Version 1.18.5
+     </a>
+    </li>
+    <li>
+     <a href="#version-1184.html">
+      Version 1.18.4
+     </a>
+    </li>
+    <li>
+     <a href="#version-1183.html">
+      Version 1.18.3
+     </a>
+     <ul>
+      <li>
+       <a href="#ldap_2.html">
+        ldap
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#version-1182.html">
+      Version 1.18.2
+     </a>
+    </li>
+    <li>
+     <a href="#version-1181.html">
+      Version 1.18.1
+     </a>
+    </li>
+    <li>
+     <a href="#version-1180.html">
+      Version 1.18.0
+     </a>
+     <ul>
+      <li>
+       <a href="#metarefresh_1.html">
+        metarefresh
+       </a>
+      </li>
+      <li>
+       <a href="#saml_1.html">
+        saml
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#version-1178.html">
+      Version 1.17.8
+     </a>
+     <ul>
+      <li>
+       <a href="#consentadmin.html">
+        consentAdmin
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#version-1177.html">
+      Version 1.17.7
+     </a>
+    </li>
+    <li>
+     <a href="#version-1176.html">
+      Version 1.17.6
+     </a>
+    </li>
+    <li>
+     <a href="#version-1175.html">
+      Version 1.17.5
+     </a>
+    </li>
+    <li>
+     <a href="#version-1174.html">
+      Version 1.17.4
+     </a>
+    </li>
+    <li>
+     <a href="#version-1173.html">
+      Version 1.17.3
+     </a>
+     <ul>
+      <li>
+       <a href="#adfs_1.html">
+        adfs
+       </a>
+      </li>
+      <li>
+       <a href="#authlinkedin.html">
+        authlinkedin
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#version-1172.html">
+      Version 1.17.2
+     </a>
+    </li>
+    <li>
+     <a href="#version-1171.html">
+      Version 1.17.1
+     </a>
+    </li>
+    <li>
+     <a href="#version-1170.html">
+      Version 1.17.0
+     </a>
+     <ul>
+      <li>
+       <a href="#interoperability.html">
+        Interoperability
+       </a>
+      </li>
+      <li>
+       <a href="#authfacebook.html">
+        authfacebook
+       </a>
+      </li>
+      <li>
+       <a href="#authorize.html">
+        authorize
+       </a>
+      </li>
+      <li>
+       <a href="#consent.html">
+        consent
+       </a>
+      </li>
+      <li>
+       <a href="#core.html">
+        core
+       </a>
+      </li>
+      <li>
+       <a href="#multiauth.html">
+        multiauth
+       </a>
+      </li>
+      <li>
+       <a href="#negotiate_2.html">
+        negotiate
+       </a>
+      </li>
+      <li>
+       <a href="#preprodwarning_1.html">
+        preprodwarning
+       </a>
+      </li>
+      <li>
+       <a href="#saml_2.html">
+        saml
+       </a>
+      </li>
+      <li>
+       <a href="#sanitycheck_1.html">
+        sanitycheck
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#version-1163.html">
+      Version 1.16.3
+     </a>
+    </li>
+    <li>
+     <a href="#version-1162.html">
+      Version 1.16.2
+     </a>
+    </li>
+    <li>
+     <a href="#version-1161.html">
+      Version 1.16.1
+     </a>
+    </li>
+    <li>
+     <a href="#version-1160.html">
+      Version 1.16.0
+     </a>
+     <ul>
+      <li>
+       <a href="#changes.html">
+        Changes
+       </a>
+      </li>
+      <li>
+       <a href="#new-features.html">
+        New features
+       </a>
+      </li>
+      <li>
+       <a href="#adfs_2.html">
+        adfs
+       </a>
+      </li>
+      <li>
+       <a href="#authmyspace.html">
+        authmyspace
+       </a>
+      </li>
+      <li>
+       <a href="#cas.html">
+        cas
+       </a>
+      </li>
+      <li>
+       <a href="#casserver.html">
+        casserver
+       </a>
+      </li>
+      <li>
+       <a href="#consent_1.html">
+        consent
+       </a>
+      </li>
+      <li>
+       <a href="#consentadmin_1.html">
+        consentAdmin
+       </a>
+      </li>
+      <li>
+       <a href="#core_1.html">
+        core
+       </a>
+      </li>
+      <li>
+       <a href="#ldap_3.html">
+        ldap
+       </a>
+      </li>
+      <li>
+       <a href="#metarefresh_2.html">
+        metarefresh
+       </a>
+      </li>
+      <li>
+       <a href="#oauth_1.html">
+        Oauth
+       </a>
+      </li>
+      <li>
+       <a href="#saml_3.html">
+        saml
+       </a>
+      </li>
+      <li>
+       <a href="#smartattributes.html">
+        smartattributes
+       </a>
+      </li>
+      <li>
+       <a href="#sqlauth.html">
+        sqlauth
+       </a>
+      </li>
+      <li>
+       <a href="#statistics_1.html">
+        statistics
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#version-1154.html">
+      Version 1.15.4
+     </a>
+    </li>
+    <li>
+     <a href="#version-1153.html">
+      Version 1.15.3
+     </a>
+    </li>
+    <li>
+     <a href="#version-1152.html">
+      Version 1.15.2
+     </a>
+     <ul>
+      <li>
+       <a href="#authfacebook_1.html">
+        authfacebook
+       </a>
+      </li>
+      <li>
+       <a href="#consent_2.html">
+        consent
+       </a>
+      </li>
+      <li>
+       <a href="#sqlauth_1.html">
+        sqlauth
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#version-1151.html">
+      Version 1.15.1
+     </a>
+     <ul>
+      <li>
+       <a href="#bug-fixes.html">
+        Bug fixes
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#version-1150.html">
+      Version 1.15.0
+     </a>
+     <ul>
+      <li>
+       <a href="#new-features_1.html">
+        New features
+       </a>
+      </li>
+      <li>
+       <a href="#bug-fixes_1.html">
+        Bug fixes
+       </a>
+      </li>
+      <li>
+       <a href="#api-and-user-interface.html">
+        API and user interface
+       </a>
+      </li>
+      <li>
+       <a href="#adfs_3.html">
+        adfs
+       </a>
+      </li>
+      <li>
+       <a href="#authyubikey.html">
+        authYubiKey
+       </a>
+      </li>
+      <li>
+       <a href="#authfacebook_2.html">
+        authfacebook
+       </a>
+      </li>
+      <li>
+       <a href="#authlinkedin_1.html">
+        authlinkedin
+       </a>
+      </li>
+      <li>
+       <a href="#authtwitter.html">
+        authtwitter
+       </a>
+      </li>
+      <li>
+       <a href="#consent_3.html">
+        consent
+       </a>
+      </li>
+      <li>
+       <a href="#core_2.html">
+        core
+       </a>
+      </li>
+      <li>
+       <a href="#cron_1.html">
+        cron
+       </a>
+      </li>
+      <li>
+       <a href="#discopower.html">
+        discopower
+       </a>
+      </li>
+      <li>
+       <a href="#ldap_4.html">
+        ldap
+       </a>
+      </li>
+      <li>
+       <a href="#memcachemonitor_1.html">
+        memcacheMonitor
+       </a>
+      </li>
+      <li>
+       <a href="#metarefresh_3.html">
+        metarefresh
+       </a>
+      </li>
+      <li>
+       <a href="#multiauth_1.html">
+        multiauth
+       </a>
+      </li>
+      <li>
+       <a href="#negotiate_3.html">
+        negotiate
+       </a>
+      </li>
+      <li>
+       <a href="#oauth_2.html">
+        oauth
+       </a>
+      </li>
+      <li>
+       <a href="#radius.html">
+        radius
+       </a>
+      </li>
+      <li>
+       <a href="#saml_4.html">
+        saml
+       </a>
+      </li>
+      <li>
+       <a href="#smartattributes_1.html">
+        smartattributes
+       </a>
+      </li>
+      <li>
+       <a href="#sqlauth_2.html">
+        sqlauth
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#version-11417.html">
+      Version 1.14.17
+     </a>
+    </li>
+    <li>
+     <a href="#version-11416.html">
+      Version 1.14.16
+     </a>
+    </li>
+    <li>
+     <a href="#version-11415.html">
+      Version 1.14.15
+     </a>
+    </li>
+    <li>
+     <a href="#version-11414.html">
+      Version 1.14.14
+     </a>
+    </li>
+    <li>
+     <a href="#version-11413.html">
+      Version 1.14.13
+     </a>
+    </li>
+    <li>
+     <a href="#version-11412.html">
+      Version 1.14.12
+     </a>
+    </li>
+    <li>
+     <a href="#version-11411.html">
+      Version 1.14.11
+     </a>
+    </li>
+    <li>
+     <a href="#version-11410.html">
+      Version 1.14.10
+     </a>
+    </li>
+    <li>
+     <a href="#version-1149.html">
+      Version 1.14.9
+     </a>
+    </li>
+    <li>
+     <a href="#version-1148.html">
+      Version 1.14.8
+     </a>
+    </li>
+    <li>
+     <a href="#version-1147.html">
+      Version 1.14.7
+     </a>
+    </li>
+    <li>
+     <a href="#version-1146.html">
+      Version 1.14.6
+     </a>
+    </li>
+    <li>
+     <a href="#version-1145.html">
+      Version 1.14.5
+     </a>
+    </li>
+    <li>
+     <a href="#version-1144.html">
+      Version 1.14.4
+     </a>
+    </li>
+    <li>
+     <a href="#version-1143.html">
+      Version 1.14.3
+     </a>
+    </li>
+    <li>
+     <a href="#version-1142.html">
+      Version 1.14.2
+     </a>
+    </li>
+    <li>
+     <a href="#version-1141.html">
+      Version 1.14.1
+     </a>
+    </li>
+    <li>
+     <a href="#version-1140.html">
+      Version 1.14.0
+     </a>
+     <ul>
+      <li>
+       <a href="#security.html">
+        Security
+       </a>
+      </li>
+      <li>
+       <a href="#new-features_2.html">
+        New features
+       </a>
+      </li>
+      <li>
+       <a href="#bug-fixes_2.html">
+        Bug fixes
+       </a>
+      </li>
+      <li>
+       <a href="#api-and-user-interface_1.html">
+        API and user interface
+       </a>
+      </li>
+      <li>
+       <a href="#authcrypt_1.html">
+        authcrypt
+       </a>
+      </li>
+      <li>
+       <a href="#authx509_1.html">
+        authX509
+       </a>
+      </li>
+      <li>
+       <a href="#ldap_5.html">
+        ldap
+       </a>
+      </li>
+      <li>
+       <a href="#metaedit.html">
+        metaedit
+       </a>
+      </li>
+      <li>
+       <a href="#metarefresh_4.html">
+        metarefresh
+       </a>
+      </li>
+      <li>
+       <a href="#smartnameattribute.html">
+        smartnameattribute
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#version-1132.html">
+      Version 1.13.2
+     </a>
+    </li>
+    <li>
+     <a href="#version-1131.html">
+      Version 1.13.1
+     </a>
+    </li>
+    <li>
+     <a href="#version-113.html">
+      Version 1.13
+     </a>
+     <ul>
+      <li>
+       <a href="#adfs_4.html">
+        adfs
+       </a>
+      </li>
+      <li>
+       <a href="#aggregator.html">
+        aggregator
+       </a>
+      </li>
+      <li>
+       <a href="#discopower_1.html">
+        discopower
+       </a>
+      </li>
+      <li>
+       <a href="#expirycheck.html">
+        expirycheck
+       </a>
+      </li>
+      <li>
+       <a href="#metarefresh_5.html">
+        metarefresh
+       </a>
+      </li>
+      <li>
+       <a href="#openidprovider.html">
+        openidProvider
+       </a>
+      </li>
+      <li>
+       <a href="#saml_5.html">
+        saml
+       </a>
+      </li>
+      <li>
+       <a href="#sqlauth_3.html">
+        sqlauth
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#version-112.html">
+      Version 1.12
+     </a>
+     <ul>
+      <li>
+       <a href="#adfs_5.html">
+        adfs
+       </a>
+      </li>
+      <li>
+       <a href="#aggregator_1.html">
+        aggregator
+       </a>
+      </li>
+      <li>
+       <a href="#aggregator2.html">
+        aggregator2
+       </a>
+      </li>
+      <li>
+       <a href="#aselect.html">
+        aselect
+       </a>
+      </li>
+      <li>
+       <a href="#authfacebook_3.html">
+        authfacebook
+       </a>
+      </li>
+      <li>
+       <a href="#authtwitter_1.html">
+        authtwitter
+       </a>
+      </li>
+      <li>
+       <a href="#cdc.html">
+        cdc
+       </a>
+      </li>
+      <li>
+       <a href="#core_3.html">
+        core
+       </a>
+      </li>
+      <li>
+       <a href="#discopower_2.html">
+        discopower
+       </a>
+      </li>
+      <li>
+       <a href="#ldap_6.html">
+        ldap
+       </a>
+      </li>
+      <li>
+       <a href="#metarefresh_6.html">
+        metarefresh
+       </a>
+      </li>
+      <li>
+       <a href="#negotiate_4.html">
+        negotiate
+       </a>
+      </li>
+      <li>
+       <a href="#oauth_3.html">
+        oauth
+       </a>
+      </li>
+      <li>
+       <a href="#openidprovider_1.html">
+        openidProvider
+       </a>
+      </li>
+      <li>
+       <a href="#saml_6.html">
+        saml
+       </a>
+      </li>
+      <li>
+       <a href="#smartattributes_2.html">
+        smartattributes
+       </a>
+      </li>
+      <li>
+       <a href="#statistics_2.html">
+        statistics
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#version-111.html">
+      Version 1.11
+     </a>
+     <ul>
+      <li>
+       <a href="#authorize_1.html">
+        authorize
+       </a>
+      </li>
+      <li>
+       <a href="#authtwitter_2.html">
+        authtwitter
+       </a>
+      </li>
+      <li>
+       <a href="#authx509_2.html">
+        authX509
+       </a>
+      </li>
+      <li>
+       <a href="#consent_4.html">
+        consent
+       </a>
+      </li>
+      <li>
+       <a href="#core_4.html">
+        core
+       </a>
+      </li>
+      <li>
+       <a href="#discopower_3.html">
+        discopower
+       </a>
+      </li>
+      <li>
+       <a href="#expirycheck_1.html">
+        expirycheck
+       </a>
+      </li>
+      <li>
+       <a href="#infocard.html">
+        InfoCard
+       </a>
+      </li>
+      <li>
+       <a href="#ldap_7.html">
+        ldap
+       </a>
+      </li>
+      <li>
+       <a href="#metarefresh_7.html">
+        metarefresh
+       </a>
+      </li>
+      <li>
+       <a href="#oauth_4.html">
+        oauth
+       </a>
+      </li>
+      <li>
+       <a href="#saml_7.html">
+        saml
+       </a>
+      </li>
+      <li>
+       <a href="#sanitycheck_2.html">
+        sanitycheck
+       </a>
+      </li>
+      <li>
+       <a href="#smartattributes_3.html">
+        smartattributes
+       </a>
+      </li>
+      <li>
+       <a href="#smartnameattribute_1.html">
+        smartnameattribute
+       </a>
+      </li>
+      <li>
+       <a href="#wsfed.html">
+        wsfed
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#version-110.html">
+      Version 1.10
+     </a>
+     <ul>
+      <li>
+       <a href="#core_5.html">
+        core
+       </a>
+      </li>
+      <li>
+       <a href="#papi.html">
+        papi
+       </a>
+      </li>
+      <li>
+       <a href="#radius_1.html">
+        radius
+       </a>
+      </li>
+      <li>
+       <a href="#riak.html">
+        riak
+       </a>
+      </li>
+      <li>
+       <a href="#saml_8.html">
+        saml
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#version-192.html">
+      Version 1.9.2
+     </a>
+    </li>
+    <li>
+     <a href="#version-191.html">
+      Version 1.9.1
+     </a>
+    </li>
+    <li>
+     <a href="#version-19.html">
+      Version 1.9
+     </a>
+     <ul>
+      <li>
+       <a href="#aselect_1.html">
+        aselect
+       </a>
+      </li>
+      <li>
+       <a href="#authcrypt_2.html">
+        authcrypt
+       </a>
+      </li>
+      <li>
+       <a href="#authfacebook_4.html">
+        authfacebook
+       </a>
+      </li>
+      <li>
+       <a href="#authorize_2.html">
+        authorize
+       </a>
+      </li>
+      <li>
+       <a href="#authtwitter_3.html">
+        authtwitter
+       </a>
+      </li>
+      <li>
+       <a href="#authyubikey_1.html">
+        authYubiKey
+       </a>
+      </li>
+      <li>
+       <a href="#cas_1.html">
+        cas
+       </a>
+      </li>
+      <li>
+       <a href="#core_6.html">
+        core
+       </a>
+      </li>
+      <li>
+       <a href="#consent_5.html">
+        consent
+       </a>
+      </li>
+      <li>
+       <a href="#consentadmin_2.html">
+        consentAdmin
+       </a>
+      </li>
+      <li>
+       <a href="#cron_2.html">
+        cron
+       </a>
+      </li>
+      <li>
+       <a href="#expirycheck_2.html">
+        expirycheck
+       </a>
+      </li>
+      <li>
+       <a href="#ldap_8.html">
+        ldap
+       </a>
+      </li>
+      <li>
+       <a href="#metarefresh_8.html">
+        metarefresh
+       </a>
+      </li>
+      <li>
+       <a href="#multiauth_2.html">
+        multiauth
+       </a>
+      </li>
+      <li>
+       <a href="#negotiate_5.html">
+        negotiate
+       </a>
+      </li>
+      <li>
+       <a href="#oauth_5.html">
+        oauth
+       </a>
+      </li>
+      <li>
+       <a href="#openid.html">
+        openid
+       </a>
+      </li>
+      <li>
+       <a href="#openidprovider_2.html">
+        openidProvider
+       </a>
+      </li>
+      <li>
+       <a href="#radius_2.html">
+        radius
+       </a>
+      </li>
+      <li>
+       <a href="#saml_9.html">
+        saml
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#version-182.html">
+      Version 1.8.2
+     </a>
+    </li>
+    <li>
+     <a href="#version-181.html">
+      Version 1.8.1
+     </a>
+    </li>
+    <li>
+     <a href="#version-18.html">
+      Version 1.8
+     </a>
+     <ul>
+      <li>
+       <a href="#consent_6.html">
+        consent
+       </a>
+      </li>
+      <li>
+       <a href="#ldap_9.html">
+        ldap
+       </a>
+      </li>
+      <li>
+       <a href="#oauth_6.html">
+        oauth
+       </a>
+      </li>
+      <li>
+       <a href="#openid_1.html">
+        openid
+       </a>
+      </li>
+      <li>
+       <a href="#saml_10.html">
+        saml
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#version-17.html">
+      Version 1.7
+     </a>
+     <ul>
+      <li>
+       <a href="#internal-api-changes-features-removed.html">
+        Internal API changes &amp; features removed
+       </a>
+      </li>
+      <li>
+       <a href="#saml-2-idp.html">
+        SAML 2 IdP
+       </a>
+      </li>
+      <li>
+       <a href="#saml-2-sp.html">
+        SAML 2 SP
+       </a>
+      </li>
+      <li>
+       <a href="#saml-1-idp.html">
+        SAML 1 IdP
+       </a>
+      </li>
+      <li>
+       <a href="#saml-1-sp.html">
+        SAML 1 SP
+       </a>
+      </li>
+      <li>
+       <a href="#aggregator_2.html">
+        aggregator
+       </a>
+      </li>
+      <li>
+       <a href="#authfacebook_5.html">
+        authfacebook
+       </a>
+      </li>
+      <li>
+       <a href="#casserver_1.html">
+        casserver
+       </a>
+      </li>
+      <li>
+       <a href="#core_7.html">
+        core
+       </a>
+      </li>
+      <li>
+       <a href="#discopower_4.html">
+        discoPower
+       </a>
+      </li>
+      <li>
+       <a href="#exampleauth.html">
+        exampleAuth
+       </a>
+      </li>
+      <li>
+       <a href="#ldap_10.html">
+        ldap
+       </a>
+      </li>
+      <li>
+       <a href="#metarefresh_9.html">
+        metarefresh
+       </a>
+      </li>
+      <li>
+       <a href="#openid_2.html">
+        openid
+       </a>
+      </li>
+      <li>
+       <a href="#portal.html">
+        portal
+       </a>
+      </li>
+      <li>
+       <a href="#statistics_3.html">
+        statistics
+       </a>
+      </li>
+      <li>
+       <a href="#twitter.html">
+        twitter
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#version-163.html">
+      Version 1.6.3
+     </a>
+    </li>
+    <li>
+     <a href="#version-162.html">
+      Version 1.6.2
+     </a>
+    </li>
+    <li>
+     <a href="#version-161.html">
+      Version 1.6.1
+     </a>
+    </li>
+    <li>
+     <a href="#version-16.html">
+      Version 1.6
+     </a>
+     <ul>
+      <li>
+       <a href="#saml-2-sp_1.html">
+        SAML 2 SP
+       </a>
+      </li>
+      <li>
+       <a href="#saml-2-idp_1.html">
+        SAML 2 IdP
+       </a>
+      </li>
+      <li>
+       <a href="#the-sp-api.html">
+        The SP API
+       </a>
+      </li>
+      <li>
+       <a href="#adfs_6.html">
+        adfs
+       </a>
+      </li>
+      <li>
+       <a href="#casserver_2.html">
+        casserver
+       </a>
+      </li>
+      <li>
+       <a href="#consent_7.html">
+        consent
+       </a>
+      </li>
+      <li>
+       <a href="#consentadmin_3.html">
+        consentAdmin
+       </a>
+      </li>
+      <li>
+       <a href="#core_8.html">
+        core
+       </a>
+      </li>
+      <li>
+       <a href="#discopower_5.html">
+        discoPower
+       </a>
+      </li>
+      <li>
+       <a href="#ldap_11.html">
+        ldap
+       </a>
+      </li>
+      <li>
+       <a href="#ldapstatus.html">
+        ldapstatus
+       </a>
+      </li>
+      <li>
+       <a href="#multiauth_3.html">
+        multiauth
+       </a>
+      </li>
+      <li>
+       <a href="#oauth_7.html">
+        oauth
+       </a>
+      </li>
+      <li>
+       <a href="#openidprovider_3.html">
+        openidProvider
+       </a>
+      </li>
+      <li>
+       <a href="#saml_11.html">
+        saml
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#version-151.html">
+      Version 1.5.1
+     </a>
+    </li>
+    <li>
+     <a href="#version-15.html">
+      Version 1.5
+     </a>
+     <ul>
+      <li>
+       <a href="#new-modules.html">
+        New modules:
+       </a>
+      </li>
+      <li>
+       <a href="#aggregator_3.html">
+        aggregator:
+       </a>
+      </li>
+      <li>
+       <a href="#authmemcookie.html">
+        AuthMemCookie:
+       </a>
+      </li>
+      <li>
+       <a href="#cas_2.html">
+        cas:
+       </a>
+      </li>
+      <li>
+       <a href="#consent_8.html">
+        consent:
+       </a>
+      </li>
+      <li>
+       <a href="#consentadmin_4.html">
+        consentAdmin:
+       </a>
+      </li>
+      <li>
+       <a href="#core_9.html">
+        core:
+       </a>
+      </li>
+      <li>
+       <a href="#discopower_6.html">
+        discopower:
+       </a>
+      </li>
+      <li>
+       <a href="#ldap_12.html">
+        ldap:
+       </a>
+      </li>
+      <li>
+       <a href="#ldapstatus_1.html">
+        ldapstatus:
+       </a>
+      </li>
+      <li>
+       <a href="#logpeek.html">
+        logpeek:
+       </a>
+      </li>
+      <li>
+       <a href="#metarefresh_10.html">
+        metarefresh:
+       </a>
+      </li>
+      <li>
+       <a href="#preprodwarning_2.html">
+        preprodwarning:
+       </a>
+      </li>
+      <li>
+       <a href="#saml_12.html">
+        SAML:
+       </a>
+      </li>
+      <li>
+       <a href="#statistics_4.html">
+        statistics:
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#version-14.html">
+      Version 1.4
+     </a>
+    </li>
+    <li>
+     <a href="#version-13.html">
+      Version 1.3
+     </a>
+     <ul>
+      <li>
+       <a href="#new-features_3.html">
+        New features
+       </a>
+      </li>
+      <li>
+       <a href="#bug-fixes_3.html">
+        Bug fixes
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#version-12.html">
+      Version 1.2
+     </a>
+     <ul>
+      <li>
+       <a href="#new-features_4.html">
+        New features
+       </a>
+      </li>
+      <li>
+       <a href="#bug-fixes_4.html">
+        Bug fixes
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#version-11.html">
+      Version 1.1
+     </a>
+     <ul>
+      <li>
+       <a href="#new-features_5.html">
+        New features
+       </a>
+      </li>
+      <li>
+       <a href="#bug-fixes_5.html">
+        Bug fixes
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#version-10.html">
+      Version 1.0
+     </a>
+    </li>
+    <li>
+     <a href="#version-05.html">
+      Version 0.5
+     </a>
+     <ul>
+      <li>
+       <a href="#warning.html">
+        Warning
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#version-04.html">
+      Version 0.4
+     </a>
+    </li>
+   </ul>
+  </li>
+ </ul>
+</div>
 <p>
  This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
@@ -98,7 +1585,7 @@ See the upgrade notes for specific information about upgrading.
 <h2 id="version-200">
  Version 2.0.0
 </h2>
-<pre><code>* Support for certificate fingerprints was removed
+<pre class="codehilite"><code>* Support for certificate fingerprints was removed
 * Support for SAML 1.1 was removed
 * Old-style PHP templates were removed
 * Old-style dictionaries were removed
@@ -114,24 +1601,24 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released TBD
 </p>
-<pre><code>* Fixed a bug in the Artifact Resolution Service (#1428)
+<pre class="codehilite"><code>* Fixed a bug in the Artifact Resolution Service (#1428)
 * Fixed compatibility with Composer pre 1.8.5 (Debian 10) (#1427)
 * Updated npm dependencies up to February 1, 2021
 </code></pre>
 <h3 id="memcachemonitor">
  memcacheMonitor
 </h3>
-<pre><code>* Fix a bug in the Twig-template that causes an exception on newer Twig-versions
+<pre class="codehilite"><code>* Fix a bug in the Twig-template that causes an exception on newer Twig-versions
 </code></pre>
 <h3 id="negotiate">
  negotiate
 </h3>
-<pre><code>* Fix a bug that was breaking the module when using the old UI
+<pre class="codehilite"><code>* Fix a bug that was breaking the module when using the old UI
 </code></pre>
 <h3 id="statistics">
  statistics
 </h3>
-<pre><code>* Fix a bug in the Twig-template that causes an exception on newer Twig-versions
+<pre class="codehilite"><code>* Fix a bug in the Twig-template that causes an exception on newer Twig-versions
 </code></pre>
 <h2 id="version-1190">
  Version 1.19.0
@@ -139,7 +1626,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2021-01-21
 </p>
-<pre><code>* This version will be the last of the 1.x branch and will provide a migration path to our new
+<pre class="codehilite"><code>* This version will be the last of the 1.x branch and will provide a migration path to our new
   templating system, routing system and translation system.
 * SAML 1 / Shib 1.3 support is now marked deprecated and will be removed in SimpleSAMLphp 2.0.
 * Raised minimum PHP version to 7.1
@@ -163,7 +1650,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2020-09-02
 </p>
-<pre><code>* Fixed Artifact Resolution due to incorrect use of Issuer objects (#1343).
+<pre class="codehilite"><code>* Fixed Artifact Resolution due to incorrect use of Issuer objects (#1343).
 * Fixed some of the German translations (#1331). Thanks @htto!
 * Harden against CVE-2020-13625;  this package is not affected, but 3rd party modules may (#1333).
 * Harden against sevaral JS issues (npm update &amp; npm audit fix)
@@ -174,40 +1661,40 @@ See the upgrade notes for specific information about upgrading.
 <h3 id="authcrypt">
  authcrypt
 </h3>
-<pre><code>* The dependency for whitehat101/apr1-md5 was moved from the base repository to the module (v0.9.2)
+<pre class="codehilite"><code>* The dependency for whitehat101/apr1-md5 was moved from the base repository to the module (v0.9.2)
 </code></pre>
 <h3 id="authx509">
  authx509
 </h3>
-<pre><code>* Restore PHP 5.6 compatibility (v0.9.5)
+<pre class="codehilite"><code>* Restore PHP 5.6 compatibility (v0.9.5)
 </code></pre>
 <h3 id="cron">
  cron
 </h3>
-<pre><code>* Fixed old-ui (#1248)
+<pre class="codehilite"><code>* Fixed old-ui (#1248)
 </code></pre>
 <h3 id="ldap">
  ldap
 </h3>
-<pre><code>* Moved array with binary attributes to authsource config (v0.9.9)
+<pre class="codehilite"><code>* Moved array with binary attributes to authsource config (v0.9.9)
   Instead of having to edit code, you can now set 'attributes.binary' in the authsource configuration.
 </code></pre>
 <h3 id="metarefresh">
  metarefresh
 </h3>
-<pre><code>* Add attributewhitelist to support e.g. R&amp;S+Sirtfi (v0.9.5)
+<pre class="codehilite"><code>* Add attributewhitelist to support e.g. R&amp;S+Sirtfi (v0.9.5)
 * Restore PHP 5.6 compatibility (v0.9.6)
 </code></pre>
 <h3 id="negotiate_1">
  negotiate
 </h3>
-<pre><code>* Restore PHP 5.6 compatibility (v0.9.8)
+<pre class="codehilite"><code>* Restore PHP 5.6 compatibility (v0.9.8)
 * Fixed a link (v0.9.9)
 </code></pre>
 <h3 id="saml2-library">
  saml2 library
 </h3>
-<pre><code>* Fixed a bug in the AuthnRequest-class that would raise an InvalidArgumentException when setting
+<pre class="codehilite"><code>* Fixed a bug in the AuthnRequest-class that would raise an InvalidArgumentException when setting
     the AssertionConsumerServiceIndex as an integer on an saml:SP authsource.
     Thanks to Andrea @ Oracle for reporting this.
 </code></pre>
@@ -217,7 +1704,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2020-05-12
 </p>
-<pre><code>* Fix spurious warnings when session_create_id() fails to create ID (#1291)
+<pre class="codehilite"><code>* Fix spurious warnings when session_create_id() fails to create ID (#1291)
 * Fix inconsistency in the way PATH_INFO is being used (#1227).
 * Fix a potential security issue [CVE-2020-11022](https://nvd.nist.gov/vuln/detail/CVE-2020-11022) by updating jQuery. If any of your custom modules rely on jQuery,
     make sure you read the following [update notes](https://jquery.com/upgrade-guide/3.5/), since jQuery has solved this in a non-BC way (#1321).
@@ -228,37 +1715,37 @@ See the upgrade notes for specific information about upgrading.
 <h3 id="adfs">
  adfs
 </h3>
-<pre><code>* Fixed a broken link to one of the assets (v0.9.6).
+<pre class="codehilite"><code>* Fixed a broken link to one of the assets (v0.9.6).
 </code></pre>
 <h3 id="ldap_1">
  ldap
 </h3>
-<pre><code>* Handle binary attributes in a generic way (v0.9.5).
+<pre class="codehilite"><code>* Handle binary attributes in a generic way (v0.9.5).
 </code></pre>
 <h3 id="oauth">
  oauth
 </h3>
-<pre><code>* Fix PHP 7.4 incompatibility (v0.9.2).
+<pre class="codehilite"><code>* Fix PHP 7.4 incompatibility (v0.9.2).
 </code></pre>
 <h3 id="preprodwarning">
  preprodwarning
 </h3>
-<pre><code>* Fix Dutch translations (v0.9.2).
+<pre class="codehilite"><code>* Fix Dutch translations (v0.9.2).
 </code></pre>
 <h3 id="sanitycheck">
  sanitycheck
 </h3>
-<pre><code>* Fix broken HTML (v0.9.1).
+<pre class="codehilite"><code>* Fix broken HTML (v0.9.1).
 </code></pre>
 <h3 id="saml">
  saml
 </h3>
-<pre><code>* Fix several issues in the saml:NameIDAttribute authproc filter (#1325).
+<pre class="codehilite"><code>* Fix several issues in the saml:NameIDAttribute authproc filter (#1325).
 </code></pre>
 <h3 id="saml2-library_1">
  saml2 library
 </h3>
-<pre><code>* fixed a standards compliance issue regarding ContactPerson EMail addresses (v3.4.4).
+<pre class="codehilite"><code>* fixed a standards compliance issue regarding ContactPerson EMail addresses (v3.4.4).
 * fixed an issue parsing very large metadata files (v3.4.3).
 </code></pre>
 <h2 id="version-1186">
@@ -267,7 +1754,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2020-04-17
 </p>
-<pre><code>* Fix source code disclosure on case-insensitive file systems. See
+<pre class="codehilite"><code>* Fix source code disclosure on case-insensitive file systems. See
   [SSPSA 202004-01](https://simplesamlphp.org/security/202004-01).
 * Fix spurious error in logs when using a custom theme (#1312).
 * Fix broken metadata converter (#1305).
@@ -278,7 +1765,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2020-03-19
 </p>
-<pre><code>* Make the URLs for the cron module work again (#1248).
+<pre class="codehilite"><code>* Make the URLs for the cron module work again (#1248).
 * Email error reports now include metadata again (#1269).
 * Fix exampleauth module when using the legacy UI (#1275).
 * Fix authorize module when using custom reject message.
@@ -291,7 +1778,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2020-01-24
 </p>
-<pre><code>* Resolved a security issue in email reports. See
+<pre class="codehilite"><code>* Resolved a security issue in email reports. See
   [SSPSA 202001-01](https://simplesamlphp.org/security/202001-01).
 * Resolved a security issue with the logging system. See
   [SSPSA 202001-02](https://simplesamlphp.org/security/202001-02).
@@ -305,13 +1792,13 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2019-12-09
 </p>
-<pre><code>* Fixed an issue with several modules being enabled by default (#1257).
+<pre class="codehilite"><code>* Fixed an issue with several modules being enabled by default (#1257).
 * Fixed an issue with metadata generation for trusted entities (#1247, #1251).
 </code></pre>
 <h3 id="ldap_2">
  ldap
 </h3>
-<pre><code>* Fixed an issue affecting the installation in case-insensitive file systems (#1253).
+<pre class="codehilite"><code>* Fixed an issue affecting the installation in case-insensitive file systems (#1253).
 </code></pre>
 <h2 id="version-1182">
  Version 1.18.2
@@ -319,7 +1806,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2019-11-26
 </p>
-<pre><code>* Fixed an issue with the `ldap` module that prevented installing SimpleSAMLphp from the repository (#1241).
+<pre class="codehilite"><code>* Fixed an issue with the `ldap` module that prevented installing SimpleSAMLphp from the repository (#1241).
 </code></pre>
 <h2 id="version-1181">
  Version 1.18.1
@@ -327,7 +1814,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2019-11-26
 </p>
-<pre><code> * Fixed an issue that prevented custom themes from working (#1240).
+<pre class="codehilite"><code> * Fixed an issue that prevented custom themes from working (#1240).
  * Fixed an issue with translations in the discovery service (#1244).
  * Fixed an issue with schema validation.
 </code></pre>
@@ -337,7 +1824,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2019-11-19
 </p>
-<pre><code>* Fixed an issue with warnings being logged when using PHP 7.2 or newer (#1168).
+<pre class="codehilite"><code>* Fixed an issue with warnings being logged when using PHP 7.2 or newer (#1168).
 * Fixed an issue with web server aliases or rewritten URLs not working (#1023, #1093).
 * Fixed an issue that prevented errors to be logged if the log file was not writeable (#1194).
 * Fixed an issue with old-style NameIDPolicy configurations that disallowed creating new NameIDs (#1230).
@@ -356,14 +1843,14 @@ See the upgrade notes for specific information about upgrading.
 <h3 id="metarefresh_1">
  metarefresh
 </h3>
-<pre><code>* The algorithm to compute the fingerprint of the certificate that signed
+<pre class="codehilite"><code>* The algorithm to compute the fingerprint of the certificate that signed
   metadata can be specified with the new `validateFingerprintAlgorithm`
   configuration option.
 </code></pre>
 <h3 id="saml_1">
  saml
 </h3>
-<pre><code>* Make the id of the generated signed metadata only change when metadata content changes.
+<pre class="codehilite"><code>* Make the id of the generated signed metadata only change when metadata content changes.
 * New SP metadata configuration options `AssertionConsumerService` and `SingleLogoutServiceLocation`
   to allow overriding the default URL paths.
 * Added support for per-IDP configurable `AuthnContextClassRef`/`AuthnContextComparison`.
@@ -374,13 +1861,13 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2019-11-20
 </p>
-<pre><code>* Resolved a security issue that exposed host information to unauthenticated users. See
+<pre class="codehilite"><code>* Resolved a security issue that exposed host information to unauthenticated users. See
   [SSPSA 201911-02](https://simplesamlphp.org/security/201911-02).
 </code></pre>
 <h3 id="consentadmin">
  consentAdmin
 </h3>
-<pre><code>* Fixed an issue with CSS and JavaScript not loading for the module in the new user
+<pre class="codehilite"><code>* Fixed an issue with CSS and JavaScript not loading for the module in the new user
   interface.
 </code></pre>
 <h2 id="version-1177">
@@ -389,7 +1876,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2019-11-06
 </p>
-<pre><code>* Resolved a security issue that allows to bypass signature validation. See
+<pre class="codehilite"><code>* Resolved a security issue that allows to bypass signature validation. See
   [SSPSA 201911-01](https://simplesamlphp.org/security/201911-01).
 </code></pre>
 <h2 id="version-1176">
@@ -398,7 +1885,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2019-08-29
 </p>
-<pre><code>* Fixed a regression with logout database initialization when using MySQL (#1177).
+<pre class="codehilite"><code>* Fixed a regression with logout database initialization when using MySQL (#1177).
 * Fixed an issue with logout when using iframes (#1191).
 * Fixed an issue causing log entries to be logged with incorrect relative order (#1107).
 </code></pre>
@@ -408,7 +1895,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2019-08-02
 </p>
-<pre><code>* Fixed a bug in the SP API where NameID objects weren't taken care of (introduced in 1.17.0).
+<pre class="codehilite"><code>* Fixed a bug in the SP API where NameID objects weren't taken care of (introduced in 1.17.0).
 * Fixed a regression where MetaDataStorageHandlerPdo::getMetaData() would not return a value (#1165).
 * Fixed an issue with table indexes (#1089).
 * Fixed an issue with table migrations on SQlite (#1169).
@@ -421,7 +1908,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2019-07-11
 </p>
-<pre><code>* Fix an issue introduced in 1.17.3 with `enable.http_post`.
+<pre class="codehilite"><code>* Fix an issue introduced in 1.17.3 with `enable.http_post`.
 </code></pre>
 <h2 id="version-1173">
  Version 1.17.3
@@ -429,7 +1916,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2019-07-10
 </p>
-<pre><code>* Resolved a security issue that could lead to a reflected XSS.  See
+<pre class="codehilite"><code>* Resolved a security issue that could lead to a reflected XSS.  See
   [SSPSA 201907-01](https://simplesamlphp.org/security/201907-01).
 * Add new options `session.cookie.samesite` and `language.cookie.samesite` that can be
   used to set a specific value for the cookies' SameSite attribute. The default it not
@@ -445,12 +1932,12 @@ See the upgrade notes for specific information about upgrading.
 <h3 id="adfs_1">
  adfs
 </h3>
-<pre><code>* Fixed a missing option to supply a passphrase for the ADFS IDP signing certificate.
+<pre class="codehilite"><code>* Fixed a missing option to supply a passphrase for the ADFS IDP signing certificate.
 </code></pre>
 <h3 id="authlinkedin">
  authlinkedin
 </h3>
-<pre><code>* This module has been removed now that LinkedIn no longer supports OAuth1.
+<pre class="codehilite"><code>* This module has been removed now that LinkedIn no longer supports OAuth1.
   If you relied on this module, you may consider migrating to the
   [authoauth2 module](https://github.com/cirrusidentity/simplesamlphp-module-authoauth2).
   A migration guide for LinkedIn authentication is included in their README.
@@ -461,7 +1948,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2019-04-02
 </p>
-<pre><code>* Fixed that generated metadata was missing some information
+<pre class="codehilite"><code>* Fixed that generated metadata was missing some information
   when PHP's zend.assertions option is set to &lt; 1.
 * Fixed that MDUI Keywords and Logo were not parsed from metadata.
 * Fixed DiscoPower module tab display.
@@ -476,7 +1963,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2019-03-07
 </p>
-<pre><code>* Fixed an issue with composer that made it impossible to install modules
+<pre class="codehilite"><code>* Fixed an issue with composer that made it impossible to install modules
   if SimpleSAMLphp was installed itself with the provided package (tar.gz file).
 </code></pre>
 <h2 id="version-1170">
@@ -485,7 +1972,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2019-03-07
 </p>
-<pre><code>* Introduce a new experimental user interface based on Twig templates.
+<pre class="codehilite"><code>* Introduce a new experimental user interface based on Twig templates.
   The new Twig templates co-exist next to the old ones and come
   with a new look-and-feel for SimpleSAMLphp and independent interfaces for
   users and administrators. This new interface uses also a new build system
@@ -507,7 +1994,7 @@ See the upgrade notes for specific information about upgrading.
 <h3 id="interoperability">
  Interoperability
 </h3>
-<pre><code>* The minimum PHP version required is now 5.5.
+<pre class="codehilite"><code>* The minimum PHP version required is now 5.5.
 * Fixed compatibility with PHP 7.3 and HVVM.
 * SimpleSAMLphp can now be used with applications that use Twig 2 and/or Symfony 4.
 * The SAML2 library now uses getters/setters to manipulate objects properties.
@@ -515,45 +2002,45 @@ See the upgrade notes for specific information about upgrading.
 <h3 id="authfacebook">
  authfacebook
 </h3>
-<pre><code>* Fix Facebook compatibility (query parameters).
+<pre class="codehilite"><code>* Fix Facebook compatibility (query parameters).
 </code></pre>
 <h3 id="authorize">
  authorize
 </h3>
-<pre><code>* Add the possibility to configure a custom rejection message.
+<pre class="codehilite"><code>* Add the possibility to configure a custom rejection message.
 </code></pre>
 <h3 id="consent">
  consent
 </h3>
-<pre><code>* The module is now disabled by default.
+<pre class="codehilite"><code>* The module is now disabled by default.
 </code></pre>
 <h3 id="core">
  core
 </h3>
-<pre><code>* Allow `core:PHP` to manipulate the entire state array.
+<pre class="codehilite"><code>* Allow `core:PHP` to manipulate the entire state array.
 * IdP initiated login: add compatibility with Shibboleth parameters.
 </code></pre>
 <h3 id="multiauth">
  multiauth
 </h3>
-<pre><code>* Added a `preselect` configuration option to skip authsource selection (#1005).
+<pre class="codehilite"><code>* Added a `preselect` configuration option to skip authsource selection (#1005).
 </code></pre>
 <h3 id="negotiate_2">
  negotiate
 </h3>
-<pre><code>* The `keytab` setting now allows for relative paths too.
+<pre class="codehilite"><code>* The `keytab` setting now allows for relative paths too.
 </code></pre>
 <h3 id="preprodwarning_1">
  preprodwarning
 </h3>
-<pre><code>* This module is now deprecated. Use the `production` configuration
+<pre class="codehilite"><code>* This module is now deprecated. Use the `production` configuration
   option instead; set it to `false` to show a pre-production warning
   before authentication.
 </code></pre>
 <h3 id="saml_2">
  saml
 </h3>
-<pre><code>* Add initial support for SAML Subject ID Attributes.
+<pre class="codehilite"><code>* Add initial support for SAML Subject ID Attributes.
 * Allow to specify multiple supported NameIdFormats in IdP hosted and SP
   remote metadata.
 * Allow to specify NameIDPolicy Format and AllowCreate in hosted SP
@@ -573,7 +2060,7 @@ See the upgrade notes for specific information about upgrading.
 <h3 id="sanitycheck_1">
  sanitycheck
 </h3>
-<pre><code>* Translated into several languages.
+<pre class="codehilite"><code>* Translated into several languages.
 </code></pre>
 <h2 id="version-1163">
  Version 1.16.3
@@ -581,7 +2068,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2018-12-20
 </p>
-<pre><code>* Resolved a security issue that could expose the user's credentials locally.  See
+<pre class="codehilite"><code>* Resolved a security issue that could expose the user's credentials locally.  See
   [SSPSA 201812-01](https://simplesamlphp.org/security/201812-01).
 * Downgraded the level of log messages regarding the `userid.attribute` configuration option
   from _warning_ to _debug_.
@@ -597,7 +2084,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2018-09-28
 </p>
-<pre><code>* Fixed an issue with PHP sessions in PHP 7.2.
+<pre class="codehilite"><code>* Fixed an issue with PHP sessions in PHP 7.2.
 * Fixed a bug in the OAuth module.
 * Make schema validation work again.
 * Properly document the `saml:AuthnContextClassRef` authentication processing filter.
@@ -612,7 +2099,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2018-09-07
 </p>
-<pre><code>* Fix a bug preventing the consent page from showing.
+<pre class="codehilite"><code>* Fix a bug preventing the consent page from showing.
 * Add Catalan to the list of available languages.
 </code></pre>
 <h2 id="version-1160">
@@ -624,7 +2111,7 @@ See the upgrade notes for specific information about upgrading.
 <h3 id="changes">
  Changes
 </h3>
-<pre><code>* Default signature algorithm is now RSA-SHA256.
+<pre class="codehilite"><code>* Default signature algorithm is now RSA-SHA256.
 * Renamed class `SimpleSAML_Error_BadUserInnput` to `SimpleSAML_Error_BadUserInput`
 * PHP 7.2 compatibility, including removing deprecated use of assert with string.
 * Avoid logging database credentials in backtraces.
@@ -635,7 +2122,7 @@ See the upgrade notes for specific information about upgrading.
 <h3 id="new-features">
  New features
 </h3>
-<pre><code>* Added support for SAML "Enhanced Client or Proxy" (ECP) protocol,
+<pre class="codehilite"><code>* Added support for SAML "Enhanced Client or Proxy" (ECP) protocol,
   IdP side with HTTP Basic Authentication as authentication method.
   See the [ECP IdP documentation](./simplesamlphp-ecp-idp) for details.
 * New option `sendmail_from`, the from address for email sent by SSP.
@@ -656,29 +2143,29 @@ See the upgrade notes for specific information about upgrading.
 <h3 id="adfs_2">
  adfs
 </h3>
-<pre><code>* Make signature algorithm configurable with `signature.algorithm`.
+<pre class="codehilite"><code>* Make signature algorithm configurable with `signature.algorithm`.
 * Use configuration assertion lifetime when available.
 * Use `adfs:wreply` parameter when available.
 </code></pre>
 <h3 id="authmyspace">
  authmyspace
 </h3>
-<pre><code>* Module removed because service is no longer available.
+<pre class="codehilite"><code>* Module removed because service is no longer available.
 </code></pre>
 <h3 id="cas">
  cas
 </h3>
-<pre><code>* Respect all LDAP options in LDAP call.
+<pre class="codehilite"><code>* Respect all LDAP options in LDAP call.
 </code></pre>
 <h3 id="casserver">
  casserver
 </h3>
-<pre><code>* Module removed; superseded by externally hosted module.
+<pre class="codehilite"><code>* Module removed; superseded by externally hosted module.
 </code></pre>
 <h3 id="consent_1">
  consent
 </h3>
-<pre><code>* Sort attribute values for consent.
+<pre class="codehilite"><code>* Sort attribute values for consent.
 * Fix table layout for MySQL &gt; 5.6.
 * Rename `noconsentattributes` to `attributes.exclude`; the former
   is now considered deprecated.
@@ -686,14 +2173,14 @@ See the upgrade notes for specific information about upgrading.
 <h3 id="consentadmin_1">
  consentAdmin
 </h3>
-<pre><code>* Work better with TargetedIDs when operating as a proxy.
+<pre class="codehilite"><code>* Work better with TargetedIDs when operating as a proxy.
 * Add `attributes.exclude` option to correspond to the same option
   in the Consent module.
 </code></pre>
 <h3 id="core_1">
  core
 </h3>
-<pre><code>* StatisticsWithAttribute: add `passive-` prefix when logging passive
+<pre class="codehilite"><code>* StatisticsWithAttribute: add `passive-` prefix when logging passive
   requests, set new option `skipPassive` to skip logging these altogether.
 * Replace deprecated `create_function` with an anonymous function.
 * New authproc filter Cardinality to enforce attribute cardinality.
@@ -704,44 +2191,44 @@ See the upgrade notes for specific information about upgrading.
 <h3 id="ldap_3">
  ldap
 </h3>
-<pre><code>* AttributeAddUsersGroups: if `attribute.groupname` is set, use the
+<pre class="codehilite"><code>* AttributeAddUsersGroups: if `attribute.groupname` is set, use the
   configured attribute as the group name rather than the DN.
 * Also base64encode the `ms-ds-consistencyguid` attribute.
 </code></pre>
 <h3 id="metarefresh_2">
  metarefresh
 </h3>
-<pre><code>* Return XML parser error for better debugging of problems.
+<pre class="codehilite"><code>* Return XML parser error for better debugging of problems.
 * Only actually parse metadata types that have been enabled.
 * Fix missing translation.
 </code></pre>
 <h3 id="oauth_1">
  Oauth
 </h3>
-<pre><code>* Make module HTTP proxy-aware.
+<pre class="codehilite"><code>* Make module HTTP proxy-aware.
 * Remove unused demo app.
 </code></pre>
 <h3 id="saml_3">
  saml
 </h3>
-<pre><code>* AttributeConsumingService: allow to set isDefault and index options.
+<pre class="codehilite"><code>* AttributeConsumingService: allow to set isDefault and index options.
 * Encrypted attributes in an assertion are now decrypted correctly.
 * Prefer the HTTP-Redirect binding for AuthnRequests if available.
 </code></pre>
 <h3 id="smartattributes">
  smartattributes
 </h3>
-<pre><code>* Fix to make the `add_authority` option work.
+<pre class="codehilite"><code>* Fix to make the `add_authority` option work.
 </code></pre>
 <h3 id="sqlauth">
  sqlauth
 </h3>
-<pre><code>* The module is now disabled by default.
+<pre class="codehilite"><code>* The module is now disabled by default.
 </code></pre>
 <h3 id="statistics_1">
  statistics
 </h3>
-<pre><code>* Show a decent error message when no data is available.
+<pre class="codehilite"><code>* Show a decent error message when no data is available.
 </code></pre>
 <h2 id="version-1154">
  Version 1.15.4
@@ -749,7 +2236,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2018-03-02
 </p>
-<pre><code>* Resolved a security issue related to signature validation in the SAML2 library. See [SSPSA 201803-01](https://simplesamlphp.org/security/201803-01).
+<pre class="codehilite"><code>* Resolved a security issue related to signature validation in the SAML2 library. See [SSPSA 201803-01](https://simplesamlphp.org/security/201803-01).
 </code></pre>
 <h2 id="version-1153">
  Version 1.15.3
@@ -757,7 +2244,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2018-02-27
 </p>
-<pre><code>* Resolved a security issue related to signature validation in the SAML2 library. See [SSPSA 201802-01](https://simplesamlphp.org/security/201802-01).
+<pre class="codehilite"><code>* Resolved a security issue related to signature validation in the SAML2 library. See [SSPSA 201802-01](https://simplesamlphp.org/security/201802-01).
 * Fixed edge-case scenario where an application uses one of the known LoggingHandlers' name as a defined class
 * Fixed issue #793 in the PHP logging handler.
 </code></pre>
@@ -767,7 +2254,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2018-01-31
 </p>
-<pre><code>* Resolved a Denial of Service security issue when validating timestamps in the SAML2 library. See [SSPSA 201801-01](https://simplesamlphp.org/security/201801-01).
+<pre class="codehilite"><code>* Resolved a Denial of Service security issue when validating timestamps in the SAML2 library. See [SSPSA 201801-01](https://simplesamlphp.org/security/201801-01).
 * Resolved a security issue with the open redirect protection mechanism. See [SSPSA 201801-02](https://simplesamlphp.org/security/201801-02).
 * Fix _undefined method_ error when using memcacheD.
 </code></pre>
@@ -776,21 +2263,21 @@ See the upgrade notes for specific information about upgrading.
   authfacebook
  </code>
 </h3>
-<pre><code>* Fix compatibility with Facebook strict URI match.
+<pre class="codehilite"><code>* Fix compatibility with Facebook strict URI match.
 </code></pre>
 <h3 id="consent_2">
  <code>
   consent
  </code>
 </h3>
-<pre><code>* Fix statistics not being gathered.
+<pre class="codehilite"><code>* Fix statistics not being gathered.
 </code></pre>
 <h3 id="sqlauth_1">
  <code>
   sqlauth
  </code>
 </h3>
-<pre><code>* Prevented a security issue with the connection charset used for MySQL backends. See [SSPSA 201801-03](https://simplesamlphp.org/security/201801-03).
+<pre class="codehilite"><code>* Prevented a security issue with the connection charset used for MySQL backends. See [SSPSA 201801-03](https://simplesamlphp.org/security/201801-03).
 </code></pre>
 <h2 id="version-1151">
  Version 1.15.1
@@ -801,7 +2288,7 @@ See the upgrade notes for specific information about upgrading.
 <h3 id="bug-fixes">
  Bug fixes
 </h3>
-<pre><code>* AuthX509 error messages were broken.
+<pre class="codehilite"><code>* AuthX509 error messages were broken.
 * Properly calculate supported protocols based on config.
 * NameIDAttribute filter: update to use SAML2\XML\saml\NameID.
 * Replace remaining uses of SimpleSAML_Logger with namespace version.
@@ -818,7 +2305,7 @@ See the upgrade notes for specific information about upgrading.
 <h3 id="new-features_1">
  New features
 </h3>
-<pre><code>* Added support for authenticated web proxies with the `proxy.auth` setting.
+<pre class="codehilite"><code>* Added support for authenticated web proxies with the `proxy.auth` setting.
 * Added new `AttributeValueMap` authproc filter.
 * Added attributemaps for OIDs from SIS (Swedish Standards Institute) and
   for eduPersonUniqueId, eduPersonOrcid and sshPublicKey.
@@ -850,7 +2337,7 @@ See the upgrade notes for specific information about upgrading.
 <h3 id="bug-fixes_1">
  Bug fixes
 </h3>
-<pre><code>* The deprecated OpenIdP has been removed from the metadata template.
+<pre class="codehilite"><code>* The deprecated OpenIdP has been removed from the metadata template.
 * Trailing slash is no longer required in `baseurlpath`.
 * Make redirections more resilient.
 * Fixed empty protocolSupportEnumeration in AttributeAuthorityDescriptor.
@@ -861,7 +2348,7 @@ See the upgrade notes for specific information about upgrading.
 <h3 id="api-and-user-interface">
  API and user interface
 </h3>
-<pre><code>* Updated to Xmlseclibs 3.0.
+<pre class="codehilite"><code>* Updated to Xmlseclibs 3.0.
   Minimum PHP version is now 5.4, mcrypt requirement dropped.
 * Added a PSR-4 autoloader for modules. Now modules can declare their
   classes under the SimpleSAML\Module namespace.
@@ -876,28 +2363,28 @@ See the upgrade notes for specific information about upgrading.
   adfs
  </code>
 </h3>
-<pre><code>* Fixed POST response form parameter encoding.
+<pre class="codehilite"><code>* Fixed POST response form parameter encoding.
 </code></pre>
 <h3 id="authyubikey">
  <code>
   authYubiKey
  </code>
 </h3>
-<pre><code>* Fixed PHP 7 support.
+<pre class="codehilite"><code>* Fixed PHP 7 support.
 </code></pre>
 <h3 id="authfacebook_2">
  <code>
   authfacebook
  </code>
 </h3>
-<pre><code>* Updated to work with latest Facebook API.
+<pre class="codehilite"><code>* Updated to work with latest Facebook API.
 </code></pre>
 <h3 id="authlinkedin_1">
  <code>
   authlinkedin
  </code>
 </h3>
-<pre><code>* Added setting `attributes` to specify which attributes to request
+<pre class="codehilite"><code>* Added setting `attributes` to specify which attributes to request
   from LinkedIn.
 </code></pre>
 <h3 id="authtwitter">
@@ -905,21 +2392,21 @@ See the upgrade notes for specific information about upgrading.
   authtwitter
  </code>
 </h3>
-<pre><code>* Added support for fetching the user's email address as attribute.
+<pre class="codehilite"><code>* Added support for fetching the user's email address as attribute.
 </code></pre>
 <h3 id="consent_3">
  <code>
   consent
  </code>
 </h3>
-<pre><code>* Added support for regular expressions in `consent.disable`.
+<pre class="codehilite"><code>* Added support for regular expressions in `consent.disable`.
 </code></pre>
 <h3 id="core_2">
  <code>
   core
  </code>
 </h3>
-<pre><code>* Added logging of `REMOTE_ADDR` on successful login.
+<pre class="codehilite"><code>* Added logging of `REMOTE_ADDR` on successful login.
 * `AttributeMap`: allow fetching mapping files from modules.
 * `ScopeAttribute`: added option `onlyIfEmpty` to add a scope only if
    none was present.
@@ -930,21 +2417,21 @@ See the upgrade notes for specific information about upgrading.
   cron
  </code>
 </h3>
-<pre><code>* Allow invocation via PHP command line interface.
+<pre class="codehilite"><code>* Allow invocation via PHP command line interface.
 </code></pre>
 <h3 id="discopower">
  <code>
   discopower
  </code>
 </h3>
-<pre><code>* Added South Africa tab.
+<pre class="codehilite"><code>* Added South Africa tab.
 </code></pre>
 <h3 id="ldap_4">
  <code>
   ldap
  </code>
 </h3>
-<pre><code>* Added `search.filter` setting to limit LDAP queries to a custom search
+<pre class="codehilite"><code>* Added `search.filter` setting to limit LDAP queries to a custom search
   filter.
 * Added OpenLDAP support in AttributeAddUsersGroups.
 * Fixed for using non standard LDAP port numbers.
@@ -955,28 +2442,28 @@ See the upgrade notes for specific information about upgrading.
   memcacheMonitor
  </code>
 </h3>
-<pre><code>* Fixed several missing strings.
+<pre class="codehilite"><code>* Fixed several missing strings.
 </code></pre>
 <h3 id="metarefresh_3">
  <code>
   metarefresh
  </code>
 </h3>
-<pre><code>* Fixed several spurious PHP notices.
+<pre class="codehilite"><code>* Fixed several spurious PHP notices.
 </code></pre>
 <h3 id="multiauth_1">
  <code>
   multiauth
  </code>
 </h3>
-<pre><code>* Fixed selected source timeout.
+<pre class="codehilite"><code>* Fixed selected source timeout.
 </code></pre>
 <h3 id="negotiate_3">
  <code>
   negotiate
  </code>
 </h3>
-<pre><code>* Fixed authentication failure on empty attributes-array.
+<pre class="codehilite"><code>* Fixed authentication failure on empty attributes-array.
 * Fixed PHP notices concerning missing arguments.
 </code></pre>
 <h3 id="oauth_2">
@@ -984,14 +2471,14 @@ See the upgrade notes for specific information about upgrading.
   oauth
  </code>
 </h3>
-<pre><code>* Updated library to improve support for OAuth 1.0 Revision A.
+<pre class="codehilite"><code>* Updated library to improve support for OAuth 1.0 Revision A.
 </code></pre>
 <h3 id="radius">
  <code>
   radius
  </code>
 </h3>
-<pre><code>* Improved error messages.
+<pre class="codehilite"><code>* Improved error messages.
 * Added parameter `realm` that will be suffixed to the username entered.
 </code></pre>
 <h3 id="saml_4">
@@ -999,7 +2486,7 @@ See the upgrade notes for specific information about upgrading.
   saml
  </code>
 </h3>
-<pre><code>* Handle instead of reject assertions that do not contain a NameID.
+<pre class="codehilite"><code>* Handle instead of reject assertions that do not contain a NameID.
 * Added options to configure `AllowCreate` and `SPNameQualifier`.
 * Added option `saml:NameID` to set the Subject NameID in a SAML AuthnRequest.
 * Added filter `FilterScopes` to remove values which are not properly scoped.
@@ -1015,14 +2502,14 @@ See the upgrade notes for specific information about upgrading.
   smartattributes
  </code>
 </h3>
-<pre><code>* Fix SmartName authproc that failed to load.
+<pre class="codehilite"><code>* Fix SmartName authproc that failed to load.
 </code></pre>
 <h3 id="sqlauth_2">
  <code>
   sqlauth
  </code>
 </h3>
-<pre><code>* Fixed SQL schema for usergroups table.
+<pre class="codehilite"><code>* Fixed SQL schema for usergroups table.
 </code></pre>
 <h2 id="version-11417">
  Version 1.14.17
@@ -1030,7 +2517,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2017-10-25
 </p>
-<pre><code>* Resolved a security issue with the SAML 1.1 Service Provider. See [SSPSA 201710-01](https://simplesamlphp.org/security/201710-01).
+<pre class="codehilite"><code>* Resolved a security issue with the SAML 1.1 Service Provider. See [SSPSA 201710-01](https://simplesamlphp.org/security/201710-01).
 </code></pre>
 <h2 id="version-11416">
  Version 1.14.16
@@ -1038,7 +2525,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2017-09-04
 </p>
-<pre><code>* Resolved a security issue in the consentAdmin module. See [SSPSA 201709-01](https://simplesamlphp.org/security/201709-01).
+<pre class="codehilite"><code>* Resolved a security issue in the consentAdmin module. See [SSPSA 201709-01](https://simplesamlphp.org/security/201709-01).
 </code></pre>
 <h2 id="version-11415">
  Version 1.14.15
@@ -1046,7 +2533,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2017-08-08
 </p>
-<pre><code>* Resolved a security issue with the creation and validation of time-limited tokens. See [SSPSA 201708-01](https://simplesamlphp.org/security/201708-01).
+<pre class="codehilite"><code>* Resolved a security issue with the creation and validation of time-limited tokens. See [SSPSA 201708-01](https://simplesamlphp.org/security/201708-01).
 * Fixed an issue with session handling that could lead to crashes after upgrading from earlier 1.14.x versions.
 * Fixed issue #557 with instances of SimpleSAMLphp installed from the repository as well as custom modules.
 * Fixed issue #648 to properly handle SAML responses being sent to reply the same request, but using different response IDs.
@@ -1061,7 +2548,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2017-05-05
 </p>
-<pre><code>* Resolved a security issue with in the authcrypt module (Htpasswd authentication source) and in SimpleSAMLphp's session validation. See [SSPSA 201705-01](https://simplesamlphp.org/security/201705-01).
+<pre class="codehilite"><code>* Resolved a security issue with in the authcrypt module (Htpasswd authentication source) and in SimpleSAMLphp's session validation. See [SSPSA 201705-01](https://simplesamlphp.org/security/201705-01).
 * Resolved a security issue with in the multiauth module. See [SSPSA 201704-02](https://simplesamlphp.org/security/201704-02).
 </code></pre>
 <h2 id="version-11413">
@@ -1070,7 +2557,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2017-04-27
 </p>
-<pre><code>* Resolved a security issue with unauthenticated encryption in the SimpleSAML\Utils\Crypto class. See [SSPSA 201704-01](https://simplesamlphp.org/security/201704-01).
+<pre class="codehilite"><code>* Resolved a security issue with unauthenticated encryption in the SimpleSAML\Utils\Crypto class. See [SSPSA 201704-01](https://simplesamlphp.org/security/201704-01).
 * Added requirement for the Multibyte String PHP extension and the corresponding checks.
 * Set a default name for SimpleSAMLphp sessions in the configuration template for the PHP session handler.
 </code></pre>
@@ -1080,7 +2567,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2017-03-30
 </p>
-<pre><code>* Resolved a security issue in the authcrypt module (Htpasswd authentication source) and in SimpleSAMLphp's session validation. See [SSPSA 201703-01](https://simplesamlphp.org/security/201703-01).
+<pre class="codehilite"><code>* Resolved a security issue in the authcrypt module (Htpasswd authentication source) and in SimpleSAMLphp's session validation. See [SSPSA 201703-01](https://simplesamlphp.org/security/201703-01).
 * Resolved a security issue with IV generation in the  `SimpleSAML\Utils\Crypto::_aesEncrypt()` method. See [SSPSA 201703-02](https://simplesamlphp.org/security/201703-02).
 * Fixed an issue with the authfacebook module, broken after a change in Facebook's API.
 * Fixed an issue in the discopower module that ignored the `hide.from.discovery` metadata option.
@@ -1094,7 +2581,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2016-12-12
 </p>
-<pre><code>* Resolved a security issue involving signature validation of SAML 1.1 messages. See [SSPSA 201612-02](https://simplesamlphp.org/security/201612-02).
+<pre class="codehilite"><code>* Resolved a security issue involving signature validation of SAML 1.1 messages. See [SSPSA 201612-02](https://simplesamlphp.org/security/201612-02).
 * Fixed an issue when the user identifier used to generate a persistent NameID was missing due to a misconfiguration, causing SimpleSAMLphp to generate the nameID based on the null data type.
 * Fixed an issue when persistent NameIDs were generated out of attributes with empty strings or multiple values.
 * Fixed issue #530. An empty SubjectConfirmation element was causing SimpleSAMLphp to crash. On the other hand, invalid SubjectConfirmation elements were ignored in PHP 7.0.
@@ -1105,7 +2592,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2016-12-02
 </p>
-<pre><code>* Resolved a security issue involving signature validation. See [SSPSA 201612-01](https://simplesamlphp.org/security/201612-01).
+<pre class="codehilite"><code>* Resolved a security issue involving signature validation. See [SSPSA 201612-01](https://simplesamlphp.org/security/201612-01).
 * Fixed issue #517. A misconfigured session when acting as a service provider was leading to a PHP fatal error.
 * Fixed issue #519. Prevent persistent NameIDs from being generated from empty strings.
 * Fixed issue #520. It was impossible to verify Apache's custom MD5 passwords when using the Htpasswd authentication source.
@@ -1118,7 +2605,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2016-11-10
 </p>
-<pre><code>* Fixed an issue that resulted in PHP 7 errors being masked.
+<pre class="codehilite"><code>* Fixed an issue that resulted in PHP 7 errors being masked.
 * Fixed the smartattributes:SmartName authentication processing filter.
 * Fixed issue #500. When parsing metadata, two 'attributes.required' options were generated.
 * Fixed the list of requirements in composer, the documentation, and the configuration page.
@@ -1131,7 +2618,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2016-08-23
 </p>
-<pre><code>* Fixed an issue in AuthMemCookie causing it to crash when an attribute received contains XML as its value.
+<pre class="codehilite"><code>* Fixed an issue in AuthMemCookie causing it to crash when an attribute received contains XML as its value.
 * Fixed an issue in AuthMemCookie that made it impossible to set its own cookie.
 * Fixed an issue when acting as a proxy and receiving attributes that contain XML as their values.
 * Fixed an issue that led to incorrect URL guessing when a script is invoked with a URI that doesn't include its name.
@@ -1142,7 +2629,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2016-08-01
 </p>
-<pre><code>* Fixed issue #424. Attributes containing XML as their values (like eduPersonTargetedID) were empty.
+<pre class="codehilite"><code>* Fixed issue #424. Attributes containing XML as their values (like eduPersonTargetedID) were empty.
 </code></pre>
 <h2 id="version-1146">
  Version 1.14.6
@@ -1150,7 +2637,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2016-07-18
 </p>
-<pre><code>* Fixed issue #418. SimpleSAMLphp was unable to obtain the current URL correctly when invoked from third-party applications.
+<pre class="codehilite"><code>* Fixed issue #418. SimpleSAMLphp was unable to obtain the current URL correctly when invoked from third-party applications.
 </code></pre>
 <h2 id="version-1145">
  Version 1.14.5
@@ -1158,7 +2645,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2016-07-12
 </p>
-<pre><code>* Fixed several issues with session handling when cookies couldn't be set for some reason.
+<pre class="codehilite"><code>* Fixed several issues with session handling when cookies couldn't be set for some reason.
 * Fixed an issue that caused wrong URLs to be generated in the web interface under certain circumstances.
 * Fixed the exception handler to be compatible with PHP 7.
 * Fixed an issue in the dropdown IdP selection page that prevented it to work with PHP 5.3.
@@ -1173,7 +2660,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2016-06-08
 </p>
-<pre><code>* Fixed two minor security issues that allowed malicious URLs to be presented to the user in a link. Reported by John Page.
+<pre class="codehilite"><code>* Fixed two minor security issues that allowed malicious URLs to be presented to the user in a link. Reported by John Page.
 * Fixed issue #366. The LDAP class was trying to authenticate even when no password was provided (using the CAS module).
 * Fixed issue #401. The authenticate.php script was printing exceptions instead of throwing them for the exception handler to capture them.
 * Fixed issue #399. The size limitation of the TEXT type in MySQL was creating problems in certain setups.
@@ -1186,7 +2673,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2016-04-19
 </p>
-<pre><code>* Fixed a bug in the login form that prevented the login button to be displayed in mobile devices.
+<pre class="codehilite"><code>* Fixed a bug in the login form that prevented the login button to be displayed in mobile devices.
 * Resolved an issue in the PHP session handler that made it impossible to use PHP sessions simultaneously with other applications.
 </code></pre>
 <h2 id="version-1142">
@@ -1195,7 +2682,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2016-03-11
 </p>
-<pre><code>* Use stable versions of the externalized modules to prevent possible issues when further developing them.
+<pre class="codehilite"><code>* Use stable versions of the externalized modules to prevent possible issues when further developing them.
 </code></pre>
 <h2 id="version-1141">
  Version 1.14.1
@@ -1203,7 +2690,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2016-03-08
 </p>
-<pre><code>* Resolved an information leakage security issue in the sanitycheck module. See [SSPSA 201603-01](/security/201603-01).
+<pre class="codehilite"><code>* Resolved an information leakage security issue in the sanitycheck module. See [SSPSA 201603-01](/security/201603-01).
 </code></pre>
 <h2 id="version-1140">
  Version 1.14.0
@@ -1214,7 +2701,7 @@ See the upgrade notes for specific information about upgrading.
 <h3 id="security">
  Security
 </h3>
-<pre><code>* Resolved a security issue with multiple modules that were not validating the URLs they were redirecting to.
+<pre class="codehilite"><code>* Resolved a security issue with multiple modules that were not validating the URLs they were redirecting to.
 * Added a security check to disable loading external entities in XML documents.
 * Enforced admin access to the metadata converter tool.
 * Changed `xmlseclibs` dependency to point to `robrichards/xmlseclibs` version 1.4.1.
@@ -1222,7 +2709,7 @@ See the upgrade notes for specific information about upgrading.
 <h3 id="new-features_2">
  New features
 </h3>
-<pre><code>* Allow setting the location of the configuration directory with an environment variable.
+<pre class="codehilite"><code>* Allow setting the location of the configuration directory with an environment variable.
 * Added support for the Metadata Query Protocol by means of the new MDX metadata storage handler.
 * Added support for the Sender-Vouches method.
 * Added support for WantAssertionsSigned and AuthnRequestsSigned in SAML 2.0 SP metadata.
@@ -1239,7 +2726,7 @@ See the upgrade notes for specific information about upgrading.
 <h3 id="bug-fixes_2">
  Bug fixes
 </h3>
-<pre><code>* Fixed an issue with friendly names in the attributes released.
+<pre class="codehilite"><code>* Fixed an issue with friendly names in the attributes released.
 * Fixed an issue with memcache that would result in a push for every fetch, when several servers configured.
 * Fixed an issue with memcache that would result in an endless loop if all servers are down.
 * Fixed an issue with HTML escaping in error reports.
@@ -1258,7 +2745,7 @@ See the upgrade notes for specific information about upgrading.
 <h3 id="api-and-user-interface_1">
  API and user interface
 </h3>
-<pre><code>* Added a new and simple database class to serve as PDO interface for all the database needs.
+<pre class="codehilite"><code>* Added a new and simple database class to serve as PDO interface for all the database needs.
 * Added the possibility to copy metadata and other elements by clicking a button in the web interface.
 * Removed the old, unused `pack` installer tool.
 * Improved usability by telling users the endpoints are not to be accessed directly.
@@ -1277,21 +2764,21 @@ See the upgrade notes for specific information about upgrading.
   authcrypt
  </code>
 </h3>
-<pre><code>* Added whitehat101/apr1-md5 as a dependency for Apache htpasswd.
+<pre class="codehilite"><code>* Added whitehat101/apr1-md5 as a dependency for Apache htpasswd.
 </code></pre>
 <h3 id="authx509_1">
  <code>
   authX509
  </code>
 </h3>
-<pre><code>* Added an authentication processing filter to warn about certificate expiration.
+<pre class="codehilite"><code>* Added an authentication processing filter to warn about certificate expiration.
 </code></pre>
 <h3 id="ldap_5">
  <code>
   ldap
  </code>
 </h3>
-<pre><code>* Added a new `port` configuration option.
+<pre class="codehilite"><code>* Added a new `port` configuration option.
 * Better error reporting.
 </code></pre>
 <h3 id="metaedit">
@@ -1299,14 +2786,14 @@ See the upgrade notes for specific information about upgrading.
   metaedit
  </code>
 </h3>
-<pre><code>* Removed the `admins` configuration option.
+<pre class="codehilite"><code>* Removed the `admins` configuration option.
 </code></pre>
 <h3 id="metarefresh_4">
  <code>
   metarefresh
  </code>
 </h3>
-<pre><code>* Added the possibility to specify which types of entities to load.
+<pre class="codehilite"><code>* Added the possibility to specify which types of entities to load.
 * Added the possibility to verify metadata signatures by using the public key present in a certificate.
 * Fix `certificate` precedence over `fingerprint` in the configuration options when verifying metadata signatures.
 </code></pre>
@@ -1315,7 +2802,7 @@ See the upgrade notes for specific information about upgrading.
   smartnameattribute
  </code>
 </h3>
-<pre><code>* This module was deprecated long time ago and has now been removed. Use the `smartattributes` module instead.
+<pre class="codehilite"><code>* This module was deprecated long time ago and has now been removed. Use the `smartattributes` module instead.
 </code></pre>
 <h2 id="version-1132">
  Version 1.13.2
@@ -1323,7 +2810,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2014-11-04
 </p>
-<pre><code>* Solved performance issues when processing large metadata sets.
+<pre class="codehilite"><code>* Solved performance issues when processing large metadata sets.
 * Fix an issue in the web interface when only one language is enabled.
 </code></pre>
 <h2 id="version-1131">
@@ -1332,7 +2819,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2014-10-27
 </p>
-<pre><code>* Solved an issue with empty fields in metadata to cause SimpleSAMLphp to fail with a translation error. Issues #97 and #114.
+<pre class="codehilite"><code>* Solved an issue with empty fields in metadata to cause SimpleSAMLphp to fail with a translation error. Issues #97 and #114.
 * Added Basque language to the list of known languages. Issue #117.
 * Optimized the execution of redirections by removing an additional, unnecessary function call.
 * Solved an issue that caused SimpleSAMLphp to fail when the RelayState parameter was empty or missing on an IdP-initiated authentication. Issues #99 and # 104.
@@ -1344,7 +2831,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2014-09-25.
 </p>
-<pre><code>* Added the 'remember me' option to the default login page.
+<pre class="codehilite"><code>* Added the 'remember me' option to the default login page.
 * Improved error reporting.
 * Added a new 'logging.format' option to control the formatting of the logs.
 * Added support for the 'objectguid' binary attribute in LDAP modules.
@@ -1361,49 +2848,49 @@ See the upgrade notes for specific information about upgrading.
   adfs
  </code>
 </h3>
-<pre><code>* Honour the 'wreply' parameter when redirecting.
+<pre class="codehilite"><code>* Honour the 'wreply' parameter when redirecting.
 </code></pre>
 <h3 id="aggregator">
  <code>
   aggregator
  </code>
 </h3>
-<pre><code>* Fixed an issue when regenerating metadata from certain metadata sources.
+<pre class="codehilite"><code>* Fixed an issue when regenerating metadata from certain metadata sources.
 </code></pre>
 <h3 id="discopower_1">
  <code>
   discopower
  </code>
 </h3>
-<pre><code>* Bug fix.
+<pre class="codehilite"><code>* Bug fix.
 </code></pre>
 <h3 id="expirycheck">
  <code>
   expirycheck
  </code>
 </h3>
-<pre><code>* Translations are now possible for this module.
+<pre class="codehilite"><code>* Translations are now possible for this module.
 </code></pre>
 <h3 id="metarefresh_5">
  <code>
   metarefresh
  </code>
 </h3>
-<pre><code>* Use cached metadata if something goes wrong when refreshing feeds.
+<pre class="codehilite"><code>* Use cached metadata if something goes wrong when refreshing feeds.
 </code></pre>
 <h3 id="openidprovider">
  <code>
   openidProvider
  </code>
 </h3>
-<pre><code>* Fix for compatibility with versions of PHP greater or equal to 5.4.
+<pre class="codehilite"><code>* Fix for compatibility with versions of PHP greater or equal to 5.4.
 </code></pre>
 <h3 id="saml_5">
  <code>
   saml
  </code>
 </h3>
-<pre><code>* Make it possible to add friendly names to attributes in SP metadata.
+<pre class="codehilite"><code>* Make it possible to add friendly names to attributes in SP metadata.
 * The RSA_1.5 (RSA with PKCS#1 v1.5 padding) encryption algorithm is now blacklisted by default for security reasons.
 * Stop checking the 'IDPList' parameter in IdPs.
 * Solved an issue that allowed bypassing authentication status checks when presenting an 'IDPList' parameter.
@@ -1414,7 +2901,7 @@ See the upgrade notes for specific information about upgrading.
   sqlauth
  </code>
 </h3>
-<pre><code>* Updated documentation to remove bad practice with regard to password storage.
+<pre class="codehilite"><code>* Updated documentation to remove bad practice with regard to password storage.
 </code></pre>
 <h2 id="version-112">
  Version 1.12
@@ -1422,7 +2909,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2014-03-24.
 </p>
-<pre><code>* Removed example authproc filters from configuration template.
+<pre class="codehilite"><code>* Removed example authproc filters from configuration template.
 * Stopped using the 'target-densitydpi' option removed from WebKit.
 * The SimpleSAML_Utilities::generateRandomBytesMTrand() function is now deprecated.
 * Removed code for compatibility with PHP versions older than 5.3.
@@ -1452,14 +2939,14 @@ See the upgrade notes for specific information about upgrading.
   adfs
  </code>
 </h3>
-<pre><code>* Support for exporting metadata.
+<pre class="codehilite"><code>* Support for exporting metadata.
 </code></pre>
 <h3 id="aggregator_1">
  <code>
   aggregator
  </code>
 </h3>
-<pre><code>* Support for RegistrationInfo (MDRPI) elements in the metadata.
+<pre class="codehilite"><code>* Support for RegistrationInfo (MDRPI) elements in the metadata.
 * Fix for HTTP header injection vulnerability.
 * Fix for directory traversal vulnerability.
 </code></pre>
@@ -1468,42 +2955,42 @@ See the upgrade notes for specific information about upgrading.
   aggregator2
  </code>
 </h3>
-<pre><code>* Support for RegistrationInfo (MDRPI) elements in the metadata.
+<pre class="codehilite"><code>* Support for RegistrationInfo (MDRPI) elements in the metadata.
 </code></pre>
 <h3 id="aselect">
  <code>
   aselect
  </code>
 </h3>
-<pre><code>* License changed to LGPL 2.1.
+<pre class="codehilite"><code>* License changed to LGPL 2.1.
 </code></pre>
 <h3 id="authfacebook_3">
  <code>
   authfacebook
  </code>
 </h3>
-<pre><code>* Updated extlibinc to 3.2.2.
+<pre class="codehilite"><code>* Updated extlibinc to 3.2.2.
 </code></pre>
 <h3 id="authtwitter_1">
  <code>
   authtwitter
  </code>
 </h3>
-<pre><code>* Added 'force_login' configuration option.
+<pre class="codehilite"><code>* Added 'force_login' configuration option.
 </code></pre>
 <h3 id="cdc">
  <code>
   cdc
  </code>
 </h3>
-<pre><code>* Bugfix related to request validation.
+<pre class="codehilite"><code>* Bugfix related to request validation.
 </code></pre>
 <h3 id="core_3">
  <code>
   core
  </code>
 </h3>
-<pre><code>* The AttributeAlter filter no longer throws an exception if the attribute was not found.
+<pre class="codehilite"><code>* The AttributeAlter filter no longer throws an exception if the attribute was not found.
 * Support for removal of values in the AttributeAlter filter, with '%remove' flag.
 * Support for empty strings and NULL values as a replacement in the AttributeAlter filter.
 * Bugfixes in the AttributeAlter filter.
@@ -1518,14 +3005,14 @@ See the upgrade notes for specific information about upgrading.
   discopower
  </code>
 </h3>
-<pre><code>* Bugfix for incorrect handling of the 'idpdisco.extDiscoveryStorage' option.
+<pre class="codehilite"><code>* Bugfix for incorrect handling of the 'idpdisco.extDiscoveryStorage' option.
 </code></pre>
 <h3 id="ldap_6">
  <code>
   ldap
  </code>
 </h3>
-<pre><code>* Support for configuring the duplicate attribute handling policy in AttributeAddFromLDAP, 'attribute.policy' option.
+<pre class="codehilite"><code>* Support for configuring the duplicate attribute handling policy in AttributeAddFromLDAP, 'attribute.policy' option.
 * Support for binary attributes in the AttributeAddFromLDAP filter.
 * Support for multiple attributes in the AttributeAddFromLDAP filter.
 </code></pre>
@@ -1534,35 +3021,35 @@ See the upgrade notes for specific information about upgrading.
   metarefresh
  </code>
 </h3>
-<pre><code>* Support for specifying permissions of the resulting files.
+<pre class="codehilite"><code>* Support for specifying permissions of the resulting files.
 </code></pre>
 <h3 id="negotiate_4">
  <code>
   negotiate
  </code>
 </h3>
-<pre><code>* Added support for "attributes"-parameter.
+<pre class="codehilite"><code>* Added support for "attributes"-parameter.
 </code></pre>
 <h3 id="oauth_3">
  <code>
   oauth
  </code>
 </h3>
-<pre><code>* Bugfix related to authorize URL building.
+<pre class="codehilite"><code>* Bugfix related to authorize URL building.
 </code></pre>
 <h3 id="openidprovider_1">
  <code>
   openidProvider
  </code>
 </h3>
-<pre><code>* Support for SReg and AX requests.
+<pre class="codehilite"><code>* Support for SReg and AX requests.
 </code></pre>
 <h3 id="saml_6">
  <code>
   saml
  </code>
 </h3>
-<pre><code>* Send 'isPassive' in passive discovery requests.
+<pre class="codehilite"><code>* Send 'isPassive' in passive discovery requests.
 * Support for generating NameIDFormat in service providers with NameIDPolicy set.
 * Support for AttributeConsumingService and AssertionConsumingServiceIndex.
 * Support for the HTTP-POST binding in WebSSO profile.
@@ -1573,14 +3060,14 @@ See the upgrade notes for specific information about upgrading.
   smartattributes
  </code>
 </h3>
-<pre><code>* New 'add_candidate' option to allow the user to decide whether to prepend or not the candidate attribute name to the resulting value.
+<pre class="codehilite"><code>* New 'add_candidate' option to allow the user to decide whether to prepend or not the candidate attribute name to the resulting value.
 </code></pre>
 <h3 id="statistics_2">
  <code>
   statistics
  </code>
 </h3>
-<pre><code>* Bugfix in statistics aggregator.
+<pre class="codehilite"><code>* Bugfix in statistics aggregator.
 </code></pre>
 <h2 id="version-111">
  Version 1.11
@@ -1588,7 +3075,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2013-06-05.
 </p>
-<pre><code>* Support for RSA_SHA256, RSA_SHA384 and RSA_SHA512 in HTTP Redirect binding.
+<pre class="codehilite"><code>* Support for RSA_SHA256, RSA_SHA384 and RSA_SHA512 in HTTP Redirect binding.
 * Support for RegistrationInfo element in SAML 2.0 metadata.
 * Support for AuthnRequestsSigned and WantAssertionsSigned when generating metadata.
 * Third party OpenID library updated with a bugfix.
@@ -1609,14 +3096,14 @@ See the upgrade notes for specific information about upgrading.
   authorize
  </code>
 </h3>
-<pre><code>* Added a logout link to the 403 error page.
+<pre class="codehilite"><code>* Added a logout link to the 403 error page.
 </code></pre>
 <h3 id="authtwitter_2">
  <code>
   authtwitter
  </code>
 </h3>
-<pre><code>* Updated API endpoint for version 1.1.
+<pre class="codehilite"><code>* Updated API endpoint for version 1.1.
 * Fix for oauth_verifier parameter.
 </code></pre>
 <h3 id="authx509_2">
@@ -1624,21 +3111,21 @@ See the upgrade notes for specific information about upgrading.
   authX509
  </code>
 </h3>
-<pre><code>* ldapusercert validation made optional.
+<pre class="codehilite"><code>* ldapusercert validation made optional.
 </code></pre>
 <h3 id="consent_4">
  <code>
   consent
  </code>
 </h3>
-<pre><code>* Added support for SQLite databases.
+<pre class="codehilite"><code>* Added support for SQLite databases.
 </code></pre>
 <h3 id="core_4">
  <code>
   core
  </code>
 </h3>
-<pre><code>* Fix error propagation in UserPass(Org)Base authentication sources.
+<pre class="codehilite"><code>* Fix error propagation in UserPass(Org)Base authentication sources.
 * MCrypt module marked as required.
 </code></pre>
 <h3 id="discopower_3">
@@ -1646,49 +3133,49 @@ See the upgrade notes for specific information about upgrading.
   discopower
  </code>
 </h3>
-<pre><code>* Get the name of an IdP from mdui:DisplayName.
+<pre class="codehilite"><code>* Get the name of an IdP from mdui:DisplayName.
 </code></pre>
 <h3 id="expirycheck_1">
  <code>
   expirycheck
  </code>
 </h3>
-<pre><code>* PHP 5.4 compatibility fixes.
+<pre class="codehilite"><code>* PHP 5.4 compatibility fixes.
 </code></pre>
 <h3 id="infocard">
  <code>
   InfoCard
  </code>
 </h3>
-<pre><code>* PHP 5.4 compatibility fixes.
+<pre class="codehilite"><code>* PHP 5.4 compatibility fixes.
 </code></pre>
 <h3 id="ldap_7">
  <code>
   ldap
  </code>
 </h3>
-<pre><code>* Added an option to disable following referrals.
+<pre class="codehilite"><code>* Added an option to disable following referrals.
 </code></pre>
 <h3 id="metarefresh_7">
  <code>
   metarefresh
  </code>
 </h3>
-<pre><code>* Improved help message.
+<pre class="codehilite"><code>* Improved help message.
 </code></pre>
 <h3 id="oauth_4">
  <code>
   oauth
  </code>
 </h3>
-<pre><code>* PHP 5.4 compatibility fixes.
+<pre class="codehilite"><code>* PHP 5.4 compatibility fixes.
 </code></pre>
 <h3 id="saml_7">
  <code>
   saml
  </code>
 </h3>
-<pre><code>* Verify that the issuer of an AuthnResponse is the same entity ID we sent a request to.
+<pre class="codehilite"><code>* Verify that the issuer of an AuthnResponse is the same entity ID we sent a request to.
 * Added separate option to enable Holder of Key support on SP.
 * Fix for HoK profile metadata.
 * New filter for storing persistent NameID in eduPersonTargetedID attribute.
@@ -1704,14 +3191,14 @@ See the upgrade notes for specific information about upgrading.
   sanitycheck
  </code>
 </h3>
-<pre><code>* Configuration file made optional.
+<pre class="codehilite"><code>* Configuration file made optional.
 </code></pre>
 <h3 id="smartattributes_3">
  <code>
   smartattributes
  </code>
 </h3>
-<pre><code>* New filter: smartattributes:SmartID.
+<pre class="codehilite"><code>* New filter: smartattributes:SmartID.
 * New filter: smartattributes:SmartName.
 </code></pre>
 <h3 id="smartnameattribute_1">
@@ -1719,14 +3206,14 @@ See the upgrade notes for specific information about upgrading.
   smartnameattribute
  </code>
 </h3>
-<pre><code>* Deprecated.
+<pre class="codehilite"><code>* Deprecated.
 </code></pre>
 <h3 id="wsfed">
  <code>
   wsfed
  </code>
 </h3>
-<pre><code>* Support for SLO in WS-Fed.
+<pre class="codehilite"><code>* Support for SLO in WS-Fed.
 </code></pre>
 <h2 id="version-110">
  Version 1.10
@@ -1734,7 +3221,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2012-09-25.
 </p>
-<pre><code>* Add support for storing data without expiration timestamp in memcache.
+<pre class="codehilite"><code>* Add support for storing data without expiration timestamp in memcache.
 * Fix for reauthentication in old shib13 authentication handler.
 * Clean up executable-permissions on files.
 * Change encryption to use the rsa-oaep-mgf1p key padding instead of PKCS 1.5.
@@ -1746,35 +3233,35 @@ See the upgrade notes for specific information about upgrading.
   core
  </code>
 </h3>
-<pre><code>* `core:UserPass(Org)Base`: Add "remember username" option.
+<pre class="codehilite"><code>* `core:UserPass(Org)Base`: Add "remember username" option.
 </code></pre>
 <h3 id="papi">
  <code>
   papi
  </code>
 </h3>
-<pre><code>* New authentication module supporting PAPI protocol.
+<pre class="codehilite"><code>* New authentication module supporting PAPI protocol.
 </code></pre>
 <h3 id="radius_1">
  <code>
   radius
  </code>
 </h3>
-<pre><code>* New feature to configure multiple radius servers.
+<pre class="codehilite"><code>* New feature to configure multiple radius servers.
 </code></pre>
 <h3 id="riak">
  <code>
   riak
  </code>
 </h3>
-<pre><code>* New module for storing sessions in a Riak database.
+<pre class="codehilite"><code>* New module for storing sessions in a Riak database.
 </code></pre>
 <h3 id="saml_8">
  <code>
   saml
  </code>
 </h3>
-<pre><code>* Add support for overriding SAML 2.0 SP authentication request generation.
+<pre class="codehilite"><code>* Add support for overriding SAML 2.0 SP authentication request generation.
 * Add support for blacklisting encryption algorithms.
 </code></pre>
 <h2 id="version-192">
@@ -1783,7 +3270,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2012-08-29
 </p>
-<pre><code>* Fix related to the security issue addressed in version 1.9.1.
+<pre class="codehilite"><code>* Fix related to the security issue addressed in version 1.9.1.
 </code></pre>
 <h2 id="version-191">
  Version 1.9.1
@@ -1791,7 +3278,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2012-08-02.
 </p>
-<pre><code>* Fix for a new attack against PKCS 1.5 in XML encryption.
+<pre class="codehilite"><code>* Fix for a new attack against PKCS 1.5 in XML encryption.
 </code></pre>
 <h2 id="version-19">
  Version 1.9
@@ -1799,7 +3286,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2012-06-13.
 </p>
-<pre><code>* Restructure error templates to share a common base template.
+<pre class="codehilite"><code>* Restructure error templates to share a common base template.
 * Warnings about URL length limits from Suhosin PHP extension.
 * New base class for errors from authentication sources.
 * Support for overriding URL generation when behind a reverse proxy.
@@ -1850,7 +3337,7 @@ See the upgrade notes for specific information about upgrading.
   aselect
  </code>
 </h3>
-<pre><code>* New module that replaces the previous module.
+<pre class="codehilite"><code>* New module that replaces the previous module.
 * Better error handling.
 * Support for request signing.
 * Loses support for A-Select Cross.
@@ -1860,7 +3347,7 @@ See the upgrade notes for specific information about upgrading.
   authcrypt
  </code>
 </h3>
-<pre><code>* `authcrypt:Hash`: New authentication source for checking username &amp; password against a list of usernames and hashed passwords.
+<pre class="codehilite"><code>* `authcrypt:Hash`: New authentication source for checking username &amp; password against a list of usernames and hashed passwords.
 * `authcrypt:Htpasswd`: New authentication source for checking username &amp; password against a `.htpasswd`-file.
 </code></pre>
 <h3 id="authfacebook_4">
@@ -1868,14 +3355,14 @@ See the upgrade notes for specific information about upgrading.
   authfacebook
  </code>
 </h3>
-<pre><code>* Update to latest Facebook PHP SDK.
+<pre class="codehilite"><code>* Update to latest Facebook PHP SDK.
 </code></pre>
 <h3 id="authorize_2">
  <code>
   authorize
  </code>
 </h3>
-<pre><code>* `authorize:Authorize`: Add flag to change the behaviour from default-deny to default-allow.
+<pre class="codehilite"><code>* `authorize:Authorize`: Add flag to change the behaviour from default-deny to default-allow.
 * `authorize:Authorize`: Add flag to do simple string matching instead of regex-matching.
 </code></pre>
 <h3 id="authtwitter_3">
@@ -1883,7 +3370,7 @@ See the upgrade notes for specific information about upgrading.
   authtwitter
  </code>
 </h3>
-<pre><code>* Update to use the correct API endpoint.
+<pre class="codehilite"><code>* Update to use the correct API endpoint.
 * Propagate "user aborted" errors back to the caller.
 * Changes to error handling, throw more relevant exceptions.
 * Store state information directly in the state array, instead of the session.
@@ -1893,28 +3380,28 @@ See the upgrade notes for specific information about upgrading.
   authYubiKey
  </code>
 </h3>
-<pre><code>* Remove deprecated uses of split().
+<pre class="codehilite"><code>* Remove deprecated uses of split().
 </code></pre>
 <h3 id="cas_1">
  <code>
   cas
  </code>
 </h3>
-<pre><code>* Make it possible for subclasses to override finalState().
+<pre class="codehilite"><code>* Make it possible for subclasses to override finalState().
 </code></pre>
 <h3 id="core_6">
  <code>
   core
  </code>
 </h3>
-<pre><code>* `core:AttributeCopy`: New filter to copy attributes.
+<pre class="codehilite"><code>* `core:AttributeCopy`: New filter to copy attributes.
 </code></pre>
 <h3 id="consent_5">
  <code>
   consent
  </code>
 </h3>
-<pre><code>* Add a timeout option for the database connection.
+<pre class="codehilite"><code>* Add a timeout option for the database connection.
 * Fix disabling of consent when the data store is down.
 * Simpler configuration for disabling consent for one SP or one IdP.
 * Do not connect to the database when consent is disabled for the current SP/IdP.
@@ -1924,28 +3411,28 @@ See the upgrade notes for specific information about upgrading.
   consentAdmin
  </code>
 </h3>
-<pre><code>* Fix for bridged IdP setup with `userid.attribute` set in `saml20-idp-hosted` metadata.
+<pre class="codehilite"><code>* Fix for bridged IdP setup with `userid.attribute` set in `saml20-idp-hosted` metadata.
 </code></pre>
 <h3 id="cron_2">
  <code>
   cron
  </code>
 </h3>
-<pre><code>* Set the From-address to be the technical contact email address.
+<pre class="codehilite"><code>* Set the From-address to be the technical contact email address.
 </code></pre>
 <h3 id="expirycheck_2">
  <code>
   expirycheck
  </code>
 </h3>
-<pre><code>* `expirycheck:ExpiryDate`: New module to check account expiration.
+<pre class="codehilite"><code>* `expirycheck:ExpiryDate`: New module to check account expiration.
 </code></pre>
 <h3 id="ldap_8">
  <code>
   ldap
  </code>
 </h3>
-<pre><code>* Add a base class for authentication processing filters which fetch data from LDAP.
+<pre class="codehilite"><code>* Add a base class for authentication processing filters which fetch data from LDAP.
 * `ldap:AttributeAddUsersGroups`: Authentication processing filter that adds group information from LDAP.
 </code></pre>
 <h3 id="metarefresh_8">
@@ -1953,7 +3440,7 @@ See the upgrade notes for specific information about upgrading.
   metarefresh
  </code>
 </h3>
-<pre><code>* Support for blacklisting and whitelisting entities.
+<pre class="codehilite"><code>* Support for blacklisting and whitelisting entities.
 * Support for conditional GET of metadata files.
 * Reuse old metadata when fetching metadata fails.
 </code></pre>
@@ -1962,7 +3449,7 @@ See the upgrade notes for specific information about upgrading.
   multiauth
  </code>
 </h3>
-<pre><code>* Add `multiauth:preselect`-parameter, to skip the page to select authentication source.
+<pre class="codehilite"><code>* Add `multiauth:preselect`-parameter, to skip the page to select authentication source.
 * Make it possible to configure the names of the authentication sources.
 * Remember the last selected authentication source.
 </code></pre>
@@ -1971,14 +3458,14 @@ See the upgrade notes for specific information about upgrading.
   negotiate
  </code>
 </h3>
-<pre><code>* New module implementing "negotiate" authentication, which can be used for Kerberos authentication (including Windows SSO).
+<pre class="codehilite"><code>* New module implementing "negotiate" authentication, which can be used for Kerberos authentication (including Windows SSO).
 </code></pre>
 <h3 id="oauth_5">
  <code>
   oauth
  </code>
 </h3>
-<pre><code>* Update to latest version of the OAuth library.
+<pre class="codehilite"><code>* Update to latest version of the OAuth library.
 * Remove support for older versions of OAuth than OAuth Rev A.
 </code></pre>
 <h3 id="openid">
@@ -1986,7 +3473,7 @@ See the upgrade notes for specific information about upgrading.
   openid
  </code>
 </h3>
-<pre><code>* Separate linkback URL from page displaying OpenID URL field.
+<pre class="codehilite"><code>* Separate linkback URL from page displaying OpenID URL field.
 * Throw more relevant exceptions.
 * Update to latest version of the OpenID library.
 * Support for sending authentication requests via GET requests (with the prefer_http_redirect option).
@@ -1997,21 +3484,21 @@ See the upgrade notes for specific information about upgrading.
   openidProvider
  </code>
 </h3>
-<pre><code>* Prevent deprecation warnings from the OpenID library from causing deadlocks in the class loader.
+<pre class="codehilite"><code>* Prevent deprecation warnings from the OpenID library from causing deadlocks in the class loader.
 </code></pre>
 <h3 id="radius_2">
  <code>
   radius
  </code>
 </h3>
-<pre><code>* Support for setting the "NAS-Identifier" attribute.
+<pre class="codehilite"><code>* Support for setting the "NAS-Identifier" attribute.
 </code></pre>
 <h3 id="saml_9">
  <code>
   saml
  </code>
 </h3>
-<pre><code>* Preserve ID-attributes on elements during signing. (Makes it possible to change the binding for some messages.)
+<pre class="codehilite"><code>* Preserve ID-attributes on elements during signing. (Makes it possible to change the binding for some messages.)
 * Allow SAML artifacts to be received through a POST request.
 * Log more debug information when we are unable to determine the binding a message was sent with.
 * Require HTTP-POST messages to be sent as POST data and HTTP-Redirect messages to be sent as query parameters.
@@ -2049,7 +3536,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2012-01-10.
 </p>
-<pre><code>* Fix for user-assisted cross site scripting on a couple of pages.
+<pre class="codehilite"><code>* Fix for user-assisted cross site scripting on a couple of pages.
 </code></pre>
 <h2 id="version-181">
  Version 1.8.1
@@ -2057,7 +3544,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2011-10-27.
 </p>
-<pre><code>* Fix for key oracle attack against XML encryption on SP.
+<pre class="codehilite"><code>* Fix for key oracle attack against XML encryption on SP.
 * Fix for IdP initiated logout with IdP-initiated SSO.
 * Fix a PHP notice if we are unable to open /dev/urandom.
 * Fix a PHP notice during SAML 1.1 authentication.
@@ -2065,7 +3552,7 @@ See the upgrade notes for specific information about upgrading.
 <h2 id="version-18">
  Version 1.8
 </h2>
-<pre><code>* New authentication modules:
+<pre class="codehilite"><code>* New authentication modules:
     * [`authmyspace`](./authmyspace:oauthmyspace)
     * [`authlinkedin`](./authlinkedin:oauthlinkedin)
     * [`authwindowslive`](./authwindowslive:windowsliveid)
@@ -2080,21 +3567,21 @@ See the upgrade notes for specific information about upgrading.
   consent
  </code>
 </h3>
-<pre><code>* Support for disabling consent for some attributes.
+<pre class="codehilite"><code>* Support for disabling consent for some attributes.
 </code></pre>
 <h3 id="ldap_9">
  <code>
   ldap
  </code>
 </h3>
-<pre><code>* `ldap:AttributeAddFromLDAP`: Extract values from multiple matching entries.
+<pre class="codehilite"><code>* `ldap:AttributeAddFromLDAP`: Extract values from multiple matching entries.
 </code></pre>
 <h3 id="oauth_6">
  <code>
   oauth
  </code>
 </h3>
-<pre><code>* Added support for:
+<pre class="codehilite"><code>* Added support for:
     * RSASHA1 signatures
     * consent
     * callbackurl
@@ -2106,14 +3593,14 @@ See the upgrade notes for specific information about upgrading.
   openid
  </code>
 </h3>
-<pre><code>* Support for sending custom extension arguments (e.g. UI extensions).
+<pre class="codehilite"><code>* Support for sending custom extension arguments (e.g. UI extensions).
 </code></pre>
 <h3 id="saml_10">
  <code>
   saml
  </code>
 </h3>
-<pre><code>* Extract Extensions from AuthnRequest for use by custom modules when authenticating.
+<pre class="codehilite"><code>* Extract Extensions from AuthnRequest for use by custom modules when authenticating.
 * Allow signing of SP metadata.
 * Better control over NameIDPolicy when sending AuthnRequest.
 * Support encrypting/decrypting NameID in LogoutRequest.
@@ -2125,7 +3612,7 @@ See the upgrade notes for specific information about upgrading.
 <h2 id="version-17">
  Version 1.7
 </h2>
-<pre><code>* New authentication modules:
+<pre class="codehilite"><code>* New authentication modules:
     * `aselect`
     * `authX509`
 * Unified cookie configuration settings.
@@ -2155,7 +3642,7 @@ See the upgrade notes for specific information about upgrading.
 <h3 id="internal-api-changes-features-removed">
  Internal API changes &amp; features removed
 </h3>
-<pre><code>* The `saml2` module has been removed.
+<pre class="codehilite"><code>* The `saml2` module has been removed.
     * The `saml2:SP` authsource has been removed.
     * The `sspmod_saml2_Error` class has been renamed to `sspmod_saml_Error`.
     * The `sspmod_saml2_Message` class has been renamed to `sspmod_saml_Message`.
@@ -2189,7 +3676,7 @@ See the upgrade notes for specific information about upgrading.
 <h3 id="saml-2-idp">
  SAML 2 IdP
 </h3>
-<pre><code>* Support for generation of NameID values via [processing filters](./saml:nameid)
+<pre class="codehilite"><code>* Support for generation of NameID values via [processing filters](./saml:nameid)
 * Obey the NameIDPolicy Format in authentication request.
 * Allow AuthnContextClassRef to be set by processing filters.
 * Rework iframe logout page to not rely on cookies.
@@ -2197,7 +3684,7 @@ See the upgrade notes for specific information about upgrading.
 <h3 id="saml-2-sp">
  SAML 2 SP
 </h3>
-<pre><code>* Support SOAP logout.
+<pre class="codehilite"><code>* Support SOAP logout.
 * Various fixes to adhere more closely to the specification.
     * Allow multiple SessionIndex-elements in LogoutRequest.
     * Handle multiple Assertion-elements in Response.
@@ -2210,33 +3697,33 @@ See the upgrade notes for specific information about upgrading.
 <h3 id="saml-1-idp">
  SAML 1 IdP
 </h3>
-<pre><code>* Add `urn:mace:shibboleth:1.0` as supported protocol in generated metadata.
+<pre class="codehilite"><code>* Add `urn:mace:shibboleth:1.0` as supported protocol in generated metadata.
 </code></pre>
 <h3 id="saml-1-sp">
  SAML 1 SP
 </h3>
-<pre><code>* Support for IdP initiated authentication.
+<pre class="codehilite"><code>* Support for IdP initiated authentication.
 </code></pre>
 <h3 id="aggregator_2">
  <code>
   aggregator
  </code>
 </h3>
-<pre><code>* Allow metadata generation from command line.
+<pre class="codehilite"><code>* Allow metadata generation from command line.
 </code></pre>
 <h3 id="authfacebook_5">
  <code>
   authfacebook
  </code>
 </h3>
-<pre><code>* Change attribute names.
+<pre class="codehilite"><code>* Change attribute names.
 </code></pre>
 <h3 id="casserver_1">
  <code>
   casserver
  </code>
 </h3>
-<pre><code>* Support for proxying.
+<pre class="codehilite"><code>* Support for proxying.
 * Add ttl for tickets.
 </code></pre>
 <h3 id="core_7">
@@ -2244,7 +3731,7 @@ See the upgrade notes for specific information about upgrading.
   core
  </code>
 </h3>
-<pre><code>* `core:AttributeLimit`: Make it possible to specify a default set of attributes.
+<pre class="codehilite"><code>* `core:AttributeLimit`: Make it possible to specify a default set of attributes.
 * Make the SP metadata available on the login pages.
 </code></pre>
 <h3 id="discopower_4">
@@ -2252,7 +3739,7 @@ See the upgrade notes for specific information about upgrading.
   discoPower
  </code>
 </h3>
-<pre><code>* Sort IdPs without a name (where we only have an entityID) last in the list.
+<pre class="codehilite"><code>* Sort IdPs without a name (where we only have an entityID) last in the list.
 * CDC cookie support.
 </code></pre>
 <h3 id="exampleauth">
@@ -2260,28 +3747,28 @@ See the upgrade notes for specific information about upgrading.
   exampleAuth
  </code>
 </h3>
-<pre><code>* Add example of integration with external authentication page.
+<pre class="codehilite"><code>* Add example of integration with external authentication page.
 </code></pre>
 <h3 id="ldap_10">
  <code>
   ldap
  </code>
 </h3>
-<pre><code>* Add `ldap:AttributeAddFromLDAP` filter for adding attributes from a LDAP directory.
+<pre class="codehilite"><code>* Add `ldap:AttributeAddFromLDAP` filter for adding attributes from a LDAP directory.
 </code></pre>
 <h3 id="metarefresh_9">
  <code>
   metarefresh
  </code>
 </h3>
-<pre><code>* Don't stop updates on the first exception.
+<pre class="codehilite"><code>* Don't stop updates on the first exception.
 </code></pre>
 <h3 id="openid_2">
  <code>
   openid
  </code>
 </h3>
-<pre><code>* Don't require access to the PHP session.
+<pre class="codehilite"><code>* Don't require access to the PHP session.
 * Remove OpenID test page. (May as well use the normal test pages.)
 * Support for attribute exchange.
 * Add `target` option, for directing authentication to a specific OpenID provider.
@@ -2292,21 +3779,21 @@ See the upgrade notes for specific information about upgrading.
   portal
  </code>
 </h3>
-<pre><code>* Make it possible to register pages from modules, and not only from configuration.
+<pre class="codehilite"><code>* Make it possible to register pages from modules, and not only from configuration.
 </code></pre>
 <h3 id="statistics_3">
  <code>
   statistics
  </code>
 </h3>
-<pre><code>* New y-axis scaling algorithm
+<pre class="codehilite"><code>* New y-axis scaling algorithm
 </code></pre>
 <h3 id="twitter">
  <code>
   twitter
  </code>
 </h3>
-<pre><code>* Change attribute names returned from twitter.
+<pre class="codehilite"><code>* Change attribute names returned from twitter.
 </code></pre>
 <h2 id="version-163">
  Version 1.6.3
@@ -2314,7 +3801,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2010-12-17.
 </p>
-<pre><code>* Fix for cross site scripting in redirect page.
+<pre class="codehilite"><code>* Fix for cross site scripting in redirect page.
 </code></pre>
 <h2 id="version-162">
  Version 1.6.2
@@ -2322,7 +3809,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2010-07-29.
 </p>
-<pre><code>* Various security fixes.
+<pre class="codehilite"><code>* Various security fixes.
 </code></pre>
 <h2 id="version-161">
  Version 1.6.1
@@ -2330,7 +3817,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2010-06-25.
 </p>
-<pre><code>* saml:SP: Fix SingleLogoutService endpoint in SSP-format metadata array.
+<pre class="codehilite"><code>* saml:SP: Fix SingleLogoutService endpoint in SSP-format metadata array.
 * Shib13:IdP: Add urn:mace:shibboleth:1.0 to supported protocols.
 * Fix SAMLParser::parseElement().
 * SAML2:IdP: Fix persistent NameID generation.
@@ -2350,7 +3837,7 @@ See the upgrade notes for specific information about upgrading.
   Upgrade notes
  </a>
 </p>
-<pre><code>* Detection of cookies disabled on the IdP.
+<pre class="codehilite"><code>* Detection of cookies disabled on the IdP.
 * New IdP core, which makes it simpler to share code between different IdPs, e.g. between SAML 1.1 and SAML 2.0.
 * Dictionaries moved to JSON format.
 * New authentication module: [`cas:CAS`](./cas:cas).
@@ -2368,12 +3855,12 @@ See the upgrade notes for specific information about upgrading.
 <h3 id="saml-2-sp_1">
  SAML 2 SP
 </h3>
-<pre><code>* SAML 2.0 HTTP-Artifact support on the [SP](./simplesamlphp-artifact-sp).
+<pre class="codehilite"><code>* SAML 2.0 HTTP-Artifact support on the [SP](./simplesamlphp-artifact-sp).
 </code></pre>
 <h3 id="saml-2-idp_1">
  SAML 2 IdP
 </h3>
-<pre><code>* SAML 2.0 HTTP-Artifact support on the [IdP](./simplesamlphp-artifact-idp).
+<pre class="codehilite"><code>* SAML 2.0 HTTP-Artifact support on the [IdP](./simplesamlphp-artifact-idp).
 * Support for sending PartialLogout status code in logout response.
 * Set AuthnInstant to the timestamp for authentication.
 * Combine normal and iframe versions of the logout handlers into a single endpoint.
@@ -2384,7 +3871,7 @@ See the upgrade notes for specific information about upgrading.
 <h3 id="the-sp-api">
  The SP API
 </h3>
-<pre><code>* Support for handling errors from the IdP.
+<pre class="codehilite"><code>* Support for handling errors from the IdP.
 * Support for passing parameters to the authentication module.
   This can be used to specify SAML 2 parameters, such as isPassive and ForceAuthn.
 </code></pre>
@@ -2393,14 +3880,14 @@ See the upgrade notes for specific information about upgrading.
   adfs
  </code>
 </h3>
-<pre><code>* Move to new IdP core.
+<pre class="codehilite"><code>* Move to new IdP core.
 </code></pre>
 <h3 id="casserver_2">
  <code>
   casserver
  </code>
 </h3>
-<pre><code>* Collect all endpoints in a single file.
+<pre class="codehilite"><code>* Collect all endpoints in a single file.
 * Fix prefix on the tickets.
 </code></pre>
 <h3 id="consent_7">
@@ -2408,21 +3895,21 @@ See the upgrade notes for specific information about upgrading.
   consent
  </code>
 </h3>
-<pre><code>* Support for deactivating consent for specific services.
+<pre class="codehilite"><code>* Support for deactivating consent for specific services.
 </code></pre>
 <h3 id="consentadmin_3">
  <code>
   consentAdmin
  </code>
 </h3>
-<pre><code>* Support for the SAML SP module.
+<pre class="codehilite"><code>* Support for the SAML SP module.
 </code></pre>
 <h3 id="core_8">
  <code>
   core
  </code>
 </h3>
-<pre><code>* New filter: [`core:PHP`](./core:authproc_php), which allows processing of attributes with arbitrary PHP code.
+<pre class="codehilite"><code>* New filter: [`core:PHP`](./core:authproc_php), which allows processing of attributes with arbitrary PHP code.
 * Support for multiple target attributes in [`core:AttributeMap`](./core:authproc_attributemap).
 * New filter: [`core:ScopeFromAttribute`](./core:authproc_scopefromattribute), which allows the creation an attribute based on the scope of another attribute.
 * Support for a target attribute in [`core:AttributeAlter`](./core:authproc_attributealter).
@@ -2432,42 +3919,42 @@ See the upgrade notes for specific information about upgrading.
   discoPower
  </code>
 </h3>
-<pre><code>* Support for new scoring algorithm.
+<pre class="codehilite"><code>* Support for new scoring algorithm.
 </code></pre>
 <h3 id="ldap_11">
  <code>
   ldap
  </code>
 </h3>
-<pre><code>* SASL support in LDAPMulti
+<pre class="codehilite"><code>* SASL support in LDAPMulti
 </code></pre>
 <h3 id="ldapstatus">
  <code>
   ldapstatus
  </code>
 </h3>
-<pre><code>* This module was removed, as it was very specific for Feide.
+<pre class="codehilite"><code>* This module was removed, as it was very specific for Feide.
 </code></pre>
 <h3 id="multiauth_3">
  <code>
   multiauth
  </code>
 </h3>
-<pre><code>* Support for specifying the target authentication source through a request parameter.
+<pre class="codehilite"><code>* Support for specifying the target authentication source through a request parameter.
 </code></pre>
 <h3 id="oauth_7">
  <code>
   oauth
  </code>
 </h3>
-<pre><code>* Configurable which authentication source should be used.
+<pre class="codehilite"><code>* Configurable which authentication source should be used.
 </code></pre>
 <h3 id="openidprovider_3">
  <code>
   openidProvider
  </code>
 </h3>
-<pre><code>* OpenID 2.0 support.
+<pre class="codehilite"><code>* OpenID 2.0 support.
 * XRDS generation support.
 </code></pre>
 <h3 id="saml_11">
@@ -2475,7 +3962,7 @@ See the upgrade notes for specific information about upgrading.
   saml
  </code>
 </h3>
-<pre><code>* Support for specifying parameters for authentication request.
+<pre class="codehilite"><code>* Support for specifying parameters for authentication request.
 * Add AttributeConsumingService to generated metadata.
 * The two SPSSODescriptor elements in the metadata has been merged.
 </code></pre>
@@ -2485,7 +3972,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2010-01-08.
 </p>
-<pre><code>* Fix security vulnerability due to insecure temp file creation:
+<pre class="codehilite"><code>* Fix security vulnerability due to insecure temp file creation:
   * statistics: The logcleaner script outputs to a file in /tmp.
   * InfoCard: Saves state directly in /tmp. Changed to the SimpleSAMLphp temp directory.
   * openidProvider: Default configuration saves state information in /tmp.
@@ -2510,7 +3997,7 @@ See the upgrade notes for specific information about upgrading.
 <p>
  Released 2009-11-05. Revision 1937.
 </p>
-<pre><code>* New API for SP authentication.
+<pre class="codehilite"><code>* New API for SP authentication.
 * Make use of the portal module on the frontpage.
 * SQL datastore.
 * Support for setting timezone in config (instead of php.ini).
@@ -2524,7 +4011,7 @@ See the upgrade notes for specific information about upgrading.
 <h3 id="new-modules">
  New modules:
 </h3>
-<pre><code>* `adfs`
+<pre class="codehilite"><code>* `adfs`
 * [`authorize`](./authorize:authorize)
 * `authtwitter`
 * [`autotest`](./autotest:test)
@@ -2542,7 +4029,7 @@ See the upgrade notes for specific information about upgrading.
  </code>
  :
 </h3>
-<pre><code>* Add ARP + ARP signing functionality to the aggregator.
+<pre class="codehilite"><code>* Add ARP + ARP signing functionality to the aggregator.
 * Improvements to the aggregator module. Added documentation, and re-written more OO-oriented.
 * Add support for reconstructing XML where XML for an entity is already cached.
 * Add support for excluding tags in metadata aggregator.
@@ -2553,7 +4040,7 @@ See the upgrade notes for specific information about upgrading.
  </code>
  :
 </h3>
-<pre><code>* Delete the session cookie when deleting the session.
+<pre class="codehilite"><code>* Delete the session cookie when deleting the session.
 * Support for authentication sources.
 * Set expiry time of session data when saving to memcache.
 * Support multiple memcache servers.
@@ -2564,7 +4051,7 @@ See the upgrade notes for specific information about upgrading.
  </code>
  :
 </h3>
-<pre><code>* Added support for attributes in &lt;cas:serviceResponse&gt;.
+<pre class="codehilite"><code>* Added support for attributes in &lt;cas:serviceResponse&gt;.
 </code></pre>
 <h3 id="consent_8">
  <code>
@@ -2572,7 +4059,7 @@ See the upgrade notes for specific information about upgrading.
  </code>
  :
 </h3>
-<pre><code>* Support for hiding some attribute values.
+<pre class="codehilite"><code>* Support for hiding some attribute values.
 </code></pre>
 <h3 id="consentadmin_4">
  <code>
@@ -2580,7 +4067,7 @@ See the upgrade notes for specific information about upgrading.
  </code>
  :
 </h3>
-<pre><code>* Added config option to display description.
+<pre class="codehilite"><code>* Added config option to display description.
 </code></pre>
 <h3 id="core_9">
  <code>
@@ -2588,7 +4075,7 @@ See the upgrade notes for specific information about upgrading.
  </code>
  :
 </h3>
-<pre><code>* New WarnShortSSOInterval filter.
+<pre class="codehilite"><code>* New WarnShortSSOInterval filter.
 </code></pre>
 <h3 id="discopower_6">
  <code>
@@ -2596,7 +4083,7 @@ See the upgrade notes for specific information about upgrading.
  </code>
  :
 </h3>
-<pre><code>* Live search in discopower-module.
+<pre class="codehilite"><code>* Live search in discopower-module.
 </code></pre>
 <h3 id="ldap_12">
  <code>
@@ -2604,7 +4091,7 @@ See the upgrade notes for specific information about upgrading.
  </code>
  :
 </h3>
-<pre><code>* Support for proxy authentication.
+<pre class="codehilite"><code>* Support for proxy authentication.
 * Add 'debug' and 'timeout' options.
 * Privilege separation for LDAP attribute retrieval.
 * Allow search.base to be an array.
@@ -2616,7 +4103,7 @@ See the upgrade notes for specific information about upgrading.
  </code>
  :
 </h3>
-<pre><code>* Do a connect-test to all ip-addresses for a hostname.
+<pre class="codehilite"><code>* Do a connect-test to all ip-addresses for a hostname.
 * Check wheter hostname exists before attempting to connect.
 * hobbit output.
 * Check schema version.
@@ -2628,7 +4115,7 @@ See the upgrade notes for specific information about upgrading.
  </code>
  :
 </h3>
-<pre><code>* Blockwise reading of logfile for faster execution.
+<pre class="codehilite"><code>* Blockwise reading of logfile for faster execution.
 </code></pre>
 <h3 id="metarefresh_10">
  <code>
@@ -2636,7 +4123,7 @@ See the upgrade notes for specific information about upgrading.
  </code>
  :
 </h3>
-<pre><code>* Adding support for generating Shibboleth ARP files.
+<pre class="codehilite"><code>* Adding support for generating Shibboleth ARP files.
 * Add 'serialize' metadata format.
 </code></pre>
 <h3 id="preprodwarning_2">
@@ -2645,13 +4132,13 @@ See the upgrade notes for specific information about upgrading.
  </code>
  :
 </h3>
-<pre><code>* Don't show warning in passive request.
+<pre class="codehilite"><code>* Don't show warning in passive request.
 * Focus on continue-button.
 </code></pre>
 <h3 id="saml_12">
  SAML:
 </h3>
-<pre><code>* Support for multiple AssertionConsumerService endpoints.
+<pre class="codehilite"><code>* Support for multiple AssertionConsumerService endpoints.
 * SAML 1 artifact support on the SP side.
 * New SAML authentication module.
 * Deprecation of www/saml2/sp &amp; www/shib13/sp.
@@ -2671,7 +4158,7 @@ See the upgrade notes for specific information about upgrading.
  </code>
  :
 </h3>
-<pre><code>* Extended Google chart encoding... Add option of alternative compare plot in graph...
+<pre class="codehilite"><code>* Extended Google chart encoding... Add option of alternative compare plot in graph...
 * Added support for Ratio type reports in the statistics module..
 * Changed default rule to SSO.
 * Added incremental aggregation, independent time resolution from rule def, combined coldefs and more.
@@ -2691,7 +4178,7 @@ See the upgrade notes for specific information about upgrading.
  </code>
  . Please check for updates in your local modified configuration.
 </p>
-<pre><code>* Language updates
+<pre class="codehilite"><code>* Language updates
 * Documentation update. New authentication source API now default and documented.
 * New authentication source (new API):
   * LDAP
@@ -2776,7 +4263,7 @@ See the upgrade notes for specific information about upgrading.
 <h3 id="new-features_3">
  New features
 </h3>
-<pre><code>* Documentation update
+<pre class="codehilite"><code>* Documentation update
 * Added new language. Now there are two different portugese
   dialects.
 * Consent "module" modified. Now added support for preselecting the
@@ -2802,7 +4289,7 @@ See the upgrade notes for specific information about upgrading.
 <h3 id="bug-fixes_3">
  Bug fixes
 </h3>
-<pre><code>* Fixed warning with XML validator.
+<pre class="codehilite"><code>* Fixed warning with XML validator.
 * Improved loading of private/public keys in XML/Signer.
 * Improvements to CAS module.
 * Fixed memcache stats.
@@ -2849,7 +4336,7 @@ See the upgrade notes for specific information about upgrading.
 <h3 id="new-features_4">
  New features
 </h3>
-<pre><code>* Experimental support for modules. Currently modules can contain
+<pre class="codehilite"><code>* Experimental support for modules. Currently modules can contain
   custom authentication sources, authentication processing filters
   and themes.
 * An generic SQL authentication module added for those who store their
@@ -2872,7 +4359,7 @@ See the upgrade notes for specific information about upgrading.
 <h3 id="bug-fixes_4">
  Bug fixes
 </h3>
-<pre><code>* Fixed generated SAML 2.0 metadata to be correct.
+<pre class="codehilite"><code>* Fixed generated SAML 2.0 metadata to be correct.
 * Fixed logout for Auth MemCookie.
 * Sign SAML 2.0 authentication response on failure (such as
   NoPassive).
@@ -2916,7 +4403,7 @@ See the upgrade notes for specific information about upgrading.
 <h3 id="new-features_5">
  New features
 </h3>
-<pre><code>* Add support for saving the users choice of IdP in the IdP discovery
+<pre class="codehilite"><code>* Add support for saving the users choice of IdP in the IdP discovery
   service.
 * Add a config option for whether the Response element or the
   Assertion element in the response should be signed.
@@ -2973,7 +4460,7 @@ See the upgrade notes for specific information about upgrading.
 <h3 id="bug-fixes_5">
  Bug fixes
 </h3>
-<pre><code>* Modified IdP discovery service to support Shibboleth 2.0 SP.
+<pre class="codehilite"><code>* Modified IdP discovery service to support Shibboleth 2.0 SP.
 * Fix setcookie warning for PHP version \&lt; 5.2.
 * Fix logout not being performed for Auth MemCache sometimes.
 * Preserve case of attribute names during LDAP attribute retrival.
@@ -3013,7 +4500,7 @@ See the upgrade notes for specific information about upgrading.
  and metadata format are changed. Look at the
 templates to understand the new format.
 </p>
-<pre><code>* Documentation is updated!
+<pre class="codehilite"><code>* Documentation is updated!
 * Metadata files made tidier. Unused entries removed. Look at the new
   templates on how to change your existing metadata.
 * Support for sending metadata by mail to Feide. Automatically
@@ -3038,7 +4525,7 @@ templates to understand the new format.
 <p>
  Released 2007-09-14. Revision X.
 </p>
-<pre><code>* Improved documentation
+<pre class="codehilite"><code>* Improved documentation
 * Authentication plugin API. Only LDAP authentication plugin is
   included, but it is now easier to implement your own plugin.
 * Added support for SAML 2.0 IdP to work with Google Apps for

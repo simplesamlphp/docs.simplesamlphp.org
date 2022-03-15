@@ -115,7 +115,7 @@ filter to run before all the other filters you may have enabled.
  file, in the
 expirycheck module:
 </p>
-<pre><code>  touch modules/expirycheck/enable
+<pre class="codehilite"><code>  touch modules/expirycheck/enable
 </code></pre>
 <p>
  Then you need to set filter parameters in your config.php file.
@@ -123,7 +123,7 @@ expirycheck module:
 <p>
  Example:
 </p>
-<pre><code>10 =&gt; array(
+<pre class="codehilite"><code>10 =&gt; array(
   'class'     =&gt; 'expirycheck:ExpiryDate',
   'netid_attr'    =&gt; 'eduPersonPrincipalName',
   'expirydate_attr' =&gt; 'schacExpiryDate',

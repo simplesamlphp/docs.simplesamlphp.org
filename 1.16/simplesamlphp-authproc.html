@@ -109,7 +109,7 @@
 <p>
  Examples of neat things to do using Authentication Processing Filters:
 </p>
-<pre><code>* Filter out a subset of available attributes that are sent to a SP.
+<pre class="codehilite"><code>* Filter out a subset of available attributes that are sent to a SP.
 * Modify the name of attributes.
 * Generate new attributes that are composed of others, for example eduPersonTargetedID.
 * Ask the user for consent, before the user is sent back to a service.
@@ -118,7 +118,7 @@
 <p>
  Be aware that Authentication Proccessing Filters do replace some of the preivous features in SimpleSAMLphp, named:
 </p>
-<pre><code>* `attributemap`
+<pre class="codehilite"><code>* `attributemap`
 * `attributealter`
 * attribute filter
 </code></pre>
@@ -138,7 +138,7 @@
  </em>
  :
 </p>
-<pre><code>* Globally in `config.php`
+<pre class="codehilite"><code>* Globally in `config.php`
 * On the SP: Specific for only the SP in `authsources.php`
 * On the SP: Specific for only one remote IdP in `saml20-idp-remote` or `shib13-idp-remote`
 * On the IdP: Specific for only one hosted IdP in `saml20-idp-hosted` or `shib13-idp-hosted`
@@ -163,7 +163,7 @@
  </code>
  :
 </p>
-<pre><code>'authproc.idp' =&gt; array(
+<pre class="codehilite"><code>'authproc.idp' =&gt; array(
   10 =&gt; array(
     'class' =&gt; 'core:AttributeMap', 
     'addurnprefix'
@@ -242,12 +242,12 @@
 <p>
  When you know the class definition of a filter, and the priority, the simple way to configure the filter is:
 </p>
-<pre><code>20 =&gt; 'core:TargetedID',
+<pre class="codehilite"><code>20 =&gt; 'core:TargetedID',
 </code></pre>
 <p>
  This is analogous to:
 </p>
-<pre><code>20 =&gt; array(
+<pre class="codehilite"><code>20 =&gt; array(
   'class' =&gt; 'core:TargetedID'
 ),
 </code></pre>
@@ -266,7 +266,7 @@
  </em>
  , you need to choose the second of the two alernatives above. Here is an example of provided parameters to the consent module:
 </p>
-<pre><code>90 =&gt; array(
+<pre class="codehilite"><code>90 =&gt; array(
   'class'   =&gt; 'consent:Consent', 
   'store'   =&gt; 'consent:Cookie', 
   'focus'   =&gt; 'yes', 
@@ -293,7 +293,7 @@
 <p>
  There are two config parameters:
 </p>
-<pre><code>* `authproc.idp` and
+<pre class="codehilite"><code>* `authproc.idp` and
 * `authproc.sp`
 </code></pre>
 <p>
@@ -324,7 +324,7 @@
  </code>
  metadata. Here is an example of a filter added in a metadata file:
 </p>
-<pre><code>'__DYNAMIC:1__' =&gt; array(
+<pre class="codehilite"><code>'__DYNAMIC:1__' =&gt; array(
   'host'        =&gt;  '__DEFAULT_',
   'privatekey'    =&gt;  'example.org.pem',
   'certificate'   =&gt;  'example.org.crt',

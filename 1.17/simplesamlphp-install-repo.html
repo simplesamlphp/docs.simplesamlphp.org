@@ -99,17 +99,17 @@
 <p>
  Go to the directory where you want to install SimpleSAMLphp:
 </p>
-<pre><code>  cd /var
+<pre class="codehilite"><code>  cd /var
 </code></pre>
 <p>
  Then do a git clone:
 </p>
-<pre><code>  git clone git@github.com:simplesamlphp/simplesamlphp.git simplesamlphp
+<pre class="codehilite"><code>  git clone git@github.com:simplesamlphp/simplesamlphp.git simplesamlphp
 </code></pre>
 <p>
  Initialize configuration and metadata:
 </p>
-<pre><code>  cd /var/simplesamlphp
+<pre class="codehilite"><code>  cd /var/simplesamlphp
   cp -r config-templates/* config/
   cp -r metadata-templates/* metadata/
 </code></pre>
@@ -121,13 +121,13 @@
  to get detailed
 instructions on how to install Composer itself) and npm:
 </p>
-<pre><code>  php composer.phar install
+<pre class="codehilite"><code>  php composer.phar install
   npm install
 </code></pre>
 <p>
  Build the assets:
 </p>
-<pre><code>  npm run build
+<pre class="codehilite"><code>  npm run build
 </code></pre>
 <h2 id="upgrading">
  Upgrading
@@ -135,18 +135,18 @@ instructions on how to install Composer itself) and npm:
 <p>
  Go to the root directory of your SimpleSAMLphp installation:
 </p>
-<pre><code>  cd /var/simplesamlphp
+<pre class="codehilite"><code>  cd /var/simplesamlphp
 </code></pre>
 <p>
  Ask git to update to the latest version:
 </p>
-<pre><code>  git fetch origin
+<pre class="codehilite"><code>  git fetch origin
   git pull origin master
 </code></pre>
 <p>
  Install or upgrade the external dependencies with Composer and npm:
 </p>
-<pre><code>  php composer.phar install
+<pre class="codehilite"><code>  php composer.phar install
   npm install
   npm run build
 </code></pre></body>

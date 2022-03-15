@@ -155,7 +155,7 @@ You can also use a different attribute by setting the
  </code>
  :
 </p>
-<pre><code>  'authproc' =&gt; array(
+<pre class="codehilite"><code>  'authproc' =&gt; array(
       50 =&gt; array(
           'class' =&gt; 'core:TargetedID',
       ),
@@ -164,7 +164,7 @@ You can also use a different attribute by setting the
 <p>
  A custom attribute:
 </p>
-<pre><code>  'authproc' =&gt; array(
+<pre class="codehilite"><code>  'authproc' =&gt; array(
       50 =&gt; array(
           'class' =&gt; 'core:TargetedID',
           'attributename' =&gt; 'eduPersonPrincipalName'
@@ -178,7 +178,7 @@ You can also use a different attribute by setting the
  </code>
  :
 </p>
-<pre><code>  /* In saml20-idp-hosted.php. */
+<pre class="codehilite"><code>  /* In saml20-idp-hosted.php. */
   $metadata['__DYNAMIC:1__'] = array(
       'host' =&gt; '__DEFAULT__',
       'auth' =&gt; 'example-static',

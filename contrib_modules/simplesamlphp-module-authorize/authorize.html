@@ -95,7 +95,7 @@
   For more information about how to use the Markdown syntax, read here:
   http://daringfireball.net/projects/markdown/syntax
 -->
-<pre><code>* Author: Ernesto Revilla &lt;erny@yaco.es&gt;, Yaco Sistemas, Ryan Panning
+<pre class="codehilite"><code>* Author: Ernesto Revilla &lt;erny@yaco.es&gt;, Yaco Sistemas, Ryan Panning
 * Package: SimpleSAMLphp
 </code></pre>
 <p>
@@ -204,10 +204,7 @@ For unstructured attributes use
  </code>
  to anchor your regex as necessary:
 </p>
-<p>
- <code>
-  php
-'authproc.sp' =&gt; [
+<pre class="codehilite"><code class="language-php">'authproc.sp' =&gt; [
     60 =&gt; [
         'class' =&gt; 'authorize:Authorize',
         'uid'   =&gt;  [
@@ -219,15 +216,11 @@ For unstructured attributes use
         'example.org:service:active.*@',
     ]
 ]
- </code>
-</p>
+</code></pre>
 <p>
  An alternate way of using this filter is to deny certain users. Or even use multiple filters to create a simple ACL, by first allowing a group of users but then denying a "black list" of users.
 </p>
-<p>
- <code>
-  php
-'authproc.sp' =&gt; [
+<pre class="codehilite"><code class="language-php">'authproc.sp' =&gt; [
     60 =&gt; array[
         'class' =&gt; 'authorize:Authorize',
         'deny'  =&gt; true,
@@ -237,18 +230,14 @@ For unstructured attributes use
         ]
     ]
 ]
- </code>
-</p>
+</code></pre>
 <p>
  The regex pattern matching can be turned off, allowing for exact attribute matching rules. This can be helpful in cases where you know what the value should be. An example of this is with the memberOf attribute or using the ldap:AttributeAddUsersGroups filter with the group attribute.
 </p>
 <p>
  Additionally, some helpful instructions are shown.
 </p>
-<p>
- <code>
-  php
-'authproc.sp' =&gt; [
+<pre class="codehilite"><code class="language-php">'authproc.sp' =&gt; [
     60 =&gt; [
         'class' =&gt; 'authorize:Authorize',
         'regex' =&gt; false,
@@ -264,6 +253,5 @@ For unstructured attributes use
         ]
     ]
 ]
- </code>
-</p></body>
+</code></pre></body>
 </html>

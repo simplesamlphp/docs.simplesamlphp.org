@@ -95,7 +95,7 @@
   For more information about how to use the Markdown syntax, read here:
   http://daringfireball.net/projects/markdown/syntax
 -->
-<pre><code>* Author: Timothy Ace [tace@synacor.com](mailto:tace@synacor.com)
+<pre class="codehilite"><code>* Author: Timothy Ace [tace@synacor.com](mailto:tace@synacor.com)
 </code></pre>
 <!-- {{TOC}} -->
 <p>
@@ -114,7 +114,7 @@ V2.0 Attribute Extensions
  entries are used to define the
 metadata extension items. An example of this is:
 </p>
-<pre><code>  &lt;?php
+<pre class="codehilite"><code>  &lt;?php
   $metadata['entity-id-1'] = [
       /* ... */
   'EntityAttributes' =&gt; [
@@ -174,14 +174,14 @@ array. Each item in this array produces a separte
  </code>
  element.
 </p>
-<pre><code>  'EntityAttributes' =&gt; [
+<pre class="codehilite"><code>  'EntityAttributes' =&gt; [
     'urn:simplesamlphp:v1:simplesamlphp' =&gt; ['is', 'really', 'cool'],
   ],
 </code></pre>
 <p>
  This generates:
 </p>
-<pre><code>    &lt;saml:Attribute xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" Name="urn:simplesamlphp:v1:simplesamlphp" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"&gt;
+<pre class="codehilite"><code>    &lt;saml:Attribute xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" Name="urn:simplesamlphp:v1:simplesamlphp" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"&gt;
       &lt;saml:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string"&gt;is&lt;/saml:AttributeValue&gt;
       &lt;saml:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string"&gt;really&lt;/saml:AttributeValue&gt;
       &lt;saml:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string"&gt;cool&lt;/saml:AttributeValue&gt;
@@ -199,14 +199,14 @@ array. Each item in this array produces a separte
  attribute. This is
 specified using curly braces at the beginning of the key name:
 </p>
-<pre><code>  'EntityAttributes' =&gt; [
+<pre class="codehilite"><code>  'EntityAttributes' =&gt; [
     '{urn:simplesamlphp:v1}foo' =&gt; ['bar'],
   ],
 </code></pre>
 <p>
  This generates:
 </p>
-<pre><code>    &lt;saml:Attribute xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" Name="foo" NameFormat="urn:simplesamlphp:v1"&gt;
+<pre class="codehilite"><code>    &lt;saml:Attribute xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" Name="foo" NameFormat="urn:simplesamlphp:v1"&gt;
       &lt;saml:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string"&gt;bar&lt;/saml:AttributeValue&gt;
     &lt;/saml:Attribute&gt;
 </code></pre>
@@ -220,7 +220,7 @@ to "urn:oasis:names:tc:SAML:2.0:attrname-format:uri".
 <p>
  If given the following configuration...
 </p>
-<pre><code>  $metadata['https://www.example.com/saml/saml2/idp/metadata.php'] = [
+<pre class="codehilite"><code>  $metadata['https://www.example.com/saml/saml2/idp/metadata.php'] = [
       'host' =&gt; 'www.example.com',
       'certificate' =&gt; 'example.com.crt',
       'privatekey' =&gt; 'example.com.pem',
@@ -235,7 +235,7 @@ to "urn:oasis:names:tc:SAML:2.0:attrname-format:uri".
 <p>
  ... will generate the following XML metadata:
 </p>
-<pre><code><?xml version="1.0"?>
+<pre class="codehilite"><code><?xml version="1.0"?>
 
 
 &lt;md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:mdattr="urn:oasis:names:tc:SAML:metadata:attribute" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mdui="urn:oasis:names:tc:SAML:metadata:ui" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" entityID="https://www.example.com/saml/saml2/idp/metadata.php"&gt;

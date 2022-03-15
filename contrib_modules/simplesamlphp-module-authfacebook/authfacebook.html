@@ -127,28 +127,23 @@
 <h1 id="example-config">
  Example config:
 </h1>
-<p>
- ```
-    'facebook' =&gt; [
+<pre class="codehilite"><code>    'facebook' =&gt; [
         'authfacebook:Facebook',
         // Register your Facebook application on http://www.facebook.com/developers
         // App ID or API key (requests with App ID should be faster; https://github.com/facebook/php-sdk/issues/214)
         'api_key' =&gt; 'xxxxxxxxxxxxxxxx',
-</p>
-<pre><code>      // App Secret
-      'secret' =&gt; 'xxxxxxxxxxxxxxxx',
 
-      // which additional data permissions to request from user
-      // see http://developers.facebook.com/docs/authentication/permissions/ for the full list
-      // 'req_perms' =&gt; 'email,user_birthday',
+        // App Secret
+        'secret' =&gt; 'xxxxxxxxxxxxxxxx',
 
-      // Which additional user profile fields to request.
-      // When empty, only the app-specific user id and name will be returned
-      // See https://developers.facebook.com/docs/graph-api/reference/v2.6/user for the full list
-      // 'user_fields' =&gt; 'email,birthday,third_party_id,name,first_name,last_name',
-  ],
-</code></pre>
-<p>
- ```
-</p></body>
+        // which additional data permissions to request from user
+        // see http://developers.facebook.com/docs/authentication/permissions/ for the full list
+        // 'req_perms' =&gt; 'email,user_birthday',
+
+        // Which additional user profile fields to request.
+        // When empty, only the app-specific user id and name will be returned
+        // See https://developers.facebook.com/docs/graph-api/reference/v2.6/user for the full list
+        // 'user_fields' =&gt; 'email,birthday,third_party_id,name,first_name,last_name',
+    ],
+</code></pre></body>
 </html>

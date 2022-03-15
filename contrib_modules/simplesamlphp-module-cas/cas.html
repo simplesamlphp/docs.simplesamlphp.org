@@ -103,7 +103,7 @@ the only diffrence is this is authentication module and not a script.
 <h2 id="example-authsourcephp">
  example authsource.php
 </h2>
-<pre><code>'example-cas' =&gt; array(
+<pre class="codehilite"><code>'example-cas' =&gt; array(
   'cas:CAS',
   'cas' =&gt; array(
     'login' =&gt; 'https://cas.example.com/login',
@@ -147,12 +147,9 @@ the only diffrence is this is authentication module and not a script.
  </code>
  , either directly:
 </p>
-<p>
- <code>
-  'cas' =&gt; array(
+<pre class="codehilite"><code>  'cas' =&gt; array(
     'serviceValidate' =&gt; 'https://cas.example.com/serviceValidate',
- </code>
-</p>
+</code></pre>
 <p>
  or you might have to call serviceValidate for Protocol 3 via
  <strong>
@@ -160,18 +157,13 @@ the only diffrence is this is authentication module and not a script.
  </strong>
  :
 </p>
-<p>
- <code>
-  'cas' =&gt; array(
+<pre class="codehilite"><code>  'cas' =&gt; array(
     'serviceValidate' =&gt; 'https://cas.example.com/p3/serviceValidate',
- </code>
-</p>
+</code></pre>
 <p>
  which would return something like
 </p>
-<p>
- <code>
-  &lt;cas:authenticationSuccess&gt;
+<pre class="codehilite"><code>    &lt;cas:authenticationSuccess&gt;
         &lt;cas:user&gt;jdoe&lt;/cas:user&gt;
         &lt;cas:attributes&gt;
             &lt;cas:credentialType&gt;UsernamePasswordCredential&lt;/cas:credentialType&gt;
@@ -185,8 +177,7 @@ the only diffrence is this is authentication module and not a script.
             &lt;cas:sn&gt;Doe&lt;/cas:sn&gt;
             &lt;/cas:attributes&gt;
     &lt;/cas:authenticationSuccess&gt;
- </code>
-</p>
+</code></pre>
 <p>
  So we can query for attributes in
  <code>
@@ -194,21 +185,18 @@ the only diffrence is this is authentication module and not a script.
  </code>
  , providing the XPath for each value:
 </p>
-<p>
- <code>
-  'cas' =&gt; array(
+<pre class="codehilite"><code>  'cas' =&gt; array(
     'attributes' =&gt; [
         'uid' =&gt; '/cas:serviceResponse/cas:authenticationSuccess/cas:user',
         'sn' =&gt; '/cas:serviceResponse/cas:authenticationSuccess/cas:attributes/cas:sn',
         'givenName' =&gt; '/cas:serviceResponse/cas:authenticationSuccess/cas:attributes/cas:firstname',
         'mail' =&gt; '/cas:serviceResponse/cas:authenticationSuccess/cas:attributes/cas:mail',
         ],
- </code>
-</p>
+</code></pre>
 <p>
  and even some custom attributes if they're set:
 </p>
-<pre><code>      'customabc' =&gt; '/cas:serviceResponse/cas:authenticationSuccess/custom:abc',
+<pre class="codehilite"><code>      'customabc' =&gt; '/cas:serviceResponse/cas:authenticationSuccess/custom:abc',
 </code></pre>
 <p>
  You'll probably want to avoid querying LDAP for attributes: set
@@ -221,14 +209,11 @@ the only diffrence is this is authentication module and not a script.
  </code>
  MUST be set):
 </p>
-<p>
- <code>
-  'example-cas' =&gt; array(
+<pre class="codehilite"><code>'example-cas' =&gt; array(
   'cas:CAS',
   'cas' =&gt; array(
             ...
   ),
   'ldap' =&gt; []
- </code>
-</p></body>
+</code></pre></body>
 </html>

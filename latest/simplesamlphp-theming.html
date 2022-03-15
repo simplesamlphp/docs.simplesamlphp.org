@@ -95,7 +95,54 @@
   For more information about how to use the Markdown syntax, read here:
   http://daringfireball.net/projects/markdown/syntax
 -->
-<!-- {{TOC}} -->
+<div class="toc">
+ <ul>
+  <li>
+   <a href="#theming-the-user-interface-in-simplesamlphp.html">
+    Theming the user interface in SimpleSAMLphp
+   </a>
+   <ul>
+    <li>
+     <a href="#how-themes-work.html">
+      How themes work
+     </a>
+     <ul>
+      <li>
+       <a href="#configuring-which-theme-to-use.html">
+        Configuring which theme to use
+       </a>
+      </li>
+      <li>
+       <a href="#override-only-specific-templates.html">
+        Override only specific templates
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#creating-your-first-theme.html">
+      Creating your first theme
+     </a>
+    </li>
+    <li>
+     <a href="#adding-resource-files.html">
+      Adding resource files
+     </a>
+    </li>
+    <li>
+     <a href="#a-custom-theme-controller.html">
+      A custom theme controller
+     </a>
+    </li>
+    <li>
+     <a href="#migrating-to-twig-templates.html">
+      Migrating to Twig templates
+     </a>
+    </li>
+   </ul>
+  </li>
+ </ul>
+</div>
 <p>
  In SimpleSAMLphp every part that needs to interact with the user by using a web page, uses templates to present the HTML. SimpleSAMLphp comes with a default set of templates that presents a anonymous look.
 </p>
@@ -122,7 +169,7 @@
  </code>
  there is a configuration option that controls theming. You need to set that option and enable the module that contains the theme. Here is an example:
 </p>
-<pre><code>   'module.enable' =&gt; [
+<pre class="codehilite"><code>   'module.enable' =&gt; [
        ...
        'fancymodule' =&gt; true,
    ],
@@ -165,7 +212,7 @@ SimpleSAMLphp allows themes to override the included templates files only, if ne
 <p>
  The first thing you need to do is having a SimpleSAMLphp module to place your theme in. If you do not have a module already, create a new one:
 </p>
-<pre><code>cd modules
+<pre class="codehilite"><code>cd modules
 mkdir mymodule
 
 Enable the module by setting `$config['module.enable' =&gt; ['mymodule' =&gt; true]]`
@@ -177,7 +224,7 @@ Enable the module by setting `$config['module.enable' =&gt; ['mymodule' =&gt; tr
  </code>
  .
 </p>
-<pre><code>cd modules/mymodule
+<pre class="codehilite"><code>cd modules/mymodule
 mkdir -p themes/fancytheme/default/
 </code></pre>
 <p>
@@ -187,12 +234,12 @@ mkdir -p themes/fancytheme/default/
  </code>
  :
 </p>
-<pre><code>'theme.use'     =&gt; 'mymodule:fancytheme',
+<pre class="codehilite"><code>'theme.use'     =&gt; 'mymodule:fancytheme',
 </code></pre>
 <p>
  Next, we copy the header file from the base theme:
 </p>
-<pre><code>cp templates/_header.twig modules/mymodule/themes/fancytheme/default/
+<pre class="codehilite"><code>cp templates/_header.twig modules/mymodule/themes/fancytheme/default/
 </code></pre>
 <p>
  In the
@@ -211,9 +258,7 @@ mkdir -p themes/fancytheme/default/
  </code>
  folder of your module, to make your module completely independent with included css, icons etc.
 </p>
-<p>
- <code>
-  modules
+<pre class="codehilite"><code>modules
 └───mymodule
     └───lib
     └───themes
@@ -221,8 +266,7 @@ mkdir -p themes/fancytheme/default/
         └───assets
             └───logo.svg
             └───style.css
- </code>
-</p>
+</code></pre>
 <p>
  Reference these resources in your custom templates under
  <code>
@@ -230,12 +274,11 @@ mkdir -p themes/fancytheme/default/
  </code>
  by using a generator for the URL.
 Example for a custom CSS stylesheet file:
- <code>
-  {% block preload %}
+</p>
+<pre class="codehilite"><code>{% block preload %}
 &lt;link rel="stylesheet" href="{{ asset('style.css', 'mymodule') }}"&gt;
 {% endblock %}
- </code>
-</p>
+</code></pre>
 <h2 id="a-custom-theme-controller">
  A custom theme controller
 </h2>
@@ -247,7 +290,7 @@ in
  </code>
  :
 </p>
-<pre><code>  'theme.controller' =&gt; '\SimpleSAML\Module\mymodule\FancyThemeController',
+<pre class="codehilite"><code>  'theme.controller' =&gt; '\SimpleSAML\Module\mymodule\FancyThemeController',
 </code></pre>
 <p>
  This requires you to implement
@@ -290,12 +333,12 @@ templating enging to be compatible with SimpleSAMLphp 2.0.
  </code>
  file. This can be customized by copying it from the base template:
 </p>
-<pre><code>cp templates/_header.twig modules/mymodule/themes/fancytheme/default/
+<pre class="codehilite"><code>cp templates/_header.twig modules/mymodule/themes/fancytheme/default/
 </code></pre>
 <p>
  If you need to make more extensive customizations to the base template, you should copy it from the base theme:
 </p>
-<pre><code>cp templates/base.twig modules/mymodule/themes/fancytheme/default/
+<pre class="codehilite"><code>cp templates/base.twig modules/mymodule/themes/fancytheme/default/
 </code></pre>
 <p>
  Any references to

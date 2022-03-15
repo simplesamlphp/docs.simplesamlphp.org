@@ -117,12 +117,12 @@
 <p>
  You will first need to configure a PDO metadata source.
 </p>
-<pre><code>[root@simplesamlphp simplesamlphp]# vi config/config.php
+<pre class="codehilite"><code>[root@simplesamlphp simplesamlphp]# vi config/config.php
 </code></pre>
 <p>
  Here is an example of flatfile plus PDO:
 </p>
-<pre><code>'metadata.sources' =&gt; [
+<pre class="codehilite"><code>'metadata.sources' =&gt; [
   ['type' =&gt; 'flatfile'],
   ['type' =&gt; 'pdo'],
 ],
@@ -133,7 +133,7 @@
 <p>
  Once you have configured your metadata sources to include a PDO source, you will need to initialize the database. This process will create tables in the database for each type of metadata set (saml20-idp-hosted, saml20-idp-remote, saml20-sp-remote, etc).
 </p>
-<pre><code>[root@simplesamlphp simplesamlphp]# php bin/initMDSPdo.php
+<pre class="codehilite"><code>[root@simplesamlphp simplesamlphp]# php bin/initMDSPdo.php
 </code></pre>
 <p>
  If you connect to your database, you will see 11 new empty tables; one for each metadata set.
@@ -173,7 +173,7 @@ https://openidp.feide.no | {"name":{"en":"Feide OpenIdP - guest users","no":"Fei
 <p>
  To import all flatfile metadata files into the PDO database, run the following script
 </p>
-<pre><code>[root@simplesamlphp simplesamlphp]# php bin/importPdoMetadata.php
+<pre class="codehilite"><code>[root@simplesamlphp simplesamlphp]# php bin/importPdoMetadata.php
 </code></pre>
 <p>
  In the event that you import a metadata for an entity id that already exists in the database, it will be overwritten.

@@ -181,15 +181,13 @@ to it with the key
 </h2>
 <p>
  Basic configuration:
- <code>
-  php
-    'authproc' =&gt; array(
+</p>
+<pre class="codehilite"><code class="language-php">    'authproc' =&gt; array(
         90 =&gt; array(
             'class' =&gt; 'saml:FilterScopes',
         ),
     ),
- </code>
-</p>
+</code></pre>
 <p>
  Specify
  <code>
@@ -200,9 +198,8 @@ to it with the key
   eduPersonPrincipalName
  </code>
  as scoped attributes:
- <code>
-  php
-    'authproc' =&gt; array(
+</p>
+<pre class="codehilite"><code class="language-php">    'authproc' =&gt; array(
         90 =&gt; array(
             'class' =&gt; 'saml:FilterScopes',
             'attributes' =&gt; array(
@@ -211,13 +208,11 @@ to it with the key
             ),
         ),
     ),
- </code>
-</p>
+</code></pre>
 <p>
  Specify the same attributes in OID format:
- <code>
-  php
-    'authproc' =&gt; array(
+</p>
+<pre class="codehilite"><code class="language-php">    'authproc' =&gt; array(
         90 =&gt; array(
             'class' =&gt; 'saml:FilterScopes',
             'attributes' =&gt; array(
@@ -226,6 +221,5 @@ to it with the key
             ),
         ),
     ),
- </code>
-</p></body>
+</code></pre></body>
 </html>

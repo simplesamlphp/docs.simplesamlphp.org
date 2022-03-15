@@ -95,7 +95,62 @@
   For more information about how to use the Markdown syntax, read here:
   http://daringfireball.net/projects/markdown/syntax
 -->
-<!-- {{TOC}} -->
+<div class="toc">
+ <ul>
+  <li>
+   <a href="#simplesamlphp-advanced-features.html">
+    SimpleSAMLphp Advanced Features
+   </a>
+   <ul>
+    <li>
+     <a href="#simplesamlphp-documentation.html">
+      SimpleSAMLphp documentation
+     </a>
+    </li>
+    <li>
+     <a href="#bridging-between-protocols.html">
+      Bridging between protocols
+     </a>
+    </li>
+    <li>
+     <a href="#attribute-control.html">
+      Attribute control
+     </a>
+    </li>
+    <li>
+     <a href="#automatic-update-of-saml-20-metadata-xml-from-https.html">
+      Automatic update of SAML 2.0 Metadata XML from HTTPS
+     </a>
+    </li>
+    <li>
+     <a href="#using-simplesamlphp-on-a-web-server-requiring-the-use-of-a-web-proxy.html">
+      Using simpleSAMLphp on a web server requiring the use of a web proxy
+     </a>
+    </li>
+    <li>
+     <a href="#auth-memcookie.html">
+      Auth MemCookie
+     </a>
+    </li>
+    <li>
+     <a href="#metadata-signing.html">
+      Metadata signing
+     </a>
+    </li>
+    <li>
+     <a href="#session-checking-function.html">
+      Session checking function
+     </a>
+    </li>
+    <li>
+     <a href="#support.html">
+      Support
+     </a>
+    </li>
+   </ul>
+  </li>
+ </ul>
+</div>
 <h2 id="simplesamlphp-documentation">
  SimpleSAMLphp documentation
 </h2>
@@ -137,7 +192,7 @@ The SAML 2.0 SP talks to the SAML 2.0 IdP, which hands the request over to the S
  </code>
  :
 </p>
-<pre><code>  'auth' =&gt; 'default-sp',
+<pre class="codehilite"><code>  'auth' =&gt; 'default-sp',
 </code></pre>
 <p>
  In
@@ -146,7 +201,7 @@ The SAML 2.0 SP talks to the SAML 2.0 IdP, which hands the request over to the S
  </code>
  :
 </p>
-<pre><code>  'default-sp' =&gt; [
+<pre class="codehilite"><code>  'default-sp' =&gt; [
       'saml:SP',
   ],
 </code></pre>
@@ -160,7 +215,7 @@ The SAML 2.0 SP talks to the SAML 2.0 IdP, which hands the request over to the S
  </em>
  . For more information, read:
 </p>
-<pre><code>* [Authentication Processing Filters in SimpleSAMLphp](simplesamlphp-authproc)
+<pre class="codehilite"><code>* [Authentication Processing Filters in SimpleSAMLphp](simplesamlphp-authproc)
 </code></pre>
 <h2 id="automatic-update-of-saml-20-metadata-xml-from-https">
  Automatic update of SAML 2.0 Metadata XML from HTTPS
@@ -255,7 +310,7 @@ Please see the
    metadata.sign.algorithm
   </code>
   : The algorithm to use when signing metadata for this entity. Defaults to RSA-SHA256. Possible values:
-  <pre><code>* `http://www.w3.org/2000/09/xmldsig#rsa-sha1`
+  <pre class="codehilite"><code>* `http://www.w3.org/2000/09/xmldsig#rsa-sha1`
    *Note*: the use of SHA1 is **deprecated** and will be disallowed in the future.
 * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256`
   The default.
@@ -303,7 +358,7 @@ Please see the
 <p>
  Example code for the function with GeoIP country check:
 </p>
-<pre><code>  public static function checkSession($session, $init = FALSE) {
+<pre class="codehilite"><code>  public static function checkSession($session, $init = FALSE) {
       $data_type = 'example:check_session';
       $data_key = 'remote_addr';
 

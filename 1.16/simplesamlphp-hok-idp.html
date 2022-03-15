@@ -111,7 +111,7 @@ This certificate is usually selfsigned and stored in the certificate store of th
 <p>
  The IdP requests a client certificate from the user agent during the TLS handshake. This behaviour is enabled with the following Apache webserver configuration:
 </p>
-<pre><code>  SSLEngine on
+<pre class="codehilite"><code>  SSLEngine on
   SSLCertificateFile /etc/openssl/certs/server.crt
   SSLCertificateKeyFile /etc/openssl/private/server.key
   SSLVerifyClient optional_no_ca
@@ -139,7 +139,7 @@ environment variable
  </code>
  metadata file:
 </p>
-<pre><code>  $metadata['__DYNAMIC:1__'] = array(
+<pre class="codehilite"><code>  $metadata['__DYNAMIC:1__'] = array(
       [....]
       'auth' =&gt; 'example-userpass',
       'saml20.hok.assertion' =&gt; TRUE,
@@ -161,7 +161,7 @@ The
  </code>
  metadata for SimpleSAMLphp SPs should contain something like the following code:
 </p>
-<pre><code>'SingleSignOnService' =&gt; array (
+<pre class="codehilite"><code>'SingleSignOnService' =&gt; array (
   array (
     'hoksso:ProtocolBinding' =&gt; 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
     'Binding' =&gt; 'urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser',
@@ -189,7 +189,7 @@ This means that you have to use the complex endpoint format in
  metadata.
 In general, this should look like the following code:
 </p>
-<pre><code>'AssertionConsumerService' =&gt; array (
+<pre class="codehilite"><code>'AssertionConsumerService' =&gt; array (
   array(
     'Binding' =&gt; 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
     'Location' =&gt; 'https://sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp',

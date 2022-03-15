@@ -119,14 +119,14 @@
 <p>
  The various endpoints can be specified in three different ways:
 </p>
-<pre><code>* A single string.
+<pre class="codehilite"><code>* A single string.
 * Array of strings.
 * Array of arrays.
 </code></pre>
 <h2 id="a-single-string">
  A single string
 </h2>
-<pre><code>  'AssertionConsumerService' =&gt; 'https://sp.example.org/ACS',
+<pre class="codehilite"><code>  'AssertionConsumerService' =&gt; 'https://sp.example.org/ACS',
 </code></pre>
 <p>
  This is the simplest endpoint format.
@@ -135,7 +135,7 @@ It can be used when there is only a single endpoint that uses the default bindin
 <h2 id="array-of-strings">
  Array of strings
 </h2>
-<pre><code>  'AssertionConsumerService' =&gt; [
+<pre class="codehilite"><code>  'AssertionConsumerService' =&gt; [
       'https://site1.example.org/ACS',
       'https://site2.example.org/ACS',
   ],
@@ -146,7 +146,7 @@ It can be used when there is only a single endpoint that uses the default bindin
 <h2 id="array-of-arrays">
  Array of arrays
 </h2>
-<pre><code>  'AssertionConsumerService' =&gt; [
+<pre class="codehilite"><code>  'AssertionConsumerService' =&gt; [
       [
           'index' =&gt; 1,
           'isDefault' =&gt; true,
@@ -168,7 +168,7 @@ It can also be used to specify the ResponseLocation attribute on endpoints, e.g.
  </code>
  :
 </p>
-<pre><code>  'SingleLogoutService' =&gt; [
+<pre class="codehilite"><code>  'SingleLogoutService' =&gt; [
       [
           'Location' =&gt; 'https://sp.example.org/LogoutRequest',
           'ResponseLocation' =&gt; 'https://sp.example.org/LogoutResponse',

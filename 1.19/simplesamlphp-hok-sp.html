@@ -111,7 +111,7 @@ This certificate is usually selfsigned and stored in the certificate store of th
 <p>
  The SP requests a client certificate from the user agent during the TLS handshake. This behaviour is enabled with the following Apache webserver configuration:
 </p>
-<pre><code>  SSLEngine on
+<pre class="codehilite"><code>  SSLEngine on
   SSLCertificateFile /etc/openssl/certs/server.crt
   SSLCertificateKeyFile /etc/openssl/private/server.key
   SSLVerifyClient optional_no_ca
@@ -145,7 +145,7 @@ You must also send authentication requests specifying the Holder-of-Key profile 
  </code>
  option in the SP configuration.
 </p>
-<pre><code>  'hok-sp' =&gt; [
+<pre class="codehilite"><code>  'hok-sp' =&gt; [
       'saml:SP',
       'saml20.hok.assertion' =&gt; TRUE,
       'ProtocolBinding' =&gt; 'urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser',

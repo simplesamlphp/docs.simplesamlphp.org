@@ -207,7 +207,7 @@ This is the
 This function receives the username and password the user entered, and is expected to return the attributes of that user.
 If the username or password is incorrect, it should throw an error saying so:
 </p>
-<pre><code>  throw new SimpleSAML_Error_Error('WRONGUSERPASS');
+<pre class="codehilite"><code>  throw new SimpleSAML_Error_Error('WRONGUSERPASS');
 </code></pre>
 <p>
  "
@@ -221,14 +221,14 @@ If the username or password is incorrect, it should throw an error saying so:
 </h2>
 <ul>
  <li>
-  <pre><code>Must be derived from the `SimpleSAML_Auth_Source`-class.
+  <pre class="codehilite"><code>Must be derived from the `SimpleSAML_Auth_Source`-class.
 
 **Rationale**:
  - Deriving all authentication sources from a single base class allows us extend all authentication sources by extending the base class.
 </code></pre>
  </li>
  <li>
-  <pre><code>  If a constructor is implemented, it must first call the parent constructor, passing along all parameters, before accessing any of the parameters.
+  <pre class="codehilite"><code>  If a constructor is implemented, it must first call the parent constructor, passing along all parameters, before accessing any of the parameters.
   In general, only the $config parameter should be accessed when implementing the authentication source.
 
 **Rationale**:
@@ -238,7 +238,7 @@ If the username or password is incorrect, it should throw an error saying so:
 </code></pre>
  </li>
  <li>
-  <pre><code>  The `authenticate(&amp;$state)`-function must be implemented.
+  <pre class="codehilite"><code>  The `authenticate(&amp;$state)`-function must be implemented.
   If this function completes, it is assumed that the user is authenticated, and that the `$state`-array has been updated with the user's attributes.
 
 **Rationale**:
@@ -247,7 +247,7 @@ If the username or password is incorrect, it should throw an error saying so:
 </code></pre>
  </li>
  <li>
-  <pre><code>  If the `authenticate`-function does not return, it must at a later time call `SimpleSAML_Auth_Source::completeAuth` with the new state array.
+  <pre class="codehilite"><code>  If the `authenticate`-function does not return, it must at a later time call `SimpleSAML_Auth_Source::completeAuth` with the new state array.
   The state array must be an update of the array passed to the `authenticate`-function.
 
 **Rationale**:
@@ -255,7 +255,7 @@ If the username or password is incorrect, it should throw an error saying so:
 </code></pre>
  </li>
  <li>
-  <pre><code>  No pages may be shown to the user from the `authenticate()`-function.
+  <pre class="codehilite"><code>  No pages may be shown to the user from the `authenticate()`-function.
   Instead, the state should be saved, and the user should be redirected to a new page.
 
 **Rationale**:
@@ -264,7 +264,7 @@ If the username or password is incorrect, it should throw an error saying so:
 </code></pre>
  </li>
  <li>
-  <pre><code>  No state information about any authentication should be stored in the authentication source object.
+  <pre class="codehilite"><code>  No state information about any authentication should be stored in the authentication source object.
   It must instead be stored in the state array.
   Any changes to variables in the authentication source object may be lost.
 
@@ -274,7 +274,7 @@ If the username or password is incorrect, it should throw an error saying so:
 </code></pre>
  </li>
  <li>
-  <pre><code>  The authentication source object must be serializable.
+  <pre class="codehilite"><code>  The authentication source object must be serializable.
   It may be serialized between being constructed and the call to the `authenticate()`-function.
   This means that, for example, no database connections should be created in the constructor and later used in the `authenticate()`-function.
 

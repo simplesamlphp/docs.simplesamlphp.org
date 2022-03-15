@@ -90,7 +90,7 @@
 </header><h1 id="upgrade-notes-for-simplesamlphp-15">
  Upgrade notes for SimpleSAMLphp 1.5
 </h1>
-<pre><code>* `SimpleSAML_Session::isValid()`
+<pre class="codehilite"><code>* `SimpleSAML_Session::isValid()`
 
   If your code calls `$session-&gt;isValid()` without an argument, you will now have to update it to pass an argument (probably `saml2`).
   The reason for this change is that calling `$session-&gt;isValid()` without an argument can easily create a security hole.

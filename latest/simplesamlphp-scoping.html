@@ -95,7 +95,49 @@
     For more information about how to use the Markdown syntax, read here:
     http://daringfireball.net/projects/markdown/syntax
 -->
-<!-- {{TOC}} -->
+<div class="toc">
+ <ul>
+  <li>
+   <a href="#scoping.html">
+    Scoping
+   </a>
+   <ul>
+    <li>
+     <a href="#options.html">
+      Options
+     </a>
+     <ul>
+      <li>
+       <a href="#note.html">
+        Note
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#usage.html">
+      Usage
+     </a>
+    </li>
+    <li>
+     <a href="#requesterid-element.html">
+      RequesterID element
+     </a>
+    </li>
+    <li>
+     <a href="#authenticatingauthority-element.html">
+      AuthenticatingAuthority element
+     </a>
+    </li>
+    <li>
+     <a href="#support.html">
+      Support
+     </a>
+    </li>
+   </ul>
+  </li>
+ </ul>
+</div>
 <p>
  Scoping allows a service provider to specify a list of identity providers in an
 authnRequest to a proxying identity provider. This is an indication to the 
@@ -164,7 +206,7 @@ that are relevant for a service provider in an authnRequest.
 <p>
  Example configuration:
 </p>
-<pre><code>  # Add the IDPList
+<pre class="codehilite"><code>  # Add the IDPList
   'IDPList' =&gt; [
       'IdPEntityID1',
       'IdPEntityID2',
@@ -187,7 +229,7 @@ not used.
  The RequesterId elements are available from the state array as an array, for
 instance the authenticate method in an authentication source
 </p>
-<pre><code>  $requesterIDs = $state['saml:RequesterID'];
+<pre class="codehilite"><code>  $requesterIDs = $state['saml:RequesterID'];
 </code></pre>
 <h2 id="authenticatingauthority-element">
  AuthenticatingAuthority element
@@ -201,7 +243,7 @@ AuthenticatingAuthority elements.
  The list of authenticating authorities (the AuthenticatingAuthority element) 
 can be retrieved as an array from the authentication data.
 </p>
-<pre><code>  # Get the authentication source.
+<pre class="codehilite"><code>  # Get the authentication source.
   $as = new \SimpleSAML\Auth\Simple();
 
   # Get the AuthenticatingAuthority

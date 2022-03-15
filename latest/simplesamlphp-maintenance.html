@@ -95,7 +95,111 @@
   For more information about how to use the Markdown syntax, read here:
   http://daringfireball.net/projects/markdown/syntax
 -->
-<!-- {{TOC}} -->
+<div class="toc">
+ <ul>
+  <li>
+   <a href="#simplesamlphp-maintenance.html">
+    SimpleSAMLphp Maintenance
+   </a>
+   <ul>
+    <li>
+     <a href="#simplesamlphp-news-and-documentation.html">
+      SimpleSAMLphp news and documentation
+     </a>
+    </li>
+    <li>
+     <a href="#session-management.html">
+      Session management
+     </a>
+     <ul>
+      <li>
+       <a href="#configuring-php-sessions.html">
+        Configuring PHP sessions
+       </a>
+      </li>
+      <li>
+       <a href="#configuring-memcache.html">
+        Configuring memcache
+       </a>
+       <ul>
+        <li>
+         <a href="#note.html">
+          Note
+         </a>
+        </li>
+        <li>
+         <a href="#memcache-php-configuration.html">
+          Memcache PHP configuration
+         </a>
+        </li>
+        <li>
+         <a href="#environmental-configuration.html">
+          Environmental configuration
+         </a>
+        </li>
+       </ul>
+      </li>
+      <li>
+       <a href="#configuring-sql-storage.html">
+        Configuring SQL storage
+       </a>
+      </li>
+      <li>
+       <a href="#configuring-redis-storage.html">
+        Configuring Redis storage
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#metadata-storage.html">
+      Metadata storage
+     </a>
+    </li>
+    <li>
+     <a href="#logging-and-statistics.html">
+      Logging and statistics
+     </a>
+    </li>
+    <li>
+     <a href="#apache-configuration.html">
+      Apache configuration
+     </a>
+    </li>
+    <li>
+     <a href="#php-configuration.html">
+      PHP configuration
+     </a>
+    </li>
+    <li>
+     <a href="#getting-ready-for-production.html">
+      Getting ready for production
+     </a>
+    </li>
+    <li>
+     <a href="#error-handling-error-reporting-and-metadata-reporting.html">
+      Error handling, error reporting and metadata reporting
+     </a>
+    </li>
+    <li>
+     <a href="#multi-language-support.html">
+      Multi-language support
+     </a>
+    </li>
+    <li>
+     <a href="#customizing-the-web-frontend-with-themes.html">
+      Customizing the web frontend with themes
+     </a>
+    </li>
+    <li>
+     <a href="#support.html">
+      Support
+     </a>
+    </li>
+   </ul>
+  </li>
+ </ul>
+</div>
 <h2 id="simplesamlphp-news-and-documentation">
  SimpleSAMLphp news and documentation
 </h2>
@@ -141,7 +245,7 @@
  </code>
  allows you to select which method SimpleSAMLphp should use to store the session information. Currently, three session handlers are included in the distribution:
 </p>
-<pre><code>* `phpsession` uses the built in session management in PHP. This is the default, and is simplest to use. It will not work in a load-balanced environment in most configurations.
+<pre class="codehilite"><code>* `phpsession` uses the built in session management in PHP. This is the default, and is simplest to use. It will not work in a load-balanced environment in most configurations.
 * `memcache` uses the memcache software to cache sessions in memory. Sessions can be distributed and replicated among several memcache servers, enabling both load-balancing and fail-over.
 * `sql` stores the session in an SQL database.
 * `redis` stores the session in Redis.
@@ -162,7 +266,7 @@
  </code>
  :
 </p>
-<pre><code>  'store.type' =&gt; 'phpsession',
+<pre class="codehilite"><code>  'store.type' =&gt; 'phpsession',
 </code></pre>
 <p>
  Keep in mind that
@@ -177,7 +281,7 @@ application and in SimpleSAMLphp at the same time,
  . When using the PHP session handler in
 SimpleSAMLphp, it is configured with different options than for other session handlers:
 </p>
-<pre><code>  'session.phpsession.cookiename' =&gt; null,
+<pre class="codehilite"><code>  'session.phpsession.cookiename' =&gt; null,
   'session.phpsession.savepath' =&gt; null,
   'session.phpsession.httponly' =&gt; true,
 </code></pre>
@@ -223,7 +327,7 @@ settings by leaving these options unset or setting them to
  </code>
  :
 </p>
-<pre><code>  'store.type' =&gt; 'memcache',
+<pre class="codehilite"><code>  'store.type' =&gt; 'memcache',
 </code></pre>
 <p>
  memcache allows you to store multiple redundant copies of sessions on different memcache servers.
@@ -256,7 +360,7 @@ settings by leaving these options unset or setting them to
  </em>
  .
 </p>
-<pre><code>  This is the only required option.
+<pre class="codehilite"><code>  This is the only required option.
 </code></pre>
 <p>
  <code>
@@ -269,7 +373,7 @@ settings by leaving these options unset or setting them to
  ini setting is used. This is 11211 by
     default.
 </p>
-<pre><code>  The port will be forced to *0* when a UNIX domain socket is specified in *hostname*.
+<pre class="codehilite"><code>  The port will be forced to *0* when a UNIX domain socket is specified in *hostname*.
 </code></pre>
 <p>
  <code>
@@ -299,7 +403,7 @@ settings by leaving these options unset or setting them to
 <p>
  Example of redundant configuration with load balancing: This configuration makes it possible to lose both servers in the a-group or both servers in the b-group without losing any sessions. Note that sessions will be lost if one server is lost from both the a-group and the b-group.
 </p>
-<pre><code>  'memcache_store.servers' =&gt; [
+<pre class="codehilite"><code>  'memcache_store.servers' =&gt; [
     [
       ['hostname' =&gt; 'mc_a1'],
       ['hostname' =&gt; 'mc_a2'],
@@ -318,7 +422,7 @@ settings by leaving these options unset or setting them to
 <p>
  Example of simple configuration with only one memcache server, running on the same computer as the web server: Note that all sessions will be lost if the memcache server crashes.
 </p>
-<pre><code>  'memcache_store.servers' =&gt; [
+<pre class="codehilite"><code>  'memcache_store.servers' =&gt; [
     [
       ['hostname' =&gt; 'localhost'],
     ],
@@ -356,7 +460,7 @@ out of storage space.
 <p>
  Here is an example of this configuration parameter:
 </p>
-<pre><code>  'memcache_store.expires' =&gt;  36 * (60*60), // 36 hours.
+<pre class="codehilite"><code>  'memcache_store.expires' =&gt;  36 * (60*60), // 36 hours.
 </code></pre>
 <h4 id="memcache-php-configuration">
  Memcache PHP configuration
@@ -369,7 +473,7 @@ configured in
  </code>
  .
 </p>
-<pre><code>  memcache.allow_failover = Off
+<pre class="codehilite"><code>  memcache.allow_failover = Off
 </code></pre>
 <h4 id="environmental-configuration">
  Environmental configuration
@@ -494,15 +598,12 @@ Username and password for accessing the database can be configured in the
  . Here you have an
 example configuration of different metadata sources in use at the same time:
 </p>
-<p>
- <code>
-  'metadata.sources' =&gt; [
+<pre class="codehilite"><code>'metadata.sources' =&gt; [
     ['type' =&gt; 'flatfile'],
     ['type' =&gt; 'flatfile', 'directory' =&gt; 'metadata/metarefresh-kalmar'],
     ['type' =&gt; 'serialize', 'directory' =&gt; 'metadata/metarefresh-ukaccess'],
 ],
- </code>
-</p>
+</code></pre>
 <p>
  You may also implement your own metadata storage handler, in a very similar way to how you would implement
 your own session handler. Your class
@@ -541,17 +642,13 @@ module is named
  </em>
  , you should define it like this:
 </p>
-<p>
- ```
-&lt;?php
+<pre class="codehilite"><code>&lt;?php
 namespace SimpleSAML\Module\mymodule\MetadataStore;
-</p>
-<p>
- class MyMetadataHandler extends \SimpleSAML\Metadata\MetaDataStorageSource
+
+class MyMetadataHandler extends \SimpleSAML\Metadata\MetaDataStorageSource
 {
     ...
-```
-</p>
+</code></pre>
 <p>
  If you would like to see an example of how a custom handler could be implemented in your own module, take
 a look at the
@@ -660,7 +757,7 @@ However, your IdP or SP is most likely a valuable website that you want to confi
  </code>
  :
 </p>
-<pre><code>/*
+<pre class="codehilite"><code>/*
  * Languages available and which language is default
  */
 'language.available' =&gt; ['en', 'no', 'da', 'es', 'xx'],
@@ -683,7 +780,7 @@ However, your IdP or SP is most likely a valuable website that you want to confi
  </code>
  . Add a new entry for each string, with your language code, like this:
 </p>
-<pre><code>  'user_pass_header' =&gt; [
+<pre class="codehilite"><code>  'user_pass_header' =&gt; [
       'en' =&gt; 'Enter your username and password',
       'no' =&gt; 'Skriv inn brukernavn og passord',
       'xx' =&gt; 'Pooa jujjique jamba',

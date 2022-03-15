@@ -155,7 +155,7 @@ module above into the global
  </code>
  directory.
 </p>
-<pre><code>$ cd /var/simplesamlphp
+<pre class="codehilite"><code>$ cd /var/simplesamlphp
 $ touch modules/cron/enable
 $ cp modules/cron/config-templates/*.php config/
 $ touch modules/riak/enable
@@ -170,12 +170,12 @@ $ cp modules/riak/config-templates/*.php config/
   /var/simplesamlphp/config
  </code>
 </p>
-<pre><code>$ vi module_cron.php
+<pre class="codehilite"><code>$ vi module_cron.php
 </code></pre>
 <p>
  edit:
 </p>
-<pre><code>$config = array (
+<pre class="codehilite"><code>$config = array (
   'key' =&gt; 'secret',
   'allowed_tags' =&gt; array('daily', 'hourly', 'frequent'),
   'debug_message' =&gt; TRUE,
@@ -188,7 +188,7 @@ $ cp modules/riak/config-templates/*.php config/
 <p>
  And copy the cron's sugestion:
 </p>
-<pre><code>-------------------------------------------------------------------------------------------------------------------
+<pre class="codehilite"><code>-------------------------------------------------------------------------------------------------------------------
 Cron is a way to run things regularly on unix systems.
 
 Here is a suggestion for a crontab file:
@@ -209,7 +209,7 @@ Run cron [frequent]
 <p>
  Add to CRON with
 </p>
-<pre><code># crontab -e
+<pre class="codehilite"><code># crontab -e
 </code></pre>
 <h2 id="configuring-the-riak-module">
  Configuring the riak module
@@ -222,7 +222,7 @@ in
  </code>
  . The defaults are listed:
 </p>
-<pre><code>$config = array(
+<pre class="codehilite"><code>$config = array(
   'path' =&gt; 'riak-php-client/riak.php',
   'host' =&gt; 'localhost',
   'port' =&gt; 8098,
@@ -236,6 +236,6 @@ in
  </code>
  with the following setting:
 </p>
-<pre><code>  'store.type' =&gt; 'riak:Store',
+<pre class="codehilite"><code>  'store.type' =&gt; 'riak:Store',
 </code></pre></body>
 </html>

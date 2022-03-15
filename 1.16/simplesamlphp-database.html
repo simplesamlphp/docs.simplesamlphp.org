@@ -111,12 +111,12 @@
 <p>
  If you are just using the already configured database, which would normally be the case, all you need to do is get the global instance of the Database class.
 </p>
-<pre><code>$db = SimpleSAML\Database::getInstance();
+<pre class="codehilite"><code>$db = SimpleSAML\Database::getInstance();
 </code></pre>
 <p>
  If there is a requirement to connect to an alternate database server (ex. authenticating users that exist on a different SQL server or database) you can specify an alternate configuration.
 </p>
-<pre><code>$config = new SimpleSAML_Configuration($myconfigarray, "mymodule/lib/Auth/Source/myauth.php");
+<pre class="codehilite"><code>$config = new SimpleSAML_Configuration($myconfigarray, "mymodule/lib/Auth/Source/myauth.php");
 $db = SimpleSAML\Database::getInstance($config);
 </code></pre>
 <p>
@@ -128,7 +128,7 @@ $db = SimpleSAML\Database::getInstance($config);
 <p>
  Administrators can add a prefix to all the table names that this database classes accesses and you should take that in account when querying. Assuming that a prefix has been configured as "sp_":
 </p>
-<pre><code>$table = $db-&gt;applyPrefix("saml20_idp_hosted");
+<pre class="codehilite"><code>$table = $db-&gt;applyPrefix("saml20_idp_hosted");
 </code></pre>
 <p>
  $table would be set to "sp_saml20_idp_hosted"
@@ -148,7 +148,7 @@ $db = SimpleSAML\Database::getInstance($config);
 <p>
  The write function takes 2 parameters: SQL, params.
 </p>
-<pre><code>$table = $db-&gt;applyPrefix("test");
+<pre class="codehilite"><code>$table = $db-&gt;applyPrefix("test");
 $values = array(
   'id' =&gt; 20,
   'data' =&gt; 'Some data',
@@ -159,7 +159,7 @@ $query = $db-&gt;write("INSERT INTO $table (id, data) VALUES (:id, :data)", $val
 <p>
  The values specified in the $values array will be bound to the placeholders and will be executed on the master. By default, values are binded as PDO::PARAM_STR. If you need to override this, you can specify it in the values array.
 </p>
-<pre><code>$table = $db-&gt;applyPrefix("test");
+<pre class="codehilite"><code>$table = $db-&gt;applyPrefix("test");
 $values = array(
   'id' =&gt; array(20, PDO::PARAM_INT),
   'data' =&gt; 'Some data',
@@ -174,7 +174,7 @@ $query = $db-&gt;write("INSERT INTO $table (id, data) VALUES (:id, :data)", $val
  </strong>
  use this if you have a statement that has no user input (ex. CREATE TABLE). If the params variable is explicity set to false, it will skip usage of prepared statements. This is only available when writing to the database.
 </p>
-<pre><code>$table = $db-&gt;applyPrefix("test");
+<pre class="codehilite"><code>$table = $db-&gt;applyPrefix("test");
 $query = $db-&gt;write("CREATE TABLE IF NOT EXISTS $table (id INT(16) NOT NULL, data TEXT NOT NULL)", false);
 </code></pre>
 <h3 id="reading-the-database">
@@ -186,7 +186,7 @@ $query = $db-&gt;write("CREATE TABLE IF NOT EXISTS $table (id INT(16) NOT NULL, 
 <p>
  The read function takes 2 parameters: SQL, params.
 </p>
-<pre><code>$table = $db-&gt;applyPrefix("test");
+<pre class="codehilite"><code>$table = $db-&gt;applyPrefix("test");
 $values = array(
   'id' =&gt; 20,
 );
@@ -196,7 +196,7 @@ $query = $db-&gt;read("SELECT * FROM $table WHERE id = :id", $values);
 <p>
  The values specified in the $values array will be bound to the placeholders and will be executed on the selected slave. By default, values are binded as PDO::PARAM_STR. If you need to override this, you can specify it in the values array.
 </p>
-<pre><code>$table = $db-&gt;applyPrefix("test");
+<pre class="codehilite"><code>$table = $db-&gt;applyPrefix("test");
 $values = array(
   'id' =&gt; array(20, PDO::PARAM_INT),
 );

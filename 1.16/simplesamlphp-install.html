@@ -262,7 +262,7 @@ If you want to install the development version, look at the instructions for
 <p>
  Go to the directory where you want to install SimpleSAMLphp, and extract the archive file you just downloaded:
 </p>
-<pre><code>  cd /var
+<pre class="codehilite"><code>  cd /var
   tar xzf simplesamlphp-1.x.y.tar.gz
   mv simplesamlphp-1.x.y simplesamlphp
 </code></pre>
@@ -272,14 +272,14 @@ If you want to install the development version, look at the instructions for
 <p>
  Extract the new version:
 </p>
-<pre><code>  cd /var
+<pre class="codehilite"><code>  cd /var
   tar xzf simplesamlphp-1.x.y.tar.gz
 </code></pre>
 <p>
  Copy the configuration files from the previous version (in case the configuration directory is inside SimpleSAMLphp,
 keep reading for other alternatives):
 </p>
-<pre><code>  cd /var/simplesamlphp-1.x.y
+<pre class="codehilite"><code>  cd /var/simplesamlphp-1.x.y
   rm -rf config metadata
   cp -rv ../simplesamlphp/config config
   cp -rv ../simplesamlphp/metadata metadata
@@ -287,7 +287,7 @@ keep reading for other alternatives):
 <p>
  Replace the old version with the new version:
 </p>
-<pre><code>  cd /var
+<pre class="codehilite"><code>  cd /var
   mv simplesamlphp simplesamlphp.old
   mv simplesamlphp-1.x.y simplesamlphp
 </code></pre>
@@ -365,7 +365,7 @@ server's configuration. See the next section for more information.
 <p>
  Find the Apache configuration file for the virtual hosts where you want to run SimpleSAMLphp. The configuration may look like this:
 </p>
-<pre><code>  &lt;VirtualHost *&gt;
+<pre class="codehilite"><code>  &lt;VirtualHost *&gt;
           ServerName service.example.com
           DocumentRoot /var/www/service.example.com
 
@@ -413,7 +413,7 @@ server's configuration. See the next section for more information.
  </code>
  :
 </p>
-<pre><code>  $config = array (
+<pre class="codehilite"><code>  $config = array (
   [...]
           'baseurlpath'                   =&gt; 'simplesaml/',
 </code></pre>
@@ -476,7 +476,7 @@ further completing your documentation, please see
 <p>
  Find the Nginx configuration file for the virtual hosts where you want to run SimpleSAMLphp. The configuration may look like this:
 </p>
-<pre><code>  server {
+<pre class="codehilite"><code>  server {
       listen 443 ssl;
       server_name idp.example.com;
 
@@ -517,7 +517,7 @@ file,
   <p>
    Set a administrator password. This is needed to access some of the pages in your SimpleSAMLphp installation web interface.
   </p>
-  <pre><code>'auth.adminpassword'        =&gt; 'setnewpasswordhere',
+  <pre class="codehilite"><code>'auth.adminpassword'        =&gt; 'setnewpasswordhere',
 </code></pre>
   <p>
    Hashed passwords can also be used here. See the
@@ -533,7 +533,7 @@ file,
   <p>
    Set a secret salt. This should be a random string. Some parts of the SimpleSAMLphp needs this salt to generate cryptographically secure hashes. SimpleSAMLphp will give an error if the salt is not changed from the default value. The command below can help you to generated a random string on (some) unix systems:
   </p>
-  <pre><code>tr -c -d '0123456789abcdefghijklmnopqrstuvwxyz' &lt;/dev/urandom | dd bs=32 count=1 2&gt;/dev/null;echo
+  <pre class="codehilite"><code>tr -c -d '0123456789abcdefghijklmnopqrstuvwxyz' &lt;/dev/urandom | dd bs=32 count=1 2&gt;/dev/null;echo
 
 Here is an example of the config option:
 
@@ -541,7 +541,7 @@ Here is an example of the config option:
 </code></pre>
  </li>
  <li>
-  <pre><code>  Set technical contact information. This information will be
+  <pre class="codehilite"><code>  Set technical contact information. This information will be
   available in the generated metadata. The e-mail address will also
   be used for receiving error reports sent automatically by
   SimpleSAMLphp. Here is an example:
@@ -551,7 +551,7 @@ Here is an example of the config option:
 </code></pre>
  </li>
  <li>
-  <pre><code>  If you use SimpleSAMLphp in a country where English is not
+  <pre class="codehilite"><code>  If you use SimpleSAMLphp in a country where English is not
   widespread, you may want to change the default language from
   English to something else:
 
@@ -559,7 +559,7 @@ Here is an example of the config option:
 </code></pre>
  </li>
  <li>
-  <pre><code>  Set the timezone which you use:
+  <pre class="codehilite"><code>  Set the timezone which you use:
 
     'timezone' =&gt; 'Europe/Oslo',
 
@@ -586,7 +586,7 @@ Here is an example of the config option:
  </code>
  .
 </p>
-<pre><code>  # Enabling the consent module
+<pre class="codehilite"><code>  # Enabling the consent module
   cd modules
   ls -l
   cd consent
@@ -604,7 +604,7 @@ to
  </code>
  .
 </p>
-<pre><code>  cd modules/consent
+<pre class="codehilite"><code>  cd modules/consent
   mv enable disable
 </code></pre>
 <h2 id="the-simplesamlphp-installation-webpage">
@@ -613,7 +613,7 @@ to
 <p>
  After installing SimpleSAMLphp, you can access the homepage of your installation, which contains some information and a few links to the test services. The URL of an installation can be e.g.:
 </p>
-<pre><code>https://service.example.org/simplesaml/
+<pre class="codehilite"><code>https://service.example.org/simplesaml/
 </code></pre>
 <p>
  The exact link depends on how you set it up with Apache, and of course on your hostname.
@@ -788,7 +788,7 @@ in an alternative way.
 <p>
  Extract the SimpleSAMLphp archive in your home directory:
 </p>
-<pre><code>  cd ~
+<pre class="codehilite"><code>  cd ~
   tar xzf simplesamlphp-1.x.y.tar.gz
   mv simplesamlphp-1.x.y simplesamlphp
 </code></pre>
@@ -799,7 +799,7 @@ in an alternative way.
  </code>
  directory.
 </p>
-<pre><code>  cd ~/public_html
+<pre class="codehilite"><code>  cd ~/public_html
   ln -s ../simplesamlphp/www simplesaml
 </code></pre>
 <p>
@@ -820,12 +820,12 @@ in an alternative way.
  </code>
  folder:
 </p>
-<pre><code>  'baseurlpath' =&gt; '/simplesaml/',
+<pre class="codehilite"><code>  'baseurlpath' =&gt; '/simplesaml/',
 </code></pre>
 <p>
  Now, you can go to the URL of your installation and check if things work:
 </p>
-<pre><code>  http://yourcompany.com/simplesaml/
+<pre class="codehilite"><code>  http://yourcompany.com/simplesaml/
 </code></pre>
 <h3 id="tip">
  Tip
@@ -833,7 +833,7 @@ in an alternative way.
 <p>
  Symlinking may fail, because some Apache configurations do not allow you to link in files from outside the public_html folder. If so, move the folder instead of symlinking:
 </p>
-<pre><code>  cd ~/public_html
+<pre class="codehilite"><code>  cd ~/public_html
   mv ../simplesamlphp/www simplesaml
 </code></pre>
 <p>
@@ -848,7 +848,7 @@ in an alternative way.
   </p>
  </li>
  <li>
-  <pre><code>  `~/public_html/simplesaml` where `simplesaml` is the `www`
+  <pre class="codehilite"><code>  `~/public_html/simplesaml` where `simplesaml` is the `www`
   directory from the `simplesamlphp` installation directory, either
   moved or a symlink.
 </code></pre>
@@ -864,23 +864,23 @@ in an alternative way.
 <p>
  Change the two lines from:
 </p>
-<pre><code>  require_once(dirname(dirname(__FILE__)) . '/lib/_autoload.php');
+<pre class="codehilite"><code>  require_once(dirname(dirname(__FILE__)) . '/lib/_autoload.php');
 </code></pre>
 <p>
  to something like:
 </p>
-<pre><code>  require_once('/var/www/simplesamlphp/lib/_autoload.php');
+<pre class="codehilite"><code>  require_once('/var/www/simplesamlphp/lib/_autoload.php');
 </code></pre>
 <p>
  And then at the end of the file, you need to change another line
 from:
 </p>
-<pre><code>  $configdir = dirname(dirname(__FILE__)) . '/config';
+<pre class="codehilite"><code>  $configdir = dirname(dirname(__FILE__)) . '/config';
 </code></pre>
 <p>
  to:
 </p>
-<pre><code>  $configdir = '/var/www/simplesamlphp/config';
+<pre class="codehilite"><code>  $configdir = '/var/www/simplesamlphp/config';
 </code></pre>
 <h3 id="note">
  Note

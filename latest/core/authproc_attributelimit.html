@@ -122,7 +122,7 @@ different values allowed for it.
  </code>
  attribute:
 </p>
-<pre><code>  'authproc' =&gt; [
+<pre class="codehilite"><code>  'authproc' =&gt; [
       50 =&gt; [
           'class' =&gt; 'core:AttributeLimit',
           'cn', 'mail'
@@ -140,7 +140,7 @@ different values allowed for it.
  </code>
  by default, but allow the metadata to override the limitation.
 </p>
-<pre><code>  'authproc' =&gt; [
+<pre class="codehilite"><code>  'authproc' =&gt; [
       50 =&gt; [
           'class' =&gt; 'core:AttributeLimit',
           'default' =&gt; true,
@@ -151,7 +151,7 @@ different values allowed for it.
 <p>
  Only allow specific values for an attribute.
 </p>
-<pre><code>  'authproc' =&gt; [
+<pre class="codehilite"><code>  'authproc' =&gt; [
       50 =&gt; [
           'class' =&gt; 'core:AttributeLimit',
           'eduPersonEntitlement' =&gt; ['urn:mace:surf.nl:surfdrive:quota:100']
@@ -161,7 +161,7 @@ different values allowed for it.
 <p>
  Only allow specific values for an attribute ignoring case.
 </p>
-<pre><code>  'authproc' =&gt; [
+<pre class="codehilite"><code>  'authproc' =&gt; [
       50 =&gt; [
           'class' =&gt; 'core:AttributeLimit',
           'eduPersonEntitlement' =&gt; [
@@ -174,7 +174,7 @@ different values allowed for it.
 <p>
  Only allow specific values for an attribute that match a regex pattern
 </p>
-<pre><code>  'authproc' =&gt; [
+<pre class="codehilite"><code>  'authproc' =&gt; [
       50 =&gt; [
           'class' =&gt; 'core:AttributeLimit',
           'eduPersonEntitlement' =&gt; [
@@ -188,7 +188,7 @@ different values allowed for it.
 <p>
  Don't allow any attributes by default, but allow the metadata to override it.
 </p>
-<pre><code>  'authproc' =&gt; [
+<pre class="codehilite"><code>  'authproc' =&gt; [
       50 =&gt; [
           'class' =&gt; 'core:AttributeLimit',
           'default' =&gt; true,
@@ -199,7 +199,7 @@ different values allowed for it.
  In order to just use the list of attributes defined in the metadata for each service provider, configure the module
 like this:
 </p>
-<pre><code>  'authproc' =&gt; [
+<pre class="codehilite"><code>  'authproc' =&gt; [
       50 =&gt; 'core:AttributeLimit',
   ],
 </code></pre>
@@ -210,7 +210,7 @@ like this:
  </code>
  option:
 </p>
-<pre><code>  $metadata['https://saml2sp.example.org'] = [
+<pre class="codehilite"><code>  $metadata['https://saml2sp.example.org'] = [
       'AssertionConsumerService' =&gt; 'https://saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp',
       'SingleLogoutService' =&gt; 'https://saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-logout.php/default-sp',
       ...
@@ -222,7 +222,7 @@ like this:
  Now, let's look to a couple of examples on how to filter out attribute values. First, allow only the entitlements known
 to be used by a service provider (among other attributes):
 </p>
-<pre><code>  $metadata['https://saml2sp.example.org'] = [
+<pre class="codehilite"><code>  $metadata['https://saml2sp.example.org'] = [
       'AssertionConsumerService' =&gt; 'https://saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp',
       'SingleLogoutService' =&gt; 'https://saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-logout.php/default-sp',
       ...
@@ -241,7 +241,7 @@ to be used by a service provider (among other attributes):
  Now, an example on how to normalize the affiliations sent from an identity provider, to make sure that no custom
 values ever reach the service providers. Bear in mind that this configuration can be overridden by metadata:
 </p>
-<pre><code>  'authproc' =&gt; [
+<pre class="codehilite"><code>  'authproc' =&gt; [
       50 =&gt; 'core:AttributeLimit',
       'default' =&gt; true,
       'eduPersonAffiliation' =&gt; [

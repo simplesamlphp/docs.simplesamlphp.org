@@ -123,7 +123,7 @@
 <p>
  :   The format string accepts the following replacements:
 </p>
-<pre><code>  * `%I`: The IdP that issued the NameID.
+<pre class="codehilite"><code>  * `%I`: The IdP that issued the NameID.
           This will be the `NameQualifier` element of the NameID if it is present, or the entity ID of the IdP we received the response from if not.
   * `%S`: The SP the NameID was issued to.
           This will be the `SPNameQualifier` element of the NameID if it is present, or the entity ID of this SP otherwise.
@@ -137,7 +137,7 @@
 <p>
  Minimal configuration:
 </p>
-<pre><code>  'default-sp' =&gt; [
+<pre class="codehilite"><code>  'default-sp' =&gt; [
       'saml:SP',
       'authproc' =&gt; [
           20 =&gt; 'saml:NameIDAttribute',
@@ -147,7 +147,7 @@
 <p>
  Custom attribute name:
 </p>
-<pre><code>  'default-sp' =&gt; [
+<pre class="codehilite"><code>  'default-sp' =&gt; [
       'saml:SP',
       'authproc' =&gt; [
           20 =&gt; [
@@ -160,7 +160,7 @@
 <p>
  Only extract the value of the NameID.
 </p>
-<pre><code>  'default-sp' =&gt; [
+<pre class="codehilite"><code>  'default-sp' =&gt; [
       'saml:SP',
       'authproc' =&gt; [
           20 =&gt; [

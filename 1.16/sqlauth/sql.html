@@ -138,7 +138,7 @@
 <p>
  Database layout used in some of the examples:
 </p>
-<pre><code>  CREATE TABLE users (
+<pre class="codehilite"><code>  CREATE TABLE users (
     uid VARCHAR(30) NOT NULL PRIMARY KEY,
     password TEXT NOT NULL,
     salt TEXT NOT NULL,
@@ -155,7 +155,7 @@
 <p>
  Example query - SHA256 of salt + password, with the salt stored in an independent column, MySQL server:
 </p>
-<pre><code>  SELECT uid, givenName, email, eduPersonPrincipalName
+<pre class="codehilite"><code>  SELECT uid, givenName, email, eduPersonPrincipalName
   FROM users
   WHERE uid = :username
   AND PASSWORD = SHA2(
@@ -169,7 +169,7 @@
 <p>
  Example query - SHA256 of salt + password, with the salt stored in an independent column. Multiple groups, MySQL server:
 </p>
-<pre><code>  SELECT users.uid, givenName, email, eduPersonPrincipalName, groupname AS groups
+<pre class="codehilite"><code>  SELECT users.uid, givenName, email, eduPersonPrincipalName, groupname AS groups
   FROM users LEFT JOIN usergroups ON users.uid = usergroups.username
   WHERE users.uid = :username
   AND PASSWORD = SHA2(
@@ -183,7 +183,7 @@
 <p>
  Example query - SHA512 of salt + password, stored as salt (32 bytes) + sha256(salt + password) in password-field, PostgreSQL server:
 </p>
-<pre><code>  SELECT uid, givenName, email, eduPersonPrincipalName
+<pre class="codehilite"><code>  SELECT uid, givenName, email, eduPersonPrincipalName
   FROM users
   WHERE username = :username
   AND SUBSTRING(
