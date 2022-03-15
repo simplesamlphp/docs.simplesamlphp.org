@@ -95,8 +95,10 @@
 you can not use consentAdmin without the consent module. If you have not
 installed and configured the consent module, please do.
 </p>
-<pre class="codehilite"><code>* [How to install and configure the consent module](./consent:consent)
+<div class="codehilite">
+ <pre><span></span><code>* [How to install and configure the consent module](./consent:consent)
 </code></pre>
+</div>
 <p>
  The consentAdmin module only works when the consent module is using a 
 database to store the consents.
@@ -107,25 +109,31 @@ database to store the consents.
 <p>
  The first thing you need to do is to enable the consentAdmin module:
 </p>
-<pre class="codehilite"><code>  touch modules/consentAdmin/enable
+<div class="codehilite">
+ <pre><span></span><code>  touch modules/consentAdmin/enable
 </code></pre>
+</div>
 <p>
  Next you need to copy the module config file to the config directory:
 </p>
-<pre class="codehilite"><code>  cp modules/consentAdmin/config-templates/module_config.php config
+<div class="codehilite">
+ <pre><span></span><code>  cp modules/consentAdmin/config-templates/module_config.php config
 </code></pre>
+</div>
 <p>
  Then you will need to set up the database. The consentAdmin uses the same
 table as the consent module, but you still need the set the correct
 credentials in the config file. Example:
 </p>
-<pre class="codehilite"><code>'consentadmin'  =&gt; array(
-  'consent:Database',
-  'dsn'   =&gt;  'mysql:host=sql.uninett.no;dbname=andreas_consent',
-  'username'  =&gt;  'simplesaml', 
-  'password'  =&gt;  'sdfsdf',
-),
+<div class="codehilite">
+ <pre><span></span><code><span class="s1">'consentadmin'</span><span class="w">  </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span><span class="w"></span>
+<span class="w">  </span><span class="s1">'consent:Database'</span><span class="o">,</span><span class="w"></span>
+<span class="w">  </span><span class="s1">'dsn'</span><span class="w">   </span><span class="o">=&gt;</span><span class="w">  </span><span class="s1">'mysql:host=sql.uninett.no;dbname=andreas_consent'</span><span class="o">,</span><span class="w"></span>
+<span class="w">  </span><span class="s1">'username'</span><span class="w">  </span><span class="o">=&gt;</span><span class="w">  </span><span class="s1">'simplesaml'</span><span class="o">,</span><span class="w"> </span>
+<span class="w">  </span><span class="s1">'password'</span><span class="w">  </span><span class="o">=&gt;</span><span class="w">  </span><span class="s1">'sdfsdf'</span><span class="o">,</span><span class="w"></span>
+<span class="o">),</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  Notice that credentials usualy is the same as for the consent module, but
 can be different.

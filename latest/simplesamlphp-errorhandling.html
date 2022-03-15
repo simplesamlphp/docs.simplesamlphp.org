@@ -93,85 +93,85 @@
 <div class="toc">
  <ul>
   <li>
-   <a href="#exception-and-error-handling-in-simplesamlphp.html">
+   <a href="#exception-and-error-handling-in-simplesamlphp">
     Exception and error handling in SimpleSAMLphp
    </a>
    <ul>
     <li>
-     <a href="#throwing-exceptions.html">
+     <a href="#throwing-exceptions">
       Throwing exceptions
      </a>
      <ul>
       <li>
-       <a href="#note.html">
+       <a href="#note">
         Note
        </a>
       </li>
      </ul>
     </li>
     <li>
-     <a href="#returning-specific-saml-2-errors.html">
+     <a href="#returning-specific-saml-2-errors">
       Returning specific SAML 2 errors
      </a>
      <ul>
       <li>
-       <a href="#note_1.html">
+       <a href="#note_1">
         Note
        </a>
       </li>
      </ul>
     </li>
     <li>
-     <a href="#converting-saml-2-errors-to-normal-exceptions.html">
+     <a href="#converting-saml-2-errors-to-normal-exceptions">
       Converting SAML 2 errors to normal exceptions
      </a>
     </li>
     <li>
-     <a href="#other-protocols.html">
+     <a href="#other-protocols">
       Other protocols
      </a>
     </li>
     <li>
-     <a href="#technical-details.html">
+     <a href="#technical-details">
       Technical details
      </a>
      <ul>
       <li>
-       <a href="#simplesamlerrorexception.html">
+       <a href="#simplesamlerrorexception">
         \SimpleSAML\Error\Exception
        </a>
        <ul>
         <li>
-         <a href="#note_2.html">
+         <a href="#note_2">
           Note
          </a>
         </li>
        </ul>
       </li>
       <li>
-       <a href="#simplesamlauthstate.html">
+       <a href="#simplesamlauthstate">
         \SimpleSAML\Auth\State
        </a>
        <ul>
         <li>
-         <a href="#throwexception.html">
+         <a href="#throwexception">
           throwException
          </a>
         </li>
         <li>
-         <a href="#loadexception.html">
+         <a href="#loadexception">
           loadException
          </a>
         </li>
        </ul>
       </li>
       <li>
-       <a href="#simplesamlauthprocessingchain.html">
+       <a href="#simplesamlauthprocessingchain">
         \SimpleSAML\Auth\ProcessingChain
        </a>
        <ul>
         <li>
-         <a href="#note_3.html">
+         <a href="#note_3">
           Note
          </a>
         </li>
@@ -180,7 +180,7 @@
      </ul>
     </li>
     <li>
-     <a href="#custom-error-show-function.html">
+     <a href="#custom-error-show-function">
       Custom error show function
      </a>
     </li>
@@ -221,13 +221,15 @@ The simplest case is if you want to throw it during the
  -method in a processing filter.
 In those methods, you can just throw an exception:
 </p>
-<pre class="codehilite"><code>  public function process(array &amp;$state): void
+<div class="codehilite">
+ <pre><span></span><code>  <span class="nv">public</span> <span class="nv">function</span> <span class="nv">process</span><span class="ss">(</span><span class="nv">array</span> <span class="o">&amp;</span>$<span class="nv">state</span><span class="ss">)</span>: <span class="nv">void</span>
   {
-      if ($state['something'] === false) {
-          throw new \SimpleSAML\Error\Exception('Something is wrong...');
+      <span class="k">if</span> <span class="ss">(</span>$<span class="nv">state</span>[<span class="s1">'</span><span class="s">something</span><span class="s1">'</span>] <span class="o">===</span> <span class="nv">false</span><span class="ss">)</span> {
+          <span class="nv">throw</span> <span class="nv">new</span> \<span class="nv">SimpleSAML</span>\<span class="nv">Error</span>\<span class="nv">Exception</span><span class="ss">(</span><span class="s1">'</span><span class="s">Something is wrong...</span><span class="s1">'</span><span class="ss">)</span><span class="c1">;</span>
       }
   }
 </code></pre>
+</div>
 <p>
  Exceptions thrown at this stage will be caught and delivered to the appropriate error handler.
 </p>
@@ -238,12 +240,14 @@ In those methods, you can just throw an exception:
  </code>
  function:
 </p>
-<pre class="codehilite"><code>  &lt;?php
-  $id = $_REQUEST['StateId'];
-  $state = \SimpleSAML\Auth\State::loadState($id, 'somestage...');
-  \SimpleSAML\Auth\State::throwException($state,
-      new \SimpleSAML\Error\Exception('Something is wrong...'));
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="o">&lt;</span><span class="err">?</span><span class="n">php</span><span class="w"></span>
+<span class="w">  </span><span class="o">$</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">_REQUEST</span><span class="p">[</span><span class="s1">'StateId'</span><span class="p">];</span><span class="w"></span>
+<span class="w">  </span><span class="o">$</span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>\<span class="n">SimpleSAML</span>\<span class="n">Auth</span>\<span class="n">State</span><span class="p">::</span><span class="n">loadState</span><span class="p">(</span><span class="o">$</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="s1">'somestage...'</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span>\<span class="n">SimpleSAML</span>\<span class="n">Auth</span>\<span class="n">State</span><span class="p">::</span><span class="n">throwException</span><span class="p">(</span><span class="o">$</span><span class="n">state</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="n">new</span><span class="w"> </span>\<span class="n">SimpleSAML</span>\<span class="n">Error</span>\<span class="n">Exception</span><span class="p">(</span><span class="s1">'Something is wrong...'</span><span class="p">));</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  The
  <code>
@@ -584,13 +588,15 @@ The exception can be located in a field named
  .
 The following code illustrates this behaviour:
 </p>
-<pre class="codehilite"><code>  if (array_key_exists(\SimpleSAML\Auth\State::EXCEPTION_PARAM, $_REQUEST)) {
-      $state = \SimpleSAML\Auth\State::loadExceptionState();
-      $exception = $state[\SimpleSAML\Auth\State::EXCEPTION_DATA];
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">array_key_exists</span><span class="p">(</span>\<span class="n">SimpleSAML</span>\<span class="n">Auth</span>\<span class="n">State</span><span class="p">::</span><span class="n">EXCEPTION_PARAM</span><span class="p">,</span><span class="w"> </span><span class="o">$</span><span class="n">_REQUEST</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="o">$</span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>\<span class="n">SimpleSAML</span>\<span class="n">Auth</span>\<span class="n">State</span><span class="p">::</span><span class="n">loadExceptionState</span><span class="p">();</span><span class="w"></span>
+<span class="w">      </span><span class="o">$</span><span class="n">exception</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">state</span><span class="p">[</span>\<span class="n">SimpleSAML</span>\<span class="n">Auth</span>\<span class="n">State</span><span class="p">::</span><span class="n">EXCEPTION_DATA</span><span class="p">];</span><span class="w"></span>
 
-      /* Process exception. */
-  }
+<span class="w">      </span><span class="o">/*</span><span class="w"> </span><span class="n">Process</span><span class="w"> </span><span class="n">exception</span><span class="o">.</span><span class="w"> </span><span class="o">*/</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
 </code></pre>
+</div>
 <h3 id="simplesamlauthprocessingchain">
  <code>
   \SimpleSAML\Auth\ProcessingChain
@@ -616,29 +622,31 @@ The result will be delivered directly if it is possible, but if not, it will be 
 <p>
  The code for handling this becomes something like:
 </p>
-<pre class="codehilite"><code>  if (array_key_exists(\SimpleSAML\Auth\State::EXCEPTION_PARAM, $_REQUEST)) {
-      $state = \SimpleSAML\Auth\State::loadExceptionState();
-      $exception = $state[\SimpleSAML\Auth\State::EXCEPTION_DATA];
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">array_key_exists</span><span class="p">(</span>\<span class="n">SimpleSAML</span>\<span class="n">Auth</span>\<span class="n">State</span><span class="p">::</span><span class="n">EXCEPTION_PARAM</span><span class="p">,</span><span class="w"> </span><span class="o">$</span><span class="n">_REQUEST</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="o">$</span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>\<span class="n">SimpleSAML</span>\<span class="n">Auth</span>\<span class="n">State</span><span class="p">::</span><span class="n">loadExceptionState</span><span class="p">();</span><span class="w"></span>
+<span class="w">      </span><span class="o">$</span><span class="n">exception</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">state</span><span class="p">[</span>\<span class="n">SimpleSAML</span>\<span class="n">Auth</span>\<span class="n">State</span><span class="p">::</span><span class="n">EXCEPTION_DATA</span><span class="p">];</span><span class="w"></span>
 
-      /* Handle exception... */
-      [...]
-  }
+<span class="w">      </span><span class="o">/*</span><span class="w"> </span><span class="n">Handle</span><span class="w"> </span><span class="n">exception</span><span class="o">...</span><span class="w"> </span><span class="o">*/</span><span class="w"></span>
+<span class="w">      </span><span class="p">[</span><span class="o">...</span><span class="p">]</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
 
-  $procChain = [...];
+<span class="w">  </span><span class="o">$</span><span class="n">procChain</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">...</span><span class="p">];</span><span class="w"></span>
 
-  $state = [
-      'ReturnURL' =&gt; \SimpleSAML\Utils\HTTP::getSelfURLNoQuery(),
-      \SimpleSAML\Auth\State::EXCEPTION_HANDLER_URL =&gt; \SimpleSAML\Utils\HTTP::getSelfURLNoQuery(),
-      [...],
-  ]
+<span class="w">  </span><span class="o">$</span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'ReturnURL'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>\<span class="n">SimpleSAML</span>\<span class="n">Utils</span>\<span class="n">HTTP</span><span class="p">::</span><span class="n">getSelfURLNoQuery</span><span class="p">(),</span><span class="w"></span>
+<span class="w">      </span>\<span class="n">SimpleSAML</span>\<span class="n">Auth</span>\<span class="n">State</span><span class="p">::</span><span class="n">EXCEPTION_HANDLER_URL</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>\<span class="n">SimpleSAML</span>\<span class="n">Utils</span>\<span class="n">HTTP</span><span class="p">::</span><span class="n">getSelfURLNoQuery</span><span class="p">(),</span><span class="w"></span>
+<span class="w">      </span><span class="p">[</span><span class="o">...</span><span class="p">],</span><span class="w"></span>
+<span class="w">  </span><span class="p">]</span><span class="w"></span>
 
-  try {
-      $procChain-&gt;processState($state);
-  } catch (\SimpleSAML\Error\Exception $e) {
-      /* Handle exception. */
-      [...];
-  }
+<span class="w">  </span><span class="n">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="o">$</span><span class="n">procChain</span><span class="o">-&gt;</span><span class="n">processState</span><span class="p">(</span><span class="o">$</span><span class="n">state</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="n">catch</span><span class="w"> </span><span class="p">(</span>\<span class="n">SimpleSAML</span>\<span class="n">Error</span>\<span class="n">Exception</span><span class="w"> </span><span class="o">$</span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="o">/*</span><span class="w"> </span><span class="n">Handle</span><span class="w"> </span><span class="n">exception</span><span class="o">.</span><span class="w"> </span><span class="o">*/</span><span class="w"></span>
+<span class="w">      </span><span class="p">[</span><span class="o">...</span><span class="p">];</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
 </code></pre>
+</div>
 <h4 id="note_3">
  Note
 </h4>
@@ -664,12 +672,14 @@ This is done to be consistent in what the application receives - now it will alw
 <p>
  Example code for this function, which implements the same functionality as \SimpleSAML\Error\Error::show, looks something like:
 </p>
-<pre class="codehilite"><code>  public static function show(\SimpleSAML\Configuration $config, array $data)
-  {
-      $t = new \SimpleSAML\XHTML\Template($config, 'error.twig', 'errors');
-      $t-&gt;data = array_merge($t-&gt;data, $data);
-      $t-&gt;send();
-      exit;
-  }
-</code></pre></body>
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="n">public</span><span class="w"> </span><span class="n">static</span><span class="w"> </span><span class="kr">function</span><span class="w"> </span><span class="n">show</span><span class="p">(</span><span class="err">\</span><span class="n">SimpleSAML</span><span class="err">\</span><span class="n">Configuration</span><span class="w"> </span><span class="err">$</span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="n">array</span><span class="w"> </span><span class="err">$</span><span class="n">data</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="err">$</span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="err">\</span><span class="n">SimpleSAML</span><span class="err">\</span><span class="n">XHTML</span><span class="err">\</span><span class="n">Template</span><span class="p">(</span><span class="err">$</span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="s">'error.twig'</span><span class="p">,</span><span class="w"> </span><span class="s">'errors'</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="err">$</span><span class="n">t</span><span class="o">-&gt;</span><span class="kt">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">array_merge</span><span class="p">(</span><span class="err">$</span><span class="n">t</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="err">$</span><span class="n">data</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="err">$</span><span class="n">t</span><span class="o">-&gt;</span><span class="n">send</span><span class="p">();</span><span class="w"></span>
+<span class="w">      </span><span class="n">exit</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+</code></pre>
+</div></body>
 </html>

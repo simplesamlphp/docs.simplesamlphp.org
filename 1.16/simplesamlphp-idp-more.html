@@ -102,8 +102,10 @@
 <p>
  If you have read about the AJAX iFrame Single Log-Out approach at Andreas' blog and want to enable it, edit your saml20-idp-hosted.php metadata, and add this configuration line for the IdP:
 </p>
-<pre class="codehilite"><code>'logouttype' =&gt; 'iframe',
+<div class="codehilite">
+ <pre><span></span><code>'logouttype' =&gt; 'iframe',
 </code></pre>
+</div>
 <h2 id="attribute-release-consent">
  Attribute Release Consent
 </h2>
@@ -170,13 +172,17 @@
 <p>
  Here is an example of such a URL:
 </p>
-<pre class="codehilite"><code>https://idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=urn:mace:feide.no:someservice
+<div class="codehilite">
+ <pre><span></span><code>https://idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=urn:mace:feide.no:someservice
 </code></pre>
+</div>
 <p>
  You can also add a RelayState parameter to the IdP-first URL:
 </p>
-<pre class="codehilite"><code>https://idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=urn:mace:feide.no:someservice&amp;RelayState=https://sp.example.org/somepage
+<div class="codehilite">
+ <pre><span></span><code>https://idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=urn:mace:feide.no:someservice&amp;RelayState=https://sp.example.org/somepage
 </code></pre>
+</div>
 <p>
  The RelayState parameter is often uset do carry the URL the SP should redirect to after authentication.
 </p>
@@ -187,8 +193,10 @@
  A SAML 1.1 SP does not send an authentication request to the IdP, but instead triggers IdP initiated authentication directly.
 If you want to do it manually, you can access the following URL:
 </p>
-<pre class="codehilite"><code>https://idp.example.org/simplesaml/shib13/idp/SSOService.php?providerId=urn:mace:feide.no:someservice&amp;shire=https://sp.example.org/acs-endpoint&amp;target=https://sp.example.org/somepage
+<div class="codehilite">
+ <pre><span></span><code>https://idp.example.org/simplesaml/shib13/idp/SSOService.php?providerId=urn:mace:feide.no:someservice&amp;shire=https://sp.example.org/acs-endpoint&amp;target=https://sp.example.org/somepage
 </code></pre>
+</div>
 <p>
  The parameters are as follows:
 </p>
@@ -242,8 +250,10 @@ If you want to do it manually, you can access the following URL:
 <p>
  IdP-initiated logout can be initiated by visiting the URL:
 </p>
-<pre class="codehilite"><code>  https://idp.example.org/simplesaml/saml2/idp/SingleLogoutService.php?ReturnTo=&lt;URL to return to after logout&gt;
+<div class="codehilite">
+ <pre><span></span><code>  <span class="nv">https</span>:<span class="o">//</span><span class="nv">idp</span>.<span class="nv">example</span>.<span class="nv">org</span><span class="o">/</span><span class="nv">simplesaml</span><span class="o">/</span><span class="nv">saml2</span><span class="o">/</span><span class="nv">idp</span><span class="o">/</span><span class="nv">SingleLogoutService</span>.<span class="nv">php</span>?<span class="nv">ReturnTo</span><span class="o">=&lt;</span><span class="nv">URL</span> <span class="nv">to</span> <span class="k">return</span> <span class="nv">to</span> <span class="nv">after</span> <span class="nv">logout</span><span class="o">&gt;</span>
 </code></pre>
+</div>
 <p>
  It will send a logout request to each SP, and afterwards return the user to the URL specified in the
  <code>

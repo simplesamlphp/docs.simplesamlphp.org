@@ -109,47 +109,47 @@ actually means, and some of the situations that can cause it.
 <div class="toc">
  <ul>
   <li>
-   <a href="#debugging-state-information-lost-errors.html">
+   <a href="#debugging-state-information-lost-errors">
     Debugging "State Information Lost" errors
    </a>
    <ul>
     <li>
-     <a href="#what-is-state-information.html">
+     <a href="#what-is-state-information">
       What is "state information"?
      </a>
     </li>
     <li>
-     <a href="#what-does-it-mean-that-it-was-lost.html">
+     <a href="#what-does-it-mean-that-it-was-lost">
       What does it mean that it was lost?
      </a>
     </li>
     <li>
-     <a href="#what-can-cause-it-to-be-lost.html">
+     <a href="#what-can-cause-it-to-be-lost">
       What can cause it to be lost?
      </a>
      <ul>
       <li>
-       <a href="#the-domain-name-changed-during-authentication.html">
+       <a href="#the-domain-name-changed-during-authentication">
         The domain name changed during authentication
        </a>
       </li>
       <li>
-       <a href="#hopping-between-http-and-https.html">
+       <a href="#hopping-between-http-and-https">
         Hopping between http and https
        </a>
       </li>
       <li>
-       <a href="#mismatch-between-php-session-settings-for-the-application-and-simplesamlphp.html">
+       <a href="#mismatch-between-php-session-settings-for-the-application-and-simplesamlphp">
         Mismatch between PHP session settings for the application and SimpleSAMLphp
        </a>
       </li>
       <li>
-       <a href="#browsers-with-samesitelax-as-default.html">
+       <a href="#browsers-with-samesitelax-as-default">
         Browsers with SameSite=Lax as default
        </a>
       </li>
       <li>
-       <a href="#a-generic-problem-saving-sessions.html">
+       <a href="#a-generic-problem-saving-sessions">
         A generic problem saving sessions
        </a>
       </li>
@@ -261,13 +261,17 @@ change this in
  . In either case, it should
 be set to the top-level domain with a "dot" in front of it. E.g.:
 </p>
-<pre class="codehilite"><code>'session.cookie.domain' =&gt; '.example.org',
+<div class="codehilite">
+ <pre><span></span><code>'session.cookie.domain' =&gt; '.example.org',
 </code></pre>
+</div>
 <p>
  Or in php.ini:
 </p>
-<pre class="codehilite"><code>session.cookie_domain = ".example.org"
+<div class="codehilite">
+ <pre><span></span><code>session.cookie_domain = ".example.org"
 </code></pre>
+</div>
 <p>
  Note that if you use PHP sessions, you will also have to make sure that your
 application uses the same domain when it sets the cookie. How that is done

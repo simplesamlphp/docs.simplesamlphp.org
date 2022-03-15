@@ -109,19 +109,23 @@
 <p>
  Examples of neat things to do using Authentication Processing Filters:
 </p>
-<pre class="codehilite"><code>* Filter out a subset of available attributes that are sent to a SP.
-* Modify the name of attributes.
-* Generate new attributes that are composed of others, for example eduPersonTargetedID.
-* Ask the user for consent, before the user is sent back to a service.
-* Implement basic Access Control on the IdP (not neccessarily a good idea), limiting access for some users to some SPs.
+<div class="codehilite">
+ <pre><span></span><code><span class="o">*</span> <span class="nv">Filter</span> <span class="nv">out</span> <span class="nv">a</span> <span class="nv">subset</span> <span class="nv">of</span> <span class="nv">available</span> <span class="nv">attributes</span> <span class="nv">that</span> <span class="nv">are</span> <span class="nv">sent</span> <span class="nv">to</span> <span class="nv">a</span> <span class="nv">SP</span>.
+<span class="o">*</span> <span class="nv">Modify</span> <span class="nv">the</span> <span class="nv">name</span> <span class="nv">of</span> <span class="nv">attributes</span>.
+<span class="o">*</span> <span class="nv">Generate</span> <span class="nv">new</span> <span class="nv">attributes</span> <span class="nv">that</span> <span class="nv">are</span> <span class="nv">composed</span> <span class="nv">of</span> <span class="nv">others</span>, <span class="k">for</span> <span class="nv">example</span> <span class="nv">eduPersonTargetedID</span>.
+<span class="o">*</span> <span class="nv">Ask</span> <span class="nv">the</span> <span class="nv">user</span> <span class="k">for</span> <span class="nv">consent</span>, <span class="nv">before</span> <span class="nv">the</span> <span class="nv">user</span> <span class="nv">is</span> <span class="nv">sent</span> <span class="nv">back</span> <span class="nv">to</span> <span class="nv">a</span> <span class="nv">service</span>.
+<span class="o">*</span> <span class="nv">Implement</span> <span class="nv">basic</span> <span class="nv">Access</span> <span class="nv">Control</span> <span class="nv">on</span> <span class="nv">the</span> <span class="nv">IdP</span> <span class="ss">(</span><span class="nv">not</span> <span class="nv">neccessarily</span> <span class="nv">a</span> <span class="nv">good</span> <span class="nv">idea</span><span class="ss">)</span>, <span class="nv">limiting</span> <span class="nv">access</span> <span class="k">for</span> <span class="nv">some</span> <span class="nv">users</span> <span class="nv">to</span> <span class="nv">some</span> <span class="nv">SPs</span>.
 </code></pre>
+</div>
 <p>
  Be aware that Authentication Proccessing Filters do replace some of the previous features in SimpleSAMLphp, named:
 </p>
-<pre class="codehilite"><code>* `attributemap`
-* `attributealter`
-* `attribute filter`
+<div class="codehilite">
+ <pre><span></span><code><span class="o">*</span><span class="w"> </span><span class="n n-Quoted">`attributemap`</span><span class="w"></span>
+<span class="o">*</span><span class="w"> </span><span class="n n-Quoted">`attributealter`</span><span class="w"></span>
+<span class="o">*</span><span class="w"> </span><span class="n n-Quoted">`attribute filter`</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  Later in this document, we will desribe in detail the alternative Authentication Proccessing Filters that will replicate these functionalities.
 </p>
@@ -138,12 +142,14 @@
  </em>
  :
 </p>
-<pre class="codehilite"><code>* Globally in `config.php`
-* On the SP: Specific for only the SP in `authsources.php`
-* On the SP: Specific for only one remote IdP in `saml20-idp-remote` or `shib13-idp-remote`
-* On the IdP: Specific for only one hosted IdP in `saml20-idp-hosted` or `shib13-idp-hosted`
-* On the IdP: Specific for only one remote SP in `saml20-sp-remote` or `shib13-sp-remote`
+<div class="codehilite">
+ <pre><span></span><code><span class="o">*</span> <span class="nv">Globally</span> <span class="nv">in</span> `<span class="nv">config</span>.<span class="nv">php</span>`
+<span class="o">*</span> <span class="nv">On</span> <span class="nv">the</span> <span class="nv">SP</span>: <span class="nv">Specific</span> <span class="k">for</span> <span class="nv">only</span> <span class="nv">the</span> <span class="nv">SP</span> <span class="nv">in</span> `<span class="nv">authsources</span>.<span class="nv">php</span>`
+<span class="o">*</span> <span class="nv">On</span> <span class="nv">the</span> <span class="nv">SP</span>: <span class="nv">Specific</span> <span class="k">for</span> <span class="nv">only</span> <span class="nv">one</span> <span class="nv">remote</span> <span class="nv">IdP</span> <span class="nv">in</span> `<span class="nv">saml20</span><span class="o">-</span><span class="nv">idp</span><span class="o">-</span><span class="nv">remote</span>` <span class="nv">or</span> `<span class="nv">shib13</span><span class="o">-</span><span class="nv">idp</span><span class="o">-</span><span class="nv">remote</span>`
+<span class="o">*</span> <span class="nv">On</span> <span class="nv">the</span> <span class="nv">IdP</span>: <span class="nv">Specific</span> <span class="k">for</span> <span class="nv">only</span> <span class="nv">one</span> <span class="nv">hosted</span> <span class="nv">IdP</span> <span class="nv">in</span> `<span class="nv">saml20</span><span class="o">-</span><span class="nv">idp</span><span class="o">-</span><span class="nv">hosted</span>` <span class="nv">or</span> `<span class="nv">shib13</span><span class="o">-</span><span class="nv">idp</span><span class="o">-</span><span class="nv">hosted</span>`
+<span class="o">*</span> <span class="nv">On</span> <span class="nv">the</span> <span class="nv">IdP</span>: <span class="nv">Specific</span> <span class="k">for</span> <span class="nv">only</span> <span class="nv">one</span> <span class="nv">remote</span> <span class="nv">SP</span> <span class="nv">in</span> `<span class="nv">saml20</span><span class="o">-</span><span class="nv">sp</span><span class="o">-</span><span class="nv">remote</span>` <span class="nv">or</span> `<span class="nv">shib13</span><span class="o">-</span><span class="nv">sp</span><span class="o">-</span><span class="nv">remote</span>`
 </code></pre>
+</div>
 <p>
  The configuration of
  <em>
@@ -163,7 +169,8 @@
  </code>
  :
 </p>
-<pre class="codehilite"><code>'authproc.idp' =&gt; [
+<div class="codehilite">
+ <pre><span></span><code>'authproc.idp' =&gt; [
   10 =&gt; [
     'class' =&gt; 'core:AttributeMap', 
     'addurnprefix'
@@ -178,6 +185,7 @@
   ],
 ],
 </code></pre>
+</div>
 <p>
  This configuration will execute
  <em>
@@ -242,15 +250,19 @@
 <p>
  When you know the class definition of a filter, and the priority, the simple way to configure the filter is:
 </p>
-<pre class="codehilite"><code>20 =&gt; 'core:TargetedID',
+<div class="codehilite">
+ <pre><span></span><code><span class="mf">20</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">core</span><span class="p">:</span><span class="n">TargetedID</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  This is analogous to:
 </p>
-<pre class="codehilite"><code>20 =&gt; [
-  'class' =&gt; 'core:TargetedID'
-],
+<div class="codehilite">
+ <pre><span></span><code><span class="mf">20</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">class</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">core</span><span class="p">:</span><span class="n">TargetedID</span><span class="err">'</span><span class="w"></span>
+<span class="err">]</span><span class="p">,</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  Some
  <em>
@@ -266,13 +278,15 @@
  </em>
  , you need to choose the second of the two alernatives above. Here is an example of provided parameters to the consent module:
 </p>
-<pre class="codehilite"><code>90 =&gt; [
-  'class'   =&gt; 'consent:Consent', 
-  'store'   =&gt; 'consent:Cookie', 
-  'focus'   =&gt; 'yes', 
-  'checked'   =&gt; TRUE
-],
+<div class="codehilite">
+ <pre><span></span><code><span class="mf">90</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">class</span><span class="err">'</span><span class="w">   </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">consent</span><span class="p">:</span><span class="n">Consent</span><span class="err">'</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="err">'</span><span class="n">store</span><span class="err">'</span><span class="w">   </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">consent</span><span class="p">:</span><span class="n">Cookie</span><span class="err">'</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="err">'</span><span class="n">focus</span><span class="err">'</span><span class="w">   </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">yes</span><span class="err">'</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="err">'</span><span class="n">checked</span><span class="err">'</span><span class="w">   </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">TRUE</span><span class="w"></span>
+<span class="err">]</span><span class="p">,</span><span class="w"></span>
 </code></pre>
+</div>
 <h3 id="filters-in-configphp">
  Filters in
  <code>
@@ -293,9 +307,11 @@
 <p>
  There are two config parameters:
 </p>
-<pre class="codehilite"><code>* `authproc.idp` and
+<div class="codehilite">
+ <pre><span></span><code>* `authproc.idp` and
 * `authproc.sp`
 </code></pre>
+</div>
 <p>
  The filters in
  <code>
@@ -324,7 +340,8 @@
  </code>
  metadata. Here is an example of a filter added in a metadata file:
 </p>
-<pre class="codehilite"><code>'__DYNAMIC:1__' =&gt; [
+<div class="codehilite">
+ <pre><span></span><code>'__DYNAMIC:1__' =&gt; [
   'host'        =&gt;  '__DEFAULT_',
   'privatekey'    =&gt;  'example.org.pem',
   'certificate'   =&gt;  'example.org.crt',
@@ -334,6 +351,7 @@
   ],
 ]
 </code></pre>
+</div>
 <p>
  The example above is in
  <code>

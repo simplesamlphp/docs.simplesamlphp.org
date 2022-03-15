@@ -100,15 +100,18 @@ the only diffrence is this is authentication module and not a script.
 <p>
  The first thing you need to do is to enable the cas module:
 </p>
-<pre class="codehilite"><code>  touch modules/cas/enable
+<div class="codehilite">
+ <pre><span></span><code>  touch modules/cas/enable
 </code></pre>
+</div>
 <p>
  Adding a authentication source
 </p>
 <h2 id="example-authsourcephp">
  example authsource.php
 </h2>
-<pre class="codehilite"><code>'example-cas' =&gt; array(
+<div class="codehilite">
+ <pre><span></span><code>'example-cas' =&gt; array(
   'cas:CAS',
   'cas' =&gt; array(
     'login' =&gt; 'https://cas.example.com/login',
@@ -126,5 +129,6 @@ the only diffrence is this is authentication module and not a script.
 
   ),
 ),
-</code></pre></body>
+</code></pre>
+</div></body>
 </html>

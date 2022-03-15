@@ -95,27 +95,29 @@
     For more information about how to use the Markdown syntax, read here:
     http://daringfireball.net/projects/markdown/syntax
 -->
-<pre class="codehilite"><code>* Author: Timothy Ace [tace@synacor.com](mailto:tace@synacor.com)
+<div class="codehilite">
+ <pre><span></span><code><span class="o">*</span><span class="w"> </span><span class="nl">Author</span><span class="p">:</span><span class="w"> </span><span class="n">Timothy</span><span class="w"> </span><span class="n">Ace</span><span class="w"> </span><span class="o">[</span><span class="n">tace@synacor.com</span><span class="o">]</span><span class="p">(</span><span class="nl">mailto</span><span class="p">:</span><span class="n">tace</span><span class="nv">@synacor</span><span class="p">.</span><span class="n">com</span><span class="p">)</span><span class="w"></span>
 </code></pre>
+</div>
 <div class="toc">
  <ul>
   <li>
-   <a href="#saml-v20-metadata-extensions-for-login-and-discovery-user-interface.html">
+   <a href="#saml-v20-metadata-extensions-for-login-and-discovery-user-interface">
     SAML V2.0 Metadata Extensions for Login and Discovery User Interface
    </a>
    <ul>
     <li>
-     <a href="#uiinfo-items.html">
+     <a href="#uiinfo-items">
       UIInfo Items
      </a>
     </li>
     <li>
-     <a href="#discohints-items.html">
+     <a href="#discohints-items">
       DiscoHints Items
      </a>
     </li>
     <li>
-     <a href="#generated-xml-metadata-examples.html">
+     <a href="#generated-xml-metadata-examples">
       Generated XML Metadata Examples
      </a>
     </li>
@@ -147,75 +149,79 @@ the relevant entry in
 <p>
  An example for an IdP:
 </p>
-<pre class="codehilite"><code>  &lt;?php
-  $metadata['entity-id-1'] = [
-      /* ... */
-      'UIInfo' =&gt; [
-          'DisplayName' =&gt; [
-              'en' =&gt; 'English name',
-              'es' =&gt; 'Nombre en Español',
-          ],
-          'Description' =&gt; [
-              'en' =&gt; 'English description',
-              'es' =&gt; 'Descripción en Español',
-          ],
-          'InformationURL' =&gt; [
-              'en' =&gt; 'http://example.com/info/en',
-              'es' =&gt; 'http://example.com/info/es',
-          ],
-          'PrivacyStatementURL' =&gt; [
-              'en' =&gt; 'http://example.com/privacy/en',
-              'es' =&gt; 'http://example.com/privacy/es',
-          ],
-          'Keywords' =&gt; [
-              'en' =&gt; ['communication', 'federated session'],
-              'es' =&gt; ['comunicación', 'sesión federated'],
-          ],
-          'Logo' =&gt; [
-              [
-                  'url'    =&gt; 'http://example.com/logo1.png',
-                  'height' =&gt; 200,
-                  'width'  =&gt; 400,
-                  'lang'   =&gt; 'en',
-              ],
-              [
-                  'url'    =&gt; 'http://example.com/logo2.png',
-                  'height' =&gt; 201,
-                  'width'  =&gt; 401,
-              ],
-          ],
-      ],
-      'DiscoHints' =&gt; [
-          'IPHint'          =&gt; ['130.59.0.0/16', '2001:620::0/96'],
-          'DomainHint'      =&gt; ['example.com', 'www.example.com'],
-          'GeolocationHint' =&gt; ['geo:47.37328,8.531126', 'geo:19.34343,12.342514'],
-      ],
-      /* ... */
-  ];
+<div class="codehilite">
+ <pre><span></span><code>  <span class="cp">&lt;?php</span>
+  <span class="nv">$metadata</span><span class="p">[</span><span class="s1">'entity-id-1'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+      <span class="cm">/* ... */</span>
+      <span class="s1">'UIInfo'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+          <span class="s1">'DisplayName'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+              <span class="s1">'en'</span> <span class="o">=&gt;</span> <span class="s1">'English name'</span><span class="p">,</span>
+              <span class="s1">'es'</span> <span class="o">=&gt;</span> <span class="s1">'Nombre en Español'</span><span class="p">,</span>
+          <span class="p">],</span>
+          <span class="s1">'Description'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+              <span class="s1">'en'</span> <span class="o">=&gt;</span> <span class="s1">'English description'</span><span class="p">,</span>
+              <span class="s1">'es'</span> <span class="o">=&gt;</span> <span class="s1">'Descripción en Español'</span><span class="p">,</span>
+          <span class="p">],</span>
+          <span class="s1">'InformationURL'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+              <span class="s1">'en'</span> <span class="o">=&gt;</span> <span class="s1">'http://example.com/info/en'</span><span class="p">,</span>
+              <span class="s1">'es'</span> <span class="o">=&gt;</span> <span class="s1">'http://example.com/info/es'</span><span class="p">,</span>
+          <span class="p">],</span>
+          <span class="s1">'PrivacyStatementURL'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+              <span class="s1">'en'</span> <span class="o">=&gt;</span> <span class="s1">'http://example.com/privacy/en'</span><span class="p">,</span>
+              <span class="s1">'es'</span> <span class="o">=&gt;</span> <span class="s1">'http://example.com/privacy/es'</span><span class="p">,</span>
+          <span class="p">],</span>
+          <span class="s1">'Keywords'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+              <span class="s1">'en'</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'communication'</span><span class="p">,</span> <span class="s1">'federated session'</span><span class="p">],</span>
+              <span class="s1">'es'</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'comunicación'</span><span class="p">,</span> <span class="s1">'sesión federated'</span><span class="p">],</span>
+          <span class="p">],</span>
+          <span class="s1">'Logo'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+              <span class="p">[</span>
+                  <span class="s1">'url'</span>    <span class="o">=&gt;</span> <span class="s1">'http://example.com/logo1.png'</span><span class="p">,</span>
+                  <span class="s1">'height'</span> <span class="o">=&gt;</span> <span class="mi">200</span><span class="p">,</span>
+                  <span class="s1">'width'</span>  <span class="o">=&gt;</span> <span class="mi">400</span><span class="p">,</span>
+                  <span class="s1">'lang'</span>   <span class="o">=&gt;</span> <span class="s1">'en'</span><span class="p">,</span>
+              <span class="p">],</span>
+              <span class="p">[</span>
+                  <span class="s1">'url'</span>    <span class="o">=&gt;</span> <span class="s1">'http://example.com/logo2.png'</span><span class="p">,</span>
+                  <span class="s1">'height'</span> <span class="o">=&gt;</span> <span class="mi">201</span><span class="p">,</span>
+                  <span class="s1">'width'</span>  <span class="o">=&gt;</span> <span class="mi">401</span><span class="p">,</span>
+              <span class="p">],</span>
+          <span class="p">],</span>
+      <span class="p">],</span>
+      <span class="s1">'DiscoHints'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+          <span class="s1">'IPHint'</span>          <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'130.59.0.0/16'</span><span class="p">,</span> <span class="s1">'2001:620::0/96'</span><span class="p">],</span>
+          <span class="s1">'DomainHint'</span>      <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'example.com'</span><span class="p">,</span> <span class="s1">'www.example.com'</span><span class="p">],</span>
+          <span class="s1">'GeolocationHint'</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'geo:47.37328,8.531126'</span><span class="p">,</span> <span class="s1">'geo:19.34343,12.342514'</span><span class="p">],</span>
+      <span class="p">],</span>
+      <span class="cm">/* ... */</span>
+  <span class="p">];</span>
 </code></pre>
+</div>
 <p>
  And for an SP it could look like this:
 </p>
-<pre class="codehilite"><code>  &lt;?php
-  $config = [
+<div class="codehilite">
+ <pre><span></span><code>  <span class="cp">&lt;?php</span>
+  <span class="nv">$config</span> <span class="o">=</span> <span class="p">[</span>
 
-      'default-sp' =&gt; [
-          'saml:SP',
+      <span class="s1">'default-sp'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+          <span class="s1">'saml:SP'</span><span class="p">,</span>
 
-          'UIInfo' =&gt; [
-              'DisplayName' =&gt; [
-                  'en' =&gt; 'English name',
-                  'es' =&gt; 'Nombre en Español'
-              ],
-              'Description' =&gt; [
-                  'en' =&gt; 'English description',
-                  'es' =&gt; 'Descripción en Español'
-              ],
-          ],
-          /* ... */
-      ],
-  ];
+          <span class="s1">'UIInfo'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+              <span class="s1">'DisplayName'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+                  <span class="s1">'en'</span> <span class="o">=&gt;</span> <span class="s1">'English name'</span><span class="p">,</span>
+                  <span class="s1">'es'</span> <span class="o">=&gt;</span> <span class="s1">'Nombre en Español'</span>
+              <span class="p">],</span>
+              <span class="s1">'Description'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+                  <span class="s1">'en'</span> <span class="o">=&gt;</span> <span class="s1">'English description'</span><span class="p">,</span>
+                  <span class="s1">'es'</span> <span class="o">=&gt;</span> <span class="s1">'Descripción en Español'</span>
+              <span class="p">],</span>
+          <span class="p">],</span>
+          <span class="cm">/* ... */</span>
+      <span class="p">],</span>
+  <span class="p">];</span>
 </code></pre>
+</div>
 <p>
  The OASIS specification primarily defines how an entity can communicate
 metadata related to IdP or service discovery and identification. There
@@ -249,11 +255,13 @@ about an IdP or SP. These properties are all children of the
  : Most elements are localized strings that specify the language
 using the array key as the language-code:
 </p>
-<pre class="codehilite"><code>          'DisplayName' =&gt; [
+<div class="codehilite">
+ <pre><span></span><code>          'DisplayName' =&gt; [
               'en' =&gt; 'English name',
               'es' =&gt; 'Nombre en Español',
           ],
 </code></pre>
+</div>
 <dl>
  <dt>
   <code>
@@ -262,11 +270,13 @@ using the array key as the language-code:
  </dt>
  <dd>
   The localized list of names for this entity
-  <pre class="codehilite"><code>        'DisplayName' =&gt; [
+  <div class="codehilite">
+   <pre><span></span><code>        'DisplayName' =&gt; [
             'en' =&gt; 'English name',
             'es' =&gt; 'Nombre en Español',
         ],
 </code></pre>
+  </div>
  </dd>
  <dt>
   <code>
@@ -275,11 +285,13 @@ using the array key as the language-code:
  </dt>
  <dd>
   The localized list of statements used to describe this entity
-  <pre class="codehilite"><code>        'Description' =&gt; [
+  <div class="codehilite">
+   <pre><span></span><code>        'Description' =&gt; [
             'en' =&gt; 'English description',
             'es' =&gt; 'Descripción en Español',
         ],
 </code></pre>
+  </div>
  </dd>
  <dt>
   <code>
@@ -289,11 +301,13 @@ using the array key as the language-code:
  <dd>
   A localized list of URLs where more information about the entity is
   located.
-  <pre class="codehilite"><code>        'InformationURL' =&gt; [
+  <div class="codehilite">
+   <pre><span></span><code>        'InformationURL' =&gt; [
             'en' =&gt; 'http://example.com/info/en',
             'es' =&gt; 'http://example.com/info/es',
         ],
 </code></pre>
+  </div>
  </dd>
  <dt>
   <code>
@@ -303,11 +317,13 @@ using the array key as the language-code:
  <dd>
   A localized list of URLs where the entity's privacy statement is
   located.
-  <pre class="codehilite"><code>        'PrivacyStatementURL' =&gt; [
+  <div class="codehilite">
+   <pre><span></span><code>        'PrivacyStatementURL' =&gt; [
             'en' =&gt; 'http://example.com/privacy/en',
             'es' =&gt; 'http://example.com/privacy/es',
         ],
 </code></pre>
+  </div>
  </dd>
  <dt>
   <code>
@@ -316,11 +332,13 @@ using the array key as the language-code:
  </dt>
  <dd>
   A localized list of keywords used to describe the entity
-  <pre class="codehilite"><code>        'Keywords' =&gt; [
+  <div class="codehilite">
+   <pre><span></span><code>        'Keywords' =&gt; [
             'en' =&gt; ['communication', 'federated session'],
             'es' =&gt; ['comunicación', 'sesión federated'],
         ],
 </code></pre>
+  </div>
  </dd>
  <dd>
   <p>
@@ -342,7 +360,8 @@ using the array key as the language-code:
  </dt>
  <dd>
   The logos used to represent the entity
-  <pre class="codehilite"><code>        'Logo' =&gt; [
+  <div class="codehilite">
+   <pre><span></span><code>        'Logo' =&gt; [
             [
                 'url'    =&gt; 'http://example.com/logo1.png',
                 'height' =&gt; 200,
@@ -356,6 +375,7 @@ using the array key as the language-code:
             ],
         ],
 </code></pre>
+  </div>
  </dd>
  <dd>
   <p>
@@ -389,8 +409,10 @@ present an IdP. These properties are all children of the
  <dd>
   This is a list of both IPv4 and IPv6 addresses in CIDR notation
   services by or associated with this entity.
-  <pre class="codehilite"><code>        'IPHint' =&gt; ['130.59.0.0/16', '2001:620::0/96'],
+  <div class="codehilite">
+   <pre><span></span><code>        'IPHint' =&gt; ['130.59.0.0/16', '2001:620::0/96'],
 </code></pre>
+  </div>
  </dd>
  <dt>
   <code>
@@ -400,8 +422,10 @@ present an IdP. These properties are all children of the
  <dd>
   This specifies a list of domain names serviced by or associated with
   this entity.
-  <pre class="codehilite"><code>        'DomainHint' =&gt; ['example.com', 'www.example.com'],
+  <div class="codehilite">
+   <pre><span></span><code>        'DomainHint' =&gt; ['example.com', 'www.example.com'],
 </code></pre>
+  </div>
  </dd>
  <dt>
   <code>
@@ -416,8 +440,10 @@ present an IdP. These properties are all children of the
    RFC5870
   </a>
   .
-  <pre class="codehilite"><code>        'GeolocationHint' =&gt; ['geo:47.37328,8.531126', 'geo:19.34343,12.342514'],
+  <div class="codehilite">
+   <pre><span></span><code>        'GeolocationHint' =&gt; ['geo:47.37328,8.531126', 'geo:19.34343,12.342514'],
 </code></pre>
+  </div>
  </dd>
 </dl>
 <h2 id="generated-xml-metadata-examples">
@@ -426,86 +452,90 @@ present an IdP. These properties are all children of the
 <p>
  If given the following configuration...
 </p>
-<pre class="codehilite"><code>  $metadata['https://www.example.com/saml/saml2/idp/metadata.php'] = [
-      'host' =&gt; 'www.example.com',
-      'certificate' =&gt; 'example.com.crt',
-      'privatekey' =&gt; 'example.com.pem',
-      'auth' =&gt; 'example-userpass',
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'https://www.example.com/saml/saml2/idp/metadata.php'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cp">[</span>
+      <span class="s1">'host'</span> <span class="o">=&gt;</span> <span class="s1">'www.example.com'</span><span class="p">,</span>
+      <span class="s1">'certificate'</span> <span class="o">=&gt;</span> <span class="s1">'example.com.crt'</span><span class="p">,</span>
+      <span class="s1">'privatekey'</span> <span class="o">=&gt;</span> <span class="s1">'example.com.pem'</span><span class="p">,</span>
+      <span class="s1">'auth'</span> <span class="o">=&gt;</span> <span class="s1">'example-userpass'</span><span class="p">,</span>
 
-      'UIInfo' =&gt; [
-          'DisplayName' =&gt; [
-              'en' =&gt; 'English name',
-              'es' =&gt; 'Nombre en Español',
-          ],
-          'Description' =&gt; [
-              'en' =&gt; 'English description',
-              'es' =&gt; 'Descripción en Español',
-          ],
-          'InformationURL' =&gt; [
-              'en' =&gt; 'http://example.com/info/en',
-              'es' =&gt; 'http://example.com/info/es',
-          ],
-          'PrivacyStatementURL' =&gt; [
-              'en' =&gt; 'http://example.com/privacy/en',
-              'es' =&gt; 'http://example.com/privacy/es',
-          ],
-          'Keywords' =&gt; [
-              'en' =&gt; ['communication', 'federated session'],
-              'es' =&gt; ['comunicación', 'sesión federated'],
-          ],
-          'Logo' =&gt; [
-              [
-                  'url'    =&gt; 'http://example.com/logo1.png',
-                  'height' =&gt; 200,
-                  'width'  =&gt; 400,
-              ],
-              [
-                  'url'    =&gt; 'http://example.com/logo2.png',
-                  'height' =&gt; 201,
-                  'width'  =&gt; 401,
-              ],
-          ],
-      ],
-      'DiscoHints' =&gt; [
-          'IPHint'          =&gt; ['130.59.0.0/16', '2001:620::0/96'],
-          'DomainHint'      =&gt; ['example.com', 'www.example.com'],
-          'GeolocationHint' =&gt; ['geo:47.37328,8.531126', 'geo:19.34343,12.342514'],
-      ],
-  ];
+      <span class="s1">'UIInfo'</span> <span class="o">=&gt;</span> <span class="err">[</span>
+          <span class="s1">'DisplayName'</span> <span class="o">=&gt;</span> <span class="err">[</span>
+              <span class="s1">'en'</span> <span class="o">=&gt;</span> <span class="s1">'English name'</span><span class="p">,</span>
+              <span class="s1">'es'</span> <span class="o">=&gt;</span> <span class="s1">'Nombre en Español'</span><span class="p">,</span>
+          <span class="cp">]</span><span class="o">,</span><span class="w"></span>
+<span class="w">          </span><span class="s1">'Description'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span>
+              <span class="s1">'en'</span> <span class="o">=&gt;</span> <span class="s1">'English description'</span><span class="p">,</span>
+              <span class="s1">'es'</span> <span class="o">=&gt;</span> <span class="s1">'Descripción en Español'</span><span class="p">,</span>
+          <span class="cp">]</span><span class="o">,</span><span class="w"></span>
+<span class="w">          </span><span class="s1">'InformationURL'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span>
+              <span class="s1">'en'</span> <span class="o">=&gt;</span> <span class="s1">'http://example.com/info/en'</span><span class="p">,</span>
+              <span class="s1">'es'</span> <span class="o">=&gt;</span> <span class="s1">'http://example.com/info/es'</span><span class="p">,</span>
+          <span class="cp">]</span><span class="o">,</span><span class="w"></span>
+<span class="w">          </span><span class="s1">'PrivacyStatementURL'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span>
+              <span class="s1">'en'</span> <span class="o">=&gt;</span> <span class="s1">'http://example.com/privacy/en'</span><span class="p">,</span>
+              <span class="s1">'es'</span> <span class="o">=&gt;</span> <span class="s1">'http://example.com/privacy/es'</span><span class="p">,</span>
+          <span class="cp">]</span><span class="o">,</span><span class="w"></span>
+<span class="w">          </span><span class="s1">'Keywords'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span>
+              <span class="s1">'en'</span> <span class="o">=&gt;</span> <span class="err">[</span><span class="s1">'communication'</span><span class="p">,</span> <span class="s1">'federated session'</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
+<span class="w">              </span><span class="s1">'es'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span><span class="s1">'comunicación'</span><span class="p">,</span> <span class="s1">'sesión federated'</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
+<span class="w">          </span><span class="o">],</span><span class="w"></span>
+<span class="w">          </span><span class="s1">'Logo'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span>
+              <span class="err">[</span>
+                  <span class="s1">'url'</span>    <span class="o">=&gt;</span> <span class="s1">'http://example.com/logo1.png'</span><span class="p">,</span>
+                  <span class="s1">'height'</span> <span class="o">=&gt;</span> <span class="mi">200</span><span class="p">,</span>
+                  <span class="s1">'width'</span>  <span class="o">=&gt;</span> <span class="mi">400</span><span class="p">,</span>
+              <span class="cp">]</span><span class="o">,</span><span class="w"></span>
+<span class="w">              </span><span class="cp">[</span>
+                  <span class="s1">'url'</span>    <span class="o">=&gt;</span> <span class="s1">'http://example.com/logo2.png'</span><span class="p">,</span>
+                  <span class="s1">'height'</span> <span class="o">=&gt;</span> <span class="mi">201</span><span class="p">,</span>
+                  <span class="s1">'width'</span>  <span class="o">=&gt;</span> <span class="mi">401</span><span class="p">,</span>
+              <span class="cp">]</span><span class="o">,</span><span class="w"></span>
+<span class="w">          </span><span class="o">],</span><span class="w"></span>
+<span class="w">      </span><span class="o">],</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'DiscoHints'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span>
+          <span class="s1">'IPHint'</span>          <span class="o">=&gt;</span> <span class="err">[</span><span class="s1">'130.59.0.0/16'</span><span class="p">,</span> <span class="s1">'2001:620::0/96'</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
+<span class="w">          </span><span class="s1">'DomainHint'</span><span class="w">      </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span><span class="s1">'example.com'</span><span class="p">,</span> <span class="s1">'www.example.com'</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
+<span class="w">          </span><span class="s1">'GeolocationHint'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span><span class="s1">'geo:47.37328,8.531126'</span><span class="p">,</span> <span class="s1">'geo:19.34343,12.342514'</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
+<span class="w">      </span><span class="o">],</span><span class="w"></span>
+<span class="w">  </span><span class="o">];</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  ... will generate the following XML metadata:
 </p>
-<pre class="codehilite"><code>  &lt;?xml version="1.0"?&gt;
-  &lt;md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:mdattr="urn:oasis:names:tc:SAML:metadata:attribute" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mdui="urn:oasis:names:tc:SAML:metadata:ui" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" entityID="https://www.example.com/saml/saml2/idp/metadata.php"&gt;
-    &lt;md:IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"&gt;
-      &lt;md:Extensions&gt;
-        &lt;mdui:UIInfo xmlns:mdui="urn:oasis:names:tc:SAML:metadata:ui"&gt;
-          &lt;mdui:DisplayName xml:lang="en"&gt;English name&lt;/mdui:DisplayName&gt;
-          &lt;mdui:DisplayName xml:lang="es"&gt;Nombre en Espa&amp;#xF1;ol&lt;/mdui:DisplayName&gt;
-          &lt;mdui:Description xml:lang="en"&gt;English description&lt;/mdui:Description&gt;
-          &lt;mdui:Description xml:lang="es"&gt;Descripci&amp;#xF3;n en Espa&amp;#xF1;ol&lt;/mdui:Description&gt;
-          &lt;mdui:InformationURL xml:lang="en"&gt;http://example.com/info/en&lt;/mdui:InformationURL&gt;
-          &lt;mdui:InformationURL xml:lang="es"&gt;http://example.com/info/es&lt;/mdui:InformationURL&gt;
-          &lt;mdui:PrivacyStatementURL xml:lang="en"&gt;http://example.com/privacy/en&lt;/mdui:PrivacyStatementURL&gt;
-          &lt;mdui:PrivacyStatementURL xml:lang="es"&gt;http://example.com/privacy/es&lt;/mdui:PrivacyStatementURL&gt;
-          &lt;mdui:Keywords xml:lang="en"&gt;communication federated+session&lt;/mdui:Keywords&gt;
-          &lt;mdui:Keywords xml:lang="es"&gt;comunicaci&amp;#xF3;n sesi&amp;#xF3;n+federated&lt;/mdui:Keywords&gt;
-          &lt;mdui:Logo width="400" height="200" xml:lang="en"&gt;http://example.com/logo1.png&lt;/mdui:Logo&gt;
-          &lt;mdui:Logo width="401" height="201"&gt;http://example.com/logo2.png&lt;/mdui:Logo&gt;
-        &lt;/mdui:UIInfo&gt;
-        &lt;mdui:DiscoHints xmlns:mdui="urn:oasis:names:tc:SAML:metadata:ui"&gt;
-          &lt;mdui:IPHint&gt;130.59.0.0/16&lt;/mdui:IPHint&gt;
-          &lt;mdui:IPHint&gt;2001:620::0/96&lt;/mdui:IPHint&gt;
-          &lt;mdui:DomainHint&gt;example.com&lt;/mdui:DomainHint&gt;
-          &lt;mdui:DomainHint&gt;www.example.com&lt;/mdui:DomainHint&gt;
-          &lt;mdui:GeolocationHint&gt;geo:47.37328,8.531126&lt;/mdui:GeolocationHint&gt;
-          &lt;mdui:GeolocationHint&gt;geo:19.34343,12.342514&lt;/mdui:GeolocationHint&gt;
-        &lt;/mdui:DiscoHints&gt;
-      &lt;/md:Extensions&gt;
-      &lt;md:KeyDescriptor use="signing"&gt;
-        &lt;ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#"&gt;
-          &lt;ds:X509Data&gt;
+<div class="codehilite">
+ <pre><span></span><code>  <span class="cp">&lt;?xml version="1.0"?&gt;</span>
+  <span class="nt">&lt;md:EntityDescriptor</span> <span class="na">xmlns:md=</span><span class="s">"urn:oasis:names:tc:SAML:2.0:metadata"</span> <span class="na">xmlns:mdattr=</span><span class="s">"urn:oasis:names:tc:SAML:metadata:attribute"</span> <span class="na">xmlns:saml=</span><span class="s">"urn:oasis:names:tc:SAML:2.0:assertion"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="na">xmlns:mdui=</span><span class="s">"urn:oasis:names:tc:SAML:metadata:ui"</span> <span class="na">xmlns:ds=</span><span class="s">"http://www.w3.org/2000/09/xmldsig#"</span> <span class="na">entityID=</span><span class="s">"https://www.example.com/saml/saml2/idp/metadata.php"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;md:IDPSSODescriptor</span> <span class="na">protocolSupportEnumeration=</span><span class="s">"urn:oasis:names:tc:SAML:2.0:protocol"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;md:Extensions&gt;</span>
+        <span class="nt">&lt;mdui:UIInfo</span> <span class="na">xmlns:mdui=</span><span class="s">"urn:oasis:names:tc:SAML:metadata:ui"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;mdui:DisplayName</span> <span class="na">xml:lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>English name<span class="nt">&lt;/mdui:DisplayName&gt;</span>
+          <span class="nt">&lt;mdui:DisplayName</span> <span class="na">xml:lang=</span><span class="s">"es"</span><span class="nt">&gt;</span>Nombre en Espa<span class="ni">&amp;#xF1;</span>ol<span class="nt">&lt;/mdui:DisplayName&gt;</span>
+          <span class="nt">&lt;mdui:Description</span> <span class="na">xml:lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>English description<span class="nt">&lt;/mdui:Description&gt;</span>
+          <span class="nt">&lt;mdui:Description</span> <span class="na">xml:lang=</span><span class="s">"es"</span><span class="nt">&gt;</span>Descripci<span class="ni">&amp;#xF3;</span>n en Espa<span class="ni">&amp;#xF1;</span>ol<span class="nt">&lt;/mdui:Description&gt;</span>
+          <span class="nt">&lt;mdui:InformationURL</span> <span class="na">xml:lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>http://example.com/info/en<span class="nt">&lt;/mdui:InformationURL&gt;</span>
+          <span class="nt">&lt;mdui:InformationURL</span> <span class="na">xml:lang=</span><span class="s">"es"</span><span class="nt">&gt;</span>http://example.com/info/es<span class="nt">&lt;/mdui:InformationURL&gt;</span>
+          <span class="nt">&lt;mdui:PrivacyStatementURL</span> <span class="na">xml:lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>http://example.com/privacy/en<span class="nt">&lt;/mdui:PrivacyStatementURL&gt;</span>
+          <span class="nt">&lt;mdui:PrivacyStatementURL</span> <span class="na">xml:lang=</span><span class="s">"es"</span><span class="nt">&gt;</span>http://example.com/privacy/es<span class="nt">&lt;/mdui:PrivacyStatementURL&gt;</span>
+          <span class="nt">&lt;mdui:Keywords</span> <span class="na">xml:lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>communication federated+session<span class="nt">&lt;/mdui:Keywords&gt;</span>
+          <span class="nt">&lt;mdui:Keywords</span> <span class="na">xml:lang=</span><span class="s">"es"</span><span class="nt">&gt;</span>comunicaci<span class="ni">&amp;#xF3;</span>n sesi<span class="ni">&amp;#xF3;</span>n+federated<span class="nt">&lt;/mdui:Keywords&gt;</span>
+          <span class="nt">&lt;mdui:Logo</span> <span class="na">width=</span><span class="s">"400"</span> <span class="na">height=</span><span class="s">"200"</span> <span class="na">xml:lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>http://example.com/logo1.png<span class="nt">&lt;/mdui:Logo&gt;</span>
+          <span class="nt">&lt;mdui:Logo</span> <span class="na">width=</span><span class="s">"401"</span> <span class="na">height=</span><span class="s">"201"</span><span class="nt">&gt;</span>http://example.com/logo2.png<span class="nt">&lt;/mdui:Logo&gt;</span>
+        <span class="nt">&lt;/mdui:UIInfo&gt;</span>
+        <span class="nt">&lt;mdui:DiscoHints</span> <span class="na">xmlns:mdui=</span><span class="s">"urn:oasis:names:tc:SAML:metadata:ui"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;mdui:IPHint&gt;</span>130.59.0.0/16<span class="nt">&lt;/mdui:IPHint&gt;</span>
+          <span class="nt">&lt;mdui:IPHint&gt;</span>2001:620::0/96<span class="nt">&lt;/mdui:IPHint&gt;</span>
+          <span class="nt">&lt;mdui:DomainHint&gt;</span>example.com<span class="nt">&lt;/mdui:DomainHint&gt;</span>
+          <span class="nt">&lt;mdui:DomainHint&gt;</span>www.example.com<span class="nt">&lt;/mdui:DomainHint&gt;</span>
+          <span class="nt">&lt;mdui:GeolocationHint&gt;</span>geo:47.37328,8.531126<span class="nt">&lt;/mdui:GeolocationHint&gt;</span>
+          <span class="nt">&lt;mdui:GeolocationHint&gt;</span>geo:19.34343,12.342514<span class="nt">&lt;/mdui:GeolocationHint&gt;</span>
+        <span class="nt">&lt;/mdui:DiscoHints&gt;</span>
+      <span class="nt">&lt;/md:Extensions&gt;</span>
+      <span class="nt">&lt;md:KeyDescriptor</span> <span class="na">use=</span><span class="s">"signing"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;ds:KeyInfo</span> <span class="na">xmlns:ds=</span><span class="s">"http://www.w3.org/2000/09/xmldsig#"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;ds:X509Data&gt;</span>
           ...
-</code></pre></body>
+</code></pre>
+</div></body>
 </html>

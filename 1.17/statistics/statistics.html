@@ -95,8 +95,10 @@
   For more information about how to use the Markdown syntax, read here:
   http://daringfireball.net/projects/markdown/syntax
 -->
-<pre class="codehilite"><code>* Andreas Åkre Solberg &lt;andreas.solberg@uninett.no&gt;
+<div class="codehilite">
+ <pre><span></span><code><span class="o">*</span><span class="w"> </span><span class="n">Andreas</span><span class="w"> </span><span class="n">Åkre</span><span class="w"> </span><span class="n">Solberg</span><span class="w"> </span><span class="o">&lt;</span><span class="n">andreas</span><span class="p">.</span><span class="n">solberg</span><span class="nv">@uninett</span><span class="p">.</span><span class="k">no</span><span class="o">&gt;</span><span class="w"></span>
 </code></pre>
+</div>
 <h2 id="configure-your-logs">
  Configure your logs
 </h2>
@@ -105,27 +107,33 @@
 dedicated to statistics. You need to get all statistics log entries
 in one log file. Here is how I do it in syslog.conf:
 </p>
-<pre class="codehilite"><code>  # SimpleSAMLphp logging
-  local5.*                        /var/log/simplesamlphp.log
-  # Notice level is reserved for statistics only...
-  local5.=notice                  /var/log/simplesamlphp.stat
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="c1"># SimpleSAMLphp logging</span><span class="w"></span>
+<span class="w">  </span><span class="n">local5</span><span class="o">.*</span><span class="w">                        </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">simplesamlphp</span><span class="o">.</span><span class="n">log</span><span class="w"></span>
+<span class="w">  </span><span class="c1"># Notice level is reserved for statistics only...</span><span class="w"></span>
+<span class="w">  </span><span class="n">local5</span><span class="o">.=</span><span class="n">notice</span><span class="w">                  </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">simplesamlphp</span><span class="o">.</span><span class="n">stat</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  Then make sure you have configured this correctly such that you
 have one log file like this:
 </p>
-<pre class="codehilite"><code>  # ls -la /var/log/simplesamlphp.stat
-  -rw-r--r-- 1 root root 76740 Nov 15 13:37 /var/log/simplesamlphp.stat
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="c1"># ls -la /var/log/simplesamlphp.stat</span><span class="w"></span>
+<span class="w">  </span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="mi">76740</span><span class="w"> </span><span class="n">Nov</span><span class="w"> </span><span class="mi">15</span><span class="w"> </span><span class="mi">13</span><span class="p">:</span><span class="mi">37</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">simplesamlphp</span><span class="o">.</span><span class="n">stat</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  With content that looks like this:
 </p>
-<pre class="codehilite"><code>  # tail /var/log/simplesamlphp.stat
-  Nov 15 12:01:49 www1 simplesamlphp-foodle[31960]: 5 STAT [77013b4b6e] saml20-sp-SSO urn:mace:feide.no:services:no.feide.foodle sam.feide.no andreas@uninett.no
-  Nov 15 13:01:14 www1 simplesamlphp-openwiki[2247]: 5 STAT [50292b9d04] saml20-sp-SSO urn:mace:feide.no:services:no.feide.openwikicore sam.feide.no NA
-  Nov 15 13:16:39 www1 simplesamlphp-openwiki[2125]: 5 STAT [3493d5d87f] saml20-sp-SSO urn:mace:feide.no:services:no.feide.openwikicore sam.feide.no NA
-  Nov 15 13:37:27 www1 simplesamlphp-foodle[3146]: 5 STAT [77013b4b6e] AUTH-login-admin OK
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="c1"># tail /var/log/simplesamlphp.stat</span><span class="w"></span>
+<span class="w">  </span><span class="n">Nov</span><span class="w"> </span><span class="mi">15</span><span class="w"> </span><span class="mi">12</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">49</span><span class="w"> </span><span class="n">www1</span><span class="w"> </span><span class="n">simplesamlphp</span><span class="o">-</span><span class="n">foodle</span><span class="p">[</span><span class="mi">31960</span><span class="p">]:</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="n">STAT</span><span class="w"> </span><span class="p">[</span><span class="mi">77013</span><span class="n">b4b6e</span><span class="p">]</span><span class="w"> </span><span class="n">saml20</span><span class="o">-</span><span class="n">sp</span><span class="o">-</span><span class="n">SSO</span><span class="w"> </span><span class="n">urn</span><span class="p">:</span><span class="n">mace</span><span class="p">:</span><span class="n">feide</span><span class="o">.</span><span class="n">no</span><span class="p">:</span><span class="n">services</span><span class="p">:</span><span class="n">no</span><span class="o">.</span><span class="n">feide</span><span class="o">.</span><span class="n">foodle</span><span class="w"> </span><span class="n">sam</span><span class="o">.</span><span class="n">feide</span><span class="o">.</span><span class="n">no</span><span class="w"> </span><span class="n">andreas</span><span class="err">@</span><span class="n">uninett</span><span class="o">.</span><span class="n">no</span><span class="w"></span>
+<span class="w">  </span><span class="n">Nov</span><span class="w"> </span><span class="mi">15</span><span class="w"> </span><span class="mi">13</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">14</span><span class="w"> </span><span class="n">www1</span><span class="w"> </span><span class="n">simplesamlphp</span><span class="o">-</span><span class="n">openwiki</span><span class="p">[</span><span class="mi">2247</span><span class="p">]:</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="n">STAT</span><span class="w"> </span><span class="p">[</span><span class="mi">50292</span><span class="n">b9d04</span><span class="p">]</span><span class="w"> </span><span class="n">saml20</span><span class="o">-</span><span class="n">sp</span><span class="o">-</span><span class="n">SSO</span><span class="w"> </span><span class="n">urn</span><span class="p">:</span><span class="n">mace</span><span class="p">:</span><span class="n">feide</span><span class="o">.</span><span class="n">no</span><span class="p">:</span><span class="n">services</span><span class="p">:</span><span class="n">no</span><span class="o">.</span><span class="n">feide</span><span class="o">.</span><span class="n">openwikicore</span><span class="w"> </span><span class="n">sam</span><span class="o">.</span><span class="n">feide</span><span class="o">.</span><span class="n">no</span><span class="w"> </span><span class="n">NA</span><span class="w"></span>
+<span class="w">  </span><span class="n">Nov</span><span class="w"> </span><span class="mi">15</span><span class="w"> </span><span class="mi">13</span><span class="p">:</span><span class="mi">16</span><span class="p">:</span><span class="mi">39</span><span class="w"> </span><span class="n">www1</span><span class="w"> </span><span class="n">simplesamlphp</span><span class="o">-</span><span class="n">openwiki</span><span class="p">[</span><span class="mi">2125</span><span class="p">]:</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="n">STAT</span><span class="w"> </span><span class="p">[</span><span class="mi">3493</span><span class="n">d5d87f</span><span class="p">]</span><span class="w"> </span><span class="n">saml20</span><span class="o">-</span><span class="n">sp</span><span class="o">-</span><span class="n">SSO</span><span class="w"> </span><span class="n">urn</span><span class="p">:</span><span class="n">mace</span><span class="p">:</span><span class="n">feide</span><span class="o">.</span><span class="n">no</span><span class="p">:</span><span class="n">services</span><span class="p">:</span><span class="n">no</span><span class="o">.</span><span class="n">feide</span><span class="o">.</span><span class="n">openwikicore</span><span class="w"> </span><span class="n">sam</span><span class="o">.</span><span class="n">feide</span><span class="o">.</span><span class="n">no</span><span class="w"> </span><span class="n">NA</span><span class="w"></span>
+<span class="w">  </span><span class="n">Nov</span><span class="w"> </span><span class="mi">15</span><span class="w"> </span><span class="mi">13</span><span class="p">:</span><span class="mi">37</span><span class="p">:</span><span class="mi">27</span><span class="w"> </span><span class="n">www1</span><span class="w"> </span><span class="n">simplesamlphp</span><span class="o">-</span><span class="n">foodle</span><span class="p">[</span><span class="mi">3146</span><span class="p">]:</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="n">STAT</span><span class="w"> </span><span class="p">[</span><span class="mi">77013</span><span class="n">b4b6e</span><span class="p">]</span><span class="w"> </span><span class="n">AUTH</span><span class="o">-</span><span class="n">login</span><span class="o">-</span><span class="n">admin</span><span class="w"> </span><span class="n">OK</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  Here you can see that I collect statistics in one file for several installations. You could easily separate each instance of SimpleSAMLphp into separate files (your preference).
 </p>
@@ -135,24 +143,32 @@ have one log file like this:
 <p>
  First enable the statistics module, as you enable any other module:
 </p>
-<pre class="codehilite"><code>  cd modules/statistics
+<div class="codehilite">
+ <pre><span></span><code>  cd modules/statistics
   touch enable
 </code></pre>
+</div>
 <p>
  Then take the configuration template:
 </p>
-<pre class="codehilite"><code>  cp modules/statistics/config-templates/*.php config/
+<div class="codehilite">
+ <pre><span></span><code>  cp modules/statistics/config-templates/*.php config/
 </code></pre>
+</div>
 <p>
  Configure the path of the log file:
 </p>
-<pre class="codehilite"><code>  'inputfile' =&gt; '/var/log/simplesamlphp.stat',
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="s1">'inputfile'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'/var/log/simplesamlphp.stat'</span><span class="p">,</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  Make sure the stat dir is writable. SimpleSAMLphp will write data here:
 </p>
-<pre class="codehilite"><code>  'statdir' =&gt; '/var/lib/simplesamlphp/stats/',
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="s1">'statdir'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'/var/lib/simplesamlphp/stats/'</span><span class="p">,</span><span class="w"></span>
 </code></pre>
+</div>
 <h3 id="configuring-the-syntax-of-the-logfile">
  Configuring the syntax of the logfile
 </h3>
@@ -162,10 +178,12 @@ have one log file like this:
 <p>
  There are three parameter values you need to make sure are correct.
 </p>
-<pre class="codehilite"><code>'datestart'  =&gt; 1,
+<div class="codehilite">
+ <pre><span></span><code>'datestart'  =&gt; 1,
 'datelength' =&gt; 15,
 'offsetspan' =&gt; 21,
 </code></pre>
+</div>
 <p>
  The first
  <code>
@@ -198,25 +216,27 @@ have one log file like this:
 <p>
  Here is some example output:
 </p>
-<pre class="codehilite"><code>$ cd modules/statistics/bin
+<div class="codehilite">
+ <pre><span></span><code>$ <span class="nb">cd</span> modules/statistics/bin
 $ ./loganalyzer.php --debug
 Statistics directory   : /var/lib/simplesamlphp/stats/
 Input file             : /Users/andreas/Desktop/simplesamlphp.log
-Offset                 : 4237200
+Offset                 : <span class="m">4237200</span>
 ----------------------------------------
-Log line: Feb 11 11:32:57 moria-app1 syslog_moria-app1[6630]: 5 STAT [2d41ee3f1e] AUTH-login-admin Failed
-Date parse [Feb 11 11:32:57] to [Wed, 11 Feb 09 11:32:57 +0100]
+Log line: Feb <span class="m">11</span> <span class="m">11</span>:32:57 moria-app1 syslog_moria-app1<span class="o">[</span><span class="m">6630</span><span class="o">]</span>: <span class="m">5</span> STAT <span class="o">[</span>2d41ee3f1e<span class="o">]</span> AUTH-login-admin Failed
+Date parse <span class="o">[</span>Feb <span class="m">11</span> <span class="m">11</span>:32:57<span class="o">]</span> to <span class="o">[</span>Wed, <span class="m">11</span> Feb <span class="m">09</span> <span class="m">11</span>:32:57 +0100<span class="o">]</span>
 Array
-(
-  [0] =&gt; moria-app1
-  [1] =&gt; syslog_moria-app1[6630]:
-  [2] =&gt; 5
-  [3] =&gt; STAT
-  [4] =&gt; [2d41ee3f1e]
-  [5] =&gt; AUTH-login-admin
-  [6] =&gt; Failed
-)
+<span class="o">(</span>
+  <span class="o">[</span><span class="m">0</span><span class="o">]</span> <span class="o">=</span>&gt; moria-app1
+  <span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="o">=</span>&gt; syslog_moria-app1<span class="o">[</span><span class="m">6630</span><span class="o">]</span>:
+  <span class="o">[</span><span class="m">2</span><span class="o">]</span> <span class="o">=</span>&gt; <span class="m">5</span>
+  <span class="o">[</span><span class="m">3</span><span class="o">]</span> <span class="o">=</span>&gt; STAT
+  <span class="o">[</span><span class="m">4</span><span class="o">]</span> <span class="o">=</span>&gt; <span class="o">[</span>2d41ee3f1e<span class="o">]</span>
+  <span class="o">[</span><span class="m">5</span><span class="o">]</span> <span class="o">=</span>&gt; AUTH-login-admin
+  <span class="o">[</span><span class="m">6</span><span class="o">]</span> <span class="o">=</span>&gt; Failed
+<span class="o">)</span>
 </code></pre>
+</div>
 <p>
  In the debug output, please verify four things:
 </p>
@@ -248,9 +268,11 @@ Array
 <p>
  You also should setup the cron module:
 </p>
-<pre class="codehilite"><code>  cd modules/cron
+<div class="codehilite">
+ <pre><span></span><code>  cd modules/cron
   touch enable
 </code></pre>
+</div>
 <h3 id="alternative-to-using-the-cron-module">
  Alternative to using the cron module
 </h3>

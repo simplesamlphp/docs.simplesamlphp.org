@@ -143,73 +143,75 @@ server with all the users. To create an LDAP authentication source, open
  in a text editor, and add an entry for the
 authentication source:
 </p>
-<pre class="codehilite"><code>'example-ldap' =&gt; array(
-  'ldap:LDAP',
+<div class="codehilite">
+ <pre><span></span><code><span class="s1">'</span><span class="s">example-ldap</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="nv">array</span><span class="ss">(</span>
+  <span class="s1">'</span><span class="s">ldap:LDAP</span><span class="s1">'</span>,
 
-  /* The hostname of the LDAP server. */
-  'hostname' =&gt; 'ldap.example.org',
+  <span class="cm">/* The hostname of the LDAP server. */</span>
+  <span class="s1">'</span><span class="s">hostname</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="s1">'</span><span class="s">ldap.example.org</span><span class="s1">'</span>,
 
-  /* Whether SSL/TLS should be used when contacting the LDAP server. */
-  'enable_tls' =&gt; FALSE,
+  <span class="cm">/* Whether SSL/TLS should be used when contacting the LDAP server. */</span>
+  <span class="s1">'</span><span class="s">enable_tls</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="nv">FALSE</span>,
 
-  /*
-   * Which attributes should be retrieved from the LDAP server.
-   * This can be an array of attribute names, or NULL, in which case
-   * all attributes are fetched.
-   */
-  'attributes' =&gt; NULL,
+  <span class="cm">/*</span>
+<span class="cm">   * Which attributes should be retrieved from the LDAP server.</span>
+<span class="cm">   * This can be an array of attribute names, or NULL, in which case</span>
+<span class="cm">   * all attributes are fetched.</span>
+<span class="cm">   */</span>
+  <span class="s1">'</span><span class="s">attributes</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="nv">NULL</span>,
 
-  /*
-   * The pattern which should be used to create the user's DN given the username.
-   * %username% in this pattern will be replaced with the user's username.
-   *
-   * This option is not used if the search.enable option is set to TRUE.
-   */
-  'dnpattern' =&gt; 'uid=%username%,ou=people,dc=example,dc=org',
+  <span class="cm">/*</span>
+<span class="cm">   * The pattern which should be used to create the user's DN given the username.</span>
+<span class="cm">   * %username% in this pattern will be replaced with the user's username.</span>
+<span class="cm">   *</span>
+<span class="cm">   * This option is not used if the search.enable option is set to TRUE.</span>
+<span class="cm">   */</span>
+  <span class="s1">'</span><span class="s">dnpattern</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="s1">'</span><span class="s">uid=%username%,ou=people,dc=example,dc=org</span><span class="s1">'</span>,
 
-  /*
-   * As an alternative to specifying a pattern for the users DN, it is possible to
-   * search for the username in a set of attributes. This is enabled by this option.
-   */
-  'search.enable' =&gt; FALSE,
+  <span class="cm">/*</span>
+<span class="cm">   * As an alternative to specifying a pattern for the users DN, it is possible to</span>
+<span class="cm">   * search for the username in a set of attributes. This is enabled by this option.</span>
+<span class="cm">   */</span>
+  <span class="s1">'</span><span class="s">search.enable</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="nv">FALSE</span>,
 
-  /*
-   * The DN which will be used as a base for the search.
-   * This can be a single string, in which case only that DN is searched, or an
-   * array of strings, in which case they will be searched in the order given.
-   */
-  'search.base' =&gt; 'ou=people,dc=example,dc=org',
+  <span class="cm">/*</span>
+<span class="cm">   * The DN which will be used as a base for the search.</span>
+<span class="cm">   * This can be a single string, in which case only that DN is searched, or an</span>
+<span class="cm">   * array of strings, in which case they will be searched in the order given.</span>
+<span class="cm">   */</span>
+  <span class="s1">'</span><span class="s">search.base</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="s1">'</span><span class="s">ou=people,dc=example,dc=org</span><span class="s1">'</span>,
 
-              /*
-               * The scope of the search. Valid values are 'subtree' and 'onelevel' and 'base',
-               * first one being the default if no value is set.
-               */
-              'search.scope' =&gt; 'subtree',
+              <span class="cm">/*</span>
+<span class="cm">               * The scope of the search. Valid values are 'subtree' and 'onelevel' and 'base',</span>
+<span class="cm">               * first one being the default if no value is set.</span>
+<span class="cm">               */</span>
+              <span class="s1">'</span><span class="s">search.scope</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="s1">'</span><span class="s">subtree</span><span class="s1">'</span>,
 
-  /*
-   * The attribute(s) the username should match against.
-   *
-   * This is an array with one or more attribute names. Any of the attributes in
-   * the array may match the value the username.
-   */
-  'search.attributes' =&gt; array('uid', 'mail'),
+  <span class="cm">/*</span>
+<span class="cm">   * The attribute(s) the username should match against.</span>
+<span class="cm">   *</span>
+<span class="cm">   * This is an array with one or more attribute names. Any of the attributes in</span>
+<span class="cm">   * the array may match the value the username.</span>
+<span class="cm">   */</span>
+  <span class="s1">'</span><span class="s">search.attributes</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="nv">array</span><span class="ss">(</span><span class="s1">'</span><span class="s">uid</span><span class="s1">'</span>, <span class="s1">'</span><span class="s">mail</span><span class="s1">'</span><span class="ss">)</span>,
 
-  /*
-   * Additional filters that must match for the entire LDAP search to be TRUE
-   *
-   * This should be a single string conforming to (RFC 1960, 2544)
-   * The string is appended to the search attributes
-   */
-  'search.filter' =&gt; '(&amp;(objectClass=Person)(|(sn=Doe)(cn=John *)))',
+  <span class="cm">/*</span>
+<span class="cm">   * Additional filters that must match for the entire LDAP search to be TRUE</span>
+<span class="cm">   *</span>
+<span class="cm">   * This should be a single string conforming to (RFC 1960, 2544)</span>
+<span class="cm">   * The string is appended to the search attributes</span>
+<span class="cm">   */</span>
+  <span class="s1">'</span><span class="s">search.filter</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="s1">'</span><span class="s">(&amp;(objectClass=Person)(|(sn=Doe)(cn=John *)))</span><span class="s1">'</span>,
 
-  /*
-   * The username &amp; password where SimpleSAMLphp should bind to before searching. If
-   * this is left NULL, no bind will be performed before searching.
-   */
-  'search.username' =&gt; NULL,
-  'search.password' =&gt; NULL,
-),
+  <span class="cm">/*</span>
+<span class="cm">   * The username &amp; password where SimpleSAMLphp should bind to before searching. If</span>
+<span class="cm">   * this is left NULL, no bind will be performed before searching.</span>
+<span class="cm">   */</span>
+  <span class="s1">'</span><span class="s">search.username</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="nv">NULL</span>,
+  <span class="s1">'</span><span class="s">search.password</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="nv">NULL</span>,
+<span class="ss">)</span>,
 </code></pre>
+</div>
 <p>
  You should update the name of this authentication source
 (
@@ -355,10 +357,12 @@ This enables the builtin LDAP failover in OpenLDAP.
 To avoid a very long wait, it is recommended to change the timeouts.
 This can be done in the system-wide ldap configuration file.
 </p>
-<pre class="codehilite"><code>  NETWORK_TIMEOUT 10
+<div class="codehilite">
+ <pre><span></span><code>  NETWORK_TIMEOUT 10
   TIMELIMIT       15
   TIMEOUT         20
 </code></pre>
+</div>
 <p>
  In this case, if we are unable to connect to the first LDAP server within 10 seconds, we will attempt the next.
 (Note: the NETWORK_TIMEOUT option was introduced with OpenLDAP version 2.4.)
@@ -366,7 +370,8 @@ This can be done in the system-wide ldap configuration file.
 <h4 id="example">
  Example
 </h4>
-<pre class="codehilite"><code>  /* Configuration that uses two ldap servers. */
+<div class="codehilite">
+ <pre><span></span><code>  /* Configuration that uses two ldap servers. */
   'example-ldap' =&gt; array(
       'ldap:LDAP',
       /* The hostname of the LDAP server. */
@@ -374,6 +379,7 @@ This can be done in the system-wide ldap configuration file.
       'dnpattern' =&gt; 'uid=%username%,ou=people,dc=example,dc=org',
   ),
 </code></pre>
+</div>
 <h2 id="ldapldapmulti">
  <code>
   ldap:LDAPMulti
@@ -389,68 +395,70 @@ authentication module, open
  in a text editor,
 and add an entry which uses this module:
 </p>
-<pre class="codehilite"><code>'example-ldapmulti' =&gt; array(
-  'ldap:LDAPMulti',
+<div class="codehilite">
+ <pre><span></span><code><span class="s1">'example-ldapmulti'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">array</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="s1">'ldap:LDAPMulti'</span><span class="p">,</span><span class="w"></span>
 
-  /*
-   * The way the organization as part of the username should be handled.
-   * Three possible values:
-   * - 'none':   No handling of the organization. Allows '@' to be part
-   *             of the username.
-   * - 'allow':  Will allow users to type 'username@organization'.
-   * - 'force':  Force users to type 'username@organization'. The dropdown
-   *             list will be hidden.
-   *
-   * The default is 'none'.
-   */
-  'username_organization_method' =&gt; 'none',
+<span class="w">  </span><span class="cm">/*</span>
+<span class="cm">   * The way the organization as part of the username should be handled.</span>
+<span class="cm">   * Three possible values:</span>
+<span class="cm">   * - 'none':   No handling of the organization. Allows '@' to be part</span>
+<span class="cm">   *             of the username.</span>
+<span class="cm">   * - 'allow':  Will allow users to type 'username@organization'.</span>
+<span class="cm">   * - 'force':  Force users to type 'username@organization'. The dropdown</span>
+<span class="cm">   *             list will be hidden.</span>
+<span class="cm">   *</span>
+<span class="cm">   * The default is 'none'.</span>
+<span class="cm">   */</span><span class="w"></span>
+<span class="w">  </span><span class="s1">'username_organization_method'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'none'</span><span class="p">,</span><span class="w"></span>
 
-  /*
-   * Whether the organization should be included as part of the username
-   * when authenticating. If this is set to TRUE, the username will be on
-   * the form &lt;username&gt;@&lt;organization identifier&gt;. If this is FALSE, the
-   * username will be used as the user enters it.
-   *
-   * The default is FALSE.
-   */
-  'include_organization_in_username' =&gt; FALSE,
+<span class="w">  </span><span class="cm">/*</span>
+<span class="cm">   * Whether the organization should be included as part of the username</span>
+<span class="cm">   * when authenticating. If this is set to TRUE, the username will be on</span>
+<span class="cm">   * the form &lt;username&gt;@&lt;organization identifier&gt;. If this is FALSE, the</span>
+<span class="cm">   * username will be used as the user enters it.</span>
+<span class="cm">   *</span>
+<span class="cm">   * The default is FALSE.</span>
+<span class="cm">   */</span><span class="w"></span>
+<span class="w">  </span><span class="s1">'include_organization_in_username'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">FALSE</span><span class="p">,</span><span class="w"></span>
 
-  /*
-   * A list of available LDAP servers.
-   *
-   * The index is an identifier for the organization/group. When
-   * 'username_organization_method' is set to something other than 'none',
-   * the organization-part of the username is matched against the index.
-   *
-   * The value of each element is an array in the same format as an LDAP
-   * authentication source.
-   */
-  'employees' =&gt; array(
-    /*
-     * A short name/description for this group. Will be shown in a dropdown list
-     * when the user logs on.
-     *
-     * This option can be a string or an array with language =&gt; text mappings.
-     */
-    'description' =&gt; 'Employees',
+<span class="w">  </span><span class="cm">/*</span>
+<span class="cm">   * A list of available LDAP servers.</span>
+<span class="cm">   *</span>
+<span class="cm">   * The index is an identifier for the organization/group. When</span>
+<span class="cm">   * 'username_organization_method' is set to something other than 'none',</span>
+<span class="cm">   * the organization-part of the username is matched against the index.</span>
+<span class="cm">   *</span>
+<span class="cm">   * The value of each element is an array in the same format as an LDAP</span>
+<span class="cm">   * authentication source.</span>
+<span class="cm">   */</span><span class="w"></span>
+<span class="w">  </span><span class="s1">'employees'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">array</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="cm">/*</span>
+<span class="cm">     * A short name/description for this group. Will be shown in a dropdown list</span>
+<span class="cm">     * when the user logs on.</span>
+<span class="cm">     *</span>
+<span class="cm">     * This option can be a string or an array with language =&gt; text mappings.</span>
+<span class="cm">     */</span><span class="w"></span>
+<span class="w">    </span><span class="s1">'description'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Employees'</span><span class="p">,</span><span class="w"></span>
 
-    /*
-     * The rest of the options are the same as those available for
-     * the LDAP authentication source.
-     */
-    'hostname' =&gt; 'ldap.employees.example.org',
-    'dnpattern' =&gt; 'uid=%username%,ou=employees,dc=example,dc=org',
-  ),
+<span class="w">    </span><span class="cm">/*</span>
+<span class="cm">     * The rest of the options are the same as those available for</span>
+<span class="cm">     * the LDAP authentication source.</span>
+<span class="cm">     */</span><span class="w"></span>
+<span class="w">    </span><span class="s1">'hostname'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'ldap.employees.example.org'</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="s1">'dnpattern'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'uid=%username%,ou=employees,dc=example,dc=org'</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="p">),</span><span class="w"></span>
 
-  'students' =&gt; array(
-    'description' =&gt; 'Students',
+<span class="w">  </span><span class="s1">'students'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">array</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="s1">'description'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Students'</span><span class="p">,</span><span class="w"></span>
 
-    'hostname' =&gt; 'ldap.students.example.org',
-    'dnpattern' =&gt; 'uid=%username%,ou=students,dc=example,dc=org',
-  ),
+<span class="w">    </span><span class="s1">'hostname'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'ldap.students.example.org'</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="s1">'dnpattern'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'uid=%username%,ou=students,dc=example,dc=org'</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="p">),</span><span class="w"></span>
 
-),
+<span class="p">),</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  The name of the authentication source (
  <code>
@@ -474,11 +482,13 @@ and will be shown to the user in a dropdown list on the login page.
  -option can also be an array with descriptions in
 different languages:
 </p>
-<pre class="codehilite"><code>'description' =&gt; array(
+<div class="codehilite">
+ <pre><span></span><code>'description' =&gt; array(
   'en' =&gt; 'Employees',
   'no' =&gt; 'Ansatte',
 ),
 </code></pre>
+</div>
 <p>
  All options from the
  <code>
@@ -499,51 +509,53 @@ an LDAP directory. In addition to all the configuration options available
 in the ldap:AttributeAddUsersGroups filter (below), these are the filter
 specific configuration options:
 </p>
-<pre class="codehilite"><code>50 = array(
-  'class' =&gt; 'ldap:AttributeAddFromLDAP',
+<div class="codehilite">
+ <pre><span></span><code><span class="mf">50</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">array</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">class</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">ldap</span><span class="p">:</span><span class="n">AttributeAddFromLDAP</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
 
-  /**
-   * The attributes to search for and their mappings. This must be an array,
-   * and keys can be skipped. If you skip a key, then the attribute will be
-   * exported with the same name as the LDAP attribute.
-   *
-   * Default: NULL
-   * Required: Yes
-   */
-  'attributes' =&gt; array('mail', 'jpegPhoto' =&gt; 'jpegphoto'),
+<span class="w">  </span><span class="o">/**</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">attributes</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="n">search</span><span class="w"> </span><span class="kr">for</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">their</span><span class="w"> </span><span class="n">mappings</span><span class="mf">.</span><span class="w"> </span><span class="n">This</span><span class="w"> </span><span class="n">must</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">array</span><span class="p">,</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">keys</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">skipped</span><span class="mf">.</span><span class="w"> </span><span class="kr">If</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">skip</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">attribute</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">be</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="nb">exp</span><span class="ow">or</span><span class="n">ted</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">same</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="n">as</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">LDAP</span><span class="w"> </span><span class="n">attribute</span><span class="mf">.</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="kd">Def</span><span class="n">ault</span><span class="p">:</span><span class="w"> </span><span class="n">NULL</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">Required</span><span class="p">:</span><span class="w"> </span><span class="n">Yes</span><span class="w"></span>
+<span class="w">   </span><span class="o">*/</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">attributes</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">array</span><span class="p">(</span><span class="err">'</span><span class="n">mail</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="n">jpegPhoto</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">jpegphoto</span><span class="err">'</span><span class="p">),</span><span class="w"></span>
 
-  /**
-   * The attribute policy that defines what to do with attributes that are
-   * already part of the attributes of the user. Can be one of:
-   *
-   * - add: blindly add the values. If the attribute already exists and has
-   * the same value, the result of the filter will be two equal values.
-   *
-   * - merge: carefully merge the values. If a value is already part of
-   * the attribute, do not add a duplicate.
-   *
-   * - replace: if the attribute is present before running the filter,
-   * replace its values with the ones obtained at this point.
-   *
-   * Default: merge
-   * Required: No
-   */
-  'attribute.policy' =&gt; 'merge',
+<span class="w">  </span><span class="o">/**</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">attribute</span><span class="w"> </span><span class="n">policy</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="kd">def</span><span class="n">ines</span><span class="w"> </span><span class="n">what</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="n">do</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">attributes</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">are</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">already</span><span class="w"> </span><span class="n">part</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">attributes</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">user</span><span class="mf">.</span><span class="w"> </span><span class="n">Can</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="kr">on</span><span class="n">e</span><span class="w"> </span><span class="n">of</span><span class="p">:</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">add</span><span class="p">:</span><span class="w"> </span><span class="n">blindly</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nb">val</span><span class="n">ues</span><span class="mf">.</span><span class="w"> </span><span class="kr">If</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">attribute</span><span class="w"> </span><span class="n">already</span><span class="w"> </span><span class="n">exists</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">has</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">same</span><span class="w"> </span><span class="nb">val</span><span class="n">ue</span><span class="p">,</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">filter</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">two</span><span class="w"> </span><span class="n">equal</span><span class="w"> </span><span class="nb">val</span><span class="n">ues</span><span class="mf">.</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">merge</span><span class="p">:</span><span class="w"> </span><span class="n">carefully</span><span class="w"> </span><span class="n">merge</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nb">val</span><span class="n">ues</span><span class="mf">.</span><span class="w"> </span><span class="kr">If</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="nb">val</span><span class="n">ue</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">already</span><span class="w"> </span><span class="n">part</span><span class="w"> </span><span class="n">of</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">attribute</span><span class="p">,</span><span class="w"> </span><span class="n">do</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">duplicate</span><span class="mf">.</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">replace</span><span class="p">:</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">attribute</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">present</span><span class="w"> </span><span class="n">before</span><span class="w"> </span><span class="kr">run</span><span class="n">ning</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">filter</span><span class="p">,</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">replace</span><span class="w"> </span><span class="n">its</span><span class="w"> </span><span class="nb">val</span><span class="n">ues</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="kr">on</span><span class="n">es</span><span class="w"> </span><span class="n">obtained</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">point</span><span class="mf">.</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="kd">Def</span><span class="n">ault</span><span class="p">:</span><span class="w"> </span><span class="n">merge</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">Required</span><span class="p">:</span><span class="w"> </span><span class="n">No</span><span class="w"></span>
+<span class="w">   </span><span class="o">*/</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">attribute</span><span class="mf">.</span><span class="n">policy</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">merge</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
 
-  /**
-   * The search filter to find the user in LDAP.
-   *
-   * Note: Variable substitution will be performed on this option.
-   *       Any attribute in the identity can be substituted by surrounding
-   *       it with percent symbols (%). For instance %cn% would be replaced
-   *       with the CN of the user.
-   *
-   * Default: NULL
-   * Required: Yes
-   */
-  'search.filter' =&gt; '(uid=%uid%)',
-);
+<span class="w">  </span><span class="o">/**</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">search</span><span class="w"> </span><span class="n">filter</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="n">find</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">LDAP</span><span class="mf">.</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="ow">Not</span><span class="n">e</span><span class="p">:</span><span class="w"> </span><span class="n">Variable</span><span class="w"> </span><span class="n">substitution</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">performed</span><span class="w"> </span><span class="kr">on</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">option</span><span class="mf">.</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w">       </span><span class="n">Any</span><span class="w"> </span><span class="n">attribute</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">identity</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">substituted</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">surrounding</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w">       </span><span class="n">it</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">percent</span><span class="w"> </span><span class="n">symbols</span><span class="w"> </span><span class="p">(</span><span class="err">%</span><span class="p">)</span><span class="mf">.</span><span class="w"> </span><span class="kr">For</span><span class="w"> </span><span class="n">instance</span><span class="w"> </span><span class="err">%</span><span class="n">cn%</span><span class="w"> </span><span class="n">would</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">replaced</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w">       </span><span class="n">with</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">CN</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">user</span><span class="mf">.</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="kd">Def</span><span class="n">ault</span><span class="p">:</span><span class="w"> </span><span class="n">NULL</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">Required</span><span class="p">:</span><span class="w"> </span><span class="n">Yes</span><span class="w"></span>
+<span class="w">   </span><span class="o">*/</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">search</span><span class="mf">.</span><span class="n">filter</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="p">(</span><span class="n">uid</span><span class="o">=</span><span class="err">%</span><span class="n">uid%</span><span class="p">)</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
 </code></pre>
+</div>
 <h3 id="backwards-compatibility">
  Backwards Compatibility
 </h3>
@@ -562,28 +574,32 @@ style is deprecated now and will be removed in 2.0.
 authsource for all LDAP connection information and queries LDAP for
 the specific attributes requested.
 </p>
-<pre class="codehilite"><code>50 =&gt; array(
-  'class' =&gt; 'ldap:AttributeAddFromLDAP',
-  'authsource' =&gt; 'example-ldap',
-  'attributes' =&gt; array('displayName' =&gt; 'cn', 'jpegPhoto'),
-  'search.filter' =&gt; '(uid=%uid%)',
-)
+<div class="codehilite">
+ <pre><span></span><code><span class="mf">50</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">array</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">class</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">ldap</span><span class="p">:</span><span class="n">AttributeAddFromLDAP</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">authsource</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">example</span><span class="o">-</span><span class="n">ldap</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">attributes</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">array</span><span class="p">(</span><span class="err">'</span><span class="n">displayName</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">cn</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="n">jpegPhoto</span><span class="err">'</span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">search</span><span class="mf">.</span><span class="n">filter</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="p">(</span><span class="n">uid</span><span class="o">=</span><span class="err">%</span><span class="n">uid%</span><span class="p">)</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  If no authsource is available then you can specify the connection info
 using the filter configuration. Note: Not all of the options below are
 required, see the config options for ldap:AttributeAddFromLDAP above.
 </p>
-<pre class="codehilite"><code>50 =&gt; array(
-  'class' =&gt; 'ldap:AttributeAddFromLDAP',
-  'ldap.hostname' =&gt; 'ldap.example.org',
-  'ldap.username' =&gt; 'CN=LDAP User,CN=Users,DC=example,DC=org',
-  'ldap.password' =&gt; 'Abc123',
-  'ldap.basedn' =&gt; 'DC=example,DC=org',
-  'attributes' =&gt; array('displayName' =&gt; 'cn', 'jpegPhoto'),
-  'search.filter' =&gt; '(uid=%uid%)',
-)
+<div class="codehilite">
+ <pre><span></span><code><span class="mf">50</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">array</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">class</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">ldap</span><span class="p">:</span><span class="n">AttributeAddFromLDAP</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">ldap</span><span class="mf">.</span><span class="n">hostname</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">ldap</span><span class="mf">.</span><span class="n">example</span><span class="mf">.</span><span class="ow">or</span><span class="n">g</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">ldap</span><span class="mf">.</span><span class="n">username</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">CN</span><span class="o">=</span><span class="n">LDAP</span><span class="w"> </span><span class="n">User</span><span class="p">,</span><span class="n">CN</span><span class="o">=</span><span class="n">Users</span><span class="p">,</span><span class="n">DC</span><span class="o">=</span><span class="n">example</span><span class="p">,</span><span class="n">DC</span><span class="o">=</span><span class="ow">or</span><span class="n">g</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">ldap</span><span class="mf">.</span><span class="n">password</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">Abc123</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">ldap</span><span class="mf">.</span><span class="n">basedn</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">DC</span><span class="o">=</span><span class="n">example</span><span class="p">,</span><span class="n">DC</span><span class="o">=</span><span class="ow">or</span><span class="n">g</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">attributes</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">array</span><span class="p">(</span><span class="err">'</span><span class="n">displayName</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">cn</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="n">jpegPhoto</span><span class="err">'</span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">search</span><span class="mf">.</span><span class="n">filter</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="p">(</span><span class="n">uid</span><span class="o">=</span><span class="err">%</span><span class="n">uid%</span><span class="p">)</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
 </code></pre>
+</div>
 <h2 id="ldapattributeaddusersgroups">
  <code>
   ldap:AttributeAddUsersGroups
@@ -598,189 +614,191 @@ checking the hierarchy for all groups the user would technically be
 a member of. This can be helpful for other filters to know. Below is
 a listing of all configuration options and their details.
 </p>
-<pre class="codehilite"><code>50 =&gt; array(
-  'class' =&gt; 'ldap:AttributeAddUsersGroups',
+<div class="codehilite">
+ <pre><span></span><code><span class="mf">50</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">array</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">class</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">ldap</span><span class="p">:</span><span class="n">AttributeAddUsersGroups</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
 
 
-  /**
-   * LDAP connection settings can be retrieved from an ldap:LDAP
-   * authsource. Specify the authsource name here to pull that
-   * data from the authsources.php file in the config folder.
-   *
-   * Note: ldap:LDAPMulti is not supported as the SimpleSAMLphp
-   *       framework does not pass any information about which
-   *       LDAP source the user selected.
-   *
-   * Default: NULL
-   * Require: No
-   */
-  'authsource' =&gt; NULL,
-  'authsource' =&gt; 'example-ldap',
+<span class="w">  </span><span class="o">/**</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">LDAP</span><span class="w"> </span><span class="n">connection</span><span class="w"> </span><span class="n">settings</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">retrieved</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">ldap</span><span class="p">:</span><span class="n">LDAP</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">authsource</span><span class="mf">.</span><span class="w"> </span><span class="n">Specify</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">authsource</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="n">here</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="n">pull</span><span class="w"> </span><span class="n">that</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="kd">data</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">authsources</span><span class="mf">.</span><span class="n">php</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="n">folder</span><span class="mf">.</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="ow">Not</span><span class="n">e</span><span class="p">:</span><span class="w"> </span><span class="n">ldap</span><span class="p">:</span><span class="n">LDAPMulti</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">supported</span><span class="w"> </span><span class="n">as</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">SimpleSAMLphp</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w">       </span><span class="n">framework</span><span class="w"> </span><span class="n">does</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">pass</span><span class="w"> </span><span class="n">any</span><span class="w"> </span><span class="n">information</span><span class="w"> </span><span class="n">about</span><span class="w"> </span><span class="n">which</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w">       </span><span class="n">LDAP</span><span class="w"> </span><span class="n">source</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="n">selected</span><span class="mf">.</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="kd">Def</span><span class="n">ault</span><span class="p">:</span><span class="w"> </span><span class="n">NULL</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">Require</span><span class="p">:</span><span class="w"> </span><span class="n">No</span><span class="w"></span>
+<span class="w">   </span><span class="o">*/</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">authsource</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">NULL</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">authsource</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">example</span><span class="o">-</span><span class="n">ldap</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
 
 
-  /**
-   * This is the attribute name which the users groups will be
-   * added to. If the attribute exists in the request then the
-   * filter will attempt to add them.
-   *
-   * Default: 'groups'
-   * Required: No
-   */
-  'attribute.groups' =&gt; 'groups',
+<span class="w">  </span><span class="o">/**</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">This</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">attribute</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="n">which</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="n">groups</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">be</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">added</span><span class="w"> </span><span class="kr">to</span><span class="mf">.</span><span class="w"> </span><span class="kr">If</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">attribute</span><span class="w"> </span><span class="n">exists</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span><span class="n">the</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">filter</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">attempt</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="n">them</span><span class="mf">.</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="kd">Def</span><span class="n">ault</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="n">groups</span><span class="err">'</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">Required</span><span class="p">:</span><span class="w"> </span><span class="n">No</span><span class="w"></span>
+<span class="w">   </span><span class="o">*/</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">attribute</span><span class="mf">.</span><span class="n">groups</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">groups</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
 
 
-  /**
-   * The base DN used to search LDAP. May not be needed if searching
-   * LDAP using the standard method, meaning that no Product is specified.
-   * Can be listed as a single string for one base, else an array of
-   * strings for multiple bases.
-   *
-   * Default: ''
-   * Required: No
-   * AuthSource: search.base
-   */
-  'ldap.basedn' =&gt; '',
-  'ldap.basedn' =&gt; 'DC=example,DC=org',
-  'ldap.basedn' =&gt; array(
-    'OU=Staff,DC=example,DC=org',
-    'OU=Students,DC=example,DC=org'
-  ),
+<span class="w">  </span><span class="o">/**</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">base</span><span class="w"> </span><span class="n">DN</span><span class="w"> </span><span class="n">used</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="n">search</span><span class="w"> </span><span class="n">LDAP</span><span class="mf">.</span><span class="w"> </span><span class="n">May</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">needed</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="n">searching</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">LDAP</span><span class="w"> </span><span class="n">using</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">standard</span><span class="w"> </span><span class="n">method</span><span class="p">,</span><span class="w"> </span><span class="n">meaning</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">no</span><span class="w"> </span><span class="n">Product</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">specified</span><span class="mf">.</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">Can</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="kr">list</span><span class="n">ed</span><span class="w"> </span><span class="n">as</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="nb">sin</span><span class="n">gle</span><span class="w"> </span><span class="n">string</span><span class="w"> </span><span class="kr">for</span><span class="w"> </span><span class="kr">on</span><span class="n">e</span><span class="w"> </span><span class="n">base</span><span class="p">,</span><span class="w"> </span><span class="n">else</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">array</span><span class="w"> </span><span class="n">of</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">strings</span><span class="w"> </span><span class="kr">for</span><span class="w"> </span><span class="n">multiple</span><span class="w"> </span><span class="n">bases</span><span class="mf">.</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="kd">Def</span><span class="n">ault</span><span class="p">:</span><span class="w"> </span><span class="err">''</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">Required</span><span class="p">:</span><span class="w"> </span><span class="n">No</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">AuthSource</span><span class="p">:</span><span class="w"> </span><span class="n">search</span><span class="mf">.</span><span class="n">base</span><span class="w"></span>
+<span class="w">   </span><span class="o">*/</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">ldap</span><span class="mf">.</span><span class="n">basedn</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">''</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">ldap</span><span class="mf">.</span><span class="n">basedn</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">DC</span><span class="o">=</span><span class="n">example</span><span class="p">,</span><span class="n">DC</span><span class="o">=</span><span class="ow">or</span><span class="n">g</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">ldap</span><span class="mf">.</span><span class="n">basedn</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">array</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="err">'</span><span class="n">OU</span><span class="o">=</span><span class="n">Staff</span><span class="p">,</span><span class="n">DC</span><span class="o">=</span><span class="n">example</span><span class="p">,</span><span class="n">DC</span><span class="o">=</span><span class="ow">or</span><span class="n">g</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="err">'</span><span class="n">OU</span><span class="o">=</span><span class="n">Students</span><span class="p">,</span><span class="n">DC</span><span class="o">=</span><span class="n">example</span><span class="p">,</span><span class="n">DC</span><span class="o">=</span><span class="ow">or</span><span class="n">g</span><span class="err">'</span><span class="w"></span>
+<span class="w">  </span><span class="p">),</span><span class="w"></span>
 
 
-  /**
-   * Set to TRUE to enable LDAP debug level. Passed to
-   * the LDAP connection class.
-   *
-   * Default: FALSE
-   * Required: No
-   * AuthSource: debug
-   */
-  'ldap.debug' =&gt; FALSE,
-  'ldap.debug' =&gt; TRUE,
+<span class="w">  </span><span class="o">/**</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">Set</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="n">TRUE</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="n">enable</span><span class="w"> </span><span class="n">LDAP</span><span class="w"> </span><span class="n">debug</span><span class="w"> </span><span class="n">level</span><span class="mf">.</span><span class="w"> </span><span class="n">Passed</span><span class="w"> </span><span class="kr">to</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">LDAP</span><span class="w"> </span><span class="n">connection</span><span class="w"> </span><span class="n">class</span><span class="mf">.</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="kd">Def</span><span class="n">ault</span><span class="p">:</span><span class="w"> </span><span class="n">FALSE</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">Required</span><span class="p">:</span><span class="w"> </span><span class="n">No</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">AuthSource</span><span class="p">:</span><span class="w"> </span><span class="n">debug</span><span class="w"></span>
+<span class="w">   </span><span class="o">*/</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">ldap</span><span class="mf">.</span><span class="n">debug</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">FALSE</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">ldap</span><span class="mf">.</span><span class="n">debug</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">TRUE</span><span class="p">,</span><span class="w"></span>
 
 
-  /**
-   * Set to TRUE to force the LDAP connection to use TLS.
-   *
-   * Note: If ldaps:// is specified in the hostname then it
-   *       will automatically use TLS.
-   *
-   * Default: FALSE
-   * Required: No
-   * AuthSource: enable_tls
-   */
-  'ldap.enable_tls' =&gt; FALSE,
-  'ldap.enable_tls' =&gt; TRUE,
+<span class="w">  </span><span class="o">/**</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">Set</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="n">TRUE</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="kr">for</span><span class="n">ce</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">LDAP</span><span class="w"> </span><span class="n">connection</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="n">use</span><span class="w"> </span><span class="n">TLS</span><span class="mf">.</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="ow">Not</span><span class="n">e</span><span class="p">:</span><span class="w"> </span><span class="kr">If</span><span class="w"> </span><span class="n">ldaps</span><span class="p">:</span><span class="o">//</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">specified</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">hostname</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span><span class="n">it</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w">       </span><span class="n">will</span><span class="w"> </span><span class="n">automatically</span><span class="w"> </span><span class="n">use</span><span class="w"> </span><span class="n">TLS</span><span class="mf">.</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="kd">Def</span><span class="n">ault</span><span class="p">:</span><span class="w"> </span><span class="n">FALSE</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">Required</span><span class="p">:</span><span class="w"> </span><span class="n">No</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">AuthSource</span><span class="p">:</span><span class="w"> </span><span class="n">enable_tls</span><span class="w"></span>
+<span class="w">   </span><span class="o">*/</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">ldap</span><span class="mf">.</span><span class="n">enable_tls</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">FALSE</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">ldap</span><span class="mf">.</span><span class="n">enable_tls</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">TRUE</span><span class="p">,</span><span class="w"></span>
 
 
-  /**
-   * This is the hostname string of LDAP server(s) to try
-   * and connect to. It should be the same format as the
-   * LDAP authsource hostname as it is passed to that class.
-   *
-   * Note: Multiple servers are separated by a space.
-   *
-   * Default: NULL
-   * Required: Yes, unless authsource is used
-   * AuthSource: hostname
-   */
-  'ldap.hostname' =&gt; 'ldap.example.org',
-  'ldap.hostname' =&gt; 'ad1.example.org ad2.example.org',
+<span class="w">  </span><span class="o">/**</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">This</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">hostname</span><span class="w"> </span><span class="n">string</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">LDAP</span><span class="w"> </span><span class="n">server</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="n">try</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">connect</span><span class="w"> </span><span class="kr">to</span><span class="mf">.</span><span class="w"> </span><span class="n">It</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">same</span><span class="w"> </span><span class="kr">for</span><span class="n">mat</span><span class="w"> </span><span class="n">as</span><span class="w"> </span><span class="n">the</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">LDAP</span><span class="w"> </span><span class="n">authsource</span><span class="w"> </span><span class="n">hostname</span><span class="w"> </span><span class="n">as</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">passed</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">class</span><span class="mf">.</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="ow">Not</span><span class="n">e</span><span class="p">:</span><span class="w"> </span><span class="n">Multiple</span><span class="w"> </span><span class="n">servers</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="n">separated</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">space</span><span class="mf">.</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="kd">Def</span><span class="n">ault</span><span class="p">:</span><span class="w"> </span><span class="n">NULL</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">Required</span><span class="p">:</span><span class="w"> </span><span class="n">Yes</span><span class="p">,</span><span class="w"> </span><span class="n">unless</span><span class="w"> </span><span class="n">authsource</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">used</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">AuthSource</span><span class="p">:</span><span class="w"> </span><span class="n">hostname</span><span class="w"></span>
+<span class="w">   </span><span class="o">*/</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">ldap</span><span class="mf">.</span><span class="n">hostname</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">ldap</span><span class="mf">.</span><span class="n">example</span><span class="mf">.</span><span class="ow">or</span><span class="n">g</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">ldap</span><span class="mf">.</span><span class="n">hostname</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">ad1</span><span class="mf">.</span><span class="n">example</span><span class="mf">.</span><span class="ow">or</span><span class="n">g</span><span class="w"> </span><span class="n">ad2</span><span class="mf">.</span><span class="n">example</span><span class="mf">.</span><span class="ow">or</span><span class="n">g</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
 
 
-  /**
-   * This is the port where the LDAP server(s) listen for
-   * connections.
-   *
-   * Default: 389
-   * Required: No
-   * AuthSource: port
-   */
-  'ldap.port' =&gt; 389,
+<span class="w">  </span><span class="o">/**</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">This</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">port</span><span class="w"> </span><span class="n">where</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">LDAP</span><span class="w"> </span><span class="n">server</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="kr">list</span><span class="n">en</span><span class="w"> </span><span class="kr">for</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">connections</span><span class="mf">.</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="kd">Def</span><span class="n">ault</span><span class="p">:</span><span class="w"> </span><span class="mf">389</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">Required</span><span class="p">:</span><span class="w"> </span><span class="n">No</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">AuthSource</span><span class="p">:</span><span class="w"> </span><span class="n">port</span><span class="w"></span>
+<span class="w">   </span><span class="o">*/</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">ldap</span><span class="mf">.</span><span class="n">port</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mf">389</span><span class="p">,</span><span class="w"></span>
 
 
-  /**
-   * This is the password used to bind to LDAP.
-   *
-   * Default: NULL
-   * Required: No, only if required for binding.
-   * AuthSource: search.password OR priv.password
-   */
-  'ldap.password' =&gt; 'Abc123',
+<span class="w">  </span><span class="o">/**</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">This</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="n">used</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="n">bind</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="n">LDAP</span><span class="mf">.</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="kd">Def</span><span class="n">ault</span><span class="p">:</span><span class="w"> </span><span class="n">NULL</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">Required</span><span class="p">:</span><span class="w"> </span><span class="n">No</span><span class="p">,</span><span class="w"> </span><span class="kr">on</span><span class="n">ly</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="n">required</span><span class="w"> </span><span class="kr">for</span><span class="w"> </span><span class="n">binding</span><span class="mf">.</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">AuthSource</span><span class="p">:</span><span class="w"> </span><span class="n">search</span><span class="mf">.</span><span class="n">password</span><span class="w"> </span><span class="ow">OR</span><span class="w"> </span><span class="n">priv</span><span class="mf">.</span><span class="n">password</span><span class="w"></span>
+<span class="w">   </span><span class="o">*/</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">ldap</span><span class="mf">.</span><span class="n">password</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">Abc123</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
 
 
-  /**
-   * By specifying the directory service product name, the number
-   * of LDAP queries can be dramatically reduced. The reason is
-   * that most products have a special query to recursively search
-   * group membership.
-   *
-   * Note: Only ActiveDirectory is currently supported 
-   * (OpenLDAP is implemented but not supported, see example below).
-   *
-   * Default: ''
-   * Required: No
-   */
-  'ldap.product' =&gt; '',
-  'ldap.product' =&gt; 'ActiveDirectory',
-  'ldap.product' =&gt; 'OpenLDAP',
+<span class="w">  </span><span class="o">/**</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">By</span><span class="w"> </span><span class="n">specifying</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">directory</span><span class="w"> </span><span class="n">service</span><span class="w"> </span><span class="n">product</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">number</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">LDAP</span><span class="w"> </span><span class="n">queries</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">dramatically</span><span class="w"> </span><span class="n">reduced</span><span class="mf">.</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">reason</span><span class="w"> </span><span class="n">is</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">most</span><span class="w"> </span><span class="n">products</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">special</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="n">recursively</span><span class="w"> </span><span class="n">search</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="n">membership</span><span class="mf">.</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="ow">Not</span><span class="n">e</span><span class="p">:</span><span class="w"> </span><span class="kr">On</span><span class="n">ly</span><span class="w"> </span><span class="n">ActiveDirectory</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">currently</span><span class="w"> </span><span class="n">supported</span><span class="w"> </span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="kr">Open</span><span class="n">LDAP</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">implemented</span><span class="w"> </span><span class="n">but</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">supported</span><span class="p">,</span><span class="w"> </span><span class="n">see</span><span class="w"> </span><span class="n">example</span><span class="w"> </span><span class="n">below</span><span class="p">)</span><span class="mf">.</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="kd">Def</span><span class="n">ault</span><span class="p">:</span><span class="w"> </span><span class="err">''</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">Required</span><span class="p">:</span><span class="w"> </span><span class="n">No</span><span class="w"></span>
+<span class="w">   </span><span class="o">*/</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">ldap</span><span class="mf">.</span><span class="n">product</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">''</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">ldap</span><span class="mf">.</span><span class="n">product</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">ActiveDirectory</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">ldap</span><span class="mf">.</span><span class="n">product</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="kr">Open</span><span class="n">LDAP</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
 
 
-  /**
-   * The LDAP timeout value passed to the LDAP connection class.
-   *
-   * Default: 0
-   * Required: No
-   * AuthSource: timeout
-   */
-  'ldap.timeout' =&gt; 0,
-  'ldap.timeout' =&gt; 30,
+<span class="w">  </span><span class="o">/**</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">LDAP</span><span class="w"> </span><span class="n">timeout</span><span class="w"> </span><span class="nb">val</span><span class="n">ue</span><span class="w"> </span><span class="n">passed</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">LDAP</span><span class="w"> </span><span class="n">connection</span><span class="w"> </span><span class="n">class</span><span class="mf">.</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="kd">Def</span><span class="n">ault</span><span class="p">:</span><span class="w"> </span><span class="mf">0</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">Required</span><span class="p">:</span><span class="w"> </span><span class="n">No</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">AuthSource</span><span class="p">:</span><span class="w"> </span><span class="n">timeout</span><span class="w"></span>
+<span class="w">   </span><span class="o">*/</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">ldap</span><span class="mf">.</span><span class="n">timeout</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">ldap</span><span class="mf">.</span><span class="n">timeout</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mf">30</span><span class="p">,</span><span class="w"></span>
 
 
-  /**
-   * This is the username used to bind to LDAP with.
-   * More than likely will need to be in the DN of
-   * user binding to LDAP.
-   *
-   * Default: NULL
-   * Required: No, only if required for binding.
-   * AuthSource: search.username OR priv.username
-   */
-  'ldap.username' =&gt; 'CN=LDAP User,CN=Users,DC=example,DC=org',
+<span class="w">  </span><span class="o">/**</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">This</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">username</span><span class="w"> </span><span class="n">used</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="n">bind</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="n">LDAP</span><span class="w"> </span><span class="n">with</span><span class="mf">.</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">More</span><span class="w"> </span><span class="n">than</span><span class="w"> </span><span class="n">likely</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">need</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">DN</span><span class="w"> </span><span class="n">of</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="n">binding</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="n">LDAP</span><span class="mf">.</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="kd">Def</span><span class="n">ault</span><span class="p">:</span><span class="w"> </span><span class="n">NULL</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">Required</span><span class="p">:</span><span class="w"> </span><span class="n">No</span><span class="p">,</span><span class="w"> </span><span class="kr">on</span><span class="n">ly</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="n">required</span><span class="w"> </span><span class="kr">for</span><span class="w"> </span><span class="n">binding</span><span class="mf">.</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">AuthSource</span><span class="p">:</span><span class="w"> </span><span class="n">search</span><span class="mf">.</span><span class="n">username</span><span class="w"> </span><span class="ow">OR</span><span class="w"> </span><span class="n">priv</span><span class="mf">.</span><span class="n">username</span><span class="w"></span>
+<span class="w">   </span><span class="o">*/</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">ldap</span><span class="mf">.</span><span class="n">username</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">CN</span><span class="o">=</span><span class="n">LDAP</span><span class="w"> </span><span class="n">User</span><span class="p">,</span><span class="n">CN</span><span class="o">=</span><span class="n">Users</span><span class="p">,</span><span class="n">DC</span><span class="o">=</span><span class="n">example</span><span class="p">,</span><span class="n">DC</span><span class="o">=</span><span class="ow">or</span><span class="n">g</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
 
 
-  /**
-   * The following attribute.* and type.* configuration options
-   * define the LDAP schema and should only be defined/modified
-   * if the schema has been modified or the LDAP product used
-   * uses other attribute names. By default, the schema is setup
-   * for ActiveDirectory.
-   *
-   * Defaults: Listed Below
-   * Required: No
-   */
-  'attribute.dn' =&gt; 'distinguishedName',
-  'attribute.groups' =&gt; 'groups', // Also noted above
-  'attribute.member' =&gt; 'member',
-  'attribute.memberof' =&gt; 'memberOf',
-  'attribute.groupname' =&gt; 'name',
-  'attribute.type' =&gt; 'objectClass',
-  'attribute.username' =&gt; 'sAMAccountName',
+<span class="w">  </span><span class="o">/**</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">following</span><span class="w"> </span><span class="n">attribute</span><span class="mf">.</span><span class="o">*</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">type</span><span class="mf">.</span><span class="o">*</span><span class="w"> </span><span class="n">configuration</span><span class="w"> </span><span class="n">options</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="kd">def</span><span class="n">ine</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">LDAP</span><span class="w"> </span><span class="n">schema</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="kr">on</span><span class="n">ly</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="kd">def</span><span class="n">ined</span><span class="o">/</span><span class="n">modified</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">schema</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="n">been</span><span class="w"> </span><span class="n">modified</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">LDAP</span><span class="w"> </span><span class="n">product</span><span class="w"> </span><span class="n">used</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">uses</span><span class="w"> </span><span class="n">other</span><span class="w"> </span><span class="n">attribute</span><span class="w"> </span><span class="n">names</span><span class="mf">.</span><span class="w"> </span><span class="n">By</span><span class="w"> </span><span class="kd">def</span><span class="n">ault</span><span class="p">,</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">schema</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">setup</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="kr">for</span><span class="w"> </span><span class="n">ActiveDirectory</span><span class="mf">.</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="kd">Def</span><span class="n">aults</span><span class="p">:</span><span class="w"> </span><span class="kr">List</span><span class="n">ed</span><span class="w"> </span><span class="n">Below</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">Required</span><span class="p">:</span><span class="w"> </span><span class="n">No</span><span class="w"></span>
+<span class="w">   </span><span class="o">*/</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">attribute</span><span class="mf">.</span><span class="n">dn</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">distinguishedName</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">attribute</span><span class="mf">.</span><span class="n">groups</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">groups</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">Also</span><span class="w"> </span><span class="ow">not</span><span class="n">ed</span><span class="w"> </span><span class="n">above</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">attribute</span><span class="mf">.</span><span class="n">member</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">member</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">attribute</span><span class="mf">.</span><span class="n">memberof</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">memberOf</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">attribute</span><span class="mf">.</span><span class="n">groupname</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">name</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">attribute</span><span class="mf">.</span><span class="n">type</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">objectClass</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">attribute</span><span class="mf">.</span><span class="n">username</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">sAMAccountName</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
 
 
-  /**
-   * As mentioned above, these can be changed if the LDAP schema
-   * has been modified. These list the Object/Entry Type for a given
-   * DN, in relation to the 'attribute.type' config option above.
-   * These are used to determine the type of entry.
-   *
-   * Defaults: Listed Below
-   * Required: No
-   */
-  'type.group' =&gt; 'group',
-  'type.user' =&gt; 'user',
-)
+<span class="w">  </span><span class="o">/**</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">As</span><span class="w"> </span><span class="n">mentioned</span><span class="w"> </span><span class="n">above</span><span class="p">,</span><span class="w"> </span><span class="n">these</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">changed</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">LDAP</span><span class="w"> </span><span class="n">schema</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="n">been</span><span class="w"> </span><span class="n">modified</span><span class="mf">.</span><span class="w"> </span><span class="n">These</span><span class="w"> </span><span class="kr">list</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">Object</span><span class="o">/</span><span class="n">Entry</span><span class="w"> </span><span class="n">Type</span><span class="w"> </span><span class="kr">for</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">given</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">DN</span><span class="p">,</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">relation</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="err">'</span><span class="n">attribute</span><span class="mf">.</span><span class="n">type</span><span class="err">'</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="n">option</span><span class="w"> </span><span class="n">above</span><span class="mf">.</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">These</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="n">used</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="n">determine</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">entry</span><span class="mf">.</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="kd">Def</span><span class="n">aults</span><span class="p">:</span><span class="w"> </span><span class="kr">List</span><span class="n">ed</span><span class="w"> </span><span class="n">Below</span><span class="w"></span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">Required</span><span class="p">:</span><span class="w"> </span><span class="n">No</span><span class="w"></span>
+<span class="w">   </span><span class="o">*/</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">type</span><span class="mf">.</span><span class="n">group</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">group</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">type</span><span class="mf">.</span><span class="n">user</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">user</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
 </code></pre>
+</div>
 <h3 id="example_2">
  Example
 </h3>
@@ -789,34 +807,40 @@ a listing of all configuration options and their details.
 authsource for all LDAP connection information and manually search
 the hierarchy for the users group memberships.
 </p>
-<pre class="codehilite"><code>50 =&gt; array(
-  'class' =&gt; 'ldap:AttributeAddUsersGroups',
-  'authsource' =&gt; 'example-ldap'
-)
+<div class="codehilite">
+ <pre><span></span><code><span class="mf">50</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">array</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">class</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">ldap</span><span class="p">:</span><span class="n">AttributeAddUsersGroups</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">authsource</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">example</span><span class="o">-</span><span class="n">ldap</span><span class="err">'</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  By making one small change we can optimize the filter to use better
 group search methods and eliminate un-needed LDAP queries.
 </p>
-<pre class="codehilite"><code>50 =&gt; array(
-  'class' =&gt; 'ldap:AttributeAddUsersGroups',
-  'authsource' =&gt; 'example-ldap',
-  'ldap.product' =&gt; 'ActiveDirectory'
-)
+<div class="codehilite">
+ <pre><span></span><code><span class="mf">50</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">array</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">class</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">ldap</span><span class="p">:</span><span class="n">AttributeAddUsersGroups</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">authsource</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">example</span><span class="o">-</span><span class="n">ldap</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">ldap</span><span class="mf">.</span><span class="n">product</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">ActiveDirectory</span><span class="err">'</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  If no authsource is available then you can specify the connection info
 using the filter configuration. Note: Not all of the options below are
 required, see the config info above for details.
 </p>
-<pre class="codehilite"><code>50 =&gt; array(
-  'class' =&gt; 'ldap:AttributeAddUsersGroups',
-  'ldap.hostname' =&gt; 'ldap.example.org',
-  'ldap.username' =&gt; 'CN=LDAP User,CN=Users,DC=example,DC=org',
-  'ldap.password' =&gt; 'Abc123',
-  'ldap.basedn' =&gt; 'DC=example,DC=org'
-)
+<div class="codehilite">
+ <pre><span></span><code><span class="mf">50</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">array</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">class</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">ldap</span><span class="p">:</span><span class="n">AttributeAddUsersGroups</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">ldap</span><span class="mf">.</span><span class="n">hostname</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">ldap</span><span class="mf">.</span><span class="n">example</span><span class="mf">.</span><span class="ow">or</span><span class="n">g</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">ldap</span><span class="mf">.</span><span class="n">username</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">CN</span><span class="o">=</span><span class="n">LDAP</span><span class="w"> </span><span class="n">User</span><span class="p">,</span><span class="n">CN</span><span class="o">=</span><span class="n">Users</span><span class="p">,</span><span class="n">DC</span><span class="o">=</span><span class="n">example</span><span class="p">,</span><span class="n">DC</span><span class="o">=</span><span class="ow">or</span><span class="n">g</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">ldap</span><span class="mf">.</span><span class="n">password</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">Abc123</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">ldap</span><span class="mf">.</span><span class="n">basedn</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">DC</span><span class="o">=</span><span class="n">example</span><span class="p">,</span><span class="n">DC</span><span class="o">=</span><span class="ow">or</span><span class="n">g</span><span class="err">'</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  Example for unsupported OpenLDAP usage. 
 Intention is to filter in
@@ -833,7 +857,8 @@ Intention is to filter in
  </code>
  (=name of the group).
 </p>
-<pre class="codehilite"><code>  50 =&gt; array(
+<div class="codehilite">
+ <pre><span></span><code>  50 =&gt; array(
       'class' =&gt; 'ldap:AttributeAddUsersGroups',
       'ldap.product' =&gt; 'OpenLDAP',
       'ldap.basedn' =&gt; 'ou=groups,dc=example,dc=org',
@@ -841,5 +866,6 @@ Intention is to filter in
       'attribute.member' =&gt; 'cn',
       'attribute.memberof' =&gt; 'memberUid',
   ),
-</code></pre></body>
+</code></pre>
+</div></body>
 </html>

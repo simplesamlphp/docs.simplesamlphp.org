@@ -149,16 +149,19 @@ To do this, we open
  . Create the file if it does not exist.
 If you create the file, it should look like this:
 </p>
-<pre class="codehilite"><code>  &lt;?php
-  $config = array(
-      /* Here we can add entries for authentication sources we want to use. */
-  );
+<div class="codehilite">
+ <pre><span></span><code>  <span class="cp">&lt;?php</span>
+  <span class="nv">$config</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+      <span class="cm">/* Here we can add entries for authentication sources we want to use. */</span>
+  <span class="p">);</span>
 </code></pre>
+</div>
 <p>
  We are going to add an entry to this file.
 The entry should look something like this:
 </p>
-<pre class="codehilite"><code>  'default-sp' =&gt; array(
+<div class="codehilite">
+ <pre><span></span><code>  'default-sp' =&gt; array(
       'saml:SP',
 
       /*
@@ -176,6 +179,7 @@ The entry should look something like this:
       /* Here you can add other options to the SP. */
   ),
 </code></pre>
+</div>
 <p>
  <code>
   default-sp
@@ -292,13 +296,17 @@ Instead, you should include
 <p>
  This means that you replace lines like:
 </p>
-<pre class="codehilite"><code>  require_once('.../simplesamlphp/www/_include.php');
+<div class="codehilite">
+ <pre><span></span><code>  require_once('.../simplesamlphp/www/_include.php');
 </code></pre>
+</div>
 <p>
  with:
 </p>
-<pre class="codehilite"><code>  require_once('.../simplesamlphp/lib/_autoload.php');
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="n">require_once</span><span class="p">(</span><span class="s1">'.../simplesamlphp/lib/_autoload.php'</span><span class="p">);</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  <code>
   _autoload.php
@@ -314,10 +322,12 @@ This makes it possible to access the classes from your application.
  If you load any SimpleSAMLphp class files directly, you should remove those lines.
 That means that you should remove lines like the following:
 </p>
-<pre class="codehilite"><code>  require_once('SimpleSAML/Utilities.php');
+<div class="codehilite">
+ <pre><span></span><code>  require_once('SimpleSAML/Utilities.php');
   require_once('SimpleSAML/Session.php');
   require_once('SimpleSAML/XHTML/Template.php');
 </code></pre>
+</div>
 <h3 id="authentication-api">
  Authentication API
 </h3>
@@ -331,24 +341,26 @@ This API is designed to handle the common operations.
 <p>
  This is a quick overview of the API:
 </p>
-<pre class="codehilite"><code>  /* Get a reference to our authentication source. */
-  $as = new \SimpleSAML\Auth\Simple('default-sp');
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="c">/* Get a reference to our authentication source. */</span><span class="w"></span>
+<span class="w">  </span><span class="o">$</span><span class="nt">as</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">new</span><span class="w"> </span><span class="err">\</span><span class="nt">SimpleSAML</span><span class="err">\</span><span class="nt">Auth</span><span class="err">\</span><span class="nt">Simple</span><span class="o">(</span><span class="s1">'default-sp'</span><span class="o">);</span><span class="w"></span>
 
-  /* Require the user to be authentcated. */
-  $as-&gt;requireAuth();
-  /* When that function returns, we have an authenticated user. */
+<span class="w">  </span><span class="c">/* Require the user to be authentcated. */</span><span class="w"></span>
+<span class="w">  </span><span class="o">$</span><span class="nt">as-</span><span class="o">&gt;</span><span class="nt">requireAuth</span><span class="o">();</span><span class="w"></span>
+<span class="w">  </span><span class="c">/* When that function returns, we have an authenticated user. */</span><span class="w"></span>
 
-  /*
-   * Retrieve attributes of the user.
-   *
-   * Note: If the user isn't authenticated when getAttributes() is
-   * called, an empty array will be returned.
-   */
-  $attributes = $as-&gt;getAttributes();
+<span class="w">  </span><span class="c">/*</span>
+<span class="c">   * Retrieve attributes of the user.</span>
+<span class="c">   *</span>
+<span class="c">   * Note: If the user isn't authenticated when getAttributes() is</span>
+<span class="c">   * called, an empty array will be returned.</span>
+<span class="c">   */</span><span class="w"></span>
+<span class="w">  </span><span class="o">$</span><span class="nt">attributes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="nt">as-</span><span class="o">&gt;</span><span class="nt">getAttributes</span><span class="o">();</span><span class="w"></span>
 
-  /* Log the user out. */
-  $as-&gt;logout();
+<span class="w">  </span><span class="c">/* Log the user out. */</span><span class="w"></span>
+<span class="w">  </span><span class="o">$</span><span class="nt">as-</span><span class="o">&gt;</span><span class="nt">logout</span><span class="o">();</span><span class="w"></span>
 </code></pre>
+</div>
 <h4 id="config-and-session">
  <code>
   $config
@@ -361,29 +373,35 @@ This API is designed to handle the common operations.
 <p>
  Generally, if you have:
 </p>
-<pre class="codehilite"><code>  $config = SimpleSAML_Configuration::getInstance();
-  $session = SimpleSAML_Session::getSessionFromRequest();
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">SimpleSAML_Configuration</span><span class="p">::</span><span class="nd">getInstance</span><span class="o">();</span><span class="w"></span>
+<span class="w">  </span><span class="o">$</span><span class="nt">session</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">SimpleSAML_Session</span><span class="p">::</span><span class="nd">getSessionFromRequest</span><span class="o">();</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  you should replace it with this single line:
 </p>
-<pre class="codehilite"><code>  $as = new \SimpleSAML\Auth\Simple('default-sp');
+<div class="codehilite">
+ <pre><span></span><code>  $as = new \SimpleSAML\Auth\Simple('default-sp');
 </code></pre>
+</div>
 <h4 id="requiring-authentication">
  Requiring authentication
 </h4>
 <p>
  Blocks of code like the following:
 </p>
-<pre class="codehilite"><code>  /* Check if valid local session exists.. */
-  if (!isset($session) || !$session-&gt;isValid('saml2') ) {
-    SimpleSAML_Utilities::redirect(
-      '/' . $config-&gt;getBaseURL() .
-      'saml2/sp/initSSO.php',
-      array('RelayState' =&gt; SimpleSAML_Utilities::selfURL())
-      );
-  }
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="c">/* Check if valid local session exists.. */</span><span class="w"></span>
+<span class="w">  </span><span class="nt">if</span><span class="w"> </span><span class="o">(!</span><span class="nt">isset</span><span class="o">($</span><span class="nt">session</span><span class="o">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!$</span><span class="nt">session-</span><span class="o">&gt;</span><span class="nt">isValid</span><span class="o">(</span><span class="s1">'saml2'</span><span class="o">)</span><span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">SimpleSAML_Utilities</span><span class="p">:</span><span class="o">:</span><span class="nf">redirect</span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'/'</span><span class="w"> </span><span class="err">.</span><span class="w"> </span><span class="err">$</span><span class="n">config</span><span class="o">-</span><span class="err">&gt;</span><span class="nf">getBaseURL</span><span class="p">()</span><span class="w"> </span><span class="err">.</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'saml2/sp/initSSO.php'</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nf">array</span><span class="p">(</span><span class="s1">'RelayState'</span><span class="w"> </span><span class="err">=&gt;</span><span class="w"> </span><span class="n">SimpleSAML_Utilities</span><span class="err">::</span><span class="nf">selfURL</span><span class="p">())</span><span class="w"></span>
+<span class="w">      </span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  should be replaced with a single call to
  <code>
@@ -391,33 +409,41 @@ This API is designed to handle the common operations.
  </code>
  :
 </p>
-<pre class="codehilite"><code>  $as-&gt;requireAuth();
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="err">$</span><span class="kr">as</span><span class="o">-&gt;</span><span class="n">requireAuth</span><span class="p">();</span><span class="w"></span>
 </code></pre>
+</div>
 <h4 id="fetching-attributes">
  Fetching attributes
 </h4>
 <p>
  Where you previously called:
 </p>
-<pre class="codehilite"><code>  $session-&gt;getAttributes();
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="err">$</span><span class="n">session</span><span class="o">-&gt;</span><span class="n">getAttributes</span><span class="p">();</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  you should now call:
 </p>
-<pre class="codehilite"><code>  $as-&gt;getAttributes();
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="err">$</span><span class="kr">as</span><span class="o">-&gt;</span><span class="n">getAttributes</span><span class="p">();</span><span class="w"></span>
 </code></pre>
+</div>
 <h4 id="logging-out">
  Logging out
 </h4>
 <p>
  Redirecting to the initSLO-script:
 </p>
-<pre class="codehilite"><code>  SimpleSAML_Utilities::redirect(
-      '/' . $config-&gt;getBaseURL() .
-      'saml2/sp/initSLO.php',
-      array('RelayState' =&gt; SimpleSAML_Utilities::selfURL())
-      );
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="nt">SimpleSAML_Utilities</span><span class="p">::</span><span class="nd">redirect</span><span class="o">(</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'/'</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">$</span><span class="nt">config-</span><span class="o">&gt;</span><span class="nt">getBaseURL</span><span class="o">()</span><span class="w"> </span><span class="o">.</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'saml2/sp/initSLO.php'</span><span class="o">,</span><span class="w"></span>
+<span class="w">      </span><span class="nt">array</span><span class="o">(</span><span class="s1">'RelayState'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">SimpleSAML_Utilities</span><span class="p">::</span><span class="nd">selfURL</span><span class="o">())</span><span class="w"></span>
+<span class="w">      </span><span class="o">);</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  should be replaced with a call to
  <code>
@@ -425,13 +451,17 @@ This API is designed to handle the common operations.
  </code>
  :
 </p>
-<pre class="codehilite"><code>  $as-&gt;logout();
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="err">$</span><span class="kr">as</span><span class="o">-&gt;</span><span class="n">logout</span><span class="p">();</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  If you want to return to a specific URL after logging out, you should include that URL as a parameter to the logout function:
 </p>
-<pre class="codehilite"><code>  $as-&gt;logout('https://example.org/');
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">as-</span><span class="o">&gt;</span><span class="nt">logout</span><span class="o">(</span><span class="s1">'https://example.org/'</span><span class="o">);</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  Please make sure the URL is trusted. If you obtain the URL from the user input, make sure it is trusted before
 calling $as-&gt;logout(), by using the SimpleSAML_Utilities::checkURLAllowed() method.
@@ -448,9 +478,11 @@ The URL to the new script is
  .
 It has two mandatory parameters:
 </p>
-<pre class="codehilite"><code>* `AuthId`: The id of the authentication source.
-* `ReturnTo`: The URL the user should be redirected to after authentication.
+<div class="codehilite">
+ <pre><span></span><code><span class="o">*</span><span class="w"> </span><span class="n n-Quoted">`AuthId`</span><span class="o">:</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">authentication</span><span class="w"> </span><span class="k">source</span><span class="p">.</span><span class="w"></span>
+<span class="o">*</span><span class="w"> </span><span class="n n-Quoted">`ReturnTo`</span><span class="o">:</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">URL</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">redirected</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">after</span><span class="w"> </span><span class="n">authentication</span><span class="p">.</span><span class="w"></span>
 </code></pre>
+</div>
 <h4 id="logout-link">
  Logout link
 </h4>
@@ -463,9 +495,11 @@ The URL to the new script is
  .
 It has two mandatory parameters:
 </p>
-<pre class="codehilite"><code>* `AuthId`: The id of the authentication source.
-* `ReturnTo`: The URL the user should be redirected to after logout.
+<div class="codehilite">
+ <pre><span></span><code><span class="o">*</span><span class="w"> </span><span class="n n-Quoted">`AuthId`</span><span class="o">:</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">authentication</span><span class="w"> </span><span class="k">source</span><span class="p">.</span><span class="w"></span>
+<span class="o">*</span><span class="w"> </span><span class="n n-Quoted">`ReturnTo`</span><span class="o">:</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">URL</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">redirected</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">after</span><span class="w"> </span><span class="n">logout</span><span class="p">.</span><span class="w"></span>
 </code></pre>
+</div>
 <h2 id="test-the-application">
  Test the application
 </h2>
@@ -485,8 +519,10 @@ It has two mandatory parameters:
  If you use a SimpleSAMLphp IdP, and you want users to be able to bookmark the login page, you need to test IdP initiated login.
 To test IdP initiated login from a SimpleSAMLphp IdP, you can access:
 </p>
-<pre class="codehilite"><code>  https://.../simplesaml/saml2/idp/SSOService.php?spentityid=&lt;entity ID of your SP&gt;&amp;RelayState=&lt;URL the user should be sent to after login&gt;
+<div class="codehilite">
+ <pre><span></span><code>  https://.../simplesaml/saml2/idp/SSOService.php?spentityid=&lt;entity ID of your SP&gt;&amp;RelayState=&lt;URL the user should be sent to after login&gt;
 </code></pre>
+</div>
 <p>
  Note that the RelayState parameter is only supported if the IdP runs version 1.5 of SimpleSAMLphp.
 If it isn't supported by the IdP, you need to configure the

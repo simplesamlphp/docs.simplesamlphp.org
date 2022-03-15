@@ -90,10 +90,12 @@
 </header><h1 id="upgrade-notes-for-simplesamlphp-18">
  Upgrade notes for SimpleSAMLphp 1.8
 </h1>
-<pre class="codehilite"><code>* The IdP now sends the NotOnOrAfter attribute in LogoutRequest messages.
-* We now have full support for selecting the correct AssertionConsumerService endpoint based on parameters in the authentication request.
-  As a side effect of this, an IdP may start sending responses to a new AssertionConsumerService endpoint after upgrade.
-  (This should only happen in the case where it sent the response to the wrong endpoint before.)
-* The SP no longer incorrectly returns PartialLogout as a status code in a LogoutResponse after the local session has expired.
-</code></pre></body>
+<div class="codehilite">
+ <pre><span></span><code><span class="o">*</span> <span class="nv">The</span> <span class="nv">IdP</span> <span class="nv">now</span> <span class="nv">sends</span> <span class="nv">the</span> <span class="nv">NotOnOrAfter</span> <span class="nv">attribute</span> <span class="nv">in</span> <span class="nv">LogoutRequest</span> <span class="nv">messages</span>.
+<span class="o">*</span> <span class="nv">We</span> <span class="nv">now</span> <span class="nv">have</span> <span class="nv">full</span> <span class="nv">support</span> <span class="k">for</span> <span class="nv">selecting</span> <span class="nv">the</span> <span class="nv">correct</span> <span class="nv">AssertionConsumerService</span> <span class="nv">endpoint</span> <span class="nv">based</span> <span class="nv">on</span> <span class="nv">parameters</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">authentication</span> <span class="nv">request</span>.
+  <span class="nv">As</span> <span class="nv">a</span> <span class="nv">side</span> <span class="nv">effect</span> <span class="nv">of</span> <span class="nv">this</span>, <span class="nv">an</span> <span class="nv">IdP</span> <span class="nv">may</span> <span class="nv">start</span> <span class="nv">sending</span> <span class="nv">responses</span> <span class="nv">to</span> <span class="nv">a</span> <span class="nv">new</span> <span class="nv">AssertionConsumerService</span> <span class="nv">endpoint</span> <span class="nv">after</span> <span class="nv">upgrade</span>.
+  <span class="ss">(</span><span class="nv">This</span> <span class="nv">should</span> <span class="nv">only</span> <span class="nv">happen</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">case</span> <span class="nv">where</span> <span class="nv">it</span> <span class="nv">sent</span> <span class="nv">the</span> <span class="nv">response</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">wrong</span> <span class="nv">endpoint</span> <span class="nv">before</span>.<span class="ss">)</span>
+<span class="o">*</span> <span class="nv">The</span> <span class="nv">SP</span> <span class="nv">no</span> <span class="nv">longer</span> <span class="nv">incorrectly</span> <span class="nv">returns</span> <span class="nv">PartialLogout</span> <span class="nv">as</span> <span class="nv">a</span> <span class="nv">status</span> <span class="nv">code</span> <span class="nv">in</span> <span class="nv">a</span> <span class="nv">LogoutResponse</span> <span class="nv">after</span> <span class="nv">the</span> <span class="nv">local</span> <span class="nv">session</span> <span class="nv">has</span> <span class="nv">expired</span>.
+</code></pre>
+</div></body>
 </html>

@@ -133,22 +133,24 @@ Hashes can be generated with the included command line tool
  .
 This tool will interactively ask for a password, a hashing algorithm , and whether or not you want to use a salt:
 </p>
-<pre class="codehilite"><code>  [user@server simplesamlphp]$ bin/pwgen.php
-  Enter password: hackme
-  The following hashing algorithms are available:
-  md2          md4          md5          sha1         sha224       sha256
-  sha384       sha512       ripemd128    ripemd160    ripemd256    ripemd320
-  whirlpool    tiger128,3   tiger160,3   tiger192,3   tiger128,4   tiger160,4
-  tiger192,4   snefru       snefru256    gost         adler32      crc32
-  crc32b       salsa10      salsa20      haval128,3   haval160,3   haval192,3
-  haval224,3   haval256,3   haval128,4   haval160,4   haval192,4   haval224,4
-  haval256,4   haval128,5   haval160,5   haval192,5   haval224,5   haval256,5
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="o">[</span><span class="n">user@server simplesamlphp</span><span class="o">]</span><span class="err">$</span><span class="w"> </span><span class="n">bin</span><span class="o">/</span><span class="n">pwgen</span><span class="p">.</span><span class="n">php</span><span class="w"></span>
+<span class="w">  </span><span class="n">Enter</span><span class="w"> </span><span class="nl">password</span><span class="p">:</span><span class="w"> </span><span class="n">hackme</span><span class="w"></span>
+<span class="w">  </span><span class="n">The</span><span class="w"> </span><span class="n">following</span><span class="w"> </span><span class="n">hashing</span><span class="w"> </span><span class="n">algorithms</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="nl">available</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="n">md2</span><span class="w">          </span><span class="n">md4</span><span class="w">          </span><span class="n">md5</span><span class="w">          </span><span class="n">sha1</span><span class="w">         </span><span class="n">sha224</span><span class="w">       </span><span class="n">sha256</span><span class="w"></span>
+<span class="w">  </span><span class="n">sha384</span><span class="w">       </span><span class="n">sha512</span><span class="w">       </span><span class="n">ripemd128</span><span class="w">    </span><span class="n">ripemd160</span><span class="w">    </span><span class="n">ripemd256</span><span class="w">    </span><span class="n">ripemd320</span><span class="w"></span>
+<span class="w">  </span><span class="n">whirlpool</span><span class="w">    </span><span class="n">tiger128</span><span class="p">,</span><span class="mi">3</span><span class="w">   </span><span class="n">tiger160</span><span class="p">,</span><span class="mi">3</span><span class="w">   </span><span class="n">tiger192</span><span class="p">,</span><span class="mi">3</span><span class="w">   </span><span class="n">tiger128</span><span class="p">,</span><span class="mi">4</span><span class="w">   </span><span class="n">tiger160</span><span class="p">,</span><span class="mi">4</span><span class="w"></span>
+<span class="w">  </span><span class="n">tiger192</span><span class="p">,</span><span class="mi">4</span><span class="w">   </span><span class="n">snefru</span><span class="w">       </span><span class="n">snefru256</span><span class="w">    </span><span class="n">gost</span><span class="w">         </span><span class="n">adler32</span><span class="w">      </span><span class="n">crc32</span><span class="w"></span>
+<span class="w">  </span><span class="n">crc32b</span><span class="w">       </span><span class="n">salsa10</span><span class="w">      </span><span class="n">salsa20</span><span class="w">      </span><span class="n">haval128</span><span class="p">,</span><span class="mi">3</span><span class="w">   </span><span class="n">haval160</span><span class="p">,</span><span class="mi">3</span><span class="w">   </span><span class="n">haval192</span><span class="p">,</span><span class="mi">3</span><span class="w"></span>
+<span class="w">  </span><span class="n">haval224</span><span class="p">,</span><span class="mi">3</span><span class="w">   </span><span class="n">haval256</span><span class="p">,</span><span class="mi">3</span><span class="w">   </span><span class="n">haval128</span><span class="p">,</span><span class="mi">4</span><span class="w">   </span><span class="n">haval160</span><span class="p">,</span><span class="mi">4</span><span class="w">   </span><span class="n">haval192</span><span class="p">,</span><span class="mi">4</span><span class="w">   </span><span class="n">haval224</span><span class="p">,</span><span class="mi">4</span><span class="w"></span>
+<span class="w">  </span><span class="n">haval256</span><span class="p">,</span><span class="mi">4</span><span class="w">   </span><span class="n">haval128</span><span class="p">,</span><span class="mi">5</span><span class="w">   </span><span class="n">haval160</span><span class="p">,</span><span class="mi">5</span><span class="w">   </span><span class="n">haval192</span><span class="p">,</span><span class="mi">5</span><span class="w">   </span><span class="n">haval224</span><span class="p">,</span><span class="mi">5</span><span class="w">   </span><span class="n">haval256</span><span class="p">,</span><span class="mi">5</span><span class="w"></span>
 
-  Which one do you want? [sha256]
-  Do you want to use a salt? (yes/no) [yes]
+<span class="w">  </span><span class="n">Which</span><span class="w"> </span><span class="n">one</span><span class="w"> </span><span class="n">do</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">want</span><span class="vm">?</span><span class="w"> </span><span class="o">[</span><span class="n">sha256</span><span class="o">]</span><span class="w"></span>
+<span class="w">  </span><span class="n">Do</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">want</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">use</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">salt</span><span class="vm">?</span><span class="w"> </span><span class="p">(</span><span class="n">yes</span><span class="o">/</span><span class="k">no</span><span class="p">)</span><span class="w"> </span><span class="o">[</span><span class="n">yes</span><span class="o">]</span><span class="w"></span>
 
-    {SSHA256}y1mj3xsZ4/+LoQyPNVJzXUFfBcLHfwcHx1xxltxeQ1C5MeyEX/RxWA==
+<span class="w">    </span><span class="err">{</span><span class="n">SSHA256</span><span class="err">}</span><span class="n">y1mj3xsZ4</span><span class="o">/+</span><span class="n">LoQyPNVJzXUFfBcLHfwcHx1xxltxeQ1C5MeyEX</span><span class="o">/</span><span class="n">RxWA</span><span class="o">==</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  Now create an authentication source in
  <code>
@@ -156,7 +158,8 @@ This tool will interactively ask for a password, a hashing algorithm , and wheth
  </code>
  and use the resulting string as the password:
 </p>
-<pre class="codehilite"><code>  'example-hashed' =&gt; array(
+<div class="codehilite">
+ <pre><span></span><code>  'example-hashed' =&gt; array(
       'authCrypt:Hash',
       'student:{SSHA256}y1mj3xsZ4/+LoQyPNVJzXUFfBcLHfwcHx1xxltxeQ1C5MeyEX/RxWA==' =&gt; array(
           'uid' =&gt; array('student'),
@@ -164,6 +167,7 @@ This tool will interactively ask for a password, a hashing algorithm , and wheth
           ),
   ),
 </code></pre>
+</div>
 <p>
  This example creates a user
  <code>
@@ -185,8 +189,10 @@ This tool will interactively ask for a password, a hashing algorithm , and wheth
  </code>
  for the administrative password:
 </p>
-<pre class="codehilite"><code>  'auth.adminpassword'        =&gt; '{SSHA256}y1mj3xsZ4/+LoQyPNVJzXUFfBcLHfwcHx1xxltxeQ1C5MeyEX/RxWA==',
+<div class="codehilite">
+ <pre><span></span><code>  'auth.adminpassword'        =&gt; '{SSHA256}y1mj3xsZ4/+LoQyPNVJzXUFfBcLHfwcHx1xxltxeQ1C5MeyEX/RxWA==',
 </code></pre>
+</div>
 <p>
  Instead of generating hashes, you can also use existing ones from OpenLDAP, provided that the
  <code>
@@ -222,13 +228,15 @@ This tool will interactively ask for a password, a hashing algorithm , and wheth
  </code>
  could look like this:
 </p>
-<pre class="codehilite"><code>  'htpasswd' =&gt; array(
-      'authcrypt:Htpasswd',
-          'htpasswd_file' =&gt; '/var/www/foo.edu/legacy_app/.htpasswd',
-          'static_attributes' =&gt; array(
-              'eduPersonAffiliation' =&gt; array('member', 'employee'),
-              'Organization' =&gt; array('University of Foo'),
-      ),
-  ),
-</code></pre></body>
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="s1">'htpasswd'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">array</span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'authcrypt:Htpasswd'</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="s1">'htpasswd_file'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'/var/www/foo.edu/legacy_app/.htpasswd'</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="s1">'static_attributes'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">array</span><span class="p">(</span><span class="w"></span>
+<span class="w">              </span><span class="s1">'eduPersonAffiliation'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">array</span><span class="p">(</span><span class="s1">'member'</span><span class="p">,</span><span class="w"> </span><span class="s1">'employee'</span><span class="p">),</span><span class="w"></span>
+<span class="w">              </span><span class="s1">'Organization'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">array</span><span class="p">(</span><span class="s1">'University of Foo'</span><span class="p">),</span><span class="w"></span>
+<span class="w">      </span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="p">),</span><span class="w"></span>
+</code></pre>
+</div></body>
 </html>

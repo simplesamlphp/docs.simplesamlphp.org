@@ -148,7 +148,8 @@
 <p>
  Database layout used in some of the examples:
 </p>
-<pre class="codehilite"><code>  CREATE TABLE users (
+<div class="codehilite">
+ <pre><span></span><code>  CREATE TABLE users (
     uid VARCHAR(30) NOT NULL PRIMARY KEY,
     password TEXT NOT NULL,
     salt TEXT NOT NULL,
@@ -162,10 +163,12 @@
     UNIQUE(uid, groupname)
   );
 </code></pre>
+</div>
 <p>
  Example query - SHA256 of salt + password, with the salt stored in an independent column, MySQL server:
 </p>
-<pre class="codehilite"><code>  SELECT uid, givenName, email, eduPersonPrincipalName
+<div class="codehilite">
+ <pre><span></span><code>  SELECT uid, givenName, email, eduPersonPrincipalName
   FROM users
   WHERE uid = :username
   AND PASSWORD = SHA2(
@@ -176,10 +179,12 @@
       256
   )
 </code></pre>
+</div>
 <p>
  Example query - SHA256 of salt + password, with the salt stored in an independent column. Multiple groups, MySQL server:
 </p>
-<pre class="codehilite"><code>  SELECT users.uid, givenName, email, eduPersonPrincipalName, groupname AS groups
+<div class="codehilite">
+ <pre><span></span><code>  SELECT users.uid, givenName, email, eduPersonPrincipalName, groupname AS groups
   FROM users LEFT JOIN usergroups ON users.uid = usergroups.username
   WHERE users.uid = :username
   AND PASSWORD = SHA2(
@@ -190,22 +195,25 @@
       256
   )
 </code></pre>
+</div>
 <p>
  Example query - SHA512 of salt + password, stored as salt (32 bytes) + sha256(salt + password) in password-field, PostgreSQL server:
 </p>
-<pre class="codehilite"><code>  SELECT uid, givenName, email, eduPersonPrincipalName
-  FROM users
-  WHERE username = :username
-  AND SUBSTRING(
-      password FROM LENGTH(password) - 31
-  ) = SHA2(
-      CONCAT(
-          SUBSTRING(password FROM 1 FOR LENGTH(password) - 32),
-          :password
-      ),
-      512
-  )
+<div class="codehilite">
+ <pre><span></span><code>  <span class="nv">SELECT</span> <span class="nv">uid</span>, <span class="nv">givenName</span>, <span class="nv">email</span>, <span class="nv">eduPersonPrincipalName</span>
+  <span class="nv">FROM</span> <span class="nv">users</span>
+  <span class="nv">WHERE</span> <span class="nv">username</span> <span class="o">=</span> :<span class="nv">username</span>
+  <span class="nv">AND</span> <span class="nv">SUBSTRING</span><span class="ss">(</span>
+      <span class="nv">password</span> <span class="nv">FROM</span> <span class="nv">LENGTH</span><span class="ss">(</span><span class="nv">password</span><span class="ss">)</span> <span class="o">-</span> <span class="mi">31</span>
+  <span class="ss">)</span> <span class="o">=</span> <span class="nv">SHA2</span><span class="ss">(</span>
+      <span class="nv">CONCAT</span><span class="ss">(</span>
+          <span class="nv">SUBSTRING</span><span class="ss">(</span><span class="nv">password</span> <span class="nv">FROM</span> <span class="mi">1</span> <span class="k">FOR</span> <span class="nv">LENGTH</span><span class="ss">(</span><span class="nv">password</span><span class="ss">)</span> <span class="o">-</span> <span class="mi">32</span><span class="ss">)</span>,
+          :<span class="nv">password</span>
+      <span class="ss">)</span>,
+      <span class="mi">512</span>
+  <span class="ss">)</span>
 </code></pre>
+</div>
 <h2 id="security-considerations">
  Security considerations
 </h2>

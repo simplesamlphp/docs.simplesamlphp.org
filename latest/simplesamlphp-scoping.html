@@ -98,39 +98,39 @@
 <div class="toc">
  <ul>
   <li>
-   <a href="#scoping.html">
+   <a href="#scoping">
     Scoping
    </a>
    <ul>
     <li>
-     <a href="#options.html">
+     <a href="#options">
       Options
      </a>
      <ul>
       <li>
-       <a href="#note.html">
+       <a href="#note">
         Note
        </a>
       </li>
      </ul>
     </li>
     <li>
-     <a href="#usage.html">
+     <a href="#usage">
       Usage
      </a>
     </li>
     <li>
-     <a href="#requesterid-element.html">
+     <a href="#requesterid-element">
       RequesterID element
      </a>
     </li>
     <li>
-     <a href="#authenticatingauthority-element.html">
+     <a href="#authenticatingauthority-element">
       AuthenticatingAuthority element
      </a>
     </li>
     <li>
-     <a href="#support.html">
+     <a href="#support">
       Support
      </a>
     </li>
@@ -212,7 +212,8 @@ that are relevant for a service provider in an authnRequest.
 <p>
  Example configuration:
 </p>
-<pre class="codehilite"><code>  # Add the IDPList
+<div class="codehilite">
+ <pre><span></span><code>  # Add the IDPList
   'IDPList' =&gt; [
       'IdPEntityID1',
       'IdPEntityID2',
@@ -222,6 +223,7 @@ that are relevant for a service provider in an authnRequest.
   # Set ProxyCount
   'ProxyCount' =&gt; 2,
 </code></pre>
+</div>
 <h2 id="requesterid-element">
  RequesterID element
 </h2>
@@ -235,8 +237,10 @@ not used.
  The RequesterId elements are available from the state array as an array, for
 instance the authenticate method in an authentication source
 </p>
-<pre class="codehilite"><code>  $requesterIDs = $state['saml:RequesterID'];
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">requesterIDs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="nt">state</span><span class="cp">[</span><span class="s1">'saml:RequesterID'</span><span class="cp">]</span><span class="o">;</span><span class="w"></span>
 </code></pre>
+</div>
 <h2 id="authenticatingauthority-element">
  AuthenticatingAuthority element
 </h2>
@@ -249,12 +253,14 @@ AuthenticatingAuthority elements.
  The list of authenticating authorities (the AuthenticatingAuthority element) 
 can be retrieved as an array from the authentication data.
 </p>
-<pre class="codehilite"><code>  # Get the authentication source.
-  $as = new \SimpleSAML\Auth\Simple();
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="nt">Get</span><span class="w"> </span><span class="nt">the</span><span class="w"> </span><span class="nt">authentication</span><span class="w"> </span><span class="nt">source</span><span class="o">.</span><span class="w"></span>
+<span class="w">  </span><span class="o">$</span><span class="nt">as</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">new</span><span class="w"> </span><span class="err">\</span><span class="nt">SimpleSAML</span><span class="err">\</span><span class="nt">Auth</span><span class="err">\</span><span class="nt">Simple</span><span class="o">();</span><span class="w"></span>
 
-  # Get the AuthenticatingAuthority
-  $aa = $as-&gt;getAuthData('saml:AuthenticatingAuthority');
+<span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="nt">Get</span><span class="w"> </span><span class="nt">the</span><span class="w"> </span><span class="nt">AuthenticatingAuthority</span><span class="w"></span>
+<span class="w">  </span><span class="o">$</span><span class="nt">aa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="nt">as-</span><span class="o">&gt;</span><span class="nt">getAuthData</span><span class="o">(</span><span class="s1">'saml:AuthenticatingAuthority'</span><span class="o">);</span><span class="w"></span>
 </code></pre>
+</div>
 <h2 id="support">
  Support
 </h2>

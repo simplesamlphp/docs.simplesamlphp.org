@@ -98,44 +98,44 @@
 <div class="toc">
  <ul>
   <li>
-   <a href="#theming-the-user-interface-in-simplesamlphp.html">
+   <a href="#theming-the-user-interface-in-simplesamlphp">
     Theming the user interface in SimpleSAMLphp
    </a>
    <ul>
     <li>
-     <a href="#how-themes-work.html">
+     <a href="#how-themes-work">
       How themes work
      </a>
      <ul>
       <li>
-       <a href="#configuring-which-theme-to-use.html">
+       <a href="#configuring-which-theme-to-use">
         Configuring which theme to use
        </a>
       </li>
       <li>
-       <a href="#override-only-specific-templates.html">
+       <a href="#override-only-specific-templates">
         Override only specific templates
        </a>
       </li>
      </ul>
     </li>
     <li>
-     <a href="#creating-your-first-theme.html">
+     <a href="#creating-your-first-theme">
       Creating your first theme
      </a>
     </li>
     <li>
-     <a href="#adding-resource-files.html">
+     <a href="#adding-resource-files">
       Adding resource files
      </a>
     </li>
     <li>
-     <a href="#a-custom-theme-controller.html">
+     <a href="#a-custom-theme-controller">
       A custom theme controller
      </a>
     </li>
     <li>
-     <a href="#migrating-to-twig-templates.html">
+     <a href="#migrating-to-twig-templates">
       Migrating to Twig templates
      </a>
     </li>
@@ -169,13 +169,15 @@
  </code>
  there is a configuration option that controls theming. You need to set that option and enable the module that contains the theme. Here is an example:
 </p>
-<pre class="codehilite"><code>   'module.enable' =&gt; [
+<div class="codehilite">
+ <pre><span></span><code>   'module.enable' =&gt; [
        ...
        'fancymodule' =&gt; true,
    ],
 
    'theme.use' =&gt; 'fancymodule:fancytheme',
 </code></pre>
+</div>
 <p>
  The
  <code>
@@ -212,11 +214,13 @@ SimpleSAMLphp allows themes to override the included templates files only, if ne
 <p>
  The first thing you need to do is having a SimpleSAMLphp module to place your theme in. If you do not have a module already, create a new one:
 </p>
-<pre class="codehilite"><code>cd modules
+<div class="codehilite">
+ <pre><span></span><code>cd modules
 mkdir mymodule
 
 Enable the module by setting `$config['module.enable' =&gt; ['mymodule' =&gt; true]]`
 </code></pre>
+</div>
 <p>
  Then within this module, you can create a new theme named
  <code>
@@ -224,9 +228,11 @@ Enable the module by setting `$config['module.enable' =&gt; ['mymodule' =&gt; tr
  </code>
  .
 </p>
-<pre class="codehilite"><code>cd modules/mymodule
+<div class="codehilite">
+ <pre><span></span><code>cd modules/mymodule
 mkdir -p themes/fancytheme/default/
 </code></pre>
+</div>
 <p>
  Now, configure SimpleSAMLphp to use your new theme in
  <code>
@@ -234,13 +240,17 @@ mkdir -p themes/fancytheme/default/
  </code>
  :
 </p>
-<pre class="codehilite"><code>'theme.use'     =&gt; 'mymodule:fancytheme',
+<div class="codehilite">
+ <pre><span></span><code>'theme.use'     =&gt; 'mymodule:fancytheme',
 </code></pre>
+</div>
 <p>
  Next, we copy the header file from the base theme:
 </p>
-<pre class="codehilite"><code>cp templates/_header.twig modules/mymodule/themes/fancytheme/default/
+<div class="codehilite">
+ <pre><span></span><code>cp templates/_header.twig modules/mymodule/themes/fancytheme/default/
 </code></pre>
+</div>
 <p>
  In the
  <code>
@@ -258,15 +268,17 @@ mkdir -p themes/fancytheme/default/
  </code>
  folder of your module, to make your module completely independent with included css, icons etc.
 </p>
-<pre class="codehilite"><code>modules
-└───mymodule
-    └───lib
-    └───themes
-    └───www
-        └───assets
-            └───logo.svg
-            └───style.css
+<div class="codehilite">
+ <pre><span></span><code><span class="n">modules</span>
+└───<span class="n">mymodule</span>
+    └───<span class="n">lib</span>
+    └───<span class="n">themes</span>
+    └───<span class="n">www</span>
+        └───<span class="n">assets</span>
+            └───<span class="n">logo</span>.<span class="n">svg</span>
+            └───<span class="n">style</span>.<span class="n">css</span>
 </code></pre>
+</div>
 <p>
  Reference these resources in your custom templates under
  <code>
@@ -275,10 +287,12 @@ mkdir -p themes/fancytheme/default/
  by using a generator for the URL.
 Example for a custom CSS stylesheet file:
 </p>
-<pre class="codehilite"><code>{% block preload %}
-&lt;link rel="stylesheet" href="{{ asset('style.css', 'mymodule') }}"&gt;
-{% endblock %}
+<div class="codehilite">
+ <pre><span></span><code><span class="cp">{%</span> <span class="k">block</span> <span class="nv">preload</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">&lt;link rel="stylesheet" href="</span><span class="cp">{{</span> <span class="nv">asset</span><span class="o">(</span><span class="s1">'style.css'</span><span class="o">,</span> <span class="s1">'mymodule'</span><span class="o">)</span> <span class="cp">}}</span><span class="x">"&gt;</span>
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
 </code></pre>
+</div>
 <h2 id="a-custom-theme-controller">
  A custom theme controller
 </h2>
@@ -290,8 +304,10 @@ in
  </code>
  :
 </p>
-<pre class="codehilite"><code>  'theme.controller' =&gt; '\SimpleSAML\Module\mymodule\FancyThemeController',
+<div class="codehilite">
+ <pre><span></span><code>  'theme.controller' =&gt; '\SimpleSAML\Module\mymodule\FancyThemeController',
 </code></pre>
+</div>
 <p>
  This requires you to implement
  <code>
@@ -333,13 +349,17 @@ templating enging to be compatible with SimpleSAMLphp 2.0.
  </code>
  file. This can be customized by copying it from the base template:
 </p>
-<pre class="codehilite"><code>cp templates/_header.twig modules/mymodule/themes/fancytheme/default/
+<div class="codehilite">
+ <pre><span></span><code>cp templates/_header.twig modules/mymodule/themes/fancytheme/default/
 </code></pre>
+</div>
 <p>
  If you need to make more extensive customizations to the base template, you should copy it from the base theme:
 </p>
-<pre class="codehilite"><code>cp templates/base.twig modules/mymodule/themes/fancytheme/default/
+<div class="codehilite">
+ <pre><span></span><code>cp templates/base.twig modules/mymodule/themes/fancytheme/default/
 </code></pre>
+</div>
 <p>
  Any references to
  <code>

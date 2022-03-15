@@ -127,67 +127,69 @@ authentication source which uses the
  </code>
  :
 </p>
-<pre class="codehilite"><code>  'example-radius' =&gt; [
-      'radius:Radius',
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="s1">'example-radius'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">[</span><span class="n"></span>
+<span class="n">      'radius:Radius',</span>
 
-      /*
-       * An array with the radius servers to use, up to 10.
-       * The options are:
-       *  - hostname: the hostname of the radius server, or its IP address. Required.
-       *  - port: the port of the radius server. Optional, defaults to 1812.
-       *  - secret: the radius secret to use with this server. Required.
-       */
-      'servers' =&gt; [
-          [
-              'hostname' =&gt; 'radius1.example.org',
-              'port' =&gt; 1812,
-              'secret' =&gt; 'topsecret'
-          ],
-          [
-              'hostname' =&gt; 'radius2.example.org',
-              'port' =&gt; 1812,
-              'secret' =&gt; 'topsecret'
-          ]
-      ],
+<span class="n">      /*</span>
+<span class="n">       * An array with the radius servers to use, up to 10.</span>
+<span class="n">       * The options are:</span>
+<span class="n">       *  - hostname: the hostname of the radius server, or its IP address. Required.</span>
+<span class="n">       *  - port: the port of the radius server. Optional, defaults to 1812.</span>
+<span class="n">       *  - secret: the radius secret to use with this server. Required.</span>
+<span class="n">       */</span>
+<span class="n">      'servers' =&gt; [</span>
+<span class="n">          [</span>
+<span class="n">              'hostname' =&gt; 'radius1.example.org',</span>
+<span class="n">              'port' =&gt; 1812,</span>
+<span class="n">              'secret' =&gt; 'topsecret'</span>
+<span class="n">          </span><span class="o">]</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="o">[</span><span class="n"></span>
+<span class="n">              'hostname' =&gt; 'radius2.example.org',</span>
+<span class="n">              'port' =&gt; 1812,</span>
+<span class="n">              'secret' =&gt; 'topsecret'</span>
+<span class="n">          </span><span class="o">]</span><span class="w"></span>
+<span class="w">      </span><span class="err">]</span><span class="p">,</span><span class="w"></span>
 
-      /*
-       * The timeout for contacting the RADIUS server, in seconds.
-       * Optional, defaults to 5 seconds.
-       */
-      'timeout' =&gt; 5,
+<span class="w">      </span><span class="cm">/*</span>
+<span class="cm">       * The timeout for contacting the RADIUS server, in seconds.</span>
+<span class="cm">       * Optional, defaults to 5 seconds.</span>
+<span class="cm">       */</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'timeout'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"></span>
 
-      /*
-       * The number of times we should retry connections to the RADIUS server.
-       * Please note that retries would be attempted with each server before
-       * trying with the next server in the queue, so if you want not to wait
-       * before trying the next server, retries should be set to 1.
-       * Optional, defaults to 3 attempts.
-       */
-      'retries' =&gt; 3,
+<span class="w">      </span><span class="cm">/*</span>
+<span class="cm">       * The number of times we should retry connections to the RADIUS server.</span>
+<span class="cm">       * Please note that retries would be attempted with each server before</span>
+<span class="cm">       * trying with the next server in the queue, so if you want not to wait</span>
+<span class="cm">       * before trying the next server, retries should be set to 1.</span>
+<span class="cm">       * Optional, defaults to 3 attempts.</span>
+<span class="cm">       */</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'retries'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"></span>
 
-      /*
-       * The NAS identifier to use when querying the radius server.
-       * Optional, defaults to the current host name.
-       */
-      'nas_identifier' =&gt; 'client.example.org',
+<span class="w">      </span><span class="cm">/*</span>
+<span class="cm">       * The NAS identifier to use when querying the radius server.</span>
+<span class="cm">       * Optional, defaults to the current host name.</span>
+<span class="cm">       */</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'nas_identifier'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'client.example.org'</span><span class="p">,</span><span class="w"></span>
 
-      /*
-       * An optional realm that will be suffixed to the username entered
-       * by the user. When set to "example.edu", and the user enters
-       * "bob" as their username, the radius server will be queried for
-       * the username "bob@example.edu".
-       * Optional, defaults to NULL.
-       */
-      'realm' =&gt; 'example.edu',
+<span class="w">      </span><span class="cm">/*</span>
+<span class="cm">       * An optional realm that will be suffixed to the username entered</span>
+<span class="cm">       * by the user. When set to "example.edu", and the user enters</span>
+<span class="cm">       * "bob" as their username, the radius server will be queried for</span>
+<span class="cm">       * the username "bob@example.edu".</span>
+<span class="cm">       * Optional, defaults to NULL.</span>
+<span class="cm">       */</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'realm'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'example.edu'</span><span class="p">,</span><span class="w"></span>
 
-      /*
-       * The attribute name we should store the username in. Ths username
-       * will not be saved in any attribute if this is NULL.
-       * Optional, defaults to NULL.
-       */
-      'username_attribute' =&gt; 'eduPersonPrincipalName',
-  ],
+<span class="w">      </span><span class="cm">/*</span>
+<span class="cm">       * The attribute name we should store the username in. Ths username</span>
+<span class="cm">       * will not be saved in any attribute if this is NULL.</span>
+<span class="cm">       * Optional, defaults to NULL.</span>
+<span class="cm">       */</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'username_attribute'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'eduPersonPrincipalName'</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="err">]</span><span class="p">,</span><span class="w"></span>
 </code></pre>
+</div>
 <h2 id="user-attributes">
  User attributes
 </h2>
@@ -209,19 +211,21 @@ contain a value of the form
 <p>
  The following configuration options are available for user attributes:
 </p>
-<pre class="codehilite"><code>      /*
-       * This is the vendor for the vendor-specific attribute which contains
-       * the attributes for this user. This can be NULL if no attributes are
-       * included in the response.
-       * Optional, defaults to NULL.
-       */
-      'attribute_vendor' =&gt; 23735,
+<div class="codehilite">
+ <pre><span></span><code>      <span class="cm">/*</span>
+<span class="cm">       * This is the vendor for the vendor-specific attribute which contains</span>
+<span class="cm">       * the attributes for this user. This can be NULL if no attributes are</span>
+<span class="cm">       * included in the response.</span>
+<span class="cm">       * Optional, defaults to NULL.</span>
+<span class="cm">       */</span>
+      <span class="s1">'</span><span class="s">attribute_vendor</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="mi">23735</span>,
 
-      /*
-       * The vendor attribute-type of the attribute which contains the
-       * attributes for the user.
-       * Required if 'vendor' is set.
-       */
-      'attribute_vendor_type' =&gt; 4,
-</code></pre></body>
+      <span class="cm">/*</span>
+<span class="cm">       * The vendor attribute-type of the attribute which contains the</span>
+<span class="cm">       * attributes for the user.</span>
+<span class="cm">       * Required if 'vendor' is set.</span>
+<span class="cm">       */</span>
+      <span class="s1">'</span><span class="s">attribute_vendor_type</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="mi">4</span>,
+</code></pre>
+</div></body>
 </html>

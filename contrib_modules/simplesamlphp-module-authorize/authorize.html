@@ -95,9 +95,11 @@
   For more information about how to use the Markdown syntax, read here:
   http://daringfireball.net/projects/markdown/syntax
 -->
-<pre class="codehilite"><code>* Author: Ernesto Revilla &lt;erny@yaco.es&gt;, Yaco Sistemas, Ryan Panning
-* Package: SimpleSAMLphp
+<div class="codehilite">
+ <pre><span></span><code><span class="o">*</span><span class="w"> </span><span class="nl">Author</span><span class="p">:</span><span class="w"> </span><span class="n">Ernesto</span><span class="w"> </span><span class="n">Revilla</span><span class="w"> </span><span class="o">&lt;</span><span class="n">erny</span><span class="nv">@yaco</span><span class="p">.</span><span class="n">es</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">Yaco</span><span class="w"> </span><span class="n">Sistemas</span><span class="p">,</span><span class="w"> </span><span class="n">Ryan</span><span class="w"> </span><span class="n">Panning</span><span class="w"></span>
+<span class="o">*</span><span class="w"> </span><span class="nl">Package</span><span class="p">:</span><span class="w"> </span><span class="n">SimpleSAMLphp</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  This module provides a user authorization filter based on attribute matching for those applications that do not cleanly separate authentication from authorization and set some default permissions for authenticated users.
 </p>
@@ -208,54 +210,60 @@ For unstructured attributes use
  </code>
  to anchor your regex as necessary:
 </p>
-<pre class="codehilite"><code class="language-php">'authproc.sp' =&gt; [
-    60 =&gt; [
-        'class' =&gt; 'authorize:Authorize',
-        'uid'   =&gt;  [
-            '/^.*@example.com$/',
-            // Use anchors to prevent matching 'wronguser1@example.edu.attacker.com'
-            '/^(user1|user2|user3)@example.edu$/',
-        ],
-        'schacUserStatus' =&gt; '@urn:mace:terena.org:userStatus:' .
-        'example.org:service:active.*@',
-    ]
-]
+<div class="codehilite">
+ <pre><span></span><code><span class="x">'authproc.sp' =&gt; [</span>
+<span class="x">    60 =&gt; [</span>
+<span class="x">        'class' =&gt; 'authorize:Authorize',</span>
+<span class="x">        'uid'   =&gt;  [</span>
+<span class="x">            '/^.*@example.com$/',</span>
+<span class="x">            // Use anchors to prevent matching 'wronguser1@example.edu.attacker.com'</span>
+<span class="x">            '/^(user1|user2|user3)@example.edu$/',</span>
+<span class="x">        ],</span>
+<span class="x">        'schacUserStatus' =&gt; '@urn:mace:terena.org:userStatus:' .</span>
+<span class="x">        'example.org:service:active.*@',</span>
+<span class="x">    ]</span>
+<span class="x">]</span>
 </code></pre>
+</div>
 <p>
  An alternate way of using this filter is to deny certain users. Or even use multiple filters to create a simple ACL, by first allowing a group of users but then denying a "black list" of users.
 </p>
-<pre class="codehilite"><code class="language-php">'authproc.sp' =&gt; [
-    60 =&gt; array[
-        'class' =&gt; 'authorize:Authorize',
-        'deny'  =&gt; true,
-        'uid'   =&gt;  [
-            '/.*@students.example.edu$/',
-            '/^(stu1|stu2|stu3)@example.edu$/',
-        ]
-    ]
-]
+<div class="codehilite">
+ <pre><span></span><code><span class="x">'authproc.sp' =&gt; [</span>
+<span class="x">    60 =&gt; array[</span>
+<span class="x">        'class' =&gt; 'authorize:Authorize',</span>
+<span class="x">        'deny'  =&gt; true,</span>
+<span class="x">        'uid'   =&gt;  [</span>
+<span class="x">            '/.*@students.example.edu$/',</span>
+<span class="x">            '/^(stu1|stu2|stu3)@example.edu$/',</span>
+<span class="x">        ]</span>
+<span class="x">    ]</span>
+<span class="x">]</span>
 </code></pre>
+</div>
 <p>
  The regex pattern matching can be turned off, allowing for exact attribute matching rules. This can be helpful in cases where you know what the value should be. An example of this is with the memberOf attribute or using the ldap:AttributeAddUsersGroups filter with the group attribute.
 </p>
 <p>
  Additionally, some helpful instructions are shown.
 </p>
-<pre class="codehilite"><code class="language-php">'authproc.sp' =&gt; [
-    60 =&gt; [
-        'class' =&gt; 'authorize:Authorize',
-        'regex' =&gt; false,
-        'group' =&gt; [
-            'CN=SimpleSAML Students,CN=Users,DC=example,DC=edu',
-            'CN=All Teachers,OU=Staff,DC=example,DC=edu',
-        ],
-        'reject_msg' =&gt; [
-            'en' =&gt; 'This service is only available to students and teachers.' .
-                'Please contact &lt;a href="mailto:support@example.edu"&gt;support&lt;/a&gt;.',
-            'nl' =&gt; 'Deze dienst is alleen beschikbaar voor studenten en docenten.' .
-                'Neem contact op met &lt;a href="mailto:support@example.edu"&gt;support&lt;/a&gt;.',
-        ]
-    ]
-]
-</code></pre></body>
+<div class="codehilite">
+ <pre><span></span><code><span class="x">'authproc.sp' =&gt; [</span>
+<span class="x">    60 =&gt; [</span>
+<span class="x">        'class' =&gt; 'authorize:Authorize',</span>
+<span class="x">        'regex' =&gt; false,</span>
+<span class="x">        'group' =&gt; [</span>
+<span class="x">            'CN=SimpleSAML Students,CN=Users,DC=example,DC=edu',</span>
+<span class="x">            'CN=All Teachers,OU=Staff,DC=example,DC=edu',</span>
+<span class="x">        ],</span>
+<span class="x">        'reject_msg' =&gt; [</span>
+<span class="x">            'en' =&gt; 'This service is only available to students and teachers.' .</span>
+<span class="x">                'Please contact &lt;a href="mailto:support@example.edu"&gt;support&lt;/a&gt;.',</span>
+<span class="x">            'nl' =&gt; 'Deze dienst is alleen beschikbaar voor studenten en docenten.' .</span>
+<span class="x">                'Neem contact op met &lt;a href="mailto:support@example.edu"&gt;support&lt;/a&gt;.',</span>
+<span class="x">        ]</span>
+<span class="x">    ]</span>
+<span class="x">]</span>
+</code></pre>
+</div></body>
 </html>

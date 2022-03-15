@@ -107,22 +107,24 @@
  </code>
  .
 </p>
-<pre class="codehilite"><code>  // Twitter OAuth Authentication API.
-  // Register your application to get an API key here:
-  //  http://twitter.com/oauth_clients
-  'twitter' =&gt; [
-      'authtwitter:Twitter',
-      'key' =&gt; 'key retrieved during registration of your app',
-      'secret' =&gt; 'secret retrieved during registration of your app',
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="c1">// Twitter OAuth Authentication API.</span>
+<span class="w">  </span><span class="c1">// Register your application to get an API key here:</span>
+<span class="w">  </span><span class="c1">//  http://twitter.com/oauth_clients</span>
+<span class="w">  </span><span class="p">'</span><span class="n">twitter</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">      </span><span class="p">'</span><span class="nl">authtwitter:</span><span class="n">Twitter</span><span class="p">',</span><span class="w"></span>
+<span class="w">      </span><span class="p">'</span><span class="n">key</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">'</span><span class="n">key</span><span class="w"> </span><span class="n">retrieved</span><span class="w"> </span><span class="n">during</span><span class="w"> </span><span class="n">registration</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">app</span><span class="p">',</span><span class="w"></span>
+<span class="w">      </span><span class="p">'</span><span class="n">secret</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">'</span><span class="n">secret</span><span class="w"> </span><span class="n">retrieved</span><span class="w"> </span><span class="n">during</span><span class="w"> </span><span class="n">registration</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">app</span><span class="p">',</span><span class="w"></span>
 
-      // The oAuth scope to include in the request
-      'scope' =&gt; 'read',
+<span class="w">      </span><span class="c1">// The oAuth scope to include in the request</span>
+<span class="w">      </span><span class="p">'</span><span class="n">scope</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">'</span><span class="n">read</span><span class="p">',</span><span class="w"></span>
 
-      // Forces the user to enter their credentials to ensure the correct users account is authorized.
-      // Details: https://dev.twitter.com/docs/api/1/get/oauth/authenticate
-      'force_login' =&gt; false,
-  ],
+<span class="w">      </span><span class="c1">// Forces the user to enter their credentials to ensure the correct users account is authorized.</span>
+<span class="w">      </span><span class="c1">// Details: https://dev.twitter.com/docs/api/1/get/oauth/authenticate</span>
+<span class="w">      </span><span class="p">'</span><span class="n">force_login</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">false</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="p">],</span><span class="w"></span>
 </code></pre>
+</div>
 <h2 id="testing-authentication">
  Testing authentication
 </h2>
@@ -133,8 +135,10 @@
  </em>
  tab, and use the link:
 </p>
-<pre class="codehilite"><code>* *Test configured authentication sources*
+<div class="codehilite">
+ <pre><span></span><code>* *Test configured authentication sources*
 </code></pre>
+</div>
 <p>
  Then choose the
  <em>

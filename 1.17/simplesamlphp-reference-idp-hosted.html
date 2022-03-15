@@ -103,18 +103,20 @@
  .
 Both files have the following format:
 </p>
-<pre class="codehilite"><code>  &lt;?php
-  /* The index of the array is the entity ID of this IdP. */
-  $metadata['entity-id-1'] = [
-      'host' =&gt; 'idp.example.org',
-      /* Configuration options for the first IdP. */
-  ];
-  $metadata['entity-id-2'] = [
-      'host' =&gt; '__DEFAULT__',
-      /* Configuration options for the default IdP. */
-  ];
-  /* ... */
+<div class="codehilite">
+ <pre><span></span><code>  <span class="cp">&lt;?php</span>
+  <span class="cm">/* The index of the array is the entity ID of this IdP. */</span>
+  <span class="nv">$metadata</span><span class="p">[</span><span class="s1">'entity-id-1'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+      <span class="s1">'host'</span> <span class="o">=&gt;</span> <span class="s1">'idp.example.org'</span><span class="p">,</span>
+      <span class="cm">/* Configuration options for the first IdP. */</span>
+  <span class="p">];</span>
+  <span class="nv">$metadata</span><span class="p">[</span><span class="s1">'entity-id-2'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+      <span class="s1">'host'</span> <span class="o">=&gt;</span> <span class="s1">'__DEFAULT__'</span><span class="p">,</span>
+      <span class="cm">/* Configuration options for the default IdP. */</span>
+  <span class="p">];</span>
+  <span class="cm">/* ... */</span>
 </code></pre>
+</div>
 <p>
  The entity ID should be an URI. It can, also be on the form
  <code>
@@ -200,37 +202,41 @@ entry matches.
  <dd>
   Specify contacts in addition to the technical contact configured through config/config.php.
   For example, specifying a support contact:
-  <pre class="codehilite"><code>'contacts' =&gt; [
-    [
-        'contactType'       =&gt; 'support',
-        'emailAddress'      =&gt; 'support@example.org',
-        'givenName'         =&gt; 'John',
-        'surName'           =&gt; 'Doe',
-        'telephoneNumber'   =&gt; '+31(0)12345678',
-        'company'           =&gt; 'Example Inc.',
-    ],
-],
+  <div class="codehilite">
+   <pre><span></span><code><span class="s1">'contacts'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">[</span><span class="n"></span>
+<span class="n">    [</span>
+<span class="n">        'contactType'       =&gt; 'support',</span>
+<span class="n">        'emailAddress'      =&gt; 'support@example.org',</span>
+<span class="n">        'givenName'         =&gt; 'John',</span>
+<span class="n">        'surName'           =&gt; 'Doe',</span>
+<span class="n">        'telephoneNumber'   =&gt; '+31(0)12345678',</span>
+<span class="n">        'company'           =&gt; 'Example Inc.',</span>
+<span class="n">    </span><span class="o">]</span><span class="p">,</span><span class="w"></span>
+<span class="err">]</span><span class="p">,</span><span class="w"></span>
 </code></pre>
+  </div>
  </dd>
  <dd>
   <p>
    If you have support for a trust framework that requires extra attributes on the contact person element in your IdP metadata (for example, SIRTFI), you can specify an array of attributes on a contact.
   </p>
-  <pre class="codehilite"><code>'contacts' =&gt; [
-    [
-        'contactType'       =&gt; 'other',
-        'emailAddress'      =&gt; 'mailto:abuse@example.org',
-        'givenName'         =&gt; 'John',
-        'surName'           =&gt; 'Doe',
-        'telephoneNumber'   =&gt; '+31(0)12345678',
-        'company'           =&gt; 'Example Inc.',
-        'attributes'        =&gt; [
-            'xmlns:remd'        =&gt; 'http://refeds.org/metadata',
-            'remd:contactType'  =&gt; 'http://refeds.org/metadata/contactType/security',
-        ],
-    ],
-],
+  <div class="codehilite">
+   <pre><span></span><code><span class="s1">'contacts'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">[</span><span class="n"></span>
+<span class="n">    [</span>
+<span class="n">        'contactType'       =&gt; 'other',</span>
+<span class="n">        'emailAddress'      =&gt; 'mailto:abuse@example.org',</span>
+<span class="n">        'givenName'         =&gt; 'John',</span>
+<span class="n">        'surName'           =&gt; 'Doe',</span>
+<span class="n">        'telephoneNumber'   =&gt; '+31(0)12345678',</span>
+<span class="n">        'company'           =&gt; 'Example Inc.',</span>
+<span class="n">        'attributes'        =&gt; [</span>
+<span class="n">            'xmlns:remd'        =&gt; 'http://refeds.org/metadata',</span>
+<span class="n">            'remd:contactType'  =&gt; 'http://refeds.org/metadata/contactType/security',</span>
+<span class="n">        </span><span class="o">]</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="err">]</span><span class="p">,</span><span class="w"></span>
+<span class="err">]</span><span class="p">,</span><span class="w"></span>
 </code></pre>
+  </div>
  </dd>
  <dt>
   <code>
@@ -281,11 +287,13 @@ entry matches.
  </dd>
  <dd>
   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
-  <pre class="codehilite"><code>    'OrganizationName' =&gt; [
+  <div class="codehilite">
+   <pre><span></span><code>    'OrganizationName' =&gt; [
         'en' =&gt; 'Example organization',
         'no' =&gt; 'Eksempel organisation',
     ],
 </code></pre>
+  </div>
  </dd>
  <dd>
   <p>
@@ -919,13 +927,15 @@ entry matches.
  </dd>
  <dd>
   Possible values:
-  <pre class="codehilite"><code>* `http://www.w3.org/2000/09/xmldsig#rsa-sha1`
+  <div class="codehilite">
+   <pre><span></span><code>* `http://www.w3.org/2000/09/xmldsig#rsa-sha1`
    *Note*: the use of SHA1 is **deprecated** and will be disallowed in the future.
 * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256`
    The default.
 * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha384`
 * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512`
 </code></pre>
+  </div>
  </dd>
  <dt>
   <code>
@@ -1014,8 +1024,10 @@ messages from that SP.
   Example: Configuration for signed messages
  </strong>
 </p>
-<pre class="codehilite"><code>   'redirect.sign' =&gt; true,
+<div class="codehilite">
+ <pre><span></span><code>   'redirect.sign' =&gt; true,
 </code></pre>
+</div>
 <h2 id="shibboleth-13-options">
  Shibboleth 1.3 options
 </h2>
@@ -1067,10 +1079,12 @@ messages from that SP.
  SimpleSAMLphp supports generating metadata with the MDUI, MDRPI and EntityAttributes metadata extensions.
 See the documentation for those extensions for more details:
 </p>
-<pre class="codehilite"><code>* [MDUI extension](./simplesamlphp-metadata-extensions-ui)
-* [MDRPI extension](./simplesamlphp-metadata-extensions-rpi)
-* [EntityAttributes](./simplesamlphp-metadata-extensions-attributes)
+<div class="codehilite">
+ <pre><span></span><code><span class="o">*</span><span class="w"> </span><span class="p">[</span><span class="n">MDUI</span><span class="w"> </span><span class="n">extension</span><span class="p">](.</span><span class="o">/</span><span class="n">simplesamlphp</span><span class="o">-</span><span class="n">metadata</span><span class="o">-</span><span class="n">extensions</span><span class="o">-</span><span class="n">ui</span><span class="p">)</span><span class="w"></span>
+<span class="o">*</span><span class="w"> </span><span class="p">[</span><span class="n">MDRPI</span><span class="w"> </span><span class="n">extension</span><span class="p">](.</span><span class="o">/</span><span class="n">simplesamlphp</span><span class="o">-</span><span class="n">metadata</span><span class="o">-</span><span class="n">extensions</span><span class="o">-</span><span class="n">rpi</span><span class="p">)</span><span class="w"></span>
+<span class="o">*</span><span class="w"> </span><span class="p">[</span><span class="n">EntityAttributes</span><span class="p">](.</span><span class="o">/</span><span class="n">simplesamlphp</span><span class="o">-</span><span class="n">metadata</span><span class="o">-</span><span class="n">extensions</span><span class="o">-</span><span class="n">attributes</span><span class="p">)</span><span class="w"></span>
 </code></pre>
+</div>
 <h2 id="examples">
  Examples
 </h2>
@@ -1080,27 +1094,29 @@ See the documentation for those extensions for more details:
 <h3 id="minimal-saml-20-shibboleth-13-idp">
  Minimal SAML 2.0 / Shibboleth 1.3 IdP
 </h3>
-<pre class="codehilite"><code>  &lt;?php
-  /*
-   * We use the '__DYNAMIC:1__' entity ID so that the entity ID
-   * will be autogenerated.
-   */
-  $metadata['__DYNAMIC:1__'] = [
-      /*
-       * We use '__DEFAULT__' as the hostname so we won't have to
-       * enter a hostname.
-       */
-      'host' =&gt; '__DEFAULT__',
+<div class="codehilite">
+ <pre><span></span><code>  <span class="cp">&lt;?php</span>
+  <span class="cm">/*</span>
+<span class="cm">   * We use the '__DYNAMIC:1__' entity ID so that the entity ID</span>
+<span class="cm">   * will be autogenerated.</span>
+<span class="cm">   */</span>
+  <span class="nv">$metadata</span><span class="p">[</span><span class="s1">'__DYNAMIC:1__'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+      <span class="cm">/*</span>
+<span class="cm">       * We use '__DEFAULT__' as the hostname so we won't have to</span>
+<span class="cm">       * enter a hostname.</span>
+<span class="cm">       */</span>
+      <span class="s1">'host'</span> <span class="o">=&gt;</span> <span class="s1">'__DEFAULT__'</span><span class="p">,</span>
 
-      /* The private key and certificate used by this IdP. */
-      'certificate' =&gt; 'example.org.crt',
-      'privatekey' =&gt; 'example.org.pem',
+      <span class="cm">/* The private key and certificate used by this IdP. */</span>
+      <span class="s1">'certificate'</span> <span class="o">=&gt;</span> <span class="s1">'example.org.crt'</span><span class="p">,</span>
+      <span class="s1">'privatekey'</span> <span class="o">=&gt;</span> <span class="s1">'example.org.pem'</span><span class="p">,</span>
 
-      /*
-       * The authentication source for this IdP. Must be one
-       * from config/authsources.php.
-       */
-      'auth' =&gt; 'example-userpass',
-  ];
-</code></pre></body>
+      <span class="cm">/*</span>
+<span class="cm">       * The authentication source for this IdP. Must be one</span>
+<span class="cm">       * from config/authsources.php.</span>
+<span class="cm">       */</span>
+      <span class="s1">'auth'</span> <span class="o">=&gt;</span> <span class="s1">'example-userpass'</span><span class="p">,</span>
+  <span class="p">];</span>
+</code></pre>
+</div></body>
 </html>

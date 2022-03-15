@@ -138,12 +138,14 @@
  </code>
  metadata file:
 </p>
-<pre class="codehilite"><code>  $metadata['__DYNAMIC:1__'] = [
-      [....]
-      'auth' =&gt; 'example-userpass',
-      'saml20.ecp' =&gt; true,
-  ];
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'__DYNAMIC:1__'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cp">[</span>
+      <span class="err">[</span><span class="nx">....</span><span class="cp">]</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'auth'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'example-userpass'</span><span class="o">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'saml20.ecp'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">true</span><span class="o">,</span><span class="w"></span>
+<span class="w">  </span><span class="o">];</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  Note: authentication filters that require interaction with the user will not work with ECP.
 </p>
@@ -163,7 +165,8 @@ The
  </code>
  metadata for simpleSAMLphp SPs should contain something like the following code:
 </p>
-<pre class="codehilite"><code>'SingleSignOnService' =&gt;
+<div class="codehilite">
+ <pre><span></span><code>'SingleSignOnService' =&gt;
   array (
     0 =&gt;
     array (
@@ -178,6 +181,7 @@ The
     ),
   ),
 </code></pre>
+</div>
 <h2 id="sp-metadata-on-the-idp">
  SP metadata on the IdP
 </h2>
@@ -194,7 +198,8 @@ This means that you have to use the complex endpoint format in
  metadata.
 In general, this should look like the following code:
 </p>
-<pre class="codehilite"><code>'AssertionConsumerService' =&gt;
+<div class="codehilite">
+ <pre><span></span><code>'AssertionConsumerService' =&gt;
   array (
     0 =&gt;
     array (
@@ -209,5 +214,6 @@ In general, this should look like the following code:
       'index' =&gt; 2,
     ),
   ),
-</code></pre></body>
+</code></pre>
+</div></body>
 </html>

@@ -425,7 +425,8 @@ authentication source.
  A typical configuration entry for an authentication source looks like 
 this:
 </p>
-<pre class="codehilite"><code>  'example-static' =&gt; [
+<div class="codehilite">
+ <pre><span></span><code>  'example-static' =&gt; [
     /* This maps to modules/exampleauth/lib/Auth/Source/Static.php */
     'exampleauth:Static',
 
@@ -436,6 +437,7 @@ this:
     'cn' =&gt; ['Test User'],
   ],
 </code></pre>
+</div>
 <p>
  To use this authentication source in a SAML 2.0 IdP, set the
  <code>
@@ -447,21 +449,25 @@ this:
  </code>
  :
 </p>
-<pre class="codehilite"><code>  '__DYNAMIC:1__' =&gt; [
+<div class="codehilite">
+ <pre><span></span><code>  '__DYNAMIC:1__' =&gt; [
     'host' =&gt; '__DEFAULT__',
     'privatekey' =&gt; 'example.org.pem',
     'certificate' =&gt; 'example.org.crt',
     'auth' =&gt; 'example-static',
   ],
 </code></pre>
+</div>
 <h3 id="creating-authentication-sources">
  Creating authentication sources
 </h3>
 <p>
  This is described in a separate document:
 </p>
-<pre class="codehilite"><code>* [Creating authentication sources](simplesamlphp-authsource)
+<div class="codehilite">
+ <pre><span></span><code>* [Creating authentication sources](simplesamlphp-authsource)
 </code></pre>
+</div>
 <h2 id="authentication-processing-filters">
  Authentication processing filters
 </h2>
@@ -471,8 +477,10 @@ this:
  </em>
  is explained in a separate document:
 </p>
-<pre class="codehilite"><code>* [Authentication processing filters](simplesamlphp-authproc)
+<div class="codehilite">
+ <pre><span></span><code>* [Authentication processing filters](simplesamlphp-authproc)
 </code></pre>
+</div>
 <h2 id="themes">
  Themes
 </h2>

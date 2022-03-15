@@ -109,27 +109,32 @@ If you instead want to replace the existing attribute, you may add the
 <p>
  Add a single-valued attributes:
 </p>
-<pre class="codehilite"><code>  'authproc' =&gt; array(
+<div class="codehilite">
+ <pre><span></span><code>  'authproc' =&gt; array(
       50 =&gt; array(
           'class' =&gt; 'core:AttributeAdd',
           'source' =&gt; array('myidp'),
       ),
   ),
 </code></pre>
+</div>
 <p>
  Add a multi-valued attribute:
 </p>
-<pre class="codehilite"><code>  'authproc' =&gt; array(
+<div class="codehilite">
+ <pre><span></span><code>  'authproc' =&gt; array(
       50 =&gt; array(
           'class' =&gt; 'core:AttributeAdd',
           'groups' =&gt; array('users', 'members'),
       ),
   ),
 </code></pre>
+</div>
 <p>
  Add multiple attributes:
 </p>
-<pre class="codehilite"><code>  'authproc' =&gt; array(
+<div class="codehilite">
+ <pre><span></span><code>  'authproc' =&gt; array(
       50 =&gt; array(
           'class' =&gt; 'core:AttributeAdd',
     'eduPersonPrimaryAffiliation' =&gt; 'student',
@@ -137,15 +142,18 @@ If you instead want to replace the existing attribute, you may add the
       ),
   ),
 </code></pre>
+</div>
 <p>
  Replace an existing attributes:
 </p>
-<pre class="codehilite"><code>  'authproc' =&gt; array(
+<div class="codehilite">
+ <pre><span></span><code>  'authproc' =&gt; array(
       50 =&gt; array(
           'class' =&gt; 'core:AttributeAdd',
           '%replace',
           'uid' =&gt; array('guest'),
       ),
   ),
-</code></pre></body>
+</code></pre>
+</div></body>
 </html>

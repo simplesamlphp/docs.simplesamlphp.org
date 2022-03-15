@@ -120,15 +120,17 @@
  </code>
  for a SP:
 </p>
-<pre class="codehilite"><code>  &lt;?php
-  $config = array(
+<div class="codehilite">
+ <pre><span></span><code>  <span class="cp">&lt;?php</span>
+  <span class="nv">$config</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
 
-      /* This is the name of this authentication source, and will be used to access it later. */
-      'default-sp' =&gt; array(
-          'saml:SP',
-      ),
-  );
+      <span class="cm">/* This is the name of this authentication source, and will be used to access it later. */</span>
+      <span class="s1">'default-sp'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+          <span class="s1">'saml:SP'</span><span class="p">,</span>
+      <span class="p">),</span>
+  <span class="p">);</span>
 </code></pre>
+</div>
 <p>
  For more information about additional options available for the SP, see the
  <a href="./saml/sp.html">
@@ -146,7 +148,8 @@
  </code>
  configuration. If so remember to set the EntityID explicitly. Here is an example:
 </p>
-<pre class="codehilite"><code>'sp1' =&gt; array(
+<div class="codehilite">
+ <pre><span></span><code>'sp1' =&gt; array(
     'saml:SP',
   'entityID' =&gt; 'https://sp1.example.org/',
 ),
@@ -155,6 +158,7 @@
   'entityID' =&gt; 'https://sp2.example.org/',
 ),
 </code></pre>
+</div>
 <h3 id="enabling-a-certificate-for-your-service-provider">
  Enabling a certificate for your Service Provider
 </h3>
@@ -168,9 +172,11 @@
  </code>
  directory.
 </p>
-<pre class="codehilite"><code>cd cert
+<div class="codehilite">
+ <pre><span></span><code>cd cert
 openssl req -newkey rsa:2048 -new -x509 -days 3652 -nodes -out saml.crt -keyout saml.pem
 </code></pre>
+</div>
 <p>
  Then edit your
  <code>
@@ -178,12 +184,14 @@ openssl req -newkey rsa:2048 -new -x509 -days 3652 -nodes -out saml.crt -keyout 
  </code>
  entry, and add references to your certificate:
 </p>
-<pre class="codehilite"><code>'default-sp' =&gt; array(
+<div class="codehilite">
+ <pre><span></span><code>'default-sp' =&gt; array(
     'saml:SP',
     'privatekey' =&gt; 'saml.pem',
     'certificate' =&gt; 'saml.crt',
 ),
 </code></pre>
+</div>
 <h2 id="adding-idps-to-the-sp">
  Adding IdPs to the SP
 </h2>
@@ -203,13 +211,15 @@ This is a minimal example of a
  </code>
  metadata file:
 </p>
-<pre class="codehilite"><code>  &lt;?php
-  $metadata['https://example.com'] = array(
-      'SingleSignOnService'  =&gt; 'https://example.com/simplesaml/saml2/idp/SSOService.php',
-      'SingleLogoutService'  =&gt; 'https://example.com/simplesaml/saml2/idp/SingleLogoutService.php',
-      'certificate'          =&gt; 'example.pem',
-  );
+<div class="codehilite">
+ <pre><span></span><code>  <span class="cp">&lt;?php</span>
+  <span class="nv">$metadata</span><span class="p">[</span><span class="s1">'https://example.com'</span><span class="p">]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+      <span class="s1">'SingleSignOnService'</span>  <span class="o">=&gt;</span> <span class="s1">'https://example.com/simplesaml/saml2/idp/SSOService.php'</span><span class="p">,</span>
+      <span class="s1">'SingleLogoutService'</span>  <span class="o">=&gt;</span> <span class="s1">'https://example.com/simplesaml/saml2/idp/SingleLogoutService.php'</span><span class="p">,</span>
+      <span class="s1">'certificate'</span>          <span class="o">=&gt;</span> <span class="s1">'example.pem'</span><span class="p">,</span>
+  <span class="p">);</span>
 </code></pre>
+</div>
 <p>
  <code>
   example.pem
@@ -248,20 +258,22 @@ This is the
  </code>
  option.
 </p>
-<pre class="codehilite"><code>  &lt;?php
-  $config = array(
+<div class="codehilite">
+ <pre><span></span><code>  <span class="cp">&lt;?php</span>
+  <span class="nv">$config</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
 
-      'default-sp' =&gt; array(
-          'saml:SP',
+      <span class="s1">'default-sp'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+          <span class="s1">'saml:SP'</span><span class="p">,</span>
 
-          /*
-           * The entity ID of the IdP this should SP should contact.
-           * Can be NULL/unset, in which case the user will be shown a list of available IdPs.
-           */
-          'idp' =&gt; 'https://idp.example.com',
-      ),
-  );
+          <span class="cm">/*</span>
+<span class="cm">           * The entity ID of the IdP this should SP should contact.</span>
+<span class="cm">           * Can be NULL/unset, in which case the user will be shown a list of available IdPs.</span>
+<span class="cm">           */</span>
+          <span class="s1">'idp'</span> <span class="o">=&gt;</span> <span class="s1">'https://idp.example.com'</span><span class="p">,</span>
+      <span class="p">),</span>
+  <span class="p">);</span>
 </code></pre>
+</div>
 <h2 id="exchange-metadata-with-the-idp">
  Exchange metadata with the IdP
 </h2>
@@ -352,12 +364,16 @@ lines of PHP code:
   </p>
  </li>
  <li>
-  <pre class="codehilite"><code>  Require authentication of the user for those places it is required.
+  <div class="codehilite">
+   <pre><span></span><code>  <span class="nv">Require</span> <span class="nv">authentication</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">user</span> <span class="k">for</span> <span class="nv">those</span> <span class="nv">places</span> <span class="nv">it</span> <span class="nv">is</span> <span class="nv">required</span>.
 </code></pre>
+  </div>
  </li>
  <li>
-  <pre class="codehilite"><code>  Access the users attributes.
+  <div class="codehilite">
+   <pre><span></span><code>  Access the users attributes.
 </code></pre>
+  </div>
  </li>
 </ul>
 <p>
@@ -366,34 +382,44 @@ lines of PHP code:
 <p>
  We start off with loading a file which registers the SimpleSAMLphp classes with the autoloader.
 </p>
-<pre class="codehilite"><code>  require_once('../../lib/_autoload.php');
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="n">require_once</span><span class="p">(</span><span class="s1">'../../lib/_autoload.php'</span><span class="p">);</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  We select our authentication source:
 </p>
-<pre class="codehilite"><code>  $as = new \SimpleSAML\Auth\Simple('default-sp');
+<div class="codehilite">
+ <pre><span></span><code>  $as = new \SimpleSAML\Auth\Simple('default-sp');
 </code></pre>
+</div>
 <p>
  We then require authentication:
 </p>
-<pre class="codehilite"><code>  $as-&gt;requireAuth();
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="err">$</span><span class="kr">as</span><span class="o">-&gt;</span><span class="n">requireAuth</span><span class="p">();</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  And print the attributes:
 </p>
-<pre class="codehilite"><code>  $attributes = $as-&gt;getAttributes();
-  print_r($attributes);
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="err">$</span><span class="n">attributes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">$</span><span class="kr">as</span><span class="o">-&gt;</span><span class="n">getAttributes</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">print_r</span><span class="p">(</span><span class="err">$</span><span class="n">attributes</span><span class="p">);</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  Each attribute name can be used as an index into $attributes to obtain the value. Every attribute value is an array - a single-valued attribute is an array of a single element.
 </p>
 <p>
  We can also request authentication with a specific IdP:
 </p>
-<pre class="codehilite"><code>  $as-&gt;login(array(
-      'saml:idp' =&gt; 'https://idp.example.org/',
-  ));
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">as-</span><span class="o">&gt;</span><span class="nt">login</span><span class="o">(</span><span class="nt">array</span><span class="o">(</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'saml:idp'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://idp.example.org/'</span><span class="o">,</span><span class="w"></span>
+<span class="w">  </span><span class="o">));</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  Other options are also available.
 Take a look in the documentation for the
@@ -407,9 +433,11 @@ Take a look in the documentation for the
 existing session when invoked for the first time, and its own session will prevail afterwards. If you want to restore
 your own session after calling SimpleSAMLphp, you can do so by cleaning up the session like this:
 </p>
-<pre class="codehilite"><code>  $session = SimpleSAML_Session::getSessionFromRequest();
-  $session-&gt;cleanup();
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">session</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">SimpleSAML_Session</span><span class="p">::</span><span class="nd">getSessionFromRequest</span><span class="o">();</span><span class="w"></span>
+<span class="w">  </span><span class="o">$</span><span class="nt">session-</span><span class="o">&gt;</span><span class="nt">cleanup</span><span class="o">();</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  If you don't cleanup SimpleSAMLphp's session and try to use $_SESSION afterwards, you won't be using your own session
 and all your data is likely to get lost or inaccessible.

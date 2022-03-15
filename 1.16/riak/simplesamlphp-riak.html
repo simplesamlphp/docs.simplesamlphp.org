@@ -155,12 +155,14 @@ module above into the global
  </code>
  directory.
 </p>
-<pre class="codehilite"><code>$ cd /var/simplesamlphp
+<div class="codehilite">
+ <pre><span></span><code>$ <span class="nb">cd</span> /var/simplesamlphp
 $ touch modules/cron/enable
 $ cp modules/cron/config-templates/*.php config/
 $ touch modules/riak/enable
 $ cp modules/riak/config-templates/*.php config/
 </code></pre>
+</div>
 <h2 id="configuring-the-cron-module">
  Configuring the cron module
 </h2>
@@ -170,47 +172,55 @@ $ cp modules/riak/config-templates/*.php config/
   /var/simplesamlphp/config
  </code>
 </p>
-<pre class="codehilite"><code>$ vi module_cron.php
+<div class="codehilite">
+ <pre><span></span><code>$ vi module_cron.php
 </code></pre>
+</div>
 <p>
  edit:
 </p>
-<pre class="codehilite"><code>$config = array (
+<div class="codehilite">
+ <pre><span></span><code>$config = array (
   'key' =&gt; 'secret',
   'allowed_tags' =&gt; array('daily', 'hourly', 'frequent'),
   'debug_message' =&gt; TRUE,
   'sendemail' =&gt; TRUE,
 );
 </code></pre>
+</div>
 <p>
  Then: With your browser go to =&gt; https://simplesamlphp_machine/simplesaml/module.php/cron/croninfo.php
 </p>
 <p>
  And copy the cron's sugestion:
 </p>
-<pre class="codehilite"><code>-------------------------------------------------------------------------------------------------------------------
-Cron is a way to run things regularly on unix systems.
+<div class="codehilite">
+ <pre><span></span><code><span class="nb">-------------------------------------------------------------------------------------------------------------------</span><span class="c"></span>
+<span class="c">Cron is a way to run things regularly on unix systems</span><span class="nt">.</span><span class="c"></span>
 
-Here is a suggestion for a crontab file:
+<span class="c">Here is a suggestion for a crontab file:</span>
 
-# Run cron [daily]
-02 0 * * * curl --silent "https://simplesamlphp_machine/simplesaml/module.php/cron/cron.php?key=secret&amp;tag=daily" &gt; /dev/null 2&gt;&amp;1
-# Run cron [hourly]
-01 * * * * curl --silent "https://simplesamlphp_machine/simplesaml/module.php/cron/cron.php?key=secret&amp;tag=hourly" &gt; /dev/null 2&gt;&amp;1
-# Run cron [frequent]
-XXXXXXXXXX curl --silent "https://simplesamlphp_machine/simplesaml/module.php/cron/cron.php?key=secret&amp;tag=frequent" &gt; /dev/null 2&gt;&amp;1
-  Click here to run the cron jobs:
+<span class="c"># Run cron </span><span class="k">[</span><span class="c">daily</span><span class="k">]</span><span class="c"></span>
+<span class="c">02 0 * * * curl </span><span class="nb">--</span><span class="c">silent "https://simplesamlphp_machine/simplesaml/module</span><span class="nt">.</span><span class="c">php/cron/cron</span><span class="nt">.</span><span class="c">php?key=secret&amp;tag=daily" </span><span class="nv">&gt;</span><span class="c"> /dev/null 2</span><span class="nv">&gt;</span><span class="c">&amp;1</span>
+<span class="c"># Run cron </span><span class="k">[</span><span class="c">hourly</span><span class="k">]</span><span class="c"></span>
+<span class="c">01 * * * * curl </span><span class="nb">--</span><span class="c">silent "https://simplesamlphp_machine/simplesaml/module</span><span class="nt">.</span><span class="c">php/cron/cron</span><span class="nt">.</span><span class="c">php?key=secret&amp;tag=hourly" </span><span class="nv">&gt;</span><span class="c"> /dev/null 2</span><span class="nv">&gt;</span><span class="c">&amp;1</span>
+<span class="c"># Run cron </span><span class="k">[</span><span class="c">frequent</span><span class="k">]</span><span class="c"></span>
+<span class="c">XXXXXXXXXX curl </span><span class="nb">--</span><span class="c">silent "https://simplesamlphp_machine/simplesaml/module</span><span class="nt">.</span><span class="c">php/cron/cron</span><span class="nt">.</span><span class="c">php?key=secret&amp;tag=frequent" </span><span class="nv">&gt;</span><span class="c"> /dev/null 2</span><span class="nv">&gt;</span><span class="c">&amp;1</span>
+<span class="c">  Click here to run the cron jobs:</span>
 
-Run cron [daily]
-Run cron [hourly]
-Run cron [frequent]
--------------------------------------------------------------------------------------------------------------------
+<span class="c">Run cron </span><span class="k">[</span><span class="c">daily</span><span class="k">]</span><span class="c"></span>
+<span class="c">Run cron </span><span class="k">[</span><span class="c">hourly</span><span class="k">]</span><span class="c"></span>
+<span class="c">Run cron </span><span class="k">[</span><span class="c">frequent</span><span class="k">]</span><span class="c"></span>
+<span class="nb">-------------------------------------------------------------------------------------------------------------------</span><span class="c"></span>
 </code></pre>
+</div>
 <p>
  Add to CRON with
 </p>
-<pre class="codehilite"><code># crontab -e
+<div class="codehilite">
+ <pre><span></span><code># crontab -e
 </code></pre>
+</div>
 <h2 id="configuring-the-riak-module">
  Configuring the riak module
 </h2>
@@ -222,13 +232,15 @@ in
  </code>
  . The defaults are listed:
 </p>
-<pre class="codehilite"><code>$config = array(
+<div class="codehilite">
+ <pre><span></span><code>$config = array(
   'path' =&gt; 'riak-php-client/riak.php',
   'host' =&gt; 'localhost',
   'port' =&gt; 8098,
   'bucket' =&gt; 'SimpleSAMLphp',
 );
 </code></pre>
+</div>
 <p>
  Finally, the module can be specified as the Store in
  <code>
@@ -236,6 +248,8 @@ in
  </code>
  with the following setting:
 </p>
-<pre class="codehilite"><code>  'store.type' =&gt; 'riak:Store',
-</code></pre></body>
+<div class="codehilite">
+ <pre><span></span><code>  'store.type' =&gt; 'riak:Store',
+</code></pre>
+</div></body>
 </html>

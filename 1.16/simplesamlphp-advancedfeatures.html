@@ -137,8 +137,10 @@ The SAML 2.0 SP talks to the SAML 2.0 IdP, which hands the request over to the S
  </code>
  :
 </p>
-<pre class="codehilite"><code>  'auth' =&gt; 'default-sp',
+<div class="codehilite">
+ <pre><span></span><code>  'auth' =&gt; 'default-sp',
 </code></pre>
+</div>
 <p>
  In
  <code>
@@ -146,10 +148,12 @@ The SAML 2.0 SP talks to the SAML 2.0 IdP, which hands the request over to the S
  </code>
  :
 </p>
-<pre class="codehilite"><code>  'default-sp' =&gt; array(
+<div class="codehilite">
+ <pre><span></span><code>  'default-sp' =&gt; array(
       'saml:SP',
   ),
 </code></pre>
+</div>
 <h2 id="attribute-control">
  Attribute control
 </h2>
@@ -160,8 +164,10 @@ The SAML 2.0 SP talks to the SAML 2.0 IdP, which hands the request over to the S
  </em>
  . For more information, read:
 </p>
-<pre class="codehilite"><code>* [Authentication Processing Filters in SimpleSAMLphp](simplesamlphp-authproc)
+<div class="codehilite">
+ <pre><span></span><code>* [Authentication Processing Filters in SimpleSAMLphp](simplesamlphp-authproc)
 </code></pre>
+</div>
 <h2 id="automatic-update-of-saml-20-metadata-xml-from-https">
  Automatic update of SAML 2.0 Metadata XML from HTTPS
 </h2>
@@ -255,13 +261,15 @@ Please see the
    metadata.sign.algorithm
   </code>
   : The algorithm to use when signing metadata for this entity. Defaults to RSA-SHA256. Possible values:
-  <pre class="codehilite"><code>* `http://www.w3.org/2000/09/xmldsig#rsa-sha1`
+  <div class="codehilite">
+   <pre><span></span><code>* `http://www.w3.org/2000/09/xmldsig#rsa-sha1`
    *Note*: the use of SHA1 is **deprecated** and will be disallowed in the future.
 * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256`
   The default.
 * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha384`
 * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512`
 </code></pre>
+  </div>
  </li>
 </ul>
 <p>
@@ -303,45 +311,47 @@ Please see the
 <p>
  Example code for the function with GeoIP country check:
 </p>
-<pre class="codehilite"><code>  public static function checkSession($session, $init = FALSE) {
-      $data_type = 'example:check_session';
-      $data_key = 'remote_addr';
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="nt">public</span><span class="w"> </span><span class="nt">static</span><span class="w"> </span><span class="nt">function</span><span class="w"> </span><span class="nt">checkSession</span><span class="o">($</span><span class="nt">session</span><span class="o">,</span><span class="w"> </span><span class="o">$</span><span class="nt">init</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">FALSE</span><span class="o">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="err">$data_type</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">'</span><span class="n">example</span><span class="p">:</span><span class="n">check_session</span><span class="s1">';</span>
+<span class="s1">      $data_key = '</span><span class="n">remote_addr</span><span class="s1">';</span>
 
-      $remote_addr = NULL;
-      if (!empty($_SERVER['REMOTE_ADDR'])) {
-          $remote_addr = (string)$_SERVER['REMOTE_ADDR'];
-      }
+<span class="s1">      $remote_addr = NULL;</span>
+<span class="s1">      if (!empty($_SERVER</span><span class="cp">[</span><span class="s1">'REMOTE_ADDR'</span><span class="cp">]</span><span class="s1">)) {</span>
+<span class="s1">          $remote_addr = (string)$_SERVER</span><span class="cp">[</span><span class="s1">'REMOTE_ADDR'</span><span class="cp">]</span><span class="s1">;</span>
+<span class="s1">      }</span>
 
-      if ($init) {
-          $session-&gt;setData($data_type, $data_key, $remote_addr, SimpleSAML_Session::DATA_TIMEOUT_SESSION_END);
-          return;
-      }
+<span class="s1">      if ($init) {</span>
+<span class="s1">          $session-&gt;setData($data_type, $data_key, $remote_addr, SimpleSAML_Session::DATA_TIMEOUT_SESSION_END);</span>
+<span class="s1">          return;</span>
+<span class="s1">      }</span>
 
-      if (!function_exists('geoip_country_code_by_name')) {
-          SimpleSAML\Logger::warning('geoip php module required.');
-          return TRUE;
-      }
+<span class="s1">      if (!function_exists('</span><span class="n">geoip_country_code_by_name</span><span class="s1">')) {</span>
+<span class="s1">          SimpleSAML\Logger::warning('</span><span class="n">geoip</span><span class="w"> </span><span class="n">php</span><span class="w"> </span><span class="n">module</span><span class="w"> </span><span class="n">required</span><span class="o">.</span><span class="s1">');</span>
+<span class="s1">          return TRUE;</span>
+<span class="s1">      }</span>
 
-      $stored_remote_addr = $session-&gt;getData($data_type, $data_key);
-      if ($stored_remote_addr === NULL) {
-          SimpleSAML\Logger::warning('Stored data not found.');
-          return FALSE;
-      }
+<span class="s1">      $stored_remote_addr = $session-&gt;getData($data_type, $data_key);</span>
+<span class="s1">      if ($stored_remote_addr === NULL) {</span>
+<span class="s1">          SimpleSAML\Logger::warning('</span><span class="n">Stored</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="n">found</span><span class="o">.</span><span class="err">'</span><span class="p">);</span><span class="w"></span>
+<span class="w">          </span><span class="err">return</span><span class="w"> </span><span class="err">FALSE</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
 
-      $country_a = geoip_country_code_by_name($remote_addr);
-      $country_b = geoip_country_code_by_name($stored_remote_addr);
+<span class="w">      </span><span class="o">$</span><span class="nt">country_a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">geoip_country_code_by_name</span><span class="o">($</span><span class="nt">remote_addr</span><span class="o">);</span><span class="w"></span>
+<span class="w">      </span><span class="o">$</span><span class="nt">country_b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">geoip_country_code_by_name</span><span class="o">($</span><span class="nt">stored_remote_addr</span><span class="o">);</span><span class="w"></span>
 
-      if ($country_a === $country_b) {
-          if ($stored_remote_addr !== $remote_addr) {
-              $session-&gt;setData($data_type, $data_key, $remote_addr, SimpleSAML_Session::DATA_TIMEOUT_SESSION_END);
-          }
+<span class="w">      </span><span class="nt">if</span><span class="w"> </span><span class="o">($</span><span class="nt">country_a</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="o">$</span><span class="nt">country_b</span><span class="o">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="err">if</span><span class="w"> </span><span class="err">($stored_remote_addr</span><span class="w"> </span><span class="err">!==</span><span class="w"> </span><span class="err">$remote_addr)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">              </span><span class="err">$session-&gt;setData($data_type,</span><span class="w"> </span><span class="err">$data_key,</span><span class="w"> </span><span class="err">$remote_addr,</span><span class="w"> </span><span class="n">SimpleSAML_Session</span><span class="p">:</span><span class="o">:</span><span class="n">DATA_TIMEOUT_SESSION_END</span><span class="p">);</span><span class="w"></span>
+<span class="w">          </span><span class="p">}</span><span class="w"></span>
 
-          return TRUE;
-      }
+<span class="w">          </span><span class="nt">return</span><span class="w"> </span><span class="nt">TRUE</span><span class="o">;</span><span class="w"></span>
+<span class="w">      </span><span class="err">}</span><span class="w"></span>
 
-      return FALSE;
-  }
+<span class="w">      </span><span class="nt">return</span><span class="w"> </span><span class="nt">FALSE</span><span class="o">;</span><span class="w"></span>
+<span class="w">  </span><span class="err">}</span><span class="w"></span>
 </code></pre>
+</div>
 <h2 id="support">
  Support
 </h2>

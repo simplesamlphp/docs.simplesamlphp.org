@@ -145,12 +145,14 @@
  </code>
  directory.
 </p>
-<pre class="codehilite"><code>[root@simplesamlphp] cd /var/simplesamlphp
-[root@simplesamlphp simplesamlphp] touch modules/cron/enable
-[root@simplesamlphp simplesamlphp] cp modules/cron/config-templates/*.php config/
-[root@simplesamlphp simplesamlphp] touch modules/metarefresh/enable
-[root@simplesamlphp simplesamlphp] cp modules/metarefresh/config-templates/*.php config/
+<div class="codehilite">
+ <pre><span></span><code><span class="p">[</span><span class="n">root</span><span class="err">@</span><span class="n">simplesamlphp</span><span class="p">]</span><span class="w"> </span><span class="n">cd</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">simplesamlphp</span><span class="w"></span>
+<span class="p">[</span><span class="n">root</span><span class="err">@</span><span class="n">simplesamlphp</span><span class="w"> </span><span class="n">simplesamlphp</span><span class="p">]</span><span class="w"> </span><span class="n">touch</span><span class="w"> </span><span class="n">modules</span><span class="o">/</span><span class="n">cron</span><span class="o">/</span><span class="n">enable</span><span class="w"></span>
+<span class="p">[</span><span class="n">root</span><span class="err">@</span><span class="n">simplesamlphp</span><span class="w"> </span><span class="n">simplesamlphp</span><span class="p">]</span><span class="w"> </span><span class="n">cp</span><span class="w"> </span><span class="n">modules</span><span class="o">/</span><span class="n">cron</span><span class="o">/</span><span class="n">config</span><span class="o">-</span><span class="n">templates</span><span class="o">/*.</span><span class="n">php</span><span class="w"> </span><span class="n">config</span><span class="o">/</span><span class="w"></span>
+<span class="p">[</span><span class="n">root</span><span class="err">@</span><span class="n">simplesamlphp</span><span class="w"> </span><span class="n">simplesamlphp</span><span class="p">]</span><span class="w"> </span><span class="n">touch</span><span class="w"> </span><span class="n">modules</span><span class="o">/</span><span class="n">metarefresh</span><span class="o">/</span><span class="n">enable</span><span class="w"></span>
+<span class="p">[</span><span class="n">root</span><span class="err">@</span><span class="n">simplesamlphp</span><span class="w"> </span><span class="n">simplesamlphp</span><span class="p">]</span><span class="w"> </span><span class="n">cp</span><span class="w"> </span><span class="n">modules</span><span class="o">/</span><span class="n">metarefresh</span><span class="o">/</span><span class="n">config</span><span class="o">-</span><span class="n">templates</span><span class="o">/*.</span><span class="n">php</span><span class="w"> </span><span class="n">config</span><span class="o">/</span><span class="w"></span>
 </code></pre>
+</div>
 <h2 id="testing-it-manually">
  Testing it manually
 </h2>
@@ -159,9 +161,11 @@
 configuring it. We can do so in the command line, by invoking metarefresh with the URL of the metadata set we want to check. For
 instance, if we want to configure the metadata of the SWITCH AAI Test Federation:
 </p>
-<pre class="codehilite"><code>cd modules/metarefresh/bin
+<div class="codehilite">
+ <pre><span></span><code>cd modules/metarefresh/bin
 ./metarefresh.php -s http://metadata.aai.switch.ch/metadata.aaitest.xml
 </code></pre>
+</div>
 <p>
  The
  <code>
@@ -175,49 +179,53 @@ instance, if we want to configure the metadata of the SWITCH AAI Test Federation
 <p>
  Now we are going to proceed to configure the metarefresh module. First, edit the appropriate configuration file:
 </p>
-<pre class="codehilite"><code>[root@simplesamlphp simplesamlphp]# vi config/config-metarefresh.php
+<div class="codehilite">
+ <pre><span></span><code><span class="o">[</span><span class="n">root@simplesamlphp simplesamlphp</span><span class="o">]</span><span class="err">#</span><span class="w"> </span><span class="n">vi</span><span class="w"> </span><span class="n">config</span><span class="o">/</span><span class="n">config</span><span class="o">-</span><span class="n">metarefresh</span><span class="p">.</span><span class="n">php</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  Here's an example of a possible configuration for both the Kalmar Federation and UK Access Management Federation:
 </p>
-<pre class="codehilite"><code>$config = [
-  'sets' =&gt; [
-    'kalmar' =&gt; [
-      'cron'    =&gt; ['hourly'],
-      'sources' =&gt; [
-        [
-          'src' =&gt; 'https://kalmar.feide.no/simplesaml/module.php/aggregator/?id=kalmarcentral&amp;mimetype=text/plain&amp;exclude=norway',
-          'certificates' =&gt; [
-            'current.crt',
-            'rollover.crt',
-          ],
-          'template' =&gt; [
-            'tags'  =&gt; ['kalmar'],
-            'authproc' =&gt; [
-              51 =&gt; ['class' =&gt; 'core:AttributeMap', 'oid2name'],
-            ],
-          ],
-        ],
-      ],
-      'expireAfter'     =&gt; 60*60*24*4, // Maximum 4 days cache time.
-      'outputDir'   =&gt; 'metadata/metarefresh-kalmar/',
-      'outputFormat' =&gt; 'flatfile',
-    ],
-    'uk' =&gt; [
-      'cron'    =&gt; ['hourly'],
-      'sources' =&gt; [
-        [
-          'src' =&gt; 'http://metadata.ukfederation.org.uk/ukfederation-metadata.xml',
-          'validateFingerprint' =&gt; 'D0:E8:40:25:F0:B1:2A:CC:74:22:ED:C3:87:04:BC:29:BB:7B:9A:40',
-        ],
-      ],
-      'expireAfter'     =&gt; 60*60*24*4, // Maximum 4 days cache time.
-      'outputDir'   =&gt; 'metadata/metarefresh-ukaccess/',
-      'outputFormat' =&gt; 'serialize',
-    ],
-  ]
-];
+<div class="codehilite">
+ <pre><span></span><code><span class="n">$config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">  </span><span class="p">'</span><span class="n">sets</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">    </span><span class="p">'</span><span class="n">kalmar</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">      </span><span class="p">'</span><span class="n">cron</span><span class="p">'</span><span class="w">    </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">['</span><span class="n">hourly</span><span class="p">'],</span><span class="w"></span>
+<span class="w">      </span><span class="p">'</span><span class="n">sources</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">        </span><span class="p">[</span><span class="w"></span>
+<span class="w">          </span><span class="p">'</span><span class="n">src</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">'</span><span class="nl">https:</span><span class="c1">//kalmar.feide.no/simplesaml/module.php/aggregator/?id=kalmarcentral&amp;mimetype=text/plain&amp;exclude=norway',</span>
+<span class="w">          </span><span class="p">'</span><span class="n">certificates</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">            </span><span class="p">'</span><span class="n">current</span><span class="p">.</span><span class="n">crt</span><span class="p">',</span><span class="w"></span>
+<span class="w">            </span><span class="p">'</span><span class="n">rollover</span><span class="p">.</span><span class="n">crt</span><span class="p">',</span><span class="w"></span>
+<span class="w">          </span><span class="p">],</span><span class="w"></span>
+<span class="w">          </span><span class="p">'</span><span class="n">template</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">            </span><span class="p">'</span><span class="n">tags</span><span class="p">'</span><span class="w">  </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">['</span><span class="n">kalmar</span><span class="p">'],</span><span class="w"></span>
+<span class="w">            </span><span class="p">'</span><span class="n">authproc</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">              </span><span class="mh">51</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">['</span><span class="n">class</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">'</span><span class="nl">core:</span><span class="n">AttributeMap</span><span class="p">',</span><span class="w"> </span><span class="p">'</span><span class="n">oid2name</span><span class="p">'],</span><span class="w"></span>
+<span class="w">            </span><span class="p">],</span><span class="w"></span>
+<span class="w">          </span><span class="p">],</span><span class="w"></span>
+<span class="w">        </span><span class="p">],</span><span class="w"></span>
+<span class="w">      </span><span class="p">],</span><span class="w"></span>
+<span class="w">      </span><span class="p">'</span><span class="n">expireAfter</span><span class="p">'</span><span class="w">     </span><span class="o">=&gt;</span><span class="w"> </span><span class="mh">60</span><span class="o">*</span><span class="mh">60</span><span class="o">*</span><span class="mh">24</span><span class="o">*</span><span class="mh">4</span><span class="p">,</span><span class="w"> </span><span class="c1">// Maximum 4 days cache time.</span>
+<span class="w">      </span><span class="p">'</span><span class="n">outputDir</span><span class="p">'</span><span class="w">   </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">'</span><span class="n">metadata</span><span class="o">/</span><span class="n">metarefresh</span><span class="o">-</span><span class="n">kalmar</span><span class="o">/</span><span class="p">',</span><span class="w"></span>
+<span class="w">      </span><span class="p">'</span><span class="n">outputFormat</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">'</span><span class="n">flatfile</span><span class="p">',</span><span class="w"></span>
+<span class="w">    </span><span class="p">],</span><span class="w"></span>
+<span class="w">    </span><span class="p">'</span><span class="n">uk</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">      </span><span class="p">'</span><span class="n">cron</span><span class="p">'</span><span class="w">    </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">['</span><span class="n">hourly</span><span class="p">'],</span><span class="w"></span>
+<span class="w">      </span><span class="p">'</span><span class="n">sources</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">        </span><span class="p">[</span><span class="w"></span>
+<span class="w">          </span><span class="p">'</span><span class="n">src</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">'</span><span class="nl">http:</span><span class="c1">//metadata.ukfederation.org.uk/ukfederation-metadata.xml',</span>
+<span class="w">          </span><span class="p">'</span><span class="n">validateFingerprint</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">'</span><span class="nl">D0:E8:</span><span class="mh">40</span><span class="o">:</span><span class="mh">25</span><span class="o">:</span><span class="nl">F0:B1:</span><span class="mh">2</span><span class="nl">A:CC:</span><span class="mh">74</span><span class="o">:</span><span class="mh">22</span><span class="o">:</span><span class="nl">ED:C3:</span><span class="mh">87</span><span class="o">:</span><span class="mh">04</span><span class="o">:</span><span class="nl">BC:</span><span class="mh">29</span><span class="o">:</span><span class="nl">BB:</span><span class="mh">7</span><span class="nl">B:</span><span class="mh">9</span><span class="nl">A:</span><span class="mh">40</span><span class="p">',</span><span class="w"></span>
+<span class="w">        </span><span class="p">],</span><span class="w"></span>
+<span class="w">      </span><span class="p">],</span><span class="w"></span>
+<span class="w">      </span><span class="p">'</span><span class="n">expireAfter</span><span class="p">'</span><span class="w">     </span><span class="o">=&gt;</span><span class="w"> </span><span class="mh">60</span><span class="o">*</span><span class="mh">60</span><span class="o">*</span><span class="mh">24</span><span class="o">*</span><span class="mh">4</span><span class="p">,</span><span class="w"> </span><span class="c1">// Maximum 4 days cache time.</span>
+<span class="w">      </span><span class="p">'</span><span class="n">outputDir</span><span class="p">'</span><span class="w">   </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">'</span><span class="n">metadata</span><span class="o">/</span><span class="n">metarefresh</span><span class="o">-</span><span class="n">ukaccess</span><span class="o">/</span><span class="p">',</span><span class="w"></span>
+<span class="w">      </span><span class="p">'</span><span class="n">outputFormat</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">'</span><span class="n">serialize</span><span class="p">',</span><span class="w"></span>
+<span class="w">    </span><span class="p">],</span><span class="w"></span>
+<span class="w">  </span><span class="p">]</span><span class="w"></span>
+<span class="p">];</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  The configuration consists of one or more metadata sets. Each metadata set has its own configuration, representing a metadata set of sources.
 Some federations will provide you with detailed instructions on how to configure metarefresh to fetch their metadata automatically, like,
@@ -373,9 +381,11 @@ instructions to configure metarefresh, be sure to use them from the authoritativ
  After you have configured the metadata sources, you need to give the
 web-server write access to the output directories. Following the previous example:
 </p>
-<pre class="codehilite"><code>chown www-data /var/simplesamlphp/metadata/metarefresh-kalmar/
-chown www-data /var/simplesamlphp/metadata/metarefresh-ukaccess/
+<div class="codehilite">
+ <pre><span></span><code><span class="n">chown</span><span class="w"> </span><span class="n">www</span><span class="o">-</span><span class="n">data</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">simplesamlphp</span><span class="o">/</span><span class="n">metadata</span><span class="o">/</span><span class="n">metarefresh</span><span class="o">-</span><span class="n">kalmar</span><span class="o">/</span><span class="w"></span>
+<span class="n">chown</span><span class="w"> </span><span class="n">www</span><span class="o">-</span><span class="n">data</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">simplesamlphp</span><span class="o">/</span><span class="n">metadata</span><span class="o">/</span><span class="n">metarefresh</span><span class="o">-</span><span class="n">ukaccess</span><span class="o">/</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  Now you can configure SimpleSAMLphp to use the metadata fetched by metarefresh. Edit the main
 config.php file, and modify the
@@ -384,12 +394,14 @@ config.php file, and modify the
  </code>
  directive accordingly:
 </p>
-<pre class="codehilite"><code>'metadata.sources' =&gt; [
+<div class="codehilite">
+ <pre><span></span><code>'metadata.sources' =&gt; [
   ['type' =&gt; 'flatfile'],
   ['type' =&gt; 'flatfile', 'directory' =&gt; 'metadata/metarefresh-kalmar'],
   ['type' =&gt; 'serialize', 'directory' =&gt; 'metadata/metarefresh-ukaccess'],
 ],
 </code></pre>
+</div>
 <p>
  Remember that the
  <code>

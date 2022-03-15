@@ -101,8 +101,10 @@ IdP hosted metadata.
 filter to run after all attribute mangling filters have completed, to show the 
 user the exact same attributes that are sent to the SP.
 </p>
-<pre class="codehilite"><code>* [Read more about processing filters in SimpleSAMLphp](simplesamlphp-authproc)
+<div class="codehilite">
+ <pre><span></span><code>* [Read more about processing filters in SimpleSAMLphp](simplesamlphp-authproc)
 </code></pre>
+</div>
 <h2 id="how-to-setup-the-consent-module">
  How to setup the consent module
 </h2>
@@ -125,11 +127,13 @@ user the exact same attributes that are sent to the SP.
  </code>
  :
 </p>
-<pre class="codehilite"><code>    'module.enable' =&gt; [
+<div class="codehilite">
+ <pre><span></span><code>    'module.enable' =&gt; [
          'consent' =&gt; true,
          …
     ],
 </code></pre>
+</div>
 <p>
  In order to generate the privacy preserving hashes in the consent module, you
 need to pick one attribute that is always available and that is unique to all
@@ -144,11 +148,13 @@ sure that you select an attribute that is available to all users.
  Add the filter to your Identity Provider hosted metadata authproc filters
 list, specifying the attribute you've selected.
 </p>
-<pre class="codehilite"><code>  90 =&gt; [
+<div class="codehilite">
+ <pre><span></span><code>  90 =&gt; [
       'class' =&gt; 'consent:Consent',
       'identifyingAttribute' =&gt; 'uid',
   ],
 </code></pre>
+</div>
 <p>
  This setup uses no persistent storage at all. This means that the user will
 always be asked to give consent each time she logs in.
@@ -181,29 +187,33 @@ cookies as storage you need to set the
 <p>
  Example:
 </p>
-<pre class="codehilite"><code>90 =&gt; [
-          'class'                =&gt; 'consent:Consent',
-          'identifyingAttribute' =&gt; 'uid',
-          'store'                =&gt; 'consent:Cookie', 
-],
+<div class="codehilite">
+ <pre><span></span><code><span class="mf">90</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span><span class="w"></span>
+<span class="w">          </span><span class="err">'</span><span class="n">class</span><span class="err">'</span><span class="w">                </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">consent</span><span class="p">:</span><span class="n">Consent</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="err">'</span><span class="n">identifyingAttribute</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">uid</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="err">'</span><span class="n">store</span><span class="err">'</span><span class="w">                </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">consent</span><span class="p">:</span><span class="n">Cookie</span><span class="err">'</span><span class="p">,</span><span class="w"> </span>
+<span class="err">]</span><span class="p">,</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  If necessary, you can set the cookie parameters in the config array using the same sematics as other cookies (default values shown):
 </p>
-<pre class="codehilite"><code>90 =&gt; [
-          'class'                =&gt; 'consent:Consent',
-          'identifyingAttribute' =&gt; 'uid',
-          'store'                =&gt; [
-              'consent:Cookie',
-              'name' =&gt; '\SimpleSAML\Module\consent', # prefix for name
-              'lifetime' =&gt; 7776000,
-              'path' =&gt; '/',
-              'domain' =&gt; '',
-              'secure' =&gt; true,
-              'samesite' =&gt; null,
-          ],
-],
+<div class="codehilite">
+ <pre><span></span><code><span class="mf">90</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span><span class="w"></span>
+<span class="w">          </span><span class="err">'</span><span class="n">class</span><span class="err">'</span><span class="w">                </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">consent</span><span class="p">:</span><span class="n">Consent</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="err">'</span><span class="n">identifyingAttribute</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">uid</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="err">'</span><span class="n">store</span><span class="err">'</span><span class="w">                </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span><span class="w"></span>
+<span class="w">              </span><span class="err">'</span><span class="n">consent</span><span class="p">:</span><span class="n">Cookie</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="err">'</span><span class="n">name</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'\</span><span class="n">SimpleSAML</span><span class="err">\</span><span class="n">Module</span><span class="err">\</span><span class="n">consent</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">prefix</span><span class="w"> </span><span class="kr">for</span><span class="w"> </span><span class="n">name</span><span class="w"></span>
+<span class="w">              </span><span class="err">'</span><span class="n">lifetime</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mf">7776000</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="err">'</span><span class="n">path</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="o">/</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="err">'</span><span class="n">domain</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">''</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="err">'</span><span class="n">secure</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">true</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="err">'</span><span class="n">samesite</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">null</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="err">]</span><span class="p">,</span><span class="w"></span>
+<span class="err">]</span><span class="p">,</span><span class="w"></span>
 </code></pre>
+</div>
 <h3 id="using-a-database-as-storage">
  Using a database as storage
 </h3>
@@ -214,7 +224,8 @@ database.
 <p>
  Here is the initialization SQL script:
 </p>
-<pre class="codehilite"><code>CREATE TABLE consent (
+<div class="codehilite">
+ <pre><span></span><code>CREATE TABLE consent (
   consent_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   usage_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   hashed_user_id VARCHAR(80) NOT NULL,
@@ -223,6 +234,7 @@ database.
   UNIQUE (hashed_user_id, service_id)
 );
 </code></pre>
+</div>
 <p>
  The
  <code>
@@ -292,31 +304,35 @@ and defaults to
 <p>
  Example config using PostgreSQL database:
 </p>
-<pre class="codehilite"><code>  90 =&gt; [
-      'class' =&gt; 'consent:Consent', 
-      'identifyingAttribute' =&gt; 'uid',
-      'store' =&gt; [
-          'consent:Database', 
-          'dsn' =&gt; 'pgsql:host=sql.example.org;dbname=consent',
-          'username' =&gt; 'simplesaml',
-          'password' =&gt; 'sdfsdf',
-      ],
-  ],
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="nt">90</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span>
+      <span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'consent:Consent'</span><span class="p">,</span> 
+      <span class="s1">'identifyingAttribute'</span> <span class="o">=&gt;</span> <span class="s1">'uid'</span><span class="p">,</span>
+      <span class="s1">'store'</span> <span class="o">=&gt;</span> <span class="err">[</span>
+          <span class="s1">'consent:Database'</span><span class="p">,</span> 
+          <span class="s1">'dsn'</span> <span class="o">=&gt;</span> <span class="s1">'pgsql:host=sql.example.org;dbname=consent'</span><span class="p">,</span>
+          <span class="s1">'username'</span> <span class="o">=&gt;</span> <span class="s1">'simplesaml'</span><span class="p">,</span>
+          <span class="s1">'password'</span> <span class="o">=&gt;</span> <span class="s1">'sdfsdf'</span><span class="p">,</span>
+      <span class="cp">]</span><span class="o">,</span><span class="w"></span>
+<span class="w">  </span><span class="o">],</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  Example config using MySQL database:
 </p>
-<pre class="codehilite"><code>  90 =&gt; [
-      'class' =&gt; 'consent:Consent', 
-      'identifyingAttribute' =&gt; 'uid',
-      'store' =&gt; [
-          'consent:Database', 
-          'dsn' =&gt; 'mysql:host=db.example.org;dbname=simplesaml',
-          'username' =&gt; 'simplesaml',
-          'password' =&gt; 'sdfsdf',
-      ],
-  ],
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="nt">90</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span>
+      <span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'consent:Consent'</span><span class="p">,</span> 
+      <span class="s1">'identifyingAttribute'</span> <span class="o">=&gt;</span> <span class="s1">'uid'</span><span class="p">,</span>
+      <span class="s1">'store'</span> <span class="o">=&gt;</span> <span class="err">[</span>
+          <span class="s1">'consent:Database'</span><span class="p">,</span> 
+          <span class="s1">'dsn'</span> <span class="o">=&gt;</span> <span class="s1">'mysql:host=db.example.org;dbname=simplesaml'</span><span class="p">,</span>
+          <span class="s1">'username'</span> <span class="o">=&gt;</span> <span class="s1">'simplesaml'</span><span class="p">,</span>
+          <span class="s1">'password'</span> <span class="o">=&gt;</span> <span class="s1">'sdfsdf'</span><span class="p">,</span>
+      <span class="cp">]</span><span class="o">,</span><span class="w"></span>
+<span class="w">  </span><span class="o">],</span><span class="w"></span>
 </code></pre>
+</div>
 <h2 id="options">
  Options
 </h2>
@@ -445,11 +461,13 @@ and defaults to
  <dd>
   This is an absolute URL for where a user can find a privacy policy for the SP.
   If set, this will be shown on the consent page.
-  <pre class="codehilite"><code>This option can be set in 
+  <div class="codehilite">
+   <pre><span></span><code>This option can be set in 
 [SP-remote metadata](./simplesamlphp-reference-sp-remote) and in 
 [IdP-hosted metadata](./simplesamlphp-reference-idp-hosted) using the MDUI-extension.
 The entry in the SP-remote metadata overrides the option in the IdP-hosted metadata.
 </code></pre>
+  </div>
  </dd>
  <dt>
   <code>
@@ -499,34 +517,41 @@ more IdPs for a given SP, add the
 <p>
  Disable consent for a given IdP:
 </p>
-<pre class="codehilite"><code>  $metadata['https://idp.example.org/'] = [
-      [...],
-      'consent.disable' =&gt; true,
-  ];
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'https://idp.example.org/'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cp">[</span>
+      <span class="err">[</span><span class="nx">...</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'consent.disable'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">true</span><span class="o">,</span><span class="w"></span>
+<span class="w">  </span><span class="o">];</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  Disable consent for some SPs connected to a given IdP:
 </p>
-<pre class="codehilite"><code>  $metadata['https://idp.example.org/'] = [
-      [...],
-      'consent.disable' =&gt; [
-          'https://sp1.example.org/',
-          'https://sp2.example.org/',
-      ],
-  ];
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'https://idp.example.org/'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cp">[</span>
+      <span class="err">[</span><span class="nx">...</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'consent.disable'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span>
+          <span class="s1">'https://sp1.example.org/'</span><span class="p">,</span>
+          <span class="s1">'https://sp2.example.org/'</span><span class="p">,</span>
+      <span class="cp">]</span><span class="o">,</span><span class="w"></span>
+<span class="w">  </span><span class="o">];</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  Disable consent for a given SP:
 </p>
-<pre class="codehilite"><code>  $metadata['https://sp.example.org'] = [
+<div class="codehilite">
+ <pre><span></span><code>  $metadata['https://sp.example.org'] = [
       [...]
       'consent.disable' =&gt; true,
   ],
 </code></pre>
+</div>
 <p>
  Disable consent for some IdPs for a given SP:
 </p>
-<pre class="codehilite"><code>  $metadata['https://sp.example.org'] = [
+<div class="codehilite">
+ <pre><span></span><code>  $metadata['https://sp.example.org'] = [
       [...]
       'consent.disable' =&gt; [
           'https://idp1.example.org/',
@@ -534,6 +559,7 @@ more IdPs for a given SP, add the
       ],
   ],
 </code></pre>
+</div>
 <h3 id="regular-expression-support">
  Regular expression support
 </h3>
@@ -544,14 +570,16 @@ for a range of specific entityIds.  Just use an array instead of a flat string
 with the following format (note that flat string and array entries are allowed
 at the same time) :
 </p>
-<pre class="codehilite"><code>  $metadata['https://sp.example.org'] = [
-      [...]
-      'consent.disable' =&gt; [
-          'https://idp1.example.org/',
-          ['type' =&gt; 'regex', 'pattern' =&gt; '/.*\.mycompany\.com.*/i'],
-      ],
-  ],
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="n">$metadata</span><span class="p">['</span><span class="nl">https:</span><span class="c1">//sp.example.org'] = [</span>
+<span class="w">      </span><span class="p">[...]</span><span class="w"></span>
+<span class="w">      </span><span class="p">'</span><span class="n">consent</span><span class="p">.</span><span class="k">disable</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">          </span><span class="p">'</span><span class="nl">https:</span><span class="c1">//idp1.example.org/',</span>
+<span class="w">          </span><span class="p">['</span><span class="k">type</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">'</span><span class="n">regex</span><span class="p">',</span><span class="w"> </span><span class="p">'</span><span class="n">pattern</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">'</span><span class="o">/</span><span class="p">.</span><span class="o">*</span><span class="n">\.mycompany\.com.*/i'],</span><span class="w"></span>
+<span class="w">      </span><span class="p">],</span><span class="w"></span>
+<span class="w">  </span><span class="p">],</span><span class="w"></span>
 </code></pre>
+</div>
 <h2 id="attribute-presentation">
  Attribute presentation
 </h2>
@@ -562,18 +590,24 @@ page. This is done by implementing an attribute array reordering function.
 <p>
  To create this function, you have to create a file named
 </p>
-<pre class="codehilite"><code>  hook_attributepresentation.php
+<div class="codehilite">
+ <pre><span></span><code>  hook_attributepresentation.php
 </code></pre>
+</div>
 <p>
  and place it under the
 </p>
-<pre class="codehilite"><code>  &lt;module_name&gt;/hooks
+<div class="codehilite">
+ <pre><span></span><code>  &lt;module_name&gt;/hooks
 </code></pre>
+</div>
 <p>
  directory. To be found and called, the function must be named
 </p>
-<pre class="codehilite"><code>  &lt;module_name&gt;_hook_attributepresentation(&amp;$para).
+<div class="codehilite">
+ <pre><span></span><code>  &lt;module_name&gt;_hook_attributepresentation(&amp;$para).
 </code></pre>
+</div>
 <p>
  The parameter
  <code>
@@ -598,36 +632,40 @@ attribute tree.
 <p>
  These values will be listed as an bullet list
 </p>
-<pre class="codehilite"><code>  Array (
-      [objectClass] =&gt; Array (
-          [0] =&gt; top
-          [1] =&gt; person
-      )
-  )
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="k">Array</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="o">[</span><span class="n">objectClass</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">Array</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">          </span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">top</span><span class="w"></span>
+<span class="w">          </span><span class="o">[</span><span class="n">1</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">person</span><span class="w"></span>
+<span class="w">      </span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">)</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  This array has two child arrays. These will be listed in two separate sub
 tables.
 </p>
-<pre class="codehilite"><code>  Array (
-      [child_eduPersonOrgUnitDN] =&gt; Array (
-          [0] =&gt; Array (
-              [ou] =&gt; Array (
-                  [0] =&gt; ET
-              )
-              [cn] =&gt; Array (
-                  [0] =&gt; Eksterne tjenester
-              )
-          )
-          [1] =&gt; Array (
-              [ou] =&gt; Array (
-                  [0] =&gt; TA
-              )
-              [cn] =&gt; Array (
-                  [0] =&gt; Tjenesteavdeling
-              )
-          )
-      )
-  )
-</code></pre></body>
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="k">Array</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="o">[</span><span class="n">child_eduPersonOrgUnitDN</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">Array</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">          </span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">Array</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">              </span><span class="o">[</span><span class="n">ou</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">Array</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">                  </span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">ET</span><span class="w"></span>
+<span class="w">              </span><span class="p">)</span><span class="w"></span>
+<span class="w">              </span><span class="o">[</span><span class="n">cn</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">Array</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">                  </span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">Eksterne</span><span class="w"> </span><span class="n">tjenester</span><span class="w"></span>
+<span class="w">              </span><span class="p">)</span><span class="w"></span>
+<span class="w">          </span><span class="p">)</span><span class="w"></span>
+<span class="w">          </span><span class="o">[</span><span class="n">1</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">Array</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">              </span><span class="o">[</span><span class="n">ou</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">Array</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">                  </span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">TA</span><span class="w"></span>
+<span class="w">              </span><span class="p">)</span><span class="w"></span>
+<span class="w">              </span><span class="o">[</span><span class="n">cn</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">Array</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">                  </span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">Tjenesteavdeling</span><span class="w"></span>
+<span class="w">              </span><span class="p">)</span><span class="w"></span>
+<span class="w">          </span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">)</span><span class="w"></span>
+</code></pre>
+</div></body>
 </html>

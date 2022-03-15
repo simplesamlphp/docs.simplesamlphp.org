@@ -206,12 +206,14 @@ The filter has the following configuration options:
 <p>
  Without any configuration:
 </p>
-<pre class="codehilite"><code>'authproc' =&gt; array(
+<div class="codehilite">
+ <pre><span></span><code>'authproc' =&gt; array(
   50 =&gt; array(
     'class' =&gt; 'smartattributes:SmartID'
   ),
 ),
 </code></pre>
+</div>
 <p>
  This will add an attribute called
  <code>
@@ -227,7 +229,8 @@ The filter has the following configuration options:
 <p>
  Custom configuration:
 </p>
-<pre class="codehilite"><code>'authproc' =&gt; array(
+<div class="codehilite">
+ <pre><span></span><code>'authproc' =&gt; array(
   50 =&gt; array(
     'class' =&gt; 'smartattributes:SmartID',
     'candidates' =&gt; array('eduPersonTargetedID', 'eduPersonPrincipalName'),
@@ -236,6 +239,7 @@ The filter has the following configuration options:
   ),
 ),
 </code></pre>
+</div>
 <p>
  This will add an attribute called
  <code>
@@ -251,7 +255,8 @@ The filter has the following configuration options:
 <p>
  If you also want to remove the name of the originating attribute, you could configure it like this:
 </p>
-<pre class="codehilite"><code>'authproc' =&gt; array(
+<div class="codehilite">
+ <pre><span></span><code>'authproc' =&gt; array(
   50 =&gt; array(
     'class' =&gt; 'smartattributes:SmartID',
     'candidates' =&gt; array('eduPersonTargetedID', 'eduPersonPrincipalName'),
@@ -261,6 +266,7 @@ The filter has the following configuration options:
   ),
 ),
 </code></pre>
+</div>
 <p>
  Resulting in:
 </p>

@@ -122,8 +122,10 @@
  </code>
  there is a configuration option that controls theming. Here is an example:
 </p>
-<pre class="codehilite"><code>'theme.use'     =&gt; 'fancymodule:fancytheme',
+<div class="codehilite">
+ <pre><span></span><code>'theme.use'     =&gt; 'fancymodule:fancytheme',
 </code></pre>
+</div>
 <p>
  The
  <code>
@@ -185,11 +187,13 @@
 <p>
  The first thing you need to do is having a SimpleSAMLphp module to place your theme in. If you do not have a module already, create a new one:
 </p>
-<pre class="codehilite"><code>cd modules
+<div class="codehilite">
+ <pre><span></span><code>cd modules
 mkdir mymodule
 cd mymodule
 touch default-enable
 </code></pre>
+</div>
 <p>
  Then within this module, you can create a new theme named
  <code>
@@ -197,9 +201,11 @@ touch default-enable
  </code>
  .
 </p>
-<pre class="codehilite"><code>cd modules/mymodule
+<div class="codehilite">
+ <pre><span></span><code>cd modules/mymodule
 mkdir -p themes/fancytheme/default/includes
 </code></pre>
+</div>
 <p>
  Now, configure SimpleSAMLphp to use your new theme in
  <code>
@@ -207,8 +213,10 @@ mkdir -p themes/fancytheme/default/includes
  </code>
  :
 </p>
-<pre class="codehilite"><code>'theme.use'     =&gt; 'mymodule:fancytheme',
+<div class="codehilite">
+ <pre><span></span><code>'theme.use'     =&gt; 'mymodule:fancytheme',
 </code></pre>
+</div>
 <p>
  Next, we create
  <code>
@@ -216,8 +224,10 @@ mkdir -p themes/fancytheme/default/includes
  </code>
  , and copy the header file from the base theme:
 </p>
-<pre class="codehilite"><code>cp templates/includes/header.php modules/mymodule/themes/fancytheme/default/includes/
+<div class="codehilite">
+ <pre><span></span><code>cp templates/includes/header.php modules/mymodule/themes/fancytheme/default/includes/
 </code></pre>
+</div>
 <p>
  In the
  <code>
@@ -228,21 +238,27 @@ mkdir -p themes/fancytheme/default/includes
 <p>
  A good start is to modify the reference to the default CSS:
 </p>
-<pre class="codehilite"><code>&lt;link rel="stylesheet" type="text/css" href="/&lt;?php echo $this-&gt;data['baseurlpath']; ?&gt;resources/default.css" /&gt;
+<div class="codehilite">
+ <pre><span></span><code><span class="o">&lt;</span><span class="nx">link</span> <span class="nx">rel</span><span class="o">=</span><span class="s2">"stylesheet"</span> <span class="nx">type</span><span class="o">=</span><span class="s2">"text/css"</span> <span class="nx">href</span><span class="o">=</span><span class="s2">"/</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">data</span><span class="p">[</span><span class="s1">'baseurlpath'</span><span class="p">];</span> <span class="cp">?&gt;</span><span class="s2">resources/default.css"</span> <span class="o">/&gt;</span>
 </code></pre>
+</div>
 <p>
  to in example:
 </p>
-<pre class="codehilite"><code>&lt;link rel="stylesheet" type="text/css" href="/&lt;?php echo $this-&gt;data['baseurlpath']; ?&gt;resources/fancytheme/default.css" /&gt;
+<div class="codehilite">
+ <pre><span></span><code><span class="o">&lt;</span><span class="nx">link</span> <span class="nx">rel</span><span class="o">=</span><span class="s2">"stylesheet"</span> <span class="nx">type</span><span class="o">=</span><span class="s2">"text/css"</span> <span class="nx">href</span><span class="o">=</span><span class="s2">"/</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">data</span><span class="p">[</span><span class="s1">'baseurlpath'</span><span class="p">];</span> <span class="cp">?&gt;</span><span class="s2">resources/fancytheme/default.css"</span> <span class="o">/&gt;</span>
 </code></pre>
+</div>
 <h2 id="examples">
  Examples
 </h2>
 <p>
  To override the frontpage body, add the file:
 </p>
-<pre class="codehilite"><code>modules/mymodule/themes/fancytheme/default/frontpage.php
+<div class="codehilite">
+ <pre><span></span><code><span class="n">modules</span><span class="o">/</span><span class="n">mymodule</span><span class="o">/</span><span class="n">themes</span><span class="o">/</span><span class="n">fancytheme</span><span class="o">/</span><span class="k">default</span><span class="o">/</span><span class="n">frontpage</span>.<span class="n">php</span>
 </code></pre>
+</div>
 <p>
  In the path above
  <code>
@@ -265,8 +281,10 @@ mkdir -p themes/fancytheme/default/includes
  </code>
  ), you need to add a new file:
 </p>
-<pre class="codehilite"><code>modules/mymodule/themes/fancytheme/preprodwarning/warning.php
+<div class="codehilite">
+ <pre><span></span><code><span class="n">modules</span><span class="o">/</span><span class="n">mymodule</span><span class="o">/</span><span class="n">themes</span><span class="o">/</span><span class="n">fancytheme</span><span class="o">/</span><span class="n">preprodwarning</span><span class="o">/</span><span class="n">warning</span>.<span class="n">php</span>
 </code></pre>
+</div>
 <p>
  Say in a module
  <code>
@@ -299,14 +317,16 @@ mkdir -p themes/fancytheme/default/includes
 <p>
  You can put resource files within the www folder of your module, to make your module completely independent with included css, icons etc.
 </p>
-<pre class="codehilite"><code>modules
-└───mymodule
-    └───lib
-    └───themes
-    └───www
-        └───logo.png
-        └───style.css
+<div class="codehilite">
+ <pre><span></span><code><span class="n">modules</span>
+└───<span class="n">mymodule</span>
+    └───<span class="n">lib</span>
+    └───<span class="n">themes</span>
+    └───<span class="n">www</span>
+        └───<span class="n">logo</span>.<span class="n">png</span>
+        └───<span class="n">style</span>.<span class="n">css</span>
 </code></pre>
+</div>
 <p>
  Reference these resources in your custom PHP templates under
  <code>
@@ -314,13 +334,17 @@ mkdir -p themes/fancytheme/default/includes
  </code>
  by using a generator for the URL:
 </p>
-<pre class="codehilite"><code>&lt;?php echo SimpleSAML\Module::getModuleURL('mymodule/logo.png'); ?&gt;
+<div class="codehilite">
+ <pre><span></span><code><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">SimpleSAML\Module</span><span class="o">::</span><span class="na">getModuleURL</span><span class="p">(</span><span class="s1">'mymodule/logo.png'</span><span class="p">);</span> <span class="cp">?&gt;</span>
 </code></pre>
+</div>
 <p>
  Example for a custom CSS stylesheet file:
 </p>
-<pre class="codehilite"><code>&lt;link rel="stylesheet" href="&lt;?php echo SimpleSAML\Module::getModuleURL('mymodule/style.css'); ?&gt;"&gt;
+<div class="codehilite">
+ <pre><span></span><code><span class="o">&lt;</span><span class="nx">link</span> <span class="nx">rel</span><span class="o">=</span><span class="s2">"stylesheet"</span> <span class="nx">href</span><span class="o">=</span><span class="s2">"</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">SimpleSAML\Module</span><span class="o">::</span><span class="na">getModuleURL</span><span class="p">(</span><span class="s1">'mymodule/style.css'</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s2">"</span><span class="o">&gt;</span>
 </code></pre>
+</div>
 <h2 id="migrating-to-twig-templates">
  Migrating to Twig templates
 </h2>
@@ -342,13 +366,17 @@ mkdir -p themes/fancytheme/default/includes
  </code>
  file. This can be customized by copying it from the base template:
 </p>
-<pre class="codehilite"><code>cp templates/_header.twig modules/mymodule/themes/fancytheme/default/
+<div class="codehilite">
+ <pre><span></span><code>cp templates/_header.twig modules/mymodule/themes/fancytheme/default/
 </code></pre>
+</div>
 <p>
  If you need to make more extensive customizations to the base template, you should copy it from the base theme:
 </p>
-<pre class="codehilite"><code>cp templates/base.twig modules/mymodule/themes/fancytheme/default/
+<div class="codehilite">
+ <pre><span></span><code>cp templates/base.twig modules/mymodule/themes/fancytheme/default/
 </code></pre>
+</div>
 <p>
  Any references to
  <code>
@@ -397,8 +425,10 @@ mkdir -p themes/fancytheme/default/includes
  </code>
  :
 </p>
-<pre class="codehilite"><code>  'theme.controller' =&gt; '\SimpleSAML\Module\mymodule\FancyThemeController',
+<div class="codehilite">
+ <pre><span></span><code>  'theme.controller' =&gt; '\SimpleSAML\Module\mymodule\FancyThemeController',
 </code></pre>
+</div>
 <p>
  This requires you to implement
  <code>

@@ -119,15 +119,19 @@
 <p>
  The various endpoints can be specified in three different ways:
 </p>
-<pre class="codehilite"><code>* A single string.
+<div class="codehilite">
+ <pre><span></span><code>* A single string.
 * Array of strings.
 * Array of arrays.
 </code></pre>
+</div>
 <h2 id="a-single-string">
  A single string
 </h2>
-<pre class="codehilite"><code>  'AssertionConsumerService' =&gt; 'https://sp.example.org/ACS',
+<div class="codehilite">
+ <pre><span></span><code>  'AssertionConsumerService' =&gt; 'https://sp.example.org/ACS',
 </code></pre>
+</div>
 <p>
  This is the simplest endpoint format.
 It can be used when there is only a single endpoint that uses the default binding.
@@ -135,18 +139,21 @@ It can be used when there is only a single endpoint that uses the default bindin
 <h2 id="array-of-strings">
  Array of strings
 </h2>
-<pre class="codehilite"><code>  'AssertionConsumerService' =&gt; [
+<div class="codehilite">
+ <pre><span></span><code>  'AssertionConsumerService' =&gt; [
       'https://site1.example.org/ACS',
       'https://site2.example.org/ACS',
   ],
 </code></pre>
+</div>
 <p>
  This endpoint format can be used to represent multiple endpoints, all of which use the default binding.
 </p>
 <h2 id="array-of-arrays">
  Array of arrays
 </h2>
-<pre class="codehilite"><code>  'AssertionConsumerService' =&gt; [
+<div class="codehilite">
+ <pre><span></span><code>  'AssertionConsumerService' =&gt; [
       [
           'index' =&gt; 1,
           'isDefault' =&gt; true,
@@ -160,6 +167,7 @@ It can be used when there is only a single endpoint that uses the default bindin
       ],
   ],
 </code></pre>
+</div>
 <p>
  This endpoint format allows for specifying multiple endpoints with different bindings.
 It can also be used to specify the ResponseLocation attribute on endpoints, e.g. on
@@ -168,12 +176,14 @@ It can also be used to specify the ResponseLocation attribute on endpoints, e.g.
  </code>
  :
 </p>
-<pre class="codehilite"><code>  'SingleLogoutService' =&gt; [
+<div class="codehilite">
+ <pre><span></span><code>  'SingleLogoutService' =&gt; [
       [
           'Location' =&gt; 'https://sp.example.org/LogoutRequest',
           'ResponseLocation' =&gt; 'https://sp.example.org/LogoutResponse',
           'Binding' =&gt; 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
       ],
   ],
-</code></pre></body>
+</code></pre>
+</div></body>
 </html>

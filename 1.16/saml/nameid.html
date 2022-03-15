@@ -399,7 +399,8 @@ This can be used to set the
 <p>
  This example makes three NameIDs available:
 </p>
-<pre class="codehilite"><code>  'authproc' =&gt; array(
+<div class="codehilite">
+ <pre><span></span><code>  'authproc' =&gt; array(
       1 =&gt; array(
           'class' =&gt; 'saml:TransientNameID',
       ),
@@ -414,10 +415,12 @@ This can be used to set the
       ),
   ),
 </code></pre>
+</div>
 <p>
  Storing persistent NameIDs in a SQL database:
 </p>
-<pre class="codehilite"><code>  'authproc' =&gt; array(
+<div class="codehilite">
+ <pre><span></span><code>  'authproc' =&gt; array(
       1 =&gt; array(
           'class' =&gt; 'saml:TransientNameID',
       ),
@@ -427,31 +430,34 @@ This can be used to set the
       ),
   ),
 </code></pre>
+</div>
 <p>
  Generating Persistent NameID and eduPersonTargetedID.
 </p>
-<pre class="codehilite"><code>  'authproc' =&gt; array(
-      // Generate the persistent NameID.
-      2 =&gt; array(
-          'class' =&gt; 'saml:PersistentNameID',
-          'attribute' =&gt; 'eduPersonPrincipalName',
-      ),
-      // Add the persistent to the eduPersonTargetedID attribute
-      60 =&gt; array(
-          'class' =&gt; 'saml:PersistentNameID2TargetedID',
-          'attribute' =&gt; 'eduPersonTargetedID', // The default
-          'nameId' =&gt; TRUE, // The default
-      ),
-      // Use OID attribute names.
-      90 =&gt; array(
-          'class' =&gt; 'core:AttributeMap',
-          'name2oid',
-      ),
-  ),
-  // The URN attribute NameFormat for OID attributes.
-  'attributes.NameFormat' =&gt; 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
-  'attributeencodings' =&gt; array(
-      'urn:oid:1.3.6.1.4.1.5923.1.1.1.10' =&gt; 'raw', /* eduPersonTargetedID with oid NameFormat is a raw XML value */
-  ),
-</code></pre></body>
+<div class="codehilite">
+ <pre><span></span><code>  <span class="s1">'</span><span class="s">authproc</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="nv">array</span><span class="ss">(</span>
+      <span class="o">//</span> <span class="nv">Generate</span> <span class="nv">the</span> <span class="nv">persistent</span> <span class="nv">NameID</span>.
+      <span class="mi">2</span> <span class="o">=&gt;</span> <span class="nv">array</span><span class="ss">(</span>
+          <span class="s1">'</span><span class="s">class</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="s1">'</span><span class="s">saml:PersistentNameID</span><span class="s1">'</span>,
+          <span class="s1">'</span><span class="s">attribute</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="s1">'</span><span class="s">eduPersonPrincipalName</span><span class="s1">'</span>,
+      <span class="ss">)</span>,
+      <span class="o">//</span> <span class="nv">Add</span> <span class="nv">the</span> <span class="nv">persistent</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">eduPersonTargetedID</span> <span class="nv">attribute</span>
+      <span class="mi">60</span> <span class="o">=&gt;</span> <span class="nv">array</span><span class="ss">(</span>
+          <span class="s1">'</span><span class="s">class</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="s1">'</span><span class="s">saml:PersistentNameID2TargetedID</span><span class="s1">'</span>,
+          <span class="s1">'</span><span class="s">attribute</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="s1">'</span><span class="s">eduPersonTargetedID</span><span class="s1">'</span>, <span class="o">//</span> <span class="nv">The</span> <span class="nv">default</span>
+          <span class="s1">'</span><span class="s">nameId</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="nv">TRUE</span>, <span class="o">//</span> <span class="nv">The</span> <span class="nv">default</span>
+      <span class="ss">)</span>,
+      <span class="o">//</span> <span class="nv">Use</span> <span class="nv">OID</span> <span class="nv">attribute</span> <span class="nv">names</span>.
+      <span class="mi">90</span> <span class="o">=&gt;</span> <span class="nv">array</span><span class="ss">(</span>
+          <span class="s1">'</span><span class="s">class</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="s1">'</span><span class="s">core:AttributeMap</span><span class="s1">'</span>,
+          <span class="s1">'</span><span class="s">name2oid</span><span class="s1">'</span>,
+      <span class="ss">)</span>,
+  <span class="ss">)</span>,
+  <span class="o">//</span> <span class="nv">The</span> <span class="nv">URN</span> <span class="nv">attribute</span> <span class="nv">NameFormat</span> <span class="k">for</span> <span class="nv">OID</span> <span class="nv">attributes</span>.
+  <span class="s1">'</span><span class="s">attributes.NameFormat</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="s1">'</span><span class="s">urn:oasis:names:tc:SAML:2.0:attrname-format:uri</span><span class="s1">'</span>,
+  <span class="s1">'</span><span class="s">attributeencodings</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="nv">array</span><span class="ss">(</span>
+      <span class="s1">'</span><span class="s">urn:oid:1.3.6.1.4.1.5923.1.1.1.10</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="s1">'</span><span class="s">raw</span><span class="s1">'</span>, <span class="cm">/* eduPersonTargetedID with oid NameFormat is a raw XML value */</span>
+  <span class="ss">)</span>,
+</code></pre>
+</div></body>
 </html>

@@ -105,9 +105,11 @@
  SimpleSAMLphp supports generating metadata with the MDUI and MDRPI metadata extensions.
 See the documentation for those extensions for more details:
 </p>
-<pre class="codehilite"><code>* [MDUI extension](./simplesamlphp-metadata-extensions-ui)
-* [MDRPI extension](./simplesamlphp-metadata-extensions-rpi)
+<div class="codehilite">
+ <pre><span></span><code><span class="o">*</span><span class="w"> </span><span class="p">[</span><span class="n">MDUI</span><span class="w"> </span><span class="n">extension</span><span class="p">](.</span><span class="o">/</span><span class="n">simplesamlphp</span><span class="o">-</span><span class="n">metadata</span><span class="o">-</span><span class="n">extensions</span><span class="o">-</span><span class="n">ui</span><span class="p">)</span><span class="w"></span>
+<span class="o">*</span><span class="w"> </span><span class="p">[</span><span class="n">MDRPI</span><span class="w"> </span><span class="n">extension</span><span class="p">](.</span><span class="o">/</span><span class="n">simplesamlphp</span><span class="o">-</span><span class="n">metadata</span><span class="o">-</span><span class="n">extensions</span><span class="o">-</span><span class="n">rpi</span><span class="p">)</span><span class="w"></span>
 </code></pre>
+</div>
 <h2 id="parameters">
  Parameters
 </h2>
@@ -143,11 +145,13 @@ All these parameters override the equivalent option from the configuration.
   </code>
   is set and contains one or more values.
   Possible values:
-  <pre class="codehilite"><code>* `SAML2\Constants::COMPARISON_EXACT` (default)
+  <div class="codehilite">
+   <pre><span></span><code>* `SAML2\Constants::COMPARISON_EXACT` (default)
 * `SAML2\Constants::COMPARISON_BETTER`
 * `SAML2\Constants::COMPARISON_MINIMUM`
 * `SAML2\Constants::COMPARISON_MAXIMUM`
 </code></pre>
+  </div>
  </dd>
  <dd>
   <p>
@@ -295,12 +299,14 @@ The following attributes are available:
  </dd>
  <dd>
   Possible values:
-  <pre class="codehilite"><code>* `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST`
+  <div class="codehilite">
+   <pre><span></span><code>* `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST`
 * `urn:oasis:names:tc:SAML:1.0:profiles:browser-post`
 * `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact`
 * `urn:oasis:names:tc:SAML:1.0:profiles:artifact-01`
 * `urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser`
 </code></pre>
+  </div>
  </dd>
  <dt>
   <code>
@@ -452,11 +458,13 @@ The following attributes are available:
   </code>
   is set and contains one or more values.
   Possible values:
-  <pre class="codehilite"><code>* `SAML2\Constants::COMPARISON_EXACT` (default)
+  <div class="codehilite">
+   <pre><span></span><code>* `SAML2\Constants::COMPARISON_EXACT` (default)
 * `SAML2\Constants::COMPARISON_BETTER`
 * `SAML2\Constants::COMPARISON_MINIMUM`
 * `SAML2\Constants::COMPARISON_MAXIMUM`
 </code></pre>
+  </div>
  </dd>
  <dd>
   <p>
@@ -517,17 +525,19 @@ The following attributes are available:
  </dd>
  <dd>
   For example, specifying a support contact:
-  <pre class="codehilite"><code>    'contacts' =&gt; array(
-        array(
-            'contactType'       =&gt; 'support',
-            'emailAddress'      =&gt; 'support@example.org',
-            'givenName'         =&gt; 'John',
-            'surName'           =&gt; 'Doe',
-            'telephoneNumber'   =&gt; '+31(0)12345678',
-            'company'           =&gt; 'Example Inc.',
-        )
-    ),
+  <div class="codehilite">
+   <pre><span></span><code><span class="w">    </span><span class="s1">'contacts'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">array</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="k">array</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="s1">'contactType'</span><span class="w">       </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'support'</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="s1">'emailAddress'</span><span class="w">      </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'support@example.org'</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="s1">'givenName'</span><span class="w">         </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'John'</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="s1">'surName'</span><span class="w">           </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Doe'</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="s1">'telephoneNumber'</span><span class="w">   </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'+31(0)12345678'</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="s1">'company'</span><span class="w">           </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Example Inc.'</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">),</span><span class="w"></span>
 </code></pre>
+  </div>
  </dd>
  <dd>
   <p>
@@ -574,11 +584,13 @@ The following attributes are available:
  </dd>
  <dd>
   This option can be translated into multiple languages by specifying the value as an array of language-code to translated description:
-  <pre class="codehilite"><code>    'description' =&gt; array(
+  <div class="codehilite">
+   <pre><span></span><code>    'description' =&gt; array(
         'en' =&gt; 'A service',
         'no' =&gt; 'En tjeneste',
     ),
 </code></pre>
+  </div>
  </dd>
  <dd>
   <p>
@@ -697,11 +709,13 @@ The following attributes are available:
  </dd>
  <dd>
   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
-  <pre class="codehilite"><code>    'name' =&gt; array(
+  <div class="codehilite">
+   <pre><span></span><code>    'name' =&gt; array(
         'en' =&gt; 'A service',
         'no' =&gt; 'En tjeneste',
     ),
 </code></pre>
+  </div>
  </dd>
  <dd>
   <p>
@@ -774,11 +788,13 @@ The following attributes are available:
  </dd>
  <dd>
   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
-  <pre class="codehilite"><code>    'OrganizationName' =&gt; array(
+  <div class="codehilite">
+   <pre><span></span><code>    'OrganizationName' =&gt; array(
         'en' =&gt; 'Example organization',
         'no' =&gt; 'Eksempel organisation',
     ),
 </code></pre>
+  </div>
  </dd>
  <dd>
   <p>
@@ -1098,13 +1114,15 @@ The following attributes are available:
  </dd>
  <dd>
   Possible values:
-  <pre class="codehilite"><code>* `http://www.w3.org/2000/09/xmldsig#rsa-sha1`
+  <div class="codehilite">
+   <pre><span></span><code>* `http://www.w3.org/2000/09/xmldsig#rsa-sha1`
    *Note*: the use of SHA1 is **deprecated** and will be disallowed in the future.
 * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256`
   The default.
 * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha384`
 * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512`
 </code></pre>
+  </div>
  </dd>
  <dt>
   <code>
@@ -1116,9 +1134,11 @@ The following attributes are available:
  </dd>
  <dd>
   Possible values:
-  <pre class="codehilite"><code>* `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect`
+  <div class="codehilite">
+   <pre><span></span><code>* `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect`
 * `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST`
 </code></pre>
+  </div>
   <ul>
    <li>
     <code>
@@ -1137,11 +1157,13 @@ The following attributes are available:
  </dd>
  <dd>
   This option can be translated into multiple languages by specifying the value as an array of language-code to language-specific URL:
-  <pre class="codehilite"><code>    'url' =&gt; array(
+  <div class="codehilite">
+   <pre><span></span><code>    'url' =&gt; array(
         'en' =&gt; 'http://sp.example.net/en/info.html',
         'no' =&gt; 'http://sp.example.net/no/info.html',
     ),
 </code></pre>
+  </div>
  </dd>
  <dt>
   <code>
@@ -1194,30 +1216,37 @@ The following attributes are available:
 <h3 id="minimal">
  Minimal
 </h3>
-<pre class="codehilite"><code>  'example-minimal' =&gt; array(
+<div class="codehilite">
+ <pre><span></span><code>  'example-minimal' =&gt; array(
       'saml:SP',
   ),
 </code></pre>
+</div>
 <h3 id="connecting-to-a-specific-idp">
  Connecting to a specific IdP
 </h3>
-<pre class="codehilite"><code>  'example' =&gt; array(
+<div class="codehilite">
+ <pre><span></span><code>  'example' =&gt; array(
       'saml:SP',
       'idp' =&gt; 'https://idp.example.net/',
   ),
 </code></pre>
+</div>
 <h3 id="using-a-specific-entity-id">
  Using a specific entity ID
 </h3>
-<pre class="codehilite"><code>  'example' =&gt; array(
+<div class="codehilite">
+ <pre><span></span><code>  'example' =&gt; array(
       'saml:SP',
       'entityID' =&gt; 'https://sp.example.net',
   ),
 </code></pre>
+</div>
 <h3 id="encryption-and-signing">
  Encryption and signing
 </h3>
-<pre class="codehilite"><code>  This SP will accept encrypted assertions, and will sign and validate all messages.
+<div class="codehilite">
+ <pre><span></span><code>  This SP will accept encrypted assertions, and will sign and validate all messages.
 
   'example-enc' =&gt; array(
       'saml:SP',
@@ -1229,34 +1258,38 @@ The following attributes are available:
       'redirect.validate' =&gt; TRUE,
   ),
 </code></pre>
+</div>
 <h3 id="specifying-attributes-and-required-attributes">
  Specifying attributes and required attributes
 </h3>
-<pre class="codehilite"><code>  An SP that wants eduPersonPrincipalName and mail, where eduPersonPrincipalName should be listed as required:
+<div class="codehilite">
+ <pre><span></span><code>  <span class="nv">An</span> <span class="nv">SP</span> <span class="nv">that</span> <span class="nv">wants</span> <span class="nv">eduPersonPrincipalName</span> <span class="nv">and</span> <span class="nv">mail</span>, <span class="nv">where</span> <span class="nv">eduPersonPrincipalName</span> <span class="nv">should</span> <span class="nv">be</span> <span class="nv">listed</span> <span class="nv">as</span> <span class="nv">required</span>:
 
-  'example-attributes =&gt; array(
-      'saml:SP',
-      'name' =&gt; array( // Name required for AttributeConsumingService-element.
-          'en' =&gt; 'Example service',
-          'no' =&gt; 'Eksempeltjeneste',
-      ),
-      'attributes' =&gt; array(
-          'eduPersonPrincipalName',
-          'mail',
-          // Specify friendly names for these attributes:
-          'sn' =&gt; 'urn:oid:2.5.4.4',
-          'givenName' =&gt; 'urn:oid:2.5.4.42',
-      ),
-      'attributes.required' =&gt; array (
-          'eduPersonPrincipalName',
-      ),
-      'attributes.NameFormat' =&gt; 'urn:oasis:names:tc:SAML:2.0:attrname-format:basic',
-  ),
+  <span class="s1">'</span><span class="s">example-attributes =&gt; array(</span>
+      <span class="s1">'</span><span class="s">saml:SP</span><span class="s1">'</span>,
+      <span class="s1">'</span><span class="s">name</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="nv">array</span><span class="ss">(</span> <span class="o">//</span> <span class="nv">Name</span> <span class="nv">required</span> <span class="k">for</span> <span class="nv">AttributeConsumingService</span><span class="o">-</span><span class="nv">element</span>.
+          <span class="s1">'</span><span class="s">en</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="s1">'</span><span class="s">Example service</span><span class="s1">'</span>,
+          <span class="s1">'</span><span class="s">no</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="s1">'</span><span class="s">Eksempeltjeneste</span><span class="s1">'</span>,
+      <span class="ss">)</span>,
+      <span class="s1">'</span><span class="s">attributes</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="nv">array</span><span class="ss">(</span>
+          <span class="s1">'</span><span class="s">eduPersonPrincipalName</span><span class="s1">'</span>,
+          <span class="s1">'</span><span class="s">mail</span><span class="s1">'</span>,
+          <span class="o">//</span> <span class="nv">Specify</span> <span class="nv">friendly</span> <span class="nv">names</span> <span class="k">for</span> <span class="nv">these</span> <span class="nv">attributes</span>:
+          <span class="s1">'</span><span class="s">sn</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="s1">'</span><span class="s">urn:oid:2.5.4.4</span><span class="s1">'</span>,
+          <span class="s1">'</span><span class="s">givenName</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="s1">'</span><span class="s">urn:oid:2.5.4.42</span><span class="s1">'</span>,
+      <span class="ss">)</span>,
+      <span class="s1">'</span><span class="s">attributes.required</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="nv">array</span> <span class="ss">(</span>
+          <span class="s1">'</span><span class="s">eduPersonPrincipalName</span><span class="s1">'</span>,
+      <span class="ss">)</span>,
+      <span class="s1">'</span><span class="s">attributes.NameFormat</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="s1">'</span><span class="s">urn:oasis:names:tc:SAML:2.0:attrname-format:basic</span><span class="s1">'</span>,
+  <span class="ss">)</span>,
 </code></pre>
+</div>
 <h3 id="limiting-supported-assertionconsumerservice-endpoint-bindings">
  Limiting supported AssertionConsumerService endpoint bindings
 </h3>
-<pre class="codehilite"><code>  'example-acs-limit' =&gt; array(
+<div class="codehilite">
+ <pre><span></span><code>  'example-acs-limit' =&gt; array(
       'saml:SP',
       'acs.Bindings' =&gt; array(
           'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
@@ -1264,24 +1297,29 @@ The following attributes are available:
       ),
   ),
 </code></pre>
+</div>
 <h3 id="requesting-a-specific-authentication-method">
  Requesting a specific authentication method.
 </h3>
-<pre class="codehilite"><code>  $auth = new \SimpleSAML\Auth\Simple('default-sp');
-  $auth-&gt;login(array(
-      'saml:AuthnContextClassRef' =&gt; 'urn:oasis:names:tc:SAML:2.0:ac:classes:Password',
-  ));
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">auth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">new</span><span class="w"> </span><span class="err">\</span><span class="nt">SimpleSAML</span><span class="err">\</span><span class="nt">Auth</span><span class="err">\</span><span class="nt">Simple</span><span class="o">(</span><span class="s1">'default-sp'</span><span class="o">);</span><span class="w"></span>
+<span class="w">  </span><span class="o">$</span><span class="nt">auth-</span><span class="o">&gt;</span><span class="nt">login</span><span class="o">(</span><span class="nt">array</span><span class="o">(</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'saml:AuthnContextClassRef'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'urn:oasis:names:tc:SAML:2.0:ac:classes:Password'</span><span class="o">,</span><span class="w"></span>
+<span class="w">  </span><span class="o">));</span><span class="w"></span>
 </code></pre>
+</div>
 <h3 id="using-samlpextensions">
  Using samlp:Extensions
 </h3>
-<pre class="codehilite"><code>  $dom = \SAML2\DOMDocumentFactory::create();
-  $ce = $dom-&gt;createElementNS('http://www.example.com/XFoo', 'xfoo:test', 'Test data!');
-  $ext[] = new \SAML2\XML\Chunk($ce);
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">dom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">\</span><span class="nt">SAML2</span><span class="err">\</span><span class="nt">DOMDocumentFactory</span><span class="p">::</span><span class="nd">create</span><span class="o">();</span><span class="w"></span>
+<span class="w">  </span><span class="o">$</span><span class="nt">ce</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="nt">dom-</span><span class="o">&gt;</span><span class="nt">createElementNS</span><span class="o">(</span><span class="s1">'http://www.example.com/XFoo'</span><span class="o">,</span><span class="w"> </span><span class="s1">'xfoo:test'</span><span class="o">,</span><span class="w"> </span><span class="s1">'Test data!'</span><span class="o">);</span><span class="w"></span>
+<span class="w">  </span><span class="o">$</span><span class="nt">ext</span><span class="cp">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">new</span><span class="w"> </span><span class="err">\</span><span class="nt">SAML2</span><span class="err">\</span><span class="nt">XML</span><span class="err">\</span><span class="nt">Chunk</span><span class="o">($</span><span class="nt">ce</span><span class="o">);</span><span class="w"></span>
 
-  $auth = new \SimpleSAML\Auth\Simple('default-sp');
-  $auth-&gt;login(array(
-      'saml:Extensions' =&gt; $ext,
-  ));
-</code></pre></body>
+<span class="w">  </span><span class="o">$</span><span class="nt">auth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">new</span><span class="w"> </span><span class="err">\</span><span class="nt">SimpleSAML</span><span class="err">\</span><span class="nt">Auth</span><span class="err">\</span><span class="nt">Simple</span><span class="o">(</span><span class="s1">'default-sp'</span><span class="o">);</span><span class="w"></span>
+<span class="w">  </span><span class="o">$</span><span class="nt">auth-</span><span class="o">&gt;</span><span class="nt">login</span><span class="o">(</span><span class="nt">array</span><span class="o">(</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'saml:Extensions'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">$</span><span class="nt">ext</span><span class="o">,</span><span class="w"></span>
+<span class="w">  </span><span class="o">));</span><span class="w"></span>
+</code></pre>
+</div></body>
 </html>

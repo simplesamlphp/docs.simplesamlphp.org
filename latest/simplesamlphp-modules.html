@@ -98,44 +98,44 @@
 <div class="toc">
  <ul>
   <li>
-   <a href="#simplesamlphp-modules.html">
+   <a href="#simplesamlphp-modules">
     SimpleSAMLphp modules
    </a>
    <ul>
     <li>
-     <a href="#overview.html">
+     <a href="#overview">
       Overview
      </a>
     </li>
     <li>
-     <a href="#module-layout.html">
+     <a href="#module-layout">
       Module layout
      </a>
     </li>
     <li>
-     <a href="#authentication-sources.html">
+     <a href="#authentication-sources">
       Authentication sources
      </a>
      <ul>
       <li>
-       <a href="#creating-authentication-sources.html">
+       <a href="#creating-authentication-sources">
         Creating authentication sources
        </a>
       </li>
      </ul>
     </li>
     <li>
-     <a href="#authentication-processing-filters.html">
+     <a href="#authentication-processing-filters">
       Authentication processing filters
      </a>
     </li>
     <li>
-     <a href="#themes.html">
+     <a href="#themes">
       Themes
      </a>
     </li>
     <li>
-     <a href="#hook-interface.html">
+     <a href="#hook-interface">
       Hook interface
      </a>
     </li>
@@ -442,7 +442,8 @@ authentication source.
  A typical configuration entry for an authentication source looks like 
 this:
 </p>
-<pre class="codehilite"><code>  'example-static' =&gt; [
+<div class="codehilite">
+ <pre><span></span><code>  'example-static' =&gt; [
     /* This maps to modules/exampleauth/lib/Auth/Source/Static.php */
     'exampleauth:StaticSource',
 
@@ -453,6 +454,7 @@ this:
     'cn' =&gt; ['Test User'],
   ],
 </code></pre>
+</div>
 <p>
  To use this authentication source in a SAML 2.0 IdP, set the
  <code>
@@ -464,21 +466,25 @@ this:
  </code>
  :
 </p>
-<pre class="codehilite"><code>  '__DYNAMIC:1__' =&gt; [
+<div class="codehilite">
+ <pre><span></span><code>  '__DYNAMIC:1__' =&gt; [
     'host' =&gt; '__DEFAULT__',
     'privatekey' =&gt; 'example.org.pem',
     'certificate' =&gt; 'example.org.crt',
     'auth' =&gt; 'example-static',
   ],
 </code></pre>
+</div>
 <h3 id="creating-authentication-sources">
  Creating authentication sources
 </h3>
 <p>
  This is described in a separate document:
 </p>
-<pre class="codehilite"><code>* [Creating authentication sources](simplesamlphp-authsource)
+<div class="codehilite">
+ <pre><span></span><code>* [Creating authentication sources](simplesamlphp-authsource)
 </code></pre>
+</div>
 <h2 id="authentication-processing-filters">
  Authentication processing filters
 </h2>
@@ -488,8 +494,10 @@ this:
  </em>
  is explained in a separate document:
 </p>
-<pre class="codehilite"><code>* [Authentication processing filters](simplesamlphp-authproc)
+<div class="codehilite">
+ <pre><span></span><code>* [Authentication processing filters](simplesamlphp-authproc)
 </code></pre>
+</div>
 <h2 id="themes">
  Themes
 </h2>

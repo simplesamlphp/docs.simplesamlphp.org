@@ -156,37 +156,43 @@
  </code>
  attribute:
 </p>
-<pre class="codehilite"><code>  10 =&gt; array(
-      'class' =&gt; 'core:PHP',
-      'code' =&gt; '
-          if (empty($attributes["uid"])) {
-              throw new Exception("Missing uid attribute.");
-          }
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="mi">10</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">array</span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'class'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'core:PHP'</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'code'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'</span>
+<span class="s1">          if (empty($attributes["uid"])) {</span>
+<span class="s1">              throw new Exception("Missing uid attribute.");</span>
+<span class="s1">          }</span>
 
-          $uid = $attributes["uid"][0];
-          $mail = $uid . "@example.net";
-          $attributes["mail"] = array($mail);
-      ',
-  ),
+<span class="s1">          $uid = $attributes["uid"][0];</span>
+<span class="s1">          $mail = $uid . "@example.net";</span>
+<span class="s1">          $attributes["mail"] = array($mail);</span>
+<span class="s1">      '</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="p">),</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  Create a random number variable:
 </p>
-<pre class="codehilite"><code>  10 =&gt; array(
-      'class' =&gt; 'core:PHP',
-      'code' =&gt; '
-          $attributes["random"] = array(
-              (string)rand(),
-          );
-      ',
-  ),
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="nt">10</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'class'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'core:PHP'</span><span class="o">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'code'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'</span>
+<span class="s1">          $attributes</span><span class="cp">[</span><span class="s2">"random"</span><span class="cp">]</span><span class="s1"> = array(</span>
+<span class="s1">              (string)rand(),</span>
+<span class="s1">          );</span>
+<span class="s1">      '</span><span class="o">,</span><span class="w"></span>
+<span class="w">  </span><span class="o">),</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  Force a specific NameIdFormat. Useful if an SP misbehaves and requests (or publishes) an incorrect NameId
 </p>
-<pre class="codehilite"><code>  90 =&gt; array(
-       'class' =&gt; 'core:PHP',
-       'code' =&gt; '$state["saml:NameIDFormat"] = ["Format" =&gt; "urn:oasis:names:tc:SAML:2.0:nameid-format:transient", "AllowCreate" =&gt; true];'
-  ),
-</code></pre></body>
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="nt">90</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span><span class="w"></span>
+<span class="w">       </span><span class="s1">'class'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'core:PHP'</span><span class="o">,</span><span class="w"></span>
+<span class="w">       </span><span class="s1">'code'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'$state</span><span class="cp">[</span><span class="s2">"saml:NameIDFormat"</span><span class="cp">]</span><span class="s1"> = </span><span class="cp">[</span><span class="s2">"Format"</span> <span class="o">=&gt;</span> <span class="s2">"urn:oasis:names:tc:SAML:2.0:nameid-format:transient"</span><span class="p">,</span> <span class="s2">"AllowCreate"</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="cp">]</span><span class="s1">;'</span><span class="w"></span>
+<span class="w">  </span><span class="o">),</span><span class="w"></span>
+</code></pre>
+</div></body>
 </html>

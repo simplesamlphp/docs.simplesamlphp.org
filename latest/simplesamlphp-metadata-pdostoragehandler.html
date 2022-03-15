@@ -98,32 +98,32 @@
 <div class="toc">
  <ul>
   <li>
-   <a href="#pdo-metadata-storage-handler.html">
+   <a href="#pdo-metadata-storage-handler">
     PDO Metadata Storage Handler
    </a>
    <ul>
     <li>
-     <a href="#introduction.html">
+     <a href="#introduction">
       Introduction
      </a>
     </li>
     <li>
-     <a href="#preparations.html">
+     <a href="#preparations">
       Preparations
      </a>
     </li>
     <li>
-     <a href="#configuring-simplesamlphp.html">
+     <a href="#configuring-simplesamlphp">
       Configuring SimpleSAMLphp
      </a>
     </li>
     <li>
-     <a href="#initializing-the-database.html">
+     <a href="#initializing-the-database">
       Initializing the Database
      </a>
     </li>
     <li>
-     <a href="#adding-metadata.html">
+     <a href="#adding-metadata">
       Adding Metadata
      </a>
     </li>
@@ -152,24 +152,30 @@
 <p>
  You will first need to configure a PDO metadata source.
 </p>
-<pre class="codehilite"><code>[root@simplesamlphp simplesamlphp]# vi config/config.php
+<div class="codehilite">
+ <pre><span></span><code><span class="o">[</span><span class="n">root@simplesamlphp simplesamlphp</span><span class="o">]</span><span class="err">#</span><span class="w"> </span><span class="n">vi</span><span class="w"> </span><span class="n">config</span><span class="o">/</span><span class="n">config</span><span class="p">.</span><span class="n">php</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  Here is an example of flatfile plus PDO:
 </p>
-<pre class="codehilite"><code>'metadata.sources' =&gt; [
+<div class="codehilite">
+ <pre><span></span><code>'metadata.sources' =&gt; [
   ['type' =&gt; 'flatfile'],
   ['type' =&gt; 'pdo'],
 ],
 </code></pre>
+</div>
 <h2 id="initializing-the-database">
  Initializing the Database
 </h2>
 <p>
  Once you have configured your metadata sources to include a PDO source, you will need to initialize the database. This process will create tables in the database for each type of metadata set (saml20-idp-hosted, saml20-idp-remote, saml20-sp-remote, etc).
 </p>
-<pre class="codehilite"><code>[root@simplesamlphp simplesamlphp]# php bin/initMDSPdo.php
+<div class="codehilite">
+ <pre><span></span><code><span class="o">[</span><span class="n">root@simplesamlphp simplesamlphp</span><span class="o">]</span><span class="err">#</span><span class="w"> </span><span class="n">php</span><span class="w"> </span><span class="n">bin</span><span class="o">/</span><span class="n">initMDSPdo</span><span class="p">.</span><span class="n">php</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  If you connect to your database, you will see 11 new empty tables; one for each metadata set.
 </p>
@@ -208,8 +214,10 @@ https://openidp.feide.no | {"name":{"en":"Feide OpenIdP - guest users","no":"Fei
 <p>
  To import all flatfile metadata files into the PDO database, run the following script
 </p>
-<pre class="codehilite"><code>[root@simplesamlphp simplesamlphp]# php bin/importPdoMetadata.php
+<div class="codehilite">
+ <pre><span></span><code><span class="o">[</span><span class="n">root@simplesamlphp simplesamlphp</span><span class="o">]</span><span class="err">#</span><span class="w"> </span><span class="n">php</span><span class="w"> </span><span class="n">bin</span><span class="o">/</span><span class="n">importPdoMetadata</span><span class="p">.</span><span class="n">php</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  In the event that you import a metadata for an entity id that already exists in the database, it will be overwritten.
 </p></body>

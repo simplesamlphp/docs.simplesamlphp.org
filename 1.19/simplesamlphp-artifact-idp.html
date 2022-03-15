@@ -119,8 +119,10 @@ You need both a memcache server and a the PHP memcached client (extension).
  How this is done depends on the distribution.
 If you are running Debian or Ubuntu, you can install this by running:
 </p>
-<pre class="codehilite"><code>  apt install memcached php-memcached
+<div class="codehilite">
+ <pre><span></span><code>  apt install memcached php-memcached
 </code></pre>
+</div>
 <p>
  simpleSAMLphp also supports the legacy
  <code>
@@ -178,12 +180,14 @@ If you are running memcache on a different server than the IdP, you must also ch
  </code>
  metadata file:
 </p>
-<pre class="codehilite"><code>  $metadata['__DYNAMIC:1__'] = [
-      [....]
-      'auth' =&gt; 'example-userpass',
-      'saml20.sendartifact' =&gt; TRUE,
-  ];
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'__DYNAMIC:1__'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cp">[</span>
+      <span class="err">[</span><span class="nx">....</span><span class="cp">]</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'auth'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'example-userpass'</span><span class="o">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'saml20.sendartifact'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">TRUE</span><span class="o">,</span><span class="w"></span>
+<span class="w">  </span><span class="o">];</span><span class="w"></span>
 </code></pre>
+</div>
 <h2 id="add-new-metadata-to-sps">
  Add new metadata to SPs
 </h2>
@@ -195,7 +199,8 @@ You therefore need to update the metadata for your IdP at your SPs.
  </code>
  metadata for SimpleSAMLphp SPs should contain something like:
 </p>
-<pre class="codehilite"><code>  'ArtifactResolutionService' =&gt; [
+<div class="codehilite">
+ <pre><span></span><code>  'ArtifactResolutionService' =&gt; [
       [
           'index' =&gt; 0,
           'Location' =&gt; 'https://idp.example.org/simplesaml/saml2/idp/ArtifactResolutionService.php',
@@ -203,6 +208,7 @@ You therefore need to update the metadata for your IdP at your SPs.
       ],
   ],
 </code></pre>
+</div>
 <h2 id="sp-metadata-on-the-idp">
  SP metadata on the IdP
 </h2>
@@ -215,7 +221,8 @@ This means that you must use the complex endpoint format in
  metadata.
 In general, that should look something like:
 </p>
-<pre class="codehilite"><code>  'AssertionConsumerService' =&gt; array (
+<div class="codehilite">
+ <pre><span></span><code>  'AssertionConsumerService' =&gt; array (
       [
           'Binding' =&gt; 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
           'Location' =&gt; 'https://sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp',
@@ -228,6 +235,7 @@ In general, that should look something like:
       ],
   ),
 </code></pre>
+</div>
 <p>
  (The specific values of the various fields will vary depending on the SP.)
 </p>
@@ -248,11 +256,13 @@ To do this, you need to set the
  metadata file.
 That option should refer to a file containing the webserver certificate.
 </p>
-<pre class="codehilite"><code>  $metadata['__DYNAMIC:1__'] = [
-      [....]
-      'auth' =&gt; 'example-userpass',
-      'saml20.sendartifact' =&gt; TRUE,
-      'https.certificate' =&gt; '/etc/apache2/webserver.crt',
-  ];
-</code></pre></body>
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'__DYNAMIC:1__'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cp">[</span>
+      <span class="err">[</span><span class="nx">....</span><span class="cp">]</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'auth'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'example-userpass'</span><span class="o">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'saml20.sendartifact'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">TRUE</span><span class="o">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'https.certificate'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'/etc/apache2/webserver.crt'</span><span class="o">,</span><span class="w"></span>
+<span class="w">  </span><span class="o">];</span><span class="w"></span>
+</code></pre>
+</div></body>
 </html>

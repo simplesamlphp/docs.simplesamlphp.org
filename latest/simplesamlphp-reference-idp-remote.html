@@ -93,22 +93,22 @@
 <div class="toc">
  <ul>
   <li>
-   <a href="#idp-remote-metadata-reference.html">
+   <a href="#idp-remote-metadata-reference">
     IdP remote metadata reference
    </a>
    <ul>
     <li>
-     <a href="#options.html">
+     <a href="#options">
       Options
      </a>
      <ul>
       <li>
-       <a href="#decrypting-assertions.html">
+       <a href="#decrypting-assertions">
         Decrypting assertions
        </a>
       </li>
       <li>
-       <a href="#fields-for-signing-and-validating-messages.html">
+       <a href="#fields-for-signing-and-validating-messages">
         Fields for signing and validating messages
        </a>
       </li>
@@ -125,16 +125,18 @@
  </code>
  . The file has the following format:
 </p>
-<pre class="codehilite"><code>  &lt;?php
-  /* The index of the array is the entity ID of this IdP. */
-  $metadata['entity-id-1'] = [
-      /* Configuration options for the first IdP. */
-  ];
-  $metadata['entity-id-2'] = [
-      /* Configuration options for the second IdP. */
-  ];
-  /* ... */
+<div class="codehilite">
+ <pre><span></span><code>  <span class="cp">&lt;?php</span>
+  <span class="cm">/* The index of the array is the entity ID of this IdP. */</span>
+  <span class="nv">$metadata</span><span class="p">[</span><span class="s1">'entity-id-1'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+      <span class="cm">/* Configuration options for the first IdP. */</span>
+  <span class="p">];</span>
+  <span class="nv">$metadata</span><span class="p">[</span><span class="s1">'entity-id-2'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+      <span class="cm">/* Configuration options for the second IdP. */</span>
+  <span class="p">];</span>
+  <span class="cm">/* ... */</span>
 </code></pre>
+</div>
 <h2 id="options">
  Options
 </h2>
@@ -164,11 +166,13 @@
   <p>
    The Comparison attribute of the AuthnContext that will be sent in the login request. This parameter won't be used unless AuthnContextClassRef is set and contains one or more values. Possible values:
   </p>
-  <pre class="codehilite"><code>    SAML2\Constants::COMPARISON_EXACT (default)
+  <div class="codehilite">
+   <pre><span></span><code>    SAML2\Constants::COMPARISON_EXACT (default)
     SAML2\Constants::COMPARISON_BETTER
     SAML2\Constants::COMPARISON_MINIMUM
     SAML2\Constants::COMPARISON_MAXIMUM
 </code></pre>
+  </div>
  </dd>
  <dd>
   <p>
@@ -337,11 +341,13 @@
  </dd>
  <dd>
   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
-  <pre class="codehilite"><code>    'name' =&gt; [
+  <div class="codehilite">
+   <pre><span></span><code>    'name' =&gt; [
         'en' =&gt; 'A service',
         'no' =&gt; 'En tjeneste',
     ],
 </code></pre>
+  </div>
  </dd>
  <dt>
   <code>
@@ -401,11 +407,13 @@
  </dd>
  <dd>
   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
-  <pre class="codehilite"><code>    'OrganizationName' =&gt; [
+  <div class="codehilite">
+   <pre><span></span><code>    'OrganizationName' =&gt; [
         'en' =&gt; 'Example organization',
         'no' =&gt; 'Eksempel organisation',
     ],
 </code></pre>
+  </div>
  </dd>
  <dd>
   <p>
@@ -503,13 +511,15 @@
  </dd>
  <dd>
   Possible values:
-  <pre class="codehilite"><code>* `http://www.w3.org/2000/09/xmldsig#rsa-sha1`
+  <div class="codehilite">
+   <pre><span></span><code>* `http://www.w3.org/2000/09/xmldsig#rsa-sha1`
    *Note*: the use of SHA1 is **deprecated** and will be disallowed in the future.
 * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256`
   The default.
 * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha384`
 * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512`
 </code></pre>
+  </div>
  </dd>
  <dt>
   <code>
@@ -652,13 +662,15 @@
  </dt>
  <dd>
   Algorithm which should be used for decryption. Possible values are:
-  <pre class="codehilite"><code>* http://www.w3.org/2001/04/xmlenc#aes128-cbc
+  <div class="codehilite">
+   <pre><span></span><code>* http://www.w3.org/2001/04/xmlenc#aes128-cbc
 * http://www.w3.org/2001/04/xmlenc#aes192-cbc
 * http://www.w3.org/2001/04/xmlenc#aes256-cbc
 * http://www.w3.org/2009/xmlenc11#aes128-gcm
 * http://www.w3.org/2009/xmlenc11#aes192-gcm
 * http://www.w3.org/2009/xmlenc11#aes256-gcm
 </code></pre>
+  </div>
  </dd>
 </dl>
 <h3 id="fields-for-signing-and-validating-messages">
@@ -706,7 +718,9 @@
   Example: Configuration for validating messages
  </strong>
 </p>
-<pre class="codehilite"><code>  'redirect.validate' =&gt; TRUE,
+<div class="codehilite">
+ <pre><span></span><code>  'redirect.validate' =&gt; TRUE,
   'certificate' =&gt; 'example.org.crt',
-</code></pre></body>
+</code></pre>
+</div></body>
 </html>

@@ -161,22 +161,26 @@ You can also use a different attribute by setting the
  </code>
  :
 </p>
-<pre class="codehilite"><code>  'authproc' =&gt; array(
+<div class="codehilite">
+ <pre><span></span><code>  'authproc' =&gt; array(
       50 =&gt; array(
           'class' =&gt; 'core:TargetedID',
       ),
   ),
 </code></pre>
+</div>
 <p>
  A custom attribute:
 </p>
-<pre class="codehilite"><code>  'authproc' =&gt; array(
+<div class="codehilite">
+ <pre><span></span><code>  'authproc' =&gt; array(
       50 =&gt; array(
           'class' =&gt; 'core:TargetedID',
           'attributename' =&gt; 'eduPersonPrincipalName'
       ),
   ),
 </code></pre>
+</div>
 <p>
  Internet2 compatible
  <code>
@@ -184,25 +188,27 @@ You can also use a different attribute by setting the
  </code>
  :
 </p>
-<pre class="codehilite"><code>  /* In saml20-idp-hosted.php. */
-  $metadata['__DYNAMIC:1__'] = array(
-      'host' =&gt; '__DEFAULT__',
-      'auth' =&gt; 'example-static',
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="c">/* In saml20-idp-hosted.php. */</span><span class="w"></span>
+<span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'__DYNAMIC:1__'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'host'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'__DEFAULT__'</span><span class="o">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'auth'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'example-static'</span><span class="o">,</span><span class="w"></span>
 
-      'authproc' =&gt; array(
-          60 =&gt; array(
-              'class' =&gt; 'core:TargetedID',
-              'nameId' =&gt; TRUE,
-          ),
-          90 =&gt; array(
-              'class' =&gt; 'core:AttributeMap',
-              'name2oid',
-          ),
-      ),
-      'attributes.NameFormat' =&gt; 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
-      'attributeencodings' =&gt; array(
-          'urn:oid:1.3.6.1.4.1.5923.1.1.1.10' =&gt; 'raw', /* eduPersonTargetedID with oid NameFormat. */
-      ),
-  );
-</code></pre></body>
+<span class="w">      </span><span class="s1">'authproc'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span><span class="w"></span>
+<span class="w">          </span><span class="nt">60</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span><span class="w"></span>
+<span class="w">              </span><span class="s1">'class'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'core:TargetedID'</span><span class="o">,</span><span class="w"></span>
+<span class="w">              </span><span class="s1">'nameId'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">TRUE</span><span class="o">,</span><span class="w"></span>
+<span class="w">          </span><span class="o">),</span><span class="w"></span>
+<span class="w">          </span><span class="nt">90</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span><span class="w"></span>
+<span class="w">              </span><span class="s1">'class'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'core:AttributeMap'</span><span class="o">,</span><span class="w"></span>
+<span class="w">              </span><span class="s1">'name2oid'</span><span class="o">,</span><span class="w"></span>
+<span class="w">          </span><span class="o">),</span><span class="w"></span>
+<span class="w">      </span><span class="o">),</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'attributes.NameFormat'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'urn:oasis:names:tc:SAML:2.0:attrname-format:uri'</span><span class="o">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'attributeencodings'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span><span class="w"></span>
+<span class="w">          </span><span class="s1">'urn:oid:1.3.6.1.4.1.5923.1.1.1.10'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'raw'</span><span class="o">,</span><span class="w"> </span><span class="c">/* eduPersonTargetedID with oid NameFormat. */</span><span class="w"></span>
+<span class="w">      </span><span class="o">),</span><span class="w"></span>
+<span class="w">  </span><span class="o">);</span><span class="w"></span>
+</code></pre>
+</div></body>
 </html>

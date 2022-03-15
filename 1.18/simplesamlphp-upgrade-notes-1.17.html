@@ -128,20 +128,22 @@ array syntax. This should not have an impact as both will remain working
 equally, but the code examples and config templates look slightly different.
 The following are equivalent:
 </p>
-<pre class="codehilite"><code>  // Old style array syntax
-  $config = array(
-      'authproc' =&gt; array(
-          60 =&gt; 'class:etc'
-      ),
-      'other example' =&gt; 1
-  );
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="nt">Old</span><span class="w"> </span><span class="nt">style</span><span class="w"> </span><span class="nt">array</span><span class="w"> </span><span class="nt">syntax</span><span class="w"></span>
+<span class="w">  </span><span class="o">$</span><span class="nt">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'authproc'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span><span class="w"></span>
+<span class="w">          </span><span class="nt">60</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'class:etc'</span><span class="w"></span>
+<span class="w">      </span><span class="o">),</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'other example'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">1</span><span class="w"></span>
+<span class="w">  </span><span class="o">);</span><span class="w"></span>
 
-  // Current style array syntax
-  $config = [
-      'authproc' =&gt; [
-          60 =&gt; 'class:etc'
-      ],
-      'other example' =&gt; 1
-  ];
-</code></pre></body>
+<span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="nt">Current</span><span class="w"> </span><span class="nt">style</span><span class="w"> </span><span class="nt">array</span><span class="w"> </span><span class="nt">syntax</span><span class="w"></span>
+<span class="w">  </span><span class="o">$</span><span class="nt">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cp">[</span>
+      <span class="s1">'authproc'</span> <span class="o">=&gt;</span> <span class="err">[</span>
+          <span class="mi">60</span> <span class="o">=&gt;</span> <span class="s1">'class:etc'</span>
+      <span class="cp">]</span><span class="o">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'other example'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">1</span><span class="w"></span>
+<span class="w">  </span><span class="o">];</span><span class="w"></span>
+</code></pre>
+</div></body>
 </html>

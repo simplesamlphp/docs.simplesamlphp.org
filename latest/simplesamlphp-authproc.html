@@ -93,34 +93,34 @@
 <div class="toc">
  <ul>
   <li>
-   <a href="#authentication-processing-filters-in-simplesamlphp.html">
+   <a href="#authentication-processing-filters-in-simplesamlphp">
     Authentication Processing Filters in SimpleSAMLphp
    </a>
    <ul>
     <li>
-     <a href="#how-to-configure-auth-proc-filters.html">
+     <a href="#how-to-configure-auth-proc-filters">
       How to configure Auth Proc Filters
      </a>
      <ul>
       <li>
-       <a href="#filters-in-configphp.html">
+       <a href="#filters-in-configphp">
         Filters in config.php
        </a>
       </li>
       <li>
-       <a href="#filters-in-metadata.html">
+       <a href="#filters-in-metadata">
         Filters in metadata
        </a>
       </li>
      </ul>
     </li>
     <li>
-     <a href="#auth-proc-filters-included-in-the-simplesamlphp-distribution.html">
+     <a href="#auth-proc-filters-included-in-the-simplesamlphp-distribution">
       Auth Proc Filters included in the SimpleSAMLphp distribution
      </a>
     </li>
     <li>
-     <a href="#writing-your-own-auth-proc-filter.html">
+     <a href="#writing-your-own-auth-proc-filter">
       Writing your own Auth Proc Filter
      </a>
     </li>
@@ -245,7 +245,8 @@
  </code>
  :
 </p>
-<pre class="codehilite"><code>'authproc.idp' =&gt; [
+<div class="codehilite">
+ <pre><span></span><code>'authproc.idp' =&gt; [
   10 =&gt; [
     'class' =&gt; 'core:AttributeMap', 
     'addurnprefix'
@@ -260,6 +261,7 @@
   ],
 ],
 </code></pre>
+</div>
 <p>
  This configuration will execute
  <em>
@@ -324,15 +326,19 @@
 <p>
  When you know the class definition of a filter, and the priority, the simple way to configure the filter is:
 </p>
-<pre class="codehilite"><code>20 =&gt; 'core:TargetedID',
+<div class="codehilite">
+ <pre><span></span><code><span class="mf">20</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">core</span><span class="p">:</span><span class="n">TargetedID</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  This is analogous to:
 </p>
-<pre class="codehilite"><code>20 =&gt; [
-  'class' =&gt; 'core:TargetedID'
-],
+<div class="codehilite">
+ <pre><span></span><code><span class="mf">20</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">class</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">core</span><span class="p">:</span><span class="n">TargetedID</span><span class="err">'</span><span class="w"></span>
+<span class="err">]</span><span class="p">,</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  Some
  <em>
@@ -348,13 +354,15 @@
  </em>
  , you need to choose the second of the two alernatives above. Here is an example of provided parameters to the consent module:
 </p>
-<pre class="codehilite"><code>90 =&gt; [
-  'class'   =&gt; 'consent:Consent', 
-  'store'   =&gt; 'consent:Cookie', 
-  'focus'   =&gt; 'yes', 
-  'checked'   =&gt; TRUE
-],
+<div class="codehilite">
+ <pre><span></span><code><span class="mf">90</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">class</span><span class="err">'</span><span class="w">   </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">consent</span><span class="p">:</span><span class="n">Consent</span><span class="err">'</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="err">'</span><span class="n">store</span><span class="err">'</span><span class="w">   </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">consent</span><span class="p">:</span><span class="n">Cookie</span><span class="err">'</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="err">'</span><span class="n">focus</span><span class="err">'</span><span class="w">   </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">yes</span><span class="err">'</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="err">'</span><span class="n">checked</span><span class="err">'</span><span class="w">   </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">TRUE</span><span class="w"></span>
+<span class="err">]</span><span class="p">,</span><span class="w"></span>
 </code></pre>
+</div>
 <h3 id="filters-in-configphp">
  Filters in
  <code>
@@ -416,7 +424,8 @@
  </code>
  metadata. Here is an example of a filter added in a metadata file:
 </p>
-<pre class="codehilite"><code>'__DYNAMIC:1__' =&gt; [
+<div class="codehilite">
+ <pre><span></span><code>'__DYNAMIC:1__' =&gt; [
   'host'        =&gt;  '__DEFAULT_',
   'privatekey'    =&gt;  'example.org.pem',
   'certificate'   =&gt;  'example.org.crt',
@@ -426,6 +435,7 @@
   ],
 ]
 </code></pre>
+</div>
 <p>
  The example above is in
  <code>

@@ -124,8 +124,10 @@ server.
 <p>
  In this example we will setup this server as an IdP for Google Apps for Education:
 </p>
-<pre class="codehilite"><code>dev2.andreas.feide.no
+<div class="codehilite">
+ <pre><span></span><code>dev2.andreas.feide.no
 </code></pre>
+</div>
 <h2 id="enabling-the-identity-provider-functionality">
  Enabling the Identity Provider functionality
 </h2>
@@ -136,9 +138,11 @@ server.
  </code>
  , and enable the SAML 2.0 IdP:
 </p>
-<pre class="codehilite"><code>  'enable.saml20-idp' =&gt; true,
+<div class="codehilite">
+ <pre><span></span><code>  'enable.saml20-idp' =&gt; true,
   'enable.shib13-idp' =&gt; false,
 </code></pre>
+</div>
 <h2 id="setting-up-a-signing-certificate">
  Setting up a signing certificate
 </h2>
@@ -146,27 +150,31 @@ server.
  You must generate a certificate for your IdP.
 Here is an example of an openssl command to generate a new key and a self signed certificate to use for signing SAML messages:
 </p>
-<pre class="codehilite"><code>  openssl req -newkey rsa:3072 -new -x509 -days 3652 -nodes -out googleappsidp.crt -keyout googleappsidp.pem
+<div class="codehilite">
+ <pre><span></span><code>  openssl req -newkey rsa:3072 -new -x509 -days 3652 -nodes -out googleappsidp.crt -keyout googleappsidp.pem
 </code></pre>
+</div>
 <p>
  The certificate above will be valid for 10 years.
 </p>
 <p>
  Here is an example of typical user input when creating a certificate request:
 </p>
-<pre class="codehilite"><code>  Country Name (2 letter code) [AU]:NO
-  State or Province Name (full name) [Some-State]:Trondheim
-  Locality Name (eg, city) []:Trondheim
-  Organization Name (eg, company) [Internet Widgits Pty Ltd]:UNINETT
-  Organizational Unit Name (eg, section) []:
-  Common Name (eg, YOUR name) []:dev2.andreas.feide.no
-  Email Address []:
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="n">Country</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="n">letter</span><span class="w"> </span><span class="n">code</span><span class="p">)</span><span class="w"> </span><span class="o">[</span><span class="n">AU</span><span class="o">]</span><span class="err">:</span><span class="k">NO</span><span class="w"></span>
+<span class="w">  </span><span class="k">State</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">Province</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="p">(</span><span class="k">full</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="o">[</span><span class="n">Some-State</span><span class="o">]</span><span class="err">:</span><span class="n">Trondheim</span><span class="w"></span>
+<span class="w">  </span><span class="n">Locality</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="p">(</span><span class="n">eg</span><span class="p">,</span><span class="w"> </span><span class="n">city</span><span class="p">)</span><span class="w"> </span><span class="err">[]:</span><span class="n">Trondheim</span><span class="w"></span>
+<span class="w">  </span><span class="n">Organization</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="p">(</span><span class="n">eg</span><span class="p">,</span><span class="w"> </span><span class="n">company</span><span class="p">)</span><span class="w"> </span><span class="o">[</span><span class="n">Internet Widgits Pty Ltd</span><span class="o">]</span><span class="err">:</span><span class="n">UNINETT</span><span class="w"></span>
+<span class="w">  </span><span class="n">Organizational</span><span class="w"> </span><span class="n">Unit</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="p">(</span><span class="n">eg</span><span class="p">,</span><span class="w"> </span><span class="k">section</span><span class="p">)</span><span class="w"> </span><span class="err">[]:</span><span class="w"></span>
+<span class="w">  </span><span class="n">Common</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="p">(</span><span class="n">eg</span><span class="p">,</span><span class="w"> </span><span class="n">YOUR</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="err">[]:</span><span class="n">dev2</span><span class="p">.</span><span class="n">andreas</span><span class="p">.</span><span class="n">feide</span><span class="p">.</span><span class="k">no</span><span class="w"></span>
+<span class="w">  </span><span class="n">Email</span><span class="w"> </span><span class="n">Address</span><span class="w"> </span><span class="err">[]:</span><span class="w"></span>
 
-  Please enter the following 'extra' attributes
-  to be sent with your certificate request
-  A challenge password []:
-  An optional company name []:
+<span class="w">  </span><span class="n">Please</span><span class="w"> </span><span class="n">enter</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">following</span><span class="w"> </span><span class="s1">'extra'</span><span class="w"> </span><span class="n">attributes</span><span class="w"></span>
+<span class="w">  </span><span class="k">to</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">sent</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">certificate</span><span class="w"> </span><span class="n">request</span><span class="w"></span>
+<span class="w">  </span><span class="n">A</span><span class="w"> </span><span class="n">challenge</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="err">[]:</span><span class="w"></span>
+<span class="w">  </span><span class="n">An</span><span class="w"> </span><span class="n">optional</span><span class="w"> </span><span class="n">company</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="err">[]:</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  <strong>
   Note
@@ -261,8 +269,10 @@ Here is an example of an openssl command to generate a new key and a self signed
 <p>
  On unix, this can be done by running (from the SimpleSAMLphp installation directory):
 </p>
-<pre class="codehilite"><code>  touch modules/exampleauth/enable
+<div class="codehilite">
+ <pre><span></span><code>  touch modules/exampleauth/enable
 </code></pre>
+</div>
 <p>
  The next step is to create an authentication source with this module. An authentication source is an authentication module with a specific configuration. Each authentication source has a name, which is used to refer to this specific configuration in the IdP configuration. Configuration for authentication sources can be found in
  <code>
@@ -277,7 +287,8 @@ Here is an example of an openssl command to generate a new key and a self signed
  </code>
  , and hence that section is what matters and will be used.
 </p>
-<pre class="codehilite"><code><?php
+<div class="codehilite">
+ <pre><span></span><code><?php
   $config = [
     'example-userpass' => [
       'exampleauth:UserPass',
@@ -292,6 +303,7 @@ Here is an example of an openssl command to generate a new key and a self signed
   ?&gt;
 
 </code></pre>
+</div>
 <p>
  This configuration creates two users -
  <code>
@@ -343,7 +355,8 @@ Here is an example of an openssl command to generate a new key and a self signed
 <p>
  This is the configuration of the IdP itself. Here is some example config:
 </p>
-<pre class="codehilite"><code>// The SAML entity ID is the index of this config. Dynamic:X will automatically generate an entity ID (recommended)
+<div class="codehilite">
+ <pre><span></span><code>// The SAML entity ID is the index of this config. Dynamic:X will automatically generate an entity ID (recommended)
 $metadata['__DYNAMIC:1__'] =&gt; [
 
   // The hostname of the server (VHOST) that this SAML entity will use.
@@ -356,6 +369,7 @@ $metadata['__DYNAMIC:1__'] =&gt; [
   'auth' =&gt; 'example-userpass',
 ]
 </code></pre>
+</div>
 <p>
  <strong>
   Note
@@ -376,19 +390,21 @@ $metadata['__DYNAMIC:1__'] =&gt; [
  </code>
  file we will configure an entry for G Suite (Google Apps) for Education. There is already an entry for G Suite in the template, but we will change the domain name:
 </p>
-<pre class="codehilite"><code>    /*
-     * This example shows an example config that works with G Suite (Google Apps) for education.
-     * What is important is that you have an attribute in your IdP that maps to the local part of the email address
-     * at G Suite. E.g. if your google account is foo.com, and you have a user with email john@foo.com, then you
-     * must set the simplesaml.nameidattribute to be the name of an attribute that for this user has the value of 'john'.
-     */
-    $metadata['https://www.google.com/a/g.feide.no'] =&gt; [
-      'AssertionConsumerService'   =&gt; 'https://www.google.com/a/g.feide.no/acs', 
-      'NameIDFormat'               =&gt; 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress',
-      'simplesaml.nameidattribute' =&gt; 'uid',
-      'simplesaml.attributes'      =&gt; false
-    ];
+<div class="codehilite">
+ <pre><span></span><code><span class="w">    </span><span class="cm">/*</span>
+<span class="cm">     * This example shows an example config that works with G Suite (Google Apps) for education.</span>
+<span class="cm">     * What is important is that you have an attribute in your IdP that maps to the local part of the email address</span>
+<span class="cm">     * at G Suite. E.g. if your google account is foo.com, and you have a user with email john@foo.com, then you</span>
+<span class="cm">     * must set the simplesaml.nameidattribute to be the name of an attribute that for this user has the value of 'john'.</span>
+<span class="cm">     */</span><span class="w"></span>
+<span class="w">    </span><span class="err">$</span><span class="n">metadata</span><span class="o">[</span><span class="n">'https://www.google.com/a/g.feide.no'</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">[</span><span class="n"></span>
+<span class="n">      'AssertionConsumerService'   =&gt; 'https://www.google.com/a/g.feide.no/acs', </span>
+<span class="n">      'NameIDFormat'               =&gt; 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress',</span>
+<span class="n">      'simplesaml.nameidattribute' =&gt; 'uid',</span>
+<span class="n">      'simplesaml.attributes'      =&gt; false</span>
+<span class="n">    </span><span class="o">]</span><span class="p">;</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  You must also map some attributes received from the authentication module into email field sent to Google Apps. In this example, the
  <code>
@@ -486,8 +502,10 @@ go to the "Federation" tab, under "SAML 2.0 IdP Metadata" select "show metadata"
  which contains the right URL to input in the field, it will look something
 like this:
 </p>
-<pre class="codehilite"><code>https://dev2.andreas.feide.no/simplesaml/saml2/idp/SSOService.php
+<div class="codehilite">
+ <pre><span></span><code>https://dev2.andreas.feide.no/simplesaml/saml2/idp/SSOService.php
 </code></pre>
+</div>
 <p>
  You must also configure the IdP initiated Single LogOut endpoint of your server.
 You will find this in your metadata XML in the tag
@@ -496,8 +514,10 @@ You will find this in your metadata XML in the tag
  </code>
  . It will look something like:
 </p>
-<pre class="codehilite"><code>http://dev2.andreas.feide.no/simplesaml/saml2/idp/SingleLogoutService.php
+<div class="codehilite">
+ <pre><span></span><code>http://dev2.andreas.feide.no/simplesaml/saml2/idp/SingleLogoutService.php
 </code></pre>
+</div>
 <p>
  again, using the host name of your IdP server.
 </p>
@@ -529,8 +549,10 @@ It is normally best to leave this field empty to enable authentication for all U
 <p>
  Go to the URL of your mail account for this domain, the URL is similar to the following:
 </p>
-<pre class="codehilite"><code>http://mail.google.com/a/yourgoogleappsdomain.com
+<div class="codehilite">
+ <pre><span></span><code>http://mail.google.com/a/yourgoogleappsdomain.com
 </code></pre>
+</div>
 <p>
  replacing the last part with your own G Suite domain name.
 </p>

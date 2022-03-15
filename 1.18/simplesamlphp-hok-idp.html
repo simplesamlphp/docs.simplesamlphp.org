@@ -111,12 +111,14 @@ This certificate is usually selfsigned and stored in the certificate store of th
 <p>
  The IdP requests a client certificate from the user agent during the TLS handshake. This behaviour is enabled with the following Apache webserver configuration:
 </p>
-<pre class="codehilite"><code>  SSLEngine on
+<div class="codehilite">
+ <pre><span></span><code>  SSLEngine on
   SSLCertificateFile /etc/openssl/certs/server.crt
   SSLCertificateKeyFile /etc/openssl/private/server.key
   SSLVerifyClient optional_no_ca
   SSLOptions +ExportCertData
 </code></pre>
+</div>
 <p>
  If the user agent can successfully prove possession of the private key associated to the public key from the certificate, the received certificate is stored in the
 environment variable
@@ -139,12 +141,14 @@ environment variable
  </code>
  metadata file:
 </p>
-<pre class="codehilite"><code>  $metadata['__DYNAMIC:1__'] = [
-      [....]
-      'auth' =&gt; 'example-userpass',
-      'saml20.hok.assertion' =&gt; TRUE,
-  ];
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'__DYNAMIC:1__'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cp">[</span>
+      <span class="err">[</span><span class="nx">....</span><span class="cp">]</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'auth'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'example-userpass'</span><span class="o">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'saml20.hok.assertion'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">TRUE</span><span class="o">,</span><span class="w"></span>
+<span class="w">  </span><span class="o">];</span><span class="w"></span>
 </code></pre>
+</div>
 <h2 id="add-new-metadata-to-sps">
  Add new metadata to SPs
 </h2>
@@ -161,7 +165,8 @@ The
  </code>
  metadata for SimpleSAMLphp SPs should contain something like the following code:
 </p>
-<pre class="codehilite"><code>'SingleSignOnService' =&gt; array (
+<div class="codehilite">
+ <pre><span></span><code>'SingleSignOnService' =&gt; array (
   array (
     'hoksso:ProtocolBinding' =&gt; 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
     'Binding' =&gt; 'urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser',
@@ -173,6 +178,7 @@ The
   ),
 ),
 </code></pre>
+</div>
 <h2 id="sp-metadata-on-the-idp">
  SP metadata on the IdP
 </h2>
@@ -189,7 +195,8 @@ This means that you have to use the complex endpoint format in
  metadata.
 In general, this should look like the following code:
 </p>
-<pre class="codehilite"><code>'AssertionConsumerService' =&gt; array (
+<div class="codehilite">
+ <pre><span></span><code>'AssertionConsumerService' =&gt; array (
   [
     'Binding' =&gt; 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
     'Location' =&gt; 'https://sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp',
@@ -202,6 +209,7 @@ In general, this should look like the following code:
   ],
 ),
 </code></pre>
+</div>
 <p>
  (The specific values of the various fields will vary depending on the SP.)
 </p></body>

@@ -209,13 +209,17 @@ change this in
  . In either case, it should
 be set to the top-level domain with a "dot" in front of it. E.g.:
 </p>
-<pre class="codehilite"><code>'session.cookie.domain' =&gt; '.example.org',
+<div class="codehilite">
+ <pre><span></span><code>'session.cookie.domain' =&gt; '.example.org',
 </code></pre>
+</div>
 <p>
  Or in php.ini:
 </p>
-<pre class="codehilite"><code>session.cookie_domain = ".example.org"
+<div class="codehilite">
+ <pre><span></span><code>session.cookie_domain = ".example.org"
 </code></pre>
+</div>
 <p>
  Note that if you use PHP sessions, you will also have to make sure that your
 application uses the same domain when it sets the cookie. How that is done

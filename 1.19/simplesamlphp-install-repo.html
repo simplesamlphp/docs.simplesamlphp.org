@@ -107,20 +107,26 @@
 <p>
  Go to the directory where you want to install SimpleSAMLphp:
 </p>
-<pre class="codehilite"><code>  cd /var
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="n">cd</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  Then do a git clone:
 </p>
-<pre class="codehilite"><code>  git clone git@github.com:simplesamlphp/simplesamlphp.git simplesamlphp
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="n">git</span><span class="w"> </span><span class="n">clone</span><span class="w"> </span><span class="n">git</span><span class="nv">@github</span><span class="p">.</span><span class="nl">com</span><span class="p">:</span><span class="n">simplesamlphp</span><span class="o">/</span><span class="n">simplesamlphp</span><span class="p">.</span><span class="n">git</span><span class="w"> </span><span class="n">simplesamlphp</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  Initialize configuration and metadata:
 </p>
-<pre class="codehilite"><code>  cd /var/simplesamlphp
-  cp -r config-templates/* config/
-  cp -r metadata-templates/* metadata/
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="n">cd</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">simplesamlphp</span><span class="w"></span>
+<span class="w">  </span><span class="n">cp</span><span class="w"> </span><span class="o">-</span><span class="n">r</span><span class="w"> </span><span class="n">config</span><span class="o">-</span><span class="n">templates</span><span class="o">/*</span><span class="w"> </span><span class="n">config</span><span class="o">/</span><span class="w"></span>
+<span class="w">  </span><span class="n">cp</span><span class="w"> </span><span class="o">-</span><span class="n">r</span><span class="w"> </span><span class="n">metadata</span><span class="o">-</span><span class="n">templates</span><span class="o">/*</span><span class="w"> </span><span class="n">metadata</span><span class="o">/</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  Install the external dependencies with Composer (you can refer to
  <a href="https://getcomposer.org/">
@@ -129,33 +135,43 @@
  to get detailed
 instructions on how to install Composer itself) and npm:
 </p>
-<pre class="codehilite"><code>  php composer.phar install
+<div class="codehilite">
+ <pre><span></span><code>  php composer.phar install
   npm install
 </code></pre>
+</div>
 <p>
  Build the assets:
 </p>
-<pre class="codehilite"><code>  npm run build
+<div class="codehilite">
+ <pre><span></span><code>  npm run build
 </code></pre>
+</div>
 <h2 id="upgrading">
  Upgrading
 </h2>
 <p>
  Go to the root directory of your SimpleSAMLphp installation:
 </p>
-<pre class="codehilite"><code>  cd /var/simplesamlphp
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="n">cd</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">simplesamlphp</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  Ask git to update to the latest version:
 </p>
-<pre class="codehilite"><code>  git fetch origin
+<div class="codehilite">
+ <pre><span></span><code>  git fetch origin
   git pull origin master
 </code></pre>
+</div>
 <p>
  Install or upgrade the external dependencies with Composer and npm:
 </p>
-<pre class="codehilite"><code>  php composer.phar install
+<div class="codehilite">
+ <pre><span></span><code>  php composer.phar install
   npm install
   npm run build
-</code></pre></body>
+</code></pre>
+</div></body>
 </html>

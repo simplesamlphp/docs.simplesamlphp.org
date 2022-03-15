@@ -120,8 +120,10 @@
  </code>
  to them:
 </p>
-<pre class="codehilite"><code>  'enable.saml20-idp' =&gt; true,
+<div class="codehilite">
+ <pre><span></span><code>  'enable.saml20-idp' =&gt; true,
 </code></pre>
+</div>
 <h2 id="authentication-module">
  Authentication module
 </h2>
@@ -334,11 +336,13 @@
  </code>
  to true:
 </p>
-<pre class="codehilite"><code>    'module.enable' =&gt; [
+<div class="codehilite">
+ <pre><span></span><code>    'module.enable' =&gt; [
          'exampleauth' =&gt; true,
          …
     ],
 </code></pre>
+</div>
 <p>
  The next step is to create an authentication source with this module. An authentication source is an authentication module with a specific configuration. Each authentication source has a name, which is used to refer to this specific configuration in the IdP configuration. Configuration for authentication sources can be found in
  <code>
@@ -349,21 +353,23 @@
 <p>
  In this setup, this file should contain a single entry:
 </p>
-<pre class="codehilite"><code>&lt;?php
-$config = [
-  'example-userpass' =&gt; [
-    'exampleauth:UserPass',
-    'student:studentpass' =&gt; [
-      'uid' =&gt; ['student'],
-      'eduPersonAffiliation' =&gt; ['member', 'student'],
-    ],
-    'employee:employeepass' =&gt; [
-      'uid' =&gt; ['employee'],
-      'eduPersonAffiliation' =&gt; ['member', 'employee'],
-    ],
-  ],
-];
+<div class="codehilite">
+ <pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nv">$config</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="s1">'example-userpass'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">'exampleauth:UserPass'</span><span class="p">,</span>
+    <span class="s1">'student:studentpass'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+      <span class="s1">'uid'</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'student'</span><span class="p">],</span>
+      <span class="s1">'eduPersonAffiliation'</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'member'</span><span class="p">,</span> <span class="s1">'student'</span><span class="p">],</span>
+    <span class="p">],</span>
+    <span class="s1">'employee:employeepass'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+      <span class="s1">'uid'</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'employee'</span><span class="p">],</span>
+      <span class="s1">'eduPersonAffiliation'</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'member'</span><span class="p">,</span> <span class="s1">'employee'</span><span class="p">],</span>
+    <span class="p">],</span>
+  <span class="p">],</span>
+<span class="p">];</span>
 </code></pre>
+</div>
 <p>
  This configuration creates two users -
  <code>
@@ -391,11 +397,13 @@ $config = [
  </code>
  -user). The attributes for each user are configured in the array referenced by the index. So for the student user, these are:
 </p>
-<pre class="codehilite"><code>[
+<div class="codehilite">
+ <pre><span></span><code>[
   'uid' =&gt; ['student'],
   'eduPersonAffiliation' =&gt; ['member', 'student'],
 ],
 </code></pre>
+</div>
 <p>
  The attributes will be returned by the IdP when the user logs on.
 </p>
@@ -416,8 +424,10 @@ $config = [
 <p>
  This key and certificate can be used to sign SAML messages:
 </p>
-<pre class="codehilite"><code>  openssl req -newkey rsa:3072 -new -x509 -days 3652 -nodes -out example.org.crt -keyout example.org.pem
+<div class="codehilite">
+ <pre><span></span><code>  openssl req -newkey rsa:3072 -new -x509 -days 3652 -nodes -out example.org.crt -keyout example.org.pem
 </code></pre>
+</div>
 <p>
  The certificate above will be valid for 10 years.
 </p>
@@ -438,29 +448,31 @@ $config = [
  .
 This is a minimal configuration:
 </p>
-<pre class="codehilite"><code>  &lt;?php
-  $metadata['__DYNAMIC:1__'] = [
-      /*
-       * The hostname for this IdP. This makes it possible to run multiple
-       * IdPs from the same configuration. '__DEFAULT__' means that this one
-       * should be used by default.
-       */
-      'host' =&gt; '__DEFAULT__',
+<div class="codehilite">
+ <pre><span></span><code>  <span class="cp">&lt;?php</span>
+  <span class="nv">$metadata</span><span class="p">[</span><span class="s1">'__DYNAMIC:1__'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+      <span class="cm">/*</span>
+<span class="cm">       * The hostname for this IdP. This makes it possible to run multiple</span>
+<span class="cm">       * IdPs from the same configuration. '__DEFAULT__' means that this one</span>
+<span class="cm">       * should be used by default.</span>
+<span class="cm">       */</span>
+      <span class="s1">'host'</span> <span class="o">=&gt;</span> <span class="s1">'__DEFAULT__'</span><span class="p">,</span>
 
-      /*
-       * The private key and certificate to use when signing responses.
-       * These are stored in the cert-directory.
-       */
-      'privatekey' =&gt; 'example.org.pem',
-      'certificate' =&gt; 'example.org.crt',
+      <span class="cm">/*</span>
+<span class="cm">       * The private key and certificate to use when signing responses.</span>
+<span class="cm">       * These are stored in the cert-directory.</span>
+<span class="cm">       */</span>
+      <span class="s1">'privatekey'</span> <span class="o">=&gt;</span> <span class="s1">'example.org.pem'</span><span class="p">,</span>
+      <span class="s1">'certificate'</span> <span class="o">=&gt;</span> <span class="s1">'example.org.crt'</span><span class="p">,</span>
 
-      /*
-       * The authentication source which should be used to authenticate the
-       * user. This must match one of the entries in config/authsources.php.
-       */
-      'auth' =&gt; 'example-userpass',
-  ];
+      <span class="cm">/*</span>
+<span class="cm">       * The authentication source which should be used to authenticate the</span>
+<span class="cm">       * user. This must match one of the entries in config/authsources.php.</span>
+<span class="cm">       */</span>
+      <span class="s1">'auth'</span> <span class="o">=&gt;</span> <span class="s1">'example-userpass'</span><span class="p">,</span>
+  <span class="p">];</span>
 </code></pre>
+</div>
 <p>
  For more information about available options in the idp-hosted metadata
 files, see the
@@ -489,12 +501,14 @@ files, see the
 We therefore recommended enabling this in new installations.
 This can be done by adding the following to the saml20-idp-hosted configuration:
 </p>
-<pre class="codehilite"><code>  'attributes.NameFormat' =&gt; 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+<div class="codehilite">
+ <pre><span></span><code>  'attributes.NameFormat' =&gt; 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
   'authproc' =&gt; [
       // Convert LDAP names to oids.
       100 =&gt; ['class' =&gt; 'core:AttributeMap', 'name2oid'],
   ],
 </code></pre>
+</div>
 <h2 id="adding-sps-to-the-idp">
  Adding SPs to the IdP
 </h2>
@@ -511,12 +525,14 @@ This is a minimal example of a
  </code>
  metadata file for a SimpleSAMLphp SP:
 </p>
-<pre class="codehilite"><code>  &lt;?php
-  $metadata['https://sp.example.org/simplesaml/module.php/saml/sp/metadata.php/default-sp'] = [
-      'AssertionConsumerService' =&gt; 'https://sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp',
-      'SingleLogoutService'      =&gt; 'https://sp.example.org/simplesaml/module.php/saml/sp/saml2-logout.php/default-sp',
-  ];
+<div class="codehilite">
+ <pre><span></span><code>  <span class="cp">&lt;?php</span>
+  <span class="nv">$metadata</span><span class="p">[</span><span class="s1">'https://sp.example.org/simplesaml/module.php/saml/sp/metadata.php/default-sp'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+      <span class="s1">'AssertionConsumerService'</span> <span class="o">=&gt;</span> <span class="s1">'https://sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp'</span><span class="p">,</span>
+      <span class="s1">'SingleLogoutService'</span>      <span class="o">=&gt;</span> <span class="s1">'https://sp.example.org/simplesaml/module.php/saml/sp/saml2-logout.php/default-sp'</span><span class="p">,</span>
+  <span class="p">];</span>
 </code></pre>
+</div>
 <p>
  Note that the URI in the entityID and the URLs to the AssertionConsumerService and SingleLogoutService endpoints change between different service providers.
 If you have the metadata of the remote SP as an XML file, you can use the built-in XML to SimpleSAMLphp metadata converter, which by default is available as
@@ -599,8 +615,10 @@ on the same machine. See the instructions for
 <p>
  Here is an example of such a URL:
 </p>
-<pre class="codehilite"><code>https://idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=sp.example.org
+<div class="codehilite">
+ <pre><span></span><code>https://idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=sp.example.org
 </code></pre>
+</div>
 <p>
  If the SP is a SimpleSAMLphp SP, you must also specify a
  <code>
@@ -619,8 +637,10 @@ The
  , or it can be sent from the IdP.
 To send the RelayState parameter from a SimpleSAMLphp IdP, specify it in the query string to SSOService.php:
 </p>
-<pre class="codehilite"><code>  https://idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=sp.example.org&amp;RelayState=https://sp.example.org/welcome.php
+<div class="codehilite">
+ <pre><span></span><code>  https://idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=sp.example.org&amp;RelayState=https://sp.example.org/welcome.php
 </code></pre>
+</div>
 <p>
  To set it in the SP configuration, add it to
  <code>
@@ -628,9 +648,11 @@ To send the RelayState parameter from a SimpleSAMLphp IdP, specify it in the que
  </code>
  :
 </p>
-<pre class="codehilite"><code>  'default-sp' =&gt; [
+<div class="codehilite">
+ <pre><span></span><code>  'default-sp' =&gt; [
       'saml:SP',
       'RelayState' =&gt; 'https://sp.example.org/welcome.php',
   ],
-</code></pre></body>
+</code></pre>
+</div></body>
 </html>

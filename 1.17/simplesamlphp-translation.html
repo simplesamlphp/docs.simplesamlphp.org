@@ -102,9 +102,11 @@
 <p>
  Here is an example of how two terms are included in a template from dictionary files:
 </p>
-<pre class="codehilite"><code>  &lt;h2&gt;&lt;?php echo $this-&gt;t('{core:frontpage:about_header}'); ?&gt;&lt;/h2&gt;
-  &lt;p&gt;&lt;?php echo $this-&gt;t('{core:frontpage:about_text}'); ?&gt;&lt;/p&gt;
+<div class="codehilite">
+ <pre><span></span><code>  <span class="nt">&lt;h2&gt;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">t</span><span class="p">(</span><span class="s1">'{core:frontpage:about_header}'</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="nt">&lt;/h2&gt;</span>
+  <span class="nt">&lt;p&gt;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">t</span><span class="p">(</span><span class="s1">'{core:frontpage:about_text}'</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="nt">&lt;/p&gt;</span>
 </code></pre>
+</div>
 <p>
  In this example, two translated terms are included:
  <code>
@@ -136,15 +138,19 @@
 <p>
  When the template library is about to lookup the translation of a term, it will lookup
 </p>
-<pre class="codehilite"><code>* the definition file, for the English translation, and 
-* the translation file, for translation to other languages.
+<div class="codehilite">
+ <pre><span></span><code><span class="o">*</span> <span class="nv">the</span> <span class="nv">definition</span> <span class="nv">file</span>, <span class="k">for</span> <span class="nv">the</span> <span class="nv">English</span> <span class="nv">translation</span>, <span class="nv">and</span> 
+<span class="o">*</span> <span class="nv">the</span> <span class="nv">translation</span> <span class="nv">file</span>, <span class="k">for</span> <span class="nv">translation</span> <span class="nv">to</span> <span class="nv">other</span> <span class="nv">languages</span>.
 </code></pre>
+</div>
 <p>
  SimpleSAMLphp will always fallback to the English translation using the definition file, both:
 </p>
-<pre class="codehilite"><code>* when the term is not translated into the *current selected language*, and
+<div class="codehilite">
+ <pre><span></span><code>* when the term is not translated into the *current selected language*, and
 * when the translation file is not available at all.
 </code></pre>
+</div>
 <p>
  The name of the definition file is
  <code>
@@ -178,7 +184,8 @@
 <p>
  Here is an example of a definition file with three terms:
 </p>
-<pre class="codehilite"><code>  {
+<div class="codehilite">
+ <pre><span></span><code>  {
       "header": {
           "en": "Missing cookie"
       },
@@ -190,6 +197,7 @@
       }
   }
 </code></pre>
+</div>
 <p>
  Note: you may not include other languages in the definition files, the
  <code>
@@ -197,15 +205,18 @@
  </code>
  index is used in order to at a later point in time introduce more meta information for each term, like in example:
 </p>
-<pre class="codehilite"><code>  "header": {
-      "en": "Missing cookie",
-      "_note": "This text shows up on the error page when the browser do not support cookies."
+<div class="codehilite">
+ <pre><span></span><code>  <span class="s2">"</span><span class="s">header</span><span class="s2">"</span>: {
+      <span class="s2">"</span><span class="s">en</span><span class="s2">"</span>: <span class="s2">"</span><span class="s">Missing cookie</span><span class="s2">"</span>,
+      <span class="s2">"</span><span class="s">_note</span><span class="s2">"</span>: <span class="s2">"</span><span class="s">This text shows up on the error page when the browser do not support cookies.</span><span class="s2">"</span>
   },
 </code></pre>
+</div>
 <p>
  To summarize the pattern of the definition file is as follows:
 </p>
-<pre class="codehilite"><code>  {
+<div class="codehilite">
+ <pre><span></span><code>  {
       "TERM1": {
           "en": "English text 1"
       },
@@ -214,6 +225,7 @@
       }
   }
 </code></pre>
+</div>
 <h2 id="the-translation-file">
  The translation file
 </h2>
@@ -227,7 +239,8 @@
  </code>
  , but the actual langauge that is translated:
 </p>
-<pre class="codehilite"><code>  {
+<div class="codehilite">
+ <pre><span></span><code>  {
       "TERM1": {
           "no": "Norsk tekst 1",
           "da": "Dansk tekst 1"
@@ -237,5 +250,6 @@
           "da": "Dansk tekst 2"
       }
   }
-</code></pre></body>
+</code></pre>
+</div></body>
 </html>

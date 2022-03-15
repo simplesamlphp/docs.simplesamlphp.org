@@ -169,7 +169,8 @@ client.
 <p>
  All configuration is handled in authsources.php:
 </p>
-<pre class="codehilite"><code>   'weblogin' =&gt; array(
+<div class="codehilite">
+ <pre><span></span><code>   'weblogin' =&gt; array(
            'negotiate:Negotiate',
            'keytab' =&gt; '/path/to/keytab-file',
            'fallback' =&gt; 'ldap',
@@ -186,6 +187,7 @@ client.
            'search.enable' =&gt; FALSE
    ),
 </code></pre>
+</div>
 <p>
  <code>
   php_krb5
@@ -207,45 +209,49 @@ negotiate_auth.c:101.
  Depending on you apache config you may need a rewrite rule to allow
 php_krb5 to read the HTTP_AUTHORIZATION header:
 </p>
-<pre class="codehilite"><code>   RewriteEngine on
-   RewriteCond %{HTTP:Authorization}  !^$
-   RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization},L]
+<div class="codehilite">
+ <pre><span></span><code><span class="w">   </span><span class="nv">RewriteEngine</span><span class="w"> </span><span class="nv">on</span><span class="w"></span>
+<span class="w">   </span><span class="nv">RewriteCond</span><span class="w"> </span><span class="nv">%</span><span class="p">{</span><span class="nv">HTTP</span><span class="o">:</span><span class="nv">Authorization</span><span class="p">}</span><span class="w">  </span><span class="o">!^</span><span class="p">$</span><span class="w"></span>
+<span class="w">   </span><span class="nv">RewriteRule</span><span class="w"> </span><span class="o">.*</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">[</span><span class="nv">E</span><span class="o">=</span><span class="nv">HTTP_AUTHORIZATION</span><span class="o">:</span><span class="nv">%</span><span class="p">{</span><span class="nv">HTTP</span><span class="o">:</span><span class="nv">Authorization</span><span class="p">},</span><span class="nv">L</span><span class="p">]</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  Test the Kerberos setup with the following script:
 </p>
-<pre class="codehilite"><code>   &lt;?php
-   if(!extension_loaded('krb5')) {
-           die('KRB5 Extension not installed');
-   }
+<div class="codehilite">
+ <pre><span></span><code><span class="w">   </span><span class="o">&lt;</span><span class="err">?</span><span class="n">php</span><span class="w"></span>
+<span class="w">   </span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">extension_loaded</span><span class="p">(</span><span class="s1">'krb5'</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">           </span><span class="n">die</span><span class="p">(</span><span class="s1">'KRB5 Extension not installed'</span><span class="p">);</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
 
-   if(!empty($_SERVER['HTTP_AUTHORIZATION'])) {
-          list($mech, $data) = explode(' ', $_SERVER['HTTP_AUTHORIZATION']);
-           if(strtolower($mech) == 'basic') {
-                   echo "Client sent basic";
-                   die('Unsupported request');
-           } else if(strtolower($mech) != 'negotiate') {
-                   echo "Couldn't find negotiate";
-                   die('Unsupported request');
-           }
-           $auth = new KRB5NegotiateAuth('/path/to/keytab');
-           $reply = '';
-           if($reply = $auth-&gt;doAuthentication()) {
-                   header('HTTP/1.1 200 Success');
-                   echo 'Success - authenticated as ' . $auth-&gt;getAuthenticatedUser() . '&lt;br&gt;';
-           } else {
-                   echo 'Failed to authN.';
-                   die();
-           }
-   } else {
-           header('HTTP/1.1 401 Unauthorized');
-           header('WWW-Authenticate: Negotiate',false);
-           echo 'Not authenticated. No HTTP_AUTHORIZATION available.';
-           echo 'Check headers sent by the browser and verify that ';
-           echo 'apache passes them to PHP';
-   }
-   ?&gt;
+<span class="w">   </span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">empty</span><span class="p">(</span><span class="o">$</span><span class="n">_SERVER</span><span class="p">[</span><span class="s1">'HTTP_AUTHORIZATION'</span><span class="p">]))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="n">list</span><span class="p">(</span><span class="o">$</span><span class="n">mech</span><span class="p">,</span><span class="w"> </span><span class="o">$</span><span class="n">data</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">explode</span><span class="p">(</span><span class="s1">' '</span><span class="p">,</span><span class="w"> </span><span class="o">$</span><span class="n">_SERVER</span><span class="p">[</span><span class="s1">'HTTP_AUTHORIZATION'</span><span class="p">]);</span><span class="w"></span>
+<span class="w">           </span><span class="k">if</span><span class="p">(</span><span class="n">strtolower</span><span class="p">(</span><span class="o">$</span><span class="n">mech</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">'basic'</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                   </span><span class="n">echo</span><span class="w"> </span><span class="s2">"Client sent basic"</span><span class="p">;</span><span class="w"></span>
+<span class="w">                   </span><span class="n">die</span><span class="p">(</span><span class="s1">'Unsupported request'</span><span class="p">);</span><span class="w"></span>
+<span class="w">           </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">strtolower</span><span class="p">(</span><span class="o">$</span><span class="n">mech</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s1">'negotiate'</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                   </span><span class="n">echo</span><span class="w"> </span><span class="s2">"Couldn't find negotiate"</span><span class="p">;</span><span class="w"></span>
+<span class="w">                   </span><span class="n">die</span><span class="p">(</span><span class="s1">'Unsupported request'</span><span class="p">);</span><span class="w"></span>
+<span class="w">           </span><span class="p">}</span><span class="w"></span>
+<span class="w">           </span><span class="o">$</span><span class="n">auth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">KRB5NegotiateAuth</span><span class="p">(</span><span class="s1">'/path/to/keytab'</span><span class="p">);</span><span class="w"></span>
+<span class="w">           </span><span class="o">$</span><span class="n">reply</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">''</span><span class="p">;</span><span class="w"></span>
+<span class="w">           </span><span class="k">if</span><span class="p">(</span><span class="o">$</span><span class="n">reply</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">auth</span><span class="o">-&gt;</span><span class="n">doAuthentication</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                   </span><span class="n">header</span><span class="p">(</span><span class="s1">'HTTP/1.1 200 Success'</span><span class="p">);</span><span class="w"></span>
+<span class="w">                   </span><span class="n">echo</span><span class="w"> </span><span class="s1">'Success - authenticated as '</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">$</span><span class="n">auth</span><span class="o">-&gt;</span><span class="n">getAuthenticatedUser</span><span class="p">()</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="s1">'&lt;br&gt;'</span><span class="p">;</span><span class="w"></span>
+<span class="w">           </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                   </span><span class="n">echo</span><span class="w"> </span><span class="s1">'Failed to authN.'</span><span class="p">;</span><span class="w"></span>
+<span class="w">                   </span><span class="n">die</span><span class="p">();</span><span class="w"></span>
+<span class="w">           </span><span class="p">}</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">           </span><span class="n">header</span><span class="p">(</span><span class="s1">'HTTP/1.1 401 Unauthorized'</span><span class="p">);</span><span class="w"></span>
+<span class="w">           </span><span class="n">header</span><span class="p">(</span><span class="s1">'WWW-Authenticate: Negotiate'</span><span class="p">,</span><span class="bp">false</span><span class="p">);</span><span class="w"></span>
+<span class="w">           </span><span class="n">echo</span><span class="w"> </span><span class="s1">'Not authenticated. No HTTP_AUTHORIZATION available.'</span><span class="p">;</span><span class="w"></span>
+<span class="w">           </span><span class="n">echo</span><span class="w"> </span><span class="s1">'Check headers sent by the browser and verify that '</span><span class="p">;</span><span class="w"></span>
+<span class="w">           </span><span class="n">echo</span><span class="w"> </span><span class="s1">'apache passes them to PHP'</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
+<span class="w">   </span><span class="err">?</span><span class="o">&gt;</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  <code>
   LDAP
@@ -284,8 +290,10 @@ WWW-Authenticate request.
 <p>
  Syntax is:
 </p>
-<pre class="codehilite"><code>   'subnet' =&gt; array('127.0.0.0/16','192.168.0.0/16'),
+<div class="codehilite">
+ <pre><span></span><code>   'subnet' =&gt; array('127.0.0.0/16','192.168.0.0/16'),
 </code></pre>
+</div>
 <p>
  Browsers, especially IE, behave erratically when they encounter a
 WWW-Authenticate from the webserver. Included in RFC4559 Negotiate is
@@ -407,8 +415,10 @@ security check in SSP's state handling library. If you omit this and
 pass on the original state you will see a warning in the log like
 this:
 </p>
-<pre class="codehilite"><code>  Sep 27 13:47:36 simplesamlphp WARNING [b99e6131ee] Wrong stage in state. Was 'foo', should be 'sspmod_negotiate_Auth_Source_Negotiate.StageId'.
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="n">Sep</span><span class="w"> </span><span class="mi">27</span><span class="w"> </span><span class="mi">13</span><span class="err">:</span><span class="mi">47</span><span class="err">:</span><span class="mi">36</span><span class="w"> </span><span class="n">simplesamlphp</span><span class="w"> </span><span class="n">WARNING</span><span class="w"> </span><span class="o">[</span><span class="n">b99e6131ee</span><span class="o">]</span><span class="w"> </span><span class="n">Wrong</span><span class="w"> </span><span class="n">stage</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">state</span><span class="p">.</span><span class="w"> </span><span class="n">Was</span><span class="w"> </span><span class="s1">'foo'</span><span class="p">,</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="s1">'sspmod_negotiate_Auth_Source_Negotiate.StageId'</span><span class="p">.</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  It will work as loadState will take controll and call
 Negotiate-&gt;authenticate() but remaining code in retry.php will be

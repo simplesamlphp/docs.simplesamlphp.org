@@ -133,7 +133,8 @@ cases and then switch to the
  in a text editor, and add an entry for the
 authentication source:
 </p>
-<pre class="codehilite"><code>  'example-multi' =&gt; [
+<div class="codehilite">
+ <pre><span></span><code>  'example-multi' =&gt; [
       'multiauth:MultiAuth',
 
       /*
@@ -169,6 +170,7 @@ authentication source:
       'core:AdminPassword',
   ],
 </code></pre>
+</div>
 <p>
  You should update the name of this authentication source
 (
@@ -242,8 +244,10 @@ select the correct authentication source.
 <p>
  For example:
 </p>
-<pre class="codehilite"><code>  htttps://example.com/service/?source=saml
+<div class="codehilite">
+ <pre><span></span><code>  htttps://example.com/service/?source=saml
 </code></pre>
+</div>
 <p>
  will take you directly to the SAML authentication source, instead 
 of hitting the multiauth select page, but this works only if you 
@@ -252,11 +256,13 @@ don't have redirections during the authentication process.
 <p>
  You can also use the multiauth:preselect parameter to the login call:
 </p>
-<pre class="codehilite"><code>  $as = new \SimpleSAML\Auth\Simple('my-multiauth-authsource');
-  $as-&gt;login([
-      'multiauth:preselect' =&gt; 'default-sp',
-  ]);
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">as</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">new</span><span class="w"> </span><span class="err">\</span><span class="nt">SimpleSAML</span><span class="err">\</span><span class="nt">Auth</span><span class="err">\</span><span class="nt">Simple</span><span class="o">(</span><span class="s1">'my-multiauth-authsource'</span><span class="o">);</span><span class="w"></span>
+<span class="w">  </span><span class="o">$</span><span class="nt">as-</span><span class="o">&gt;</span><span class="nt">login</span><span class="o">(</span><span class="cp">[</span>
+      <span class="s1">'multiauth:preselect'</span> <span class="o">=&gt;</span> <span class="s1">'default-sp'</span><span class="p">,</span>
+  <span class="cp">]</span><span class="o">);</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  Or add the
  <code>
@@ -264,7 +270,8 @@ don't have redirections during the authentication process.
  </code>
  option in the filter:
 </p>
-<pre class="codehilite"><code>  'example-multi' =&gt; [
+<div class="codehilite">
+ <pre><span></span><code>  'example-multi' =&gt; [
       'multiauth:MultiAuth',
 
       /*
@@ -282,6 +289,7 @@ don't have redirections during the authentication process.
       'preselect' =&gt; 'example-saml',
   ),
 </code></pre>
+</div>
 <p>
  The order of priority, in case more than one option was used is:
  <code>

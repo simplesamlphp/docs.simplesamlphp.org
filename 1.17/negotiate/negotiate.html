@@ -169,7 +169,8 @@ client.
 <p>
  All configuration is handled in authsources.php:
 </p>
-<pre class="codehilite"><code>   'weblogin' =&gt; [
+<div class="codehilite">
+ <pre><span></span><code>   'weblogin' =&gt; [
            'negotiate:Negotiate',
            'keytab' =&gt; '/path/to/keytab-file',
            'fallback' =&gt; 'ldap',
@@ -186,6 +187,7 @@ client.
            'search.enable' =&gt; FALSE
    ],
 </code></pre>
+</div>
 <h3 id="php_krb5">
  <code>
   php_krb5
@@ -209,44 +211,48 @@ Be wary of how much space is allocated to the string in
  Depending on you apache config you may need a rewrite rule to allow
 php_krb5 to read the HTTP_AUTHORIZATION header:
 </p>
-<pre class="codehilite"><code>   RewriteEngine on
-   RewriteCond %{HTTP:Authorization}  !^$
-   RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization},L]
+<div class="codehilite">
+ <pre><span></span><code><span class="w">   </span><span class="nv">RewriteEngine</span><span class="w"> </span><span class="nv">on</span><span class="w"></span>
+<span class="w">   </span><span class="nv">RewriteCond</span><span class="w"> </span><span class="nv">%</span><span class="p">{</span><span class="nv">HTTP</span><span class="o">:</span><span class="nv">Authorization</span><span class="p">}</span><span class="w">  </span><span class="o">!^</span><span class="p">$</span><span class="w"></span>
+<span class="w">   </span><span class="nv">RewriteRule</span><span class="w"> </span><span class="o">.*</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">[</span><span class="nv">E</span><span class="o">=</span><span class="nv">HTTP_AUTHORIZATION</span><span class="o">:</span><span class="nv">%</span><span class="p">{</span><span class="nv">HTTP</span><span class="o">:</span><span class="nv">Authorization</span><span class="p">},</span><span class="nv">L</span><span class="p">]</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  Test the Kerberos setup with the following script:
 </p>
-<pre class="codehilite"><code>   &lt;?php
-   if(!extension_loaded('krb5')) {
-       die('KRB5 Extension not installed');
-   }
+<div class="codehilite">
+ <pre><span></span><code><span class="w">   </span><span class="o">&lt;</span><span class="err">?</span><span class="n">php</span><span class="w"></span>
+<span class="w">   </span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">extension_loaded</span><span class="p">(</span><span class="s1">'krb5'</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="n">die</span><span class="p">(</span><span class="s1">'KRB5 Extension not installed'</span><span class="p">);</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
 
-   if(!empty($_SERVER['HTTP_AUTHORIZATION'])) {
-       list($mech, $data) = explode(' ', $_SERVER['HTTP_AUTHORIZATION']);
-       if(strtolower($mech) == 'basic') {
-           echo "Client sent basic";
-           die('Unsupported request');
-       } else if(strtolower($mech) != 'negotiate') {
-           echo "Couldn't find negotiate";
-           die('Unsupported request');
-       }
-       $auth = new KRB5NegotiateAuth('/path/to/keytab');
-       $reply = '';
-       if($reply = $auth-&gt;doAuthentication()) {
-           header('HTTP/1.1 200 Success');
-           echo 'Success - authenticated as ' . $auth-&gt;getAuthenticatedUser() . '&lt;br&gt;';
-       } else {
-           echo 'Failed to authN.';
-           die();
-       }
-   } else {
-       header('HTTP/1.1 401 Unauthorized');
-       header('WWW-Authenticate: Negotiate',false);
-       echo 'Not authenticated. No HTTP_AUTHORIZATION available.';
-       echo 'Check headers sent by the browser and verify that ';
-       echo 'apache passes them to PHP';
-   }
+<span class="w">   </span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">empty</span><span class="p">(</span><span class="o">$</span><span class="n">_SERVER</span><span class="p">[</span><span class="s1">'HTTP_AUTHORIZATION'</span><span class="p">]))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="n">list</span><span class="p">(</span><span class="o">$</span><span class="n">mech</span><span class="p">,</span><span class="w"> </span><span class="o">$</span><span class="n">data</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">explode</span><span class="p">(</span><span class="s1">' '</span><span class="p">,</span><span class="w"> </span><span class="o">$</span><span class="n">_SERVER</span><span class="p">[</span><span class="s1">'HTTP_AUTHORIZATION'</span><span class="p">]);</span><span class="w"></span>
+<span class="w">       </span><span class="k">if</span><span class="p">(</span><span class="n">strtolower</span><span class="p">(</span><span class="o">$</span><span class="n">mech</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">'basic'</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">           </span><span class="n">echo</span><span class="w"> </span><span class="s2">"Client sent basic"</span><span class="p">;</span><span class="w"></span>
+<span class="w">           </span><span class="n">die</span><span class="p">(</span><span class="s1">'Unsupported request'</span><span class="p">);</span><span class="w"></span>
+<span class="w">       </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">strtolower</span><span class="p">(</span><span class="o">$</span><span class="n">mech</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s1">'negotiate'</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">           </span><span class="n">echo</span><span class="w"> </span><span class="s2">"Couldn't find negotiate"</span><span class="p">;</span><span class="w"></span>
+<span class="w">           </span><span class="n">die</span><span class="p">(</span><span class="s1">'Unsupported request'</span><span class="p">);</span><span class="w"></span>
+<span class="w">       </span><span class="p">}</span><span class="w"></span>
+<span class="w">       </span><span class="o">$</span><span class="n">auth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">KRB5NegotiateAuth</span><span class="p">(</span><span class="s1">'/path/to/keytab'</span><span class="p">);</span><span class="w"></span>
+<span class="w">       </span><span class="o">$</span><span class="n">reply</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">''</span><span class="p">;</span><span class="w"></span>
+<span class="w">       </span><span class="k">if</span><span class="p">(</span><span class="o">$</span><span class="n">reply</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">auth</span><span class="o">-&gt;</span><span class="n">doAuthentication</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">           </span><span class="n">header</span><span class="p">(</span><span class="s1">'HTTP/1.1 200 Success'</span><span class="p">);</span><span class="w"></span>
+<span class="w">           </span><span class="n">echo</span><span class="w"> </span><span class="s1">'Success - authenticated as '</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">$</span><span class="n">auth</span><span class="o">-&gt;</span><span class="n">getAuthenticatedUser</span><span class="p">()</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="s1">'&lt;br&gt;'</span><span class="p">;</span><span class="w"></span>
+<span class="w">       </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">           </span><span class="n">echo</span><span class="w"> </span><span class="s1">'Failed to authN.'</span><span class="p">;</span><span class="w"></span>
+<span class="w">           </span><span class="n">die</span><span class="p">();</span><span class="w"></span>
+<span class="w">       </span><span class="p">}</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="n">header</span><span class="p">(</span><span class="s1">'HTTP/1.1 401 Unauthorized'</span><span class="p">);</span><span class="w"></span>
+<span class="w">       </span><span class="n">header</span><span class="p">(</span><span class="s1">'WWW-Authenticate: Negotiate'</span><span class="p">,</span><span class="bp">false</span><span class="p">);</span><span class="w"></span>
+<span class="w">       </span><span class="n">echo</span><span class="w"> </span><span class="s1">'Not authenticated. No HTTP_AUTHORIZATION available.'</span><span class="p">;</span><span class="w"></span>
+<span class="w">       </span><span class="n">echo</span><span class="w"> </span><span class="s1">'Check headers sent by the browser and verify that '</span><span class="p">;</span><span class="w"></span>
+<span class="w">       </span><span class="n">echo</span><span class="w"> </span><span class="s1">'apache passes them to PHP'</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
 </code></pre>
+</div>
 <h3 id="ldap">
  LDAP
 </h3>
@@ -279,8 +285,10 @@ WWW-Authenticate request.
 <p>
  Syntax is:
 </p>
-<pre class="codehilite"><code>   'subnet' =&gt; [ '127.0.0.0/16','192.168.0.0/16' ],
+<div class="codehilite">
+ <pre><span></span><code>   'subnet' =&gt; [ '127.0.0.0/16','192.168.0.0/16' ],
 </code></pre>
+</div>
 <p>
  Browsers, especially IE, behave erratically when they encounter a
 WWW-Authenticate from the webserver. Included in RFC4559 Negotiate is
@@ -324,44 +332,46 @@ box of information to the user explaining what's happening.
  One can add this bit of code to the template in the fallback AuthN
 module:
 </p>
-<pre class="codehilite"><code>  // This should be placed in your www script
-  $nego_session = false;
-  $nego_perm = false;
-  $nego_retry = null;
-  if (array_key_exists('negotiate:authId', $state)) {
-      $nego = \SimpleSAML\Auth\Source::getById($state['negotiate:authId']);
-      $mask = $nego-&gt;checkMask();
-      $disabled = $nego-&gt;spDisabledInMetadata($spMetadata);
-      $session_disabled = $session-&gt;getData('negotiate:disable', 'session');
-      if ($mask and !$disabled) {
-          if(array_key_exists('NEGOTIATE_AUTOLOGIN_DISABLE_PERMANENT', $_COOKIE) &amp;&amp;
-             $_COOKIE['NEGOTIATE_AUTOLOGIN_DISABLE_PERMANENT'] == 'True') {
-              $nego_perm = true;
-          } elseif ($session_disabled) {
-              $retryState = \SimpleSAML\Auth\State::cloneState($state);
-              unset($retryState[\SimpleSAML\Auth\State::ID]);
-              $nego_retry = \SimpleSAML\Auth\State::saveState($retryState, '\SimpleSAML\Module\negotiate\Auth\Source\Negotiate.StageId');
-              $nego_session = true;
-          }
-      }
-  }
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="nt">This</span><span class="w"> </span><span class="nt">should</span><span class="w"> </span><span class="nt">be</span><span class="w"> </span><span class="nt">placed</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nt">your</span><span class="w"> </span><span class="nt">www</span><span class="w"> </span><span class="nt">script</span><span class="w"></span>
+<span class="w">  </span><span class="o">$</span><span class="nt">nego_session</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">false</span><span class="o">;</span><span class="w"></span>
+<span class="w">  </span><span class="o">$</span><span class="nt">nego_perm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">false</span><span class="o">;</span><span class="w"></span>
+<span class="w">  </span><span class="o">$</span><span class="nt">nego_retry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">null</span><span class="o">;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">if</span><span class="w"> </span><span class="o">(</span><span class="nt">array_key_exists</span><span class="o">(</span><span class="s1">'negotiate:authId'</span><span class="o">,</span><span class="w"> </span><span class="o">$</span><span class="nt">state</span><span class="o">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="err">$nego</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">\SimpleSAML\Auth\</span><span class="n">Source</span><span class="p">:</span><span class="o">:</span><span class="nf">getById</span><span class="p">(</span><span class="err">$</span><span class="n">state</span><span class="cp">[</span><span class="s1">'negotiate:authId'</span><span class="cp">]</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="err">$mask</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">$nego-&gt;checkMask()</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="err">$disabled</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">$nego-&gt;spDisabledInMetadata($spMetadata)</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="err">$session_disabled</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">$session-&gt;getData('</span><span class="n">negotiate</span><span class="p">:</span><span class="n">disable</span><span class="s1">', '</span><span class="n">session</span><span class="s1">');</span>
+<span class="s1">      if ($mask and !$disabled) {</span>
+<span class="s1">          if(array_key_exists('</span><span class="n">NEGOTIATE_AUTOLOGIN_DISABLE_PERMANENT</span><span class="s1">', $_COOKIE) &amp;&amp;</span>
+<span class="s1">             $_COOKIE</span><span class="cp">[</span><span class="s1">'NEGOTIATE_AUTOLOGIN_DISABLE_PERMANENT'</span><span class="cp">]</span><span class="s1"> == '</span><span class="n">True</span><span class="s1">') {</span>
+<span class="s1">              $nego_perm = true;</span>
+<span class="s1">          } elseif ($session_disabled) {</span>
+<span class="s1">              $retryState = \SimpleSAML\Auth\State::cloneState($state);</span>
+<span class="s1">              unset($retryState</span><span class="cp">[</span><span class="o">\</span><span class="nx">SimpleSAML</span><span class="o">\</span><span class="nb">Auth</span><span class="o">\</span><span class="nx">State</span><span class="nl">::ID</span><span class="cp">]</span><span class="s1">);</span>
+<span class="s1">              $nego_retry = \SimpleSAML\Auth\State::saveState($retryState, '</span><span class="err">\</span><span class="n">SimpleSAML</span><span class="err">\</span><span class="n">Module</span><span class="err">\</span><span class="n">negotiate</span><span class="err">\</span><span class="n">Auth</span><span class="err">\</span><span class="n">Source</span><span class="err">\</span><span class="n">Negotiate</span><span class="o">.</span><span class="n">StageId</span><span class="s1">');</span>
+<span class="s1">              $nego_session = true;</span>
+<span class="s1">          }</span>
+<span class="s1">      }</span>
+<span class="s1">  }</span>
 
-  // This should reside in your template
-  if($this-&gt;data['nego']['disable_perm']) {
-      echo '&lt;span id="login-extra-info-uio.no" class="login-extra-info"&gt;'
-            . '&lt;span class="login-extra-info-divider"&gt;&lt;/span&gt;'
-            . $this-&gt;t('{feide:login:login_uio_negotiate_disabled_permanent_info}')
-            . '&lt;/span&gt;';
-  } elseif($this-&gt;data['nego']['disable_session']) {
-       echo '&lt;span id="login-extra-info-uio.no" class="login-extra-info"&gt;'
-            . '&lt;span class="login-extra-info-divider"&gt;&lt;/span&gt;'
-            . $this-&gt;t('{feide:login:login_uio_negotiate_disabled_session_info}')
-            . '&lt;br&gt;&lt;a href="'.SimpleSAML\Module::getModuleURL('negotiate/retry.php', [ 'AuthState' =&gt; $this-&gt;data['nego']['retry_id'] ]).'"&gt;'
-            . $this-&gt;t('{feide:login:login_uio_negotiate_disabled_session_info_link}')
-            . '&lt;/a&gt;'
-            . '&lt;/span&gt;';
-  }
+<span class="s1">  // This should reside in your template</span>
+<span class="s1">  if($this-&gt;data</span><span class="cp">[</span><span class="s1">'nego'</span><span class="cp">][</span><span class="s1">'disable_perm'</span><span class="cp">]</span><span class="s1">) {</span>
+<span class="s1">      echo '</span><span class="o">&lt;</span><span class="n">span</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="s2">"login-extra-info-uio.no"</span><span class="w"> </span><span class="n">class</span><span class="o">=</span><span class="s2">"login-extra-info"</span><span class="o">&gt;</span><span class="s1">'</span>
+<span class="s1">            . '</span><span class="o">&lt;</span><span class="n">span</span><span class="w"> </span><span class="n">class</span><span class="o">=</span><span class="s2">"login-extra-info-divider"</span><span class="o">&gt;&lt;/</span><span class="n">span</span><span class="o">&gt;</span><span class="s1">'</span>
+<span class="s1">            . $this-&gt;t('</span><span class="err">{</span><span class="n">feide</span><span class="o">:</span><span class="n">login</span><span class="o">:</span><span class="n">login_uio_negotiate_disabled_permanent_info</span><span class="p">}</span><span class="s1">')</span>
+<span class="s1">            . '</span><span class="o">&lt;/</span><span class="nt">span</span><span class="o">&gt;</span><span class="s1">';</span>
+<span class="s1">  } elseif($this-&gt;data</span><span class="cp">[</span><span class="s1">'nego'</span><span class="cp">][</span><span class="s1">'disable_session'</span><span class="cp">]</span><span class="s1">) {</span>
+<span class="s1">       echo '</span><span class="o">&lt;</span><span class="nt">span</span><span class="w"> </span><span class="nt">id</span><span class="o">=</span><span class="s2">"login-extra-info-uio.no"</span><span class="w"> </span><span class="nt">class</span><span class="o">=</span><span class="s2">"login-extra-info"</span><span class="o">&gt;</span><span class="s1">'</span>
+<span class="s1">            . '</span><span class="o">&lt;</span><span class="nt">span</span><span class="w"> </span><span class="nt">class</span><span class="o">=</span><span class="s2">"login-extra-info-divider"</span><span class="o">&gt;&lt;/</span><span class="nt">span</span><span class="o">&gt;</span><span class="s1">'</span>
+<span class="s1">            . $this-&gt;t('</span><span class="p">{</span><span class="n">feide</span><span class="p">:</span><span class="n">login</span><span class="o">:</span><span class="n">login_uio_negotiate_disabled_session_info</span><span class="p">}</span><span class="s1">')</span>
+<span class="s1">            . '</span><span class="o">&lt;</span><span class="nt">br</span><span class="o">&gt;&lt;</span><span class="nt">a</span><span class="w"> </span><span class="nt">href</span><span class="o">=</span><span class="s2">"'.SimpleSAML\Module::getModuleURL('negotiate/retry.php', </span><span class="cp">[</span> <span class="s1">'AuthState'</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nb">data</span><span class="err">[</span><span class="s1">'nego'</span><span class="cp">][</span><span class="s1">'retry_id'</span><span class="cp">]</span><span class="s2"> ]).'"</span><span class="o">&gt;</span><span class="s1">'</span>
+<span class="s1">            . $this-&gt;t('</span><span class="p">{</span><span class="n">feide</span><span class="p">:</span><span class="n">login</span><span class="o">:</span><span class="n">login_uio_negotiate_disabled_session_info_link</span><span class="p">}</span><span class="s1">')</span>
+<span class="s1">            . '</span><span class="o">&lt;/</span><span class="nt">a</span><span class="o">&gt;</span><span class="s1">'</span>
+<span class="s1">            . '</span><span class="o">&lt;/</span><span class="nt">span</span><span class="o">&gt;</span><span class="err">'</span><span class="o">;</span><span class="w"></span>
+<span class="w">  </span><span class="err">}</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  The above may or may not work right out of the box for you but it is
 the gist of it. By looking at the state variable, cookie and checking
@@ -378,8 +388,10 @@ security check in SSP's state handling library. If you omit this and
 pass on the original state you will see a warning in the log like
 this:
 </p>
-<pre class="codehilite"><code>  Sep 27 13:47:36 simplesamlphp WARNING [b99e6131ee] Wrong stage in state. Was 'foo', should be '\SimpleSAML\Module\negotiate\Auth\Source\Negotiate.StageId'.
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="n">Sep</span><span class="w"> </span><span class="mi">27</span><span class="w"> </span><span class="mi">13</span><span class="err">:</span><span class="mi">47</span><span class="err">:</span><span class="mi">36</span><span class="w"> </span><span class="n">simplesamlphp</span><span class="w"> </span><span class="n">WARNING</span><span class="w"> </span><span class="o">[</span><span class="n">b99e6131ee</span><span class="o">]</span><span class="w"> </span><span class="n">Wrong</span><span class="w"> </span><span class="n">stage</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">state</span><span class="p">.</span><span class="w"> </span><span class="n">Was</span><span class="w"> </span><span class="s1">'foo'</span><span class="p">,</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="s1">'\SimpleSAML\Module\negotiate\Auth\Source\Negotiate.StageId'</span><span class="p">.</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  It will work as loadState will take controll and call
 Negotiate-&gt;authenticate() but remaining code in retry.php will be

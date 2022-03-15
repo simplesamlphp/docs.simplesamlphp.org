@@ -186,12 +186,14 @@ to it with the key
 <p>
  Basic configuration:
 </p>
-<pre class="codehilite"><code>    'authproc' =&gt; [
+<div class="codehilite">
+ <pre><span></span><code>    'authproc' =&gt; [
         90 =&gt; [
             'class' =&gt; 'saml:FilterScopes',
         ],
     [,
 </code></pre>
+</div>
 <p>
  Specify
  <code>
@@ -203,7 +205,8 @@ to it with the key
  </code>
  as scoped attributes:
 </p>
-<pre class="codehilite"><code>    'authproc' =&gt; [
+<div class="codehilite">
+ <pre><span></span><code>    'authproc' =&gt; [
         90 =&gt; [
             'class' =&gt; 'saml:FilterScopes',
             'attributes' =&gt; [
@@ -213,10 +216,12 @@ to it with the key
         ],
     ],
 </code></pre>
+</div>
 <p>
  Specify the same attributes in OID format:
 </p>
-<pre class="codehilite"><code>    'authproc' =&gt; [
+<div class="codehilite">
+ <pre><span></span><code>    'authproc' =&gt; [
         90 =&gt; [
             'class' =&gt; 'saml:FilterScopes',
             'attributes' =&gt; [
@@ -225,5 +230,6 @@ to it with the key
             ],
         ],
     ],
-</code></pre></body>
+</code></pre>
+</div></body>
 </html>

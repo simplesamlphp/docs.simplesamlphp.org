@@ -93,168 +93,168 @@
 <div class="toc">
  <ul>
   <li>
-   <a href="#simplesamlphp-sp-api-reference.html">
+   <a href="#simplesamlphp-sp-api-reference">
     SimpleSAMLphp SP API reference
    </a>
    <ul>
     <li>
-     <a href="#note-on-php-sessions-and-simplesamlphp-api-calls.html">
+     <a href="#note-on-php-sessions-and-simplesamlphp-api-calls">
       Note on PHP sessions and SimpleSAMLphp API calls
      </a>
     </li>
     <li>
-     <a href="#constructor.html">
+     <a href="#constructor">
       Constructor
      </a>
      <ul>
       <li>
-       <a href="#parameters.html">
+       <a href="#parameters">
         Parameters
        </a>
       </li>
       <li>
-       <a href="#example.html">
+       <a href="#example">
         Example
        </a>
       </li>
      </ul>
     </li>
     <li>
-     <a href="#isauthenticated.html">
+     <a href="#isauthenticated">
       isAuthenticated
      </a>
      <ul>
       <li>
-       <a href="#example_1.html">
+       <a href="#example_1">
         Example
        </a>
       </li>
      </ul>
     </li>
     <li>
-     <a href="#requireauth.html">
+     <a href="#requireauth">
       requireAuth
      </a>
      <ul>
       <li>
-       <a href="#parameters_1.html">
+       <a href="#parameters_1">
         Parameters
        </a>
       </li>
       <li>
-       <a href="#example-1.html">
+       <a href="#example-1">
         Example 1
        </a>
       </li>
       <li>
-       <a href="#example-2.html">
+       <a href="#example-2">
         Example 2
        </a>
       </li>
      </ul>
     </li>
     <li>
-     <a href="#login.html">
+     <a href="#login">
       login
      </a>
      <ul>
       <li>
-       <a href="#parameters_2.html">
+       <a href="#parameters_2">
         Parameters
        </a>
       </li>
       <li>
-       <a href="#example_2.html">
+       <a href="#example_2">
         Example
        </a>
       </li>
      </ul>
     </li>
     <li>
-     <a href="#logout.html">
+     <a href="#logout">
       logout
      </a>
      <ul>
       <li>
-       <a href="#parameters_3.html">
+       <a href="#parameters_3">
         Parameters
        </a>
       </li>
       <li>
-       <a href="#example-1_1.html">
+       <a href="#example-1_1">
         Example 1
        </a>
       </li>
       <li>
-       <a href="#example-2_1.html">
+       <a href="#example-2_1">
         Example 2
        </a>
       </li>
      </ul>
     </li>
     <li>
-     <a href="#getattributes.html">
+     <a href="#getattributes">
       getAttributes
      </a>
      <ul>
       <li>
-       <a href="#example_3.html">
+       <a href="#example_3">
         Example
        </a>
       </li>
      </ul>
     </li>
     <li>
-     <a href="#getauthdata.html">
+     <a href="#getauthdata">
       getAuthData
      </a>
      <ul>
       <li>
-       <a href="#example_4.html">
+       <a href="#example_4">
         Example
        </a>
       </li>
      </ul>
     </li>
     <li>
-     <a href="#getloginurl.html">
+     <a href="#getloginurl">
       getLoginURL
      </a>
      <ul>
       <li>
-       <a href="#parameters_4.html">
+       <a href="#parameters_4">
         Parameters
        </a>
       </li>
       <li>
-       <a href="#example_5.html">
+       <a href="#example_5">
         Example
        </a>
       </li>
       <li>
-       <a href="#note.html">
+       <a href="#note">
         Note
        </a>
       </li>
      </ul>
     </li>
     <li>
-     <a href="#getlogouturl.html">
+     <a href="#getlogouturl">
       getLogoutURL
      </a>
      <ul>
       <li>
-       <a href="#parameters_5.html">
+       <a href="#parameters_5">
         Parameters
        </a>
       </li>
       <li>
-       <a href="#example_6.html">
+       <a href="#example_6">
         Example
        </a>
       </li>
       <li>
-       <a href="#note_1.html">
+       <a href="#note_1">
         Note
        </a>
       </li>
@@ -274,20 +274,24 @@ This is the preferred API for integrating SimpleSAMLphp with other applications.
 <p>
  Some SimpleSAMLphp calls replace the current active PHP session. If you previously started a session and wish to write to it, then you must cleanup the SimpleSAMLphp session before you can write to your session. If you do not need to modify your own session, then you can leave the cleanup call out; however, forgetting to call cleanup is a common source of hard to find bugs.
 </p>
-<pre class="codehilite"><code class="language-php">session_start();
-// ...
-$auth = new \SimpleSAML\Auth\Simple('default-sp');
-$auth-&gt;isAuthenticated(); // Replaces our session with the SimpleSAMLphp one
-// $_SESSION['key'] = 'value'; // This would save to the SimpleSAMLphp session which isn't what we want
-SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup(); // Reverts to our PHP session
-// Save to our session
-$_SESSION['key'] = 'value';
+<div class="codehilite">
+ <pre><span></span><code><span class="x">session_start();</span>
+<span class="x">// ...</span>
+<span class="x">$auth = new \SimpleSAML\Auth\Simple('default-sp');</span>
+<span class="x">$auth-&gt;isAuthenticated(); // Replaces our session with the SimpleSAMLphp one</span>
+<span class="x">// $_SESSION['key'] = 'value'; // This would save to the SimpleSAMLphp session which isn't what we want</span>
+<span class="x">SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup(); // Reverts to our PHP session</span>
+<span class="x">// Save to our session</span>
+<span class="x">$_SESSION['key'] = 'value';</span>
 </code></pre>
+</div>
 <h2 id="constructor">
  Constructor
 </h2>
-<pre class="codehilite"><code class="language-php">new \SimpleSAML\Auth\Simple(string $authSource)
+<div class="codehilite">
+ <pre><span></span><code><span class="x">new \SimpleSAML\Auth\Simple(string $authSource)</span>
 </code></pre>
+</div>
 <p>
  The constructor initializes a \SimpleSAML\Auth\Simple object.
 </p>
@@ -305,15 +309,19 @@ This authentication source must exist in
 <h3 id="example">
  Example
 </h3>
-<pre class="codehilite"><code class="language-php">$auth = new \SimpleSAML\Auth\Simple('default-sp');
+<div class="codehilite">
+ <pre><span></span><code><span class="x">$auth = new \SimpleSAML\Auth\Simple('default-sp');</span>
 </code></pre>
+</div>
 <h2 id="isauthenticated">
  <code>
   isAuthenticated
  </code>
 </h2>
-<pre class="codehilite"><code class="language-php">bool isAuthenticated()
+<div class="codehilite">
+ <pre><span></span><code><span class="x">bool isAuthenticated()</span>
 </code></pre>
+</div>
 <p>
  Check whether the user is authenticated with this authentication source.
  <code>
@@ -328,19 +336,23 @@ This authentication source must exist in
 <h3 id="example_1">
  Example
 </h3>
-<pre class="codehilite"><code class="language-php">if (!$auth-&gt;isAuthenticated()) {
-    SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup();
-    /* Show login link. */
-    print('&lt;a href="/login"&gt;Login&lt;/a&gt;');
-}
+<div class="codehilite">
+ <pre><span></span><code><span class="x">if (!$auth-&gt;isAuthenticated()) {</span>
+<span class="x">    SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup();</span>
+<span class="x">    /* Show login link. */</span>
+<span class="x">    print('&lt;a href="/login"&gt;Login&lt;/a&gt;');</span>
+<span class="x">}</span>
 </code></pre>
+</div>
 <h2 id="requireauth">
  <code>
   requireAuth
  </code>
 </h2>
-<pre class="codehilite"><code class="language-php">void requireAuth(array $params = [])
+<div class="codehilite">
+ <pre><span></span><code><span class="x">void requireAuth(array $params = [])</span>
 </code></pre>
+</div>
 <p>
  Make sure that the user is authenticated.
 This function will only return if the user is authenticated.
@@ -363,31 +375,37 @@ See the documentation for the
 <h3 id="example-1">
  Example 1
 </h3>
-<pre class="codehilite"><code class="language-php">$auth-&gt;requireAuth();
-SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup();
-print("Hello, authenticated user!");
+<div class="codehilite">
+ <pre><span></span><code><span class="x">$auth-&gt;requireAuth();</span>
+<span class="x">SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup();</span>
+<span class="x">print("Hello, authenticated user!");</span>
 </code></pre>
+</div>
 <h3 id="example-2">
  Example 2
 </h3>
-<pre class="codehilite"><code class="language-php">/*
- * Return the user to the frontpage after authentication, don't post
- * the current POST data.
- */
-$auth-&gt;requireAuth([
-    'ReturnTo' =&gt; 'https://sp.example.org/',
-    'KeepPost' =&gt; FALSE,
-]);
-SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup();
-print("Hello, authenticated user!");
+<div class="codehilite">
+ <pre><span></span><code><span class="x">/*</span>
+<span class="x"> * Return the user to the frontpage after authentication, don't post</span>
+<span class="x"> * the current POST data.</span>
+<span class="x"> */</span>
+<span class="x">$auth-&gt;requireAuth([</span>
+<span class="x">    'ReturnTo' =&gt; 'https://sp.example.org/',</span>
+<span class="x">    'KeepPost' =&gt; FALSE,</span>
+<span class="x">]);</span>
+<span class="x">SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup();</span>
+<span class="x">print("Hello, authenticated user!");</span>
 </code></pre>
+</div>
 <h2 id="login">
  <code>
   login
  </code>
 </h2>
-<pre class="codehilite"><code class="language-php">void login(array $params = [])
+<div class="codehilite">
+ <pre><span></span><code><span class="x">void login(array $params = [])</span>
 </code></pre>
+</div>
 <p>
  Start a login operation.
 This function will always start a new authentication process.
@@ -482,20 +500,24 @@ This function will always start a new authentication process.
 <h3 id="example_2">
  Example
 </h3>
-<pre class="codehilite"><code class="language-php"># Send a passive authentication request.
-$auth-&gt;login([
-    'isPassive' =&gt; TRUE,
-     'ErrorURL' =&gt; 'https://.../error_handler.php',
- ]);
- SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup();
+<div class="codehilite">
+ <pre><span></span><code><span class="x"># Send a passive authentication request.</span>
+<span class="x">$auth-&gt;login([</span>
+<span class="x">    'isPassive' =&gt; TRUE,</span>
+<span class="x">     'ErrorURL' =&gt; 'https://.../error_handler.php',</span>
+<span class="x"> ]);</span>
+<span class="x"> SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup();</span>
 </code></pre>
+</div>
 <h2 id="logout">
  <code>
   logout
  </code>
 </h2>
-<pre class="codehilite"><code class="language-php">void logout(mixed $params = NULL)
+<div class="codehilite">
+ <pre><span></span><code><span class="x">void logout(mixed $params = NULL)</span>
 </code></pre>
+</div>
 <p>
  Log the user out.
 After logging out, the user will either be redirected to another page, or a function will be called.
@@ -514,15 +536,17 @@ This function never returns.
   Parameters for the logout operation.
   This can either be a simple string, in which case it is interpreted as the URL the user should be redirected to after logout, or an associative array with logout parameters.
   If this parameter isn't specified, we will redirect the user to the current URL after logout.
-  <pre class="codehilite"><code>If the parameter is an an array, it can have the following options:
+  <div class="codehilite">
+   <pre><span></span><code><span class="k">If</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">parameter</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="k">array</span><span class="p">,</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">following</span><span class="w"> </span><span class="k">options</span><span class="o">:</span><span class="w"></span>
 
-- `ReturnTo`: The URL the user should be returned to after logout.
-- `ReturnCallback`: The function that should be called after logout.
-- `ReturnStateParam`: The parameter we should return the state in when redirecting.
-- `ReturnStateStage`: The stage the state array should be saved with.
+<span class="o">-</span><span class="w"> </span><span class="n n-Quoted">`ReturnTo`</span><span class="o">:</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">URL</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">returned</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">after</span><span class="w"> </span><span class="n">logout</span><span class="p">.</span><span class="w"></span>
+<span class="o">-</span><span class="w"> </span><span class="n n-Quoted">`ReturnCallback`</span><span class="o">:</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">called</span><span class="w"> </span><span class="k">after</span><span class="w"> </span><span class="n">logout</span><span class="p">.</span><span class="w"></span>
+<span class="o">-</span><span class="w"> </span><span class="n n-Quoted">`ReturnStateParam`</span><span class="o">:</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">parameter</span><span class="w"> </span><span class="n">we</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">when</span><span class="w"> </span><span class="n">redirecting</span><span class="p">.</span><span class="w"></span>
+<span class="o">-</span><span class="w"> </span><span class="n n-Quoted">`ReturnStateStage`</span><span class="o">:</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">stage</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="k">array</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">saved</span><span class="w"> </span><span class="k">with</span><span class="p">.</span><span class="w"></span>
 
-The `ReturnState` parameters allow access to the result of the logout operation after it completes.
+<span class="n">The</span><span class="w"> </span><span class="n n-Quoted">`ReturnState`</span><span class="w"> </span><span class="n">parameters</span><span class="w"> </span><span class="n">allow</span><span class="w"> </span><span class="n">access</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">logout</span><span class="w"> </span><span class="n">operation</span><span class="w"> </span><span class="k">after</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="n">completes</span><span class="p">.</span><span class="w"></span>
 </code></pre>
+  </div>
  </dd>
 </dl>
 <h3 id="example-1_1">
@@ -531,42 +555,50 @@ The `ReturnState` parameters allow access to the result of the logout operation 
 <p>
  Logout, and redirect to the specified URL.
 </p>
-<pre class="codehilite"><code class="language-php">$auth-&gt;logout('https://sp.example.org/logged_out.php');
-SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup();
+<div class="codehilite">
+ <pre><span></span><code><span class="x">$auth-&gt;logout('https://sp.example.org/logged_out.php');</span>
+<span class="x">SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup();</span>
 </code></pre>
+</div>
 <h3 id="example-2_1">
  Example 2
 </h3>
 <p>
  Same as the previous, but check the result of the logout operation afterwards.
 </p>
-<pre class="codehilite"><code class="language-php">$auth-&gt;logout([
-    'ReturnTo' =&gt; 'https://sp.example.org/logged_out.php',
-    'ReturnStateParam' =&gt; 'LogoutState',
-    'ReturnStateStage' =&gt; 'MyLogoutState',
-]);
-SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup();
+<div class="codehilite">
+ <pre><span></span><code><span class="x">$auth-&gt;logout([</span>
+<span class="x">    'ReturnTo' =&gt; 'https://sp.example.org/logged_out.php',</span>
+<span class="x">    'ReturnStateParam' =&gt; 'LogoutState',</span>
+<span class="x">    'ReturnStateStage' =&gt; 'MyLogoutState',</span>
+<span class="x">]);</span>
+<span class="x">SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup();</span>
 </code></pre>
+</div>
 <p>
  And in logged_out.php:
 </p>
-<pre class="codehilite"><code class="language-php">$state = \SimpleSAML\Auth\State::loadState((string)$_REQUEST['LogoutState'], 'MyLogoutState');
-$ls = $state['saml:sp:LogoutStatus']; /* Only works for SAML SP */
-if ($ls['Code'] === 'urn:oasis:names:tc:SAML:2.0:status:Success' &amp;&amp; !isset($ls['SubCode'])) {
-    /* Successful logout. */
-    echo("You have been logged out.");
-} else {
-    /* Logout failed. Tell the user to close the browser. */
-    echo("We were unable to log you out of all your sessions. To be completely sure that you are logged out, you need to close your web browser.");
-}
+<div class="codehilite">
+ <pre><span></span><code><span class="x">$state = \SimpleSAML\Auth\State::loadState((string)$_REQUEST['LogoutState'], 'MyLogoutState');</span>
+<span class="x">$ls = $state['saml:sp:LogoutStatus']; /* Only works for SAML SP */</span>
+<span class="x">if ($ls['Code'] === 'urn:oasis:names:tc:SAML:2.0:status:Success' &amp;&amp; !isset($ls['SubCode'])) {</span>
+<span class="x">    /* Successful logout. */</span>
+<span class="x">    echo("You have been logged out.");</span>
+<span class="x">} else {</span>
+<span class="x">    /* Logout failed. Tell the user to close the browser. */</span>
+<span class="x">    echo("We were unable to log you out of all your sessions. To be completely sure that you are logged out, you need to close your web browser.");</span>
+<span class="x">}</span>
 </code></pre>
+</div>
 <h2 id="getattributes">
  <code>
   getAttributes
  </code>
 </h2>
-<pre class="codehilite"><code class="language-php">array getAttributes()
+<div class="codehilite">
+ <pre><span></span><code><span class="x">array getAttributes()</span>
 </code></pre>
+</div>
 <p>
  Retrieve the attributes of the current user.
 If the user isn't authenticated, an empty array will be returned.
@@ -574,29 +606,35 @@ If the user isn't authenticated, an empty array will be returned.
 <p>
  The attributes will be returned as an associative array with the name of the attribute as the key and the value as an array of one or more strings:
 </p>
-<pre class="codehilite"><code class="language-php">[
-    'uid' =&gt; ['testuser'],
-    'eduPersonAffiliation' =&gt; ['student', 'member'],
-]
+<div class="codehilite">
+ <pre><span></span><code><span class="x">[</span>
+<span class="x">    'uid' =&gt; ['testuser'],</span>
+<span class="x">    'eduPersonAffiliation' =&gt; ['student', 'member'],</span>
+<span class="x">]</span>
 </code></pre>
+</div>
 <h3 id="example_3">
  Example
 </h3>
-<pre class="codehilite"><code class="language-php">$attrs = $auth-&gt;getAttributes();
-if (!isset($attrs['displayName'][0])) {
-    throw new Exception('displayName attribute missing.');
-}
-$name = $attrs['displayName'][0];
+<div class="codehilite">
+ <pre><span></span><code><span class="x">$attrs = $auth-&gt;getAttributes();</span>
+<span class="x">if (!isset($attrs['displayName'][0])) {</span>
+<span class="x">    throw new Exception('displayName attribute missing.');</span>
+<span class="x">}</span>
+<span class="x">$name = $attrs['displayName'][0];</span>
 
-print('Hello, ' . htmlspecialchars($name));
+<span class="x">print('Hello, ' . htmlspecialchars($name));</span>
 </code></pre>
+</div>
 <h2 id="getauthdata">
  <code>
   getAuthData
  </code>
 </h2>
-<pre class="codehilite"><code class="language-php">mixed getAuthData(string $name)
+<div class="codehilite">
+ <pre><span></span><code><span class="x">mixed getAuthData(string $name)</span>
 </code></pre>
+</div>
 <p>
  Retrieve the specified authentication data for the current session.
 NULL is returned if the user isn't authenticated.
@@ -614,17 +652,21 @@ See the
 <h3 id="example_4">
  Example
 </h3>
-<pre class="codehilite"><code class="language-php">$idp = $auth-&gt;getAuthData('saml:sp:IdP');
-$nameID = $auth-&gt;getAuthData('saml:sp:NameID')-&gt;getValue();
-printf('You are %s, logged in from %s', htmlspecialchars($nameID), htmlspecialchars($idp));
+<div class="codehilite">
+ <pre><span></span><code><span class="x">$idp = $auth-&gt;getAuthData('saml:sp:IdP');</span>
+<span class="x">$nameID = $auth-&gt;getAuthData('saml:sp:NameID')-&gt;getValue();</span>
+<span class="x">printf('You are %s, logged in from %s', htmlspecialchars($nameID), htmlspecialchars($idp));</span>
 </code></pre>
+</div>
 <h2 id="getloginurl">
  <code>
   getLoginURL
  </code>
 </h2>
-<pre class="codehilite"><code class="language-php">string getLoginURL(string $returnTo = NULL)
+<div class="codehilite">
+ <pre><span></span><code><span class="x">string getLoginURL(string $returnTo = NULL)</span>
 </code></pre>
+</div>
 <p>
  Retrieve a URL that can be used to start authentication.
 </p>
@@ -647,10 +689,12 @@ printf('You are %s, logged in from %s', htmlspecialchars($nameID), htmlspecialch
 <h3 id="example_5">
  Example
 </h3>
-<pre class="codehilite"><code class="language-php">$url = $auth-&gt;getLoginURL();
+<div class="codehilite">
+ <pre><span></span><code><span class="x">$url = $auth-&gt;getLoginURL();</span>
 
-print('&lt;a href="' . htmlspecialchars($url) . '"&gt;Login&lt;/a&gt;');
+<span class="x">print('&lt;a href="' . htmlspecialchars($url) . '"&gt;Login&lt;/a&gt;');</span>
 </code></pre>
+</div>
 <h3 id="note">
  Note
 </h3>
@@ -659,15 +703,19 @@ print('&lt;a href="' . htmlspecialchars($url) . '"&gt;Login&lt;/a&gt;');
 You can easily create your own links without using this function.
 The URL should be:
 </p>
-<pre class="codehilite"><code>   .../simplesaml/module.php/core/login/&lt;authentication source&gt;?ReturnTo=&lt;return URL&gt;
+<div class="codehilite">
+ <pre><span></span><code>   ...<span class="o">/</span><span class="nv">simplesaml</span><span class="o">/</span><span class="nv">module</span>.<span class="nv">php</span><span class="o">/</span><span class="nv">core</span><span class="o">/</span><span class="nv">login</span><span class="o">/&lt;</span><span class="nv">authentication</span> <span class="nv">source</span><span class="o">&gt;</span>?<span class="nv">ReturnTo</span><span class="o">=&lt;</span><span class="k">return</span> <span class="nv">URL</span><span class="o">&gt;</span>
 </code></pre>
+</div>
 <h2 id="getlogouturl">
  <code>
   getLogoutURL
  </code>
 </h2>
-<pre class="codehilite"><code class="language-php">string getLogoutURL(string $returnTo = NULL)
+<div class="codehilite">
+ <pre><span></span><code><span class="x">string getLogoutURL(string $returnTo = NULL)</span>
 </code></pre>
+</div>
 <p>
  Retrieve a URL that can be used to trigger logout.
 </p>
@@ -690,10 +738,12 @@ The URL should be:
 <h3 id="example_6">
  Example
 </h3>
-<pre class="codehilite"><code class="language-php">$url = $auth-&gt;getLogoutURL();
+<div class="codehilite">
+ <pre><span></span><code><span class="x">$url = $auth-&gt;getLogoutURL();</span>
 
-print('&lt;a href="' . htmlspecialchars($url) . '"&gt;Logout&lt;/a&gt;');
+<span class="x">print('&lt;a href="' . htmlspecialchars($url) . '"&gt;Logout&lt;/a&gt;');</span>
 </code></pre>
+</div>
 <h3 id="note_1">
  Note
 </h3>
@@ -702,6 +752,8 @@ print('&lt;a href="' . htmlspecialchars($url) . '"&gt;Logout&lt;/a&gt;');
 You can easily create your own links without using this function.
 The URL should be:
 </p>
-<pre class="codehilite"><code>   .../simplesaml/module.php/core/logout/&lt;authentication source&gt;?ReturnTo=&lt;return URL&gt;
-</code></pre></body>
+<div class="codehilite">
+ <pre><span></span><code>   ...<span class="o">/</span><span class="nv">simplesaml</span><span class="o">/</span><span class="nv">module</span>.<span class="nv">php</span><span class="o">/</span><span class="nv">core</span><span class="o">/</span><span class="nv">logout</span><span class="o">/&lt;</span><span class="nv">authentication</span> <span class="nv">source</span><span class="o">&gt;</span>?<span class="nv">ReturnTo</span><span class="o">=&lt;</span><span class="k">return</span> <span class="nv">URL</span><span class="o">&gt;</span>
+</code></pre>
+</div></body>
 </html>

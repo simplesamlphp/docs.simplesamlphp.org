@@ -127,14 +127,16 @@
  </dd>
  <dd>
   The format string accepts the following replacements:
-  <pre class="codehilite"><code>* `%I`: The IdP that issued the NameID.
-        This will be the `NameQualifier` element of the NameID if it is present, or the entity ID of the IdP we received the response from if not.
-* `%S`: The SP the NameID was issued to.
-        This will be the `SPNameQualifier` element of the NameID if it is present, or the entity ID of this SP otherwise.
-* `%V`: The value of the NameID.
-* `%F`: The format of the NameID.
-* `%%`: Will be replaced with a single `%`.
+  <div class="codehilite">
+   <pre><span></span><code><span class="o">*</span><span class="w"> </span><span class="n n-Quoted">`%I`</span><span class="o">:</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">IdP</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">issued</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">NameID</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="n">This</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n n-Quoted">`NameQualifier`</span><span class="w"> </span><span class="n">element</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">NameID</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">present</span><span class="p">,</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">entity</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">IdP</span><span class="w"> </span><span class="n">we</span><span class="w"> </span><span class="n">received</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">response</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">not</span><span class="p">.</span><span class="w"></span>
+<span class="o">*</span><span class="w"> </span><span class="n n-Quoted">`%S`</span><span class="o">:</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">SP</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">NameID</span><span class="w"> </span><span class="n">was</span><span class="w"> </span><span class="n">issued</span><span class="w"> </span><span class="k">to</span><span class="p">.</span><span class="w"></span>
+<span class="w">        </span><span class="n">This</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n n-Quoted">`SPNameQualifier`</span><span class="w"> </span><span class="n">element</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">NameID</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">present</span><span class="p">,</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">entity</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">SP</span><span class="w"> </span><span class="n">otherwise</span><span class="p">.</span><span class="w"></span>
+<span class="o">*</span><span class="w"> </span><span class="n n-Quoted">`%V`</span><span class="o">:</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="k">value</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">NameID</span><span class="p">.</span><span class="w"></span>
+<span class="o">*</span><span class="w"> </span><span class="n n-Quoted">`%F`</span><span class="o">:</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="k">format</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">NameID</span><span class="p">.</span><span class="w"></span>
+<span class="o">*</span><span class="w"> </span><span class="n n-Quoted">`%%`</span><span class="o">:</span><span class="w"> </span><span class="n">Will</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">replaced</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">single</span><span class="w"> </span><span class="n n-Quoted">`%`</span><span class="p">.</span><span class="w"></span>
 </code></pre>
+  </div>
  </dd>
 </dl>
 <h2 id="examples">
@@ -143,17 +145,20 @@
 <p>
  Minimal configuration:
 </p>
-<pre class="codehilite"><code>  'default-sp' =&gt; array(
+<div class="codehilite">
+ <pre><span></span><code>  'default-sp' =&gt; array(
       'saml:SP',
       'authproc' =&gt; array(
           20 =&gt; 'saml:NameIDAttribute',
       ),
   ),
 </code></pre>
+</div>
 <p>
  Custom attribute name:
 </p>
-<pre class="codehilite"><code>  'default-sp' =&gt; array(
+<div class="codehilite">
+ <pre><span></span><code>  'default-sp' =&gt; array(
       'saml:SP',
       'authproc' =&gt; array(
           20 =&gt; array(
@@ -163,10 +168,12 @@
       ),
   ),
 </code></pre>
+</div>
 <p>
  Only extract the value of the NameID.
 </p>
-<pre class="codehilite"><code>  'default-sp' =&gt; array(
+<div class="codehilite">
+ <pre><span></span><code>  'default-sp' =&gt; array(
       'saml:SP',
       'authproc' =&gt; array(
           20 =&gt; array(
@@ -176,6 +183,7 @@
       ),
   ),
 </code></pre>
+</div>
 <h2 id="see-also">
  See also
 </h2>

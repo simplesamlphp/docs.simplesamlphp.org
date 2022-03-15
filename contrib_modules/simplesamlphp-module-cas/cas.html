@@ -103,7 +103,8 @@ the only diffrence is this is authentication module and not a script.
 <h2 id="example-authsourcephp">
  example authsource.php
 </h2>
-<pre class="codehilite"><code>'example-cas' =&gt; array(
+<div class="codehilite">
+ <pre><span></span><code>'example-cas' =&gt; array(
   'cas:CAS',
   'cas' =&gt; array(
     'login' =&gt; 'https://cas.example.com/login',
@@ -122,6 +123,7 @@ the only diffrence is this is authentication module and not a script.
   ),
 ),
 </code></pre>
+</div>
 <h2 id="querying-attributes">
  Querying Attributes
 </h2>
@@ -147,9 +149,11 @@ the only diffrence is this is authentication module and not a script.
  </code>
  , either directly:
 </p>
-<pre class="codehilite"><code>  'cas' =&gt; array(
+<div class="codehilite">
+ <pre><span></span><code>  'cas' =&gt; array(
     'serviceValidate' =&gt; 'https://cas.example.com/serviceValidate',
 </code></pre>
+</div>
 <p>
  or you might have to call serviceValidate for Protocol 3 via
  <strong>
@@ -157,27 +161,31 @@ the only diffrence is this is authentication module and not a script.
  </strong>
  :
 </p>
-<pre class="codehilite"><code>  'cas' =&gt; array(
+<div class="codehilite">
+ <pre><span></span><code>  'cas' =&gt; array(
     'serviceValidate' =&gt; 'https://cas.example.com/p3/serviceValidate',
 </code></pre>
+</div>
 <p>
  which would return something like
 </p>
-<pre class="codehilite"><code>    &lt;cas:authenticationSuccess&gt;
-        &lt;cas:user&gt;jdoe&lt;/cas:user&gt;
-        &lt;cas:attributes&gt;
-            &lt;cas:credentialType&gt;UsernamePasswordCredential&lt;/cas:credentialType&gt;
-            &lt;cas:isFromNewLogin&gt;false&lt;/cas:isFromNewLogin&gt;
-            &lt;cas:mail&gt;john.doe@example.com&lt;/cas:mail&gt;
-            &lt;cas:authenticationDate&gt;2021-01-19T08:38:49.624+01:00[Europe/Paris]&lt;/cas:authenticationDate&gt;
-            &lt;cas:authenticationMethod&gt;LdapAuthenticationHandler&lt;/cas:authenticationMethod&gt;
-            &lt;cas:firstName&gt;John&lt;/cas:firstName&gt;
-            &lt;cas:successfulAuthenticationHandlers&gt;LdapAuthenticationHandler&lt;/cas:successfulAuthenticationHandlers&gt;
-            &lt;cas:longTermAuthenticationRequestTokenUsed&gt;false&lt;/cas:longTermAuthenticationRequestTokenUsed&gt;
-            &lt;cas:sn&gt;Doe&lt;/cas:sn&gt;
-            &lt;/cas:attributes&gt;
-    &lt;/cas:authenticationSuccess&gt;
+<div class="codehilite">
+ <pre><span></span><code>    <span class="nt">&lt;cas:authenticationSuccess&gt;</span>
+        <span class="nt">&lt;cas:user&gt;</span>jdoe<span class="nt">&lt;/cas:user&gt;</span>
+        <span class="nt">&lt;cas:attributes&gt;</span>
+            <span class="nt">&lt;cas:credentialType&gt;</span>UsernamePasswordCredential<span class="nt">&lt;/cas:credentialType&gt;</span>
+            <span class="nt">&lt;cas:isFromNewLogin&gt;</span>false<span class="nt">&lt;/cas:isFromNewLogin&gt;</span>
+            <span class="nt">&lt;cas:mail&gt;</span>john.doe@example.com<span class="nt">&lt;/cas:mail&gt;</span>
+            <span class="nt">&lt;cas:authenticationDate&gt;</span>2021-01-19T08:38:49.624+01:00[Europe/Paris]<span class="nt">&lt;/cas:authenticationDate&gt;</span>
+            <span class="nt">&lt;cas:authenticationMethod&gt;</span>LdapAuthenticationHandler<span class="nt">&lt;/cas:authenticationMethod&gt;</span>
+            <span class="nt">&lt;cas:firstName&gt;</span>John<span class="nt">&lt;/cas:firstName&gt;</span>
+            <span class="nt">&lt;cas:successfulAuthenticationHandlers&gt;</span>LdapAuthenticationHandler<span class="nt">&lt;/cas:successfulAuthenticationHandlers&gt;</span>
+            <span class="nt">&lt;cas:longTermAuthenticationRequestTokenUsed&gt;</span>false<span class="nt">&lt;/cas:longTermAuthenticationRequestTokenUsed&gt;</span>
+            <span class="nt">&lt;cas:sn&gt;</span>Doe<span class="nt">&lt;/cas:sn&gt;</span>
+            <span class="nt">&lt;/cas:attributes&gt;</span>
+    <span class="nt">&lt;/cas:authenticationSuccess&gt;</span>
 </code></pre>
+</div>
 <p>
  So we can query for attributes in
  <code>
@@ -185,7 +193,8 @@ the only diffrence is this is authentication module and not a script.
  </code>
  , providing the XPath for each value:
 </p>
-<pre class="codehilite"><code>  'cas' =&gt; array(
+<div class="codehilite">
+ <pre><span></span><code>  'cas' =&gt; array(
     'attributes' =&gt; [
         'uid' =&gt; '/cas:serviceResponse/cas:authenticationSuccess/cas:user',
         'sn' =&gt; '/cas:serviceResponse/cas:authenticationSuccess/cas:attributes/cas:sn',
@@ -193,11 +202,14 @@ the only diffrence is this is authentication module and not a script.
         'mail' =&gt; '/cas:serviceResponse/cas:authenticationSuccess/cas:attributes/cas:mail',
         ],
 </code></pre>
+</div>
 <p>
  and even some custom attributes if they're set:
 </p>
-<pre class="codehilite"><code>      'customabc' =&gt; '/cas:serviceResponse/cas:authenticationSuccess/custom:abc',
+<div class="codehilite">
+ <pre><span></span><code>      'customabc' =&gt; '/cas:serviceResponse/cas:authenticationSuccess/custom:abc',
 </code></pre>
+</div>
 <p>
  You'll probably want to avoid querying LDAP for attributes: set
  <code>
@@ -209,11 +221,13 @@ the only diffrence is this is authentication module and not a script.
  </code>
  MUST be set):
 </p>
-<pre class="codehilite"><code>'example-cas' =&gt; array(
+<div class="codehilite">
+ <pre><span></span><code>'example-cas' =&gt; array(
   'cas:CAS',
   'cas' =&gt; array(
             ...
   ),
   'ldap' =&gt; []
-</code></pre></body>
+</code></pre>
+</div></body>
 </html>

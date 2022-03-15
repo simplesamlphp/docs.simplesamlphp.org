@@ -100,9 +100,11 @@
  First you must create the new key that you are going to use.
 To create a self signed certificate, you may use the following command:
 </p>
-<pre class="codehilite"><code>  cd cert
+<div class="codehilite">
+ <pre><span></span><code>  cd cert
   openssl req -newkey rsa:3072 -new -x509 -days 3652 -nodes -out new.crt -keyout new.pem
 </code></pre>
+</div>
 <h2 id="add-the-new-key-to-simplesamlphp">
  Add the new key to SimpleSAMLphp
 </h2>
@@ -146,7 +148,8 @@ This ensures that both those entities that use your old metadata and those that 
  </code>
  :
 </p>
-<pre class="codehilite"><code>  'default-sp' =&gt; array(
+<div class="codehilite">
+ <pre><span></span><code>  'default-sp' =&gt; array(
       'saml:SP',
       'privatekey' =&gt; 'old.pem',
       'certificate' =&gt; 'old.crt',
@@ -154,6 +157,7 @@ This ensures that both those entities that use your old metadata and those that 
       'new_certificate' =&gt; 'new.crt',
   ),
 </code></pre>
+</div>
 <p>
  In
  <code>
@@ -161,15 +165,17 @@ This ensures that both those entities that use your old metadata and those that 
  </code>
  :
 </p>
-<pre class="codehilite"><code>  $metadata['__DYNAMIC:1__'] = array(
-      'host' =&gt; '__DEFAULT__',
-      'auth' =&gt; 'example-userpass',
-      'privatekey' =&gt; 'old.pem',
-      'certificate' =&gt; 'old.crt',
-      'new_privatekey' =&gt; 'new.pem',
-      'new_certificate' =&gt; 'new.crt',
-  );
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'__DYNAMIC:1__'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'host'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'__DEFAULT__'</span><span class="o">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'auth'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'example-userpass'</span><span class="o">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'privatekey'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'old.pem'</span><span class="o">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'certificate'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'old.crt'</span><span class="o">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'new_privatekey'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'new.pem'</span><span class="o">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'new_certificate'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'new.crt'</span><span class="o">,</span><span class="w"></span>
+<span class="w">  </span><span class="o">);</span><span class="w"></span>
 </code></pre>
+</div>
 <h2 id="distribute-your-new-metadata">
  Distribute your new metadata
 </h2>
@@ -217,12 +223,14 @@ This will cause your old key to be removed from your metadata.
  </code>
  :
 </p>
-<pre class="codehilite"><code>  'default-sp' =&gt; array(
+<div class="codehilite">
+ <pre><span></span><code>  'default-sp' =&gt; array(
       'saml:SP',
       'privatekey' =&gt; 'new.pem',
       'certificate' =&gt; 'new.crt',
   ),
 </code></pre>
+</div>
 <p>
  In
  <code>
@@ -230,13 +238,15 @@ This will cause your old key to be removed from your metadata.
  </code>
  :
 </p>
-<pre class="codehilite"><code>  $metadata['__DYNAMIC:1__'] = array(
-      'host' =&gt; '__DEFAULT__',
-      'auth' =&gt; 'example-userpass',
-      'privatekey' =&gt; 'new.pem',
-      'certificate' =&gt; 'new.crt',
-  );
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'__DYNAMIC:1__'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'host'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'__DEFAULT__'</span><span class="o">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'auth'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'example-userpass'</span><span class="o">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'privatekey'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'new.pem'</span><span class="o">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'certificate'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'new.crt'</span><span class="o">,</span><span class="w"></span>
+<span class="w">  </span><span class="o">);</span><span class="w"></span>
 </code></pre>
+</div>
 <h2 id="distribute-your-final-metadata">
  Distribute your final metadata
 </h2>

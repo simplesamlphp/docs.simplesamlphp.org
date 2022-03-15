@@ -115,22 +115,26 @@ filter to run before all the other filters you may have enabled.
  file, in the
 expirycheck module:
 </p>
-<pre class="codehilite"><code>  touch modules/expirycheck/enable
+<div class="codehilite">
+ <pre><span></span><code>  touch modules/expirycheck/enable
 </code></pre>
+</div>
 <p>
  Then you need to set filter parameters in your config.php file.
 </p>
 <p>
  Example:
 </p>
-<pre class="codehilite"><code>10 =&gt; array(
-  'class'     =&gt; 'expirycheck:ExpiryDate',
-  'netid_attr'    =&gt; 'eduPersonPrincipalName',
-  'expirydate_attr' =&gt; 'schacExpiryDate',
-  'warndaysbefore'  =&gt; '60',
-  'date_format'     =&gt; 'd.m.Y',
-),
+<div class="codehilite">
+ <pre><span></span><code><span class="mf">10</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">array</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">class</span><span class="err">'</span><span class="w">     </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="nb">exp</span><span class="n">irycheck</span><span class="p">:</span><span class="nb">Exp</span><span class="n">iryDate</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">netid_attr</span><span class="err">'</span><span class="w">    </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">eduPersonPrincipalName</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="nb">exp</span><span class="n">irydate_attr</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">schacExpiryDate</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">warndaysbefore</span><span class="err">'</span><span class="w">  </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="mf">60</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="err">'</span><span class="n">date_format</span><span class="err">'</span><span class="w">     </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">d</span><span class="mf">.</span><span class="n">m</span><span class="mf">.</span><span class="n">Y</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
+<span class="p">),</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  Parameter netid_attr represents (ldap) attribute name which has user's NetID stored in it,
 parameter expirydate_attr represents (ldap) attribute name which has user's expiry date

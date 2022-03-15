@@ -111,14 +111,18 @@
 <p>
  If you are just using the already configured database, which would normally be the case, all you need to do is get the global instance of the Database class.
 </p>
-<pre class="codehilite"><code>$db = \SimpleSAML\Database::getInstance();
+<div class="codehilite">
+ <pre><span></span><code><span class="o">$</span><span class="nt">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">\</span><span class="nt">SimpleSAML</span><span class="err">\</span><span class="nt">Database</span><span class="p">::</span><span class="nd">getInstance</span><span class="o">();</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  If there is a requirement to connect to an alternate database server (ex. authenticating users that exist on a different SQL server or database) you can specify an alternate configuration.
 </p>
-<pre class="codehilite"><code>$config = new \SimpleSAML\Configuration($myconfigarray, "mymodule/lib/Auth/Source/myauth.php");
-$db = \SimpleSAML\Database::getInstance($config);
+<div class="codehilite">
+ <pre><span></span><code><span class="o">$</span><span class="nt">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">new</span><span class="w"> </span><span class="err">\</span><span class="nt">SimpleSAML</span><span class="err">\</span><span class="nt">Configuration</span><span class="o">($</span><span class="nt">myconfigarray</span><span class="o">,</span><span class="w"> </span><span class="s2">"mymodule/lib/Auth/Source/myauth.php"</span><span class="o">);</span><span class="w"></span>
+<span class="o">$</span><span class="nt">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">\</span><span class="nt">SimpleSAML</span><span class="err">\</span><span class="nt">Database</span><span class="p">::</span><span class="nd">getInstance</span><span class="o">($</span><span class="nt">config</span><span class="o">);</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  That will create a new instance of the database, separate from the global instance, specific to the configuration defined in $myconfigarray. If you are going to specify an alternate config, your configuration array must contain the same keys that exist in the master config (database.dsn, database.username, database.password, database.prefix, etc).
 </p>
@@ -128,8 +132,10 @@ $db = \SimpleSAML\Database::getInstance($config);
 <p>
  Administrators can add a prefix to all the table names that this database classes accesses and you should take that in account when querying. Assuming that a prefix has been configured as "sp_":
 </p>
-<pre class="codehilite"><code>$table = $db-&gt;applyPrefix("saml20_idp_hosted");
+<div class="codehilite">
+ <pre><span></span><code><span class="err">$</span><span class="nf">table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">$</span><span class="n">db</span><span class="o">-&gt;</span><span class="n">applyPrefix</span><span class="p">(</span><span class="s">"saml20_idp_hosted"</span><span class="p">);</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  $table would be set to "sp_saml20_idp_hosted"
 </p>
@@ -148,25 +154,29 @@ $db = \SimpleSAML\Database::getInstance($config);
 <p>
  The write function takes 2 parameters: SQL, params.
 </p>
-<pre class="codehilite"><code>$table = $db-&gt;applyPrefix("test");
-$values = [
-  'id' =&gt; 20,
-  'data' =&gt; 'Some data',
-];
+<div class="codehilite">
+ <pre><span></span><code><span class="err">$</span><span class="nf">table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">$</span><span class="n">db</span><span class="o">-&gt;</span><span class="n">applyPrefix</span><span class="p">(</span><span class="s">"test"</span><span class="p">);</span><span class="w"></span>
+<span class="err">$</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">  </span><span class="s">'id'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="s">'data'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s">'Some data'</span><span class="p">,</span><span class="w"></span>
+<span class="p">];</span><span class="w"></span>
 
-$query = $db-&gt;write("INSERT INTO $table (id, data) VALUES (:id, :data)", $values);
+<span class="err">$</span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">$</span><span class="n">db</span><span class="o">-&gt;</span><span class="n">write</span><span class="p">(</span><span class="s">"INSERT INTO $table (id, data) VALUES (:id, :data)"</span><span class="p">,</span><span class="w"> </span><span class="err">$</span><span class="n">values</span><span class="p">);</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  The values specified in the $values array will be bound to the placeholders and will be executed on the master. By default, values are binded as PDO::PARAM_STR. If you need to override this, you can specify it in the values array.
 </p>
-<pre class="codehilite"><code>$table = $db-&gt;applyPrefix("test");
-$values = [
-  'id' =&gt; [20, PDO::PARAM_INT],
-  'data' =&gt; 'Some data',
-];
+<div class="codehilite">
+ <pre><span></span><code><span class="o">$</span><span class="nt">table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="nt">db-</span><span class="o">&gt;</span><span class="nt">applyPrefix</span><span class="o">(</span><span class="s2">"test"</span><span class="o">);</span><span class="w"></span>
+<span class="o">$</span><span class="nt">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cp">[</span>
+  <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="err">[</span><span class="mi">20</span><span class="p">,</span> <span class="nx">PDO</span><span class="nl">::PARAM_INT</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
+<span class="w">  </span><span class="s1">'data'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Some data'</span><span class="o">,</span><span class="w"></span>
+<span class="o">];</span><span class="w"></span>
 
-$query = $db-&gt;write("INSERT INTO $table (id, data) VALUES (:id, :data)", $values);
+<span class="o">$</span><span class="nt">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="nt">db-</span><span class="o">&gt;</span><span class="nt">write</span><span class="o">(</span><span class="s2">"INSERT INTO $table (id, data) VALUES (:id, :data)"</span><span class="o">,</span><span class="w"> </span><span class="o">$</span><span class="nt">values</span><span class="o">);</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  You can also skip usage of prepared statements. You should
  <strong>
@@ -174,9 +184,11 @@ $query = $db-&gt;write("INSERT INTO $table (id, data) VALUES (:id, :data)", $val
  </strong>
  use this if you have a statement that has no user input (ex. CREATE TABLE). If the params variable is explicity set to false, it will skip usage of prepared statements. This is only available when writing to the database.
 </p>
-<pre class="codehilite"><code>$table = $db-&gt;applyPrefix("test");
-$query = $db-&gt;write("CREATE TABLE IF NOT EXISTS $table (id INT(16) NOT NULL, data TEXT NOT NULL)", false);
+<div class="codehilite">
+ <pre><span></span><code><span class="err">$</span><span class="nf">table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">$</span><span class="n">db</span><span class="o">-&gt;</span><span class="n">applyPrefix</span><span class="p">(</span><span class="s">"test"</span><span class="p">);</span><span class="w"></span>
+<span class="err">$</span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">$</span><span class="n">db</span><span class="o">-&gt;</span><span class="n">write</span><span class="p">(</span><span class="s">"CREATE TABLE IF NOT EXISTS $table (id INT(16) NOT NULL, data TEXT NOT NULL)"</span><span class="p">,</span><span class="w"> </span><span class="kr">false</span><span class="p">);</span><span class="w"></span>
 </code></pre>
+</div>
 <h3 id="reading-the-database">
  Reading The Database
 </h3>
@@ -186,21 +198,25 @@ $query = $db-&gt;write("CREATE TABLE IF NOT EXISTS $table (id INT(16) NOT NULL, 
 <p>
  The read function takes 2 parameters: SQL, params.
 </p>
-<pre class="codehilite"><code>$table = $db-&gt;applyPrefix("test");
-$values = [
-  'id' =&gt; 20,
-];
+<div class="codehilite">
+ <pre><span></span><code><span class="err">$</span><span class="nf">table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">$</span><span class="n">db</span><span class="o">-&gt;</span><span class="n">applyPrefix</span><span class="p">(</span><span class="s">"test"</span><span class="p">);</span><span class="w"></span>
+<span class="err">$</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">  </span><span class="s">'id'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"></span>
+<span class="p">];</span><span class="w"></span>
 
-$query = $db-&gt;read("SELECT * FROM $table WHERE id = :id", $values);
+<span class="err">$</span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">$</span><span class="n">db</span><span class="o">-&gt;</span><span class="n">read</span><span class="p">(</span><span class="s">"SELECT * FROM $table WHERE id = :id"</span><span class="p">,</span><span class="w"> </span><span class="err">$</span><span class="n">values</span><span class="p">);</span><span class="w"></span>
 </code></pre>
+</div>
 <p>
  The values specified in the $values array will be bound to the placeholders and will be executed on the selected slave. By default, values are binded as PDO::PARAM_STR. If you need to override this, you can specify it in the values array.
 </p>
-<pre class="codehilite"><code>$table = $db-&gt;applyPrefix("test");
-$values = [
-  'id' =&gt; [20, PDO::PARAM_INT],
-];
+<div class="codehilite">
+ <pre><span></span><code><span class="o">$</span><span class="nt">table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="nt">db-</span><span class="o">&gt;</span><span class="nt">applyPrefix</span><span class="o">(</span><span class="s2">"test"</span><span class="o">);</span><span class="w"></span>
+<span class="o">$</span><span class="nt">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cp">[</span>
+  <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="err">[</span><span class="mi">20</span><span class="p">,</span> <span class="nx">PDO</span><span class="nl">::PARAM_INT</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
+<span class="o">];</span><span class="w"></span>
 
-$query = $db-&gt;read("SELECT * FROM $table WHERE id = :id", $values);
-</code></pre></body>
+<span class="o">$</span><span class="nt">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="nt">db-</span><span class="o">&gt;</span><span class="nt">read</span><span class="o">(</span><span class="s2">"SELECT * FROM $table WHERE id = :id"</span><span class="o">,</span><span class="w"> </span><span class="o">$</span><span class="nt">values</span><span class="o">);</span><span class="w"></span>
+</code></pre>
+</div></body>
 </html>
