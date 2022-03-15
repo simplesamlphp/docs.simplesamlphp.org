@@ -26,7 +26,7 @@ def md2html(md_file, html_file, file_name):
        soup = BeautifulSoup(html, 'html.parser')
        for a in soup.findAll('a'):
          
-         if not a['href'].startswith(('http://', 'https://')):
+         if not a['href'].startswith(('http://', 'https://', '#')):
            if not a['href'].endswith(('html')):
               a['href'] = a['href']+".html"
        
