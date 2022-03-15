@@ -267,26 +267,34 @@ Here is an example of an openssl command to generate a new key and a self signed
  </code>
  directory provides methods for authenticating your users. This is an overview of those that are included in the SimpleSAMLphp distribution:
 </p>
-<p>
- <code>
-  exampleauth:UserPass
- </code>
- : Authenticate against a list of usernames and passwords.
-</p>
-<p>
- <code>
-  exampleauth:Static
- </code>
- : Automatically log in as a user with a set of attributes.
-</p>
-<p>
- <a href="./ldap/ldap.html">
+<dl>
+ <dt>
   <code>
-   ldap:LDAP
+   exampleauth:UserPass
   </code>
- </a>
- : Authenticates an user to a LDAP server.
-</p>
+ </dt>
+ <dd>
+  Authenticate against a list of usernames and passwords.
+ </dd>
+ <dt>
+  <code>
+   exampleauth:Static
+  </code>
+ </dt>
+ <dd>
+  Automatically log in as a user with a set of attributes.
+ </dd>
+ <dt>
+  <a href="./ldap/ldap.html">
+   <code>
+    ldap:LDAP
+   </code>
+  </a>
+ </dt>
+ <dd>
+  Authenticates an user to a LDAP server.
+ </dd>
+</dl>
 <p>
  For more authentication modules, see
  <a href="simplesamlphp-idp.html">

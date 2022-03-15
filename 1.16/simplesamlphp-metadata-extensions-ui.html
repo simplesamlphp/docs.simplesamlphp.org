@@ -229,103 +229,120 @@ using the array key as the language-code:
               'es' =&gt; 'Nombre en Español',
           ),
 </code></pre>
-<p>
- <code>
-  DisplayName
- </code>
- :   The localized list of names for this entity
-</p>
-<pre class="codehilite"><code>          'DisplayName' =&gt; array(
-              'en' =&gt; 'English name',
-              'es' =&gt; 'Nombre en Español',
-          ),
+<dl>
+ <dt>
+  <code>
+   DisplayName
+  </code>
+ </dt>
+ <dd>
+  The localized list of names for this entity
+  <pre class="codehilite"><code>        'DisplayName' =&gt; array(
+            'en' =&gt; 'English name',
+            'es' =&gt; 'Nombre en Español',
+        ),
 </code></pre>
-<p>
- <code>
-  Description
- </code>
- :   The localized list of statements used to describe this entity
-</p>
-<pre class="codehilite"><code>          'Description' =&gt; array(
-              'en' =&gt; 'English description',
-              'es' =&gt; 'Descripción en Español',
-          ),
+ </dd>
+ <dt>
+  <code>
+   Description
+  </code>
+ </dt>
+ <dd>
+  The localized list of statements used to describe this entity
+  <pre class="codehilite"><code>        'Description' =&gt; array(
+            'en' =&gt; 'English description',
+            'es' =&gt; 'Descripción en Español',
+        ),
 </code></pre>
-<p>
- <code>
-  InformationURL
- </code>
- :   A localized list of URLs where more information about the entity is
-    located.
-</p>
-<pre class="codehilite"><code>          'InformationURL' =&gt; array(
-              'en' =&gt; 'http://example.com/info/en',
-              'es' =&gt; 'http://example.com/info/es',
-          ),
+ </dd>
+ <dt>
+  <code>
+   InformationURL
+  </code>
+ </dt>
+ <dd>
+  A localized list of URLs where more information about the entity is
+  located.
+  <pre class="codehilite"><code>        'InformationURL' =&gt; array(
+            'en' =&gt; 'http://example.com/info/en',
+            'es' =&gt; 'http://example.com/info/es',
+        ),
 </code></pre>
-<p>
- <code>
-  PrivacyStatementURL
- </code>
- :   A localized list of URLs where the entity's privacy statement is
-    located.
-</p>
-<pre class="codehilite"><code>          'PrivacyStatementURL' =&gt; array(
-              'en' =&gt; 'http://example.com/privacy/en',
-              'es' =&gt; 'http://example.com/privacy/es',
-          ),
+ </dd>
+ <dt>
+  <code>
+   PrivacyStatementURL
+  </code>
+ </dt>
+ <dd>
+  A localized list of URLs where the entity's privacy statement is
+  located.
+  <pre class="codehilite"><code>        'PrivacyStatementURL' =&gt; array(
+            'en' =&gt; 'http://example.com/privacy/en',
+            'es' =&gt; 'http://example.com/privacy/es',
+        ),
 </code></pre>
-<p>
- <code>
-  Keywords
- </code>
- :   A localized list of keywords used to describe the entity
-</p>
-<pre class="codehilite"><code>          'Keywords' =&gt; array(
-              'en' =&gt; array('communication', 'federated session'),
-              'es' =&gt; array('comunicación', 'sesión federated'),
-          ),
+ </dd>
+ <dt>
+  <code>
+   Keywords
+  </code>
+ </dt>
+ <dd>
+  A localized list of keywords used to describe the entity
+  <pre class="codehilite"><code>        'Keywords' =&gt; array(
+            'en' =&gt; array('communication', 'federated session'),
+            'es' =&gt; array('comunicación', 'sesión federated'),
+        ),
 </code></pre>
-<p>
- :
- <em>
-  Note
- </em>
- : The
- <code>
-  +
- </code>
- (plus) character is forbidden by specification from
-    being part of a Keyword.
-</p>
-<p>
- <code>
-  Logo
- </code>
- :   The logos used to represent the entity
-</p>
-<pre class="codehilite"><code>          'Logo' =&gt; array(
-              array(
-                  'url'    =&gt; 'http://example.com/logo1.png',
-                  'height' =&gt; 200,
-                  'width'  =&gt; 400,
-                  'lang'   =&gt; 'en',
-              ),
-              array(
-                  'url'    =&gt; 'http://example.com/logo2.png',
-                  'height' =&gt; 201,
-                  'width'  =&gt; 401,
-              ),
-          ),
+ </dd>
+ <dd>
+  <p>
+   <em>
+    Note
+   </em>
+   : The
+   <code>
+    +
+   </code>
+   (plus) character is forbidden by specification from
+  being part of a Keyword.
+  </p>
+ </dd>
+ <dt>
+  <code>
+   Logo
+  </code>
+ </dt>
+ <dd>
+  The logos used to represent the entity
+  <pre class="codehilite"><code>        'Logo' =&gt; array(
+            array(
+                'url'    =&gt; 'http://example.com/logo1.png',
+                'height' =&gt; 200,
+                'width'  =&gt; 400,
+                'lang'   =&gt; 'en',
+            ),
+            array(
+                'url'    =&gt; 'http://example.com/logo2.png',
+                'height' =&gt; 201,
+                'width'  =&gt; 401,
+            ),
+        ),
 </code></pre>
-<p>
- :   An optional
- <code>
-  lang
- </code>
- key containing a language-code is supported for
-    localized logos.
-</p>
+ </dd>
+ <dd>
+  <p>
+   An optional
+   <code>
+    lang
+   </code>
+   key containing a language-code is supported for
+  localized logos.
+  </p>
+ </dd>
+</dl>
 <h2 id="discohints-items">
  DiscoHints Items
 </h2>
@@ -338,38 +355,46 @@ present an IdP. These properties are all children of the
  </code>
  key.
 </p>
-<p>
- <code>
-  IPHint
- </code>
- :   This is a list of both IPv4 and IPv6 addresses in CIDR notation
-    services by or associated with this entity.
-</p>
-<pre class="codehilite"><code>          'IPHint' =&gt; array('130.59.0.0/16', '2001:620::0/96'),
+<dl>
+ <dt>
+  <code>
+   IPHint
+  </code>
+ </dt>
+ <dd>
+  This is a list of both IPv4 and IPv6 addresses in CIDR notation
+  services by or associated with this entity.
+  <pre class="codehilite"><code>        'IPHint' =&gt; array('130.59.0.0/16', '2001:620::0/96'),
 </code></pre>
-<p>
- <code>
-  DomainHint
- </code>
- :   This specifies a list of domain names serviced by or associated with
-    this entity.
-</p>
-<pre class="codehilite"><code>          'DomainHint' =&gt; array('example.com', 'www.example.com'),
+ </dd>
+ <dt>
+  <code>
+   DomainHint
+  </code>
+ </dt>
+ <dd>
+  This specifies a list of domain names serviced by or associated with
+  this entity.
+  <pre class="codehilite"><code>        'DomainHint' =&gt; array('example.com', 'www.example.com'),
 </code></pre>
-<p>
- <code>
-  GeolocationHint
- </code>
- :   This specifies a list of geographic coordinates associated with, or
-    serviced by, the entity. Coordinates are given in URI form using the
-    geo URI scheme
- <a href="http://www.ietf.org/rfc/rfc5870.txt">
-  RFC5870
- </a>
- .
-</p>
-<pre class="codehilite"><code>          'GeolocationHint' =&gt; array('geo:47.37328,8.531126', 'geo:19.34343,12.342514'),
+ </dd>
+ <dt>
+  <code>
+   GeolocationHint
+  </code>
+ </dt>
+ <dd>
+  This specifies a list of geographic coordinates associated with, or
+  serviced by, the entity. Coordinates are given in URI form using the
+  geo URI scheme
+  <a href="http://www.ietf.org/rfc/rfc5870.txt">
+   RFC5870
+  </a>
+  .
+  <pre class="codehilite"><code>        'GeolocationHint' =&gt; array('geo:47.37328,8.531126', 'geo:19.34343,12.342514'),
 </code></pre>
+ </dd>
+</dl>
 <h2 id="generated-xml-metadata-examples">
  Generated XML Metadata Examples
 </h2>

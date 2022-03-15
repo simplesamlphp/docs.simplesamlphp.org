@@ -109,44 +109,56 @@ when multi-valued attributes are received where single-valued ones are expected.
 <p>
  This filter implements a number of optional parameters:
 </p>
-<p>
- <code>
-  singleValued
- </code>
- :   array of attribute names that
- <em>
-  must
- </em>
- be single-valued, or a 403 error is generated.
-</p>
-<p>
- <code>
-  firstValue
- </code>
- :   array of attribute names where only the first value of a multi-valued assertion should be returned.
-</p>
-<p>
- <code>
-  flatten
- </code>
- :   array of attribute names where a multi-valued assertion is flattened into a single delimited string.
-</p>
-<p>
- <code>
-  flattenWith
- </code>
- :   the delimiter for
- <code>
-  flatten
- </code>
- . Defaults to ";".
-</p>
-<p>
- <code>
-  ignoreEntities
- </code>
- :   array of entity IDs that should be ignored for testing, etc purposes.
-</p>
+<dl>
+ <dt>
+  <code>
+   singleValued
+  </code>
+ </dt>
+ <dd>
+  array of attribute names that
+  <em>
+   must
+  </em>
+  be single-valued, or a 403 error is generated.
+ </dd>
+ <dt>
+  <code>
+   firstValue
+  </code>
+ </dt>
+ <dd>
+  array of attribute names where only the first value of a multi-valued assertion should be returned.
+ </dd>
+ <dt>
+  <code>
+   flatten
+  </code>
+ </dt>
+ <dd>
+  array of attribute names where a multi-valued assertion is flattened into a single delimited string.
+ </dd>
+ <dt>
+  <code>
+   flattenWith
+  </code>
+ </dt>
+ <dd>
+  the delimiter for
+  <code>
+   flatten
+  </code>
+  . Defaults to ";".
+ </dd>
+ <dt>
+  <code>
+   ignoreEntities
+  </code>
+ </dt>
+ <dd>
+  array of entity IDs that should be ignored for testing, etc purposes.
+ </dd>
+</dl>
 <p>
  When the same attribute name appears in multiple stanzas, they are processed in the order above.
 </p>

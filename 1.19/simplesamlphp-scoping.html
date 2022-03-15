@@ -119,22 +119,28 @@ then the request is automatically forwarded to that IdP.
 <p>
  SimpleSAMLphp supports scoping by allowing the following options:
 </p>
-<p>
- <code>
-  ProxyCount
- </code>
- : Specifies the number of proxying indirections permissible
+<dl>
+ <dt>
+  <code>
+   ProxyCount
+  </code>
+ </dt>
+ <dd>
+  Specifies the number of proxying indirections permissible
 between the identity provider receiving the request and the identity provider 
 who ultimately authenticates the user. A count of zero permits no proxying. If 
 ProxyCount is unspecified the number of proxy indirections is not limited.
-</p>
-<p>
- <code>
-  IDPList
- </code>
- : The list of trusted IdPs, i.e. the list of entityIDs for identity providers
+ </dd>
+ <dt>
+  <code>
+   IDPList
+  </code>
+ </dt>
+ <dd>
+  The list of trusted IdPs, i.e. the list of entityIDs for identity providers
 that are relevant for a service provider in an authnRequest.
-</p>
+ </dd>
+</dl>
 <h3 id="note">
  Note
 </h3>

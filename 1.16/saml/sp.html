@@ -115,116 +115,129 @@ See the documentation for those extensions for more details:
  These are parameters that can be used at runtime to control the authentication.
 All these parameters override the equivalent option from the configuration.
 </p>
-<p>
- <code>
-  saml:AuthnContextClassRef
- </code>
- :   The AuthnContextClassRef that will be sent in the login request.
-</p>
-<p>
- :
- <em>
-  Note
- </em>
- : SAML 2 specific.
-</p>
-<p>
- <code>
-  saml:AuthnContextComparison
- </code>
- :   The Comparison attribute of the AuthnContext that will be sent in the login request.
-    This parameter won't be used unless
- <code>
-  saml:AuthnContextClassRef
- </code>
- is set and contains one or more values.
-    Possible values:
-</p>
-<pre class="codehilite"><code>  * `SAML2\Constants::COMPARISON_EXACT` (default)
-  * `SAML2\Constants::COMPARISON_BETTER`
-  * `SAML2\Constants::COMPARISON_MINIMUM`
-  * `SAML2\Constants::COMPARISON_MAXIMUM`
+<dl>
+ <dt>
+  <code>
+   saml:AuthnContextClassRef
+  </code>
+ </dt>
+ <dd>
+  The AuthnContextClassRef that will be sent in the login request.
+ </dd>
+ <dd>
+  <em>
+   Note
+  </em>
+  : SAML 2 specific.
+ </dd>
+ <dt>
+  <code>
+   saml:AuthnContextComparison
+  </code>
+ </dt>
+ <dd>
+  The Comparison attribute of the AuthnContext that will be sent in the login request.
+  This parameter won't be used unless
+  <code>
+   saml:AuthnContextClassRef
+  </code>
+  is set and contains one or more values.
+  Possible values:
+  <pre class="codehilite"><code>* `SAML2\Constants::COMPARISON_EXACT` (default)
+* `SAML2\Constants::COMPARISON_BETTER`
+* `SAML2\Constants::COMPARISON_MINIMUM`
+* `SAML2\Constants::COMPARISON_MAXIMUM`
 </code></pre>
-<p>
- :
- <em>
-  Note
- </em>
- : SAML 2 specific.
-</p>
-<p>
- <code>
-  ForceAuthn
- </code>
- :   Force authentication allows you to force re-authentication of users even if the user has a SSO session at the IdP.
-</p>
-<p>
- :
- <em>
-  Note
- </em>
- : SAML 2 specific.
-</p>
-<p>
- <code>
-  saml:idp
- </code>
- :   The entity ID of the IdP we should send an authentication request to.
-</p>
-<p>
- <code>
-  isPassive
- </code>
- :   Send a passive authentication request.
-</p>
-<p>
- :
- <em>
-  Note
- </em>
- : SAML 2 specific.
-</p>
-<p>
- <code>
-  saml:NameIDPolicy
- </code>
- :   The format of the NameID we request from the IdP.
-    Defaults to the transient format if unspecified.
-</p>
-<p>
- :
- <em>
-  Note
- </em>
- : SAML 2 specific.
-</p>
-<p>
- <code>
-  saml:Extensions
- </code>
- :   The samlp:Extensions that will be sent in the login request.
-</p>
-<p>
- :
- <em>
-  Note
- </em>
- : SAML 2 specific.
-</p>
-<p>
- <code>
-  saml:NameID
- </code>
- :   Add a Subject element with a NameID to the SAML AuthnRequest for the IdP.
-    This must be a \SAML2\XML\saml\NameID object.
-</p>
-<p>
- :
- <em>
-  Note
- </em>
- : SAML 2 specific.
-</p>
+ </dd>
+ <dd>
+  <p>
+   <em>
+    Note
+   </em>
+   : SAML 2 specific.
+  </p>
+ </dd>
+ <dt>
+  <code>
+   ForceAuthn
+  </code>
+ </dt>
+ <dd>
+  Force authentication allows you to force re-authentication of users even if the user has a SSO session at the IdP.
+ </dd>
+ <dd>
+  <em>
+   Note
+  </em>
+  : SAML 2 specific.
+ </dd>
+ <dt>
+  <code>
+   saml:idp
+  </code>
+ </dt>
+ <dd>
+  The entity ID of the IdP we should send an authentication request to.
+ </dd>
+ <dt>
+  <code>
+   isPassive
+  </code>
+ </dt>
+ <dd>
+  Send a passive authentication request.
+ </dd>
+ <dd>
+  <em>
+   Note
+  </em>
+  : SAML 2 specific.
+ </dd>
+ <dt>
+  <code>
+   saml:NameIDPolicy
+  </code>
+ </dt>
+ <dd>
+  The format of the NameID we request from the IdP.
+  Defaults to the transient format if unspecified.
+ </dd>
+ <dd>
+  <em>
+   Note
+  </em>
+  : SAML 2 specific.
+ </dd>
+ <dt>
+  <code>
+   saml:Extensions
+  </code>
+ </dt>
+ <dd>
+  The samlp:Extensions that will be sent in the login request.
+ </dd>
+ <dd>
+  <em>
+   Note
+  </em>
+  : SAML 2 specific.
+ </dd>
+ <dt>
+  <code>
+   saml:NameID
+  </code>
+ </dt>
+ <dd>
+  Add a Subject element with a NameID to the SAML AuthnRequest for the IdP.
+  This must be a \SAML2\XML\saml\NameID object.
+ </dd>
+ <dd>
+  <em>
+   Note
+  </em>
+  : SAML 2 specific.
+ </dd>
+</dl>
 <h2 id="authentication-data">
  Authentication data
 </h2>
@@ -241,839 +254,937 @@ To retrieve these attributes, the application can use the
  .
 The following attributes are available:
 </p>
-<p>
- <code>
-  saml:sp:IdP
- </code>
- :   The entityID of the IdP the user is authenticated against.
-</p>
-<p>
- <code>
-  saml:sp:NameID
- </code>
- :   The NameID the user was issued by the IdP.
-    This is an associative array with the various fields from the NameID.
-</p>
-<p>
- <code>
-  saml:sp:SessionIndex
- </code>
- :   The SessionIndex we received from the IdP.
-</p>
+<dl>
+ <dt>
+  <code>
+   saml:sp:IdP
+  </code>
+ </dt>
+ <dd>
+  The entityID of the IdP the user is authenticated against.
+ </dd>
+ <dt>
+  <code>
+   saml:sp:NameID
+  </code>
+ </dt>
+ <dd>
+  The NameID the user was issued by the IdP.
+  This is an associative array with the various fields from the NameID.
+ </dd>
+ <dt>
+  <code>
+   saml:sp:SessionIndex
+  </code>
+ </dt>
+ <dd>
+  The SessionIndex we received from the IdP.
+ </dd>
+</dl>
 <h2 id="options">
  Options
 </h2>
-<p>
- <code>
-  acs.Bindings
- </code>
- : List of bindings the SP should support. If it is unset, all will be added.
-: Possible values:
-</p>
-<pre class="codehilite"><code>  * `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST`
-  * `urn:oasis:names:tc:SAML:1.0:profiles:browser-post`
-  * `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact`
-  * `urn:oasis:names:tc:SAML:1.0:profiles:artifact-01`
-  * `urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser`
+<dl>
+ <dt>
+  <code>
+   acs.Bindings
+  </code>
+ </dt>
+ <dd>
+  List of bindings the SP should support. If it is unset, all will be added.
+ </dd>
+ <dd>
+  Possible values:
+  <pre class="codehilite"><code>* `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST`
+* `urn:oasis:names:tc:SAML:1.0:profiles:browser-post`
+* `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact`
+* `urn:oasis:names:tc:SAML:1.0:profiles:artifact-01`
+* `urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser`
 </code></pre>
-<p>
- <code>
-  assertion.encryption
- </code>
- :   Whether assertions received by this SP must be encrypted. The default value is
- <code>
-  FALSE
- </code>
- .
-    If this option is set to
- <code>
-  TRUE
- </code>
- , unencrypted assertions will be rejected.
-</p>
-<p>
- :   Note that this option can be overridden for a specific IdP in saml20-idp-remote.
-</p>
-<p>
- :
- <em>
-  Note
- </em>
- : SAML 2 specific.
-</p>
-<p>
- <code>
-  attributes
- </code>
- :   List of attributes this SP requests from the IdP.
-    This list will be added to the generated metadata.
-</p>
-<p>
- :   The attributes will be added without a
- <code>
-  NameFormat
- </code>
- by default.
-    Use the
- <code>
-  attributes.NameFormat
- </code>
- option to specify the
- <code>
-  NameFormat
- </code>
- for the attributes.
-</p>
-<p>
- :   An associative array can be used, mixing both elements with and without keys. When a key is
-    specified for an element of the array, it will be used as the friendly name of the attribute
-    in the generated metadata.
-</p>
-<p>
- :
- <em>
-  Note
- </em>
- : This list will only be added to the metadata if the
- <code>
-  name
- </code>
- -option is also specified.
-</p>
-<p>
- <code>
-  attributes.NameFormat
- </code>
- :   The
- <code>
-  NameFormat
- </code>
- for the requested attributes.
-</p>
-<p>
- <code>
-  attributes.index
- </code>
- :   The
- <code>
-  index
- </code>
- attribute that is set in the md:AttributeConsumingService element. Integer value that defaults to
- <code>
-  0
- </code>
- .
-</p>
-<p>
- <code>
-  attributes.isDefault
- </code>
- :   If present, sets the
- <code>
-  isDefault
- </code>
- attribute in the md:AttributeConsumingService element. Boolean value, when
-    unset, the attribute will be omitted.
-</p>
-<p>
- <code>
-  attributes.required
- </code>
- : If you have attributes added you can here specify which should be marked as required.
-: The attributes should still be present in
- <code>
-  attributes
- </code>
- .
-</p>
-<p>
- <code>
-  AuthnContextClassRef
- </code>
- :   The SP can request authentication with a specific authentication context class.
-    One example of usage could be if the IdP supports both username/password authentication as well as software-PKI.
-</p>
-<p>
- :
- <em>
-  Note
- </em>
- : SAML 2 specific.
-</p>
-<p>
- <code>
-  AuthnContextComparison
- </code>
- :   The Comparison attribute of the AuthnContext that will be sent in the login request.
-    This parameter won't be used unless
- <code>
-  saml:AuthnContextClassRef
- </code>
- is set and contains one or more values.
-    Possible values:
-</p>
-<pre class="codehilite"><code>  * `SAML2\Constants::COMPARISON_EXACT` (default)
-  * `SAML2\Constants::COMPARISON_BETTER`
-  * `SAML2\Constants::COMPARISON_MINIMUM`
-  * `SAML2\Constants::COMPARISON_MAXIMUM`
+ </dd>
+ <dt>
+  <code>
+   assertion.encryption
+  </code>
+ </dt>
+ <dd>
+  Whether assertions received by this SP must be encrypted. The default value is
+  <code>
+   FALSE
+  </code>
+  .
+  If this option is set to
+  <code>
+   TRUE
+  </code>
+  , unencrypted assertions will be rejected.
+ </dd>
+ <dd>
+  Note that this option can be overridden for a specific IdP in saml20-idp-remote.
+ </dd>
+ <dd>
+  <em>
+   Note
+  </em>
+  : SAML 2 specific.
+ </dd>
+ <dt>
+  <code>
+   attributes
+  </code>
+ </dt>
+ <dd>
+  List of attributes this SP requests from the IdP.
+  This list will be added to the generated metadata.
+ </dd>
+ <dd>
+  The attributes will be added without a
+  <code>
+   NameFormat
+  </code>
+  by default.
+  Use the
+  <code>
+   attributes.NameFormat
+  </code>
+  option to specify the
+  <code>
+   NameFormat
+  </code>
+  for the attributes.
+ </dd>
+ <dd>
+  An associative array can be used, mixing both elements with and without keys. When a key is
+  specified for an element of the array, it will be used as the friendly name of the attribute
+  in the generated metadata.
+ </dd>
+ <dd>
+  <em>
+   Note
+  </em>
+  : This list will only be added to the metadata if the
+  <code>
+   name
+  </code>
+  -option is also specified.
+ </dd>
+ <dt>
+  <code>
+   attributes.NameFormat
+  </code>
+ </dt>
+ <dd>
+  The
+  <code>
+   NameFormat
+  </code>
+  for the requested attributes.
+ </dd>
+ <dt>
+  <code>
+   attributes.index
+  </code>
+ </dt>
+ <dd>
+  The
+  <code>
+   index
+  </code>
+  attribute that is set in the md:AttributeConsumingService element. Integer value that defaults to
+  <code>
+   0
+  </code>
+  .
+ </dd>
+ <dt>
+  <code>
+   attributes.isDefault
+  </code>
+ </dt>
+ <dd>
+  If present, sets the
+  <code>
+   isDefault
+  </code>
+  attribute in the md:AttributeConsumingService element. Boolean value, when
+  unset, the attribute will be omitted.
+ </dd>
+ <dt>
+  <code>
+   attributes.required
+  </code>
+ </dt>
+ <dd>
+  If you have attributes added you can here specify which should be marked as required.
+ </dd>
+ <dd>
+  The attributes should still be present in
+  <code>
+   attributes
+  </code>
+  .
+ </dd>
+ <dt>
+  <code>
+   AuthnContextClassRef
+  </code>
+ </dt>
+ <dd>
+  The SP can request authentication with a specific authentication context class.
+  One example of usage could be if the IdP supports both username/password authentication as well as software-PKI.
+ </dd>
+ <dd>
+  <em>
+   Note
+  </em>
+  : SAML 2 specific.
+ </dd>
+ <dt>
+  <code>
+   AuthnContextComparison
+  </code>
+ </dt>
+ <dd>
+  The Comparison attribute of the AuthnContext that will be sent in the login request.
+  This parameter won't be used unless
+  <code>
+   saml:AuthnContextClassRef
+  </code>
+  is set and contains one or more values.
+  Possible values:
+  <pre class="codehilite"><code>* `SAML2\Constants::COMPARISON_EXACT` (default)
+* `SAML2\Constants::COMPARISON_BETTER`
+* `SAML2\Constants::COMPARISON_MINIMUM`
+* `SAML2\Constants::COMPARISON_MAXIMUM`
 </code></pre>
-<p>
- :
- <em>
-  Note
- </em>
- : SAML 2 specific.
-</p>
-<p>
- <code>
-  authproc
- </code>
- :   Processing filters that should be run after SP authentication.
-    See the
- <a href="simplesamlphp-authproc.html">
-  authentication processing filter manual
- </a>
- .
-</p>
-<p>
- <code>
-  certData
- </code>
- :   Base64 encoded certificate data. Can be used instead of the
- <code>
-  certificate
- </code>
- option.
-</p>
-<p>
- <code>
-  certificate
- </code>
- :   File name of certificate for this SP. This certificate will be included in generated metadata.
-</p>
-<p>
- <code>
-  contacts
- </code>
- :   Specify contacts in addition to the
- <code>
-  technical
- </code>
- contact configured through
- <code>
-  config/config.php
- </code>
- .
-</p>
-<p>
- :   For example, specifying a support contact:
-</p>
-<pre class="codehilite"><code>      'contacts' =&gt; array(
-          array(
-              'contactType'       =&gt; 'support',
-              'emailAddress'      =&gt; 'support@example.org',
-              'givenName'         =&gt; 'John',
-              'surName'           =&gt; 'Doe',
-              'telephoneNumber'   =&gt; '+31(0)12345678',
-              'company'           =&gt; 'Example Inc.',
-          )
-      ),
+ </dd>
+ <dd>
+  <p>
+   <em>
+    Note
+   </em>
+   : SAML 2 specific.
+  </p>
+ </dd>
+ <dt>
+  <code>
+   authproc
+  </code>
+ </dt>
+ <dd>
+  Processing filters that should be run after SP authentication.
+  See the
+  <a href="simplesamlphp-authproc.html">
+   authentication processing filter manual
+  </a>
+  .
+ </dd>
+ <dt>
+  <code>
+   certData
+  </code>
+ </dt>
+ <dd>
+  Base64 encoded certificate data. Can be used instead of the
+  <code>
+   certificate
+  </code>
+  option.
+ </dd>
+ <dt>
+  <code>
+   certificate
+  </code>
+ </dt>
+ <dd>
+  File name of certificate for this SP. This certificate will be included in generated metadata.
+ </dd>
+ <dt>
+  <code>
+   contacts
+  </code>
+ </dt>
+ <dd>
+  Specify contacts in addition to the
+  <code>
+   technical
+  </code>
+  contact configured through
+  <code>
+   config/config.php
+  </code>
+  .
+ </dd>
+ <dd>
+  For example, specifying a support contact:
+  <pre class="codehilite"><code>    'contacts' =&gt; array(
+        array(
+            'contactType'       =&gt; 'support',
+            'emailAddress'      =&gt; 'support@example.org',
+            'givenName'         =&gt; 'John',
+            'surName'           =&gt; 'Doe',
+            'telephoneNumber'   =&gt; '+31(0)12345678',
+            'company'           =&gt; 'Example Inc.',
+        )
+    ),
 </code></pre>
-<p>
- :   Valid values for
- <code>
-  contactType
- </code>
- are:
- <code>
-  technical
- </code>
- ,
- <code>
-  support
- </code>
- ,
- <code>
-  administrative
- </code>
- ,
- <code>
-  billing
- </code>
- and
- <code>
-  other
- </code>
- . All
-    fields, except
- <code>
-  contactType
- </code>
- are OPTIONAL.
-</p>
-<p>
- <code>
-  description
- </code>
- :   A description of this SP.
-    Will be added to the generated metadata, in an AttributeConsumingService element.
-</p>
-<p>
- :   This option can be translated into multiple languages by specifying the value as an array of language-code to translated description:
-</p>
-<pre class="codehilite"><code>      'description' =&gt; array(
-          'en' =&gt; 'A service',
-          'no' =&gt; 'En tjeneste',
-      ),
+ </dd>
+ <dd>
+  <p>
+   Valid values for
+   <code>
+    contactType
+   </code>
+   are:
+   <code>
+    technical
+   </code>
+   ,
+   <code>
+    support
+   </code>
+   ,
+   <code>
+    administrative
+   </code>
+   ,
+   <code>
+    billing
+   </code>
+   and
+   <code>
+    other
+   </code>
+   . All
+  fields, except
+   <code>
+    contactType
+   </code>
+   are OPTIONAL.
+  </p>
+ </dd>
+ <dt>
+  <code>
+   description
+  </code>
+ </dt>
+ <dd>
+  A description of this SP.
+  Will be added to the generated metadata, in an AttributeConsumingService element.
+ </dd>
+ <dd>
+  This option can be translated into multiple languages by specifying the value as an array of language-code to translated description:
+  <pre class="codehilite"><code>    'description' =&gt; array(
+        'en' =&gt; 'A service',
+        'no' =&gt; 'En tjeneste',
+    ),
 </code></pre>
-<p>
- :
- <em>
-  Note
- </em>
- : For this to be added to the metadata, you must also specify the
- <code>
-  attributes
- </code>
- and
- <code>
-  name
- </code>
- options.
-</p>
-<p>
- <code>
-  discoURL
- </code>
- :   Set which IdP discovery service this SP should use.
-    If this is unset, the IdP discovery service specified in the global option
- <code>
-  idpdisco.url.{saml20|shib13}
- </code>
- in
- <code>
-  config/config.php
- </code>
- will be used.
-    If that one is also unset, the builtin default discovery service will be used.
-</p>
-<p>
- <code>
-  encryption.blacklisted-algorithms
- </code>
- :   Blacklisted encryption algorithms. This is an array containing the algorithm identifiers.
-</p>
-<p>
- :   Note that this option can be set for each IdP in the
- <a href="./simplesamlphp-reference-idp-remote.html">
-  IdP-remote metadata
- </a>
- .
-</p>
-<p>
- :
- <em>
-  Note
- </em>
- : SAML 2 specific.
-</p>
-<p>
- <code>
-  entityID
- </code>
- :   The entity ID this SP should use.
-</p>
-<p>
- :   If this option is unset, a default entity ID will be generated.
-    The generated entity ID will be a URL where the metadata of this SP can be downloaded.
-</p>
-<p>
- <code>
-  ForceAuthn
- </code>
- :   Force authentication allows you to force re-authentication of users even if the user has a SSO session at the IdP.
-</p>
-<p>
- :
- <em>
-  Note
- </em>
- : SAML 2 specific.
-</p>
-<p>
- <code>
-  idp
- </code>
- :   The entity ID this SP should connect to.
-</p>
-<p>
- :   If this option is unset, an IdP discovery service page will be shown.
-</p>
-<p>
- <code>
-  IsPassive
- </code>
- :   IsPassive allows you to enable passive authentication by default for this SP.
-</p>
-<p>
- :
- <em>
-  Note
- </em>
- : SAML 2 specific.
-</p>
-<p>
- <code>
-  name
- </code>
- :   The name of this SP.
-    Will be added to the generated metadata, in an AttributeConsumingService element.
-</p>
-<p>
- :   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
-</p>
-<pre class="codehilite"><code>      'name' =&gt; array(
-          'en' =&gt; 'A service',
-          'no' =&gt; 'En tjeneste',
-      ),
+ </dd>
+ <dd>
+  <p>
+   <em>
+    Note
+   </em>
+   : For this to be added to the metadata, you must also specify the
+   <code>
+    attributes
+   </code>
+   and
+   <code>
+    name
+   </code>
+   options.
+  </p>
+ </dd>
+ <dt>
+  <code>
+   discoURL
+  </code>
+ </dt>
+ <dd>
+  Set which IdP discovery service this SP should use.
+  If this is unset, the IdP discovery service specified in the global option
+  <code>
+   idpdisco.url.{saml20|shib13}
+  </code>
+  in
+  <code>
+   config/config.php
+  </code>
+  will be used.
+  If that one is also unset, the builtin default discovery service will be used.
+ </dd>
+ <dt>
+  <code>
+   encryption.blacklisted-algorithms
+  </code>
+ </dt>
+ <dd>
+  Blacklisted encryption algorithms. This is an array containing the algorithm identifiers.
+ </dd>
+ <dd>
+  Note that this option can be set for each IdP in the
+  <a href="./simplesamlphp-reference-idp-remote.html">
+   IdP-remote metadata
+  </a>
+  .
+ </dd>
+ <dd>
+  <em>
+   Note
+  </em>
+  : SAML 2 specific.
+ </dd>
+ <dt>
+  <code>
+   entityID
+  </code>
+ </dt>
+ <dd>
+  The entity ID this SP should use.
+ </dd>
+ <dd>
+  If this option is unset, a default entity ID will be generated.
+  The generated entity ID will be a URL where the metadata of this SP can be downloaded.
+ </dd>
+ <dt>
+  <code>
+   ForceAuthn
+  </code>
+ </dt>
+ <dd>
+  Force authentication allows you to force re-authentication of users even if the user has a SSO session at the IdP.
+ </dd>
+ <dd>
+  <em>
+   Note
+  </em>
+  : SAML 2 specific.
+ </dd>
+ <dt>
+  <code>
+   idp
+  </code>
+ </dt>
+ <dd>
+  The entity ID this SP should connect to.
+ </dd>
+ <dd>
+  If this option is unset, an IdP discovery service page will be shown.
+ </dd>
+ <dt>
+  <code>
+   IsPassive
+  </code>
+ </dt>
+ <dd>
+  IsPassive allows you to enable passive authentication by default for this SP.
+ </dd>
+ <dd>
+  <em>
+   Note
+  </em>
+  : SAML 2 specific.
+ </dd>
+ <dt>
+  <code>
+   name
+  </code>
+ </dt>
+ <dd>
+  The name of this SP.
+  Will be added to the generated metadata, in an AttributeConsumingService element.
+ </dd>
+ <dd>
+  This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
+  <pre class="codehilite"><code>    'name' =&gt; array(
+        'en' =&gt; 'A service',
+        'no' =&gt; 'En tjeneste',
+    ),
 </code></pre>
-<p>
- :
- <em>
-  Note
- </em>
- : You must also specify at least one attribute in the
- <code>
-  attributes
- </code>
- option for this element to be added to the metadata.
-</p>
-<p>
- <code>
-  nameid.encryption
- </code>
- :   Whether NameIDs sent from this SP should be encrypted. The default
-    value is
- <code>
-  FALSE
- </code>
- .
-</p>
-<p>
- :   Note that this option can be set for each IdP in the
- <a href="./simplesamlphp-reference-idp-remote.html">
-  IdP-remote metadata
- </a>
- .
-</p>
-<p>
- :
- <em>
-  Note
- </em>
- : SAML 2 specific.
-</p>
-<p>
- <code>
-  NameIDPolicy
- </code>
- :   The format of the NameID we request from the IdP.
-    Defaults to the
- <code>
-  transient
- </code>
- format if unspecified.
-</p>
-<p>
- :   If this option is set, its value will be added to the metadata generated for this SP, in the NameIDFormat element.
-</p>
-<p>
- :
- <em>
-  Note 1
- </em>
- : SAML 2 specific.
-</p>
-<p>
- <code>
-  OrganizationName
- </code>
- :   The name of the organization responsible for this SP.
-    This name does not need to be suitable for display to end users.
-</p>
-<p>
- :   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
-</p>
-<pre class="codehilite"><code>      'OrganizationName' =&gt; array(
-          'en' =&gt; 'Example organization',
-          'no' =&gt; 'Eksempel organisation',
-      ),
+ </dd>
+ <dd>
+  <p>
+   <em>
+    Note
+   </em>
+   : You must also specify at least one attribute in the
+   <code>
+    attributes
+   </code>
+   option for this element to be added to the metadata.
+  </p>
+ </dd>
+ <dt>
+  <code>
+   nameid.encryption
+  </code>
+ </dt>
+ <dd>
+  Whether NameIDs sent from this SP should be encrypted. The default
+  value is
+  <code>
+   FALSE
+  </code>
+  .
+ </dd>
+ <dd>
+  Note that this option can be set for each IdP in the
+  <a href="./simplesamlphp-reference-idp-remote.html">
+   IdP-remote metadata
+  </a>
+  .
+ </dd>
+ <dd>
+  <em>
+   Note
+  </em>
+  : SAML 2 specific.
+ </dd>
+ <dt>
+  <code>
+   NameIDPolicy
+  </code>
+ </dt>
+ <dd>
+  The format of the NameID we request from the IdP.
+  Defaults to the
+  <code>
+   transient
+  </code>
+  format if unspecified.
+ </dd>
+ <dd>
+  If this option is set, its value will be added to the metadata generated for this SP, in the NameIDFormat element.
+ </dd>
+ <dd>
+  <em>
+   Note 1
+  </em>
+  : SAML 2 specific.
+ </dd>
+ <dt>
+  <code>
+   OrganizationName
+  </code>
+ </dt>
+ <dd>
+  The name of the organization responsible for this SP.
+  This name does not need to be suitable for display to end users.
+ </dd>
+ <dd>
+  This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
+  <pre class="codehilite"><code>    'OrganizationName' =&gt; array(
+        'en' =&gt; 'Example organization',
+        'no' =&gt; 'Eksempel organisation',
+    ),
 </code></pre>
-<p>
- :
- <em>
-  Note
- </em>
- : If you specify this option, you must also specify the
- <code>
-  OrganizationURL
- </code>
- option.
-</p>
-<p>
- <code>
-  OrganizationDisplayName
- </code>
- :   The name of the organization responsible for this SP.
-    This name must be suitable for display to end users.
-    If this option isn't specified,
- <code>
-  OrganizationName
- </code>
- will be used instead.
-</p>
-<p>
- :   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name.
-</p>
-<p>
- :
- <em>
-  Note
- </em>
- : If you specify this option, you must also specify the
- <code>
-  OrganizationName
- </code>
- option.
-</p>
-<p>
- <code>
-  OrganizationURL
- </code>
- :   A URL the end user can access for more information about the organization.
-</p>
-<p>
- :   This option can be translated into multiple languages by specifying the value as an array of language-code to translated URL.
-</p>
-<p>
- :
- <em>
-  Note
- </em>
- : If you specify this option, you must also specify the
- <code>
-  OrganizationName
- </code>
- option.
-</p>
-<p>
- <code>
-  privatekey
- </code>
- :   File name of private key to be used for signing messages and decrypting messages from the IdP. This option is only required if you use encrypted assertions or if you enable signing of messages.
-</p>
-<p>
- :
- <em>
-  Note
- </em>
- : SAML 2 specific.
-</p>
-<p>
- <code>
-  privatekey_pass
- </code>
- :   The passphrase for the private key, if it is encrypted. If the private key is unencrypted, this can be left out.
-</p>
-<p>
- :
- <em>
-  Note
- </em>
- : SAML 2 specific.
-</p>
-<p>
- <code>
-  ProtocolBinding
- </code>
- :   The binding that should be used for SAML2 authentication responses.
-    This option controls the binding that is requested through the AuthnRequest message to the IdP.
-    By default the HTTP-Post binding is used.
-</p>
-<p>
- :
- <em>
-  Note
- </em>
- : SAML 2 specific.
-</p>
-<p>
- <code>
-  redirect.sign
- </code>
- :   Whether authentication requests, logout requests and logout responses sent from this SP should be signed. The default is
- <code>
-  FALSE
- </code>
- .
-    If set, the
- <code>
-  AuthnRequestsSigned
- </code>
- attribute of the
- <code>
-  SPSSODescriptor
- </code>
- element in SAML 2.0 metadata will contain its value. This
-    option takes precedence over the
- <code>
-  sign.authnrequest
- </code>
- option in any metadata generated for this SP.
-</p>
-<p>
- :
- <em>
-  Note
- </em>
- : SAML 2 specific.
-</p>
-<p>
- <code>
-  redirect.validate
- </code>
- :   Whether logout requests and logout responses received by this SP should be validated. The default is
- <code>
-  FALSE
- </code>
- .
-</p>
-<p>
- :
- <em>
-  Note
- </em>
- : SAML 2 specific.
-</p>
-<p>
- <code>
-  RegistrationInfo
- </code>
- :   Allows to specify information about the registrar of this SP. Please refer to the
- <a href="./simplesamlphp-metadata-extensions-rpi.html">
-  MDRPI extension
- </a>
- document for further information.
-</p>
-<p>
- <code>
-  RelayState
- </code>
- :   The page the user should be redirected to after an IdP initiated SSO.
-</p>
-<p>
- :
- <em>
-  Note
- </em>
- : SAML 2 specific.
-    For SAML 1.1 SPs, you must specify the
- <code>
-  TARGET
- </code>
- parameter in the authentication response.
-    How to set that parameter is depends on the IdP.
-    For SimpleSAMLphp, see the documentation for
- <a href="./simplesamlphp-idp-more#section_4_1.html">
-  IdP-first flow
- </a>
- .
-</p>
-<p>
- <code>
-  saml.SOAPClient.certificate
- </code>
- :   A file with a certificate
- <em>
-  and
- </em>
- private key that should be used when issuing SOAP requests from this SP.
-    If this option isn't specified, the SP private key and certificate will be used.
-</p>
-<p>
- :   This option can also be set to
- <code>
-  FALSE
- </code>
- , in which case no client certificate will be used.
-</p>
-<p>
- <code>
-  saml.SOAPClient.privatekey_pass
- </code>
- :   The passphrase of the privatekey in
- <code>
-  saml.SOAPClient.certificate
- </code>
- .
-</p>
-<p>
- <code>
-  saml1.useartifact
- </code>
- :   Request that the IdP returns the result to the artifact binding.
-    The default is to use the POST binding, set this option to TRUE to use the artifact binding instead.
-</p>
-<p>
- :   This option can also be set in the
- <code>
-  shib13-idp-remote
- </code>
- metadata, in which case the setting in
- <code>
-  shib13-idp-remote
- </code>
- takes precedence.
-</p>
-<p>
- :
- <em>
-  Note
- </em>
- : SAML 1 specific.
-</p>
-<p>
- <code>
-  saml20.hok.assertion
- </code>
- :   Enable support for the SAML 2.0 Holder-of-Key SSO profile.
-    See the documentation for the
- <a href="./simplesamlphp-hok-sp.html">
-  Holder-of-Key profile
- </a>
- .
-</p>
-<p>
- <code>
-  sign.authnrequest
- </code>
- :   Whether to sign authentication requests sent from this SP. If set, the
- <code>
-  AuthnRequestsSigned
- </code>
- attribute of the
- <code>
-  SPSSODescriptor
- </code>
- element in SAML 2.0 metadata will contain its value.
-</p>
-<p>
- :   Note that this option also exists in the IdP-remote metadata, and
-    any value in the IdP-remote metadata overrides the one configured
-    in the SP configuration.
-</p>
-<p>
- :
- <em>
-  Note
- </em>
- : SAML 2 specific.
-</p>
-<p>
- <code>
-  sign.logout
- </code>
- :   Whether to sign logout messages sent from this SP.
-</p>
-<p>
- :   Note that this option also exists in the IdP-remote metadata, and
-    any value in the IdP-remote metadata overrides the one configured
-    in the SP configuration.
-</p>
-<p>
- :
- <em>
-  Note
- </em>
- : SAML 2 specific.
-</p>
-<p>
- <code>
-  signature.algorithm
- </code>
- :   The algorithm to use when signing any message generated by this service provider. Defaults to RSA-SHA256.
-:   Possible values:
-</p>
-<pre class="codehilite"><code>  * `http://www.w3.org/2000/09/xmldsig#rsa-sha1`
-     *Note*: the use of SHA1 is **deprecated** and will be disallowed in the future.
-  * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256`
-    The default.
-  * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha384`
-  * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512`
+ </dd>
+ <dd>
+  <p>
+   <em>
+    Note
+   </em>
+   : If you specify this option, you must also specify the
+   <code>
+    OrganizationURL
+   </code>
+   option.
+  </p>
+ </dd>
+ <dt>
+  <code>
+   OrganizationDisplayName
+  </code>
+ </dt>
+ <dd>
+  The name of the organization responsible for this SP.
+  This name must be suitable for display to end users.
+  If this option isn't specified,
+  <code>
+   OrganizationName
+  </code>
+  will be used instead.
+ </dd>
+ <dd>
+  This option can be translated into multiple languages by specifying the value as an array of language-code to translated name.
+ </dd>
+ <dd>
+  <em>
+   Note
+  </em>
+  : If you specify this option, you must also specify the
+  <code>
+   OrganizationName
+  </code>
+  option.
+ </dd>
+ <dt>
+  <code>
+   OrganizationURL
+  </code>
+ </dt>
+ <dd>
+  A URL the end user can access for more information about the organization.
+ </dd>
+ <dd>
+  This option can be translated into multiple languages by specifying the value as an array of language-code to translated URL.
+ </dd>
+ <dd>
+  <em>
+   Note
+  </em>
+  : If you specify this option, you must also specify the
+  <code>
+   OrganizationName
+  </code>
+  option.
+ </dd>
+ <dt>
+  <code>
+   privatekey
+  </code>
+ </dt>
+ <dd>
+  File name of private key to be used for signing messages and decrypting messages from the IdP. This option is only required if you use encrypted assertions or if you enable signing of messages.
+ </dd>
+ <dd>
+  <em>
+   Note
+  </em>
+  : SAML 2 specific.
+ </dd>
+ <dt>
+  <code>
+   privatekey_pass
+  </code>
+ </dt>
+ <dd>
+  The passphrase for the private key, if it is encrypted. If the private key is unencrypted, this can be left out.
+ </dd>
+ <dd>
+  <em>
+   Note
+  </em>
+  : SAML 2 specific.
+ </dd>
+ <dt>
+  <code>
+   ProtocolBinding
+  </code>
+ </dt>
+ <dd>
+  The binding that should be used for SAML2 authentication responses.
+  This option controls the binding that is requested through the AuthnRequest message to the IdP.
+  By default the HTTP-Post binding is used.
+ </dd>
+ <dd>
+  <em>
+   Note
+  </em>
+  : SAML 2 specific.
+ </dd>
+ <dt>
+  <code>
+   redirect.sign
+  </code>
+ </dt>
+ <dd>
+  Whether authentication requests, logout requests and logout responses sent from this SP should be signed. The default is
+  <code>
+   FALSE
+  </code>
+  .
+  If set, the
+  <code>
+   AuthnRequestsSigned
+  </code>
+  attribute of the
+  <code>
+   SPSSODescriptor
+  </code>
+  element in SAML 2.0 metadata will contain its value. This
+  option takes precedence over the
+  <code>
+   sign.authnrequest
+  </code>
+  option in any metadata generated for this SP.
+ </dd>
+ <dd>
+  <em>
+   Note
+  </em>
+  : SAML 2 specific.
+ </dd>
+ <dt>
+  <code>
+   redirect.validate
+  </code>
+ </dt>
+ <dd>
+  Whether logout requests and logout responses received by this SP should be validated. The default is
+  <code>
+   FALSE
+  </code>
+  .
+ </dd>
+ <dd>
+  <em>
+   Note
+  </em>
+  : SAML 2 specific.
+ </dd>
+ <dt>
+  <code>
+   RegistrationInfo
+  </code>
+ </dt>
+ <dd>
+  Allows to specify information about the registrar of this SP. Please refer to the
+  <a href="./simplesamlphp-metadata-extensions-rpi.html">
+   MDRPI extension
+  </a>
+  document for further information.
+ </dd>
+ <dt>
+  <code>
+   RelayState
+  </code>
+ </dt>
+ <dd>
+  The page the user should be redirected to after an IdP initiated SSO.
+ </dd>
+ <dd>
+  <em>
+   Note
+  </em>
+  : SAML 2 specific.
+  For SAML 1.1 SPs, you must specify the
+  <code>
+   TARGET
+  </code>
+  parameter in the authentication response.
+  How to set that parameter is depends on the IdP.
+  For SimpleSAMLphp, see the documentation for
+  <a href="./simplesamlphp-idp-more#section_4_1.html">
+   IdP-first flow
+  </a>
+  .
+ </dd>
+ <dt>
+  <code>
+   saml.SOAPClient.certificate
+  </code>
+ </dt>
+ <dd>
+  A file with a certificate
+  <em>
+   and
+  </em>
+  private key that should be used when issuing SOAP requests from this SP.
+  If this option isn't specified, the SP private key and certificate will be used.
+ </dd>
+ <dd>
+  This option can also be set to
+  <code>
+   FALSE
+  </code>
+  , in which case no client certificate will be used.
+ </dd>
+ <dt>
+  <code>
+   saml.SOAPClient.privatekey_pass
+  </code>
+ </dt>
+ <dd>
+  The passphrase of the privatekey in
+  <code>
+   saml.SOAPClient.certificate
+  </code>
+  .
+ </dd>
+ <dt>
+  <code>
+   saml1.useartifact
+  </code>
+ </dt>
+ <dd>
+  Request that the IdP returns the result to the artifact binding.
+  The default is to use the POST binding, set this option to TRUE to use the artifact binding instead.
+ </dd>
+ <dd>
+  This option can also be set in the
+  <code>
+   shib13-idp-remote
+  </code>
+  metadata, in which case the setting in
+  <code>
+   shib13-idp-remote
+  </code>
+  takes precedence.
+ </dd>
+ <dd>
+  <em>
+   Note
+  </em>
+  : SAML 1 specific.
+ </dd>
+ <dt>
+  <code>
+   saml20.hok.assertion
+  </code>
+ </dt>
+ <dd>
+  Enable support for the SAML 2.0 Holder-of-Key SSO profile.
+  See the documentation for the
+  <a href="./simplesamlphp-hok-sp.html">
+   Holder-of-Key profile
+  </a>
+  .
+ </dd>
+ <dt>
+  <code>
+   sign.authnrequest
+  </code>
+ </dt>
+ <dd>
+  Whether to sign authentication requests sent from this SP. If set, the
+  <code>
+   AuthnRequestsSigned
+  </code>
+  attribute of the
+  <code>
+   SPSSODescriptor
+  </code>
+  element in SAML 2.0 metadata will contain its value.
+ </dd>
+ <dd>
+  Note that this option also exists in the IdP-remote metadata, and
+  any value in the IdP-remote metadata overrides the one configured
+  in the SP configuration.
+ </dd>
+ <dd>
+  <em>
+   Note
+  </em>
+  : SAML 2 specific.
+ </dd>
+ <dt>
+  <code>
+   sign.logout
+  </code>
+ </dt>
+ <dd>
+  Whether to sign logout messages sent from this SP.
+ </dd>
+ <dd>
+  Note that this option also exists in the IdP-remote metadata, and
+  any value in the IdP-remote metadata overrides the one configured
+  in the SP configuration.
+ </dd>
+ <dd>
+  <em>
+   Note
+  </em>
+  : SAML 2 specific.
+ </dd>
+ <dt>
+  <code>
+   signature.algorithm
+  </code>
+ </dt>
+ <dd>
+  The algorithm to use when signing any message generated by this service provider. Defaults to RSA-SHA256.
+ </dd>
+ <dd>
+  Possible values:
+  <pre class="codehilite"><code>* `http://www.w3.org/2000/09/xmldsig#rsa-sha1`
+   *Note*: the use of SHA1 is **deprecated** and will be disallowed in the future.
+* `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256`
+  The default.
+* `http://www.w3.org/2001/04/xmldsig-more#rsa-sha384`
+* `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512`
 </code></pre>
-<p>
- <code>
-  SingleLogoutServiceBinding
- </code>
- : List of SingleLogoutService bindings the IdP will claim support for.
-: Possible values:
-</p>
-<pre class="codehilite"><code>  * `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect`
-  * `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST`
-* `urn:oasis:names:tc:SAML:2.0:bindings:SOAP`
+ </dd>
+ <dt>
+  <code>
+   SingleLogoutServiceBinding
+  </code>
+ </dt>
+ <dd>
+  List of SingleLogoutService bindings the IdP will claim support for.
+ </dd>
+ <dd>
+  Possible values:
+  <pre class="codehilite"><code>* `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect`
+* `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST`
 </code></pre>
-<p>
- <code>
-  url
- </code>
- :   A URL to your service provider. Will be added as an OrganizationURL-element in the metadata.
-</p>
-<p>
- :   This option can be translated into multiple languages by specifying the value as an array of language-code to language-specific URL:
-</p>
-<pre class="codehilite"><code>      'url' =&gt; array(
-          'en' =&gt; 'http://sp.example.net/en/info.html',
-          'no' =&gt; 'http://sp.example.net/no/info.html',
-      ),
+  <ul>
+   <li>
+    <code>
+     urn:oasis:names:tc:SAML:2.0:bindings:SOAP
+    </code>
+   </li>
+  </ul>
+ </dd>
+ <dt>
+  <code>
+   url
+  </code>
+ </dt>
+ <dd>
+  A URL to your service provider. Will be added as an OrganizationURL-element in the metadata.
+ </dd>
+ <dd>
+  This option can be translated into multiple languages by specifying the value as an array of language-code to language-specific URL:
+  <pre class="codehilite"><code>    'url' =&gt; array(
+        'en' =&gt; 'http://sp.example.net/en/info.html',
+        'no' =&gt; 'http://sp.example.net/no/info.html',
+    ),
 </code></pre>
-<p>
- <code>
-  validate.logout
- </code>
- :   Whether we require signatures on logout messages sent to this SP.
-</p>
-<p>
- :   Note that this option also exists in the IdP-remote metadata, and
-    any value in the IdP-remote metadata overrides the one configured
-    in the IdP metadata.
-</p>
-<p>
- :
- <em>
-  Note
- </em>
- : SAML 2 specific.
-</p>
-<p>
- <code>
-  WantAssertionsSigned
- </code>
- :   Whether assertions received by this SP must be signed. The default value is
- <code>
-  FALSE
- </code>
- .
-    The value set for this option will be used to set the
- <code>
-  WantAssertionsSigned
- </code>
- attribute of the
- <code>
-  SPSSODescriptor
- </code>
- element in
-    the exported SAML 2.0 metadata.
-</p>
+ </dd>
+ <dt>
+  <code>
+   validate.logout
+  </code>
+ </dt>
+ <dd>
+  Whether we require signatures on logout messages sent to this SP.
+ </dd>
+ <dd>
+  Note that this option also exists in the IdP-remote metadata, and
+  any value in the IdP-remote metadata overrides the one configured
+  in the IdP metadata.
+ </dd>
+ <dd>
+  <em>
+   Note
+  </em>
+  : SAML 2 specific.
+ </dd>
+ <dt>
+  <code>
+   WantAssertionsSigned
+  </code>
+ </dt>
+ <dd>
+  Whether assertions received by this SP must be signed. The default value is
+  <code>
+   FALSE
+  </code>
+  .
+  The value set for this option will be used to set the
+  <code>
+   WantAssertionsSigned
+  </code>
+  attribute of the
+  <code>
+   SPSSODescriptor
+  </code>
+  element in
+  the exported SAML 2.0 metadata.
+ </dd>
+</dl>
 <h2 id="examples">
  Examples
 </h2>

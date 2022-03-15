@@ -207,68 +207,78 @@ This function will always start a new authentication process.
 <p>
  The following global parameters are supported:
 </p>
-<p>
- <code>
-  ErrorURL
- </code>
- (
- <code>
-  string
- </code>
- )
-</p>
-<p>
- :   A URL to a page which will receive errors that may occur during authentication.
-</p>
-<p>
- <code>
-  KeepPost
- </code>
- (
- <code>
-  bool
- </code>
- )
-</p>
-<p>
- :   If set to
- <code>
-  TRUE
- </code>
- , the current POST data will be submitted again after authentication.
-    The default is
- <code>
-  TRUE
- </code>
- .
-</p>
-<p>
- <code>
-  ReturnTo
- </code>
- (
- <code>
-  string
- </code>
- )
-</p>
-<p>
- :   The URL the user should be returned to after authentication.
-    The default is to return the user to the current page.
-</p>
-<p>
- <code>
-  ReturnCallback
- </code>
- (
- <code>
-  array
- </code>
- )
-</p>
-<p>
- :   The function we should call when the user finishes authentication.
-</p>
+<dl>
+ <dt>
+  <code>
+   ErrorURL
+  </code>
+  (
+  <code>
+   string
+  </code>
+  )
+ </dt>
+ <dd>
+  <p>
+   A URL to a page which will receive errors that may occur during authentication.
+  </p>
+ </dd>
+ <dt>
+  <code>
+   KeepPost
+  </code>
+  (
+  <code>
+   bool
+  </code>
+  )
+ </dt>
+ <dd>
+  <p>
+   If set to
+   <code>
+    TRUE
+   </code>
+   , the current POST data will be submitted again after authentication.
+  The default is
+   <code>
+    TRUE
+   </code>
+   .
+  </p>
+ </dd>
+ <dt>
+  <code>
+   ReturnTo
+  </code>
+  (
+  <code>
+   string
+  </code>
+  )
+ </dt>
+ <dd>
+  <p>
+   The URL the user should be returned to after authentication.
+  The default is to return the user to the current page.
+  </p>
+ </dd>
+ <dt>
+  <code>
+   ReturnCallback
+  </code>
+  (
+  <code>
+   array
+  </code>
+  )
+ </dt>
+ <dd>
+  <p>
+   The function we should call when the user finishes authentication.
+  </p>
+ </dd>
+</dl>
 <p>
  The
  <a href="./saml/sp.html">
@@ -302,23 +312,27 @@ This function never returns.
 <h3 id="parameters_3">
  Parameters
 </h3>
-<p>
- <code>
-  $params
- </code>
- :   Parameters for the logout operation.
-    This can either be a simple string, in which case it is interpreted as the URL the user should be redirected to after logout, or an associative array with logout parameters.
-    If this parameter isn't specified, we will redirect the user to the current URL after logout.
-</p>
-<pre class="codehilite"><code>  If the parameter is an an array, it can have the following options:
+<dl>
+ <dt>
+  <code>
+   $params
+  </code>
+ </dt>
+ <dd>
+  Parameters for the logout operation.
+  This can either be a simple string, in which case it is interpreted as the URL the user should be redirected to after logout, or an associative array with logout parameters.
+  If this parameter isn't specified, we will redirect the user to the current URL after logout.
+  <pre class="codehilite"><code>If the parameter is an an array, it can have the following options:
 
-  - `ReturnTo`: The URL the user should be returned to after logout.
-  - `ReturnCallback`: The function that should be called after logout.
-  - `ReturnStateParam`: The parameter we should return the state in when redirecting.
-  - `ReturnStateStage`: The stage the state array should be saved with.
+- `ReturnTo`: The URL the user should be returned to after logout.
+- `ReturnCallback`: The function that should be called after logout.
+- `ReturnStateParam`: The parameter we should return the state in when redirecting.
+- `ReturnStateStage`: The stage the state array should be saved with.
 
-  The `ReturnState` parameters allow access to the result of the logout operation after it completes.
+The `ReturnState` parameters allow access to the result of the logout operation after it completes.
 </code></pre>
+ </dd>
+</dl>
 <h3 id="example-1_1">
  Example 1
 </h3>
@@ -422,15 +436,19 @@ See the
 <h3 id="parameters_4">
  Parameters
 </h3>
-<p>
- <code>
-  $returnTo
- </code>
-</p>
-<p>
- :   The URL the user should be returned to after authentication.
-    The default is the current page.
-</p>
+<dl>
+ <dt>
+  <code>
+   $returnTo
+  </code>
+ </dt>
+ <dd>
+  <p>
+   The URL the user should be returned to after authentication.
+  The default is the current page.
+  </p>
+ </dd>
+</dl>
 <h3 id="example_5">
  Example
 </h3>
@@ -461,15 +479,19 @@ The URL should be:
 <h3 id="parameters_5">
  Parameters
 </h3>
-<p>
- <code>
-  $returnTo
- </code>
-</p>
-<p>
- :   The URL the user should be returned to after logout.
-    The default is the current page.
-</p>
+<dl>
+ <dt>
+  <code>
+   $returnTo
+  </code>
+ </dt>
+ <dd>
+  <p>
+   The URL the user should be returned to after logout.
+  The default is the current page.
+  </p>
+ </dd>
+</dl>
 <h3 id="example_6">
  Example
 </h3>

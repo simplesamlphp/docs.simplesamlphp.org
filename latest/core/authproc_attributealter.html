@@ -100,85 +100,101 @@ attributes.
 <h2 id="parameters">
  Parameters
 </h2>
-<p>
- <code>
-  class
- </code>
- :   This is the name of the filter.
-    It must be
- <code>
-  'core:AttributeAlter'
- </code>
- .
-</p>
-<p>
- <code>
-  subject
- </code>
- :   The attribute in which the search is performed.
-    This parameter is REQUIRED and the filter will throw an exception if it is not set. The filter will
-    stop quietly if the attribute specified here is empty or not found.
-</p>
-<p>
- <code>
-  pattern
- </code>
- :   The pattern to look for inside the subject. Supports full Perl Compatible Regular Expressions (PCRE).
-    This parameter is REQUIRED and the filter will throw an exception if it is not set.
-</p>
-<p>
- <code>
-  replacement
- </code>
- :   The value used to replace the match. Back references are not supported.
-    This parameter is REQUIRED, except when using the
- <code>
-  %replace
- </code>
- or
- <code>
-  %remove
- </code>
- options. If
- <code>
-  %replace
- </code>
- is used and
- <code>
-  replacement
- </code>
- is not set, then the match is used as a replacement.
-</p>
-<p>
- <code>
-  target
- </code>
- :   The attribute where the replaced value will be placed.
-    This parameter is OPTIONAL, and if not set,
- <code>
-  subject
- </code>
- is used as
- <code>
-  target
- </code>
- .
-</p>
-<p>
- <code>
-  %replace
- </code>
- :   Indicates that the whole value of the attribute should be replaced if there is a match,
-    instead of just the match. If there's no match, the value will not be changed. This parameter is OPTIONAL.
-</p>
-<p>
- <code>
-  %remove
- </code>
- :   Indicates that the whole value of the attribute should be removed completely if there is a match.
-    If no other values exist, the attribute will be removed completely.
-    This parameter is OPTIONAL.
-</p>
+<dl>
+ <dt>
+  <code>
+   class
+  </code>
+ </dt>
+ <dd>
+  This is the name of the filter.
+  It must be
+  <code>
+   'core:AttributeAlter'
+  </code>
+  .
+ </dd>
+ <dt>
+  <code>
+   subject
+  </code>
+ </dt>
+ <dd>
+  The attribute in which the search is performed.
+  This parameter is REQUIRED and the filter will throw an exception if it is not set. The filter will
+  stop quietly if the attribute specified here is empty or not found.
+ </dd>
+ <dt>
+  <code>
+   pattern
+  </code>
+ </dt>
+ <dd>
+  The pattern to look for inside the subject. Supports full Perl Compatible Regular Expressions (PCRE).
+  This parameter is REQUIRED and the filter will throw an exception if it is not set.
+ </dd>
+ <dt>
+  <code>
+   replacement
+  </code>
+ </dt>
+ <dd>
+  The value used to replace the match. Back references are not supported.
+  This parameter is REQUIRED, except when using the
+  <code>
+   %replace
+  </code>
+  or
+  <code>
+   %remove
+  </code>
+  options. If
+  <code>
+   %replace
+  </code>
+  is used and
+  <code>
+   replacement
+  </code>
+  is not set, then the match is used as a replacement.
+ </dd>
+ <dt>
+  <code>
+   target
+  </code>
+ </dt>
+ <dd>
+  The attribute where the replaced value will be placed.
+  This parameter is OPTIONAL, and if not set,
+  <code>
+   subject
+  </code>
+  is used as
+  <code>
+   target
+  </code>
+  .
+ </dd>
+ <dt>
+  <code>
+   %replace
+  </code>
+ </dt>
+ <dd>
+  Indicates that the whole value of the attribute should be replaced if there is a match,
+  instead of just the match. If there's no match, the value will not be changed. This parameter is OPTIONAL.
+ </dd>
+ <dt>
+  <code>
+   %remove
+  </code>
+ </dt>
+ <dd>
+  Indicates that the whole value of the attribute should be removed completely if there is a match.
+  If no other values exist, the attribute will be removed completely.
+  This parameter is OPTIONAL.
+ </dd>
+</dl>
 <h2 id="examples">
  Examples
 </h2>

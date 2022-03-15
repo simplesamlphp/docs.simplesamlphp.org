@@ -95,30 +95,40 @@
 LDAP server. There are two separate authentication modules and two
 authentication processing filters:
 </p>
-<p>
- <code>
-  ldap:LDAP
- </code>
- : Authenticate the user against a single LDAP server.
-</p>
-<p>
- <code>
-  ldap:LDAPMulti
- </code>
- : Allow the user to chose one LDAP server to authenticate against.
-</p>
-<p>
- <code>
-  ldap:AttributeAddFromLDAP
- </code>
- : Adds an attribute value from LDAP to the request
-</p>
-<p>
- <code>
-  ldap:AttributeAddUsersGroups
- </code>
- : Add an attribute to the request with all the user's group memberships
-</p>
+<dl>
+ <dt>
+  <code>
+   ldap:LDAP
+  </code>
+ </dt>
+ <dd>
+  Authenticate the user against a single LDAP server.
+ </dd>
+ <dt>
+  <code>
+   ldap:LDAPMulti
+  </code>
+ </dt>
+ <dd>
+  Allow the user to chose one LDAP server to authenticate against.
+ </dd>
+ <dt>
+  <code>
+   ldap:AttributeAddFromLDAP
+  </code>
+ </dt>
+ <dd>
+  Adds an attribute value from LDAP to the request
+ </dd>
+ <dt>
+  <code>
+   ldap:AttributeAddUsersGroups
+  </code>
+ </dt>
+ <dd>
+  Add an attribute to the request with all the user's group memberships
+ </dd>
+</dl>
 <h2 id="ldapldap">
  <code>
   ldap:LDAP

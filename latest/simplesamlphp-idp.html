@@ -211,125 +211,157 @@
  </code>
  directory provides methods for authenticating your users. This is an overview of those that are included in the SimpleSAMLphp distribution:
 </p>
-<p>
- <a href="./authcrypt/authcrypt.html">
+<dl>
+ <dt>
+  <a href="./authcrypt/authcrypt.html">
+   <code>
+    authcrypt:Hash
+   </code>
+  </a>
+ </dt>
+ <dd>
+  Username &amp; password authentication with hashed passwords.
+ </dd>
+ <dt>
+  <a href="./authcrypt/authcrypt.html">
+   <code>
+    authcrypt:Htpasswd
+   </code>
+  </a>
+ </dt>
+ <dd>
+  Username &amp; password authentication against .htpasswd file.
+ </dd>
+ <dt>
+  <a href="./authX509/authX509.html">
+   <code>
+    authX509:authX509userCert
+   </code>
+  </a>
+ </dt>
+ <dd>
+  Authenticate against a LDAP database with a SSL client certificate.
+ </dd>
+ <dt>
   <code>
-   authcrypt:Hash
+   exampleauth:UserPass
   </code>
- </a>
- : Username &amp; password authentication with hashed passwords.
-</p>
-<p>
- <a href="./authcrypt/authcrypt.html">
+ </dt>
+ <dd>
+  Authenticate against a list of usernames and passwords.
+ </dd>
+ <dt>
   <code>
-   authcrypt:Htpasswd
+   exampleauth:Static
   </code>
- </a>
- : Username &amp; password authentication against .htpasswd file.
-</p>
-<p>
- <a href="./authX509/authX509.html">
-  <code>
-   authX509:authX509userCert
-  </code>
- </a>
- : Authenticate against a LDAP database with a SSL client certificate.
-</p>
-<p>
- <code>
-  exampleauth:UserPass
- </code>
- : Authenticate against a list of usernames and passwords.
-</p>
-<p>
- <code>
-  exampleauth:Static
- </code>
- : Automatically log in as a user with a set of attributes.
-</p>
-<p>
- <a href="./ldap/ldap.html">
-  <code>
-   ldap:LDAP
-  </code>
- </a>
- : Authenticates an user to a LDAP server.
-</p>
-<p>
- <a href="./ldap/ldap.html">
-  <code>
-   ldap:LDAPMulti
-  </code>
- </a>
- : Authenticates an user to one of several LDAP server.
+ </dt>
+ <dd>
+  Automatically log in as a user with a set of attributes.
+ </dd>
+ <dt>
+  <a href="./ldap/ldap.html">
+   <code>
+    ldap:LDAP
+   </code>
+  </a>
+ </dt>
+ <dd>
+  Authenticates an user to a LDAP server.
+ </dd>
+ <dt>
+  <a href="./ldap/ldap.html">
+   <code>
+    ldap:LDAPMulti
+   </code>
+  </a>
+ </dt>
+ <dd>
+  Authenticates an user to one of several LDAP server.
   The user can choose the LDAP server from a dropdown list.
-</p>
-<p>
- <a href="./sqlauth/sql.html">
+ </dd>
+ <dt>
+  <a href="./sqlauth/sql.html">
+   <code>
+    sqlauth:SQL
+   </code>
+  </a>
+ </dt>
+ <dd>
+  Authenticate an user against a database.
+ </dd>
+ <dt>
+  <a href="./radius/radius.html">
+   <code>
+    radius:Radius
+   </code>
+  </a>
+ </dt>
+ <dd>
+  Authenticates an user to a Radius server.
+ </dd>
+ <dt>
+  <a href="./multiauth/multiauth.html">
+   <code>
+    multiauth:MultiAuth
+   </code>
+  </a>
+ </dt>
+ <dd>
+  Allow the user to select from a list of authentication sources.
+ </dd>
+ <dt>
+  <a href="./saml/sp.html">
+   <code>
+    saml:SP
+   </code>
+  </a>
+ </dt>
+ <dd>
+  Authenticate against a SAML IdP. Can be used for bridging.
+ </dd>
+ <dt>
   <code>
-   sqlauth:SQL
+   authYubiKey:YubiKey
   </code>
- </a>
- : Authenticate an user against a database.
-</p>
-<p>
- <a href="./radius/radius.html">
-  <code>
-   radius:Radius
-  </code>
- </a>
- : Authenticates an user to a Radius server.
-</p>
-<p>
- <a href="./multiauth/multiauth.html">
-  <code>
-   multiauth:MultiAuth
-  </code>
- </a>
- : Allow the user to select from a list of authentication sources.
-</p>
-<p>
- <a href="./saml/sp.html">
-  <code>
-   saml:SP
-  </code>
- </a>
- : Authenticate against a SAML IdP. Can be used for bridging.
-</p>
-<p>
- <code>
-  authYubiKey:YubiKey
- </code>
- : Authenticate with
- <a href="http://www.yubico.com/products/yubikey/">
-  an YubiKey
- </a>
- .
-</p>
-<p>
- <a href="./authfacebook/authfacebook.html">
-  <code>
-   authfacebook:Facebook
-  </code>
- </a>
- : Authenticate with a Facebook ID.
-</p>
-<p>
- <a href="./authtwitter/oauthtwitter.html">
-  <code>
-   authtwitter:Twitter
-  </code>
- </a>
- : Authenticate with your Twitter account using the Twitter OAuth API.
-</p>
-<p>
- <a href="https://github.com/rediris-es/simplesamlphp-module-papi/blog/master/README.md">
-  <code>
-   papi:PAPI
-  </code>
- </a>
- : Authenticate by means of the PAPI protocol.
-</p>
+ </dt>
+ <dd>
+  Authenticate with
+  <a href="http://www.yubico.com/products/yubikey/">
+   an YubiKey
+  </a>
+  .
+ </dd>
+ <dt>
+  <a href="./authfacebook/authfacebook.html">
+   <code>
+    authfacebook:Facebook
+   </code>
+  </a>
+ </dt>
+ <dd>
+  Authenticate with a Facebook ID.
+ </dd>
+ <dt>
+  <a href="./authtwitter/oauthtwitter.html">
+   <code>
+    authtwitter:Twitter
+   </code>
+  </a>
+ </dt>
+ <dd>
+  Authenticate with your Twitter account using the Twitter OAuth API.
+ </dd>
+ <dt>
+  <a href="https://github.com/rediris-es/simplesamlphp-module-papi/blog/master/README.md">
+   <code>
+    papi:PAPI
+   </code>
+  </a>
+ </dt>
+ <dd>
+  Authenticate by means of the PAPI protocol.
+ </dd>
+</dl>
 <p>
  In this guide, we will use the
  <code>

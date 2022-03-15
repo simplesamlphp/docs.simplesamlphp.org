@@ -109,34 +109,40 @@
 <h2 id="parameters">
  Parameters
 </h2>
-<p>
- <code>
-  attributename
- </code>
- :   The name of the attribute we should use for the unique user identifier.
-</p>
-<pre class="codehilite"><code>  Note: only the first value of the specified attribute is being used for the generation of the identifier.
+<dl>
+ <dt>
+  <code>
+   attributename
+  </code>
+ </dt>
+ <dd>
+  The name of the attribute we should use for the unique user identifier.
+  <pre class="codehilite"><code>Note: only the first value of the specified attribute is being used for the generation of the identifier.
 </code></pre>
-<p>
- <code>
-  nameId
- </code>
- :   Set this option to
- <code>
-  true
- </code>
- to generate the attribute as in SAML 2 NameID format.
-    This can be used to generate an Internet2 compatible
- <code>
-  eduPersonTargetedID
- </code>
- attribute.
-    Optional, defaults to
- <code>
-  false
- </code>
- .
-</p>
+ </dd>
+ <dt>
+  <code>
+   nameId
+  </code>
+ </dt>
+ <dd>
+  Set this option to
+  <code>
+   true
+  </code>
+  to generate the attribute as in SAML 2 NameID format.
+  This can be used to generate an Internet2 compatible
+  <code>
+   eduPersonTargetedID
+  </code>
+  attribute.
+  Optional, defaults to
+  <code>
+   false
+  </code>
+  .
+ </dd>
+</dl>
 <h2 id="examples">
  Examples
 </h2>

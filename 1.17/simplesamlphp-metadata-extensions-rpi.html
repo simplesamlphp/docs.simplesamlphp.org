@@ -201,48 +201,56 @@ configuration file:
  </strong>
  be an indexed array with the following options:
 </p>
-<p>
- <code>
-  authority
- </code>
- :   A string containing an identifier of the authority who has registered this metadata. This parameter is
- <strong>
-  mandatory
- </strong>
- .
-</p>
-<p>
- <code>
-  instant
- </code>
- :   A string containing the instant when the entity or entities where registered by the authority. This parameter is
-    optional, and must be expressed in the UTC timezone with the
- <em>
-  zulu
- </em>
- (
- <code>
-  Z
- </code>
- ) timezone identifier. If omitted, there will be no
- <code>
-  registrationInstant
- </code>
- in the resulting metadata, except in the
- <code>
-  aggregator2
- </code>
- module, which will use the instant when the metadata
-    was generated.
-</p>
-<p>
- <code>
-  policies
- </code>
- :   An indexed array containing URLs pointing to the policy under which the entity or entities where registered. Each
-    index must be the language code corresponding to the language of the URL. This parameter is optional, and will be omitted in the
-    resulting metadata if not configured.
-</p>
+<dl>
+ <dt>
+  <code>
+   authority
+  </code>
+ </dt>
+ <dd>
+  A string containing an identifier of the authority who has registered this metadata. This parameter is
+  <strong>
+   mandatory
+  </strong>
+  .
+ </dd>
+ <dt>
+  <code>
+   instant
+  </code>
+ </dt>
+ <dd>
+  A string containing the instant when the entity or entities where registered by the authority. This parameter is
+  optional, and must be expressed in the UTC timezone with the
+  <em>
+   zulu
+  </em>
+  (
+  <code>
+   Z
+  </code>
+  ) timezone identifier. If omitted, there will be no
+  <code>
+   registrationInstant
+  </code>
+  in the resulting metadata, except in the
+  <code>
+   aggregator2
+  </code>
+  module, which will use the instant when the metadata
+  was generated.
+ </dd>
+ <dt>
+  <code>
+   policies
+  </code>
+ </dt>
+ <dd>
+  An indexed array containing URLs pointing to the policy under which the entity or entities where registered. Each
+  index must be the language code corresponding to the language of the URL. This parameter is optional, and will be omitted in the
+  resulting metadata if not configured.
+ </dd>
+</dl>
 <h2 id="examples">
  Examples
 </h2>

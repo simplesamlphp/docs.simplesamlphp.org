@@ -206,51 +206,65 @@ database.
  </code>
  backend storage has the following options:
 </p>
-<p>
- <code>
-  class
- </code>
- :   Must be set to
- <code>
-  consent:Database
- </code>
- .
-</p>
-<p>
- <code>
-  dsn
- </code>
- :   Data Source Name must comply to the syntax for the PHP PDO layer.
-</p>
-<p>
- <code>
-  username
- </code>
- :   Username for the database user to be used for the connection.
-</p>
-<p>
- <code>
-  password
- </code>
- :   Password for the database user used for the connection.
-</p>
-<p>
- <code>
-  table
- </code>
- :   Name of the table used for storing the consents. This option is optional
+<dl>
+ <dt>
+  <code>
+   class
+  </code>
+ </dt>
+ <dd>
+  Must be set to
+  <code>
+   consent:Database
+  </code>
+  .
+ </dd>
+ <dt>
+  <code>
+   dsn
+  </code>
+ </dt>
+ <dd>
+  Data Source Name must comply to the syntax for the PHP PDO layer.
+ </dd>
+ <dt>
+  <code>
+   username
+  </code>
+ </dt>
+ <dd>
+  Username for the database user to be used for the connection.
+ </dd>
+ <dt>
+  <code>
+   password
+  </code>
+ </dt>
+ <dd>
+  Password for the database user used for the connection.
+ </dd>
+ <dt>
+  <code>
+   table
+  </code>
+ </dt>
+ <dd>
+  Name of the table used for storing the consents. This option is optional
 and defaults to
- <code>
-  consent
- </code>
- .
-</p>
-<p>
- <code>
-  timeout
- </code>
- :   The number of seconds to wait for a connection to the database server. This option is optional. If unset, it uses the default from the database-driver.
-</p>
+  <code>
+   consent
+  </code>
+  .
+ </dd>
+ <dt>
+  <code>
+   timeout
+  </code>
+ </dt>
+ <dd>
+  The number of seconds to wait for a connection to the database server. This option is optional. If unset, it uses the default from the database-driver.
+ </dd>
+</dl>
 <p>
  Example config using PostgreSQL database:
 </p>
@@ -283,135 +297,159 @@ and defaults to
 <p>
  The following options can be used when configuring the Consent module:
 </p>
-<p>
- <code>
-  includeValues
- </code>
- :   Boolean value that indicates whether the values of the attributes should be 
-    used in calculating the unique hashes that identifies the consent. If 
-    includeValues is set and the value of an attribute changes, then the 
-    consent becomes invalid. This option is optional and defaults to FALSE.
-</p>
-<p>
- <code>
-  checked
- </code>
- :   Boolean value that indicates whether the "Remember" consent checkbox is
-    checked by default. This option is optional and defaults to FALSE.
-</p>
-<p>
- <code>
-  focus
- </code>
- :   Indicates whether the "Yes" or "No" button is in focus by default. This
-    option is optional and can take the value 'yes' or 'no' as strings. If 
-    omitted neither will receive focus.
-</p>
-<p>
- <code>
-  store
- </code>
- :   Configuration of the Consent storage backend. The store option is given in 
-    the format
- <module>
-  :
-  <class>
-   and refers to the class 
-    sspmod_
-   <module>
-    <em>
-     Consent_Store
-    </em>
-    <class>
-     . The consent module comes with two 
-    built in storage backends: 'consent:Cookie' and 'consent:Database'. See 
-    the separate section on setting up consent using different storage methods. 
-    This option is optional. If the option is not set, then the user is asked to 
-    consent, but the consent is not saved.
-    </class>
-   </module>
-  </class>
- </module>
-</p>
-<p>
- <code>
-  hiddenAttributes
- </code>
- :   Whether the value of the attributes should be hidden. Set to an array of
-    the attributes that should have their value hidden. Default behaviour is that 
-    all attribute values are shown.
-</p>
-<p>
- <code>
-  attributes.exclude
- </code>
- :   Allows certain attributes to be excluded from the attribute hash when
- <code>
-  includeValues
- </code>
- is
- <code>
-  true
- </code>
- (and as a side effect, to be hidden from display
-    as
- <code>
-  hiddenAttributes
- </code>
- does). Set to an array of the attributes that should
-    be excluded. Default behaviour is to include all values in the hash.
-</p>
-<p>
- <code>
-  showNoConsentAboutService
- </code>
- :   Whether we will show a link to more information about the service from the
-    no consent page. Defaults to
- <code>
-  true
- </code>
- .
-</p>
+<dl>
+ <dt>
+  <code>
+   includeValues
+  </code>
+ </dt>
+ <dd>
+  Boolean value that indicates whether the values of the attributes should be 
+  used in calculating the unique hashes that identifies the consent. If 
+  includeValues is set and the value of an attribute changes, then the 
+  consent becomes invalid. This option is optional and defaults to FALSE.
+ </dd>
+ <dt>
+  <code>
+   checked
+  </code>
+ </dt>
+ <dd>
+  Boolean value that indicates whether the "Remember" consent checkbox is
+  checked by default. This option is optional and defaults to FALSE.
+ </dd>
+ <dt>
+  <code>
+   focus
+  </code>
+ </dt>
+ <dd>
+  Indicates whether the "Yes" or "No" button is in focus by default. This
+  option is optional and can take the value 'yes' or 'no' as strings. If 
+  omitted neither will receive focus.
+ </dd>
+ <dt>
+  <code>
+   store
+  </code>
+ </dt>
+ <dd>
+  Configuration of the Consent storage backend. The store option is given in 
+  the format
+  <module>
+   :
+   <class>
+    and refers to the class 
+  sspmod_
+    <module>
+     <em>
+      Consent_Store
+     </em>
+     <class>
+      . The consent module comes with two 
+  built in storage backends: 'consent:Cookie' and 'consent:Database'. See 
+  the separate section on setting up consent using different storage methods. 
+  This option is optional. If the option is not set, then the user is asked to 
+  consent, but the consent is not saved.
+     </class>
+    </module>
+   </class>
+  </module>
+ </dd>
+ <dt>
+  <code>
+   hiddenAttributes
+  </code>
+ </dt>
+ <dd>
+  Whether the value of the attributes should be hidden. Set to an array of
+  the attributes that should have their value hidden. Default behaviour is that 
+  all attribute values are shown.
+ </dd>
+ <dt>
+  <code>
+   attributes.exclude
+  </code>
+ </dt>
+ <dd>
+  Allows certain attributes to be excluded from the attribute hash when
+  <code>
+   includeValues
+  </code>
+  is
+  <code>
+   true
+  </code>
+  (and as a side effect, to be hidden from display
+  as
+  <code>
+   hiddenAttributes
+  </code>
+  does). Set to an array of the attributes that should
+  be excluded. Default behaviour is to include all values in the hash.
+ </dd>
+ <dt>
+  <code>
+   showNoConsentAboutService
+  </code>
+ </dt>
+ <dd>
+  Whether we will show a link to more information about the service from the
+  no consent page. Defaults to
+  <code>
+   true
+  </code>
+  .
+ </dd>
+</dl>
 <h2 id="external-options">
  External options
 </h2>
 <p>
  The following options can be set in other places in SimpleSAMLphp:
 </p>
-<p>
- <code>
-  privacypolicy
- </code>
- :   This is an absolute URL for where a user can find a privacy policy for the SP.
-    If set, this will be shown on the consent page. %SPENTITYID% in the URL 
-    will be replaced with the entityID of the service provider.
-</p>
-<pre class="codehilite"><code>  This option can be set in 
-  [SP-remote metadata](./simplesamlphp-reference-sp-remote) and in 
-  [IdP-hosted metadata](./simplesamlphp-reference-idp-hosted). The entry in 
-  the SP-remote metadata overrides the option in the IdP-hosted metadata.
+<dl>
+ <dt>
+  <code>
+   privacypolicy
+  </code>
+ </dt>
+ <dd>
+  This is an absolute URL for where a user can find a privacy policy for the SP.
+  If set, this will be shown on the consent page. %SPENTITYID% in the URL 
+  will be replaced with the entityID of the service provider.
+  <pre class="codehilite"><code>This option can be set in 
+[SP-remote metadata](./simplesamlphp-reference-sp-remote) and in 
+[IdP-hosted metadata](./simplesamlphp-reference-idp-hosted). The entry in 
+the SP-remote metadata overrides the option in the IdP-hosted metadata.
 </code></pre>
-<p>
- <code>
-  consent.disable
- </code>
- :   Disable consent for a set of services. See section
- <code>
-  Disabling consent
- </code>
- .
-</p>
-<p>
- <code>
-  userid.attribute
- </code>
- :   Unique identifier that is released for all users. See section
- <code>
-  Configure
-    the user ID
- </code>
- .
-</p>
+ </dd>
+ <dt>
+  <code>
+   consent.disable
+  </code>
+ </dt>
+ <dd>
+  Disable consent for a set of services. See section
+  <code>
+   Disabling consent
+  </code>
+  .
+ </dd>
+ <dt>
+  <code>
+   userid.attribute
+  </code>
+ </dt>
+ <dd>
+  Unique identifier that is released for all users. See section
+  <code>
+   Configure
+  the user ID
+  </code>
+  .
+ </dd>
+</dl>
 <h2 id="disabling-consent">
  Disabling consent
 </h2>

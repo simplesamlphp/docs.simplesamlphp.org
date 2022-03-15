@@ -96,54 +96,60 @@
 <h2 id="common-options">
  Common options
 </h2>
-<p>
- <code>
-  NameQualifier
- </code>
- :   The NameQualifier attribute for the generated NameID.
-    This can be a string that is used as the value directly.
-    It can also be
- <code>
-  TRUE
- </code>
- , in which case we use the IdP entity ID as the NameQualifier.
-    If it is
- <code>
-  FALSE
- </code>
- , no NameQualifier will be included.
-</p>
-<p>
- :   The default is
- <code>
-  FALSE
- </code>
- , which means that we will not include a NameQualifier by default.
-</p>
-<p>
- <code>
-  SPNameQualifier
- </code>
- :   The SPNameQualifier attribute for the generated NameID.
-    This can be a string that is used as the value directly.
-    It can also be
- <code>
-  TRUE
- </code>
- , in which case we use the SP entity ID as the SPNameQualifier.
-    If it is
- <code>
-  FALSE
- </code>
- , no SPNameQualifier will be included.
-</p>
-<p>
- :   The default is
- <code>
-  TRUE
- </code>
- , which means that we will use the SP entity ID.
-</p>
+<dl>
+ <dt>
+  <code>
+   NameQualifier
+  </code>
+ </dt>
+ <dd>
+  The NameQualifier attribute for the generated NameID.
+  This can be a string that is used as the value directly.
+  It can also be
+  <code>
+   TRUE
+  </code>
+  , in which case we use the IdP entity ID as the NameQualifier.
+  If it is
+  <code>
+   FALSE
+  </code>
+  , no NameQualifier will be included.
+ </dd>
+ <dd>
+  The default is
+  <code>
+   FALSE
+  </code>
+  , which means that we will not include a NameQualifier by default.
+ </dd>
+ <dt>
+  <code>
+   SPNameQualifier
+  </code>
+ </dt>
+ <dd>
+  The SPNameQualifier attribute for the generated NameID.
+  This can be a string that is used as the value directly.
+  It can also be
+  <code>
+   TRUE
+  </code>
+  , in which case we use the SP entity ID as the SPNameQualifier.
+  If it is
+  <code>
+   FALSE
+  </code>
+  , no SPNameQualifier will be included.
+ </dd>
+ <dd>
+  The default is
+  <code>
+   TRUE
+  </code>
+  , which means that we will use the SP entity ID.
+ </dd>
+</dl>
 <h2 id="samlattributenameid">
  <code>
   saml:AttributeNameID
@@ -155,22 +161,28 @@
 <h3 id="options">
  Options
 </h3>
-<p>
- <code>
-  attribute
- </code>
- :   The name of the attribute we should use as the unique user ID.
-</p>
-<p>
- <code>
-  Format
- </code>
- :   The
- <code>
-  Format
- </code>
- attribute of the generated NameID.
-</p>
+<dl>
+ <dt>
+  <code>
+   attribute
+  </code>
+ </dt>
+ <dd>
+  The name of the attribute we should use as the unique user ID.
+ </dd>
+ <dt>
+  <code>
+   Format
+  </code>
+ </dt>
+ <dd>
+  The
+  <code>
+   Format
+  </code>
+  attribute of the generated NameID.
+ </dd>
+</dl>
 <h2 id="samlpersistentnameid">
  <code>
   saml:PersistentNameID
@@ -200,12 +212,16 @@ The resulting hash is sent as the persistent NameID.
 <h3 id="options_1">
  Options
 </h3>
-<p>
- <code>
-  attribute
- </code>
- :   The name of the attribute we should use as the unique user ID.
-</p>
+<dl>
+ <dt>
+  <code>
+   attribute
+  </code>
+ </dt>
+ <dd>
+  The name of the attribute we should use as the unique user ID.
+ </dd>
+</dl>
 <h2 id="samltransientnameid">
  <code>
   saml:TransientNameID
@@ -245,53 +261,63 @@ See the
 <h3 id="options_2">
  Options
 </h3>
-<p>
- <code>
-  attribute
- </code>
- :   The name of the attribute we should use as the unique user ID.
-</p>
-<p>
- <code>
-  allowUnspecified
- </code>
- :   Whether a persistent NameID should be created if the SP does not specify any NameID format in the request.
-    The default is
- <code>
-  FALSE
- </code>
- .
-</p>
-<p>
- <code>
-  allowDifferent
- </code>
- :   Whether a persistent NameID should be created if there are only other NameID formats specified in the request or the SP's metadata.
-    The default is
- <code>
-  FALSE
- </code>
- .
-</p>
-<p>
- <code>
-  alwaysCreate
- </code>
- :   Whether to ignore an explicit
- <code>
-  AllowCreate="false"
- </code>
- in the authentication request's NameIDPolicy.
-    The default is
- <code>
-  FALSE
- </code>
- , which will only create new NameIDs when the SP specifies
- <code>
-  AllowCreate="true"
- </code>
- in the authentication request.
-</p>
+<dl>
+ <dt>
+  <code>
+   attribute
+  </code>
+ </dt>
+ <dd>
+  The name of the attribute we should use as the unique user ID.
+ </dd>
+ <dt>
+  <code>
+   allowUnspecified
+  </code>
+ </dt>
+ <dd>
+  Whether a persistent NameID should be created if the SP does not specify any NameID format in the request.
+  The default is
+  <code>
+   FALSE
+  </code>
+  .
+ </dd>
+ <dt>
+  <code>
+   allowDifferent
+  </code>
+ </dt>
+ <dd>
+  Whether a persistent NameID should be created if there are only other NameID formats specified in the request or the SP's metadata.
+  The default is
+  <code>
+   FALSE
+  </code>
+  .
+ </dd>
+ <dt>
+  <code>
+   alwaysCreate
+  </code>
+ </dt>
+ <dd>
+  Whether to ignore an explicit
+  <code>
+   AllowCreate="false"
+  </code>
+  in the authentication request's NameIDPolicy.
+  The default is
+  <code>
+   FALSE
+  </code>
+  , which will only create new NameIDs when the SP specifies
+  <code>
+   AllowCreate="true"
+  </code>
+  in the authentication request.
+ </dd>
+</dl>
 <p>
  Setting both
  <code>
@@ -339,28 +365,34 @@ This can be used to set the
 <h3 id="options_3">
  Options
 </h3>
-<p>
- <code>
-  attribute
- </code>
- :   The name of the attribute we should store the result in.
-    The default is
- <code>
-  eduPersonTargetedID
- </code>
- .
-</p>
-<p>
- <code>
-  nameId
- </code>
- :   Whether the generated attribute should be an saml:NameID element.
-    The default is
- <code>
-  TRUE
- </code>
- .
-</p>
+<dl>
+ <dt>
+  <code>
+   attribute
+  </code>
+ </dt>
+ <dd>
+  The name of the attribute we should store the result in.
+  The default is
+  <code>
+   eduPersonTargetedID
+  </code>
+  .
+ </dd>
+ <dt>
+  <code>
+   nameId
+  </code>
+ </dt>
+ <dd>
+  Whether the generated attribute should be an saml:NameID element.
+  The default is
+  <code>
+   TRUE
+  </code>
+  .
+ </dd>
+</dl>
 <h2 id="example">
  Example
 </h2>

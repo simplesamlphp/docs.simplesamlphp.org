@@ -274,19 +274,19 @@ This is the preferred API for integrating SimpleSAMLphp with other applications.
 <p>
  Some SimpleSAMLphp calls replace the current active PHP session. If you previously started a session and wish to write to it, then you must cleanup the SimpleSAMLphp session before you can write to your session. If you do not need to modify your own session, then you can leave the cleanup call out; however, forgetting to call cleanup is a common source of hard to find bugs.
 </p>
-<pre class="codehilite"><code>  session_start();
-  // ...
-  $auth = new \SimpleSAML\Auth\Simple('default-sp');
-  $auth-&gt;isAuthenticated(); // Replaces our session with the SimpleSAMLphp one
-  // $_SESSION['key'] = 'value'; // This would save to the SimpleSAMLphp session which isn't what we want
-  SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup(); // Reverts to our PHP session
-  // Save to our session
-  $_SESSION['key'] = 'value';
+<pre class="codehilite"><code class="language-php">session_start();
+// ...
+$auth = new \SimpleSAML\Auth\Simple('default-sp');
+$auth-&gt;isAuthenticated(); // Replaces our session with the SimpleSAMLphp one
+// $_SESSION['key'] = 'value'; // This would save to the SimpleSAMLphp session which isn't what we want
+SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup(); // Reverts to our PHP session
+// Save to our session
+$_SESSION['key'] = 'value';
 </code></pre>
 <h2 id="constructor">
  Constructor
 </h2>
-<pre class="codehilite"><code>  new \SimpleSAML\Auth\Simple(string $authSource)
+<pre class="codehilite"><code class="language-php">new \SimpleSAML\Auth\Simple(string $authSource)
 </code></pre>
 <p>
  The constructor initializes a \SimpleSAML\Auth\Simple object.
@@ -305,14 +305,14 @@ This authentication source must exist in
 <h3 id="example">
  Example
 </h3>
-<pre class="codehilite"><code>  $auth = new \SimpleSAML\Auth\Simple('default-sp');
+<pre class="codehilite"><code class="language-php">$auth = new \SimpleSAML\Auth\Simple('default-sp');
 </code></pre>
 <h2 id="isauthenticated">
  <code>
   isAuthenticated
  </code>
 </h2>
-<pre class="codehilite"><code>  bool isAuthenticated()
+<pre class="codehilite"><code class="language-php">bool isAuthenticated()
 </code></pre>
 <p>
  Check whether the user is authenticated with this authentication source.
@@ -328,18 +328,18 @@ This authentication source must exist in
 <h3 id="example_1">
  Example
 </h3>
-<pre class="codehilite"><code>  if (!$auth-&gt;isAuthenticated()) {
-      SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup();
-      /* Show login link. */
-      print('&lt;a href="/login"&gt;Login&lt;/a&gt;');
-  }
+<pre class="codehilite"><code class="language-php">if (!$auth-&gt;isAuthenticated()) {
+    SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup();
+    /* Show login link. */
+    print('&lt;a href="/login"&gt;Login&lt;/a&gt;');
+}
 </code></pre>
 <h2 id="requireauth">
  <code>
   requireAuth
  </code>
 </h2>
-<pre class="codehilite"><code>  void requireAuth(array $params = [])
+<pre class="codehilite"><code class="language-php">void requireAuth(array $params = [])
 </code></pre>
 <p>
  Make sure that the user is authenticated.
@@ -363,30 +363,30 @@ See the documentation for the
 <h3 id="example-1">
  Example 1
 </h3>
-<pre class="codehilite"><code>  $auth-&gt;requireAuth();
-  SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup();
-  print("Hello, authenticated user!");
+<pre class="codehilite"><code class="language-php">$auth-&gt;requireAuth();
+SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup();
+print("Hello, authenticated user!");
 </code></pre>
 <h3 id="example-2">
  Example 2
 </h3>
-<pre class="codehilite"><code>  /*
-   * Return the user to the frontpage after authentication, don't post
-   * the current POST data.
-   */
-  $auth-&gt;requireAuth([
-      'ReturnTo' =&gt; 'https://sp.example.org/',
-      'KeepPost' =&gt; FALSE,
-  ]);
-  SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup();
-  print("Hello, authenticated user!");
+<pre class="codehilite"><code class="language-php">/*
+ * Return the user to the frontpage after authentication, don't post
+ * the current POST data.
+ */
+$auth-&gt;requireAuth([
+    'ReturnTo' =&gt; 'https://sp.example.org/',
+    'KeepPost' =&gt; FALSE,
+]);
+SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup();
+print("Hello, authenticated user!");
 </code></pre>
 <h2 id="login">
  <code>
   login
  </code>
 </h2>
-<pre class="codehilite"><code>  void login(array $params = [])
+<pre class="codehilite"><code class="language-php">void login(array $params = [])
 </code></pre>
 <p>
  Start a login operation.
@@ -398,68 +398,78 @@ This function will always start a new authentication process.
 <p>
  The following global parameters are supported:
 </p>
-<p>
- <code>
-  ErrorURL
- </code>
- (
- <code>
-  string
- </code>
- )
-</p>
-<p>
- :   A URL to a page which will receive errors that may occur during authentication.
-</p>
-<p>
- <code>
-  KeepPost
- </code>
- (
- <code>
-  bool
- </code>
- )
-</p>
-<p>
- :   If set to
- <code>
-  TRUE
- </code>
- , the current POST data will be submitted again after authentication.
-    The default is
- <code>
-  TRUE
- </code>
- .
-</p>
-<p>
- <code>
-  ReturnTo
- </code>
- (
- <code>
-  string
- </code>
- )
-</p>
-<p>
- :   The URL the user should be returned to after authentication.
-    The default is to return the user to the current page.
-</p>
-<p>
- <code>
-  ReturnCallback
- </code>
- (
- <code>
-  array
- </code>
- )
-</p>
-<p>
- :   The function we should call when the user finishes authentication.
-</p>
+<dl>
+ <dt>
+  <code>
+   ErrorURL
+  </code>
+  (
+  <code>
+   string
+  </code>
+  )
+ </dt>
+ <dd>
+  <p>
+   A URL to a page which will receive errors that may occur during authentication.
+  </p>
+ </dd>
+ <dt>
+  <code>
+   KeepPost
+  </code>
+  (
+  <code>
+   bool
+  </code>
+  )
+ </dt>
+ <dd>
+  <p>
+   If set to
+   <code>
+    TRUE
+   </code>
+   , the current POST data will be submitted again after authentication.
+  The default is
+   <code>
+    TRUE
+   </code>
+   .
+  </p>
+ </dd>
+ <dt>
+  <code>
+   ReturnTo
+  </code>
+  (
+  <code>
+   string
+  </code>
+  )
+ </dt>
+ <dd>
+  <p>
+   The URL the user should be returned to after authentication.
+  The default is to return the user to the current page.
+  </p>
+ </dd>
+ <dt>
+  <code>
+   ReturnCallback
+  </code>
+  (
+  <code>
+   array
+  </code>
+  )
+ </dt>
+ <dd>
+  <p>
+   The function we should call when the user finishes authentication.
+  </p>
+ </dd>
+</dl>
 <p>
  The
  <a href="./saml/sp.html">
@@ -472,19 +482,19 @@ This function will always start a new authentication process.
 <h3 id="example_2">
  Example
 </h3>
-<pre class="codehilite"><code>  # Send a passive authentication request.
-  $auth-&gt;login([
-      'isPassive' =&gt; TRUE,
-      'ErrorURL' =&gt; 'https://.../error_handler.php',
-  ]);
-  SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup();
+<pre class="codehilite"><code class="language-php"># Send a passive authentication request.
+$auth-&gt;login([
+    'isPassive' =&gt; TRUE,
+     'ErrorURL' =&gt; 'https://.../error_handler.php',
+ ]);
+ SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup();
 </code></pre>
 <h2 id="logout">
  <code>
   logout
  </code>
 </h2>
-<pre class="codehilite"><code>  void logout(mixed $params = NULL)
+<pre class="codehilite"><code class="language-php">void logout(mixed $params = NULL)
 </code></pre>
 <p>
  Log the user out.
@@ -494,31 +504,35 @@ This function never returns.
 <h3 id="parameters_3">
  Parameters
 </h3>
-<p>
- <code>
-  $params
- </code>
- :   Parameters for the logout operation.
-    This can either be a simple string, in which case it is interpreted as the URL the user should be redirected to after logout, or an associative array with logout parameters.
-    If this parameter isn't specified, we will redirect the user to the current URL after logout.
-</p>
-<pre class="codehilite"><code>  If the parameter is an an array, it can have the following options:
+<dl>
+ <dt>
+  <code>
+   $params
+  </code>
+ </dt>
+ <dd>
+  Parameters for the logout operation.
+  This can either be a simple string, in which case it is interpreted as the URL the user should be redirected to after logout, or an associative array with logout parameters.
+  If this parameter isn't specified, we will redirect the user to the current URL after logout.
+  <pre class="codehilite"><code>If the parameter is an an array, it can have the following options:
 
-  - `ReturnTo`: The URL the user should be returned to after logout.
-  - `ReturnCallback`: The function that should be called after logout.
-  - `ReturnStateParam`: The parameter we should return the state in when redirecting.
-  - `ReturnStateStage`: The stage the state array should be saved with.
+- `ReturnTo`: The URL the user should be returned to after logout.
+- `ReturnCallback`: The function that should be called after logout.
+- `ReturnStateParam`: The parameter we should return the state in when redirecting.
+- `ReturnStateStage`: The stage the state array should be saved with.
 
-  The `ReturnState` parameters allow access to the result of the logout operation after it completes.
+The `ReturnState` parameters allow access to the result of the logout operation after it completes.
 </code></pre>
+ </dd>
+</dl>
 <h3 id="example-1_1">
  Example 1
 </h3>
 <p>
  Logout, and redirect to the specified URL.
 </p>
-<pre class="codehilite"><code>  $auth-&gt;logout('https://sp.example.org/logged_out.php');
-  SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup();
+<pre class="codehilite"><code class="language-php">$auth-&gt;logout('https://sp.example.org/logged_out.php');
+SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup();
 </code></pre>
 <h3 id="example-2_1">
  Example 2
@@ -526,32 +540,32 @@ This function never returns.
 <p>
  Same as the previous, but check the result of the logout operation afterwards.
 </p>
-<pre class="codehilite"><code>  $auth-&gt;logout([
-      'ReturnTo' =&gt; 'https://sp.example.org/logged_out.php',
-      'ReturnStateParam' =&gt; 'LogoutState',
-      'ReturnStateStage' =&gt; 'MyLogoutState',
-  ]);
-  SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup();
+<pre class="codehilite"><code class="language-php">$auth-&gt;logout([
+    'ReturnTo' =&gt; 'https://sp.example.org/logged_out.php',
+    'ReturnStateParam' =&gt; 'LogoutState',
+    'ReturnStateStage' =&gt; 'MyLogoutState',
+]);
+SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup();
 </code></pre>
 <p>
  And in logged_out.php:
 </p>
-<pre class="codehilite"><code>  $state = \SimpleSAML\Auth\State::loadState((string)$_REQUEST['LogoutState'], 'MyLogoutState');
-  $ls = $state['saml:sp:LogoutStatus']; /* Only works for SAML SP */
-  if ($ls['Code'] === 'urn:oasis:names:tc:SAML:2.0:status:Success' &amp;&amp; !isset($ls['SubCode'])) {
-      /* Successful logout. */
-      echo("You have been logged out.");
-  } else {
-      /* Logout failed. Tell the user to close the browser. */
-      echo("We were unable to log you out of all your sessions. To be completely sure that you are logged out, you need to close your web browser.");
-  }
+<pre class="codehilite"><code class="language-php">$state = \SimpleSAML\Auth\State::loadState((string)$_REQUEST['LogoutState'], 'MyLogoutState');
+$ls = $state['saml:sp:LogoutStatus']; /* Only works for SAML SP */
+if ($ls['Code'] === 'urn:oasis:names:tc:SAML:2.0:status:Success' &amp;&amp; !isset($ls['SubCode'])) {
+    /* Successful logout. */
+    echo("You have been logged out.");
+} else {
+    /* Logout failed. Tell the user to close the browser. */
+    echo("We were unable to log you out of all your sessions. To be completely sure that you are logged out, you need to close your web browser.");
+}
 </code></pre>
 <h2 id="getattributes">
  <code>
   getAttributes
  </code>
 </h2>
-<pre class="codehilite"><code>  array getAttributes()
+<pre class="codehilite"><code class="language-php">array getAttributes()
 </code></pre>
 <p>
  Retrieve the attributes of the current user.
@@ -560,28 +574,28 @@ If the user isn't authenticated, an empty array will be returned.
 <p>
  The attributes will be returned as an associative array with the name of the attribute as the key and the value as an array of one or more strings:
 </p>
-<pre class="codehilite"><code>  [
-      'uid' =&gt; ['testuser'],
-      'eduPersonAffiliation' =&gt; ['student', 'member'],
-  ]
+<pre class="codehilite"><code class="language-php">[
+    'uid' =&gt; ['testuser'],
+    'eduPersonAffiliation' =&gt; ['student', 'member'],
+]
 </code></pre>
 <h3 id="example_3">
  Example
 </h3>
-<pre class="codehilite"><code>  $attrs = $auth-&gt;getAttributes();
-  if (!isset($attrs['displayName'][0])) {
-      throw new Exception('displayName attribute missing.');
-  }
-  $name = $attrs['displayName'][0];
+<pre class="codehilite"><code class="language-php">$attrs = $auth-&gt;getAttributes();
+if (!isset($attrs['displayName'][0])) {
+    throw new Exception('displayName attribute missing.');
+}
+$name = $attrs['displayName'][0];
 
-  print('Hello, ' . htmlspecialchars($name));
+print('Hello, ' . htmlspecialchars($name));
 </code></pre>
 <h2 id="getauthdata">
  <code>
   getAuthData
  </code>
 </h2>
-<pre class="codehilite"><code>  mixed getAuthData(string $name)
+<pre class="codehilite"><code class="language-php">mixed getAuthData(string $name)
 </code></pre>
 <p>
  Retrieve the specified authentication data for the current session.
@@ -600,16 +614,16 @@ See the
 <h3 id="example_4">
  Example
 </h3>
-<pre class="codehilite"><code>  $idp = $auth-&gt;getAuthData('saml:sp:IdP');
-  $nameID = $auth-&gt;getAuthData('saml:sp:NameID')-&gt;getValue();
-  printf('You are %s, logged in from %s', htmlspecialchars($nameID), htmlspecialchars($idp));
+<pre class="codehilite"><code class="language-php">$idp = $auth-&gt;getAuthData('saml:sp:IdP');
+$nameID = $auth-&gt;getAuthData('saml:sp:NameID')-&gt;getValue();
+printf('You are %s, logged in from %s', htmlspecialchars($nameID), htmlspecialchars($idp));
 </code></pre>
 <h2 id="getloginurl">
  <code>
   getLoginURL
  </code>
 </h2>
-<pre class="codehilite"><code>  string getLoginURL(string $returnTo = NULL)
+<pre class="codehilite"><code class="language-php">string getLoginURL(string $returnTo = NULL)
 </code></pre>
 <p>
  Retrieve a URL that can be used to start authentication.
@@ -617,21 +631,25 @@ See the
 <h3 id="parameters_4">
  Parameters
 </h3>
-<p>
- <code>
-  $returnTo
- </code>
-</p>
-<p>
- :   The URL the user should be returned to after authentication.
-    The default is the current page.
-</p>
+<dl>
+ <dt>
+  <code>
+   $returnTo
+  </code>
+ </dt>
+ <dd>
+  <p>
+   The URL the user should be returned to after authentication.
+  The default is the current page.
+  </p>
+ </dd>
+</dl>
 <h3 id="example_5">
  Example
 </h3>
-<pre class="codehilite"><code>  $url = $auth-&gt;getLoginURL();
+<pre class="codehilite"><code class="language-php">$url = $auth-&gt;getLoginURL();
 
-  print('&lt;a href="' . htmlspecialchars($url) . '"&gt;Login&lt;/a&gt;');
+print('&lt;a href="' . htmlspecialchars($url) . '"&gt;Login&lt;/a&gt;');
 </code></pre>
 <h3 id="note">
  Note
@@ -648,7 +666,7 @@ The URL should be:
   getLogoutURL
  </code>
 </h2>
-<pre class="codehilite"><code>  string getLogoutURL(string $returnTo = NULL)
+<pre class="codehilite"><code class="language-php">string getLogoutURL(string $returnTo = NULL)
 </code></pre>
 <p>
  Retrieve a URL that can be used to trigger logout.
@@ -656,21 +674,25 @@ The URL should be:
 <h3 id="parameters_5">
  Parameters
 </h3>
-<p>
- <code>
-  $returnTo
- </code>
-</p>
-<p>
- :   The URL the user should be returned to after logout.
-    The default is the current page.
-</p>
+<dl>
+ <dt>
+  <code>
+   $returnTo
+  </code>
+ </dt>
+ <dd>
+  <p>
+   The URL the user should be returned to after logout.
+  The default is the current page.
+  </p>
+ </dd>
+</dl>
 <h3 id="example_6">
  Example
 </h3>
-<pre class="codehilite"><code>  $url = $auth-&gt;getLogoutURL();
+<pre class="codehilite"><code class="language-php">$url = $auth-&gt;getLogoutURL();
 
-  print('&lt;a href="' . htmlspecialchars($url) . '"&gt;Logout&lt;/a&gt;');
+print('&lt;a href="' . htmlspecialchars($url) . '"&gt;Logout&lt;/a&gt;');
 </code></pre>
 <h3 id="note_1">
  Note

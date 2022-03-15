@@ -193,205 +193,219 @@ short introduction to what you can do with them:
  -directory. The module directory contains the following
 directories and files:
 </p>
-<p>
- locales
-:   This directory contains dictionaries which belong to this
-    module. To use a dictionary stored in a module, the extended tag
-    names can be used:
- <code>
-  {&lt;module name&gt;:&lt;dictionary name&gt;:&lt;tag name&gt;}
- </code>
- For
-    example,
- <code>
-  {example:login:hello}
- </code>
- will look up
- <code>
-  hello
- </code>
- in
- <code>
-  modules/example/locales/&lt;lang&gt;/login.po
- </code>
- .
-</p>
-<p>
- :   It is also possible to specify
- <code>
-  &lt;module name&gt;:&lt;dictionary name&gt;
- </code>
- as the default
-    dictionary when instantiating the
- <code>
-  \SimpleSAML\XHTML\Template
- </code>
- class.
-</p>
-<p>
- hooks
-:   This directory contains hook functions for this module. Each
-    file in this directory represents a single function. See the
-    hook-section in the documentation for more information.
-</p>
-<p>
- lib
-:   This directory contains classes which belong to this module.
-    All classes must be named in the following pattern:
- <code>
-  \SimpleSAML\Module\&lt;module name&gt;\&lt;class name&gt;
- </code>
- When looking up the filename of
-    a class, SimpleSAMLphp will search for
- <code>
-  &lt;class name&gt;
- </code>
- in the
- <code>
+<dl>
+ <dt>
+  locales
+ </dt>
+ <dd>
+  This directory contains dictionaries which belong to this
+  module. To use a dictionary stored in a module, the extended tag
+  names can be used:
+  <code>
+   {&lt;module name&gt;:&lt;dictionary name&gt;:&lt;tag name&gt;}
+  </code>
+  For
+  example,
+  <code>
+   {example:login:hello}
+  </code>
+  will look up
+  <code>
+   hello
+  </code>
+  in
+  <code>
+   modules/example/locales/&lt;lang&gt;/login.po
+  </code>
+  .
+ </dd>
+ <dd>
+  It is also possible to specify
+  <code>
+   &lt;module name&gt;:&lt;dictionary name&gt;
+  </code>
+  as the default
+  dictionary when instantiating the
+  <code>
+   \SimpleSAML\XHTML\Template
+  </code>
+  class.
+ </dd>
+ <dt>
+  hooks
+ </dt>
+ <dd>
+  This directory contains hook functions for this module. Each
+  file in this directory represents a single function. See the
+  hook-section in the documentation for more information.
+ </dd>
+ <dt>
   lib
- </code>
- directory. Underscores in the class name will be translated into
-    slashes.
-</p>
-<p>
- :   Thus, if SimpleSAMLphp needs to load a class named
- <code>
-  \SimpleSAML\Module\example\Auth\Source\Example
- </code>
- , it will load the file named
- <code>
-  modules/example/lib/Auth/Source/Example.php
- </code>
- .
-</p>
-<p>
- templates
-:   These are module-specific templates. To use one of these
-    templates, specify
- <code>
-  &lt;module name&gt;:&lt;template file&gt;.php
- </code>
- as the template file in the constructor of
- <code>
-  \SimpleSAML\XHTML\Template
- </code>
- . For example,
- <code>
-  example:login-form.php
- </code>
- is translated to the file
- <code>
-  modules/example/templates/default/login-form.php
- </code>
- . Note that
- <code>
-  default
- </code>
- in the previous example is defined by the
- <code>
-  theme.use
- </code>
- configuration option.
-</p>
-<p>
- themes
-:   This directory contains themes the module defines. A single
-    module can define multiple themes, and these themes may override
-    all templates in all modules. Each subdirectory of
- <code>
+ </dt>
+ <dd>
+  This directory contains classes which belong to this module.
+  All classes must be named in the following pattern:
+  <code>
+   \SimpleSAML\Module\&lt;module name&gt;\&lt;class name&gt;
+  </code>
+  When looking up the filename of
+  a class, SimpleSAMLphp will search for
+  <code>
+   &lt;class name&gt;
+  </code>
+  in the
+  <code>
+   lib
+  </code>
+  directory. Underscores in the class name will be translated into
+  slashes.
+ </dd>
+ <dd>
+  Thus, if SimpleSAMLphp needs to load a class named
+  <code>
+   \SimpleSAML\Module\example\Auth\Source\Example
+  </code>
+  , it will load the file named
+  <code>
+   modules/example/lib/Auth/Source/Example.php
+  </code>
+  .
+ </dd>
+ <dt>
+  templates
+ </dt>
+ <dd>
+  These are module-specific templates. To use one of these
+  templates, specify
+  <code>
+   &lt;module name&gt;:&lt;template file&gt;.php
+  </code>
+  as the template file in the constructor of
+  <code>
+   \SimpleSAML\XHTML\Template
+  </code>
+  . For example,
+  <code>
+   example:login-form.php
+  </code>
+  is translated to the file
+  <code>
+   modules/example/templates/default/login-form.php
+  </code>
+  . Note that
+  <code>
+   default
+  </code>
+  in the previous example is defined by the
+  <code>
+   theme.use
+  </code>
+  configuration option.
+ </dd>
+ <dt>
   themes
- </code>
- defines
-    a theme. The theme directory contains a subdirectory for each
-    module. The templates stored under
- <code>
-  simplesamlphp/templates
- </code>
- can be
-    overridden by a directory named
- <code>
-  default
- </code>
- .
-</p>
-<p>
- :   To use a theme provided by a module, the
- <code>
-  theme.use
- </code>
- configuration option should be set to
- <code>
-  &lt;module name&gt;:&lt;theme name&gt;
- </code>
- .
-</p>
-<p>
- :   When using the theme
- <code>
-  example:blue
- </code>
- , the template
- <code>
-  templates/default/login.php
- </code>
- will be overridden by
- <code>
-  modules/example/themes/blue/default/login.php
- </code>
- , while the template
- <code>
-  modules/core/templates/default/loginuserpass.php
- </code>
- will be
-    overridden by
- <code>
-  modules/example/themes/blue/core/loginuserpass.php
- </code>
- .
-</p>
-<p>
- www
-:   All files stored in this directory will be available by
-    accessing the URL
- <code>
-  https://.../simplesamlphp/module.php/&lt;module name&gt;/&lt;file name&gt;
- </code>
- .
-    For example, if a script named
- <code>
-  login.php
- </code>
- is stored in
- <code>
-  modules/example/www/
- </code>
- , it can be accessed by the URL
- <code>
-  https://.../simplesamlphp/module.php/example/login.php
- </code>
- .
-</p>
-<p>
- :   To retrieve this URL, the
- <code>
-  SimpleSAML\Module::getModuleURL($resource)
- </code>
- -function can be used.
-    This function takes in a resource on the form
- <code>
-  &lt;module&gt;/&lt;file&gt;
- </code>
- .
-    This function will then return a URL to the given file in the
- <code>
+ </dt>
+ <dd>
+  This directory contains themes the module defines. A single
+  module can define multiple themes, and these themes may override
+  all templates in all modules. Each subdirectory of
+  <code>
+   themes
+  </code>
+  defines
+  a theme. The theme directory contains a subdirectory for each
+  module. The templates stored under
+  <code>
+   simplesamlphp/templates
+  </code>
+  can be
+  overridden by a directory named
+  <code>
+   default
+  </code>
+  .
+ </dd>
+ <dd>
+  To use a theme provided by a module, the
+  <code>
+   theme.use
+  </code>
+  configuration option should be set to
+  <code>
+   &lt;module name&gt;:&lt;theme name&gt;
+  </code>
+  .
+ </dd>
+ <dd>
+  When using the theme
+  <code>
+   example:blue
+  </code>
+  , the template
+  <code>
+   templates/default/login.php
+  </code>
+  will be overridden by
+  <code>
+   modules/example/themes/blue/default/login.php
+  </code>
+  , while the template
+  <code>
+   modules/core/templates/default/loginuserpass.php
+  </code>
+  will be
+  overridden by
+  <code>
+   modules/example/themes/blue/core/loginuserpass.php
+  </code>
+  .
+ </dd>
+ <dt>
   www
- </code>
- -directory of
- <code>
-  module
- </code>
- .
-</p>
+ </dt>
+ <dd>
+  All files stored in this directory will be available by
+  accessing the URL
+  <code>
+   https://.../simplesamlphp/module.php/&lt;module name&gt;/&lt;file name&gt;
+  </code>
+  .
+  For example, if a script named
+  <code>
+   login.php
+  </code>
+  is stored in
+  <code>
+   modules/example/www/
+  </code>
+  , it can be accessed by the URL
+  <code>
+   https://.../simplesamlphp/module.php/example/login.php
+  </code>
+  .
+ </dd>
+ <dd>
+  To retrieve this URL, the
+  <code>
+   SimpleSAML\Module::getModuleURL($resource)
+  </code>
+  -function can be used.
+  This function takes in a resource on the form
+  <code>
+   &lt;module&gt;/&lt;file&gt;
+  </code>
+  .
+  This function will then return a URL to the given file in the
+  <code>
+   www
+  </code>
+  -directory of
+  <code>
+   module
+  </code>
+  .
+ </dd>
+</dl>
 <h2 id="authentication-sources">
  Authentication sources
 </h2>

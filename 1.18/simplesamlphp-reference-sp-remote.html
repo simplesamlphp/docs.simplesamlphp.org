@@ -120,676 +120,812 @@ Both files have the following format:
  The following options are common between both the SAML 2.0 protocol
 and Shibboleth 1.3 protocol:
 </p>
-<p>
- <code>
-  attributes
- </code>
- :   This should indicate which attributes an SP should receive. It is
-    used by for example the
- <code>
-  consent:Consent
- </code>
- module to tell the user
-    which attributes the SP will receive, and the
- <code>
-  core:AttributeLimit
- </code>
- module to limit which attributes are sent to the SP.
-</p>
-<p>
- <code>
-  authproc
- </code>
- :   Used to manipulate attributes, and limit access for each SP. See
-    the
- <a href="simplesamlphp-authproc.html">
-  authentication processing filter manual
- </a>
- .
-</p>
-<p>
- <code>
-  base64attributes
- </code>
- :   Whether attributes sent to this SP should be base64 encoded. The
-    default is
- <code>
-  FALSE
- </code>
- .
-</p>
-<p>
- <code>
-  description
- </code>
- :   A description of this SP. Will be used by various modules when they
-    need to show a description of the SP to the user.
-</p>
-<p>
- :   This option can be translated into multiple languages in the same
-    way as the
- <code>
-  name
- </code>
- -option.
-</p>
-<p>
- <code>
-  name
- </code>
- :   The name of this SP. Will be used by various modules when they need
-    to show a name of the SP to the user.
-</p>
-<p>
- :   If this option is unset, the organization name will be used instead (if it is available).
-</p>
-<p>
- :   This option can be translated into multiple languages by specifying
-    the value as an array of language-code to translated name:
-</p>
-<pre class="codehilite"><code>      'name' =&gt; [
-          'en' =&gt; 'A service',
-          'no' =&gt; 'En tjeneste',
-      ],
+<dl>
+ <dt>
+  <code>
+   attributes
+  </code>
+ </dt>
+ <dd>
+  This should indicate which attributes an SP should receive. It is
+  used by for example the
+  <code>
+   consent:Consent
+  </code>
+  module to tell the user
+  which attributes the SP will receive, and the
+  <code>
+   core:AttributeLimit
+  </code>
+  module to limit which attributes are sent to the SP.
+ </dd>
+ <dt>
+  <code>
+   authproc
+  </code>
+ </dt>
+ <dd>
+  Used to manipulate attributes, and limit access for each SP. See
+  the
+  <a href="simplesamlphp-authproc.html">
+   authentication processing filter manual
+  </a>
+  .
+ </dd>
+ <dt>
+  <code>
+   base64attributes
+  </code>
+ </dt>
+ <dd>
+  Whether attributes sent to this SP should be base64 encoded. The
+  default is
+  <code>
+   FALSE
+  </code>
+  .
+ </dd>
+ <dt>
+  <code>
+   description
+  </code>
+ </dt>
+ <dd>
+  A description of this SP. Will be used by various modules when they
+  need to show a description of the SP to the user.
+ </dd>
+ <dd>
+  This option can be translated into multiple languages in the same
+  way as the
+  <code>
+   name
+  </code>
+  -option.
+ </dd>
+ <dt>
+  <code>
+   name
+  </code>
+ </dt>
+ <dd>
+  The name of this SP. Will be used by various modules when they need
+  to show a name of the SP to the user.
+ </dd>
+ <dd>
+  If this option is unset, the organization name will be used instead (if it is available).
+ </dd>
+ <dd>
+  This option can be translated into multiple languages by specifying
+  the value as an array of language-code to translated name:
+  <pre class="codehilite"><code>    'name' =&gt; [
+        'en' =&gt; 'A service',
+        'no' =&gt; 'En tjeneste',
+    ],
 </code></pre>
-<p>
- <code>
-  OrganizationName
- </code>
- :   The name of the organization responsible for this SPP.
-    This name does not need to be suitable for display to end users.
-</p>
-<p>
- :   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
-</p>
-<pre class="codehilite"><code>      'OrganizationName' =&gt; [
-          'en' =&gt; 'Example organization',
-          'no' =&gt; 'Eksempel organisation',
-      ],
+ </dd>
+ <dt>
+  <code>
+   OrganizationName
+  </code>
+ </dt>
+ <dd>
+  The name of the organization responsible for this SPP.
+  This name does not need to be suitable for display to end users.
+ </dd>
+ <dd>
+  This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
+  <pre class="codehilite"><code>    'OrganizationName' =&gt; [
+        'en' =&gt; 'Example organization',
+        'no' =&gt; 'Eksempel organisation',
+    ],
 </code></pre>
-<p>
- :
- <em>
-  Note
- </em>
- : If you specify this option, you must also specify the
- <code>
-  OrganizationURL
- </code>
- option.
-</p>
-<p>
- <code>
-  OrganizationDisplayName
- </code>
- :   The name of the organization responsible for this IdP.
-    This name must be suitable for display to end users.
-    If this option isn't specified,
- <code>
-  OrganizationName
- </code>
- will be used instead.
-</p>
-<p>
- :   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name.
-</p>
-<p>
- :
- <em>
-  Note
- </em>
- : If you specify this option, you must also specify the
- <code>
-  OrganizationName
- </code>
- option.
-</p>
-<p>
- <code>
-  OrganizationURL
- </code>
- :   A URL the end user can access for more information about the organization.
-</p>
-<p>
- :   This option can be translated into multiple languages by specifying the value as an array of language-code to translated URL.
-</p>
-<p>
- :
- <em>
-  Note
- </em>
- : If you specify this option, you must also specify the
- <code>
-  OrganizationName
- </code>
- option.
-</p>
-<p>
- <code>
-  privacypolicy
- </code>
- :   This is an absolute URL for where an user can find a privacypolicy
-    for this SP. If set, this will be shown on the consent page.
- <code>
-  %SPENTITYID%
- </code>
- in the URL will be replaced with the entity id of
-    this service provider.
-</p>
-<p>
- :   Note that this option also exists in the IdP-hosted metadata. This
-    entry in the SP-remote metadata overrides the option in the
-    IdP-hosted metadata.
-</p>
-<p>
- :
- <em>
-  Note
- </em>
- :
- <strong>
-  deprecated
- </strong>
- Will be removed in a future release; use the MDUI-extension instead
-</p>
-<p>
- <code>
-  userid.attribute
- </code>
- :   The attribute name of an attribute which uniquely identifies
-    the user. This attribute is used if SimpleSAMLphp needs to generate
-    a persistent unique identifier for the user. This option can be set
-    in both the IdP-hosted and the SP-remote metadata. The value in the
-    SP-remote metadata has the highest priority. The default value is
- <code>
-  eduPersonPrincipalName
- </code>
- .
-</p>
+ </dd>
+ <dd>
+  <p>
+   <em>
+    Note
+   </em>
+   : If you specify this option, you must also specify the
+   <code>
+    OrganizationURL
+   </code>
+   option.
+  </p>
+ </dd>
+ <dt>
+  <code>
+   OrganizationDisplayName
+  </code>
+ </dt>
+ <dd>
+  The name of the organization responsible for this IdP.
+  This name must be suitable for display to end users.
+  If this option isn't specified,
+  <code>
+   OrganizationName
+  </code>
+  will be used instead.
+ </dd>
+ <dd>
+  This option can be translated into multiple languages by specifying the value as an array of language-code to translated name.
+ </dd>
+ <dd>
+  <em>
+   Note
+  </em>
+  : If you specify this option, you must also specify the
+  <code>
+   OrganizationName
+  </code>
+  option.
+ </dd>
+ <dt>
+  <code>
+   OrganizationURL
+  </code>
+ </dt>
+ <dd>
+  A URL the end user can access for more information about the organization.
+ </dd>
+ <dd>
+  This option can be translated into multiple languages by specifying the value as an array of language-code to translated URL.
+ </dd>
+ <dd>
+  <em>
+   Note
+  </em>
+  : If you specify this option, you must also specify the
+  <code>
+   OrganizationName
+  </code>
+  option.
+ </dd>
+ <dt>
+  <code>
+   privacypolicy
+  </code>
+ </dt>
+ <dd>
+  This is an absolute URL for where an user can find a privacypolicy
+  for this SP. If set, this will be shown on the consent page.
+  <code>
+   %SPENTITYID%
+  </code>
+  in the URL will be replaced with the entity id of
+  this service provider.
+ </dd>
+ <dd>
+  Note that this option also exists in the IdP-hosted metadata. This
+  entry in the SP-remote metadata overrides the option in the
+  IdP-hosted metadata.
+ </dd>
+ <dd>
+  <em>
+   Note
+  </em>
+  :
+  <strong>
+   deprecated
+  </strong>
+  Will be removed in a future release; use the MDUI-extension instead
+ </dd>
+ <dt>
+  <code>
+   userid.attribute
+  </code>
+ </dt>
+ <dd>
+  The attribute name of an attribute which uniquely identifies
+  the user. This attribute is used if SimpleSAMLphp needs to generate
+  a persistent unique identifier for the user. This option can be set
+  in both the IdP-hosted and the SP-remote metadata. The value in the
+  SP-remote metadata has the highest priority. The default value is
+  <code>
+   eduPersonPrincipalName
+  </code>
+  .
+ </dd>
+</dl>
 <h2 id="saml-20-options">
  SAML 2.0 options
 </h2>
 <p>
  The following SAML 2.0 options are available:
 </p>
-<p>
- <code>
-  AssertionConsumerService
- </code>
- :   The URL of the AssertionConsumerService endpoint for this SP.
-    This option is required - without it you will not be able to send
-    responses back to the SP.
-</p>
-<p>
- :   The value of this option is specified in one of several
- <a href="./simplesamlphp-metadata-endpoints.html">
-  endpoint formats
- </a>
- .
-</p>
-<p>
- <code>
-  attributeencodings
- </code>
- :   What encoding should be used for the different attributes. This is
-    an array which maps attribute names to attribute encodings. There
-    are three different encodings:
-</p>
-<p>
- :   -
- <code>
-  string
- </code>
- : Will include the attribute as a normal string. This is
-        the default.
-</p>
-<p>
- :   -
- <code>
-  base64
- </code>
- : Store the attribute as a base64 encoded string. This
-        is the default when the
- <code>
-  base64attributes
- </code>
- -option is set to
- <code>
-  TRUE
- </code>
- .
-</p>
-<p>
- :   -
- <code>
-  raw
- </code>
- : Store the attribute without any modifications. This
-        makes it possible to include raw XML in the response.
-</p>
-<p>
- <code>
-  attributes.NameFormat
- </code>
- :   What value will be set in the Format field of attribute
-    statements. This parameter can be configured multiple places, and
-    the actual value used is fetched from metadata by the following
-    priority:
-</p>
-<p>
- :   1.  SP Remote Metadata
-</p>
-<pre class="codehilite"><code>  2.  IdP Hosted Metadata
+<dl>
+ <dt>
+  <code>
+   AssertionConsumerService
+  </code>
+ </dt>
+ <dd>
+  The URL of the AssertionConsumerService endpoint for this SP.
+  This option is required - without it you will not be able to send
+  responses back to the SP.
+ </dd>
+ <dd>
+  The value of this option is specified in one of several
+  <a href="./simplesamlphp-metadata-endpoints.html">
+   endpoint formats
+  </a>
+  .
+ </dd>
+ <dt>
+  <code>
+   attributeencodings
+  </code>
+ </dt>
+ <dd>
+  What encoding should be used for the different attributes. This is
+  an array which maps attribute names to attribute encodings. There
+  are three different encodings:
+ </dd>
+ <dd>
+  <ul>
+   <li>
+    <code>
+     string
+    </code>
+    : Will include the attribute as a normal string. This is
+      the default.
+   </li>
+  </ul>
+ </dd>
+ <dd>
+  <ul>
+   <li>
+    <code>
+     base64
+    </code>
+    : Store the attribute as a base64 encoded string. This
+      is the default when the
+    <code>
+     base64attributes
+    </code>
+    -option is set to
+    <code>
+     TRUE
+    </code>
+    .
+   </li>
+  </ul>
+ </dd>
+ <dd>
+  <ul>
+   <li>
+    <code>
+     raw
+    </code>
+    : Store the attribute without any modifications. This
+      makes it possible to include raw XML in the response.
+   </li>
+  </ul>
+ </dd>
+ <dt>
+  <code>
+   attributes.NameFormat
+  </code>
+ </dt>
+ <dd>
+  What value will be set in the Format field of attribute
+  statements. This parameter can be configured multiple places, and
+  the actual value used is fetched from metadata by the following
+  priority:
+ </dd>
+ <dd>
+  <ol>
+   <li>
+    <p>
+     SP Remote Metadata
+    </p>
+    <ol>
+     <li>
+      IdP Hosted Metadata
+     </li>
+    </ol>
+   </li>
+  </ol>
+ </dd>
+ <dd>
+  <p>
+   The default value is:
+   <code>
+    urn:oasis:names:tc:SAML:2.0:attrname-format:basic
+   </code>
+  </p>
+ </dd>
+ <dd>
+  <p>
+   Some examples of values specified in the SAML 2.0 Core
+  Specification:
+  </p>
+ </dd>
+ <dd>
+  <ul>
+   <li>
+    <p>
+     <code>
+      urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified
+     </code>
+    </p>
+    <ul>
+     <li>
+      <p>
+       <code>
+        urn:oasis:names:tc:SAML:2.0:attrname-format:uri
+       </code>
+       (The default
+    in Shibboleth 2.0)
+      </p>
+     </li>
+     <li>
+      <p>
+       <code>
+        urn:oasis:names:tc:SAML:2.0:attrname-format:basic
+       </code>
+       (The
+    default in Sun Access Manager)
+      </p>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </dd>
+ <dd>
+  <p>
+   You can also define your own value.
+  </p>
+ </dd>
+ <dd>
+  <p>
+   Note that this option also exists in the IdP-hosted metadata. This
+  entry in the SP-remote metadata overrides the option in the
+  IdP-hosted metadata.
+  </p>
+ </dd>
+ <dd>
+  <p>
+   (This option was previously named
+   <code>
+    AttributeNameFormat
+   </code>
+   .)
+  </p>
+ </dd>
+ <dt>
+  <code>
+   certData
+  </code>
+ </dt>
+ <dd>
+  The base64 encoded certificate for this SP. This is an alternative to storing the certificate in a file on disk and specifying the filename in the
+  <code>
+   certificate
+  </code>
+  -option.
+ </dd>
+ <dt>
+  <code>
+   certificate
+  </code>
+ </dt>
+ <dd>
+  Name of certificate file for this SP. The certificate is used to
+  verify the signature of messages received from the SP (if
+  <code>
+   redirect.validate
+  </code>
+  is set to
+  <code>
+   TRUE
+  </code>
+  ), and to encrypting assertions
+  (if
+  <code>
+   assertion.encryption
+  </code>
+  is set to TRUE and
+  <code>
+   sharedkey
+  </code>
+  is
+  unset.)
+ </dd>
+ <dt>
+  <code>
+   encryption.blacklisted-algorithms
+  </code>
+ </dt>
+ <dd>
+  Blacklisted encryption algorithms. This is an array containing the algorithm identifiers.
+ </dd>
+ <dd>
+  Note that this option also exists in the IdP-hosted metadata. This
+  entry in the SP-remote metadata overrides the option in the
+  <a href="./simplesamlphp-reference-idp-hosted.html">
+   IdP-hosted metadata
+  </a>
+  .
+ </dd>
+ <dd>
+  The RSA encryption algorithm with PKCS#1 v1.5 padding is blacklisted by default for security reasons. Any assertions
+  encrypted with this algorithm will therefore fail to decrypt. You can override this limitation by defining an empty
+  array in this option (or blacklisting any other algorithms not including that one). However, it is strongly
+  discouraged to do so. For your own safety, please include the string 'http://www.w3.org/2001/04/xmlenc#rsa-1_5' if
+  you make use of this option.
+ </dd>
+ <dt>
+  <code>
+   ForceAuthn
+  </code>
+ </dt>
+ <dd>
+  Set this
+  <code>
+   TRUE
+  </code>
+  to force the user to reauthenticate when the IdP
+  receives authentication requests from this SP. The default is
+  <code>
+   FALSE
+  </code>
+  .
+ </dd>
+ <dt>
+  <code>
+   NameIDFormat
+  </code>
+ </dt>
+ <dd>
+  The
+  <code>
+   NameIDFormat
+  </code>
+  this SP should receive. This may be specified as either a string or an array.
+ </dd>
+ <dd>
+  The three most commonly used values are:
+ </dd>
+ <dd>
+  <ol>
+   <li>
+    <code>
+     urn:oasis:names:tc:SAML:2.0:nameid-format:transient
+    </code>
+    <ol>
+     <li>
+      <code>
+       urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
+      </code>
+     </li>
+     <li>
+      <code>
+       urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
+      </code>
+     </li>
+    </ol>
+   </li>
+  </ol>
+ </dd>
+ <dd>
+  <p>
+   The
+   <code>
+    transient
+   </code>
+   format will generate a new unique ID every time
+  the SP logs in.
+  </p>
+ </dd>
+ <dd>
+  <p>
+   To properly support the
+   <code>
+    persistent
+   </code>
+   and
+   <code>
+    emailAddress
+   </code>
+   formats,
+  you should configure
+   <a href="./saml/nameid.html">
+    NameID generation filters
+   </a>
+   on your IdP.
+  </p>
+ </dd>
+ <dt>
+  <code>
+   nameid.encryption
+  </code>
+ </dt>
+ <dd>
+  Whether NameIDs sent to this SP should be encrypted. The default
+  value is
+  <code>
+   FALSE
+  </code>
+  .
+ </dd>
+ <dd>
+  Note that this option also exists in the IdP-hosted metadata. This
+  entry in the SP-remote metadata overrides the option in the
+  <a href="./simplesamlphp-reference-idp-hosted.html">
+   IdP-hosted metadata
+  </a>
+  .
+ </dd>
+ <dt>
+  <code>
+   saml20.sign.response
+  </code>
+ </dt>
+ <dd>
+  Whether
+  <code>
+   &lt;samlp:Response&gt;
+  </code>
+  messages should be signed.
+  Defaults to
+  <code>
+   TRUE
+  </code>
+  .
+ </dd>
+ <dd>
+  Note that this option also exists in the IdP-hosted metadata.
+  The value in the SP-remote metadata overrides the value in the IdP-hosted metadata.
+ </dd>
+ <dt>
+  <code>
+   saml20.sign.assertion
+  </code>
+ </dt>
+ <dd>
+  Whether
+  <code>
+   &lt;saml:Assertion&gt;
+  </code>
+  elements should be signed.
+  Defaults to
+  <code>
+   TRUE
+  </code>
+  .
+ </dd>
+ <dd>
+  Note that this option also exists in the IdP-hosted metadata.
+  The value in the SP-remote metadata overrides the value in the IdP-hosted metadata.
+ </dd>
+ <dt>
+  <code>
+   signature.algorithm
+  </code>
+ </dt>
+ <dd>
+  The algorithm to use when signing any message sent to this specific service provider. Defaults to RSA-SHA256.
+ </dd>
+ <dd>
+  Note that this option also exists in the IdP-hosted metadata.
+  The value in the SP-remote metadata overrides the value in the IdP-hosted metadata.
+ </dd>
+ <dd>
+  Possible values:
+  <pre class="codehilite"><code>* `http://www.w3.org/2000/09/xmldsig#rsa-sha1`
+   *Note*: the use of SHA1 is **deprecated** and will be disallowed in the future.
+* `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256`
+  The default.
+* `http://www.w3.org/2001/04/xmldsig-more#rsa-sha384`
+* `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512`
 </code></pre>
-<p>
- :   The default value is:
- <code>
-  urn:oasis:names:tc:SAML:2.0:attrname-format:basic
- </code>
-</p>
-<p>
- :   Some examples of values specified in the SAML 2.0 Core
-    Specification:
-</p>
-<p>
- :   -
- <code>
-  urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified
- </code>
-</p>
-<pre class="codehilite"><code>  -   `urn:oasis:names:tc:SAML:2.0:attrname-format:uri` (The default
-      in Shibboleth 2.0)
-
-  -   `urn:oasis:names:tc:SAML:2.0:attrname-format:basic` (The
-      default in Sun Access Manager)
-</code></pre>
-<p>
- :   You can also define your own value.
-</p>
-<p>
- :   Note that this option also exists in the IdP-hosted metadata. This
-    entry in the SP-remote metadata overrides the option in the
-    IdP-hosted metadata.
-</p>
-<p>
- :   (This option was previously named
- <code>
-  AttributeNameFormat
- </code>
- .)
-</p>
-<p>
- <code>
-  certData
- </code>
- :   The base64 encoded certificate for this SP. This is an alternative to storing the certificate in a file on disk and specifying the filename in the
- <code>
-  certificate
- </code>
- -option.
-</p>
-<p>
- <code>
-  certificate
- </code>
- :   Name of certificate file for this SP. The certificate is used to
-    verify the signature of messages received from the SP (if
- <code>
-  redirect.validate
- </code>
- is set to
- <code>
-  TRUE
- </code>
- ), and to encrypting assertions
-    (if
- <code>
-  assertion.encryption
- </code>
- is set to TRUE and
- <code>
-  sharedkey
- </code>
- is
-    unset.)
-</p>
-<p>
- <code>
-  encryption.blacklisted-algorithms
- </code>
- :   Blacklisted encryption algorithms. This is an array containing the algorithm identifiers.
-</p>
-<p>
- :   Note that this option also exists in the IdP-hosted metadata. This
-    entry in the SP-remote metadata overrides the option in the
- <a href="./simplesamlphp-reference-idp-hosted.html">
-  IdP-hosted metadata
- </a>
- .
-</p>
-<p>
- :   The RSA encryption algorithm with PKCS#1 v1.5 padding is blacklisted by default for security reasons. Any assertions
-    encrypted with this algorithm will therefore fail to decrypt. You can override this limitation by defining an empty
-    array in this option (or blacklisting any other algorithms not including that one). However, it is strongly
-    discouraged to do so. For your own safety, please include the string 'http://www.w3.org/2001/04/xmlenc#rsa-1_5' if
-    you make use of this option.
-</p>
-<p>
- <code>
-  ForceAuthn
- </code>
- :   Set this
- <code>
-  TRUE
- </code>
- to force the user to reauthenticate when the IdP
-    receives authentication requests from this SP. The default is
- <code>
-  FALSE
- </code>
- .
-</p>
-<p>
- <code>
-  NameIDFormat
- </code>
- :   The
- <code>
-  NameIDFormat
- </code>
- this SP should receive. This may be specified as either a string or an array.
-</p>
-<p>
- :   The three most commonly used values are:
-</p>
-<p>
- :   1.
- <code>
-  urn:oasis:names:tc:SAML:2.0:nameid-format:transient
- </code>
- 2.
- <code>
-  urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
- </code>
- 3.
- <code>
-  urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
- </code>
-</p>
-<p>
- :   The
- <code>
-  transient
- </code>
- format will generate a new unique ID every time
-    the SP logs in.
-</p>
-<p>
- :   To properly support the
- <code>
-  persistent
- </code>
- and
- <code>
-  emailAddress
- </code>
- formats,
-    you should configure
- <a href="./saml/nameid.html">
-  NameID generation filters
- </a>
- on your IdP.
-</p>
-<p>
- <code>
-  nameid.encryption
- </code>
- :   Whether NameIDs sent to this SP should be encrypted. The default
-    value is
- <code>
-  FALSE
- </code>
- .
-</p>
-<p>
- :   Note that this option also exists in the IdP-hosted metadata. This
-    entry in the SP-remote metadata overrides the option in the
- <a href="./simplesamlphp-reference-idp-hosted.html">
-  IdP-hosted metadata
- </a>
- .
-</p>
-<p>
- <code>
-  saml20.sign.response
- </code>
- :   Whether
- <code>
-  &lt;samlp:Response&gt;
- </code>
- messages should be signed.
-    Defaults to
- <code>
-  TRUE
- </code>
- .
-</p>
-<p>
- :   Note that this option also exists in the IdP-hosted metadata.
-    The value in the SP-remote metadata overrides the value in the IdP-hosted metadata.
-</p>
-<p>
- <code>
-  saml20.sign.assertion
- </code>
- :   Whether
- <code>
-  &lt;saml:Assertion&gt;
- </code>
- elements should be signed.
-    Defaults to
- <code>
-  TRUE
- </code>
- .
-</p>
-<p>
- :   Note that this option also exists in the IdP-hosted metadata.
-    The value in the SP-remote metadata overrides the value in the IdP-hosted metadata.
-</p>
-<p>
- <code>
-  signature.algorithm
- </code>
- :   The algorithm to use when signing any message sent to this specific service provider. Defaults to RSA-SHA256.
-:   Note that this option also exists in the IdP-hosted metadata.
-    The value in the SP-remote metadata overrides the value in the IdP-hosted metadata.
-:   Possible values:
-</p>
-<pre class="codehilite"><code>  * `http://www.w3.org/2000/09/xmldsig#rsa-sha1`
-     *Note*: the use of SHA1 is **deprecated** and will be disallowed in the future.
-  * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256`
-    The default.
-  * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha384`
-  * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512`
-</code></pre>
-<p>
- <code>
-  signature.privatekey
- </code>
- :   Name of private key file for this IdP, in PEM format. The filename is relative to the cert/-directory.
-:   Note that this option also exists in the IdP-hosted metadata. This entry in the SP-remote metadata overrides the option
- <code>
-  privatekey
- </code>
- in the IdP-hosted metadata.
-</p>
-<p>
- <code>
-  signature.privatekey_pass
- </code>
- :   Passphrase for the private key. Leave this option out if the private key is unencrypted.
-:   Note that this option only is used if
- <code>
-  signature.privatekey
- </code>
- is present.
-</p>
-<p>
- <code>
-  signature.certificate
- </code>
- :   Certificate file included by IdP for KeyInfo within the signature for the SP, in PEM format. The filename is relative to the cert/-directory.
-:   If
- <code>
-  signature.privatekey
- </code>
- is present and
- <code>
-  signature.certificate
- </code>
- is left blank, X509Certificate will not be included with the signature.
-</p>
-<p>
- <code>
-  sign.logout
- </code>
- :   Whether to sign logout messages sent to this SP.
-</p>
-<p>
- :   Note that this option also exists in the IdP-hosted metadata.
-    The value in the SP-remote metadata overrides the value in the IdP-hosted metadata.
-</p>
-<p>
- <code>
-  simplesaml.nameidattribute
- </code>
- :   When the value of the
- <code>
-  NameIDFormat
- </code>
- -option is set to either
- <code>
-  email
- </code>
- or
- <code>
-  persistent
- </code>
- , this is the name of the attribute which
-    should be used as the value of the
- <code>
-  NameID
- </code>
- . The attribute must
-    be in the set of attributes exported to the SP (that is, be in
-    the
- <code>
-  attributes
- </code>
- array). For more advanced control over
- <code>
-  NameID
- </code>
- ,
-    including the ability to specify any attribute regardless of
-    the set sent to the SP, see the
- <a href="./saml/nameid.html">
-  NameID processing filters
- </a>
- .
-    Note that the value of the attribute is collected
- <strong>
-  after
- </strong>
- authproc-filters have run.
-</p>
-<p>
- :   Typical values can be
- <code>
-  mail
- </code>
- for when using the
- <code>
-  email
- </code>
- format,
-    and
- <code>
-  eduPersonTargetedID
- </code>
- when using the
- <code>
-  persistent
- </code>
- format.
-</p>
-<p>
- <code>
-  simplesaml.attributes
- </code>
- :   Whether the SP should receive any attributes from the IdP. The
-    default value is
- <code>
-  TRUE
- </code>
- .
-</p>
-<p>
- <code>
-  SingleLogoutService
- </code>
- :   The URL of the SingleLogoutService endpoint for this SP.
-    This option is required if you want to implement single logout for
-    this SP. If the option isn't specified, this SP will not be logged
-    out automatically when a single logout operation is initialized.
-</p>
-<p>
- :   The value of this option is specified in one of several
- <a href="./simplesamlphp-metadata-endpoints.html">
-  endpoint formats
- </a>
- .
-</p>
-<p>
- <code>
-  SingleLogoutServiceResponse
- </code>
- :   The URL logout responses to this SP should be sent. If this option
-    is unspecified, the
- <code>
-  SingleLogoutService
- </code>
- endpoint will be used as
-    the recipient of logout responses.
-</p>
-<p>
- <code>
-  SPNameQualifier
- </code>
- :   SP NameQualifier for this SP. If not set, the IdP will set the
-    SPNameQualifier to be the SP entity ID.
-</p>
-<p>
- <code>
-  validate.authnrequest
- </code>
- :   Whether we require signatures on authentication requests sent from this SP.
-</p>
-<p>
- :   Note that this option also exists in the IdP-hosted metadata.
-    The value in the SP-remote metadata overrides the value in the IdP-hosted metadata.
-</p>
-<p>
- <code>
-  validate.logout
- </code>
- :   Whether we require signatures on logout messages sent from this SP.
-</p>
-<p>
- :   Note that this option also exists in the IdP-hosted metadata.
-    The value in the SP-remote metadata overrides the value in the IdP-hosted metadata.
-</p>
+ </dd>
+ <dt>
+  <code>
+   signature.privatekey
+  </code>
+ </dt>
+ <dd>
+  Name of private key file for this IdP, in PEM format. The filename is relative to the cert/-directory.
+ </dd>
+ <dd>
+  Note that this option also exists in the IdP-hosted metadata. This entry in the SP-remote metadata overrides the option
+  <code>
+   privatekey
+  </code>
+  in the IdP-hosted metadata.
+ </dd>
+ <dt>
+  <code>
+   signature.privatekey_pass
+  </code>
+ </dt>
+ <dd>
+  Passphrase for the private key. Leave this option out if the private key is unencrypted.
+ </dd>
+ <dd>
+  Note that this option only is used if
+  <code>
+   signature.privatekey
+  </code>
+  is present.
+ </dd>
+ <dt>
+  <code>
+   signature.certificate
+  </code>
+ </dt>
+ <dd>
+  Certificate file included by IdP for KeyInfo within the signature for the SP, in PEM format. The filename is relative to the cert/-directory.
+ </dd>
+ <dd>
+  If
+  <code>
+   signature.privatekey
+  </code>
+  is present and
+  <code>
+   signature.certificate
+  </code>
+  is left blank, X509Certificate will not be included with the signature.
+ </dd>
+ <dt>
+  <code>
+   sign.logout
+  </code>
+ </dt>
+ <dd>
+  Whether to sign logout messages sent to this SP.
+ </dd>
+ <dd>
+  Note that this option also exists in the IdP-hosted metadata.
+  The value in the SP-remote metadata overrides the value in the IdP-hosted metadata.
+ </dd>
+ <dt>
+  <code>
+   simplesaml.nameidattribute
+  </code>
+ </dt>
+ <dd>
+  When the value of the
+  <code>
+   NameIDFormat
+  </code>
+  -option is set to either
+  <code>
+   email
+  </code>
+  or
+  <code>
+   persistent
+  </code>
+  , this is the name of the attribute which
+  should be used as the value of the
+  <code>
+   NameID
+  </code>
+  . The attribute must
+  be in the set of attributes exported to the SP (that is, be in
+  the
+  <code>
+   attributes
+  </code>
+  array). For more advanced control over
+  <code>
+   NameID
+  </code>
+  ,
+  including the ability to specify any attribute regardless of
+  the set sent to the SP, see the
+  <a href="./saml/nameid.html">
+   NameID processing filters
+  </a>
+  .
+  Note that the value of the attribute is collected
+  <strong>
+   after
+  </strong>
+  authproc-filters have run.
+ </dd>
+ <dd>
+  Typical values can be
+  <code>
+   mail
+  </code>
+  for when using the
+  <code>
+   email
+  </code>
+  format,
+  and
+  <code>
+   eduPersonTargetedID
+  </code>
+  when using the
+  <code>
+   persistent
+  </code>
+  format.
+ </dd>
+ <dt>
+  <code>
+   simplesaml.attributes
+  </code>
+ </dt>
+ <dd>
+  Whether the SP should receive any attributes from the IdP. The
+  default value is
+  <code>
+   TRUE
+  </code>
+  .
+ </dd>
+ <dt>
+  <code>
+   SingleLogoutService
+  </code>
+ </dt>
+ <dd>
+  The URL of the SingleLogoutService endpoint for this SP.
+  This option is required if you want to implement single logout for
+  this SP. If the option isn't specified, this SP will not be logged
+  out automatically when a single logout operation is initialized.
+ </dd>
+ <dd>
+  The value of this option is specified in one of several
+  <a href="./simplesamlphp-metadata-endpoints.html">
+   endpoint formats
+  </a>
+  .
+ </dd>
+ <dt>
+  <code>
+   SingleLogoutServiceResponse
+  </code>
+ </dt>
+ <dd>
+  The URL logout responses to this SP should be sent. If this option
+  is unspecified, the
+  <code>
+   SingleLogoutService
+  </code>
+  endpoint will be used as
+  the recipient of logout responses.
+ </dd>
+ <dt>
+  <code>
+   SPNameQualifier
+  </code>
+ </dt>
+ <dd>
+  SP NameQualifier for this SP. If not set, the IdP will set the
+  SPNameQualifier to be the SP entity ID.
+ </dd>
+ <dt>
+  <code>
+   validate.authnrequest
+  </code>
+ </dt>
+ <dd>
+  Whether we require signatures on authentication requests sent from this SP.
+ </dd>
+ <dd>
+  Note that this option also exists in the IdP-hosted metadata.
+  The value in the SP-remote metadata overrides the value in the IdP-hosted metadata.
+ </dd>
+ <dt>
+  <code>
+   validate.logout
+  </code>
+ </dt>
+ <dd>
+  Whether we require signatures on logout messages sent from this SP.
+ </dd>
+ <dd>
+  Note that this option also exists in the IdP-hosted metadata.
+  The value in the SP-remote metadata overrides the value in the IdP-hosted metadata.
+ </dd>
+</dl>
 <h3 id="encrypting-assertions">
  Encrypting assertions
 </h3>
@@ -812,30 +948,36 @@ share a key. The other mode is the use of public key encryption. In
 that mode, the public key of the SP is extracted from the certificate
 of the SP.
 </p>
-<p>
- <code>
-  assertion.encryption
- </code>
- :   Whether assertions sent to this SP should be encrypted. The default
-    value is
- <code>
-  FALSE
- </code>
- .
-</p>
-<p>
- :   Note that this option also exists in the IdP-hosted metadata. This
-    entry in the SP-remote metadata overrides the option in the
-    IdP-hosted metadata.
-</p>
-<p>
- <code>
-  sharedkey
- </code>
- :   Symmetric key which should be used for encryption. This should be a
-    128-bit key. If this option is not specified, public key encryption
-    will be used instead.
-</p>
+<dl>
+ <dt>
+  <code>
+   assertion.encryption
+  </code>
+ </dt>
+ <dd>
+  Whether assertions sent to this SP should be encrypted. The default
+  value is
+  <code>
+   FALSE
+  </code>
+  .
+ </dd>
+ <dd>
+  Note that this option also exists in the IdP-hosted metadata. This
+  entry in the SP-remote metadata overrides the option in the
+  IdP-hosted metadata.
+ </dd>
+ <dt>
+  <code>
+   sharedkey
+  </code>
+ </dt>
+ <dd>
+  Symmetric key which should be used for encryption. This should be a
+  128-bit key. If this option is not specified, public key encryption
+  will be used instead.
+ </dd>
+</dl>
 <h3 id="fields-for-signing-and-validating-messages">
  Fields for signing and validating messages
 </h3>
@@ -860,27 +1002,33 @@ can be enabled by the
  </code>
  .
 </p>
-<p>
- <code>
-  redirect.sign
- </code>
- :   Whether logout requests and logout responses sent to this SP should
-    be signed. The default is
- <code>
-  FALSE
- </code>
- .
-</p>
-<p>
- <code>
-  redirect.validate
- </code>
- :   Whether authentication requests, logout requests and logout
-    responses received from this SP should be validated. The default is
- <code>
-  FALSE
- </code>
-</p>
+<dl>
+ <dt>
+  <code>
+   redirect.sign
+  </code>
+ </dt>
+ <dd>
+  Whether logout requests and logout responses sent to this SP should
+  be signed. The default is
+  <code>
+   FALSE
+  </code>
+  .
+ </dd>
+ <dt>
+  <code>
+   redirect.validate
+  </code>
+ </dt>
+ <dd>
+  Whether authentication requests, logout requests and logout
+  responses received from this SP should be validated. The default is
+  <code>
+   FALSE
+  </code>
+ </dd>
+</dl>
 <p>
  <strong>
   Example: Configuration for validating messages
@@ -896,18 +1044,22 @@ can be enabled by the
  Only relevant if you are a proxy/bridge and wants to limit the idps this
 sp can use.
 </p>
-<p>
- <code>
-  IDPList
- </code>
- : The list of scoped idps ie. the list of entityids for idps that are
+<dl>
+ <dt>
+  <code>
+   IDPList
+  </code>
+ </dt>
+ <dd>
+  The list of scoped idps ie. the list of entityids for idps that are
 relevant for this sp. The final list is the concatenation of the list
 given as parameter to InitSSO (at the sp), the list configured at the
 sp and the list configured at the ipd (here) for this sp. The intersection
 of the final list and the idps configured at the at this idp will be
 presented to the user at the discovery service if neccessary. If only one
 idp is in the intersection the discoveryservice will go directly to the idp.
-</p>
+ </dd>
+</dl>
 <p>
  <strong>
   Example: Configuration for scoping
@@ -921,94 +1073,102 @@ idp is in the intersection the discoveryservice will go directly to the idp.
 <p>
  The following options for Shibboleth 1.3 SP's are avaiblable:
 </p>
-<p>
- <code>
-  audience
- </code>
- :   The value which should be given in the
- <code>
-  &lt;Audience&gt;
- </code>
- -element in the
- <code>
-  &lt;AudienceRestrictionCondition&gt;
- </code>
- -element in the response. The
-    default value is the entity ID of the SP.
-</p>
-<p>
- <code>
-  AssertionConsumerService
- </code>
- :   The URL of the AssertionConsumerService endpoint for this SP.
-    This endpoint must accept the SAML responses encoded with the
- <code>
-  urn:oasis:names:tc:SAML:1.0:profiles:browser-post
- </code>
- encoding.
-    This option is required - without it you will not be able to send
-    responses back to the SP.
-</p>
-<p>
- :   The value of this option is specified in one of several
- <a href="./simplesamlphp-metadata-endpoints.html">
-  endpoint formats
- </a>
- .
-</p>
-<p>
- <code>
-  NameQualifier
- </code>
- :   What the value of the
- <code>
-  NameQualifier
- </code>
- -attribute of the
- <code>
-  &lt;NameIdentifier&gt;
- </code>
- -element should be. The default value is the
-    entity ID of the SP.
-</p>
-<p>
- <code>
-  scopedattributes
- </code>
- :   Array with names of attributes which should be scoped. Scoped
-    attributes will receive a
- <code>
-  Scope
- </code>
- -attribute on the
- <code>
-  AttributeValue
- </code>
- -element. The value of the Scope-attribute will
-    be taken from the attribute value:
-</p>
-<p>
- :
- <code>
-  &lt;AttributeValue&gt;someuser@example.org&lt;/AttributeValue&gt;
- </code>
-</p>
-<p>
- :   will be transformed into
-</p>
-<p>
- :
- <code>
-  &lt;AttributeValue Scope="example.org"&gt;someuser&lt;/AttributeValue&gt;
- </code>
-</p>
-<p>
- :   By default, no attributes are scoped. This option overrides the
-    option with the same name in the
- <code>
-  shib13-idp-hosted.php
- </code>
- metadata
-    file.
-</p></body>
+<dl>
+ <dt>
+  <code>
+   audience
+  </code>
+ </dt>
+ <dd>
+  The value which should be given in the
+  <code>
+   &lt;Audience&gt;
+  </code>
+  -element in the
+  <code>
+   &lt;AudienceRestrictionCondition&gt;
+  </code>
+  -element in the response. The
+  default value is the entity ID of the SP.
+ </dd>
+ <dt>
+  <code>
+   AssertionConsumerService
+  </code>
+ </dt>
+ <dd>
+  The URL of the AssertionConsumerService endpoint for this SP.
+  This endpoint must accept the SAML responses encoded with the
+  <code>
+   urn:oasis:names:tc:SAML:1.0:profiles:browser-post
+  </code>
+  encoding.
+  This option is required - without it you will not be able to send
+  responses back to the SP.
+ </dd>
+ <dd>
+  The value of this option is specified in one of several
+  <a href="./simplesamlphp-metadata-endpoints.html">
+   endpoint formats
+  </a>
+  .
+ </dd>
+ <dt>
+  <code>
+   NameQualifier
+  </code>
+ </dt>
+ <dd>
+  What the value of the
+  <code>
+   NameQualifier
+  </code>
+  -attribute of the
+  <code>
+   &lt;NameIdentifier&gt;
+  </code>
+  -element should be. The default value is the
+  entity ID of the SP.
+ </dd>
+ <dt>
+  <code>
+   scopedattributes
+  </code>
+ </dt>
+ <dd>
+  Array with names of attributes which should be scoped. Scoped
+  attributes will receive a
+  <code>
+   Scope
+  </code>
+  -attribute on the
+  <code>
+   AttributeValue
+  </code>
+  -element. The value of the Scope-attribute will
+  be taken from the attribute value:
+ </dd>
+ <dd>
+  <code>
+   &lt;AttributeValue&gt;someuser@example.org&lt;/AttributeValue&gt;
+  </code>
+ </dd>
+ <dd>
+  will be transformed into
+ </dd>
+ <dd>
+  <code>
+   &lt;AttributeValue Scope="example.org"&gt;someuser&lt;/AttributeValue&gt;
+  </code>
+ </dd>
+ <dd>
+  By default, no attributes are scoped. This option overrides the
+  option with the same name in the
+  <code>
+   shib13-idp-hosted.php
+  </code>
+  metadata
+  file.
+ </dd>
+</dl></body>
 </html>

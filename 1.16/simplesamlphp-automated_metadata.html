@@ -231,104 +231,144 @@ instructions to configure metarefresh, be sure to use them from the authoritativ
 <p>
  The metarefresh module supports the following configuration options:
 </p>
-<p>
- <code>
-  cron
- </code>
- :   Which cron tags will refresh this metadata set.
-</p>
-<p>
- <code>
-  sources
- </code>
- :   An array of metadata sources that will be included in this
-    metadata set. The contents of this option will be described later in more detail.
-</p>
-<p>
- <code>
-  expireAfter
- </code>
- :   The maximum number of seconds a metadata entry will be valid.
-</p>
-<p>
- <code>
-  outputDir
- </code>
- :   The directory where the generated metadata will be stored. The path
-    is relative to the SimpleSAMLphp base directory.
-</p>
-<p>
- <code>
-  outputFormat
- </code>
- :   The format of the generated metadata files. This must match the
-    metadata source added in
- <code>
-  config.php
- </code>
- .
-</p>
-<p>
- <code>
-  types
- </code>
- : The sets of entities to load. An array containing strings identifying the different types of entities that will be
+<dl>
+ <dt>
+  <code>
+   cron
+  </code>
+ </dt>
+ <dd>
+  Which cron tags will refresh this metadata set.
+ </dd>
+ <dt>
+  <code>
+   sources
+  </code>
+ </dt>
+ <dd>
+  An array of metadata sources that will be included in this
+  metadata set. The contents of this option will be described later in more detail.
+ </dd>
+ <dt>
+  <code>
+   expireAfter
+  </code>
+ </dt>
+ <dd>
+  The maximum number of seconds a metadata entry will be valid.
+ </dd>
+ <dt>
+  <code>
+   outputDir
+  </code>
+ </dt>
+ <dd>
+  The directory where the generated metadata will be stored. The path
+  is relative to the SimpleSAMLphp base directory.
+ </dd>
+ <dt>
+  <code>
+   outputFormat
+  </code>
+ </dt>
+ <dd>
+  The format of the generated metadata files. This must match the
+  metadata source added in
+  <code>
+   config.php
+  </code>
+  .
+ </dd>
+ <dt>
+  <code>
+   types
+  </code>
+ </dt>
+ <dd>
+  <p>
+   The sets of entities to load. An array containing strings identifying the different types of entities that will be
   loaded. Valid types are:
-</p>
-<pre class="codehilite"><code>* saml20-idp-remote
-* saml20-sp-remote
-* shib13-idp-remote
-* shib13-sp-remote
-* attributeauthority-remote
-
-All entity types will be loaded by default.
-</code></pre>
+  </p>
+  <ul>
+   <li>
+    saml20-idp-remote
+   </li>
+   <li>
+    saml20-sp-remote
+   </li>
+   <li>
+    shib13-idp-remote
+   </li>
+   <li>
+    shib13-sp-remote
+   </li>
+   <li>
+    attributeauthority-remote
+   </li>
+  </ul>
+  <p>
+   All entity types will be loaded by default.
+  </p>
+ </dd>
+</dl>
 <p>
  Each metadata source has the following options:
 </p>
-<p>
- <code>
-  src
- </code>
- :   The source URL where the metadata will be fetched from.
-</p>
-<p>
- <code>
-  certificates
- </code>
- :   An array of certificate files, the filename is relative to the
- <code>
-  cert/
- </code>
- -directory,
-    that will be used to verify the signature of the metadata. The public key will
-    be extracted from the certificate and everything else will be ignored. So it is
-    possible to use a self signed certificate that has expired. Add more than one
-    certificate to be able to handle key rollover. This takes precedence over
-    validateFingerprint.
-</p>
-<p>
- <code>
-  validateFingerprint
- </code>
- :   The fingerprint of the certificate used to sign the metadata. You
-    don't need this option if you don't want to validate the signature
-    on the metadata.
-</p>
-<p>
- <code>
-  template
- </code>
- :   This is an array which will be combined with the metadata fetched to
-    generate the final metadata array.
-</p>
-<p>
- <code>
-  types
- </code>
- : Same as the option with the same name at the metadata set level. This option has precedence when both are specified,
+<dl>
+ <dt>
+  <code>
+   src
+  </code>
+ </dt>
+ <dd>
+  The source URL where the metadata will be fetched from.
+ </dd>
+ <dt>
+  <code>
+   certificates
+  </code>
+ </dt>
+ <dd>
+  An array of certificate files, the filename is relative to the
+  <code>
+   cert/
+  </code>
+  -directory,
+  that will be used to verify the signature of the metadata. The public key will
+  be extracted from the certificate and everything else will be ignored. So it is
+  possible to use a self signed certificate that has expired. Add more than one
+  certificate to be able to handle key rollover. This takes precedence over
+  validateFingerprint.
+ </dd>
+ <dt>
+  <code>
+   validateFingerprint
+  </code>
+ </dt>
+ <dd>
+  The fingerprint of the certificate used to sign the metadata. You
+  don't need this option if you don't want to validate the signature
+  on the metadata.
+ </dd>
+ <dt>
+  <code>
+   template
+  </code>
+ </dt>
+ <dd>
+  This is an array which will be combined with the metadata fetched to
+  generate the final metadata array.
+ </dd>
+ <dt>
+  <code>
+   types
+  </code>
+ </dt>
+ <dd>
+  Same as the option with the same name at the metadata set level. This option has precedence when both are specified,
   allowing a more fine grained configuration for every metadata source.
-</p>
+ </dd>
+</dl>
 <p>
  After you have configured the metadata sources, you need to give the
 web-server write access to the output directories. Following the previous example:

@@ -98,40 +98,50 @@
 <h2 id="options">
  Options
 </h2>
-<p>
- <code>
-  dsn
- </code>
- :   The DSN which should be used to connect to the database server.
-    Check the various database drivers in the
- <a href="http://php.net/manual/en/pdo.drivers.php">
-  PHP documentation
- </a>
- for a description of the various DSN formats.
-</p>
-<p>
- <code>
-  username
- </code>
- :   The username which should be used when connecting to the database server.
-</p>
-<p>
- <code>
-  password
- </code>
- :   The password which should be used when connecting to the database server.
-</p>
-<p>
- <code>
-  query
- </code>
- :   The SQL query which should be used to retrieve the user.
-    The parameters :username and :password are available.
-    If the username/password is incorrect, the query should return no rows.
-    The name of the columns in resultset will be used as attribute names.
-    If the query returns multiple rows, they will be merged into the attributes.
-    Duplicate values and NULL values will be removed.
-</p>
+<dl>
+ <dt>
+  <code>
+   dsn
+  </code>
+ </dt>
+ <dd>
+  The DSN which should be used to connect to the database server.
+  Check the various database drivers in the
+  <a href="http://php.net/manual/en/pdo.drivers.php">
+   PHP documentation
+  </a>
+  for a description of the various DSN formats.
+ </dd>
+ <dt>
+  <code>
+   username
+  </code>
+ </dt>
+ <dd>
+  The username which should be used when connecting to the database server.
+ </dd>
+ <dt>
+  <code>
+   password
+  </code>
+ </dt>
+ <dd>
+  The password which should be used when connecting to the database server.
+ </dd>
+ <dt>
+  <code>
+   query
+  </code>
+ </dt>
+ <dd>
+  The SQL query which should be used to retrieve the user.
+  The parameters :username and :password are available.
+  If the username/password is incorrect, the query should return no rows.
+  The name of the columns in resultset will be used as attribute names.
+  If the query returns multiple rows, they will be merged into the attributes.
+  Duplicate values and NULL values will be removed.
+ </dd>
+</dl>
 <h2 id="examples">
  Examples
 </h2>

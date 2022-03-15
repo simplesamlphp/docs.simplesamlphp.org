@@ -192,43 +192,50 @@ If you want to do it manually, you can access the following URL:
 <p>
  The parameters are as follows:
 </p>
-<p>
- <code>
-  providerID
- </code>
- :   The entityID of the SP.
-    This parameter is required.
-</p>
-<p>
- <code>
-  shire
- </code>
- :   The AssertionConsumerService endpoint of the SP.
-    This parameter is required.
-</p>
-<p>
- <code>
-  target
- </code>
- :   The target parameter the SP should receive with the authentication response.
-    This is often the page the user should be sent to after authentication.
-    This parameter is optional for the IdP, but must be specified if the SP you are targeting is running SimpleSAMLphp.
-</p>
-<p>
- :
- <em>
-  Note
- </em>
- : This parameter must be sent as
- <code>
-  target
- </code>
- (with lowercase letters) when starting the authentication, while it is sent as
- <code>
-  TARGET
- </code>
- (with uppercase letters) in the authentication response.
-</p>
+<dl>
+ <dt>
+  <code>
+   providerID
+  </code>
+ </dt>
+ <dd>
+  The entityID of the SP.
+  This parameter is required.
+ </dd>
+ <dt>
+  <code>
+   shire
+  </code>
+ </dt>
+ <dd>
+  The AssertionConsumerService endpoint of the SP.
+  This parameter is required.
+ </dd>
+ <dt>
+  <code>
+   target
+  </code>
+ </dt>
+ <dd>
+  The target parameter the SP should receive with the authentication response.
+  This is often the page the user should be sent to after authentication.
+  This parameter is optional for the IdP, but must be specified if the SP you are targeting is running SimpleSAMLphp.
+ </dd>
+ <dd>
+  <em>
+   Note
+  </em>
+  : This parameter must be sent as
+  <code>
+   target
+  </code>
+  (with lowercase letters) when starting the authentication, while it is sent as
+  <code>
+   TARGET
+  </code>
+  (with uppercase letters) in the authentication response.
+ </dd>
+</dl>
 <h2 id="idp-initiated-logout">
  IdP-initiated logout
 </h2>

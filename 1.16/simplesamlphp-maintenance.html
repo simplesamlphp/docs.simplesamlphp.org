@@ -241,53 +241,63 @@ settings by leaving these options unset or setting them to
 <p>
  Each server is an array of parameters for the server. The following options are available:
 </p>
-<p>
- <code>
-  hostname
- </code>
- :   Host name or ip address where the memcache server runs, or specify other transports like
- <em>
-  unix:///path/ssp.sock
- </em>
- to
-    use UNIX domain sockets. In that case, port will be ignored and forced to
- <em>
-  0
- </em>
- .
-</p>
-<pre class="codehilite"><code>  This is the only required option.
+<dl>
+ <dt>
+  <code>
+   hostname
+  </code>
+ </dt>
+ <dd>
+  Host name or ip address where the memcache server runs, or specify other transports like
+  <em>
+   unix:///path/ssp.sock
+  </em>
+  to
+  use UNIX domain sockets. In that case, port will be ignored and forced to
+  <em>
+   0
+  </em>
+  .
+  <pre class="codehilite"><code>This is the only required option.
 </code></pre>
-<p>
- <code>
-  port
- </code>
- :   Port number of the memcache server. If not set, the
- <code>
-  memcache.default_port
- </code>
- ini setting is used. This is 11211 by
-    default.
-</p>
-<pre class="codehilite"><code>  The port will be forced to *0* when a UNIX domain socket is specified in *hostname*.
+ </dd>
+ <dt>
+  <code>
+   port
+  </code>
+ </dt>
+ <dd>
+  Port number of the memcache server. If not set, the
+  <code>
+   memcache.default_port
+  </code>
+  ini setting is used. This is 11211 by
+  default.
+  <pre class="codehilite"><code>The port will be forced to *0* when a UNIX domain socket is specified in *hostname*.
 </code></pre>
-<p>
- <code>
-  weight
- </code>
- :   Weight of this server in this server group.
- <a href="http://php.net/manual/en/function.Memcache-addServer.php">
-  http://php.net/manual/en/function.Memcache-addServer.php
- </a>
- has more information about the weight option.
-</p>
-<p>
- <code>
-  timeout
- </code>
- :   Timeout for this server. By default, the timeout is 3
-    seconds.
-</p>
+ </dd>
+ <dt>
+  <code>
+   weight
+  </code>
+ </dt>
+ <dd>
+  Weight of this server in this server group.
+  <a href="http://php.net/manual/en/function.Memcache-addServer.php">
+   http://php.net/manual/en/function.Memcache-addServer.php
+  </a>
+  has more information about the weight option.
+ </dd>
+ <dt>
+  <code>
+   timeout
+  </code>
+ </dt>
+ <dd>
+  Timeout for this server. By default, the timeout is 3
+  seconds.
+ </dd>
+</dl>
 <p>
  Here are two examples of configuration of memcache session handling:
 </p>

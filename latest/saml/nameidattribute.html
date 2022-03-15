@@ -98,39 +98,45 @@
 <h2 id="parameters">
  Parameters
 </h2>
-<p>
- <code>
-  attribute
- </code>
- :   The name of the attribute we should create.
-    The default is
- <code>
-  nameid
- </code>
- .
-</p>
-<p>
- <code>
-  format
- </code>
- :   The format string for the attribute.
-    The default is
- <code>
-  %I!%S!%V
- </code>
- .
-</p>
-<p>
- :   The format string accepts the following replacements:
-</p>
-<pre class="codehilite"><code>  * `%I`: The IdP that issued the NameID.
-          This will be the `NameQualifier` element of the NameID if it is present, or the entity ID of the IdP we received the response from if not.
-  * `%S`: The SP the NameID was issued to.
-          This will be the `SPNameQualifier` element of the NameID if it is present, or the entity ID of this SP otherwise.
-  * `%V`: The value of the NameID.
-  * `%F`: The format of the NameID.
-  * `%%`: Will be replaced with a single `%`.
+<dl>
+ <dt>
+  <code>
+   attribute
+  </code>
+ </dt>
+ <dd>
+  The name of the attribute we should create.
+  The default is
+  <code>
+   nameid
+  </code>
+  .
+ </dd>
+ <dt>
+  <code>
+   format
+  </code>
+ </dt>
+ <dd>
+  The format string for the attribute.
+  The default is
+  <code>
+   %I!%S!%V
+  </code>
+  .
+ </dd>
+ <dd>
+  The format string accepts the following replacements:
+  <pre class="codehilite"><code>* `%I`: The IdP that issued the NameID.
+        This will be the `NameQualifier` element of the NameID if it is present, or the entity ID of the IdP we received the response from if not.
+* `%S`: The SP the NameID was issued to.
+        This will be the `SPNameQualifier` element of the NameID if it is present, or the entity ID of this SP otherwise.
+* `%V`: The value of the NameID.
+* `%F`: The format of the NameID.
+* `%%`: Will be replaced with a single `%`.
 </code></pre>
+ </dd>
+</dl>
 <h2 id="examples">
  Examples
 </h2>
