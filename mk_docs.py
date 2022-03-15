@@ -8,7 +8,7 @@ import json
 from bs4 import BeautifulSoup
 
 # Set up the markdown converter
-md_ext = ['toc']
+md_ext = ['toc', 'fenced_code', 'codehilite']
 md_ext_confs = {
 }
 pymd = markdown.Markdown(extensions=md_ext,extension_configs=md_ext_confs, tab_length=2)
