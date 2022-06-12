@@ -111,13 +111,13 @@ stores it in the environment variable SSL_CLIENT_CERT. This can be achieved
 with such a configuration:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  SSLEngine on
-  SSLCertificateFile /etc/openssl/certs/server.crt
-  SSLCertificateKeyFile /etc/openssl/private/server.key
-  SSLCACertificateFile /etc/openssl/certs/ca.crt
-  SSLVerifyClient require
-  SSLVerifyDepth 2
-  SSLOptions +ExportCertData
+ <pre><span></span><code><span class="w">    </span><span class="nb">SSLEngine</span><span class="w"> </span><span class="k">on</span><span class="w"></span>
+<span class="w">    </span><span class="nb">SSLCertificateFile</span><span class="w"> </span><span class="sx">/etc/openssl/certs/server.crt</span><span class="w"></span>
+<span class="w">    </span><span class="nb">SSLCertificateKeyFile</span><span class="w"> </span><span class="sx">/etc/openssl/private/server.key</span><span class="w"></span>
+<span class="w">    </span><span class="nb">SSLCACertificateFile</span><span class="w"> </span><span class="sx">/etc/openssl/certs/ca.crt</span><span class="w"></span>
+<span class="w">    </span><span class="nb">SSLVerifyClient</span><span class="w"> </span>require<span class="w"></span>
+<span class="w">    </span><span class="nb">SSLVerifyDepth</span><span class="w"> </span><span class="m">2</span><span class="w"></span>
+<span class="w">    </span><span class="nb">SSLOptions</span><span class="w"> </span>+ExportCertData<span class="w"></span>
 </code></pre>
 </div>
 <p>
@@ -129,8 +129,8 @@ this later).
  If your server or your client (or both!) have TLS renegotiation disabled
 as a workaround for CVE-2009-3555, then the configuration directive above
 must not appear in a &lt;Directory&gt;, &lt;Location&gt;, or in a name-based
-&lt;VirtualHost&gt;. You can only use them server-wide, or in &lt;VirtualHost&gt;s
-with different IP address/port combinations.
+&lt;VirtualHost&gt;. You can only use them server-wide, or in
+&lt;VirtualHost&gt;s with different IP address/port combinations.
 </p>
 <h2 id="setting-up-the-authx509-module">
  Setting up the authX509 module
@@ -151,10 +151,10 @@ with different IP address/port combinations.
  to true:
 </p>
 <div class="codehilite">
- <pre><span></span><code>    'module.enable' =&gt; [
-         'authX509' =&gt; true,
-         …
-    ],
+ <pre><span></span><code><span class="x">    'module.enable' =&gt; [</span>
+<span class="x">         'authX509' =&gt; true,</span>
+<span class="x">         …</span>
+<span class="x">    ],</span>
 </code></pre>
 </div>
 <p>
@@ -162,17 +162,17 @@ with different IP address/port combinations.
 example authsources.php entry:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="s1">'x509'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'authX509:X509userCert'</span><span class="o">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'hostname'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'ldaps://ldap.example.net'</span><span class="o">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'enable_tls'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">false</span><span class="o">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'attributes'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span><span class="s1">'cn'</span><span class="o">,</span><span class="w"> </span><span class="s1">'uid'</span><span class="o">,</span><span class="w"> </span><span class="s1">'mail'</span><span class="o">,</span><span class="w"> </span><span class="s1">'ou'</span><span class="o">,</span><span class="w"> </span><span class="s1">'sn'</span><span class="o">),</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'search.enable'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">true</span><span class="o">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'search.attributes'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span><span class="s1">'uid'</span><span class="o">,</span><span class="w"> </span><span class="s1">'mail'</span><span class="o">),</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'search.base'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'dc=example,dc=net'</span><span class="o">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'authX509:x509attributes'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span><span class="s1">'UID'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'uid'</span><span class="o">),</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'authX509:ldapusercert'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span><span class="s1">'userCertificate;binary'</span><span class="o">),</span><span class="w"></span>
-<span class="w">  </span><span class="o">),</span><span class="w"></span>
+ <pre><span></span><code><span class="x">    'x509' =&gt; [</span>
+<span class="x">        'authX509:X509userCert',</span>
+<span class="x">        'hostname' =&gt; 'ldaps://ldap.example.net',</span>
+<span class="x">        'enable_tls' =&gt; false,</span>
+<span class="x">        'attributes' =&gt; ['cn', 'uid', 'mail', 'ou', 'sn'],</span>
+<span class="x">        'search.enable' =&gt; true,</span>
+<span class="x">        'search.attributes' =&gt; ['uid', 'mail'],</span>
+<span class="x">        'search.base' =&gt; 'dc=example,dc=net',</span>
+<span class="x">        'authX509:x509attributes' =&gt; ['UID' =&gt; 'uid'],</span>
+<span class="x">        'authX509:ldapusercert' =&gt; ['userCertificate;binary'],</span>
+<span class="x">    ],</span>
 </code></pre>
 </div>
 <p>
@@ -202,56 +202,58 @@ two options:
 how to convert from PEM to DER:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  openssl x509 -in cert.pem -inform PEM -outform DER -out cert.der
+ <pre><span></span><code>    openssl x509 -in cert.pem -inform PEM -outform DER -out cert.der
 </code></pre>
 </div>
 <p>
  Here is some LDIF to upload the certificate in the directory:
 </p>
-<div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="nt">dn</span><span class="o">:</span><span class="w"> </span><span class="nt">uid</span><span class="o">=</span><span class="nt">jdoe</span><span class="o">,</span><span class="nt">dc</span><span class="o">=</span><span class="nt">example</span><span class="o">,</span><span class="nt">dc</span><span class="o">=</span><span class="nt">net</span><span class="w"></span>
-<span class="w">  </span><span class="nt">changetype</span><span class="o">:</span><span class="w"> </span><span class="nt">modify</span><span class="w"></span>
-<span class="w">  </span><span class="nt">add</span><span class="o">:</span><span class="w"> </span><span class="nt">userCertificate</span><span class="o">;</span><span class="nt">binary</span><span class="w"></span>
-<span class="w">  </span><span class="nt">userCertificate</span><span class="o">;</span><span class="nt">binary</span><span class="o">:&lt;</span><span class="w"> </span><span class="nt">file</span><span class="o">:///</span><span class="nt">path</span><span class="o">/</span><span class="nt">to</span><span class="o">/</span><span class="nt">cert</span><span class="p">.</span><span class="nc">der</span><span class="w"></span>
-</code></pre>
-</div>
-<h1 id="supporting-both-certificate-and-login-authentication">
+<blockquote>
+ <p>
+  dn: uid=jdoe,dc=example,dc=net
+changetype: modify
+add: userCertificate;binary
+userCertificate;binary:&lt; file:///path/to/cert.der
+ </p>
+</blockquote>
+<h2 id="supporting-both-certificate-and-login-authentication">
  Supporting both certificate and login authentication
-</h1>
+</h2>
 <p>
  In your Apache configuration, set SSLVerifyClient to optional. Then you
 can hack your metadata/saml20-idp-hosted.php file that way:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  $auth_source = empty($_SERVER['SSL_CLIENT_CERT']) ? 'ldap' : 'x509';
-  $metadata = array(
-      '__DYNAMIC:1__' =&gt; array(
-          'host'          =&gt;      '__DEFAULT__',
-          'privatekey'    =&gt;      'server.key',
-          'certificate'   =&gt;      'server.crt',
-          'auth'          =&gt;       $auth_source,
-          'authority'     =&gt;      'login',
-          'userid.attribute' =&gt;   'uid',
-          'logouttype'    =&gt;      'iframe',
-          'attributes.NameFormat' =&gt; 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
-  )
+ <pre><span></span><code><span class="x">    $auth_source = empty($_SERVER['SSL_CLIENT_CERT']) ? 'ldap' : 'x509';</span>
+<span class="x">    $metadata = array(</span>
+<span class="x">        '__DYNAMIC:1__' =&gt; [</span>
+<span class="x">            'host'          =&gt;      '__DEFAULT__',</span>
+<span class="x">            'privatekey'    =&gt;      'server.key',</span>
+<span class="x">            'certificate'   =&gt;      'server.crt',</span>
+<span class="x">            'auth'          =&gt;       $auth_source,</span>
+<span class="x">            'authority'     =&gt;      'login',</span>
+<span class="x">            'userid.attribute' =&gt;   'uid',</span>
+<span class="x">            'logouttype'    =&gt;      'iframe',</span>
+<span class="x">            'attributes.NameFormat' =&gt; 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',</span>
+<span class="x">    ];</span>
 </code></pre>
 </div>
-<h1 id="checking-certificate-expiry">
+<h2 id="checking-certificate-expiry">
  Checking certificate expiry
-</h1>
+</h2>
 <p>
- To issue warnings to users whose certificate is about to expire, configure an authproc filter.
+ To issue warnings to users whose certificate is about to expire,
+configure an authproc filter.
 </p>
 <p>
  Example:
 </p>
 <div class="codehilite">
- <pre><span></span><code>   10 =&gt; array(
-       'class' =&gt; 'authX509:ExpiryWarning',
-       'warndaysbefore' =&gt; 30,
-       'renewurl' =&gt; 'https://myca.com/renew',
-   ),
+ <pre><span></span><code><span class="x">     10 =&gt; [</span>
+<span class="x">         'class' =&gt; 'authX509:ExpiryWarning',</span>
+<span class="x">         'warndaysbefore' =&gt; 30,</span>
+<span class="x">         'renewurl' =&gt; 'https://myca.com/renew',</span>
+<span class="x">     ],</span>
 </code></pre>
 </div>
 <p>
@@ -259,15 +261,15 @@ can hack your metadata/saml20-idp-hosted.php file that way:
  <code>
   warndaysbefore
  </code>
- specifies the number of days the user's certificate needs to be valid before a warning is
-issued. The default is 30.
+ specifies the number of days the user's certificate
+needs to be valid before a warning is issued. The default is 30.
 </p>
 <p>
  Parameter
  <code>
   renewurl
  </code>
- specifies the URL of your Certification Authority. If specified, the user is suggested to renew the
-certificate immediately.
+ specifies the URL of your Certification Authority.
+If specified, the user is suggested to renew the certificate immediately.
 </p></main></body>
 </html>

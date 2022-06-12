@@ -226,8 +226,8 @@ Create the file
  <pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">classname</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n n-Quoted">`\SimpleSAML\Module\mymodule\Auth\Source\MyAuth`</span><span class="p">.</span><span class="w"></span>
 <span class="w">  </span><span class="n">This</span><span class="w"> </span><span class="n">tells</span><span class="w"> </span><span class="n">SimpleSAMLphp</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">look</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">class</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n n-Quoted">`modules/mymodule/lib/Auth/Source/MyAuth.php`</span><span class="p">.</span><span class="w"></span>
 
-<span class="o">-</span><span class="w"> </span><span class="n">Our</span><span class="w"> </span><span class="n">authentication</span><span class="w"> </span><span class="k">source</span><span class="w"> </span><span class="n">subclasses</span><span class="w"> </span><span class="n n-Quoted">`\SimpleSAML\Module\core\Auth\UserPassBase`</span><span class="p">.</span><span class="w"></span>
-<span class="w">  </span><span class="n">This</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">helper</span><span class="o">-</span><span class="n">class</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">implements</span><span class="w"> </span><span class="n">much</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">common</span><span class="w"> </span><span class="k">code</span><span class="w"> </span><span class="n">needed</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">username</span><span class="o">/</span><span class="k">password</span><span class="w"> </span><span class="n">authentication</span><span class="p">.</span><span class="w"></span>
+<span class="o">-</span><span class="w"> </span><span class="n">Our</span><span class="w"> </span><span class="k">authentication</span><span class="w"> </span><span class="k">source</span><span class="w"> </span><span class="n">subclasses</span><span class="w"> </span><span class="n n-Quoted">`\SimpleSAML\Module\core\Auth\UserPassBase`</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="n">This</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">helper</span><span class="o">-</span><span class="n">class</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">implements</span><span class="w"> </span><span class="n">much</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">common</span><span class="w"> </span><span class="k">code</span><span class="w"> </span><span class="n">needed</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">username</span><span class="o">/</span><span class="k">password</span><span class="w"> </span><span class="k">authentication</span><span class="p">.</span><span class="w"></span>
 
 <span class="o">-</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n n-Quoted">`login`</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">receives</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">username</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="k">password</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">enters</span><span class="p">.</span><span class="w"></span>
 <span class="w">  </span><span class="n">It</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">expected</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">authenticate</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">user</span><span class="p">.</span><span class="w"></span>
@@ -265,7 +265,7 @@ Create the file
  You can add it to the beginning of the list, so that the file looks something like this:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  <span class="cp">&lt;?php</span>
+ <pre><span></span><code><span class="w">  </span><span class="cp">&lt;?php</span>
   <span class="nv">$config</span> <span class="o">=</span> <span class="p">[</span>
       <span class="s1">'myauthinstance'</span> <span class="o">=&gt;</span> <span class="p">[</span>
           <span class="s1">'mymodule:MyAuth'</span><span class="p">,</span>
@@ -348,7 +348,7 @@ In that file you should locate the
  :
 </p>
 <div class="codehilite">
- <pre><span></span><code>  <span class="cp">&lt;?php</span>
+ <pre><span></span><code><span class="w">  </span><span class="cp">&lt;?php</span>
   <span class="cm">/* ... */</span>
   <span class="nv">$metadata</span><span class="p">[</span><span class="s1">'__DYNAMIC:1__'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
       <span class="cm">/* ... */</span>
@@ -546,7 +546,7 @@ A SSHA password is created like this:
 <span class="w">          </span><span class="p">}</span><span class="w"></span>
 <span class="w">          </span><span class="o">$</span><span class="n">this</span><span class="o">-&gt;</span><span class="n">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">config</span><span class="p">[</span><span class="s1">'password'</span><span class="p">];</span><span class="w"></span>
 <span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isset</span><span class="p">(</span><span class="o">$</span><span class="n">config</span><span class="p">[</span><span class="s1">'options'</span><span class="p">])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">              </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">is_array</span><span class="p">(</span><span class="o">$</span><span class="n">config</span><span class="p">[</span><span class="s1">'options])) {</span>
+<span class="w">              </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">is_array</span><span class="p">(</span><span class="o">$</span><span class="n">config</span><span class="p">[</span><span class="s1">'options'</span><span class="p">]))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">                  </span><span class="n">throw</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">Exception</span><span class="p">(</span><span class="s1">'Missing or invalid options option in config.'</span><span class="p">);</span><span class="w"></span>
 <span class="w">              </span><span class="p">}</span><span class="w"></span>
 <span class="w">              </span><span class="o">$</span><span class="n">this</span><span class="o">-&gt;</span><span class="n">options</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">config</span><span class="p">[</span><span class="s1">'options'</span><span class="p">];</span><span class="w"></span>
@@ -627,12 +627,12 @@ A SSHA password is created like this:
  :
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="s1">'myauthinstance'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span>
-      <span class="s1">'mymodule:MyAuth'</span><span class="p">,</span>
-      <span class="s1">'dsn'</span> <span class="o">=&gt;</span> <span class="s1">'mysql:host=sql.example.org;dbname=userdatabase'</span><span class="p">,</span>
-      <span class="s1">'username'</span> <span class="o">=&gt;</span> <span class="s1">'db_username'</span><span class="p">,</span>
-      <span class="s1">'password'</span> <span class="o">=&gt;</span> <span class="s1">'secret_db_password'</span><span class="p">,</span>
-  <span class="cp">]</span><span class="o">,</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="s1">'myauthinstance'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'mymodule:MyAuth'</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'dsn'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'mysql:host=sql.example.org;dbname=userdatabase'</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'username'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'db_username'</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'password'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'secret_db_password'</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
 </code></pre>
 </div></main></body>
 </html>

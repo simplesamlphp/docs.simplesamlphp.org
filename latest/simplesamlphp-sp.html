@@ -168,14 +168,14 @@
  for a SP:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  <span class="cp">&lt;?php</span>
-  <span class="nv">$config</span> <span class="o">=</span> <span class="p">[</span>
+ <pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nv">$config</span> <span class="o">=</span> <span class="p">[</span>
 
-      <span class="cm">/* This is the name of this authentication source, and will be used to access it later. */</span>
-      <span class="s1">'default-sp'</span> <span class="o">=&gt;</span> <span class="p">[</span>
-          <span class="s1">'saml:SP'</span><span class="p">,</span>
-      <span class="p">],</span>
-  <span class="p">];</span>
+    <span class="cm">/* This is the name of this authentication source, and will be used to access it later. */</span>
+    <span class="s1">'default-sp'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">'saml:SP'</span><span class="p">,</span>
+    <span class="p">],</span>
+<span class="p">];</span>
 </code></pre>
 </div>
 <p>
@@ -196,14 +196,14 @@
  configuration. If so remember to set the EntityID explicitly. Here is an example:
 </p>
 <div class="codehilite">
- <pre><span></span><code>'sp1' =&gt; [
-    'saml:SP',
-  'entityID' =&gt; 'https://sp1.example.org/',
-],
-'sp2' =&gt; [
-    'saml:SP',
-  'entityID' =&gt; 'https://sp2.example.org/',
-],
+ <pre><span></span><code><span class="x">    'sp1' =&gt; [</span>
+<span class="x">        'saml:SP',</span>
+<span class="x">        'entityID' =&gt; 'https://sp1.example.org/',</span>
+<span class="x">    ],</span>
+<span class="x">    'sp2' =&gt; [</span>
+<span class="x">        'saml:SP',</span>
+<span class="x">        'entityID' =&gt; 'https://sp2.example.org/',</span>
+<span class="x">    ],</span>
 </code></pre>
 </div>
 <h3 id="enabling-a-certificate-for-your-service-provider">
@@ -232,11 +232,11 @@ openssl req -newkey rsa:3072 -new -x509 -days 3652 -nodes -out saml.crt -keyout 
  entry, and add references to your certificate:
 </p>
 <div class="codehilite">
- <pre><span></span><code>'default-sp' =&gt; [
-    'saml:SP',
-    'privatekey' =&gt; 'saml.pem',
-    'certificate' =&gt; 'saml.crt',
-],
+ <pre><span></span><code><span class="x">    'default-sp' =&gt; [</span>
+<span class="x">        'saml:SP',</span>
+<span class="x">        'privatekey' =&gt; 'saml.pem',</span>
+<span class="x">        'certificate' =&gt; 'saml.crt',</span>
+<span class="x">    ],</span>
 </code></pre>
 </div>
 <h2 id="adding-idps-to-the-sp">
@@ -255,12 +255,12 @@ This is a minimal example of a
  metadata file:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  <span class="cp">&lt;?php</span>
-  <span class="nv">$metadata</span><span class="p">[</span><span class="s1">'https://example.com'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
-      <span class="s1">'SingleSignOnService'</span>  <span class="o">=&gt;</span> <span class="s1">'https://example.com/simplesaml/saml2/idp/SSOService.php'</span><span class="p">,</span>
-      <span class="s1">'SingleLogoutService'</span>  <span class="o">=&gt;</span> <span class="s1">'https://example.com/simplesaml/saml2/idp/SingleLogoutService.php'</span><span class="p">,</span>
-      <span class="s1">'certificate'</span>          <span class="o">=&gt;</span> <span class="s1">'example.pem'</span><span class="p">,</span>
-  <span class="p">];</span>
+ <pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nv">$metadata</span><span class="p">[</span><span class="s1">'https://example.com'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">'SingleSignOnService'</span>  <span class="o">=&gt;</span> <span class="s1">'https://example.com/simplesaml/saml2/idp/SSOService.php'</span><span class="p">,</span>
+    <span class="s1">'SingleLogoutService'</span>  <span class="o">=&gt;</span> <span class="s1">'https://example.com/simplesaml/saml2/idp/SingleLogoutService.php'</span><span class="p">,</span>
+    <span class="s1">'certificate'</span>          <span class="o">=&gt;</span> <span class="s1">'example.pem'</span><span class="p">,</span>
+<span class="p">];</span>
 </code></pre>
 </div>
 <p>
@@ -302,19 +302,19 @@ This is the
  option.
 </p>
 <div class="codehilite">
- <pre><span></span><code>  <span class="cp">&lt;?php</span>
-  <span class="nv">$config</span> <span class="o">=</span> <span class="p">[</span>
+ <pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nv">$config</span> <span class="o">=</span> <span class="p">[</span>
 
-      <span class="s1">'default-sp'</span> <span class="o">=&gt;</span> <span class="p">[</span>
-          <span class="s1">'saml:SP'</span><span class="p">,</span>
+    <span class="s1">'default-sp'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">'saml:SP'</span><span class="p">,</span>
 
-          <span class="cm">/*</span>
-<span class="cm">           * The entity ID of the IdP this should SP should contact.</span>
-<span class="cm">           * Can be NULL/unset, in which case the user will be shown a list of available IdPs.</span>
-<span class="cm">           */</span>
-          <span class="s1">'idp'</span> <span class="o">=&gt;</span> <span class="s1">'https://idp.example.com'</span><span class="p">,</span>
-      <span class="p">],</span>
-  <span class="p">];</span>
+        <span class="cm">/*</span>
+<span class="cm">         * The entity ID of the IdP this should SP should contact.</span>
+<span class="cm">         * Can be NULL/unset, in which case the user will be shown a list of available IdPs.</span>
+<span class="cm">         */</span>
+        <span class="s1">'idp'</span> <span class="o">=&gt;</span> <span class="s1">'https://idp.example.com'</span><span class="p">,</span>
+    <span class="p">],</span>
+<span class="p">];</span>
 </code></pre>
 </div>
 <h2 id="exchange-metadata-with-the-idp">
@@ -416,29 +416,29 @@ lines of PHP code:
  We start off with loading a file which registers the SimpleSAMLphp classes with the autoloader.
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="n">require_once</span><span class="p">(</span><span class="s1">'../../lib/_autoload.php'</span><span class="p">);</span><span class="w"></span>
+ <pre><span></span><code><span class="x">require_once('../../src/_autoload.php');</span>
 </code></pre>
 </div>
 <p>
  We select our authentication source:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  $as = new \SimpleSAML\Auth\Simple('default-sp');
+ <pre><span></span><code><span class="x">$as = new \SimpleSAML\Auth\Simple('default-sp');</span>
 </code></pre>
 </div>
 <p>
  We then require authentication:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="err">$</span><span class="kr">as</span><span class="o">-&gt;</span><span class="n">requireAuth</span><span class="p">();</span><span class="w"></span>
+ <pre><span></span><code><span class="x">$as-&gt;requireAuth();</span>
 </code></pre>
 </div>
 <p>
  And print the attributes:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="err">$</span><span class="n">attributes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">$</span><span class="kr">as</span><span class="o">-&gt;</span><span class="n">getAttributes</span><span class="p">();</span><span class="w"></span>
-<span class="w">  </span><span class="n">print_r</span><span class="p">(</span><span class="err">$</span><span class="n">attributes</span><span class="p">);</span><span class="w"></span>
+ <pre><span></span><code><span class="x">$attributes = $as-&gt;getAttributes();</span>
+<span class="x">print_r($attributes);</span>
 </code></pre>
 </div>
 <p>
@@ -448,9 +448,9 @@ lines of PHP code:
  We can also request authentication with a specific IdP:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">as-</span><span class="o">&gt;</span><span class="nt">login</span><span class="o">(</span><span class="cp">[</span>
-      <span class="s1">'saml:idp'</span> <span class="o">=&gt;</span> <span class="s1">'https://idp.example.org/'</span><span class="p">,</span>
-  <span class="cp">]</span><span class="o">);</span><span class="w"></span>
+ <pre><span></span><code><span class="x">$as-&gt;login([</span>
+<span class="x">    'saml:idp' =&gt; 'https://idp.example.org/',</span>
+<span class="x">]);</span>
 </code></pre>
 </div>
 <p>
@@ -467,8 +467,8 @@ existing session when invoked for the first time, and its own session will preva
 your own session after calling SimpleSAMLphp, you can do so by cleaning up the session like this:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">session</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">\</span><span class="nt">SimpleSAML</span><span class="err">\</span><span class="nt">Session</span><span class="p">::</span><span class="nd">getSessionFromRequest</span><span class="o">();</span><span class="w"></span>
-<span class="w">  </span><span class="o">$</span><span class="nt">session-</span><span class="o">&gt;</span><span class="nt">cleanup</span><span class="o">();</span><span class="w"></span>
+ <pre><span></span><code><span class="x">$session = \SimpleSAML\Session::getSessionFromRequest();</span>
+<span class="x">$session-&gt;cleanup();</span>
 </code></pre>
 </div>
 <p>
@@ -483,22 +483,22 @@ and all your data is likely to get lost or inaccessible.
  , SimpleSAMLphp will use it as well. This can lead to problems because SimpleSAMLphp's stand-alone web UI uses the default PHP session handlers. Therefore, you may need to unset the custom handler before making any calls to SimpleSAMLphp:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="nt">use</span><span class="w"> </span><span class="nt">custom</span><span class="w"> </span><span class="nt">save</span><span class="w"> </span><span class="nt">handler</span><span class="w"></span>
-<span class="w">  </span><span class="nt">session_set_save_handler</span><span class="o">($</span><span class="nt">handler</span><span class="o">);</span><span class="w"></span>
-<span class="w">  </span><span class="nt">session_start</span><span class="o">();</span><span class="w"></span>
+ <pre><span></span><code><span class="x">// use custom save handler</span>
+<span class="x">session_set_save_handler($handler);</span>
+<span class="x">session_start();</span>
 
-<span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="nt">close</span><span class="w"> </span><span class="nt">session</span><span class="w"> </span><span class="nt">and</span><span class="w"> </span><span class="nt">restore</span><span class="w"> </span><span class="nt">default</span><span class="w"> </span><span class="nt">handler</span><span class="w"></span>
-<span class="w">  </span><span class="nt">session_write_close</span><span class="o">();</span><span class="w"></span>
-<span class="w">  </span><span class="nt">session_set_save_handler</span><span class="o">(</span><span class="nt">new</span><span class="w"> </span><span class="nt">SessionHandler</span><span class="o">(),</span><span class="w"> </span><span class="nt">true</span><span class="o">);</span><span class="w"></span>
+<span class="x">// close session and restore default handler</span>
+<span class="x">session_write_close();</span>
+<span class="x">session_set_save_handler(new SessionHandler(), true);</span>
 
-<span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="nt">use</span><span class="w"> </span><span class="nt">SimpleSAML</span><span class="err">\</span><span class="nt">Session</span><span class="w"></span>
-<span class="w">  </span><span class="o">$</span><span class="nt">session</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">\</span><span class="nt">SimpleSAML</span><span class="err">\</span><span class="nt">Session</span><span class="p">::</span><span class="nd">getSessionFromRequest</span><span class="o">();</span><span class="w"></span>
-<span class="w">  </span><span class="o">$</span><span class="nt">session-</span><span class="o">&gt;</span><span class="nt">cleanup</span><span class="o">();</span><span class="w"></span>
-<span class="w">  </span><span class="nt">session_write_close</span><span class="o">();</span><span class="w"></span>
+<span class="x">// use SimpleSAML\Session</span>
+<span class="x">$session = \SimpleSAML\Session::getSessionFromRequest();</span>
+<span class="x">$session-&gt;cleanup();</span>
+<span class="x">session_write_close();</span>
 
-<span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="nt">back</span><span class="w"> </span><span class="nt">to</span><span class="w"> </span><span class="nt">custom</span><span class="w"> </span><span class="nt">save</span><span class="w"> </span><span class="nt">handler</span><span class="w"></span>
-<span class="w">  </span><span class="nt">session_set_save_handler</span><span class="o">($</span><span class="nt">handler</span><span class="o">);</span><span class="w"></span>
-<span class="w">  </span><span class="nt">session_start</span><span class="o">();</span><span class="w"></span>
+<span class="x">// back to custom save handler</span>
+<span class="x">session_set_save_handler($handler);</span>
+<span class="x">session_start();</span>
 </code></pre>
 </div>
 <h2 id="support">

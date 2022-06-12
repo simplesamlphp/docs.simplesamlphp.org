@@ -116,9 +116,7 @@
  </dd>
 </dl>
 <h2 id="authcrypthash">
- <code>
-  authcrypt:Hash
- </code>
+ authcrypt:Hash
 </h2>
 <p>
  This is based on
@@ -131,24 +129,14 @@ Hashes can be generated with the included command line tool
   bin/pwgen.sh
  </code>
  .
-This tool will interactively ask for a password, a hashing algorithm , and whether or not you want to use a salt:
+This tool will interactively ask for a password, a hashing algorithm, and
+whether or not you want to use a salt:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">[</span><span class="n">user@server simplesamlphp</span><span class="o">]</span><span class="err">$</span><span class="w"> </span><span class="n">bin</span><span class="o">/</span><span class="n">pwgen</span><span class="p">.</span><span class="n">php</span><span class="w"></span>
-<span class="w">  </span><span class="n">Enter</span><span class="w"> </span><span class="nl">password</span><span class="p">:</span><span class="w"> </span><span class="n">hackme</span><span class="w"></span>
-<span class="w">  </span><span class="n">The</span><span class="w"> </span><span class="n">following</span><span class="w"> </span><span class="n">hashing</span><span class="w"> </span><span class="n">algorithms</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="nl">available</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="n">md2</span><span class="w">          </span><span class="n">md4</span><span class="w">          </span><span class="n">md5</span><span class="w">          </span><span class="n">sha1</span><span class="w">         </span><span class="n">sha224</span><span class="w">       </span><span class="n">sha256</span><span class="w"></span>
-<span class="w">  </span><span class="n">sha384</span><span class="w">       </span><span class="n">sha512</span><span class="w">       </span><span class="n">ripemd128</span><span class="w">    </span><span class="n">ripemd160</span><span class="w">    </span><span class="n">ripemd256</span><span class="w">    </span><span class="n">ripemd320</span><span class="w"></span>
-<span class="w">  </span><span class="n">whirlpool</span><span class="w">    </span><span class="n">tiger128</span><span class="p">,</span><span class="mi">3</span><span class="w">   </span><span class="n">tiger160</span><span class="p">,</span><span class="mi">3</span><span class="w">   </span><span class="n">tiger192</span><span class="p">,</span><span class="mi">3</span><span class="w">   </span><span class="n">tiger128</span><span class="p">,</span><span class="mi">4</span><span class="w">   </span><span class="n">tiger160</span><span class="p">,</span><span class="mi">4</span><span class="w"></span>
-<span class="w">  </span><span class="n">tiger192</span><span class="p">,</span><span class="mi">4</span><span class="w">   </span><span class="n">snefru</span><span class="w">       </span><span class="n">snefru256</span><span class="w">    </span><span class="n">gost</span><span class="w">         </span><span class="n">adler32</span><span class="w">      </span><span class="n">crc32</span><span class="w"></span>
-<span class="w">  </span><span class="n">crc32b</span><span class="w">       </span><span class="n">salsa10</span><span class="w">      </span><span class="n">salsa20</span><span class="w">      </span><span class="n">haval128</span><span class="p">,</span><span class="mi">3</span><span class="w">   </span><span class="n">haval160</span><span class="p">,</span><span class="mi">3</span><span class="w">   </span><span class="n">haval192</span><span class="p">,</span><span class="mi">3</span><span class="w"></span>
-<span class="w">  </span><span class="n">haval224</span><span class="p">,</span><span class="mi">3</span><span class="w">   </span><span class="n">haval256</span><span class="p">,</span><span class="mi">3</span><span class="w">   </span><span class="n">haval128</span><span class="p">,</span><span class="mi">4</span><span class="w">   </span><span class="n">haval160</span><span class="p">,</span><span class="mi">4</span><span class="w">   </span><span class="n">haval192</span><span class="p">,</span><span class="mi">4</span><span class="w">   </span><span class="n">haval224</span><span class="p">,</span><span class="mi">4</span><span class="w"></span>
-<span class="w">  </span><span class="n">haval256</span><span class="p">,</span><span class="mi">4</span><span class="w">   </span><span class="n">haval128</span><span class="p">,</span><span class="mi">5</span><span class="w">   </span><span class="n">haval160</span><span class="p">,</span><span class="mi">5</span><span class="w">   </span><span class="n">haval192</span><span class="p">,</span><span class="mi">5</span><span class="w">   </span><span class="n">haval224</span><span class="p">,</span><span class="mi">5</span><span class="w">   </span><span class="n">haval256</span><span class="p">,</span><span class="mi">5</span><span class="w"></span>
+ <pre><span></span><code><span class="o">[</span>user@server simplesamlphp<span class="o">]</span>$ bin/pwgen.php
+Enter password: hackme
 
-<span class="w">  </span><span class="n">Which</span><span class="w"> </span><span class="n">one</span><span class="w"> </span><span class="n">do</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">want</span><span class="vm">?</span><span class="w"> </span><span class="o">[</span><span class="n">sha256</span><span class="o">]</span><span class="w"></span>
-<span class="w">  </span><span class="n">Do</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">want</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">use</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">salt</span><span class="vm">?</span><span class="w"> </span><span class="p">(</span><span class="n">yes</span><span class="o">/</span><span class="k">no</span><span class="p">)</span><span class="w"> </span><span class="o">[</span><span class="n">yes</span><span class="o">]</span><span class="w"></span>
-
-<span class="w">    </span><span class="err">{</span><span class="n">SSHA256</span><span class="err">}</span><span class="n">y1mj3xsZ4</span><span class="o">/+</span><span class="n">LoQyPNVJzXUFfBcLHfwcHx1xxltxeQ1C5MeyEX</span><span class="o">/</span><span class="n">RxWA</span><span class="o">==</span><span class="w"></span>
+<span class="nv">$2</span>y<span class="nv">$10$PnFsSEv</span>.lda1Qlw4iMtmB.B.ab5y.aT56stBmo9hdCN.rUywQMChC
 </code></pre>
 </div>
 <p>
@@ -156,16 +144,17 @@ This tool will interactively ask for a password, a hashing algorithm , and wheth
  <code>
   config/authsources.php
  </code>
- and use the resulting string as the password:
+ and use the
+resulting string as the password:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'example-hashed' =&gt; array(
-      'authCrypt:Hash',
-      'student:{SSHA256}y1mj3xsZ4/+LoQyPNVJzXUFfBcLHfwcHx1xxltxeQ1C5MeyEX/RxWA==' =&gt; array(
-          'uid' =&gt; array('student'),
-          'eduPersonAffiliation' =&gt; array('member', 'student'),
-          ),
-  ),
+ <pre><span></span><code><span class="x">'example-hashed' =&gt; [</span>
+<span class="x">    'authCrypt:Hash',</span>
+<span class="x">    'student:$2y$10$PnFsSEv.lda1Qlw4iMtmB.B.ab5y.aT56stBmo9hdCN.rUywQMChC' =&gt; [</span>
+<span class="x">        'uid' =&gt; ['student'],</span>
+<span class="x">        'eduPersonAffiliation' =&gt; ['member', 'student'],</span>
+<span class="x">    ],</span>
+<span class="x">],</span>
 </code></pre>
 </div>
 <p>
@@ -177,7 +166,8 @@ This tool will interactively ask for a password, a hashing algorithm , and wheth
  <code>
   hackme
  </code>
- , and some attributes.
+ ,
+and some attributes.
 </p>
 <h3 id="compatibility">
  Compatibility
@@ -187,56 +177,60 @@ This tool will interactively ask for a password, a hashing algorithm , and wheth
  <code>
   config.php
  </code>
- for the administrative password:
+ for the
+administrative password:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'auth.adminpassword'        =&gt; '{SSHA256}y1mj3xsZ4/+LoQyPNVJzXUFfBcLHfwcHx1xxltxeQ1C5MeyEX/RxWA==',
+ <pre><span></span><code><span class="x">'auth.adminpassword' =&gt; '$2y$10$PnFsSEv.lda1Qlw4iMtmB.B.ab5y.aT56stBmo9hdCN.rUywQMChC',</span>
 </code></pre>
 </div>
 <p>
- Instead of generating hashes, you can also use existing ones from OpenLDAP, provided that the
+ Instead of generating hashes, you can also use existing ones from OpenLDAP,
+provided that the
  <code>
   userPassword
  </code>
  attribute is stored as MD5, SMD5, SHA, or SSHA.
 </p>
 <h2 id="authcrypthtpasswd">
- <code>
-  authCrypt:Htpasswd
- </code>
+ authCrypt:Htpasswd
 </h2>
 <p>
  Authenticate users against an
- <a href="http://httpd.apache.org/docs/2.2/programs/htpasswd.html">
+ <a href="htpasswd.html">
   <code>
    .htpasswd
   </code>
  </a>
- file. It can be used for example when you migrate a web site from basic HTTP authentication to SimpleSAMLphp.
+ file. It can be used for
+example when you migrate a web site from basic HTTP authentication to
+SimpleSAMLphp.
 </p>
 <p>
  The simple structure of the
  <code>
   .htpasswd
  </code>
- file does not allow for per-user attributes, but you can define some static attributes for all users.
+ file does not allow for per-user
+attributes, but you can define some static attributes for all users.
 </p>
 <p>
  An example authentication source in
  <code>
   config/authsources.php
  </code>
- could look like this:
+ could look
+like this:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="s1">'htpasswd'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">array</span><span class="p">(</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'authcrypt:Htpasswd'</span><span class="p">,</span><span class="w"></span>
-<span class="w">          </span><span class="s1">'htpasswd_file'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'/var/www/foo.edu/legacy_app/.htpasswd'</span><span class="p">,</span><span class="w"></span>
-<span class="w">          </span><span class="s1">'static_attributes'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">array</span><span class="p">(</span><span class="w"></span>
-<span class="w">              </span><span class="s1">'eduPersonAffiliation'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">array</span><span class="p">(</span><span class="s1">'member'</span><span class="p">,</span><span class="w"> </span><span class="s1">'employee'</span><span class="p">),</span><span class="w"></span>
-<span class="w">              </span><span class="s1">'Organization'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">array</span><span class="p">(</span><span class="s1">'University of Foo'</span><span class="p">),</span><span class="w"></span>
-<span class="w">      </span><span class="p">),</span><span class="w"></span>
-<span class="w">  </span><span class="p">),</span><span class="w"></span>
+ <pre><span></span><code><span class="x">    'htpasswd' =&gt; [</span>
+<span class="x">        'authcrypt:Htpasswd',</span>
+<span class="x">        'htpasswd_file' =&gt; '/var/www/foo.edu/legacy_app/.htpasswd',</span>
+<span class="x">        'static_attributes' =&gt; [</span>
+<span class="x">            'eduPersonAffiliation' =&gt; ['member', 'employee'],</span>
+<span class="x">            'Organization' =&gt; ['University of Foo'],</span>
+<span class="x">        ],</span>
+<span class="x">    ],</span>
 </code></pre>
 </div></main></body>
 </html>

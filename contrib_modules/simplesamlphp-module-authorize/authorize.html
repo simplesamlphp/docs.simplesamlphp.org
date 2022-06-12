@@ -90,18 +90,22 @@
 </header><main><h1 id="authorize-module">
  authorize Module
 </h1>
-<!--
-  This file is written in Markdown syntax.
-  For more information about how to use the Markdown syntax, read here:
-  http://daringfireball.net/projects/markdown/syntax
--->
-<div class="codehilite">
- <pre><span></span><code><span class="o">*</span><span class="w"> </span><span class="nl">Author</span><span class="p">:</span><span class="w"> </span><span class="n">Ernesto</span><span class="w"> </span><span class="n">Revilla</span><span class="w"> </span><span class="o">&lt;</span><span class="n">erny</span><span class="nv">@yaco</span><span class="p">.</span><span class="n">es</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">Yaco</span><span class="w"> </span><span class="n">Sistemas</span><span class="p">,</span><span class="w"> </span><span class="n">Ryan</span><span class="w"> </span><span class="n">Panning</span><span class="w"></span>
-<span class="o">*</span><span class="w"> </span><span class="nl">Package</span><span class="p">:</span><span class="w"> </span><span class="n">SimpleSAMLphp</span><span class="w"></span>
-</code></pre>
-</div>
+<ul>
+ <li>
+  Author: Ernesto Revilla
+  <a href="mailto/erny@yaco.es.html">
+   erny@yaco.es
+  </a>
+  , Yaco Sistemas, Ryan Panning
+ </li>
+ <li>
+  Package: SimpleSAMLphp
+ </li>
+</ul>
 <p>
- This module provides a user authorization filter based on attribute matching for those applications that do not cleanly separate authentication from authorization and set some default permissions for authenticated users.
+ This module provides a user authorization filter based on attribute matching
+for those applications that do not cleanly separate authentication from
+authorization and set some default permissions for authenticated users.
 </p>
 <dl>
  <dt>
@@ -127,11 +131,13 @@
  <code>
   regex
  </code>
- , and
+ ,
+and
  <code>
   reject_msg
  </code>
- . All other filter configuration options are considered attribute matching rules.
+ . All other filter configuration options are considered
+attribute matching rules.
 </p>
 <p>
  Unauthorized users will be shown a 403 Forbidden page.
@@ -142,10 +148,17 @@
  </code>
 </h3>
 <p>
- The default action of the filter is to authorize only if an attribute match is found (default allow). When set to TRUE, this option reverses that rule and authorizes the user unless an attribute match is found (default deny), causing an unauthorized action.
+ The default action of the filter is to authorize only if an attribute match
+is found (default allow). When set to TRUE, this option reverses that rule and
+authorizes the user unless an attribute match is found (default deny), causing
+an unauthorized action.
 </p>
 <p>
- Note: This option needs to be boolean (TRUE/FALSE) else it will be considered an attribute matching rule.
+ <strong>
+  Note
+ </strong>
+ : This option needs to be boolean (TRUE/FALSE) else it will be considered
+          an attribute matching rule.
 </p>
 <h3 id="regex">
  <code>
@@ -153,10 +166,16 @@
  </code>
 </h3>
 <p>
- Turn regex pattern matching on or off for the attribute values defined. For backwards compatibility, this option defaults to TRUE, but can be turned off by setting it to FALSE.
+ Turn regex pattern matching on or off for the attribute values defined. For
+backwards compatibility, this option defaults to TRUE, but can be turned off
+by setting it to FALSE.
 </p>
 <p>
- Note: This option needs to be boolean (TRUE/FALSE) else it will be considered an attribute matching rule.
+ <strong>
+  Note
+ </strong>
+ : This option needs to be boolean (TRUE/FALSE) else it will be
+          considered an attribute matching rule.
 </p>
 <h3 id="reject_msg">
  <code>
@@ -164,19 +183,30 @@
  </code>
 </h3>
 <p>
- This option can be used to provide a localised, custom message to an unauthorised user. For example: tailored instructions on how to fix the authorisation issue, specific contact details, etc.
+ This option can be used to provide a localised, custom message to an
+unauthorised user. For example: tailored instructions on how to fix the
+authorisation issue, specific contact details, etc.
 </p>
 <p>
- It should be an array of key/value pairs, with the keys as the language code. You can use HTML in the message. See below for an example.
+ It should be an array of key/value pairs, with the keys as the language code.
+You can use HTML in the message. See below for an example.
 </p>
-<h3 id="attribute-rules">
+<h2 id="attribute-rules">
  Attribute Rules
-</h3>
+</h2>
 <p>
- Each additional filter configuration option is considered an attribute matching rule. For each attribute, you can specify a string or array of strings to match. If one of those attributes match one of the rules (OR operator), the user is authorized/unauthorized (depending on the deny config option).
+ Each additional filter configuration option is considered an attribute matching
+rule. For each attribute, you can specify a string or array of strings to match.
+If one of those attributes match one of the rules (OR operator), the user is
+authorized/unauthorized (depending on the deny config option).
 </p>
 <p>
- Note: If regex is enabled, you must use the preg_match format, i.e. you have to enclose it with a delimiter that does not appear inside the regex (e.g. slash (/), at sign (@), number sign (#) or underscore (
+ <strong>
+  Note
+ </strong>
+ : If regex is enabled, you must use the preg_match format, i.e. you have
+          to enclose it with a delimiter that does not appear inside the regex
+          (e.g. slash (/), at sign (@), number sign (#) or underscore (
  <code>
   _
  </code>
@@ -188,7 +218,7 @@
 <ul>
  <li>
   Once you get the forbidden page, you can't logout at the IdP directly,
-   (as far as I know), you have to close the browser.
+  (as far as I know), you have to close the browser.
  </li>
 </ul>
 <h3 id="examples">
@@ -216,7 +246,10 @@ For unstructured attributes use
 <span class="x">        'class' =&gt; 'authorize:Authorize',</span>
 <span class="x">        'uid'   =&gt;  [</span>
 <span class="x">            '/^.*@example.com$/',</span>
-<span class="x">            // Use anchors to prevent matching 'wronguser1@example.edu.attacker.com'</span>
+<span class="x">            /*</span>
+<span class="x">             * Use anchors to prevent matching</span>
+<span class="x">             * 'wronguser1@example.edu.attacker.com'</span>
+<span class="x">             */</span>
 <span class="x">            '/^(user1|user2|user3)@example.edu$/',</span>
 <span class="x">        ],</span>
 <span class="x">        'schacUserStatus' =&gt; '@urn:mace:terena.org:userStatus:' .</span>
@@ -226,7 +259,9 @@ For unstructured attributes use
 </code></pre>
 </div>
 <p>
- An alternate way of using this filter is to deny certain users. Or even use multiple filters to create a simple ACL, by first allowing a group of users but then denying a "black list" of users.
+ An alternate way of using this filter is to deny certain users. Or even use
+multiple filters to create a simple ACL, by first allowing a group of users but
+then denying a "black list" of users.
 </p>
 <div class="codehilite">
  <pre><span></span><code><span class="x">'authproc.sp' =&gt; [</span>
@@ -242,7 +277,10 @@ For unstructured attributes use
 </code></pre>
 </div>
 <p>
- The regex pattern matching can be turned off, allowing for exact attribute matching rules. This can be helpful in cases where you know what the value should be. An example of this is with the memberOf attribute or using the ldap:AttributeAddUsersGroups filter with the group attribute.
+ The regex pattern matching can be turned off, allowing for exact attribute
+matching rules. This can be helpful in cases where you know what the value
+should be. An example of this is with the memberOf attribute or using the
+ldap:AttributeAddUsersGroups filter with the group attribute.
 </p>
 <p>
  Additionally, some helpful instructions are shown.
@@ -257,13 +295,15 @@ For unstructured attributes use
 <span class="x">            'CN=All Teachers,OU=Staff,DC=example,DC=edu',</span>
 <span class="x">        ],</span>
 <span class="x">        'reject_msg' =&gt; [</span>
-<span class="x">            'en' =&gt; 'This service is only available to students and teachers.' .</span>
-<span class="x">                'Please contact &lt;a href="mailto:support@example.edu"&gt;support&lt;/a&gt;.',</span>
-<span class="x">            'nl' =&gt; 'Deze dienst is alleen beschikbaar voor studenten en docenten.' .</span>
-<span class="x">                'Neem contact op met &lt;a href="mailto:support@example.edu"&gt;support&lt;/a&gt;.',</span>
-<span class="x">        ]</span>
-<span class="x">    ]</span>
-<span class="x">]</span>
+<span class="x">            'en' =&gt; 'This service is only available to students and' .</span>
+<span class="x">                ' teachers. Please contact ' .</span>
+<span class="x">                '&lt;a href="mailto:support@example.edu"&gt;support&lt;/a&gt;.',</span>
+<span class="x">            'nl' =&gt; 'Deze dienst is alleen beschikbaar voor studenten en ' .</span>
+<span class="x">                'docenten. Neem contact op met ' .</span>
+<span class="x">                '&lt;a href="mailto:support@example.edu"&gt;support&lt;/a&gt;.',</span>
+<span class="x">        ],</span>
+<span class="x">    ],</span>
+<span class="x">],</span>
 </code></pre>
 </div></main></body>
 </html>

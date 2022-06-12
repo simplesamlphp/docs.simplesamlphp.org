@@ -181,8 +181,8 @@ If you are running memcache on a different server than the IdP, you must also ch
  metadata file:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'__DYNAMIC:1__'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cp">[</span>
-      <span class="err">[</span><span class="nx">....</span><span class="cp">]</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'__DYNAMIC:1__'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cp">[</span><span class="w"></span>
+<span class="w">      </span><span class="err">[</span><span class="nx">....</span><span class="cp">]</span><span class="w"></span>
 <span class="w">      </span><span class="s1">'auth'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'example-userpass'</span><span class="o">,</span><span class="w"></span>
 <span class="w">      </span><span class="s1">'saml20.sendartifact'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">TRUE</span><span class="o">,</span><span class="w"></span>
 <span class="w">  </span><span class="o">];</span><span class="w"></span>
@@ -225,12 +225,12 @@ In general, that should look something like:
  <pre><span></span><code>  'AssertionConsumerService' =&gt; array (
       [
           'Binding' =&gt; 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
-          'Location' =&gt; 'https://sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp',
+          'Location' =&gt; 'https://sp.example.org/simplesaml/module.php/saml/sp/assertionConsumerService/default-sp',
           'index' =&gt; 0,
       ],
       [
           'Binding' =&gt; 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact',
-          'Location' =&gt; 'https://sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp',
+          'Location' =&gt; 'https://sp.example.org/simplesaml/module.php/saml/sp/assertionConsumerService/default-sp',
           'index' =&gt; 2,
       ],
   ),
@@ -257,8 +257,8 @@ To do this, you need to set the
 That option should refer to a file containing the webserver certificate.
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'__DYNAMIC:1__'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cp">[</span>
-      <span class="err">[</span><span class="nx">....</span><span class="cp">]</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'__DYNAMIC:1__'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cp">[</span><span class="w"></span>
+<span class="w">      </span><span class="err">[</span><span class="nx">....</span><span class="cp">]</span><span class="w"></span>
 <span class="w">      </span><span class="s1">'auth'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'example-userpass'</span><span class="o">,</span><span class="w"></span>
 <span class="w">      </span><span class="s1">'saml20.sendartifact'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">TRUE</span><span class="o">,</span><span class="w"></span>
 <span class="w">      </span><span class="s1">'https.certificate'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'/etc/apache2/webserver.crt'</span><span class="o">,</span><span class="w"></span>

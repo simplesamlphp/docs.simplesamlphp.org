@@ -354,7 +354,7 @@
   Authenticate with your Twitter account using the Twitter OAuth API.
  </dd>
  <dt>
-  <a href="https://github.com/rediris-es/simplesamlphp-module-papi/blog/master/README.md">
+  <a href="https://github.com/rediris-es/simplesamlphp-module-papi/blob/master/README.md">
    <code>
     papi:PAPI
    </code>
@@ -510,7 +510,7 @@
 This is a minimal configuration:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  <span class="cp">&lt;?php</span>
+ <pre><span></span><code><span class="w">  </span><span class="cp">&lt;?php</span>
   <span class="nv">$metadata</span><span class="p">[</span><span class="s1">'__DYNAMIC:1__'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
       <span class="cm">/*</span>
 <span class="cm">       * The hostname for this IdP. This makes it possible to run multiple</span>
@@ -521,7 +521,8 @@ This is a minimal configuration:
 
       <span class="cm">/*</span>
 <span class="cm">       * The private key and certificate to use when signing responses.</span>
-<span class="cm">       * These are stored in the cert-directory.</span>
+<span class="cm">       * These can be stored as files in the cert-directory or retrieved</span>
+<span class="cm">       * from a database.</span>
 <span class="cm">       */</span>
       <span class="s1">'privatekey'</span> <span class="o">=&gt;</span> <span class="s1">'example.org.pem'</span><span class="p">,</span>
       <span class="s1">'certificate'</span> <span class="o">=&gt;</span> <span class="s1">'example.org.crt'</span><span class="p">,</span>
@@ -587,10 +588,10 @@ This is a minimal example of a
  metadata file for a SimpleSAMLphp SP:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  <span class="cp">&lt;?php</span>
+ <pre><span></span><code><span class="w">  </span><span class="cp">&lt;?php</span>
   <span class="nv">$metadata</span><span class="p">[</span><span class="s1">'https://sp.example.org/simplesaml/module.php/saml/sp/metadata.php/default-sp'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
-      <span class="s1">'AssertionConsumerService'</span> <span class="o">=&gt;</span> <span class="s1">'https://sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp'</span><span class="p">,</span>
-      <span class="s1">'SingleLogoutService'</span>      <span class="o">=&gt;</span> <span class="s1">'https://sp.example.org/simplesaml/module.php/saml/sp/saml2-logout.php/default-sp'</span><span class="p">,</span>
+      <span class="s1">'AssertionConsumerService'</span> <span class="o">=&gt;</span> <span class="s1">'https://sp.example.org/simplesaml/module.php/saml/sp/assertionConsumerService/default-sp'</span><span class="p">,</span>
+      <span class="s1">'SingleLogoutService'</span>      <span class="o">=&gt;</span> <span class="s1">'https://sp.example.org/simplesaml/module.php/saml/sp/singleLogoutService/default-sp'</span><span class="p">,</span>
   <span class="p">];</span>
 </code></pre>
 </div>

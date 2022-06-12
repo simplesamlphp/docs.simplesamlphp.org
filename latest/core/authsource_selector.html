@@ -87,75 +87,89 @@
  </nav>
  <div id="content">
  </div>
-</header><main><h1 id="using-the-twitter-authentication-source-with-simplesamlphp">
- Using the Twitter authentication source with SimpleSAMLphp
+</header><main><h1 id="authentication-source-selector">
+ Authentication source selector
 </h1>
 <p>
- To get an API key and a secret, register the application at:
+ The Authentication source selector is a special kind of Authentication Source
+that delegates the actual authentication to a secondary Authentication Source
+based on some form of policy decision.
 </p>
-<ul>
- <li>
-  <a href="http://twitter.com/oauth_clients">
-   http://twitter.com/oauth_clients
-  </a>
- </li>
-</ul>
+<h2 id="abstractsourceselector">
+ AbstractSourceSelector
+</h2>
 <p>
- Now you have you configure the authsource in
+ The AbstractSourceSelector extends from
  <code>
-  authsources.php
+  \SimpleSAML\Auth\Source
  </code>
- .
+ and as such
+act as an Authentication Source. Any derivative classes must implement the
+abstract
+ <code>
+  selectAuthSource
+ </code>
+ method. This method must return the name of the
+Authentication Source to use, based on whatever logic is necessary.
+</p>
+<h2 id="ipsourceselector">
+ IPSourceSelector
+</h2>
+<p>
+ The IPSourceSelector is an implementation of the
+ <code>
+  AbstractSourceSelector
+ </code>
+ and
+uses the client IP to decide what Authentication Source is called.
+It works by defining zones with corresponding IP-ranges and Authentication
+Sources. The 'default' zone is required and acts as a fallback when none
+of the zones match a client's IP-address.
+</p>
+<p>
+ An example configuration would look like this:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="x">    // Twitter OAuth Authentication API.</span>
-<span class="x">    // Register your application to get an API key here:</span>
-<span class="x">    //  http://twitter.com/oauth_clients</span>
-<span class="x">    'twitter' =&gt; [</span>
-<span class="x">        'authtwitter:Twitter',</span>
-<span class="x">        'key' =&gt; 'key retrieved during registration of your app',</span>
-<span class="x">        'secret' =&gt; 'secret retrieved during registration of your app',</span>
+ <pre><span></span><code><span class="x">    'selector' =&gt; [</span>
+<span class="x">        'core:IPSourceSelector',</span>
 
-<span class="x">        // The oAuth scope to include in the request</span>
-<span class="x">        'scope' =&gt; 'read',</span>
+<span class="x">        'zones' =&gt; [</span>
+<span class="x">            'internal' =&gt; [</span>
+<span class="x">                'source' =&gt; 'ldap',</span>
+<span class="x">                'subnet' =&gt; [</span>
+<span class="x">                    '10.0.0.0/8',</span>
+<span class="x">                    '2001:0DB8::/108',</span>
+<span class="x">                ],</span>
+<span class="x">            ],</span>
 
-<span class="x">        // Forces the user to enter their credentials to ensure the correct</span>
-<span class="x">        // users account is authorized.</span>
-<span class="x">        // Details: https://dev.twitter.com/docs/api/1/get/oauth/authenticate</span>
-<span class="x">        'force_login' =&gt; false,</span>
+<span class="x">            'other' =&gt; [</span>
+<span class="x">                'source' =&gt; 'radius',</span>
+<span class="x">                'subnet' =&gt; [</span>
+<span class="x">                    '172.16.0.0/12',</span>
+<span class="x">                    '2002:1234::/108',</span>
+<span class="x">                ],</span>
+<span class="x">            ],</span>
+
+<span class="x">            'default' =&gt; 'yubikey',</span>
+<span class="x">        ],</span>
 <span class="x">    ],</span>
 </code></pre>
 </div>
-<h2 id="testing-authentication">
- Testing authentication
+<h2 id="yourcustomsourceselector">
+ YourCustomSourceSelector
 </h2>
 <p>
- On the SimpleSAMLphp frontpage, go to the
- <em>
-  Authentication
- </em>
- tab,
-and use the link:
-</p>
-<ul>
- <li>
-  <em>
-   Test configured authentication sources
-  </em>
- </li>
-</ul>
-<p>
- Then choose the
- <em>
-  twitter
- </em>
- authentication source.
-</p>
-<p>
- Expected behaviour would then be that you are sent to twitter,
-and asked to login. The first time a user uses your application to login,
-he/she is asked for consent.
-You will then be authenticated in SimpleSAMLphp and see an attribute set
-with data delivered by Twitter.
+ If you have a use-case for a custom Authentication source selector, all you
+have to do is to create your own class, make it extend
+ <code>
+  AbstractSourceSelector
+ </code>
+ and make it implement the abstract
+ <code>
+  selectAuthSource
+ </code>
+ method containing
+your own logic. The method should return the name of the Authentication
+source to use.
 </p></main></body>
 </html>

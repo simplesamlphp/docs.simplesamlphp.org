@@ -175,24 +175,24 @@
  Create a random number variable:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="nt">10</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span>
-      <span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'core:PHP'</span><span class="p">,</span>
-      <span class="s1">'code'</span> <span class="o">=&gt;</span> <span class="s1">'</span>
+ <pre><span></span><code><span class="w">  </span><span class="nt">10</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'class'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'core:PHP'</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'code'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'</span>
 <span class="s1">          $attributes["random"] = [</span>
 <span class="s1">              (string)rand(),</span>
 <span class="s1">          ];</span>
-<span class="s1">      '</span><span class="p">,</span>
-  <span class="cp">]</span><span class="o">,</span><span class="w"></span>
+<span class="s1">      '</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
 </code></pre>
 </div>
 <p>
  Force a specific NameIdFormat. Useful if an SP misbehaves and requests (or publishes) an incorrect NameId
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="nt">90</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span>
-       <span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'core:PHP'</span><span class="p">,</span>
-       <span class="s1">'code'</span> <span class="o">=&gt;</span> <span class="s1">'$state["saml:NameIDFormat"] = ["Format" =&gt; "urn:oasis:names:tc:SAML:2.0:nameid-format:transient", "AllowCreate" =&gt; true];'</span>
-  <span class="cp">]</span><span class="o">,</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="nt">90</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span><span class="w"></span>
+<span class="w">       </span><span class="s1">'class'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'core:PHP'</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="s1">'code'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'$state["saml:NameIDFormat"] = ["Format" =&gt; "urn:oasis:names:tc:SAML:2.0:nameid-format:transient", "AllowCreate" =&gt; true];'</span><span class="w"></span>
+<span class="w">  </span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
 </code></pre>
 </div></main></body>
 </html>

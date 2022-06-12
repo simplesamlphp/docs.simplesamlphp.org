@@ -119,7 +119,7 @@ metadata extension items; for an SP they can be added to
 An example of this is:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  <span class="cp">&lt;?php</span>
+ <pre><span></span><code><span class="w">  </span><span class="cp">&lt;?php</span>
   <span class="nv">$metadata</span><span class="p">[</span><span class="s1">'entity-id-1'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
       <span class="cm">/* ... */</span>
   <span class="s1">'EntityAttributes'</span> <span class="o">=&gt;</span> <span class="p">[</span>
@@ -235,14 +235,14 @@ to "urn:oasis:names:tc:SAML:2.0:attrname-format:uri".
  If given the following configuration...
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'https://www.example.com/saml/saml2/idp/metadata.php'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cp">[</span>
-      <span class="s1">'host'</span> <span class="o">=&gt;</span> <span class="s1">'www.example.com'</span><span class="p">,</span>
-      <span class="s1">'certificate'</span> <span class="o">=&gt;</span> <span class="s1">'example.com.crt'</span><span class="p">,</span>
-      <span class="s1">'privatekey'</span> <span class="o">=&gt;</span> <span class="s1">'example.com.pem'</span><span class="p">,</span>
-      <span class="s1">'auth'</span> <span class="o">=&gt;</span> <span class="s1">'example-userpass'</span><span class="p">,</span>
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'https://www.example.com/saml/saml2/idp/metadata.php'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cp">[</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'host'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'www.example.com'</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'certificate'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'example.com.crt'</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'privatekey'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'example.com.pem'</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'auth'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'example-userpass'</span><span class="p">,</span><span class="w"></span>
 
-  <span class="s1">'EntityAttributes'</span> <span class="o">=&gt;</span> <span class="err">[</span>
-    <span class="s1">'urn:simplesamlphp:v1:simplesamlphp'</span> <span class="o">=&gt;</span> <span class="err">[</span><span class="s1">'is'</span><span class="p">,</span> <span class="s1">'really'</span><span class="p">,</span> <span class="s1">'cool'</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
+<span class="w">  </span><span class="s1">'EntityAttributes'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span><span class="w"></span>
+<span class="w">    </span><span class="s1">'urn:simplesamlphp:v1:simplesamlphp'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span><span class="s1">'is'</span><span class="p">,</span><span class="w"> </span><span class="s1">'really'</span><span class="p">,</span><span class="w"> </span><span class="s1">'cool'</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
 <span class="w">    </span><span class="s1">'{urn:simplesamlphp:v1}foo'</span><span class="w">          </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span><span class="s1">'bar'</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
 <span class="w">  </span><span class="o">],</span><span class="w"></span>
 <span class="o">];</span><span class="w"></span>

@@ -87,139 +87,178 @@
  </nav>
  <div id="content">
  </div>
-</header><main><p>
+</header><main><h1 id="adfs-module">
+ ADFS Module
+</h1>
+<p>
  Enables AD FS IdP
 Compatible with VS 2012 Identity and Access
 </p>
 <p>
- Basic Setup Companion based on:
-http://simplesamlphp.org/docs/stable/simplesamlphp-idp
+ Basic Setup Companion based on
+ <a href="http://simplesamlphp.org/docs/stable/simplesamlphp-idp">
+  SimpleSAMLphp IDP configuration
+ </a>
 </p>
 <ol>
  <li>
-  Enabling the Identity Provider functionality
+  <p>
+   Enabling the Identity Provider functionality
+  </p>
+  <p>
+   In config/config.php, the option will be:
+ 'enable.adfs-idp' =&gt; true
+  </p>
  </li>
-</ol>
-<p>
- In config/config.php, the option will be:
-'enable.adfs-idp' =&gt; true
-</p>
-<ol>
  <li>
-  Authentication module
+  <p>
+   Authentication module
+  </p>
+  <p>
+   Follow as is.
+  </p>
  </li>
-</ol>
-<p>
- Follow as is.
-</p>
-<ol>
  <li>
-  Configuring the authentication module
+  <p>
+   Configuring the authentication module
+  </p>
+  <p>
+   Next thing you need to do is to enable the module: in
+   <code>
+    config.php
+   </code>
+   ,
+ search for the
+   <code>
+    module.enable
+   </code>
+   key and set
+   <code>
+    adfs
+   </code>
+   to true:
+  </p>
+  <p>
+   <code>
+    php
+     'module.enable' =&gt; [
+          'adfs' =&gt; true,
+          …
+     ],
+   </code>
+  </p>
  </li>
-</ol>
-<p>
- In addition to enabling authentication module,  enable adfs module by creating a file named 'enable' in modules/adfs
-</p>
-<p>
- In unix from installation directory:
-touch modules/adfs/enable
-</p>
-<ol>
  <li>
-  Configuring the IdP
+  <p>
+   Configuring the IdP
+  </p>
+  <p>
+   ADFS IdP is configured by metadata stored in /metadata/adfs-idp-hosted.php
+ and metadata/adfs-sp-remote.php
+  </p>
+  <p>
+   If they are not present, copy them from /metadata-templates to the metadata
+ directory.
+  </p>
  </li>
-</ol>
-<p>
- ADFS IdP is configured by metadata stored in /metadata/adfs-idp-hosted.php and metadata/adfs-sp-remote.php
-</p>
-<p>
- If they are not present, copy them from /metadata-templates to the metadata
-directory.
-</p>
-<ol>
  <li>
-  Using the uri NameFormat on attributes
+  <p>
+   Using the uri NameFormat on attributes
+  </p>
+  <p>
+   WS-FED likes a few parameters to be very specifically named. This is
+ especially true if .net clients will be treating this as a Microsoft ADFS
+ IdP.
+  </p>
+  <p>
+   The recommended settings for /metadata/adfs-idp-hosted.php is:
+  </p>
+  <p>
+   <code>
+    php
+     'authproc' =&gt; [
+          // Convert LDAP names to WS-Fed Claims.
+          100 =&gt; ['class' =&gt; 'core:AttributeMap', 'name2claim'],
+     ],
+   </code>
+  </p>
  </li>
-</ol>
-<p>
- WS-FED likes a few parameters to be very specifically named. This is
-especially true if .net clients will be treating this as a Microsoft ADFS
-IdP.
-</p>
-<p>
- The recommended settings for /metadata/adfs-idp-hosted.php is:
-</p>
-<p>
- 'authproc' =&gt; array(
-        // Convert LDAP names to WS-Fed Claims.
-        100 =&gt; array('class' =&gt; 'core:AttributeMap', 'name2claim'),
-),
-</p>
-<ol>
  <li>
-  Adding SPs to the IdP
+  <p>
+   Adding SPs to the IdP
+  </p>
+  <p>
+   The minimal configuration for /metadata/adfs-sp-remote.php is:
+  </p>
+  <p>
+   <code>
+    php
+ $metadata['urn:federation:localhost'] = [
+     'prp' =&gt; 'https://localhost/adfs/ls/',
+ ];
+   </code>
+  </p>
  </li>
-</ol>
-<p>
- The minimal configuration for /metadata/adfs-sp-remote.php is:
-</p>
-<p>
- $metadata['urn:federation:localhost'] = array(
-        'prp' =&gt; 'https://localhost/adfs/ls/',
-);
-</p>
-<ol>
  <li>
-  Creating a SSL self signed certificate
+  <p>
+   Creating a SSL self signed certificate
+  </p>
+  <p>
+   Follow as is.
+  </p>
  </li>
-</ol>
-<p>
- Follow as is.
-</p>
-<ol>
  <li>
-  Adding this IdP to other SPs
+  <p>
+   Adding this IdP to other SPs
+  </p>
+  <p>
+   Metadata should be available from /module.php/adfs/idp/metadata.php
+  </p>
  </li>
-</ol>
-<p>
- Metadata should be available from /module.php/adfs/idp/metadata.php
-</p>
-<ol>
  <li>
-  This module tries its best to emulate a Microsoft ADFS endpoint, and as
-such, it is simplest to test using a .net client.
+  <p>
+   This module tries its best to emulate a Microsoft ADFS endpoint, and as
+   such, it is simplest to test using a .net client.
+  </p>
+  <p>
+   To build the test client, follow the tutorial from
+   <a href="http://code.msdn.microsoft.com/Claims-Aware-Web-d94a89ca">
+    Microsoft
+   </a>
+   .
+  </p>
+  <p>
+   This will build a .net app that uses a dev machine running STS (their name for
+ an IdP).
+  </p>
+  <p>
+   To point to your SimpleSamlPHP ADFS IdP, in VS 2012:
+  </p>
+  <p>
+   a. Right-click the project in Solution Explorer and select the Identity and
+    Access option.
+  </p>
+  <p>
+   b. In the Identity and Access Window, Select Use a business identity
+    provider.
+  </p>
+  <p>
+   c. Under “Enter the path to the STS metadata document” enter the url you have
+  </p>
+  <div class="codehilite">
+   <pre><span></span><code>  from step 8. Something like
+  `https://.../module.php/adfs/idp/metadata.php`
+</code></pre>
+  </div>
+  <p>
+   d. Click Ok
+  </p>
  </li>
 </ol>
 <p>
- To build the test client, follow the tutorial at:
-http://code.msdn.microsoft.com/Claims-Aware-Web-d94a89ca
-</p>
-<p>
- This will build a .net app that uses a dev machine running STS (their name for
-an IdP).
-</p>
-<p>
- To point to your SimpleSamlPHP ADFS IdP, in VS 2012:
-</p>
-<p>
- a. Right-click the project in Solution Explorer and select the Identity and
-Access option.
-</p>
-<p>
- b. In the Identity and Access Window, Select Use a business identity
-provider.
-</p>
-<p>
- c. Under “Enter the path to the STS metadata document” enter the url you have
-</p>
-<p>
- from step 8. Something like
-https://.../module.php/adfs/idp/metadata.php
-</p>
-<p>
- d. Click Ok
-</p>
-<p>
- For more information in regards to .NET: http://msdn.microsoft.com/en-us/library/hh377151.aspx
+ For more information in regards to
+ <a href="http://msdn.microsoft.com/en-us/library/hh377151.aspx">
+  .NET
+ </a>
 </p></main></body>
 </html>

@@ -216,10 +216,10 @@ See the documentation for the
 <span class="c">   * Return the user to the frontpage after authentication, don't post</span>
 <span class="c">   * the current POST data.</span>
 <span class="c">   */</span><span class="w"></span>
-<span class="w">  </span><span class="o">$</span><span class="nt">auth-</span><span class="o">&gt;</span><span class="nt">requireAuth</span><span class="o">(</span><span class="cp">[</span>
-      <span class="s1">'ReturnTo'</span> <span class="o">=&gt;</span> <span class="s1">'https://sp.example.org/'</span><span class="p">,</span>
-      <span class="s1">'KeepPost'</span> <span class="o">=&gt;</span> <span class="kc">FALSE</span><span class="p">,</span>
-  <span class="cp">]</span><span class="o">);</span><span class="w"></span>
+<span class="w">  </span><span class="o">$</span><span class="nt">auth-</span><span class="o">&gt;</span><span class="nt">requireAuth</span><span class="o">(</span><span class="cp">[</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'ReturnTo'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://sp.example.org/'</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'KeepPost'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="cp">]</span><span class="o">);</span><span class="w"></span>
 <span class="w">  </span><span class="nt">SimpleSAML_Session</span><span class="p">::</span><span class="nd">getSessionFromRequest</span><span class="o">()</span><span class="nt">-</span><span class="o">&gt;</span><span class="nt">cleanup</span><span class="o">();</span><span class="w"></span>
 <span class="w">  </span><span class="nt">print</span><span class="o">(</span><span class="s2">"Hello, authenticated user!"</span><span class="o">);</span><span class="w"></span>
 </code></pre>
@@ -329,10 +329,10 @@ This function will always start a new authentication process.
 </h3>
 <div class="codehilite">
  <pre><span></span><code><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="nt">Send</span><span class="w"> </span><span class="nt">a</span><span class="w"> </span><span class="nt">passive</span><span class="w"> </span><span class="nt">authentication</span><span class="w"> </span><span class="nt">request</span><span class="o">.</span><span class="w"></span>
-<span class="w">  </span><span class="o">$</span><span class="nt">auth-</span><span class="o">&gt;</span><span class="nt">login</span><span class="o">(</span><span class="cp">[</span>
-      <span class="s1">'isPassive'</span> <span class="o">=&gt;</span> <span class="kc">TRUE</span><span class="p">,</span>
-      <span class="s1">'ErrorURL'</span> <span class="o">=&gt;</span> <span class="s1">'https://.../error_handler.php'</span><span class="p">,</span>
-  <span class="cp">]</span><span class="o">);</span><span class="w"></span>
+<span class="w">  </span><span class="o">$</span><span class="nt">auth-</span><span class="o">&gt;</span><span class="nt">login</span><span class="o">(</span><span class="cp">[</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'isPassive'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'ErrorURL'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://.../error_handler.php'</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="cp">]</span><span class="o">);</span><span class="w"></span>
 <span class="w">  </span><span class="nt">SimpleSAML_Session</span><span class="p">::</span><span class="nd">getSessionFromRequest</span><span class="o">()</span><span class="nt">-</span><span class="o">&gt;</span><span class="nt">cleanup</span><span class="o">();</span><span class="w"></span>
 </code></pre>
 </div>
@@ -394,11 +394,11 @@ This function never returns.
  Same as the previous, but check the result of the logout operation afterwards.
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">auth-</span><span class="o">&gt;</span><span class="nt">logout</span><span class="o">(</span><span class="cp">[</span>
-      <span class="s1">'ReturnTo'</span> <span class="o">=&gt;</span> <span class="s1">'https://sp.example.org/logged_out.php'</span><span class="p">,</span>
-      <span class="s1">'ReturnStateParam'</span> <span class="o">=&gt;</span> <span class="s1">'LogoutState'</span><span class="p">,</span>
-      <span class="s1">'ReturnStateStage'</span> <span class="o">=&gt;</span> <span class="s1">'MyLogoutState'</span><span class="p">,</span>
-  <span class="cp">]</span><span class="o">);</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">auth-</span><span class="o">&gt;</span><span class="nt">logout</span><span class="o">(</span><span class="cp">[</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'ReturnTo'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://sp.example.org/logged_out.php'</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'ReturnStateParam'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'LogoutState'</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'ReturnStateStage'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'MyLogoutState'</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="cp">]</span><span class="o">);</span><span class="w"></span>
 <span class="w">  </span><span class="nt">SimpleSAML_Session</span><span class="p">::</span><span class="nd">getSessionFromRequest</span><span class="o">()</span><span class="nt">-</span><span class="o">&gt;</span><span class="nt">cleanup</span><span class="o">();</span><span class="w"></span>
 </code></pre>
 </div>

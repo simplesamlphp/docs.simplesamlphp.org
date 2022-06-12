@@ -121,7 +121,7 @@
  for a SP:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  <span class="cp">&lt;?php</span>
+ <pre><span></span><code><span class="w">  </span><span class="cp">&lt;?php</span>
   <span class="nv">$config</span> <span class="o">=</span> <span class="p">[</span>
 
       <span class="cm">/* This is the name of this authentication source, and will be used to access it later. */</span>
@@ -212,7 +212,7 @@ This is a minimal example of a
  metadata file:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  <span class="cp">&lt;?php</span>
+ <pre><span></span><code><span class="w">  </span><span class="cp">&lt;?php</span>
   <span class="nv">$metadata</span><span class="p">[</span><span class="s1">'https://example.com'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
       <span class="s1">'SingleSignOnService'</span>  <span class="o">=&gt;</span> <span class="s1">'https://example.com/simplesaml/saml2/idp/SSOService.php'</span><span class="p">,</span>
       <span class="s1">'SingleLogoutService'</span>  <span class="o">=&gt;</span> <span class="s1">'https://example.com/simplesaml/saml2/idp/SingleLogoutService.php'</span><span class="p">,</span>
@@ -259,7 +259,7 @@ This is the
  option.
 </p>
 <div class="codehilite">
- <pre><span></span><code>  <span class="cp">&lt;?php</span>
+ <pre><span></span><code><span class="w">  </span><span class="cp">&lt;?php</span>
   <span class="nv">$config</span> <span class="o">=</span> <span class="p">[</span>
 
       <span class="s1">'default-sp'</span> <span class="o">=&gt;</span> <span class="p">[</span>
@@ -414,9 +414,9 @@ lines of PHP code:
  We can also request authentication with a specific IdP:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">as-</span><span class="o">&gt;</span><span class="nt">login</span><span class="o">(</span><span class="cp">[</span>
-      <span class="s1">'saml:idp'</span> <span class="o">=&gt;</span> <span class="s1">'https://idp.example.org/'</span><span class="p">,</span>
-  <span class="cp">]</span><span class="o">);</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">as-</span><span class="o">&gt;</span><span class="nt">login</span><span class="o">(</span><span class="cp">[</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'saml:idp'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://idp.example.org/'</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="cp">]</span><span class="o">);</span><span class="w"></span>
 </code></pre>
 </div>
 <p>

@@ -211,8 +211,8 @@
 </p>
 <div class="codehilite">
  <pre><span></span><code><span class="o">$</span><span class="nt">table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="nt">db-</span><span class="o">&gt;</span><span class="nt">applyPrefix</span><span class="o">(</span><span class="s2">"test"</span><span class="o">);</span><span class="w"></span>
-<span class="o">$</span><span class="nt">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cp">[</span>
-  <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="err">[</span><span class="mi">20</span><span class="p">,</span> <span class="nx">PDO</span><span class="nl">::PARAM_INT</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
+<span class="o">$</span><span class="nt">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cp">[</span><span class="w"></span>
+<span class="w">  </span><span class="s1">'id'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="nx">PDO</span><span class="p">::</span><span class="nl">PARAM_INT</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
 <span class="w">  </span><span class="s1">'data'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Some data'</span><span class="o">,</span><span class="w"></span>
 <span class="o">];</span><span class="w"></span>
 
@@ -254,8 +254,8 @@
 </p>
 <div class="codehilite">
  <pre><span></span><code><span class="o">$</span><span class="nt">table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="nt">db-</span><span class="o">&gt;</span><span class="nt">applyPrefix</span><span class="o">(</span><span class="s2">"test"</span><span class="o">);</span><span class="w"></span>
-<span class="o">$</span><span class="nt">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cp">[</span>
-  <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="err">[</span><span class="mi">20</span><span class="p">,</span> <span class="nx">PDO</span><span class="nl">::PARAM_INT</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
+<span class="o">$</span><span class="nt">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cp">[</span><span class="w"></span>
+<span class="w">  </span><span class="s1">'id'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="nx">PDO</span><span class="p">::</span><span class="nl">PARAM_INT</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
 <span class="o">];</span><span class="w"></span>
 
 <span class="o">$</span><span class="nt">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="nt">db-</span><span class="o">&gt;</span><span class="nt">read</span><span class="o">(</span><span class="s2">"SELECT * FROM $table WHERE id = :id"</span><span class="o">,</span><span class="w"> </span><span class="o">$</span><span class="nt">values</span><span class="o">);</span><span class="w"></span>

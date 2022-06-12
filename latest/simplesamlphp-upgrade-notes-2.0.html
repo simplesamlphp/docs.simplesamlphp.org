@@ -186,6 +186,10 @@ For example, to use the LDAP module:
  <li>
   All support for the Shibboleth 1.3 / SAML 1.1 protocol has been removed.
  </li>
+ <li>
+  Sessions are no longer backwards compatible with previous versions. Make sure to clear your session cache during
+  the upgrade process. How to do this depends on your session backend.
+ </li>
 </ul>
 <h2 id="configuration-changes">
  Configuration changes
@@ -357,6 +361,49 @@ $x = $arrayUtils-&gt;arrayize($someVar);
     </ul>
    </li>
   </ul>
+ </li>
+ <li>
+  <p>
+   The following methods have had their signature changed:
+  </p>
+  <ul>
+   <li>
+    Configuration::getValue
+   </li>
+   <li>
+    Configuration::getBoolean
+   </li>
+   <li>
+    Configuration::getString
+   </li>
+   <li>
+    Configuration::getInteger
+   </li>
+   <li>
+    Configuration::getIntegerRange
+   </li>
+   <li>
+    Configuration::getValueValidate
+   </li>
+   <li>
+    Configuration::getArray
+   </li>
+   <li>
+    Configuration::getArrayize
+   </li>
+   <li>
+    Configuration::getArrayizeString
+   </li>
+   <li>
+    Configuration::getConfigItem
+   </li>
+   <li>
+    Configuration::getLocalizedString
+   </li>
+  </ul>
+  <p>
+   All of these methods no longer accept a default as their last parameter. Use their getOptional* counterparts instead.
+  </p>
  </li>
 </ul></main></body>
 </html>

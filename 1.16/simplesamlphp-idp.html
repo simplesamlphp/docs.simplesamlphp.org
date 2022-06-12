@@ -442,7 +442,7 @@ installation directory):
 This is a minimal configuration:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  <span class="cp">&lt;?php</span>
+ <pre><span></span><code><span class="w">  </span><span class="cp">&lt;?php</span>
   <span class="nv">$metadata</span><span class="p">[</span><span class="s1">'__DYNAMIC:1__'</span><span class="p">]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
       <span class="cm">/*</span>
 <span class="cm">       * The hostname for this IdP. This makes it possible to run multiple</span>
@@ -519,7 +519,7 @@ This is a minimal example of a
  metadata file for a SimpleSAMLphp SP:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  <span class="cp">&lt;?php</span>
+ <pre><span></span><code><span class="w">  </span><span class="cp">&lt;?php</span>
   <span class="nv">$metadata</span><span class="p">[</span><span class="s1">'https://sp.example.org/simplesaml/module.php/saml/sp/metadata.php/default-sp'</span><span class="p">]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
       <span class="s1">'AssertionConsumerService'</span> <span class="o">=&gt;</span> <span class="s1">'https://sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp'</span><span class="p">,</span>
       <span class="s1">'SingleLogoutService'</span>      <span class="o">=&gt;</span> <span class="s1">'https://sp.example.org/simplesaml/module.php/saml/sp/saml2-logout.php/default-sp'</span><span class="p">,</span>

@@ -150,7 +150,7 @@ the relevant entry in
  An example for an IdP:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  <span class="cp">&lt;?php</span>
+ <pre><span></span><code><span class="w">  </span><span class="cp">&lt;?php</span>
   <span class="nv">$metadata</span><span class="p">[</span><span class="s1">'entity-id-1'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
       <span class="cm">/* ... */</span>
       <span class="s1">'UIInfo'</span> <span class="o">=&gt;</span> <span class="p">[</span>
@@ -201,7 +201,7 @@ the relevant entry in
  And for an SP it could look like this:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  <span class="cp">&lt;?php</span>
+ <pre><span></span><code><span class="w">  </span><span class="cp">&lt;?php</span>
   <span class="nv">$config</span> <span class="o">=</span> <span class="p">[</span>
 
       <span class="s1">'default-sp'</span> <span class="o">=&gt;</span> <span class="p">[</span>
@@ -453,50 +453,50 @@ present an IdP. These properties are all children of the
  If given the following configuration...
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'https://www.example.com/saml/saml2/idp/metadata.php'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cp">[</span>
-      <span class="s1">'host'</span> <span class="o">=&gt;</span> <span class="s1">'www.example.com'</span><span class="p">,</span>
-      <span class="s1">'certificate'</span> <span class="o">=&gt;</span> <span class="s1">'example.com.crt'</span><span class="p">,</span>
-      <span class="s1">'privatekey'</span> <span class="o">=&gt;</span> <span class="s1">'example.com.pem'</span><span class="p">,</span>
-      <span class="s1">'auth'</span> <span class="o">=&gt;</span> <span class="s1">'example-userpass'</span><span class="p">,</span>
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'https://www.example.com/saml/saml2/idp/metadata.php'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cp">[</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'host'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'www.example.com'</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'certificate'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'example.com.crt'</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'privatekey'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'example.com.pem'</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'auth'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'example-userpass'</span><span class="p">,</span><span class="w"></span>
 
-      <span class="s1">'UIInfo'</span> <span class="o">=&gt;</span> <span class="err">[</span>
-          <span class="s1">'DisplayName'</span> <span class="o">=&gt;</span> <span class="err">[</span>
-              <span class="s1">'en'</span> <span class="o">=&gt;</span> <span class="s1">'English name'</span><span class="p">,</span>
-              <span class="s1">'es'</span> <span class="o">=&gt;</span> <span class="s1">'Nombre en Español'</span><span class="p">,</span>
-          <span class="cp">]</span><span class="o">,</span><span class="w"></span>
-<span class="w">          </span><span class="s1">'Description'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span>
-              <span class="s1">'en'</span> <span class="o">=&gt;</span> <span class="s1">'English description'</span><span class="p">,</span>
-              <span class="s1">'es'</span> <span class="o">=&gt;</span> <span class="s1">'Descripción en Español'</span><span class="p">,</span>
-          <span class="cp">]</span><span class="o">,</span><span class="w"></span>
-<span class="w">          </span><span class="s1">'InformationURL'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span>
-              <span class="s1">'en'</span> <span class="o">=&gt;</span> <span class="s1">'http://example.com/info/en'</span><span class="p">,</span>
-              <span class="s1">'es'</span> <span class="o">=&gt;</span> <span class="s1">'http://example.com/info/es'</span><span class="p">,</span>
-          <span class="cp">]</span><span class="o">,</span><span class="w"></span>
-<span class="w">          </span><span class="s1">'PrivacyStatementURL'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span>
-              <span class="s1">'en'</span> <span class="o">=&gt;</span> <span class="s1">'http://example.com/privacy/en'</span><span class="p">,</span>
-              <span class="s1">'es'</span> <span class="o">=&gt;</span> <span class="s1">'http://example.com/privacy/es'</span><span class="p">,</span>
-          <span class="cp">]</span><span class="o">,</span><span class="w"></span>
-<span class="w">          </span><span class="s1">'Keywords'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span>
-              <span class="s1">'en'</span> <span class="o">=&gt;</span> <span class="err">[</span><span class="s1">'communication'</span><span class="p">,</span> <span class="s1">'federated session'</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
-<span class="w">              </span><span class="s1">'es'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span><span class="s1">'comunicación'</span><span class="p">,</span> <span class="s1">'sesión federated'</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'UIInfo'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span><span class="w"></span>
+<span class="w">          </span><span class="s1">'DisplayName'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span><span class="w"></span>
+<span class="w">              </span><span class="s1">'en'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'English name'</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="s1">'es'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Nombre en Español'</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
+<span class="w">          </span><span class="s1">'Description'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span><span class="w"></span>
+<span class="w">              </span><span class="s1">'en'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'English description'</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="s1">'es'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Descripción en Español'</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
+<span class="w">          </span><span class="s1">'InformationURL'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span><span class="w"></span>
+<span class="w">              </span><span class="s1">'en'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'http://example.com/info/en'</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="s1">'es'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'http://example.com/info/es'</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
+<span class="w">          </span><span class="s1">'PrivacyStatementURL'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span><span class="w"></span>
+<span class="w">              </span><span class="s1">'en'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'http://example.com/privacy/en'</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="s1">'es'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'http://example.com/privacy/es'</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
+<span class="w">          </span><span class="s1">'Keywords'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span><span class="w"></span>
+<span class="w">              </span><span class="s1">'en'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span><span class="s1">'communication'</span><span class="p">,</span><span class="w"> </span><span class="s1">'federated session'</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
+<span class="w">              </span><span class="s1">'es'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span><span class="s1">'comunicación'</span><span class="p">,</span><span class="w"> </span><span class="s1">'sesión federated'</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
 <span class="w">          </span><span class="o">],</span><span class="w"></span>
-<span class="w">          </span><span class="s1">'Logo'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span>
-              <span class="err">[</span>
-                  <span class="s1">'url'</span>    <span class="o">=&gt;</span> <span class="s1">'http://example.com/logo1.png'</span><span class="p">,</span>
-                  <span class="s1">'height'</span> <span class="o">=&gt;</span> <span class="mi">200</span><span class="p">,</span>
-                  <span class="s1">'width'</span>  <span class="o">=&gt;</span> <span class="mi">400</span><span class="p">,</span>
-              <span class="cp">]</span><span class="o">,</span><span class="w"></span>
-<span class="w">              </span><span class="cp">[</span>
-                  <span class="s1">'url'</span>    <span class="o">=&gt;</span> <span class="s1">'http://example.com/logo2.png'</span><span class="p">,</span>
-                  <span class="s1">'height'</span> <span class="o">=&gt;</span> <span class="mi">201</span><span class="p">,</span>
-                  <span class="s1">'width'</span>  <span class="o">=&gt;</span> <span class="mi">401</span><span class="p">,</span>
-              <span class="cp">]</span><span class="o">,</span><span class="w"></span>
+<span class="w">          </span><span class="s1">'Logo'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span><span class="w"></span>
+<span class="w">              </span><span class="err">[</span><span class="w"></span>
+<span class="w">                  </span><span class="s1">'url'</span><span class="w">    </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'http://example.com/logo1.png'</span><span class="p">,</span><span class="w"></span>
+<span class="w">                  </span><span class="s1">'height'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w"></span>
+<span class="w">                  </span><span class="s1">'width'</span><span class="w">  </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
+<span class="w">              </span><span class="cp">[</span><span class="w"></span>
+<span class="w">                  </span><span class="s1">'url'</span><span class="w">    </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'http://example.com/logo2.png'</span><span class="p">,</span><span class="w"></span>
+<span class="w">                  </span><span class="s1">'height'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">201</span><span class="p">,</span><span class="w"></span>
+<span class="w">                  </span><span class="s1">'width'</span><span class="w">  </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">401</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
 <span class="w">          </span><span class="o">],</span><span class="w"></span>
 <span class="w">      </span><span class="o">],</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'DiscoHints'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span>
-          <span class="s1">'IPHint'</span>          <span class="o">=&gt;</span> <span class="err">[</span><span class="s1">'130.59.0.0/16'</span><span class="p">,</span> <span class="s1">'2001:620::0/96'</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
-<span class="w">          </span><span class="s1">'DomainHint'</span><span class="w">      </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span><span class="s1">'example.com'</span><span class="p">,</span> <span class="s1">'www.example.com'</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
-<span class="w">          </span><span class="s1">'GeolocationHint'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span><span class="s1">'geo:47.37328,8.531126'</span><span class="p">,</span> <span class="s1">'geo:19.34343,12.342514'</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'DiscoHints'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span><span class="w"></span>
+<span class="w">          </span><span class="s1">'IPHint'</span><span class="w">          </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span><span class="s1">'130.59.0.0/16'</span><span class="p">,</span><span class="w"> </span><span class="s1">'2001:620::0/96'</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
+<span class="w">          </span><span class="s1">'DomainHint'</span><span class="w">      </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span><span class="s1">'example.com'</span><span class="p">,</span><span class="w"> </span><span class="s1">'www.example.com'</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
+<span class="w">          </span><span class="s1">'GeolocationHint'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span><span class="s1">'geo:47.37328,8.531126'</span><span class="p">,</span><span class="w"> </span><span class="s1">'geo:19.34343,12.342514'</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
 <span class="w">      </span><span class="o">],</span><span class="w"></span>
 <span class="w">  </span><span class="o">];</span><span class="w"></span>
 </code></pre>
