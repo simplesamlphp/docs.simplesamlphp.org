@@ -113,7 +113,7 @@ def mkContentHeader(versions):
     content += '  <form style="margin-top: 2.5rem; margin-right: 2rem" method="get" action="https://www.google.com/cse">'
     content += '   <input type="hidden" name="cx" value="004202914224971217557:8ks4jjstupq" />'
     content += '    <input type="hidden" name="siteurl" value="www.google.com/cse/home?cx=004202914224971217557:8ks4jjstupq" />'
-    content += '   <input type="hidden" name="adkw" value="AELymgVJ6Sk-kOvUjbxvgShTLwiFlma2evFuVCh0r8q23vn_4eVnkcdnPfbgMvYUTpJpVlb-KkGAKkbn0i-AlWHsVRR9O0J4CNb6cXFkEKRdjXxsC_NlVD4" />'
+    content += '    <input type="hidden" name="adkw" value="AELymgVJ6Sk-kOvUjbxvgShTLwiFlma2evFuVCh0r8q23vn_4eVnkcdnPfbgMvYUTpJpVlb-KkGAKkbn0i-AlWHsVRR9O0J4CNb6cXFkEKRdjXxsC_NlVD4" />'
     content += '    <input type="search" name="q" placeholder="Search" value="" />'
     content += '  </form>'
     content += '</div>'
@@ -325,8 +325,3 @@ md2html(module_index_file, site_root_dir + 'contributed_modules.html', 'contribu
 
 # Dump website tree so we can see in the runner if all went well
 os.system('tree ' +  site_root_dir)
-
-   
-
-
-
