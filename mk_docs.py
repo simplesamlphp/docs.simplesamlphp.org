@@ -158,6 +158,8 @@ def mkNavigation(versions):
           content += '<div class="menuitem">'  
 
        content += '<a href="'+site_base_path+version+'/index.html">'+version+'</a>'
+       if version == versions[0]:
+          content += ' (stable)'
        content += '</div>'
     
     content += ' <div class="menuitem last">'
