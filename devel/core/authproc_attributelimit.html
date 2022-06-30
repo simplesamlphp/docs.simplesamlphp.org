@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Language" content="en">
+  <meta name="google-site-verification" content="2S8M18BgYs8cLRL6ClTrfW_xGxfFtMZu2b2jhjrNlss">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>SimpleSAMLphp Documentation</title>
+
+  <link rel="stylesheet" href="/res/css/style.css">
+  <link rel="stylesheet" href="/res/css/layout.css">
+</head>
+<body>
+<header>
+ <div id="header">
+  <div class="right">
+   <form action="https://www.google.com/cse" method="get" style="margin-top: 2.5rem; margin-right: 2rem">
+    <input name="cx" type="hidden" value="004202914224971217557:8ks4jjstupq"/>
+    <input name="siteurl" type="hidden" value="www.google.com/cse/home?cx=004202914224971217557:8ks4jjstupq"/>
+    <input name="adkw" type="hidden" value="AELymgVJ6Sk-kOvUjbxvgShTLwiFlma2evFuVCh0r8q23vn_4eVnkcdnPfbgMvYUTpJpVlb-KkGAKkbn0i-AlWHsVRR9O0J4CNb6cXFkEKRdjXxsC_NlVD4"/>
+    <input name="q" placeholder="Search" type="search" value=""/>
+   </form>
+  </div>
+  <div class="v-center logo-header">
+   <div id="logo">
+    <a href="https://simplesamlphp.org" style="color: #fff; text-decoration: none">
+     <span class="simple">
+      Simple
+     </span>
+     <span class="saml">
+      SAML
+     </span>
+     <span class="simple">
+      php
+     </span>
+    </a>
+   </div>
+  </div>
+ </div>
+ <!-- Grey header bar below -->
+ <nav>
+  <div id="headerbar" style="clear: both">
+   <p id="breadcrumb">
+    <a href="https://simplesamlphp.org">
+     Home
+    </a>
+    » Documentation
+   </p>
+   <div class="mtoolbar">
+    <div class="menuitem">
+     <a href="/docs/1.19/index.html">
+      1.19
+     </a>
+    </div>
+    <div class="menuitem">
+     <a href="/docs/1.18/index.html">
+      1.18
+     </a>
+    </div>
+    <div class="menuitem">
+     <a href="/docs/1.17/index.html">
+      1.17
+     </a>
+    </div>
+    <div class="menuitem">
+     <a href="/docs/1.16/index.html">
+      1.16
+     </a>
+    </div>
+    <div class="menuitem first">
+     <a href="/docs/devel/index.html">
+      devel
+     </a>
+    </div>
+    <div class="menuitem last">
+     <a href="/docs/contributed_modules.html">
+      Contributed modules
+     </a>
+    </div>
+   </div>
+   <br style="height: 0px; clear: both"/>
+  </div>
+  <!-- /#headerbar -->
+ </nav>
+ <div id="content">
+ </div>
+</header><main><h1 id="coreattributelimit">
+ <code>
+  core:AttributeLimit
+ </code>
+</h1>
+<p>
+ A filter that limits the attributes (and their values) sent to a service provider.
+</p>
+<p>
+ If the configuration is empty, the filter will use the attributes configured in the
+ <code>
+  attributes
+ </code>
+ option in the SP
+metadata. The configuration is a list of attributes that should be allowed. In case you want to limit an attribute to
+release some specific values, make the name of the attribute the key of the array, and its value an array with all the
+different values allowed for it.
+</p>
+<h2 id="examples">
+ Examples
+</h2>
+<p>
+ Here you will find a few examples on how to use this simple module:
+</p>
+<p>
+ Limit to the
+ <code>
+  cn
+ </code>
+ and
+ <code>
+  mail
+ </code>
+ attribute:
+</p>
+<div class="codehilite">
+ <pre><span></span><code>  'authproc' =&gt; [
+      50 =&gt; [
+          'class' =&gt; 'core:AttributeLimit',
+          'cn', 'mail'
+      ],
+  ],
+</code></pre>
+</div>
+<p>
+ Allow
+ <code>
+  eduPersonTargetedID
+ </code>
+ and
+ <code>
+  eduPersonAffiliation
+ </code>
+ by default, but allow the metadata to override the limitation.
+</p>
+<div class="codehilite">
+ <pre><span></span><code>  'authproc' =&gt; [
+      50 =&gt; [
+          'class' =&gt; 'core:AttributeLimit',
+          'default' =&gt; true,
+          'eduPersonTargetedID', 'eduPersonAffiliation',
+      ],
+  ],
+</code></pre>
+</div>
+<p>
+ Only allow specific values for an attribute.
+</p>
+<div class="codehilite">
+ <pre><span></span><code>  'authproc' =&gt; [
+      50 =&gt; [
+          'class' =&gt; 'core:AttributeLimit',
+          'eduPersonEntitlement' =&gt; ['urn:mace:surf.nl:surfdrive:quota:100']
+      ],
+  ],
+</code></pre>
+</div>
+<p>
+ Only allow specific values for an attribute ignoring case.
+</p>
+<div class="codehilite">
+ <pre><span></span><code>  'authproc' =&gt; [
+      50 =&gt; [
+          'class' =&gt; 'core:AttributeLimit',
+          'eduPersonEntitlement' =&gt; [
+              'ignoreCase' =&gt; true,
+              'URN:mace:surf.nl:SURFDRIVE:quota:100'
+           ]
+      ],
+  ],
+</code></pre>
+</div>
+<p>
+ Only allow specific values for an attribute that match a regex pattern
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="p">'</span><span class="n">authproc</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">      </span><span class="mh">50</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">          </span><span class="p">'</span><span class="n">class</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">'</span><span class="nl">core:</span><span class="n">AttributeLimit</span><span class="p">',</span><span class="w"></span>
+<span class="w">          </span><span class="p">'</span><span class="n">eduPersonEntitlement</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">              </span><span class="p">'</span><span class="n">regex</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">true</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="p">'</span><span class="o">/^</span><span class="nl">urn:mace:</span><span class="n">surf</span><span class="o">/</span><span class="p">',</span><span class="w"></span>
+<span class="w">              </span><span class="p">'</span><span class="o">/^</span><span class="nl">urn:</span><span class="n">x</span><span class="o">-</span><span class="n">IGNORE_Case</span><span class="o">/</span><span class="n">i</span><span class="p">',</span><span class="w"></span>
+<span class="w">          </span><span class="p">]</span><span class="w"></span>
+<span class="w">      </span><span class="p">],</span><span class="w"></span>
+<span class="w">  </span><span class="p">],</span><span class="w"></span>
+</code></pre>
+</div>
+<p>
+ Don't allow any attributes by default, but allow the metadata to override it.
+</p>
+<div class="codehilite">
+ <pre><span></span><code>  'authproc' =&gt; [
+      50 =&gt; [
+          'class' =&gt; 'core:AttributeLimit',
+          'default' =&gt; true,
+      ],
+  ],
+</code></pre>
+</div>
+<p>
+ In order to just use the list of attributes defined in the metadata for each service provider, configure the module
+like this:
+</p>
+<div class="codehilite">
+ <pre><span></span><code>  'authproc' =&gt; [
+      50 =&gt; 'core:AttributeLimit',
+  ],
+</code></pre>
+</div>
+<p>
+ Then, add the allowed attributes to each service provider metadata, in the
+ <code>
+  attributes
+ </code>
+ option:
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'https://saml2sp.example.org'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cp">[</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'AssertionConsumerService'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://saml2sp.example.org/simplesaml/module.php/saml/sp/assertionConsumerService/default-sp'</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'SingleLogoutService'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://saml2sp.example.org/simplesaml/module.php/saml/sp/singleLogoutService/default-sp'</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nx">...</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'attributes'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span><span class="s1">'cn'</span><span class="p">,</span><span class="w"> </span><span class="s1">'mail'</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
+<span class="w">      </span><span class="o">...</span><span class="w"></span>
+<span class="w">  </span><span class="o">];</span><span class="w"></span>
+</code></pre>
+</div>
+<p>
+ Now, let's look to a couple of examples on how to filter out attribute values. First, allow only the entitlements known
+to be used by a service provider (among other attributes):
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'https://saml2sp.example.org'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cp">[</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'AssertionConsumerService'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://saml2sp.example.org/simplesaml/module.php/saml/sp/assertionConsumerService/default-sp'</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'SingleLogoutService'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://saml2sp.example.org/simplesaml/module.php/saml/sp/singleLogoutService/default-sp'</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nx">...</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'attributes'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span><span class="w"></span>
+<span class="w">          </span><span class="s1">'uid'</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="s1">'mail'</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="s1">'eduPersonEntitlement'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span><span class="w"></span>
+<span class="w">              </span><span class="s1">'urn:mace:example.org:admin'</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="s1">'urn:mace:example.org:user'</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
+<span class="w">      </span><span class="o">],</span><span class="w"></span>
+<span class="w">      </span><span class="o">...</span><span class="w"></span>
+<span class="w">  </span><span class="o">];</span><span class="w"></span>
+</code></pre>
+</div>
+<p>
+ Now, an example on how to normalize the affiliations sent from an identity provider, to make sure that no custom
+values ever reach the service providers. Bear in mind that this configuration can be overridden by metadata:
+</p>
+<div class="codehilite">
+ <pre><span></span><code>  'authproc' =&gt; [
+      50 =&gt; 'core:AttributeLimit',
+      'default' =&gt; true,
+      'eduPersonAffiliation' =&gt; [
+          'student',
+          'staff',
+          'member',
+          'faculty',
+          'employee',
+          'affiliate',
+      ],
+  ],
+</code></pre>
+</div></main></body>
+</html>

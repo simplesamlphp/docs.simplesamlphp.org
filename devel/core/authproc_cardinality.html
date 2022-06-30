@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Language" content="en">
+  <meta name="google-site-verification" content="2S8M18BgYs8cLRL6ClTrfW_xGxfFtMZu2b2jhjrNlss">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>SimpleSAMLphp Documentation</title>
+
+  <link rel="stylesheet" href="/res/css/style.css">
+  <link rel="stylesheet" href="/res/css/layout.css">
+</head>
+<body>
+<header>
+ <div id="header">
+  <div class="right">
+   <form action="https://www.google.com/cse" method="get" style="margin-top: 2.5rem; margin-right: 2rem">
+    <input name="cx" type="hidden" value="004202914224971217557:8ks4jjstupq"/>
+    <input name="siteurl" type="hidden" value="www.google.com/cse/home?cx=004202914224971217557:8ks4jjstupq"/>
+    <input name="adkw" type="hidden" value="AELymgVJ6Sk-kOvUjbxvgShTLwiFlma2evFuVCh0r8q23vn_4eVnkcdnPfbgMvYUTpJpVlb-KkGAKkbn0i-AlWHsVRR9O0J4CNb6cXFkEKRdjXxsC_NlVD4"/>
+    <input name="q" placeholder="Search" type="search" value=""/>
+   </form>
+  </div>
+  <div class="v-center logo-header">
+   <div id="logo">
+    <a href="https://simplesamlphp.org" style="color: #fff; text-decoration: none">
+     <span class="simple">
+      Simple
+     </span>
+     <span class="saml">
+      SAML
+     </span>
+     <span class="simple">
+      php
+     </span>
+    </a>
+   </div>
+  </div>
+ </div>
+ <!-- Grey header bar below -->
+ <nav>
+  <div id="headerbar" style="clear: both">
+   <p id="breadcrumb">
+    <a href="https://simplesamlphp.org">
+     Home
+    </a>
+    » Documentation
+   </p>
+   <div class="mtoolbar">
+    <div class="menuitem">
+     <a href="/docs/1.19/index.html">
+      1.19
+     </a>
+    </div>
+    <div class="menuitem">
+     <a href="/docs/1.18/index.html">
+      1.18
+     </a>
+    </div>
+    <div class="menuitem">
+     <a href="/docs/1.17/index.html">
+      1.17
+     </a>
+    </div>
+    <div class="menuitem">
+     <a href="/docs/1.16/index.html">
+      1.16
+     </a>
+    </div>
+    <div class="menuitem first">
+     <a href="/docs/devel/index.html">
+      devel
+     </a>
+    </div>
+    <div class="menuitem last">
+     <a href="/docs/contributed_modules.html">
+      Contributed modules
+     </a>
+    </div>
+   </div>
+   <br style="height: 0px; clear: both"/>
+  </div>
+  <!-- /#headerbar -->
+ </nav>
+ <div id="content">
+ </div>
+</header><main><h1 id="corecardinality">
+ <code>
+  core:Cardinality
+ </code>
+</h1>
+<p>
+ Ensure the number of attribute values is within the specified multiplicity.
+</p>
+<p>
+ This filter should contain a set of attribute name =&gt; rule pairs describing the multiplicity rules for an attribute.
+</p>
+<p>
+ The special parameter
+ <code>
+  %ignoreEntities
+ </code>
+ can be used to give an array of entity IDs that should be ignored for testing, etc purposes.
+</p>
+<p>
+ A separate
+ <a href="./core/authproc_cardinalitysingle.html">
+  <code>
+   core:CardinalitySingle
+  </code>
+ </a>
+ authproc filter provides additional functionality for the special case where attributes are single valued.
+</p>
+<h2 id="specifying-rules">
+ Specifying Rules
+</h2>
+<p>
+ Multiplicity rules are specified as an associative array containing one or more of the following parameters:
+</p>
+<dl>
+ <dt>
+  <code>
+   min
+  </code>
+ </dt>
+ <dd>
+  The minimum number of values (participation) this attribute should have. Defaults to
+  <code>
+   zero
+  </code>
+  .
+ </dd>
+ <dt>
+  <code>
+   max
+  </code>
+ </dt>
+ <dd>
+  The maximum number of values (cardinality) this attribute should have. Defaults to no upper bound.
+ </dd>
+ <dt>
+  <code>
+   warn
+  </code>
+ </dt>
+ <dd>
+  Log a warning rather than generating an error. Defaults to
+  <code>
+   false
+  </code>
+  .
+ </dd>
+</dl>
+<p>
+ For convenience, minimum and maximum values can also be specified using a shorthand list notation.
+</p>
+<h2 id="examples">
+ Examples
+</h2>
+<p>
+ Require at least one
+ <code>
+  givenName
+ </code>
+ , no more than two email addresses, and between two and four values for
+ <code>
+  eduPersonScopedAffiliation
+ </code>
+ .
+</p>
+<div class="codehilite">
+ <pre><span></span><code>  'authproc' =&gt; [
+      50 =&gt; [
+          'class' =&gt; 'core:Cardinality',
+          'givenName' =&gt; ['min' =&gt; 1],
+          'mail' =&gt; ['max' =&gt; 2],
+          'eduPersonScopedAffiliation' =&gt; ['min' =&gt; 2, 'max' =&gt; 4],
+      ],
+  ],
+</code></pre>
+</div>
+<p>
+ Use the shorthand notation for min, max:
+</p>
+<div class="codehilite">
+ <pre><span></span><code>  'authproc' =&gt; [
+      50 =&gt; [
+          'class' =&gt; 'core:Cardinality',
+          'mail' =&gt; [0, 2],
+      ],
+  ],
+</code></pre>
+</div></main></body>
+</html>

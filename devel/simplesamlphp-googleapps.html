@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Language" content="en">
+  <meta name="google-site-verification" content="2S8M18BgYs8cLRL6ClTrfW_xGxfFtMZu2b2jhjrNlss">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>SimpleSAMLphp Documentation</title>
+
+  <link rel="stylesheet" href="/res/css/style.css">
+  <link rel="stylesheet" href="/res/css/layout.css">
+</head>
+<body>
+<header>
+ <div id="header">
+  <div class="right">
+   <form action="https://www.google.com/cse" method="get" style="margin-top: 2.5rem; margin-right: 2rem">
+    <input name="cx" type="hidden" value="004202914224971217557:8ks4jjstupq"/>
+    <input name="siteurl" type="hidden" value="www.google.com/cse/home?cx=004202914224971217557:8ks4jjstupq"/>
+    <input name="adkw" type="hidden" value="AELymgVJ6Sk-kOvUjbxvgShTLwiFlma2evFuVCh0r8q23vn_4eVnkcdnPfbgMvYUTpJpVlb-KkGAKkbn0i-AlWHsVRR9O0J4CNb6cXFkEKRdjXxsC_NlVD4"/>
+    <input name="q" placeholder="Search" type="search" value=""/>
+   </form>
+  </div>
+  <div class="v-center logo-header">
+   <div id="logo">
+    <a href="https://simplesamlphp.org" style="color: #fff; text-decoration: none">
+     <span class="simple">
+      Simple
+     </span>
+     <span class="saml">
+      SAML
+     </span>
+     <span class="simple">
+      php
+     </span>
+    </a>
+   </div>
+  </div>
+ </div>
+ <!-- Grey header bar below -->
+ <nav>
+  <div id="headerbar" style="clear: both">
+   <p id="breadcrumb">
+    <a href="https://simplesamlphp.org">
+     Home
+    </a>
+    » Documentation
+   </p>
+   <div class="mtoolbar">
+    <div class="menuitem">
+     <a href="/docs/1.19/index.html">
+      1.19
+     </a>
+    </div>
+    <div class="menuitem">
+     <a href="/docs/1.18/index.html">
+      1.18
+     </a>
+    </div>
+    <div class="menuitem">
+     <a href="/docs/1.17/index.html">
+      1.17
+     </a>
+    </div>
+    <div class="menuitem">
+     <a href="/docs/1.16/index.html">
+      1.16
+     </a>
+    </div>
+    <div class="menuitem first">
+     <a href="/docs/devel/index.html">
+      devel
+     </a>
+    </div>
+    <div class="menuitem last">
+     <a href="/docs/contributed_modules.html">
+      Contributed modules
+     </a>
+    </div>
+   </div>
+   <br style="height: 0px; clear: both"/>
+  </div>
+  <!-- /#headerbar -->
+ </nav>
+ <div id="content">
+ </div>
+</header><main><h1 id="setting-up-a-simplesamlphp-saml-20-idp-to-use-with-google-workspace-g-suite-google-apps-for-education">
+ Setting up a SimpleSAMLphp SAML 2.0 IdP to use with Google Workspace (G Suite / Google Apps) for Education
+</h1>
+<!-- 
+  This file is written in Markdown syntax. 
+  For more information about how to use the Markdown syntax, read here:
+  http://daringfireball.net/projects/markdown/syntax
+-->
+<div class="toc">
+ <ul>
+  <li>
+   <a href="#setting-up-a-simplesamlphp-saml-20-idp-to-use-with-google-workspace-g-suite-google-apps-for-education">
+    Setting up a SimpleSAMLphp SAML 2.0 IdP to use with Google Workspace (G Suite / Google Apps) for Education
+   </a>
+   <ul>
+    <li>
+     <a href="#simplesamlphp-news-and-documentation">
+      SimpleSAMLphp news and documentation
+     </a>
+    </li>
+    <li>
+     <a href="#introduction">
+      Introduction
+     </a>
+    </li>
+    <li>
+     <a href="#enabling-the-identity-provider-functionality">
+      Enabling the Identity Provider functionality
+     </a>
+    </li>
+    <li>
+     <a href="#setting-up-a-signing-certificate">
+      Setting up a signing certificate
+     </a>
+    </li>
+    <li>
+     <a href="#authentication-source">
+      Authentication source
+     </a>
+    </li>
+    <li>
+     <a href="#configuring-the-authentication-source">
+      Configuring the authentication source
+     </a>
+    </li>
+    <li>
+     <a href="#configuring-metadata-for-an-saml-20-idp">
+      Configuring metadata for an SAML 2.0 IdP
+     </a>
+     <ul>
+      <li>
+       <a href="#configuring-saml-20-idp-hosted-metadata">
+        Configuring SAML 2.0 IdP Hosted metadata
+       </a>
+      </li>
+      <li>
+       <a href="#configuring-saml-20-sp-remote-metadata">
+        Configuring SAML 2.0 SP Remote metadata
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#configure-google-workspace">
+      Configure Google Workspace
+     </a>
+     <ul>
+      <li>
+       <a href="#add-a-user-in-g-suite-that-is-known-to-the-idp">
+        Add a user in G Suite that is known to the IdP
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#test-to-login-to-g-suite-for-education">
+      Test to login to G Suite for education
+     </a>
+    </li>
+    <li>
+     <a href="#security-considerations">
+      Security Considerations
+     </a>
+    </li>
+    <li>
+     <a href="#support">
+      Support
+     </a>
+    </li>
+   </ul>
+  </li>
+ </ul>
+</div>
+<h2 id="simplesamlphp-news-and-documentation">
+ SimpleSAMLphp news and documentation
+</h2>
+<p>
+ This document is part of the SimpleSAMLphp documentation suite.
+</p>
+<ul>
+ <li>
+  <a href="https://simplesamlphp.org/docs">
+   List of all SimpleSAMLphp documentation
+  </a>
+ </li>
+ <li>
+  <a href="https://simplesamlphp.org">
+   SimpleSAMLphp homepage
+  </a>
+ </li>
+</ul>
+<h2 id="introduction">
+ Introduction
+</h2>
+<p>
+ This article describes how to configure a Google Workspace (formerly G Suite, formerly Google Apps)
+instance as a service provider to use with a SimpleSAMLphp identity provider.
+This article assumes that you have already read the SimpleSAMLphp installation manual, and installed
+a version of SimpleSAMLphp at your server.
+</p>
+<p>
+ In this example we will setup this server as an IdP for Google Workspace:
+  dev2.andreas.feide.no
+</p>
+<h2 id="enabling-the-identity-provider-functionality">
+ Enabling the Identity Provider functionality
+</h2>
+<p>
+ Edit
+ <code>
+  config.php
+ </code>
+ , and enable the SAML 2.0 IdP:
+</p>
+<div class="codehilite">
+ <pre><span></span><code>  'enable.saml20-idp' =&gt; true,
+</code></pre>
+</div>
+<h2 id="setting-up-a-signing-certificate">
+ Setting up a signing certificate
+</h2>
+<p>
+ You must generate a certificate for your IdP.
+Here is an example of an openssl command to generate a new key and a self signed certificate to use for signing SAML messages:
+</p>
+<div class="codehilite">
+ <pre><span></span><code>  openssl req -newkey rsa:3072 -new -x509 -days 3652 -nodes -out googleworkspaceidp.crt -keyout googleworkspaceidp.pem
+</code></pre>
+</div>
+<p>
+ The certificate above will be valid for 10 years.
+</p>
+<p>
+ Here is an example of typical user input when creating a certificate request:
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="n">Country</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="n">letter</span><span class="w"> </span><span class="n">code</span><span class="p">)</span><span class="w"> </span><span class="o">[</span><span class="n">AU</span><span class="o">]</span><span class="err">:</span><span class="k">NO</span><span class="w"></span>
+<span class="w">  </span><span class="k">State</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">Province</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="p">(</span><span class="k">full</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="o">[</span><span class="n">Some-State</span><span class="o">]</span><span class="err">:</span><span class="n">Trondheim</span><span class="w"></span>
+<span class="w">  </span><span class="n">Locality</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="p">(</span><span class="n">eg</span><span class="p">,</span><span class="w"> </span><span class="n">city</span><span class="p">)</span><span class="w"> </span><span class="err">[]:</span><span class="n">Trondheim</span><span class="w"></span>
+<span class="w">  </span><span class="n">Organization</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="p">(</span><span class="n">eg</span><span class="p">,</span><span class="w"> </span><span class="n">company</span><span class="p">)</span><span class="w"> </span><span class="o">[</span><span class="n">Internet Widgits Pty Ltd</span><span class="o">]</span><span class="err">:</span><span class="n">UNINETT</span><span class="w"></span>
+<span class="w">  </span><span class="n">Organizational</span><span class="w"> </span><span class="n">Unit</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="p">(</span><span class="n">eg</span><span class="p">,</span><span class="w"> </span><span class="k">section</span><span class="p">)</span><span class="w"> </span><span class="err">[]:</span><span class="w"></span>
+<span class="w">  </span><span class="n">Common</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="p">(</span><span class="n">eg</span><span class="p">,</span><span class="w"> </span><span class="n">YOUR</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="err">[]:</span><span class="n">dev2</span><span class="p">.</span><span class="n">andreas</span><span class="p">.</span><span class="n">feide</span><span class="p">.</span><span class="k">no</span><span class="w"></span>
+<span class="w">  </span><span class="n">Email</span><span class="w"> </span><span class="n">Address</span><span class="w"> </span><span class="err">[]:</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">Please</span><span class="w"> </span><span class="n">enter</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">following</span><span class="w"> </span><span class="s1">'extra'</span><span class="w"> </span><span class="n">attributes</span><span class="w"></span>
+<span class="w">  </span><span class="k">to</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">sent</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">certificate</span><span class="w"> </span><span class="n">request</span><span class="w"></span>
+<span class="w">  </span><span class="n">A</span><span class="w"> </span><span class="n">challenge</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="err">[]:</span><span class="w"></span>
+<span class="w">  </span><span class="n">An</span><span class="w"> </span><span class="n">optional</span><span class="w"> </span><span class="n">company</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="err">[]:</span><span class="w"></span>
+</code></pre>
+</div>
+<p>
+ <strong>
+  Note
+ </strong>
+ : SimpleSAMLphp will only work with RSA and not DSA certificates.
+</p>
+<h2 id="authentication-source">
+ Authentication source
+</h2>
+<p>
+ The next step is to configure the way users authenticate on your IdP. Various modules in the
+ <code>
+  modules/
+ </code>
+ directory provides methods for authenticating your users. This is an overview of those that are included in the SimpleSAMLphp distribution:
+</p>
+<dl>
+ <dt>
+  <code>
+   exampleauth:UserPass
+  </code>
+ </dt>
+ <dd>
+  Authenticate against a list of usernames and passwords.
+ </dd>
+ <dt>
+  <code>
+   exampleauth:Static
+  </code>
+ </dt>
+ <dd>
+  Automatically log in as a user with a set of attributes.
+ </dd>
+ <dt>
+  <a href="./ldap/ldap.html">
+   <code>
+    ldap:LDAP
+   </code>
+  </a>
+ </dt>
+ <dd>
+  Authenticates an user to a LDAP server.
+ </dd>
+</dl>
+<p>
+ For more authentication modules, see
+ <a href="simplesamlphp-idp.html">
+  SimpleSAMLphp Identity Provider QuickStart
+ </a>
+ .
+</p>
+<p>
+ In this guide, we will use the
+ <code>
+  exampleauth:UserPass
+ </code>
+ authentication module. This module does not have any dependencies, and is therefore simple to set up.
+</p>
+<p>
+ After you have successfuly tested that everything is working with the simple
+ <code>
+  exampleauth:UserPass
+ </code>
+ , you are encouraged to setup SimpleSAMLphp IdP towards your user storage, such as an LDAP directory. (Use the links on the authentication sources above to read more about these setups.
+ <code>
+  ldap:LDAP
+ </code>
+ is the most common authentication source.)
+</p>
+<h2 id="configuring-the-authentication-source">
+ Configuring the authentication source
+</h2>
+<p>
+ The
+ <code>
+  exampleauth:UserPass
+ </code>
+ authentication module is part of the
+ <code>
+  exampleauth
+ </code>
+ module. This module isn't enabled by default, so you will have to enable it. In
+ <code>
+  config.php
+ </code>
+ , search for the
+ <code>
+  module.enable
+ </code>
+ key and set
+ <code>
+  exampleauth
+ </code>
+ to true:
+</p>
+<div class="codehilite">
+ <pre><span></span><code>    'module.enable' =&gt; [
+         'exampleauth' =&gt; true,
+         …
+    ],
+</code></pre>
+</div>
+<p>
+ The next step is to create an authentication source with this module. An authentication source is an authentication module with a specific configuration. Each authentication source has a name, which is used to refer to this specific configuration in the IdP configuration. Configuration for authentication sources can be found in
+ <code>
+  config/authsources.php
+ </code>
+ .
+</p>
+<p>
+ In this example we will use
+ <code>
+  example-userpass
+ </code>
+ , and hence that section is what matters and will be used.
+</p>
+<div class="codehilite">
+ <pre><span></span><code><?php
+  $config = [
+    'example-userpass' => [
+      'exampleauth:UserPass',
+      'student:studentpass' =&gt; [
+        'uid' =&gt; ['student'],
+      ],
+      'employee:employeepass' =&gt; [
+        'uid' =&gt; ['employee'],
+      ],
+    ],
+  ];
+  ?&gt;
+
+</code></pre>
+</div>
+<p>
+ This configuration creates two users -
+ <code>
+  student
+ </code>
+ and
+ <code>
+  employee
+ </code>
+ , with the passwords
+ <code>
+  studentpass
+ </code>
+ and
+ <code>
+  employeepass
+ </code>
+ . The username and password are stored in the array index
+ <code>
+  student:studentpass
+ </code>
+ for the
+ <code>
+  student
+ </code>
+ -user. The attributes (only
+ <code>
+  uid
+ </code>
+ in this example) will be returned by the IdP when the user logs on.
+</p>
+<h2 id="configuring-metadata-for-an-saml-20-idp">
+ Configuring metadata for an SAML 2.0 IdP
+</h2>
+<p>
+ If you want to setup a SAML 2.0 IdP for Google Workspace, you need to configure two metadata files:
+ <code>
+  saml20-idp-hosted.php
+ </code>
+ and
+ <code>
+  saml20-sp-remote.php
+ </code>
+ .
+</p>
+<h3 id="configuring-saml-20-idp-hosted-metadata">
+ Configuring SAML 2.0 IdP Hosted metadata
+</h3>
+<p>
+ This is the configuration of the IdP itself. Here is some example config:
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="x">// The SAML entity ID is the index of this config.</span>
+<span class="x">$metadata['https://example.org/saml-idp'] =&gt; [</span>
+
+<span class="x">    // The hostname of the server (VHOST) that this SAML entity will use.</span>
+<span class="x">    'host' =&gt; '__DEFAULT__',</span>
+
+<span class="x">    // X.509 key and certificate. Relative to the cert directory.</span>
+<span class="x">    'privatekey'   =&gt; 'googleworkspaceidp.pem',</span>
+<span class="x">    'certificate'  =&gt; 'googleappsidp.crt',</span>
+
+<span class="x">    'auth' =&gt; 'example-userpass',</span>
+<span class="x">]</span>
+</code></pre>
+</div>
+<p>
+ <strong>
+  Note
+ </strong>
+ : You can only have one entry in the file with host equal to
+ <code>
+  __DEFAULT__
+ </code>
+ , therefore you should replace the existing entry with this one, instead of adding this entry as a new entry in the file.
+</p>
+<h3 id="configuring-saml-20-sp-remote-metadata">
+ Configuring SAML 2.0 SP Remote metadata
+</h3>
+<p>
+ In the
+ <code>
+  saml20-sp-remote.php
+ </code>
+ file we will configure an entry for Google Workspace for Education. There is already an entry for Google Workspace in the template, but we will change the domain name:
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="w">    </span><span class="cm">/*</span>
+<span class="cm">     * This example shows an example config that works with Google Workspace (G Suite / Google Apps) for education.</span>
+<span class="cm">     * What is important is that you have an attribute in your IdP that maps to the local part of the email address</span>
+<span class="cm">     * at Google Workspace. E.g. if your google account is foo.com, and you have a user with email john@foo.com, then you</span>
+<span class="cm">     * must properly configure the saml:AttributeNameID authproc-filter with the name of an attribute that for this user has the value of 'john'.</span>
+<span class="cm">     */</span><span class="w"></span>
+<span class="w">    </span><span class="err">$</span><span class="n">metadata</span><span class="o">[</span><span class="n">'https://www.google.com/a/g.feide.no'</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">[</span><span class="n"></span>
+<span class="n">      'AssertionConsumerService'   =&gt; 'https://www.google.com/a/g.feide.no/acs', </span>
+<span class="n">      'NameIDFormat'               =&gt; 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress',</span>
+<span class="n">      'simplesaml.attributes'      =&gt; false,</span>
+<span class="n">      'authproc'                   =&gt; [</span>
+<span class="n">        1 =&gt; [</span>
+<span class="n">          'saml:AttributeNameID',</span>
+<span class="n">          'attribute' =&gt; 'uid',</span>
+<span class="n">          'format' =&gt; 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress',</span>
+<span class="n">        </span><span class="o">]</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="err">]</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="err">]</span><span class="p">;</span><span class="w"></span>
+</code></pre>
+</div>
+<p>
+ You must also map some attributes received from the authentication module into email field sent to Google Workspace. In this example, the
+ <code>
+  uid
+ </code>
+ attribute is set.  When you later configure the IdP to connect to a LDAP directory or some other authentication source, make sure that the
+ <code>
+  uid
+ </code>
+ attribute is set properly, or you can configure another attribute to use here. The
+ <code>
+  uid
+ </code>
+ attribute contains the local part of the user name.
+</p>
+<p>
+ For an e-mail address
+ <code>
+  student@g.feide.no
+ </code>
+ , the
+ <code>
+  uid
+ </code>
+ should be set to
+ <code>
+  student
+ </code>
+ .
+</p>
+<p>
+ You should modify the
+ <code>
+  AssertionConsumerService
+ </code>
+ to include your G Suite domain name instead of
+ <code>
+  g.feide.no
+ </code>
+ .
+</p>
+<p>
+ For an explanation of the parameters, see the
+ <a href="simplesamlphp-idp.html">
+  SimpleSAMLphp Identity Provider QuickStart
+ </a>
+ .
+</p>
+<h2 id="configure-google-workspace">
+ Configure Google Workspace
+</h2>
+<p>
+ Start by logging in to our Google Workspace for education account panel.
+Then select "Advanced tools":
+</p>
+<p>
+ <strong>
+  Figure 1. We go to advanced tools
+ </strong>
+</p>
+<p>
+ <img alt="We go to advanced tools" src="resources/simplesamlphp-googleapps/googleapps-menu.png"/>
+</p>
+<p>
+ Then select "Set up single sign-on (SSO)":
+</p>
+<p>
+ <strong>
+  Figure 2. We go to setup SSO
+ </strong>
+</p>
+<p>
+ <img alt="We go to setup SSO" src="resources/simplesamlphp-googleapps/googleapps-sso.png"/>
+ Upload a certificate, such as the googleworkspaceidp.crt created above:
+</p>
+<p>
+ <strong>
+  Figure 3. Uploading certificate
+ </strong>
+</p>
+<p>
+ <img alt="Uploading certificate" src="resources/simplesamlphp-googleapps/googleapps-cert.png"/>
+ Fill out the remaining fields:
+</p>
+<p>
+ The most important field is the Sign-in page URL. You can find the
+correct value in your IdP metadata. Browse to your simpleSAMLphp installation,
+go to the "Federation" tab, under "SAML 2.0 IdP Metadata" select "show metadata".
+</p>
+<p>
+ You will find in the metadata the XML tag
+ <code>
+  &lt;md:SingleSignOnService&gt;
+ </code>
+ which contains the right URL to input in the field, it will look something
+like this:
+</p>
+<div class="codehilite">
+ <pre><span></span><code>https://dev2.andreas.feide.no/simplesaml/saml2/idp/SSOService.php
+</code></pre>
+</div>
+<p>
+ You must also configure the IdP initiated Single LogOut endpoint of your server.
+You will find this in your metadata XML in the tag
+ <code>
+  &lt;md:SingleLogoutService&gt;
+ </code>
+ . It will look something like:
+</p>
+<div class="codehilite">
+ <pre><span></span><code>http://dev2.andreas.feide.no/simplesaml/saml2/idp/SingleLogoutService.php
+</code></pre>
+</div>
+<p>
+ again, using the host name of your IdP server.
+</p>
+<p>
+ The Sign-out page or change password URL can be static pages on your server.
+</p>
+<p>
+ The network mask determines which IP addresses will be asked for SSO login.
+IP addresses not matching this mask will be presented with the normal Google Workspace login page.
+It is normally best to leave this field empty to enable authentication for all URLs.
+</p>
+<p>
+ <strong>
+  Figure 4. Fill out the remaining fields
+ </strong>
+</p>
+<p>
+ <img alt="Fill out the remaining fields" src="resources/simplesamlphp-googleapps/googleapps-ssoconfig.png"/>
+</p>
+<h3 id="add-a-user-in-g-suite-that-is-known-to-the-idp">
+ Add a user in G Suite that is known to the IdP
+</h3>
+<p>
+ Before we can test login, a new user must be defined in Google Workspace. This user must have a mail field matching the email prefix mapped from the attribute as described above in the metadata section.
+</p>
+<h2 id="test-to-login-to-g-suite-for-education">
+ Test to login to G Suite for education
+</h2>
+<p>
+ Go to the URL of your mail account for this domain, the URL is similar to the following:
+</p>
+<div class="codehilite">
+ <pre><span></span><code>http://mail.google.com/a/yourgoogleappsdomain.com
+</code></pre>
+</div>
+<p>
+ replacing the last part with your own Google Workspace domain name.
+</p>
+<h2 id="security-considerations">
+ Security Considerations
+</h2>
+<p>
+ Make sure that your IdP server runs HTTPS (TLS). The Apache documentation contains information for how to configure HTTPS.
+</p>
+<h2 id="support">
+ Support
+</h2>
+<p>
+ If you need help to make this work, or want to discuss SimpleSAMLphp with other users of the software, you are fortunate: Around SimpleSAMLphp there is a great Open source community, and you are welcome to join! The forums are open for you to ask questions, contribute answers other further questions, request improvements or contribute with code or plugins of your own.
+</p>
+<ul>
+ <li>
+  <a href="https://simplesamlphp.org">
+   SimpleSAMLphp homepage
+  </a>
+ </li>
+ <li>
+  <a href="https://simplesamlphp.org/docs/">
+   List of all available SimpleSAMLphp documentation
+  </a>
+ </li>
+ <li>
+  <a href="https://simplesamlphp.org/lists">
+   Join the SimpleSAMLphp user's mailing list
+  </a>
+ </li>
+</ul></main></body>
+</html>

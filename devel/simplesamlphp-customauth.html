@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Language" content="en">
+  <meta name="google-site-verification" content="2S8M18BgYs8cLRL6ClTrfW_xGxfFtMZu2b2jhjrNlss">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>SimpleSAMLphp Documentation</title>
+
+  <link rel="stylesheet" href="/res/css/style.css">
+  <link rel="stylesheet" href="/res/css/layout.css">
+</head>
+<body>
+<header>
+ <div id="header">
+  <div class="right">
+   <form action="https://www.google.com/cse" method="get" style="margin-top: 2.5rem; margin-right: 2rem">
+    <input name="cx" type="hidden" value="004202914224971217557:8ks4jjstupq"/>
+    <input name="siteurl" type="hidden" value="www.google.com/cse/home?cx=004202914224971217557:8ks4jjstupq"/>
+    <input name="adkw" type="hidden" value="AELymgVJ6Sk-kOvUjbxvgShTLwiFlma2evFuVCh0r8q23vn_4eVnkcdnPfbgMvYUTpJpVlb-KkGAKkbn0i-AlWHsVRR9O0J4CNb6cXFkEKRdjXxsC_NlVD4"/>
+    <input name="q" placeholder="Search" type="search" value=""/>
+   </form>
+  </div>
+  <div class="v-center logo-header">
+   <div id="logo">
+    <a href="https://simplesamlphp.org" style="color: #fff; text-decoration: none">
+     <span class="simple">
+      Simple
+     </span>
+     <span class="saml">
+      SAML
+     </span>
+     <span class="simple">
+      php
+     </span>
+    </a>
+   </div>
+  </div>
+ </div>
+ <!-- Grey header bar below -->
+ <nav>
+  <div id="headerbar" style="clear: both">
+   <p id="breadcrumb">
+    <a href="https://simplesamlphp.org">
+     Home
+    </a>
+    » Documentation
+   </p>
+   <div class="mtoolbar">
+    <div class="menuitem">
+     <a href="/docs/1.19/index.html">
+      1.19
+     </a>
+    </div>
+    <div class="menuitem">
+     <a href="/docs/1.18/index.html">
+      1.18
+     </a>
+    </div>
+    <div class="menuitem">
+     <a href="/docs/1.17/index.html">
+      1.17
+     </a>
+    </div>
+    <div class="menuitem">
+     <a href="/docs/1.16/index.html">
+      1.16
+     </a>
+    </div>
+    <div class="menuitem first">
+     <a href="/docs/devel/index.html">
+      devel
+     </a>
+    </div>
+    <div class="menuitem last">
+     <a href="/docs/contributed_modules.html">
+      Contributed modules
+     </a>
+    </div>
+   </div>
+   <br style="height: 0px; clear: both"/>
+  </div>
+  <!-- /#headerbar -->
+ </nav>
+ <div id="content">
+ </div>
+</header><main><h1 id="implementing-custom-usernamepassword-authentication">
+ Implementing custom username/password authentication
+</h1>
+<p>
+ This is a step-by-step guide for creating a custom username/password
+ <a href="./simplesamlphp-authsource.html">
+  authentication source
+ </a>
+ for SimpleSAMLphp.
+An authentication source is responsible for authenticating the user, typically by getting a username and password, and looking it up in some sort of database.
+</p>
+<div class="toc">
+ <ul>
+  <li>
+   <a href="#implementing-custom-usernamepassword-authentication">
+    Implementing custom username/password authentication
+   </a>
+   <ul>
+    <li>
+     <a href="#create-a-custom-module">
+      Create a custom module
+     </a>
+    </li>
+    <li>
+     <a href="#creating-a-basic-authentication-source">
+      Creating a basic authentication source
+     </a>
+    </li>
+    <li>
+     <a href="#configuring-our-authentication-source">
+      Configuring our authentication source
+     </a>
+    </li>
+    <li>
+     <a href="#testing-our-authentication-source">
+      Testing our authentication source
+     </a>
+    </li>
+    <li>
+     <a href="#using-our-authentication-source-in-an-idp">
+      Using our authentication source in an IdP
+     </a>
+    </li>
+    <li>
+     <a href="#adding-configuration-to-our-authentication-source">
+      Adding configuration to our authentication source
+     </a>
+    </li>
+    <li>
+     <a href="#a-more-complete-example-custom-database-authentication">
+      A more complete example - custom database authentication
+     </a>
+    </li>
+   </ul>
+  </li>
+ </ul>
+</div>
+<h2 id="create-a-custom-module">
+ Create a custom module
+</h2>
+<p>
+ All custom code for SimpleSAMLphp should be contained in a
+ <a href="./simplesamlphp-modules.html">
+  module
+ </a>
+ .
+This ensures that you can upgrade your SimpleSAMLphp installation without overwriting your own code.
+In this example, we will call the module
+ <code>
+  mymodule
+ </code>
+ .
+It will be located under
+ <code>
+  modules/mymodule
+ </code>
+ .
+</p>
+<p>
+ First we need to create the module directory:
+</p>
+<div class="codehilite">
+ <pre><span></span><code>  cd modules
+  mkdir mymodule
+</code></pre>
+</div>
+<p>
+ Since this is a custom module, it should always be enabled in the configuration.
+Now that we have our own module, we can move on to creating an authentication source.
+</p>
+<h2 id="creating-a-basic-authentication-source">
+ Creating a basic authentication source
+</h2>
+<p>
+ Authentication sources are implemented using PHP classes.
+We are going to create an authentication source named
+ <code>
+  mymodule:MyAuth
+ </code>
+ .
+It will be implemented in the file
+ <code>
+  modules/mymodule/lib/Auth/Source/MyAuth.php
+ </code>
+ .
+</p>
+<p>
+ To begin with, we will create a very simple authentication source, where the username and password is hardcoded into the source code.
+Create the file
+ <code>
+  modules/mymodule/lib/Auth/Source/MyAuth.php
+ </code>
+ with the following contents:
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="o">&lt;</span><span class="err">?</span><span class="n">php</span><span class="w"></span>
+<span class="w">  </span><span class="n">namespace</span><span class="w"> </span><span class="n">SimpleSAML</span>\<span class="n">Module</span>\<span class="n">mymodule</span>\<span class="n">Auth</span>\<span class="n">Source</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">class</span><span class="w"> </span><span class="n">MyAuth</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span>\<span class="n">SimpleSAML</span>\<span class="n">Module</span>\<span class="n">core</span>\<span class="n">Auth</span>\<span class="n">UserPassBase</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">protected</span><span class="w"> </span><span class="n">function</span><span class="w"> </span><span class="n">login</span><span class="p">(</span><span class="o">$</span><span class="n">username</span><span class="p">,</span><span class="w"> </span><span class="o">$</span><span class="n">password</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">$</span><span class="n">username</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="s1">'theusername'</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">$</span><span class="n">password</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="s1">'thepassword'</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">              </span><span class="n">throw</span><span class="w"> </span><span class="n">new</span><span class="w"> </span>\<span class="n">SimpleSAML</span>\<span class="n">Error</span>\<span class="n">Error</span><span class="p">(</span><span class="s1">'WRONGUSERPASS'</span><span class="p">);</span><span class="w"></span>
+<span class="w">          </span><span class="p">}</span><span class="w"></span>
+<span class="w">          </span><span class="k">return</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">              </span><span class="s1">'uid'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="s1">'theusername'</span><span class="p">],</span><span class="w"></span>
+<span class="w">              </span><span class="s1">'displayName'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="s1">'Some Random User'</span><span class="p">],</span><span class="w"></span>
+<span class="w">              </span><span class="s1">'eduPersonAffiliation'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="s1">'member'</span><span class="p">,</span><span class="w"> </span><span class="s1">'employee'</span><span class="p">],</span><span class="w"></span>
+<span class="w">          </span><span class="p">];</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+</code></pre>
+</div>
+<p>
+ Some things to note:
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">classname</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n n-Quoted">`\SimpleSAML\Module\mymodule\Auth\Source\MyAuth`</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="n">This</span><span class="w"> </span><span class="n">tells</span><span class="w"> </span><span class="n">SimpleSAMLphp</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">look</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">class</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n n-Quoted">`modules/mymodule/lib/Auth/Source/MyAuth.php`</span><span class="p">.</span><span class="w"></span>
+
+<span class="o">-</span><span class="w"> </span><span class="n">Our</span><span class="w"> </span><span class="k">authentication</span><span class="w"> </span><span class="k">source</span><span class="w"> </span><span class="n">subclasses</span><span class="w"> </span><span class="n n-Quoted">`\SimpleSAML\Module\core\Auth\UserPassBase`</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="n">This</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">helper</span><span class="o">-</span><span class="n">class</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">implements</span><span class="w"> </span><span class="n">much</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">common</span><span class="w"> </span><span class="k">code</span><span class="w"> </span><span class="n">needed</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">username</span><span class="o">/</span><span class="k">password</span><span class="w"> </span><span class="k">authentication</span><span class="p">.</span><span class="w"></span>
+
+<span class="o">-</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n n-Quoted">`login`</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">receives</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">username</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="k">password</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">enters</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="n">It</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">expected</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">authenticate</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">user</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">If</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">username</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">password</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">correct</span><span class="p">,</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="n">must</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">attributes</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">user</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="n">Otherwise</span><span class="p">,</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="n">must</span><span class="w"> </span><span class="n">throw</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n n-Quoted">`\SimpleSAML\Error\Error('WRONGUSERPASS');`</span><span class="w"> </span><span class="n">exception</span><span class="p">.</span><span class="w"></span>
+
+<span class="o">-</span><span class="w"> </span><span class="n">Attributes</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="n">returned</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">associative</span><span class="w"> </span><span class="k">array</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n n-Quoted">`name =&gt; values`</span><span class="w"> </span><span class="n">pairs</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">All</span><span class="w"> </span><span class="n">attributes</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">multiple</span><span class="w"> </span><span class="k">values</span><span class="p">,</span><span class="w"> </span><span class="n">so</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="k">always</span><span class="w"> </span><span class="k">stored</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="k">array</span><span class="p">.</span><span class="w"></span>
+</code></pre>
+</div>
+<h2 id="configuring-our-authentication-source">
+ Configuring our authentication source
+</h2>
+<p>
+ Before we can test our authentication source, we must add an entry for it in
+ <code>
+  config/authsources.php
+ </code>
+ .
+ <code>
+  config/authsources.php
+ </code>
+ contains an list of enabled authentication sources.
+</p>
+<p>
+ The entry looks like this:
+</p>
+<div class="codehilite">
+ <pre><span></span><code>  'myauthinstance' =&gt; [
+      'mymodule:MyAuth',
+  ],
+</code></pre>
+</div>
+<p>
+ You can add it to the beginning of the list, so that the file looks something like this:
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="cp">&lt;?php</span>
+  <span class="nv">$config</span> <span class="o">=</span> <span class="p">[</span>
+      <span class="s1">'myauthinstance'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+          <span class="s1">'mymodule:MyAuth'</span><span class="p">,</span>
+      <span class="p">],</span>
+      <span class="cm">/* Other authentication sources follow. */</span>
+  <span class="p">];</span>
+</code></pre>
+</div>
+<p>
+ <code>
+  myauthinstance
+ </code>
+ is the name of this instance of the authentication source.
+(You are allowed to have multiple instances of an authentication source with different configuration.)
+The instance name is used to refer to this authentication source in other configuration files.
+</p>
+<p>
+ The first element of the configuration of the authentication source must be
+ <code>
+  'mymodule:MyAuth'
+ </code>
+ .
+This tells SimpleSAMLphp to look for the
+ <code>
+  \SimpleSAML\Module\mymodule\Auth\Source\MyAuth
+ </code>
+ class.
+</p>
+<h2 id="testing-our-authentication-source">
+ Testing our authentication source
+</h2>
+<p>
+ Now that we have configured the authentication source, we can test it by accessing "authentication"-page of the SimpleSAMLphp web interface.
+By default, the web interface can be found on
+ <code>
+  http://yourhostname.com/simplesaml/
+ </code>
+ .
+(Obviously, "yourhostname.com" should be replaced with your real hostname.)
+</p>
+<p>
+ Then select the "Authentication"-tab, and choose "Test configured authentication sources".
+You should then receive a list of authentication sources from
+ <code>
+  config/authsources.php
+ </code>
+ .
+Select
+ <code>
+  myauthinstance
+ </code>
+ , and log in using "theusername" as the username, and "thepassword" as the password.
+You should then arrive on a page listing the attributes we return from the
+ <code>
+  login
+ </code>
+ function.
+</p>
+<p>
+ Next, you should log out by following the log out link.
+</p>
+<h2 id="using-our-authentication-source-in-an-idp">
+ Using our authentication source in an IdP
+</h2>
+<p>
+ To use our new authentication source in an IdP we just need to update the IdP configuration to use it.
+Open
+ <code>
+  metadata/saml20-idp-hosted.php
+ </code>
+ .
+In that file you should locate the
+ <code>
+  auth
+ </code>
+ -option for your IdP, and change it to
+ <code>
+  myauthinstance
+ </code>
+ :
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="cp">&lt;?php</span>
+  <span class="cm">/* ... */</span>
+  <span class="nv">$metadata</span><span class="p">[</span><span class="s1">'https://example.org/saml-idp'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+      <span class="cm">/* ... */</span>
+      <span class="cm">/*</span>
+<span class="cm">       * Authentication source to use. Must be one that is configured in</span>
+<span class="cm">       * 'config/authsources.php'.</span>
+<span class="cm">       */</span>
+      <span class="s1">'auth'</span> <span class="o">=&gt;</span> <span class="s1">'myauthinstance'</span><span class="p">,</span>
+      <span class="cm">/* ... */</span>
+  <span class="p">];</span>
+</code></pre>
+</div>
+<p>
+ You can then test logging in to the IdP.
+If you have logged in previously, you may need to log out first.
+</p>
+<h2 id="adding-configuration-to-our-authentication-source">
+ Adding configuration to our authentication source
+</h2>
+<p>
+ Instead of hardcoding options in our authentication source, they should be configurable.
+We are now going to extend our authentication source to allow us to configure the username and password in
+ <code>
+  config/authsources.php
+ </code>
+ .
+</p>
+<p>
+ First, we need to define the properties in the class that should hold our configuration:
+</p>
+<div class="codehilite">
+ <pre><span></span><code>  private $username;
+  private $password;
+</code></pre>
+</div>
+<p>
+ Next, we create a constructor for the class.
+The constructor is responsible for parsing the configuration and storing it in the properties.
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="n">public</span><span class="w"> </span><span class="n">function</span><span class="w"> </span><span class="n">__construct</span><span class="p">(</span><span class="o">$</span><span class="n">info</span><span class="p">,</span><span class="w"> </span><span class="o">$</span><span class="n">config</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">parent</span><span class="p">::</span><span class="n">__construct</span><span class="p">(</span><span class="o">$</span><span class="n">info</span><span class="p">,</span><span class="w"> </span><span class="o">$</span><span class="n">config</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">is_string</span><span class="p">(</span><span class="o">$</span><span class="n">config</span><span class="p">[</span><span class="s1">'username'</span><span class="p">]))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="n">throw</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">Exception</span><span class="p">(</span><span class="s1">'Missing or invalid username option in config.'</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="o">$</span><span class="n">this</span><span class="o">-&gt;</span><span class="n">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">config</span><span class="p">[</span><span class="s1">'username'</span><span class="p">];</span><span class="w"></span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">is_string</span><span class="p">(</span><span class="o">$</span><span class="n">config</span><span class="p">[</span><span class="s1">'password'</span><span class="p">]))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="n">throw</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">Exception</span><span class="p">(</span><span class="s1">'Missing or invalid password option in config.'</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="o">$</span><span class="n">this</span><span class="o">-&gt;</span><span class="n">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">config</span><span class="p">[</span><span class="s1">'password'</span><span class="p">];</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+</code></pre>
+</div>
+<p>
+ We can then use the properties in the
+ <code>
+  login
+ </code>
+ function.
+The complete class file should look like this:
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="o">&lt;</span><span class="err">?</span><span class="n">php</span><span class="w"></span>
+<span class="w">  </span><span class="k">class</span><span class="w"> </span><span class="n">MyAuth</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span>\<span class="n">SimpleSAML</span>\<span class="n">Module</span>\<span class="n">core</span>\<span class="n">Auth</span>\<span class="n">UserPassBase</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">private</span><span class="w"> </span><span class="o">$</span><span class="n">username</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="n">private</span><span class="w"> </span><span class="o">$</span><span class="n">password</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">public</span><span class="w"> </span><span class="n">function</span><span class="w"> </span><span class="n">__construct</span><span class="p">(</span><span class="o">$</span><span class="n">info</span><span class="p">,</span><span class="w"> </span><span class="o">$</span><span class="n">config</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="n">parent</span><span class="p">::</span><span class="n">__construct</span><span class="p">(</span><span class="o">$</span><span class="n">info</span><span class="p">,</span><span class="w"> </span><span class="o">$</span><span class="n">config</span><span class="p">);</span><span class="w"></span>
+<span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">is_string</span><span class="p">(</span><span class="o">$</span><span class="n">config</span><span class="p">[</span><span class="s1">'username'</span><span class="p">]))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">              </span><span class="n">throw</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">Exception</span><span class="p">(</span><span class="s1">'Missing or invalid username option in config.'</span><span class="p">);</span><span class="w"></span>
+<span class="w">          </span><span class="p">}</span><span class="w"></span>
+<span class="w">          </span><span class="o">$</span><span class="n">this</span><span class="o">-&gt;</span><span class="n">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">config</span><span class="p">[</span><span class="s1">'username'</span><span class="p">];</span><span class="w"></span>
+<span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">is_string</span><span class="p">(</span><span class="o">$</span><span class="n">config</span><span class="p">[</span><span class="s1">'password'</span><span class="p">]))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">              </span><span class="n">throw</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">Exception</span><span class="p">(</span><span class="s1">'Missing or invalid password option in config.'</span><span class="p">);</span><span class="w"></span>
+<span class="w">          </span><span class="p">}</span><span class="w"></span>
+<span class="w">          </span><span class="o">$</span><span class="n">this</span><span class="o">-&gt;</span><span class="n">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">config</span><span class="p">[</span><span class="s1">'password'</span><span class="p">];</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">protected</span><span class="w"> </span><span class="n">function</span><span class="w"> </span><span class="n">login</span><span class="p">(</span><span class="o">$</span><span class="n">username</span><span class="p">,</span><span class="w"> </span><span class="o">$</span><span class="n">password</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">$</span><span class="n">username</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="o">$</span><span class="n">this</span><span class="o">-&gt;</span><span class="n">username</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">$</span><span class="n">password</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="o">$</span><span class="n">this</span><span class="o">-&gt;</span><span class="n">password</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">              </span><span class="n">throw</span><span class="w"> </span><span class="n">new</span><span class="w"> </span>\<span class="n">SimpleSAML</span>\<span class="n">Error</span>\<span class="n">Error</span><span class="p">(</span><span class="s1">'WRONGUSERPASS'</span><span class="p">);</span><span class="w"></span>
+<span class="w">          </span><span class="p">}</span><span class="w"></span>
+<span class="w">          </span><span class="k">return</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">              </span><span class="s1">'uid'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="o">$</span><span class="n">this</span><span class="o">-&gt;</span><span class="n">username</span><span class="p">],</span><span class="w"></span>
+<span class="w">              </span><span class="s1">'displayName'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="s1">'Some Random User'</span><span class="p">],</span><span class="w"></span>
+<span class="w">              </span><span class="s1">'eduPersonAffiliation'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="s1">'member'</span><span class="p">,</span><span class="w"> </span><span class="s1">'employee'</span><span class="p">],</span><span class="w"></span>
+<span class="w">          </span><span class="p">];</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+</code></pre>
+</div>
+<p>
+ We can then update our entry in
+ <code>
+  config/authsources.php
+ </code>
+ with the configuration options:
+</p>
+<div class="codehilite">
+ <pre><span></span><code>  'myauthinstance' =&gt; [
+      'mymodule:MyAuth',
+      'username' =&gt; 'theconfigusername',
+      'password' =&gt; 'theconfigpassword',
+  ],
+</code></pre>
+</div>
+<p>
+ Next, you should go to the "Test configured authentication sources" page again, and test logging in.
+Note that we have updated the username &amp; password to "theconfigusername" and "theconfigpassword".
+(You may need to log out first before you can log in again.)
+</p>
+<h2 id="a-more-complete-example-custom-database-authentication">
+ A more complete example - custom database authentication
+</h2>
+<p>
+ The
+ <a href="./sqlauth/sql.html">
+  sqlauth:SQL
+ </a>
+ authentication source can do simple authentication against SQL databases.
+However, in some cases it cannot be used, for example because the database layout is too complex, or because the password validation routines cannot be implemented in SQL.
+What follows is an example of an authentication source that fetches an user from a database, and validates the password using a custom function.
+</p>
+<p>
+ This code assumes that the database contains a table that looks like this:
+</p>
+<div class="codehilite">
+ <pre><span></span><code>  CREATE TABLE userdb (
+      username VARCHAR(32) PRIMARY KEY NOT NULL,
+      password_hash VARCHAR(64) NOT NULL,
+      full_name TEXT NOT NULL);
+</code></pre>
+</div>
+<p>
+ An example user (with password "secret"):
+</p>
+<div class="codehilite">
+ <pre><span></span><code>  INSERT INTO userdb (username, password_hash, full_name)
+      VALUES('exampleuser', 'QwVYkvlrAMsXIgULyQ/pDDwDI3dF2aJD4XeVxg==', 'Example User');
+</code></pre>
+</div>
+<p>
+ In this example, the
+ <code>
+  password_hash
+ </code>
+ contains a base64 encoded SSHA password.
+A SSHA password is created like this:
+</p>
+<div class="codehilite">
+ <pre><span></span><code>  $<span class="nv">password</span> <span class="o">=</span> <span class="s1">'</span><span class="s">secret</span><span class="s1">'</span><span class="c1">;</span>
+  $<span class="nv">numSalt</span> <span class="o">=</span> <span class="mi">8</span><span class="c1">; /* Number of bytes with salt. */</span>
+  $<span class="nv">salt</span> <span class="o">=</span> <span class="s1">''</span><span class="c1">;</span>
+  <span class="k">for</span> <span class="ss">(</span>$<span class="nv">i</span> <span class="o">=</span> <span class="mi">0</span><span class="c1">; $i &lt; $numSalt; $i++) {</span>
+      $<span class="nv">salt</span> .<span class="o">=</span> <span class="nv">chr</span><span class="ss">(</span><span class="nv">mt_rand</span><span class="ss">(</span><span class="mi">0</span>, <span class="mi">255</span><span class="ss">))</span><span class="c1">;</span>
+  }
+  <span class="mh">$d</span><span class="nv">igest</span> <span class="o">=</span> <span class="nv">sha1</span><span class="ss">(</span>$<span class="nv">password</span> . $<span class="nv">salt</span>, <span class="nv">TRUE</span><span class="ss">)</span><span class="c1">;</span>
+  $<span class="nv">password_hash</span> <span class="o">=</span> <span class="nv">base64_encode</span><span class="ss">(</span><span class="mh">$d</span><span class="nv">igest</span> . $<span class="nv">salt</span><span class="ss">)</span><span class="c1">;</span>
+</code></pre>
+</div>
+<p>
+ The class follows:
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="o">&lt;</span><span class="err">?</span><span class="n">php</span><span class="w"></span>
+<span class="w">  </span><span class="k">class</span><span class="w"> </span><span class="n">MyAuth</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span>\<span class="n">SimpleSAML</span>\<span class="n">Module</span>\<span class="n">core</span>\<span class="n">Auth</span>\<span class="n">UserPassBase</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">      </span><span class="o">/*</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">database</span><span class="w"> </span><span class="n">DSN</span><span class="o">.</span><span class="w"></span>
+<span class="w">       </span><span class="o">*</span><span class="w"> </span><span class="n">See</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">documentation</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">various</span><span class="w"> </span><span class="n">database</span><span class="w"> </span><span class="n">drivers</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">information</span><span class="w"> </span><span class="n">about</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">syntax</span><span class="p">:</span><span class="w"></span>
+<span class="w">       </span><span class="o">*</span><span class="w">     </span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">php</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="n">manual</span><span class="o">/</span><span class="n">en</span><span class="o">/</span><span class="n">pdo</span><span class="o">.</span><span class="n">drivers</span><span class="o">.</span><span class="n">php</span><span class="w"></span>
+<span class="w">       </span><span class="o">*/</span><span class="w"></span>
+<span class="w">      </span><span class="n">private</span><span class="w"> </span><span class="o">$</span><span class="n">dsn</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">      </span><span class="o">/*</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">database</span><span class="w"> </span><span class="n">username</span><span class="p">,</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">options</span><span class="o">.</span><span class="w"> </span><span class="o">*/</span><span class="w"></span>
+<span class="w">      </span><span class="n">private</span><span class="w"> </span><span class="o">$</span><span class="n">username</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="n">private</span><span class="w"> </span><span class="o">$</span><span class="n">password</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="n">private</span><span class="w"> </span><span class="o">$</span><span class="n">options</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">public</span><span class="w"> </span><span class="n">function</span><span class="w"> </span><span class="n">__construct</span><span class="p">(</span><span class="o">$</span><span class="n">info</span><span class="p">,</span><span class="w"> </span><span class="o">$</span><span class="n">config</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="n">parent</span><span class="p">::</span><span class="n">__construct</span><span class="p">(</span><span class="o">$</span><span class="n">info</span><span class="p">,</span><span class="w"> </span><span class="o">$</span><span class="n">config</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">is_string</span><span class="p">(</span><span class="o">$</span><span class="n">config</span><span class="p">[</span><span class="s1">'dsn'</span><span class="p">]))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">              </span><span class="n">throw</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">Exception</span><span class="p">(</span><span class="s1">'Missing or invalid dsn option in config.'</span><span class="p">);</span><span class="w"></span>
+<span class="w">          </span><span class="p">}</span><span class="w"></span>
+<span class="w">          </span><span class="o">$</span><span class="n">this</span><span class="o">-&gt;</span><span class="n">dsn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">config</span><span class="p">[</span><span class="s1">'dsn'</span><span class="p">];</span><span class="w"></span>
+<span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">is_string</span><span class="p">(</span><span class="o">$</span><span class="n">config</span><span class="p">[</span><span class="s1">'username'</span><span class="p">]))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">              </span><span class="n">throw</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">Exception</span><span class="p">(</span><span class="s1">'Missing or invalid username option in config.'</span><span class="p">);</span><span class="w"></span>
+<span class="w">          </span><span class="p">}</span><span class="w"></span>
+<span class="w">          </span><span class="o">$</span><span class="n">this</span><span class="o">-&gt;</span><span class="n">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">config</span><span class="p">[</span><span class="s1">'username'</span><span class="p">];</span><span class="w"></span>
+<span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">is_string</span><span class="p">(</span><span class="o">$</span><span class="n">config</span><span class="p">[</span><span class="s1">'password'</span><span class="p">]))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">              </span><span class="n">throw</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">Exception</span><span class="p">(</span><span class="s1">'Missing or invalid password option in config.'</span><span class="p">);</span><span class="w"></span>
+<span class="w">          </span><span class="p">}</span><span class="w"></span>
+<span class="w">          </span><span class="o">$</span><span class="n">this</span><span class="o">-&gt;</span><span class="n">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">config</span><span class="p">[</span><span class="s1">'password'</span><span class="p">];</span><span class="w"></span>
+<span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isset</span><span class="p">(</span><span class="o">$</span><span class="n">config</span><span class="p">[</span><span class="s1">'options'</span><span class="p">])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">              </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">is_array</span><span class="p">(</span><span class="o">$</span><span class="n">config</span><span class="p">[</span><span class="s1">'options'</span><span class="p">]))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                  </span><span class="n">throw</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">Exception</span><span class="p">(</span><span class="s1">'Missing or invalid options option in config.'</span><span class="p">);</span><span class="w"></span>
+<span class="w">              </span><span class="p">}</span><span class="w"></span>
+<span class="w">              </span><span class="o">$</span><span class="n">this</span><span class="o">-&gt;</span><span class="n">options</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">config</span><span class="p">[</span><span class="s1">'options'</span><span class="p">];</span><span class="w"></span>
+<span class="w">          </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">      </span><span class="o">/**</span><span class="w"></span>
+<span class="w">       </span><span class="o">*</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">helper</span><span class="w"> </span><span class="n">function</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">validating</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="nb">hash</span><span class="o">.</span><span class="w"></span>
+<span class="w">       </span><span class="o">*</span><span class="w"></span>
+<span class="w">       </span><span class="o">*</span><span class="w"> </span><span class="n">In</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">example</span><span class="w"> </span><span class="n">we</span><span class="w"> </span><span class="n">check</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">SSHA</span><span class="o">-</span><span class="n">password</span><span class="p">,</span><span class="w"> </span><span class="n">where</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">database</span><span class="w"></span>
+<span class="w">       </span><span class="o">*</span><span class="w"> </span><span class="n">contains</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">base64</span><span class="w"> </span><span class="n">encoded</span><span class="w"> </span><span class="n">byte</span><span class="w"> </span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">where</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">first</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="n">bytes</span><span class="w"></span>
+<span class="w">       </span><span class="o">*</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">byte</span><span class="w"> </span><span class="n">string</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">SHA1</span><span class="w"> </span><span class="n">sum</span><span class="p">,</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">remaining</span><span class="w"> </span><span class="n">bytes</span><span class="w"> </span><span class="k">is</span><span class="w"></span>
+<span class="w">       </span><span class="o">*</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">salt</span><span class="o">.</span><span class="w"></span>
+<span class="w">       </span><span class="o">*/</span><span class="w"></span>
+<span class="w">      </span><span class="n">private</span><span class="w"> </span><span class="n">function</span><span class="w"> </span><span class="n">checkPassword</span><span class="p">(</span><span class="o">$</span><span class="n">passwordHash</span><span class="p">,</span><span class="w"> </span><span class="o">$</span><span class="n">password</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="o">$</span><span class="n">passwordHash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">base64_decode</span><span class="p">(</span><span class="o">$</span><span class="n">passwordHash</span><span class="p">);</span><span class="w"></span>
+<span class="w">          </span><span class="o">$</span><span class="n">digest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">substr</span><span class="p">(</span><span class="o">$</span><span class="n">passwordHash</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">);</span><span class="w"></span>
+<span class="w">          </span><span class="o">$</span><span class="n">salt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">substr</span><span class="p">(</span><span class="o">$</span><span class="n">passwordHash</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">          </span><span class="o">$</span><span class="n">checkDigest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sha1</span><span class="p">(</span><span class="o">$</span><span class="n">password</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">$</span><span class="n">salt</span><span class="p">,</span><span class="w"> </span><span class="n">TRUE</span><span class="p">);</span><span class="w"></span>
+<span class="w">          </span><span class="k">return</span><span class="w"> </span><span class="o">$</span><span class="n">digest</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="o">$</span><span class="n">checkDigest</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">protected</span><span class="w"> </span><span class="n">function</span><span class="w"> </span><span class="n">login</span><span class="p">(</span><span class="o">$</span><span class="n">username</span><span class="p">,</span><span class="w"> </span><span class="o">$</span><span class="n">password</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">          </span><span class="o">/*</span><span class="w"> </span><span class="n">Connect</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">database</span><span class="o">.</span><span class="w"> </span><span class="o">*/</span><span class="w"></span>
+<span class="w">          </span><span class="o">$</span><span class="n">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">PDO</span><span class="p">(</span><span class="o">$</span><span class="n">this</span><span class="o">-&gt;</span><span class="n">dsn</span><span class="p">,</span><span class="w"> </span><span class="o">$</span><span class="n">this</span><span class="o">-&gt;</span><span class="n">username</span><span class="p">,</span><span class="w"> </span><span class="o">$</span><span class="n">this</span><span class="o">-&gt;</span><span class="n">password</span><span class="p">,</span><span class="w"> </span><span class="o">$</span><span class="n">this</span><span class="o">-&gt;</span><span class="n">options</span><span class="p">);</span><span class="w"></span>
+<span class="w">          </span><span class="o">$</span><span class="n">db</span><span class="o">-&gt;</span><span class="n">setAttribute</span><span class="p">(</span><span class="n">PDO</span><span class="p">::</span><span class="n">ATTR_ERRMODE</span><span class="p">,</span><span class="w"> </span><span class="n">PDO</span><span class="p">::</span><span class="n">ERRMODE_EXCEPTION</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">          </span><span class="o">/*</span><span class="w"> </span><span class="n">Ensure</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">we</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="n">operating</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span><span class="w"> </span><span class="n">encoding</span><span class="o">.</span><span class="w"></span>
+<span class="w">           </span><span class="o">*</span><span class="w"> </span><span class="n">This</span><span class="w"> </span><span class="n">command</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">MySQL</span><span class="o">.</span><span class="w"> </span><span class="n">Other</span><span class="w"> </span><span class="n">databases</span><span class="w"> </span><span class="n">may</span><span class="w"> </span><span class="n">need</span><span class="w"> </span><span class="n">different</span><span class="w"> </span><span class="n">commands</span><span class="o">.</span><span class="w"></span>
+<span class="w">           </span><span class="o">*/</span><span class="w"></span>
+<span class="w">          </span><span class="o">$</span><span class="n">db</span><span class="o">-&gt;</span><span class="n">exec</span><span class="p">(</span><span class="s2">"SET NAMES 'utf8'"</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">          </span><span class="o">/*</span><span class="w"> </span><span class="n">With</span><span class="w"> </span><span class="n">PDO</span><span class="w"> </span><span class="n">we</span><span class="w"> </span><span class="n">use</span><span class="w"> </span><span class="n">prepared</span><span class="w"> </span><span class="n">statements</span><span class="o">.</span><span class="w"> </span><span class="n">This</span><span class="w"> </span><span class="n">saves</span><span class="w"> </span><span class="n">us</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">having</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">escape</span><span class="w"></span>
+<span class="w">           </span><span class="o">*</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">username</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">database</span><span class="w"> </span><span class="n">query</span><span class="o">.</span><span class="w"></span>
+<span class="w">           </span><span class="o">*/</span><span class="w"></span>
+<span class="w">          </span><span class="o">$</span><span class="n">st</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">db</span><span class="o">-&gt;</span><span class="n">prepare</span><span class="p">(</span><span class="s1">'SELECT username, password_hash, full_name FROM userdb WHERE username=:username'</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!$</span><span class="n">st</span><span class="o">-&gt;</span><span class="n">execute</span><span class="p">([</span><span class="s1">'username'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">$</span><span class="n">username</span><span class="p">]))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">              </span><span class="n">throw</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">Exception</span><span class="p">(</span><span class="s1">'Failed to query database for user.'</span><span class="p">);</span><span class="w"></span>
+<span class="w">          </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">          </span><span class="o">/*</span><span class="w"> </span><span class="n">Retrieve</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">database</span><span class="o">.</span><span class="w"> </span><span class="o">*/</span><span class="w"></span>
+<span class="w">          </span><span class="o">$</span><span class="n">row</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">st</span><span class="o">-&gt;</span><span class="n">fetch</span><span class="p">(</span><span class="n">PDO</span><span class="p">::</span><span class="n">FETCH_ASSOC</span><span class="p">);</span><span class="w"></span>
+<span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!$</span><span class="n">row</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">              </span><span class="o">/*</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">found</span><span class="o">.</span><span class="w"> </span><span class="o">*/</span><span class="w"></span>
+<span class="w">              </span><span class="n">SimpleSAML</span>\<span class="n">Logger</span><span class="p">::</span><span class="n">warning</span><span class="p">(</span><span class="s1">'MyAuth: Could not find user '</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="n">var_export</span><span class="p">(</span><span class="o">$</span><span class="n">username</span><span class="p">,</span><span class="w"> </span><span class="n">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="s1">'.'</span><span class="p">);</span><span class="w"></span>
+<span class="w">              </span><span class="n">throw</span><span class="w"> </span><span class="n">new</span><span class="w"> </span>\<span class="n">SimpleSAML</span>\<span class="n">Error</span>\<span class="n">Error</span><span class="p">(</span><span class="s1">'WRONGUSERPASS'</span><span class="p">);</span><span class="w"></span>
+<span class="w">          </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">          </span><span class="o">/*</span><span class="w"> </span><span class="n">Check</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">password</span><span class="o">.</span><span class="w"> </span><span class="o">*/</span><span class="w"></span>
+<span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!$</span><span class="n">this</span><span class="o">-&gt;</span><span class="n">checkPassword</span><span class="p">(</span><span class="o">$</span><span class="n">row</span><span class="p">[</span><span class="s1">'password_hash'</span><span class="p">],</span><span class="w"> </span><span class="o">$</span><span class="n">password</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">              </span><span class="o">/*</span><span class="w"> </span><span class="n">Invalid</span><span class="w"> </span><span class="n">password</span><span class="o">.</span><span class="w"> </span><span class="o">*/</span><span class="w"></span>
+<span class="w">              </span><span class="n">SimpleSAML</span>\<span class="n">Logger</span><span class="p">::</span><span class="n">warning</span><span class="p">(</span><span class="s1">'MyAuth: Wrong password for user '</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="n">var_export</span><span class="p">(</span><span class="o">$</span><span class="n">username</span><span class="p">,</span><span class="w"> </span><span class="n">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="s1">'.'</span><span class="p">);</span><span class="w"></span>
+<span class="w">              </span><span class="n">throw</span><span class="w"> </span><span class="n">new</span><span class="w"> </span>\<span class="n">SimpleSAML</span>\<span class="n">Error</span>\<span class="n">Error</span><span class="p">(</span><span class="s1">'WRONGUSERPASS'</span><span class="p">);</span><span class="w"></span>
+<span class="w">          </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">          </span><span class="o">/*</span><span class="w"> </span><span class="n">Create</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">attribute</span><span class="w"> </span><span class="n">array</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">user</span><span class="o">.</span><span class="w"> </span><span class="o">*/</span><span class="w"></span>
+<span class="w">          </span><span class="o">$</span><span class="n">attributes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">              </span><span class="s1">'uid'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="o">$</span><span class="n">username</span><span class="p">],</span><span class="w"></span>
+<span class="w">              </span><span class="s1">'displayName'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="o">$</span><span class="n">row</span><span class="p">[</span><span class="s1">'full_name'</span><span class="p">]],</span><span class="w"></span>
+<span class="w">              </span><span class="s1">'eduPersonAffiliation'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="s1">'member'</span><span class="p">,</span><span class="w"> </span><span class="s1">'employee'</span><span class="p">],</span><span class="w"></span>
+<span class="w">          </span><span class="p">];</span><span class="w"></span>
+
+<span class="w">          </span><span class="o">/*</span><span class="w"> </span><span class="n">Return</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">attributes</span><span class="o">.</span><span class="w"> </span><span class="o">*/</span><span class="w"></span>
+<span class="w">          </span><span class="k">return</span><span class="w"> </span><span class="o">$</span><span class="n">attributes</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+</code></pre>
+</div>
+<p>
+ And configured in
+ <code>
+  config/authsources.php
+ </code>
+ :
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="s1">'myauthinstance'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'mymodule:MyAuth'</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'dsn'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'mysql:host=sql.example.org;dbname=userdatabase'</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'username'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'db_username'</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'password'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'secret_db_password'</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
+</code></pre>
+</div></main></body>
+</html>

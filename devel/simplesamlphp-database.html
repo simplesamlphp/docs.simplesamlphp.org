@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Language" content="en">
+  <meta name="google-site-verification" content="2S8M18BgYs8cLRL6ClTrfW_xGxfFtMZu2b2jhjrNlss">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>SimpleSAMLphp Documentation</title>
+
+  <link rel="stylesheet" href="/res/css/style.css">
+  <link rel="stylesheet" href="/res/css/layout.css">
+</head>
+<body>
+<header>
+ <div id="header">
+  <div class="right">
+   <form action="https://www.google.com/cse" method="get" style="margin-top: 2.5rem; margin-right: 2rem">
+    <input name="cx" type="hidden" value="004202914224971217557:8ks4jjstupq"/>
+    <input name="siteurl" type="hidden" value="www.google.com/cse/home?cx=004202914224971217557:8ks4jjstupq"/>
+    <input name="adkw" type="hidden" value="AELymgVJ6Sk-kOvUjbxvgShTLwiFlma2evFuVCh0r8q23vn_4eVnkcdnPfbgMvYUTpJpVlb-KkGAKkbn0i-AlWHsVRR9O0J4CNb6cXFkEKRdjXxsC_NlVD4"/>
+    <input name="q" placeholder="Search" type="search" value=""/>
+   </form>
+  </div>
+  <div class="v-center logo-header">
+   <div id="logo">
+    <a href="https://simplesamlphp.org" style="color: #fff; text-decoration: none">
+     <span class="simple">
+      Simple
+     </span>
+     <span class="saml">
+      SAML
+     </span>
+     <span class="simple">
+      php
+     </span>
+    </a>
+   </div>
+  </div>
+ </div>
+ <!-- Grey header bar below -->
+ <nav>
+  <div id="headerbar" style="clear: both">
+   <p id="breadcrumb">
+    <a href="https://simplesamlphp.org">
+     Home
+    </a>
+    » Documentation
+   </p>
+   <div class="mtoolbar">
+    <div class="menuitem">
+     <a href="/docs/1.19/index.html">
+      1.19
+     </a>
+    </div>
+    <div class="menuitem">
+     <a href="/docs/1.18/index.html">
+      1.18
+     </a>
+    </div>
+    <div class="menuitem">
+     <a href="/docs/1.17/index.html">
+      1.17
+     </a>
+    </div>
+    <div class="menuitem">
+     <a href="/docs/1.16/index.html">
+      1.16
+     </a>
+    </div>
+    <div class="menuitem first">
+     <a href="/docs/devel/index.html">
+      devel
+     </a>
+    </div>
+    <div class="menuitem last">
+     <a href="/docs/contributed_modules.html">
+      Contributed modules
+     </a>
+    </div>
+   </div>
+   <br style="height: 0px; clear: both"/>
+  </div>
+  <!-- /#headerbar -->
+ </nav>
+ <div id="content">
+ </div>
+</header><main><h1 id="simplesamldatabase">
+ SimpleSAML\Database
+</h1>
+<!-- 
+  This file is written in Markdown syntax. 
+  For more information about how to use the Markdown syntax, read here:
+  http://daringfireball.net/projects/markdown/syntax
+-->
+<div class="toc">
+ <ul>
+  <li>
+   <a href="#simplesamldatabase">
+    SimpleSAML\Database
+   </a>
+   <ul>
+    <li>
+     <a href="#purpose">
+      Purpose
+     </a>
+    </li>
+    <li>
+     <a href="#getting-started">
+      Getting Started
+     </a>
+    </li>
+    <li>
+     <a href="#database-prefix">
+      Database Prefix
+     </a>
+    </li>
+    <li>
+     <a href="#querying-the-database">
+      Querying The Database
+     </a>
+     <ul>
+      <li>
+       <a href="#writing-to-the-database">
+        Writing to The Database
+       </a>
+      </li>
+      <li>
+       <a href="#reading-the-database">
+        Reading The Database
+       </a>
+      </li>
+     </ul>
+    </li>
+   </ul>
+  </li>
+ </ul>
+</div>
+<h2 id="purpose">
+ Purpose
+</h2>
+<p>
+ This document covers the SimpleSAML\Database class and is only relevant to anyone writing code for SimpleSAMLphp, including modules, that require a database connection.
+</p>
+<p>
+ The Database class provides a single class that can be used to connect to a database which can be shared by anything within SimpleSAMLphp.
+</p>
+<h2 id="getting-started">
+ Getting Started
+</h2>
+<p>
+ If you are just using the already configured database, which would normally be the case, all you need to do is get the global instance of the Database class.
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="o">$</span><span class="nt">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">\</span><span class="nt">SimpleSAML</span><span class="err">\</span><span class="nt">Database</span><span class="p">::</span><span class="nd">getInstance</span><span class="o">();</span><span class="w"></span>
+</code></pre>
+</div>
+<p>
+ If there is a requirement to connect to an alternate database server (ex. authenticating users that exist on a different SQL server or database) you can specify an alternate configuration.
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="o">$</span><span class="nt">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">new</span><span class="w"> </span><span class="err">\</span><span class="nt">SimpleSAML</span><span class="err">\</span><span class="nt">Configuration</span><span class="o">($</span><span class="nt">myconfigarray</span><span class="o">,</span><span class="w"> </span><span class="s2">"mymodule/lib/Auth/Source/myauth.php"</span><span class="o">);</span><span class="w"></span>
+<span class="o">$</span><span class="nt">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">\</span><span class="nt">SimpleSAML</span><span class="err">\</span><span class="nt">Database</span><span class="p">::</span><span class="nd">getInstance</span><span class="o">($</span><span class="nt">config</span><span class="o">);</span><span class="w"></span>
+</code></pre>
+</div>
+<p>
+ That will create a new instance of the database, separate from the global instance, specific to the configuration defined in $myconfigarray. If you are going to specify an alternate config, your configuration array must contain the same keys that exist in the primary config (database.dsn, database.username, database.password, database.prefix, etc).
+</p>
+<h2 id="database-prefix">
+ Database Prefix
+</h2>
+<p>
+ Administrators can add a prefix to all the table names that this database classes accesses and you should take that in account when querying. Assuming that a prefix has been configured as "sp_":
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="err">$</span><span class="nf">table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">$</span><span class="n">db</span><span class="o">-&gt;</span><span class="n">applyPrefix</span><span class="p">(</span><span class="s">"saml20_idp_hosted"</span><span class="p">);</span><span class="w"></span>
+</code></pre>
+</div>
+<p>
+ $table would be set to "sp_saml20_idp_hosted"
+</p>
+<h2 id="querying-the-database">
+ Querying The Database
+</h2>
+<p>
+ You can query the database through two public functions read() and write() which are fairly self-explanitory when it comes to determining which one to use when querying.
+</p>
+<h3 id="writing-to-the-database">
+ Writing to The Database
+</h3>
+<p>
+ Since the database class allows administrators to configure primary and secondary database servers, the write function will always use the primary database connection.
+</p>
+<p>
+ The write function takes 2 parameters: SQL, params.
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="err">$</span><span class="nf">table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">$</span><span class="n">db</span><span class="o">-&gt;</span><span class="n">applyPrefix</span><span class="p">(</span><span class="s">"test"</span><span class="p">);</span><span class="w"></span>
+<span class="err">$</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">  </span><span class="s">'id'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="s">'data'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s">'Some data'</span><span class="p">,</span><span class="w"></span>
+<span class="p">];</span><span class="w"></span>
+
+<span class="err">$</span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">$</span><span class="n">db</span><span class="o">-&gt;</span><span class="n">write</span><span class="p">(</span><span class="s">"INSERT INTO $table (id, data) VALUES (:id, :data)"</span><span class="p">,</span><span class="w"> </span><span class="err">$</span><span class="n">values</span><span class="p">);</span><span class="w"></span>
+</code></pre>
+</div>
+<p>
+ The values specified in the $values array will be bound to the placeholders and will be executed on the primary. By default, values are binded as PDO::PARAM_STR. If you need to override this, you can specify it in the values array.
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="o">$</span><span class="nt">table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="nt">db-</span><span class="o">&gt;</span><span class="nt">applyPrefix</span><span class="o">(</span><span class="s2">"test"</span><span class="o">);</span><span class="w"></span>
+<span class="o">$</span><span class="nt">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cp">[</span><span class="w"></span>
+<span class="w">  </span><span class="s1">'id'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="nx">PDO</span><span class="p">::</span><span class="nl">PARAM_INT</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
+<span class="w">  </span><span class="s1">'data'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Some data'</span><span class="o">,</span><span class="w"></span>
+<span class="o">];</span><span class="w"></span>
+
+<span class="o">$</span><span class="nt">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="nt">db-</span><span class="o">&gt;</span><span class="nt">write</span><span class="o">(</span><span class="s2">"INSERT INTO $table (id, data) VALUES (:id, :data)"</span><span class="o">,</span><span class="w"> </span><span class="o">$</span><span class="nt">values</span><span class="o">);</span><span class="w"></span>
+</code></pre>
+</div>
+<p>
+ You can also skip usage of prepared statements. You should
+ <strong>
+  only
+ </strong>
+ use this if you have a statement that has no user input (ex. CREATE TABLE). If the params variable is explicity set to false, it will skip usage of prepared statements. This is only available when writing to the database.
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="err">$</span><span class="nf">table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">$</span><span class="n">db</span><span class="o">-&gt;</span><span class="n">applyPrefix</span><span class="p">(</span><span class="s">"test"</span><span class="p">);</span><span class="w"></span>
+<span class="err">$</span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">$</span><span class="n">db</span><span class="o">-&gt;</span><span class="n">write</span><span class="p">(</span><span class="s">"CREATE TABLE IF NOT EXISTS $table (id INT(16) NOT NULL, data TEXT NOT NULL)"</span><span class="p">,</span><span class="w"> </span><span class="kr">false</span><span class="p">);</span><span class="w"></span>
+</code></pre>
+</div>
+<h3 id="reading-the-database">
+ Reading The Database
+</h3>
+<p>
+ Since the database class allows administrators to configure primary and secondary database servers, the read function will randomly select a secondary server to query. If no secondaries are configured, it will read from the primary.
+</p>
+<p>
+ The read function takes 2 parameters: SQL, params.
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="err">$</span><span class="nf">table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">$</span><span class="n">db</span><span class="o">-&gt;</span><span class="n">applyPrefix</span><span class="p">(</span><span class="s">"test"</span><span class="p">);</span><span class="w"></span>
+<span class="err">$</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">  </span><span class="s">'id'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"></span>
+<span class="p">];</span><span class="w"></span>
+
+<span class="err">$</span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">$</span><span class="n">db</span><span class="o">-&gt;</span><span class="n">read</span><span class="p">(</span><span class="s">"SELECT * FROM $table WHERE id = :id"</span><span class="p">,</span><span class="w"> </span><span class="err">$</span><span class="n">values</span><span class="p">);</span><span class="w"></span>
+</code></pre>
+</div>
+<p>
+ The values specified in the $values array will be bound to the placeholders and will be executed on the selected secondary. By default, values are binded as PDO::PARAM_STR. If you need to override this, you can specify it in the values array.
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="o">$</span><span class="nt">table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="nt">db-</span><span class="o">&gt;</span><span class="nt">applyPrefix</span><span class="o">(</span><span class="s2">"test"</span><span class="o">);</span><span class="w"></span>
+<span class="o">$</span><span class="nt">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cp">[</span><span class="w"></span>
+<span class="w">  </span><span class="s1">'id'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="nx">PDO</span><span class="p">::</span><span class="nl">PARAM_INT</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
+<span class="o">];</span><span class="w"></span>
+
+<span class="o">$</span><span class="nt">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="nt">db-</span><span class="o">&gt;</span><span class="nt">read</span><span class="o">(</span><span class="s2">"SELECT * FROM $table WHERE id = :id"</span><span class="o">,</span><span class="w"> </span><span class="o">$</span><span class="nt">values</span><span class="o">);</span><span class="w"></span>
+</code></pre>
+</div></main></body>
+</html>

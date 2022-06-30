@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Language" content="en">
+  <meta name="google-site-verification" content="2S8M18BgYs8cLRL6ClTrfW_xGxfFtMZu2b2jhjrNlss">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>SimpleSAMLphp Documentation</title>
+
+  <link rel="stylesheet" href="/res/css/style.css">
+  <link rel="stylesheet" href="/res/css/layout.css">
+</head>
+<body>
+<header>
+ <div id="header">
+  <div class="right">
+   <form action="https://www.google.com/cse" method="get" style="margin-top: 2.5rem; margin-right: 2rem">
+    <input name="cx" type="hidden" value="004202914224971217557:8ks4jjstupq"/>
+    <input name="siteurl" type="hidden" value="www.google.com/cse/home?cx=004202914224971217557:8ks4jjstupq"/>
+    <input name="adkw" type="hidden" value="AELymgVJ6Sk-kOvUjbxvgShTLwiFlma2evFuVCh0r8q23vn_4eVnkcdnPfbgMvYUTpJpVlb-KkGAKkbn0i-AlWHsVRR9O0J4CNb6cXFkEKRdjXxsC_NlVD4"/>
+    <input name="q" placeholder="Search" type="search" value=""/>
+   </form>
+  </div>
+  <div class="v-center logo-header">
+   <div id="logo">
+    <a href="https://simplesamlphp.org" style="color: #fff; text-decoration: none">
+     <span class="simple">
+      Simple
+     </span>
+     <span class="saml">
+      SAML
+     </span>
+     <span class="simple">
+      php
+     </span>
+    </a>
+   </div>
+  </div>
+ </div>
+ <!-- Grey header bar below -->
+ <nav>
+  <div id="headerbar" style="clear: both">
+   <p id="breadcrumb">
+    <a href="https://simplesamlphp.org">
+     Home
+    </a>
+    » Documentation
+   </p>
+   <div class="mtoolbar">
+    <div class="menuitem">
+     <a href="/docs/1.19/index.html">
+      1.19
+     </a>
+    </div>
+    <div class="menuitem">
+     <a href="/docs/1.18/index.html">
+      1.18
+     </a>
+    </div>
+    <div class="menuitem">
+     <a href="/docs/1.17/index.html">
+      1.17
+     </a>
+    </div>
+    <div class="menuitem">
+     <a href="/docs/1.16/index.html">
+      1.16
+     </a>
+    </div>
+    <div class="menuitem first">
+     <a href="/docs/devel/index.html">
+      devel
+     </a>
+    </div>
+    <div class="menuitem last">
+     <a href="/docs/contributed_modules.html">
+      Contributed modules
+     </a>
+    </div>
+   </div>
+   <br style="height: 0px; clear: both"/>
+  </div>
+  <!-- /#headerbar -->
+ </nav>
+ <div id="content">
+ </div>
+</header><main><h1 id="coreattributevaluemap">
+ <code>
+  core:AttributeValueMap
+ </code>
+</h1>
+<p>
+ Filter that creates a target attribute based on one or more value(s) in source attribute.
+</p>
+<p>
+ Besides the mapping of source values to target values, the filter has the following options:
+*
+ <code>
+  %replace
+ </code>
+ can be used to replace all existing values in target with new ones (any existing values will be lost)
+*
+ <code>
+  %keep
+ </code>
+ can be used to keep the source attribute, otherwise it will be removed.
+</p>
+<h2 id="examples">
+ Examples
+</h2>
+<h3 id="add-student-affiliation-based-on-ldap-groupmembership">
+ Add student affiliation based on LDAP groupmembership
+</h3>
+<p>
+ Will add eduPersonAffiliation containing value "
+ <code>
+  student
+ </code>
+ " if the
+ <code>
+  memberOf
+ </code>
+ attribute contains
+either '
+ <code>
+  cn=student,o=some,o=organization,dc=org
+ </code>
+ ' or '
+ <code>
+  cn=student,o=other,o=organization,dc=org
+ </code>
+ '.
+The '
+ <code>
+  memberOf
+ </code>
+ ' attribute will be removed (use
+ <code>
+  %keep
+ </code>
+ , to keep it) and existing values in
+'
+ <code>
+  eduPersonAffiliation
+ </code>
+ ' will be merged (use
+ <code>
+  %replace
+ </code>
+ to replace them).
+</p>
+<div class="codehilite">
+ <pre><span></span><code>  'authproc' =&gt; [
+      50 =&gt; [
+          'class' =&gt; 'core:AttributeValueMap',
+          'sourceattribute' =&gt; 'memberOf',
+          'targetattribute' =&gt; 'eduPersonAffiliation',
+          'values' =&gt; [
+              'student' =&gt; [
+                  'cn=student,o=some,o=organization,dc=org',
+                  'cn=student,o=other,o=organization,dc=org',
+              ],
+          ],
+      ],
+  ],
+</code></pre>
+</div>
+<h3 id="multiple-assignments">
+ Multiple assignments
+</h3>
+<p>
+ Add
+ <code>
+  student
+ </code>
+ ,
+ <code>
+  employee
+ </code>
+ and
+ <code>
+  both
+ </code>
+ affiliation based on LDAP groupmembership in the
+ <code>
+  memberOf
+ </code>
+ attribute.
+</p>
+<div class="codehilite">
+ <pre><span></span><code>  'authproc' =&gt; [
+      50 =&gt; [
+          'class' =&gt; 'core:AttributeValueMap',
+          'sourceattribute' =&gt; 'memberOf',
+          'targetattribute' =&gt; 'eduPersonAffiliation',
+          'values' =&gt; [
+              'student' =&gt; [
+                  'cn=student,o=some,o=organization,dc=org',
+                  'cn=student,o=other,o=organization,dc=org',
+              ],
+              'employee' =&gt; [
+                  'cn=employees,o=some,o=organization,dc=org',
+                  'cn=employee,o=other,o=organization,dc=org',
+                  'cn=workers,o=any,o=organization,dc=org',
+              ],
+              'both' =&gt; [
+                  'cn=student,o=some,o=organization,dc=org',
+                  'cn=student,o=other,o=organization,dc=org',
+                  'cn=employees,o=some,o=organization,dc=org',
+                  'cn=employee,o=other,o=organization,dc=org',
+                  'cn=workers,o=any,o=organization,dc=org',
+              ],
+          ],
+      ],
+  ],
+</code></pre>
+</div>
+<h3 id="replace-and-keep">
+ Replace and Keep
+</h3>
+<p>
+ Replace any existing '
+ <code>
+  affiliation
+ </code>
+ ' attribute values and keep the '
+ <code>
+  groups
+ </code>
+ ' attribute.
+</p>
+<div class="codehilite">
+ <pre><span></span><code>  'authproc' =&gt; [
+      50 =&gt; [
+          'class' =&gt; 'core:AttributeValueMap',
+          'sourceattribute' =&gt; 'groups',
+          'targetattribute' =&gt; 'affiliation',
+          '%replace',
+          '%keep',
+          'values' =&gt; [
+              'student' =&gt; [
+                  'cn=student,o=some,o=organization,dc=org',
+                  'cn=student,o=other,o=organization,dc=org',
+              ],
+              'employee' =&gt; [
+                  'cn=employees,o=some,o=organization,dc=org',
+                  'cn=employee,o=other,o=organization,dc=org',
+                  'cn=workers,o=any,o=organization,dc=org',
+              ],
+          ],
+      ],
+  ],
+</code></pre>
+</div></main></body>
+</html>
