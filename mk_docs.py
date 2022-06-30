@@ -157,10 +157,10 @@ def mkNavigation(versions):
        else:
           content += '<div class="menuitem">'  
 
-       content += '<a href="'+site_base_path+version+'/index.html">'+version+'</a>'
+       content += '<a href="'+site_base_path+version+'/index.html">'+version
        if version == versions[0]:
           content += ' (stable)'
-       content += '</div>'
+       content += '</a></div>'
     
     content += ' <div class="menuitem last">'
     content += '   <a href="' + site_base_path + 'contributed_modules.html"> Contributed modules</a>'
