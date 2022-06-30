@@ -95,7 +95,7 @@ def getgitrepo(repo, repo_clone_dir, repo_root, version=None):
    os.makedirs(os.path.join(repo_clone_dir))
    os.chdir(repo_clone_dir)
    
-   if (version is None or version == 'latest'):
+   if (version is None or version == 'devel'):
       os.system('git clone --depth=1 ' + repo)
    else:
       os.system('git clone --depth=1 --branch simplesamlphp-' + version + ' ' + repo)
@@ -152,7 +152,7 @@ def mkNavigation(versions):
 
     content = '<div class="mtoolbar">'
     for version in versions:
-       if version == 'latest':
+       if version == 'devel':
           content += '<div class="menuitem first">'
        else:
           content += '<div class="menuitem">'  
@@ -170,7 +170,7 @@ def mkNavigation(versions):
 
 # make sure some resources are put in the right place for the website
 def mkResources(root_dir, web_root):
-    # starter index.html (just a redirect to 'latest')    
+    # starter index.html (just a redirect to 'stable')    
     os.system('cp ' +  root_dir + 'resources/index.html ' + web_root + 'index.html ')
 
 # Builds an index.md file of all the contributed repository documetation (if available)
@@ -250,9 +250,9 @@ footer = runner_path + "resources/footer"
 site_base_path = '/docs/'
 
 # for which versions should we generate documentation?
-# ToDo: replace with dynamic assasment based on github tags
-# Or a seperate json file that holds this list
-ssp_versions=["latest","1.19", "1.18", "1.17", "1.16"]
+# - "devel" corresponds to git master
+# - an alias "stable" will point to the first item in the list
+ssp_versions=["1.19", "1.18", "1.17", "1.16", "devel"]
 
 # Make sure we have a working site subdir to put stuff in
 os.system('mkdir ' +  site_root_dir)
@@ -267,7 +267,7 @@ print("reading Footer")
 with open(footer, 'r') as f:
   footer = f.read()
 
-# Copy over resources like the starter index.html that will always redirect to "latest"
+# Copy over resources like the starter index.html that will always redirect to "stable"
 mkResources(runner_path, site_root_dir)
 
 # Now generate contents based documentation for core simplesamlphp repo
@@ -322,6 +322,10 @@ for module in contrib_mods:
 contrib_mods_files= getListOfFiles(site_root_dir + "contrib_modules" + "/")  
 mkcontribmodsindex(contrib_mods, module_index_file, contrib_mods_files)
 md2html(module_index_file, site_root_dir + 'contributed_modules.html', 'contributed_modules.html')
+
+# Link first version in the list to 'stable'
+os.chir(site_root_dir)
+os.symlink(ssp_versions[0], 'stable')
 
 # Dump website tree so we can see in the runner if all went well
 os.system('tree ' +  site_root_dir)
