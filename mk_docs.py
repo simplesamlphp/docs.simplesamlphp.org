@@ -324,7 +324,7 @@ mkcontribmodsindex(contrib_mods, module_index_file, contrib_mods_files)
 md2html(module_index_file, site_root_dir + 'contributed_modules.html', 'contributed_modules.html')
 
 # Link first version in the list to 'stable'
-os.chir(site_root_dir)
+os.chdir(site_root_dir)
 os.symlink(ssp_versions[0], 'stable')
 
 # Dump website tree so we can see in the runner if all went well
