@@ -79,7 +79,7 @@ def getmodulerepos():
       a_repo = {"name": [], "description": [], "html_url": [], "short_name": []}
 	
       # we assume all module will have a name that starts with 'simplesamlphp-module-' 
-      if (repo['name'].find('simplesamlphp-module-') == 0 && !repo['archived']):
+      if (repo['name'].find('simplesamlphp-module-') == 0 and !repo['archived']):
         a_repo['name'] = str(repo['name'])
         a_repo['description'] = str(repo['description'])
         a_repo['html_url'] = str(repo['html_url'])
