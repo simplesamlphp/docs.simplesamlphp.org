@@ -87,57 +87,59 @@
  </nav>
  <div id="content">
  </div>
-</header><main><h1 id="using-the-windows-live-id-authentication-source-with-simplesamlphp">
- Using the Windows Live ID authentication source with SimpleSAMLphp
+</header><main><h1 id="the-following-tokens-were-tested-against-the-implementation-and-found-to-work">
+ The following tokens were tested against the implementation and found to work
 </h1>
-<p>
- This module works around the limitation in Microsoft Online/Azure OIDC implementation of not supplying the OIDC userinfo endpoint.
-Microsoft explains the omission by suggesting that the Graph API can produce anything userinfo would have brought, in place.
-</p>
-<p>
- Remember to configure
- <code>
-  authsources.php
- </code>
- , with both your Client ID and Secret key.
-</p>
-<p>
- To get an API key and a secret, register the application at:
-</p>
+<h2 id="attestation-modes-none-indirect">
+ Attestation modes (None, Indirect)
+</h2>
 <ul>
  <li>
-  <a href="https://msdn.microsoft.com/en-us/library/ff751474.aspx">
-   https://msdn.microsoft.com/en-us/library/ff751474.aspx
+  Yubikey 5 NFC
+ </li>
+ <li>
+  Yubikey 5C
+ </li>
+ <li>
+  <a href="https://support.yubico.com/support/solutions/articles/15000006900-security-key-by-yubico">
+   Security Key by Yubico
   </a>
  </li>
  <li>
-  <a href="https://apps.dev.microsoft.com/">
-   https://apps.dev.microsoft.com/
+  <a href="https://support.yubico.com/support/solutions/articles/15000019469-security-key-nfc">
+   Security Key NFC by Yubico
   </a>
  </li>
+ <li>
+  <a href="https://www.ftsafe.com/Products/FIDO/Bio">
+   Feitian BioPass FIDO2
+  </a>
+ </li>
+ <li>
+  <a href="https://solokeys.com/collections/all/products/solo">
+   Solo - FIDO2 security key (USB only)
+  </a>
+ </li>
+ <li>
+  <a href="https://solokeys.com/collections/all/products/solo-tap">
+   Solo Tap - FIDO2 security key (USB + NFC)
+  </a>
+ </li>
+ <li>
+  TouchID (tested on Macbook Pro 2019, macOS 10.15.3, Google Chrome)
+  AAGUID 'adce000235bcc60a648b0b25f1f05503' not in database yet
+ </li>
+ <li>
+  FaceID (tested on an iPhone with iOS 14)
+ </li>
 </ul>
-<h2 id="testing-authentication">
- Testing authentication
+<h2 id="attestation-mode-none">
+ Attestation mode None
 </h2>
-<p>
- On the SimpleSAMLphp frontpage, go to the
- <em>
-  Authentication
- </em>
- tab, and use the link:
-</p>
-<div class="codehilite">
- <pre><span></span><code>* *Test configured authentication sources*
-</code></pre>
-</div>
-<p>
- Then choose the
- <em>
-  windowsliveid
- </em>
- authentication source.
-</p>
-<p>
- Expected behaviour would then be that you are sent to Windows Live ID and asked to login.
-</p></main></body>
+<ul>
+ <li>
+  Android 7 (Samsung Galaxy S6, Fingerprint Sensor) - when requesting
+  indirect/direct, none is delivered instead
+ </li>
+</ul></main></body>
 </html>

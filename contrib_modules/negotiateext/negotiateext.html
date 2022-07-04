@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Language" content="en">
+  <meta name="google-site-verification" content="2S8M18BgYs8cLRL6ClTrfW_xGxfFtMZu2b2jhjrNlss">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>SimpleSAMLphp Documentation</title>
+
+  <link rel="stylesheet" href="/res/css/style.css">
+  <link rel="stylesheet" href="/res/css/layout.css">
+</head>
+<body>
+<header>
+ <div id="header">
+  <div class="right">
+   <form action="https://www.google.com/cse" method="get" style="margin-top: 2.5rem; margin-right: 2rem">
+    <input name="cx" type="hidden" value="004202914224971217557:8ks4jjstupq"/>
+    <input name="siteurl" type="hidden" value="www.google.com/cse/home?cx=004202914224971217557:8ks4jjstupq"/>
+    <input name="adkw" type="hidden" value="AELymgVJ6Sk-kOvUjbxvgShTLwiFlma2evFuVCh0r8q23vn_4eVnkcdnPfbgMvYUTpJpVlb-KkGAKkbn0i-AlWHsVRR9O0J4CNb6cXFkEKRdjXxsC_NlVD4"/>
+    <input name="q" placeholder="Search" type="search" value=""/>
+   </form>
+  </div>
+  <div class="v-center logo-header">
+   <div id="logo">
+    <a href="https://simplesamlphp.org" style="color: #fff; text-decoration: none">
+     <span class="simple">
+      Simple
+     </span>
+     <span class="saml">
+      SAML
+     </span>
+     <span class="simple">
+      php
+     </span>
+    </a>
+   </div>
+  </div>
+ </div>
+ <!-- Grey header bar below -->
+ <nav>
+  <div id="headerbar" style="clear: both">
+   <p id="breadcrumb">
+    <a href="https://simplesamlphp.org">
+     Home
+    </a>
+    » Documentation
+   </p>
+   <div class="mtoolbar">
+    <div class="menuitem">
+     <a href="/docs/1.19/index.html">
+      1.19 (stable)
+     </a>
+    </div>
+    <div class="menuitem">
+     <a href="/docs/1.18/index.html">
+      1.18
+     </a>
+    </div>
+    <div class="menuitem">
+     <a href="/docs/1.17/index.html">
+      1.17
+     </a>
+    </div>
+    <div class="menuitem">
+     <a href="/docs/1.16/index.html">
+      1.16
+     </a>
+    </div>
+    <div class="menuitem first">
+     <a href="/docs/devel/index.html">
+      devel
+     </a>
+    </div>
+    <div class="menuitem last">
+     <a href="/docs/contributed_modules.html">
+      Contributed modules
+     </a>
+    </div>
+   </div>
+   <br style="height: 0px; clear: both"/>
+  </div>
+  <!-- /#headerbar -->
+ </nav>
+ <div id="content">
+ </div>
+</header><main><h1 id="negotiate-ext-module">
+ Negotiate-Ext module
+</h1>
+<p>
+ The Negotiate-Ext module implements external authentication mechanism.
+It is intended to support Kerberos SPNEGO or other GSSAPI by
+leveraging Apache modules. In fact it can work with any Apache
+authentication source providing REMOTE_USER.
+</p>
+<p>
+ It is based on the Negotiate module but does not require php-krb5.
+</p>
+<dl>
+ <dt>
+  negotiateext:Negotiate
+ </dt>
+ <dd>
+  <p>
+   Authenticates users via HTTP authentication
+  </p>
+ </dd>
+</dl>
+<h2 id="negotiateextnegotiate">
+ negotiateext:Negotiate
+</h2>
+<p>
+ Negotiate implements the following mechanics:
+</p>
+<ul>
+ <li>
+  Initiate HTTP_AUTHN with the client
+ </li>
+ <li>
+  Authorize user against a LDAP directory
+ </li>
+ <li>
+  Collect metadata from LDAP directory
+ </li>
+ <li>
+  Fall back to other SimpleSamlPhp module for any client/user that
+   fails to authenticate in the Negotiate-Ext module
+ </li>
+ <li>
+  Check only clients from a certain subnet
+ </li>
+ <li>
+  Supports enabling/disabling a client
+ </li>
+</ul>
+<p>
+ In effect this module aims to extend the Microsoft AD or FreeIPA
+Kerberos SSO session to the SAML IdP. It doesn't work like this
+of course but for the user the client is automatically authenticated
+when an SP sends the client to the IdP. In reality Negotiate
+authenticates the user via SPNEGO and issues a separate SAML session.
+The Kerberos session against the Authentication Server is completely
+separate from the SAML session with the IdP. The only time the
+Kerberos session affects the SAML session is at authN at the IdP.
+</p>
+<p>
+ The module is meant to supplement existing auth modules and not
+replace them. Users do not always log in on the IdP from a machine in
+the Windows domain (or another Kerberos domain) and from their own
+domain accounts. A fallback mechanism must be supplemented.
+</p>
+<p>
+ The Kerberos TGS can be issued for a wide variety of accounts so an
+authoriation backend via LDAP is needed. If the search, with filters,
+fails, the fallback in invoked. This to prevent kiosk accounts and the
+likes to get faulty SAML sessions.
+</p>
+<p>
+ The subnet is required to prevent excess attempts to authenticate via
+Kerberos for clients that always will fail. Worst case scenario the
+browser will prompt the user for u/p in a popup box that will always
+fail. Only when the user clicks cancel the proper login process will
+continue. This is handled through the body of the 401 message the
+client recieves with the Negotiate request. In the body a URL to the
+fallback mechanism is supplied and meta-refresh is used to redirect the
+client.
+</p>
+<p>
+ All configuration is handled in authsources.php:
+</p>
+<div class="codehilite">
+ <pre><span></span><code>   'weblogin' =&gt; [
+           'negotiateext:Negotiate',
+           'fallback' =&gt; 'ldap',
+           'hostname' =&gt; 'ldap.example.com',
+           'enable_tls' =&gt; TRUE,
+           'base' =&gt; 'cn=people,dc=example,dc=com',
+           'adminUser' =&gt; 'cn=idp-fallback,cn=services,dc=example,dc=com',
+           'adminPassword' =&gt; 'VerySecretPassphraseHush'
+   ],
+   'ldap' =&gt; [
+           'ldap:LDAP',
+           'hostname' =&gt; 'ldap.example.com',
+           'enable_tls' =&gt; TRUE,
+           'timeout' =&gt; 10,
+           'dnpattern' =&gt; 'uid=%username%,cn=people,dc=example,dc=com',
+           'search.enable' =&gt; FALSE
+   ],
+</code></pre>
+</div>
+<h2 id="authentication-handling">
+ Authentication handling
+</h2>
+<p>
+ The processing involving the actual Authentication handling is done
+by the web server. For Apache httpd, you can freely use
+ <code>
+  mod_auth_kerb
+ </code>
+ or
+ <code>
+  mod_auth_gssapi
+ </code>
+ .
+</p>
+<p>
+ You
+ <strong>
+  must
+ </strong>
+ configure protection on the
+ <code>
+  auth.php
+ </code>
+ script properly as
+follows: (Example for
+ <code>
+  mod_auth_kerb
+ </code>
+ )
+</p>
+<div class="codehilite">
+ <pre><span></span><code>  <span class="nt">&lt;LocationMatch</span> <span class="err">/negotiateext/auth</span><span class="nt">&gt;</span>
+      AuthType KerberosV5
+      KrbMethodK5Passwd off
+      KrbMethodK4Passwd off
+
+      Krb5Keytab /etc/httpd.keytab
+      AuthName "Kerberos SSO"
+      Require valid-user
+      ErrorDocument 401 /module.php/negotiateext/error
+  <span class="nt">&lt;/LocationMatch&gt;</span>
+</code></pre>
+</div>
+<p>
+ Note that you need to adjust the path to the ErrorDocument according
+to the base of your SimpleSAMLphp installation.
+</p>
+<h2 id="ldap">
+ LDAP
+</h2>
+<p>
+ LDAP is used to verify the user due to the lack of metadata in
+Kerberos. A domain can contain lots of kiosk users, non-personal
+accounts and the likes. The LDAP lookup will authorize and fetch
+attributes as defined by SimpleSAMLphp metadata.
+</p>
+<p>
+ <code>
+  hostname
+ </code>
+ ,
+ <code>
+  enable_tls
+ </code>
+ ,
+ <code>
+  debugLDAP
+ </code>
+ ,
+ <code>
+  timeout
+ </code>
+ and
+ <code>
+  base
+ </code>
+ are
+self-explanatory. Read the documentation of the LDAP auth module for
+more information.
+ <code>
+  attr
+ </code>
+ is the attribute that will be used to look up
+user objects in the directory after extracting it from the Kerberos
+session. Default is
+ <code>
+  uid
+ </code>
+ .
+</p>
+<p>
+ For LDAP directories with restricted access to objects or attributes
+Negotiate implements
+ <code>
+  adminUser
+ </code>
+ and
+ <code>
+  adminPassword
+ </code>
+ . adminUser must
+be a DN to an object with access to search for all relevant user
+objects and to look up attributes needed by the SP.
+</p>
+<h2 id="subnet-filtering">
+ Subnet filtering
+</h2>
+<p>
+ Subnet is meant to filter which clients you subject to the
+WWW-Authenticate request.
+</p>
+<p>
+ Syntax is:
+</p>
+<div class="codehilite">
+ <pre><span></span><code>   'subnet' =&gt; ['127.0.0.0/16','192.168.0.0/16'],
+</code></pre>
+</div>
+<p>
+ Browsers, especially IE, behave erratically when they encounter a
+WWW-Authenticate from the webserver. Included in RFC4559 Negotiate is
+NTLM authentication which IE seems prone to fall back to under various
+conditions. This triggers a popup login box which defeats the whole
+purpose of this module.
+</p>
+<p>
+ TBD: Replace or supplement with LDAP lookups in the domain. Machines
+currently in the domain should be the only ones that are promted with
+WWW-Authenticate: Negotiate.
+</p>
+<h2 id="enablingdisabling-negotiate-from-a-web-browser">
+ Enabling/disabling Negotiate from a web browser
+</h2>
+<p>
+ Included in Negotiate are semi-static web pages for enabling and
+disabling Negotiate for any given client. The pages simple set/deletes
+a cookie that Negotiate will look for when a client attempts AuthN.
+The help text in the JSON files should be locally overwritten to fully
+explain which clients are accepted by Negotiate.
+</p>
+<h2 id="logoutlogin-loop-and-reauthenticating">
+ Logout/Login loop and reauthenticating
+</h2>
+<p>
+ Due to the automatic AuthN of certain clients and how SPs will
+automatically redirect clients to the IdP when clients try to access
+restricted content, a session variable has been put into Negotiate. This
+variable makes sure Negotiate doesn't reautenticate a recently logged
+out user. The consequence of this is that the user will be presented
+with the login mechanism of the fallback module specified in Negotiate
+config.
+</p>
+<p>
+ SimpleSamlPhp offers no decent way of adding hooks or piggyback this
+information to the fallback module. In future releases one might add a
+box of information to the user explaining what's happening.
+</p>
+<p>
+ One can add this bit of code to the template in the fallback AuthN
+module:
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="nt">This</span><span class="w"> </span><span class="nt">should</span><span class="w"> </span><span class="nt">be</span><span class="w"> </span><span class="nt">placed</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nt">your</span><span class="w"> </span><span class="nt">www</span><span class="w"> </span><span class="nt">script</span><span class="w"> </span><span class="nt">modules</span><span class="o">/</span><span class="nt">core</span><span class="o">/</span><span class="nt">www</span><span class="o">/</span><span class="nt">loginuserpass</span><span class="p">.</span><span class="nc">php</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">$</span><span class="nt">nego_perm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">FALSE</span><span class="o">;</span><span class="w"></span>
+<span class="w">  </span><span class="o">$</span><span class="nt">nego_retry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">NULL</span><span class="o">;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">if</span><span class="w"> </span><span class="o">(</span><span class="nt">is_array</span><span class="o">($</span><span class="nt">state</span><span class="o">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nt">array_key_exists</span><span class="o">(</span><span class="s1">'negotiate:authId'</span><span class="o">,</span><span class="w"> </span><span class="o">$</span><span class="nt">state</span><span class="o">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="err">$nego</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="n">SimpleSAML_Auth_Source</span><span class="p">:</span><span class="o">:</span><span class="nf">getById</span><span class="p">(</span><span class="err">$</span><span class="n">state</span><span class="cp">[</span><span class="s1">'negotiate:authId'</span><span class="cp">]</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="err">$mask</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">$nego-&gt;checkMask()</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="err">$disabled</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">$nego-&gt;spDisabledInMetadata($spMetadata)</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="err">$session</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="n">SimpleSAML_Session</span><span class="p">:</span><span class="o">:</span><span class="nf">getSessionFromRequest</span><span class="p">();</span><span class="w"></span>
+<span class="w">      </span><span class="err">$session_disabled</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">$session</span><span class="w"> </span><span class="err">&amp;&amp;</span><span class="w"> </span><span class="err">$session-&gt;getData('</span><span class="n">negotiate</span><span class="p">:</span><span class="n">disable</span><span class="s1">', '</span><span class="n">session</span><span class="s1">');</span>
+<span class="s1">      if ($mask and !$disabled) {</span>
+<span class="s1">          if(array_key_exists('</span><span class="n">NEGOTIATE_AUTOLOGIN_DISABLE_PERMANENT</span><span class="s1">', $_COOKIE) &amp;&amp;</span>
+<span class="s1">             $_COOKIE</span><span class="cp">[</span><span class="s1">'NEGOTIATE_AUTOLOGIN_DISABLE_PERMANENT'</span><span class="cp">]</span><span class="s1"> == '</span><span class="n">True</span><span class="s1">') {</span>
+<span class="s1">              $nego_perm = TRUE;</span>
+<span class="s1">          } else {</span>
+<span class="s1">              $retryState = SimpleSAML_Auth_State::cloneState($state);</span>
+<span class="s1">              unset($retryState</span><span class="cp">[</span><span class="nx">SimpleSAML_Auth_State</span><span class="p">::</span><span class="nl">ID</span><span class="cp">]</span><span class="s1">);</span>
+<span class="s1">              $nego_retry = SimpleSAML_Auth_State::saveState($retryState, '</span><span class="n">sspmod_negotiateext_Auth_Source_Negotiate</span><span class="o">.</span><span class="n">StageId</span><span class="s1">');</span>
+<span class="s1">              $nego_session = TRUE;</span>
+<span class="s1">          }</span>
+<span class="s1">      }</span>
+<span class="s1">  }</span>
+<span class="s1">  $t-&gt;data</span><span class="cp">[</span><span class="s1">'nego'</span><span class="cp">]</span><span class="s1"> = array (</span>
+<span class="s1">      '</span><span class="n">disable_perm</span><span class="s1">' =&gt; $nego_perm,</span>
+<span class="s1">      '</span><span class="n">retry_id</span><span class="err">'</span><span class="w">     </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">$</span><span class="n">nego_retry</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="p">);</span><span class="w"></span>
+</code></pre>
+</div>
+<p>
+ -
+</p>
+<div class="codehilite">
+ <pre><span></span><code>  // This should reside in your template modules/core/templates/loginuserpass.php
+
+  <span class="cp">&lt;?php</span>
+  <span class="k">if</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">data</span><span class="p">[</span><span class="s1">'nego'</span><span class="p">][</span><span class="s1">'disable_perm'</span><span class="p">])</span> <span class="p">{</span>
+      <span class="k">echo</span> <span class="s1">'&lt;span id="login-extra-info-uio.no" class="login-extra-info"&gt;'</span>
+            <span class="o">.</span> <span class="s1">'&lt;span class="login-extra-info-divider"&gt;&lt;/span&gt;'</span>
+            <span class="o">.</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">t</span><span class="p">(</span><span class="s1">'{negotiate:negotiate:disabled_info}'</span><span class="p">)</span>
+            <span class="o">.</span> <span class="s1">'&lt;/span&gt;'</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">elseif</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">data</span><span class="p">[</span><span class="s1">'nego'</span><span class="p">][</span><span class="s1">'retry_id'</span><span class="p">])</span> <span class="p">{</span>
+       <span class="k">echo</span> <span class="s1">'&lt;span id="login-extra-info-uio.no" class="login-extra-info"&gt;'</span>
+            <span class="o">.</span> <span class="s1">'&lt;span class="login-extra-info-divider"&gt;&lt;/span&gt;'</span>
+            <span class="o">.</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">t</span><span class="p">(</span><span class="s1">'{negotiate:negotiate:failed_info}'</span><span class="p">)</span>
+            <span class="o">.</span> <span class="s1">' &lt;a class="btn" href="'</span><span class="o">.</span><span class="nx">SimpleSAML_Module</span><span class="o">::</span><span class="na">getModuleURL</span><span class="p">(</span><span class="s1">'negotiateext/retry'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">'AuthState'</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">data</span><span class="p">[</span><span class="s1">'nego'</span><span class="p">][</span><span class="s1">'retry_id'</span><span class="p">]))</span><span class="o">.</span><span class="s1">'"&gt;'</span>
+            <span class="o">.</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">t</span><span class="p">(</span><span class="s1">'{negotiate:negotiate:retry_link}'</span><span class="p">)</span>
+            <span class="o">.</span> <span class="s1">'&lt;/a&gt;'</span>
+            <span class="o">.</span> <span class="s1">'&lt;/span&gt;'</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="cp">?&gt;</span>
+</code></pre>
+</div>
+<p>
+ The above may or may not work right out of the box for you but it is
+the gist of it. By looking at the state variable, cookie and checking
+for filters and the likes, only clients that are subjected to
+Negotiate should get the help text.
+</p>
+<p>
+ Note that with Negotiate there is also a small script to allow the
+user to re-authenticate with Negotiate after being sent to the
+fallback mechanism due to the session cookie. In the example above you
+can see the construction of the URL. The cloning of the current state
+is necessary for retry.php to load a state without triggering a
+security check in SSP's state handling library. If you omit this and
+pass on the original state you will see a warning in the log like
+this:
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="n">Sep</span><span class="w"> </span><span class="mi">27</span><span class="w"> </span><span class="mi">13</span><span class="err">:</span><span class="mi">47</span><span class="err">:</span><span class="mi">36</span><span class="w"> </span><span class="n">simplesamlphp</span><span class="w"> </span><span class="n">WARNING</span><span class="w"> </span><span class="o">[</span><span class="n">b99e6131ee</span><span class="o">]</span><span class="w"> </span><span class="n">Wrong</span><span class="w"> </span><span class="n">stage</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">state</span><span class="p">.</span><span class="w"> </span><span class="n">Was</span><span class="w"> </span><span class="s1">'foo'</span><span class="p">,</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="s1">'sspmod_negotiateext_Auth_Source_Negotiate.StageId'</span><span class="p">.</span><span class="w"></span>
+</code></pre>
+</div>
+<p>
+ It will work as loadState will take controll and call
+Negotiate-&gt;authenticate() but remaining code in retry.php will be
+discarded. Other side-effects may occur.
+</p>
+<h2 id="clients">
+ Clients
+</h2>
+<ul>
+ <li>
+  Internet Explorer
+ </li>
+</ul>
+<p>
+ YMMV but generally you need to have your IdP defined in "Internet
+Options" -&gt; "Security" -&gt; "Local intranet" -&gt; "Sites" -&gt; "Advanced".
+You also need "Internet Options" -&gt; "Advanced" -&gt; "Security" -&gt; Enable
+Integrated Windows Authentication" enabled.
+</p>
+<ul>
+ <li>
+  Firefox
+ </li>
+</ul>
+<p>
+ Open "about:config". Locate "network.auth.use-sspi" and verify that
+this is true (on a Windows machine). Next locate
+"network.negotiate-auth.trusted-uris" and insert your IdP.
+</p>
+<ul>
+ <li>
+  Safari
+ </li>
+</ul>
+<p>
+ TODO
+</p>
+<ul>
+ <li>
+  Chrome
+ </li>
+</ul>
+<p>
+ Chrome on Linux: Create a file /etc/opt/chrome/policies/managed/company_policy.json
+with the following content:
+</p>
+<div class="codehilite">
+ <pre><span></span><code>  {"AuthServerWhitelist":"your.idp.host"}
+</code></pre>
+</div>
+<p>
+ Chrome on OSX: Configure AuthServerWhitelist using Apple Workgroup Manager as detailed on https://www.chromium.org/administrators/mac-quick-start
+</p></main></body>
+</html>

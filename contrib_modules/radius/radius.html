@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Language" content="en">
+  <meta name="google-site-verification" content="2S8M18BgYs8cLRL6ClTrfW_xGxfFtMZu2b2jhjrNlss">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>SimpleSAMLphp Documentation</title>
+
+  <link rel="stylesheet" href="/res/css/style.css">
+  <link rel="stylesheet" href="/res/css/layout.css">
+</head>
+<body>
+<header>
+ <div id="header">
+  <div class="right">
+   <form action="https://www.google.com/cse" method="get" style="margin-top: 2.5rem; margin-right: 2rem">
+    <input name="cx" type="hidden" value="004202914224971217557:8ks4jjstupq"/>
+    <input name="siteurl" type="hidden" value="www.google.com/cse/home?cx=004202914224971217557:8ks4jjstupq"/>
+    <input name="adkw" type="hidden" value="AELymgVJ6Sk-kOvUjbxvgShTLwiFlma2evFuVCh0r8q23vn_4eVnkcdnPfbgMvYUTpJpVlb-KkGAKkbn0i-AlWHsVRR9O0J4CNb6cXFkEKRdjXxsC_NlVD4"/>
+    <input name="q" placeholder="Search" type="search" value=""/>
+   </form>
+  </div>
+  <div class="v-center logo-header">
+   <div id="logo">
+    <a href="https://simplesamlphp.org" style="color: #fff; text-decoration: none">
+     <span class="simple">
+      Simple
+     </span>
+     <span class="saml">
+      SAML
+     </span>
+     <span class="simple">
+      php
+     </span>
+    </a>
+   </div>
+  </div>
+ </div>
+ <!-- Grey header bar below -->
+ <nav>
+  <div id="headerbar" style="clear: both">
+   <p id="breadcrumb">
+    <a href="https://simplesamlphp.org">
+     Home
+    </a>
+    » Documentation
+   </p>
+   <div class="mtoolbar">
+    <div class="menuitem">
+     <a href="/docs/1.19/index.html">
+      1.19 (stable)
+     </a>
+    </div>
+    <div class="menuitem">
+     <a href="/docs/1.18/index.html">
+      1.18
+     </a>
+    </div>
+    <div class="menuitem">
+     <a href="/docs/1.17/index.html">
+      1.17
+     </a>
+    </div>
+    <div class="menuitem">
+     <a href="/docs/1.16/index.html">
+      1.16
+     </a>
+    </div>
+    <div class="menuitem first">
+     <a href="/docs/devel/index.html">
+      devel
+     </a>
+    </div>
+    <div class="menuitem last">
+     <a href="/docs/contributed_modules.html">
+      Contributed modules
+     </a>
+    </div>
+   </div>
+   <br style="height: 0px; clear: both"/>
+  </div>
+  <!-- /#headerbar -->
+ </nav>
+ <div id="content">
+ </div>
+</header><main><h1 id="radius-module">
+ RADIUS module
+</h1>
+<p>
+ The RADIUS module provides a single authentication module:
+</p>
+<dl>
+ <dt>
+  <code>
+   radius:Radius
+  </code>
+ </dt>
+ <dd>
+  Authenticate a user against a RADIUS server.
+ </dd>
+</dl>
+<p>
+ This authentication module contacts a RADIUS server, and authenticates
+the user by using username &amp; password authentication.
+</p>
+<p>
+ To use this module, enable the radius module: in
+ <code>
+  config.php
+ </code>
+ , search
+for the
+ <code>
+  module.enable
+ </code>
+ key and set
+ <code>
+  radius
+ </code>
+ to true:
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="x">    'module.enable' =&gt; [</span>
+<span class="x">         'radius' =&gt; true,</span>
+<span class="x">         …</span>
+<span class="x">    ],</span>
+</code></pre>
+</div>
+<p>
+ Then you need to add a authentication source which uses the
+ <code>
+  radius:Radius
+ </code>
+ module to
+ <code>
+  config/authsources.php
+ </code>
+ :
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="x">    'example-radius' =&gt; [</span>
+<span class="x">        'radius:Radius',</span>
+
+<span class="x">        /*</span>
+<span class="x">         * An array with the radius servers to use, up to 10.</span>
+<span class="x">         * The options are:</span>
+<span class="x">         *  - hostname: the hostname of the radius server, or its IP address. Required.</span>
+<span class="x">         *  - port: the port of the radius server. Optional, defaults to 1812.</span>
+<span class="x">         *  - secret: the radius secret to use with this server. Required.</span>
+<span class="x">         */</span>
+<span class="x">        'servers' =&gt; [</span>
+<span class="x">            [</span>
+<span class="x">                'hostname' =&gt; 'radius1.example.org',</span>
+<span class="x">                'port' =&gt; 1812,</span>
+<span class="x">                'secret' =&gt; 'topsecret'</span>
+<span class="x">            ],</span>
+<span class="x">            [</span>
+<span class="x">                'hostname' =&gt; 'radius2.example.org',</span>
+<span class="x">                'port' =&gt; 1812,</span>
+<span class="x">                'secret' =&gt; 'topsecret'</span>
+<span class="x">            ]</span>
+<span class="x">        ],</span>
+
+<span class="x">        /*</span>
+<span class="x">         * The timeout for contacting the RADIUS server, in seconds.</span>
+<span class="x">         * Optional, defaults to 5 seconds.</span>
+<span class="x">         */</span>
+<span class="x">        'timeout' =&gt; 5,</span>
+
+<span class="x">        /*</span>
+<span class="x">         * Set debug modus</span>
+<span class="x">         */</span>
+<span class="x">        'debug' =&gt; true,</span>
+
+<span class="x">        /*</span>
+<span class="x">         * The NAS identifier to use when querying the radius server.</span>
+<span class="x">         * Optional, defaults to the current host name.</span>
+<span class="x">         */</span>
+<span class="x">        'nas_identifier' =&gt; 'client.example.org',</span>
+
+<span class="x">        /*</span>
+<span class="x">         * An optional realm that will be suffixed to the username entered</span>
+<span class="x">         * by the user. When set to "example.edu", and the user enters</span>
+<span class="x">         * "bob" as their username, the radius server will be queried for</span>
+<span class="x">         * the username "bob@example.edu".</span>
+<span class="x">         * Optional, defaults to NULL.</span>
+<span class="x">         */</span>
+<span class="x">        'realm' =&gt; 'example.edu',</span>
+
+<span class="x">        /*</span>
+<span class="x">         * The attribute name we should store the username in. Ths username</span>
+<span class="x">         * will not be saved in any attribute if this is NULL.</span>
+<span class="x">         * Optional, defaults to NULL.</span>
+<span class="x">         */</span>
+<span class="x">        'username_attribute' =&gt; 'eduPersonPrincipalName',</span>
+<span class="x">    ],</span>
+</code></pre>
+</div>
+<h2 id="user-attributes">
+ User attributes
+</h2>
+<p>
+ If the RADIUS server is configured to include attributes for the user in
+the response, this module may be able to extract them. This requires the
+attributes to be stored in a vendor-specific attribute in the response
+from the RADIUS server.
+</p>
+<p>
+ The code expects one vendor-attribute with a specific vendor and a specific
+vendor attribute type for each user attribute. The vendor-attribute must
+contain a value of the form
+ <code>
+  &lt;name&gt;=&lt;value&gt;
+ </code>
+ .
+</p>
+<p>
+ The following configuration options are available for user attributes:
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="x">        /*</span>
+<span class="x">         * This is the vendor for the vendor-specific attribute which contains</span>
+<span class="x">         * the attributes for this user. This can be NULL if no attributes are</span>
+<span class="x">         * included in the response.</span>
+<span class="x">         * Optional, defaults to NULL.</span>
+<span class="x">         */</span>
+<span class="x">        'attribute_vendor' =&gt; 23735,</span>
+
+<span class="x">        /*</span>
+<span class="x">         * The vendor attribute-type of the attribute which contains the</span>
+<span class="x">         * attributes for the user.</span>
+<span class="x">         * Required if 'vendor' is set.</span>
+<span class="x">         */</span>
+<span class="x">        'attribute_vendor_type' =&gt; 4,</span>
+</code></pre>
+</div></main></body>
+</html>

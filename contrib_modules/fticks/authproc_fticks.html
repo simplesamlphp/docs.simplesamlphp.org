@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Language" content="en">
+  <meta name="google-site-verification" content="2S8M18BgYs8cLRL6ClTrfW_xGxfFtMZu2b2jhjrNlss">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>SimpleSAMLphp Documentation</title>
+
+  <link rel="stylesheet" href="/res/css/style.css">
+  <link rel="stylesheet" href="/res/css/layout.css">
+</head>
+<body>
+<header>
+ <div id="header">
+  <div class="right">
+   <form action="https://www.google.com/cse" method="get" style="margin-top: 2.5rem; margin-right: 2rem">
+    <input name="cx" type="hidden" value="004202914224971217557:8ks4jjstupq"/>
+    <input name="siteurl" type="hidden" value="www.google.com/cse/home?cx=004202914224971217557:8ks4jjstupq"/>
+    <input name="adkw" type="hidden" value="AELymgVJ6Sk-kOvUjbxvgShTLwiFlma2evFuVCh0r8q23vn_4eVnkcdnPfbgMvYUTpJpVlb-KkGAKkbn0i-AlWHsVRR9O0J4CNb6cXFkEKRdjXxsC_NlVD4"/>
+    <input name="q" placeholder="Search" type="search" value=""/>
+   </form>
+  </div>
+  <div class="v-center logo-header">
+   <div id="logo">
+    <a href="https://simplesamlphp.org" style="color: #fff; text-decoration: none">
+     <span class="simple">
+      Simple
+     </span>
+     <span class="saml">
+      SAML
+     </span>
+     <span class="simple">
+      php
+     </span>
+    </a>
+   </div>
+  </div>
+ </div>
+ <!-- Grey header bar below -->
+ <nav>
+  <div id="headerbar" style="clear: both">
+   <p id="breadcrumb">
+    <a href="https://simplesamlphp.org">
+     Home
+    </a>
+    » Documentation
+   </p>
+   <div class="mtoolbar">
+    <div class="menuitem">
+     <a href="/docs/1.19/index.html">
+      1.19 (stable)
+     </a>
+    </div>
+    <div class="menuitem">
+     <a href="/docs/1.18/index.html">
+      1.18
+     </a>
+    </div>
+    <div class="menuitem">
+     <a href="/docs/1.17/index.html">
+      1.17
+     </a>
+    </div>
+    <div class="menuitem">
+     <a href="/docs/1.16/index.html">
+      1.16
+     </a>
+    </div>
+    <div class="menuitem first">
+     <a href="/docs/devel/index.html">
+      devel
+     </a>
+    </div>
+    <div class="menuitem last">
+     <a href="/docs/contributed_modules.html">
+      Contributed modules
+     </a>
+    </div>
+   </div>
+   <br style="height: 0px; clear: both"/>
+  </div>
+  <!-- /#headerbar -->
+ </nav>
+ <div id="content">
+ </div>
+</header><main><h1 id="fticksfticks">
+ <code>
+  fticks:Fticks
+ </code>
+</h1>
+<p>
+ Log statistics in the
+ <a href="F-ticks federation log format.html">
+  F-ticks federation log format
+ </a>
+ .
+</p>
+<p>
+ The filter aims to produce as many F-ticks attributes as possible, irrespective
+of whether SimpleSAMLphp is acting as an identity provider or a
+SAML service provider.
+</p>
+<h2 id="configuration">
+ Configuration
+</h2>
+<p>
+ The filter supports the following configuration options:
+</p>
+<dl>
+ <dt>
+  <code>
+   federation
+  </code>
+ </dt>
+ <dd>
+  F-ticks federation identifier. Specifying a federation identifier is
+  <strong>
+   mandatory
+  </strong>
+  , and the filter will generate an exception if one is not
+  given.
+ </dd>
+ <dt>
+  <code>
+   salt
+  </code>
+ </dt>
+ <dd>
+  A salt used to preserve the privacy of the F-ticks
+  <em>
+   PN
+  </em>
+  attribute.
+  If not specified, the
+  <code>
+   secretsalt
+  </code>
+  from the main config is used.
+ </dd>
+ <dt>
+  <code>
+   identifyingAttribute
+  </code>
+ </dt>
+ <dd>
+  The SAML attribute specifying the user id. It is
+  <strong>
+   mandatory
+  </strong>
+ </dd>
+ <dt>
+  <code>
+   realm
+  </code>
+ </dt>
+ <dd>
+  The SAML attribute specifying the user's realm. If not specified,
+  the F-ticks
+  <em>
+   REALM
+  </em>
+  attribute is not generated.
+ </dd>
+ <dt>
+  <code>
+   algorithm
+  </code>
+ </dt>
+ <dd>
+  The hash algorithm to use. Defaults to
+  <code>
+   sha256
+  </code>
+  , but any algorithm
+  <a href="http://php.net/manual/en/function.hash-algos.php">
+   supported by PHP
+  </a>
+  can be used.
+ </dd>
+ <dt>
+  <code>
+   exclude
+  </code>
+ </dt>
+ <dd>
+  An array of F-ticks attributes to exclude/filter from the output.
+ </dd>
+ <dt>
+  <code>
+   logdest
+  </code>
+ </dt>
+ <dd>
+  Destination for F-ticks logs. Must be one of the following options:
+ </dd>
+</dl>
+<blockquote>
+ <ul>
+  <li>
+   <code>
+    simplesamlphp
+   </code>
+   - use SimpleSAMLphp's built-in logging mechanism
+    (this is the default).
+  </li>
+  <li>
+   <code>
+    local
+   </code>
+   - log using the PHP
+   <a href="syslog.html">
+    syslog
+   </a>
+   functions, potentially
+    avoiding some of the extra information SimpleSAMLphp includes in logs.
+  </li>
+  <li>
+   <code>
+    remote
+   </code>
+   - log to a remote RFC 5424 syslog server using UDP.
+  </li>
+  <li>
+   <code>
+    errorlog
+   </code>
+   - log using PHP's
+   <a href="error_log.html">
+    error_log
+   </a>
+   function, probably
+    into the web server logs.
+  </li>
+  <li>
+   <code>
+    stdout
+   </code>
+   - write to standard out, primarily for debugging.
+  </li>
+ </ul>
+</blockquote>
+<dl>
+ <dt>
+  <code>
+   logconfig
+  </code>
+ </dt>
+ <dd>
+  An array of configuration options for the logging method. The exact values
+  supported depend on the specific
+  <code>
+   logdest
+  </code>
+  , but the following are
+  understood:
+ </dd>
+</dl>
+<blockquote>
+ <ul>
+  <li>
+   <code>
+    priority
+   </code>
+   - the syslog priority or severity as a PHP constant,
+                 defaulting to
+   <code>
+    LOG_INFO
+   </code>
+   .
+   <em>
+    [local, remote]
+   </em>
+  </li>
+  <li>
+   <code>
+    facility
+   </code>
+   - the syslog facility, defaulting to
+   <code>
+    logging.facility
+   </code>
+   from the main config.
+   <em>
+    [local, remote]
+   </em>
+  </li>
+  <li>
+   <code>
+    processname
+   </code>
+   - the syslog process name, defaulting to
+   <code>
+    logging.processname
+   </code>
+   from the main config.
+   <em>
+    [local, remote]
+   </em>
+  </li>
+  <li>
+   <code>
+    host
+   </code>
+   - the hostname of the remote syslog server,
+             defaulting to
+   <code>
+    localhost
+   </code>
+   .
+   <em>
+    [remote]
+   </em>
+  </li>
+  <li>
+   <code>
+    port
+   </code>
+   - the port of the remote syslog server,
+             defaulting to
+   <code>
+    514
+   </code>
+   .
+   <em>
+    [remote]
+   </em>
+  </li>
+ </ul>
+</blockquote>
+<p>
+ Note that if
+ <code>
+  logdest
+ </code>
+ is
+ <code>
+  local
+ </code>
+ and you set either
+ <code>
+  processname
+ </code>
+ or
+ <code>
+  facility
+ </code>
+ to a value that's different to what is in SimpleSAMLphp's global config, you may
+end up with inconsistent output from SimpleSAMLphp's own logging. This is
+because PHP's
+ <a href="http://php.net/manual/en/function.openlog.php">
+  openlog
+ </a>
+ function
+does not return a handle.
+</p>
+<h3 id="examples">
+ Examples
+</h3>
+<p>
+ In its simplest form, the filter is configured like this:
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="x">    'authproc' =&gt; [</span>
+<span class="x">        50 =&gt; [</span>
+<span class="x">            'class' =&gt; 'fticks:Fticks',</span>
+<span class="x">            'federation' =&gt; 'ACME',</span>
+<span class="x">        ],</span>
+<span class="x">    ],</span>
+</code></pre>
+</div>
+<p>
+ A more complete example looks like:
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="x">    'authproc' =&gt; [</span>
+<span class="x">        50 =&gt; [</span>
+<span class="x">            'class' =&gt; 'fticks:Fticks',</span>
+<span class="x">            'federation' =&gt; 'ACME',</span>
+<span class="x">            'salt' =&gt; 'someVerySecretStringDifferentFromTheDefault',</span>
+<span class="x">            'identifyingAttribute' =&gt; 'eduPersonPrincipalName',</span>
+<span class="x">            'realm' =&gt; 'schacHomeOrganization',</span>
+<span class="x">            'algorithm' =&gt; 'sha512',</span>
+<span class="x">            'exclude' =&gt; ['PN'],</span>
+<span class="x">        ],</span>
+<span class="x">    ],</span>
+</code></pre>
+</div>
+<p>
+ Remote logging can be done like this:
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="x">    'authproc' =&gt; [</span>
+<span class="x">        50 =&gt; a[</span>
+<span class="x">            'class' =&gt; 'fticks:Fticks',</span>
+<span class="x">            'federation' =&gt; 'ACME',</span>
+<span class="x">            'logdest' =&gt; 'remote',</span>
+<span class="x">            'logconfig' =&gt; [</span>
+<span class="x">                'host' =&gt; '90.147.166.156',</span>
+<span class="x">                'port' =&gt; 514,</span>
+<span class="x">            ],</span>
+<span class="x">        ],</span>
+<span class="x">    ],</span>
+</code></pre>
+</div>
+<h2 id="f-ticks-output">
+ F-ticks output
+</h2>
+<p>
+ The filter is capable of generating the following F-ticks attributes:
+AP, AM, CSI, PN, REALM, RESULT, RP, TS.
+</p>
+<p>
+ The following notes document how some of these attributes are
+generated/derived:
+</p>
+<dl>
+ <dt>
+  <code>
+   AM
+  </code>
+ </dt>
+ <dd>
+  The authentication method is derived from the SP's SAML state. If
+  that is not available, is set to
+  <code>
+   urn:oasis:names:tc:SAML:2.0:ac:classes:Password
+  </code>
+  when one of the
+  authentication sources based on the
+  <a href="UserPassBase.html">
+   UserPassBase
+  </a>
+  class.
+ </dd>
+ <dt>
+  <code>
+   CSI
+  </code>
+ </dt>
+ <dd>
+  The calling station identifier is set to the SimpleSAMLphp tracking
+  id (same as logs)
+ </dd>
+ <dt>
+  <code>
+   PN
+  </code>
+ </dt>
+ <dd>
+  The PN is generated in a similar way too, but completely independently from
+  a
+  <a href="saml/PersistentNameID.html">
+   saml:PersistentNameID
+  </a>
+  .
+ </dd>
+ <dt>
+  <code>
+   RESULT
+  </code>
+ </dt>
+ <dd>
+  Result is always set to
+  <code>
+   OK
+  </code>
+  , since if the authentication fails,
+  the authproc filter is never called.
+ </dd>
+ <dt>
+  <code>
+   TS
+  </code>
+ </dt>
+ <dd>
+  The timestamp is set to the SAML AuthNInstant if that is known,
+  or the current time otherwise.
+ </dd>
+</dl></main></body>
+</html>
