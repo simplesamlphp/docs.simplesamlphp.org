@@ -72,14 +72,14 @@ def parsefiles(docsdir, outputdir):
 def getmodulerepos():
     module_repos = []
     
-    with urllib.request.urlopen("https://api.github.com/users/simplesamlphp/repos") as url:
+    with urllib.request.urlopen("https://api.github.com/users/simplesamlphp/repos?per_page=100") as url:
        repos = json.loads(url.read().decode())
     
     for repo in repos:
       a_repo = {"name": [], "description": [], "html_url": [], "short_name": []}
 	
       # we assume all module will have a name that starts with 'simplesamlphp-module-' 
-      if (repo['name'].find('simplesamlphp-module-') == 0):
+      if (repo['name'].find('simplesamlphp-module-') == 0 && !repo['archived']):
         a_repo['name'] = str(repo['name'])
         a_repo['description'] = str(repo['description'])
         a_repo['html_url'] = str(repo['html_url'])
