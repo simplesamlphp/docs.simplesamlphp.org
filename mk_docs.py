@@ -202,7 +202,7 @@ def mkcontribmodsindex(contrib_mods, module_index_file, contrib_mods_files):
 
       try:
         for page in pages[module["name"]]:
-          module_index += "   * ["+ page + "](contrib_modules/"+ module["name"] + "/" + page +")\n"
+          module_index += "   * ["+ page + "](contrib_modules/"+ module["short_name"] + "/" + page +")\n"
       except KeyError:
 		# some modules do not have documentation, just ignore them      
         pass
