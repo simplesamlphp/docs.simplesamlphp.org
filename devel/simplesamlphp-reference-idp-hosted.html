@@ -118,11 +118,6 @@
      <a href="#metadata-extensions">
       Metadata extensions
      </a>
-    </li>
-    <li>
-     <a href="#examples">
-      Examples
-     </a>
      <ul>
       <li>
        <a href="#minimal-saml-20-idp">
@@ -149,17 +144,17 @@
 Both files have the following format:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="cp">&lt;?php</span>
-  <span class="cm">/* The index of the array is the entity ID of this IdP. */</span>
-  <span class="nv">$metadata</span><span class="p">[</span><span class="s1">'entity-id-1'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
-      <span class="s1">'host'</span> <span class="o">=&gt;</span> <span class="s1">'idp.example.org'</span><span class="p">,</span>
-      <span class="cm">/* Configuration options for the first IdP. */</span>
-  <span class="p">];</span>
-  <span class="nv">$metadata</span><span class="p">[</span><span class="s1">'entity-id-2'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
-      <span class="s1">'host'</span> <span class="o">=&gt;</span> <span class="s1">'__DEFAULT__'</span><span class="p">,</span>
-      <span class="cm">/* Configuration options for the default IdP. */</span>
-  <span class="p">];</span>
-  <span class="cm">/* ... */</span>
+ <pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="cm">/* The index of the array is the entity ID of this IdP. */</span>
+<span class="nv">$metadata</span><span class="p">[</span><span class="s1">'entity-id-1'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">'host'</span> <span class="o">=&gt;</span> <span class="s1">'idp.example.org'</span><span class="p">,</span>
+    <span class="cm">/* Configuration options for the first IdP. */</span>
+<span class="p">];</span>
+<span class="nv">$metadata</span><span class="p">[</span><span class="s1">'entity-id-2'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">'host'</span> <span class="o">=&gt;</span> <span class="s1">'__DEFAULT__'</span><span class="p">,</span>
+    <span class="cm">/* Configuration options for the default IdP. */</span>
+<span class="p">];</span>
+<span class="cm">/* ... */</span>
 </code></pre>
 </div>
 <p>
@@ -172,10 +167,11 @@ just an identifier. If your organization's domain is
  </code>
  :
 </p>
-<div class="codehilite">
- <pre><span></span><code>  https://example.org/saml-idp
-</code></pre>
-</div>
+<p>
+ <code>
+  https://example.org/saml-idp
+ </code>
+</p>
 <p>
  For guidance in picking an entityID, see
  <a href="https://spaces.at.internet2.edu/display/federation/saml-metadata-entityid">
@@ -239,42 +235,46 @@ entry matches.
  <dd>
   Specify contacts in addition to the technical contact configured through config/config.php.
   For example, specifying a support contact:
+ </dd>
+ <dt>
   <div class="codehilite">
-   <pre><span></span><code><span class="s1">'contacts'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">[</span><span class="n"></span>
-<span class="n">    [</span>
-<span class="n">        'contactType'       =&gt; 'support',</span>
-<span class="n">        'emailAddress'      =&gt; 'support@example.org',</span>
-<span class="n">        'givenName'         =&gt; 'John',</span>
-<span class="n">        'surName'           =&gt; 'Doe',</span>
-<span class="n">        'telephoneNumber'   =&gt; '+31(0)12345678',</span>
-<span class="n">        'company'           =&gt; 'Example Inc.',</span>
-<span class="n">    </span><span class="o">]</span><span class="p">,</span><span class="w"></span>
-<span class="err">]</span><span class="p">,</span><span class="w"></span>
+   <pre><span></span><code><span class="x">'contacts' =&gt; [</span>
+<span class="x">    [</span>
+<span class="x">        'contactType'       =&gt; 'support',</span>
+<span class="x">        'emailAddress'      =&gt; 'support@example.org',</span>
+<span class="x">        'givenName'         =&gt; 'John',</span>
+<span class="x">        'surName'           =&gt; 'Doe',</span>
+<span class="x">        'telephoneNumber'   =&gt; '+31(0)12345678',</span>
+<span class="x">        'company'           =&gt; 'Example Inc.',</span>
+<span class="x">    ],</span>
+<span class="x">],</span>
 </code></pre>
   </div>
- </dd>
+ </dt>
  <dd>
   <p>
    If you have support for a trust framework that requires extra attributes on the contact person element in your IdP metadata (for example, SIRTFI), you can specify an array of attributes on a contact.
   </p>
-  <div class="codehilite">
-   <pre><span></span><code><span class="s1">'contacts'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">[</span><span class="n"></span>
-<span class="n">    [</span>
-<span class="n">        'contactType'       =&gt; 'other',</span>
-<span class="n">        'emailAddress'      =&gt; 'mailto:abuse@example.org',</span>
-<span class="n">        'givenName'         =&gt; 'John',</span>
-<span class="n">        'surName'           =&gt; 'Doe',</span>
-<span class="n">        'telephoneNumber'   =&gt; '+31(0)12345678',</span>
-<span class="n">        'company'           =&gt; 'Example Inc.',</span>
-<span class="n">        'attributes'        =&gt; [</span>
-<span class="n">            'xmlns:remd'        =&gt; 'http://refeds.org/metadata',</span>
-<span class="n">            'remd:contactType'  =&gt; 'http://refeds.org/metadata/contactType/security',</span>
-<span class="n">        </span><span class="o">]</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="err">]</span><span class="p">,</span><span class="w"></span>
-<span class="err">]</span><span class="p">,</span><span class="w"></span>
-</code></pre>
-  </div>
  </dd>
+</dl>
+<div class="codehilite">
+ <pre><span></span><code><span class="x">'contacts' =&gt; [</span>
+<span class="x">    [</span>
+<span class="x">        'contactType'       =&gt; 'other',</span>
+<span class="x">        'emailAddress'      =&gt; 'mailto:abuse@example.org',</span>
+<span class="x">        'givenName'         =&gt; 'John',</span>
+<span class="x">        'surName'           =&gt; 'Doe',</span>
+<span class="x">        'telephoneNumber'   =&gt; '+31(0)12345678',</span>
+<span class="x">        'company'           =&gt; 'Example Inc.',</span>
+<span class="x">        'attributes'        =&gt; [</span>
+<span class="x">            'xmlns:remd'        =&gt; 'http://refeds.org/metadata',</span>
+<span class="x">            'remd:contactType'  =&gt; 'http://refeds.org/metadata/contactType/security',</span>
+<span class="x">        ],</span>
+<span class="x">    ],</span>
+<span class="x">],</span>
+</code></pre>
+</div>
+<dl>
  <dt>
   <code>
    host
@@ -340,22 +340,24 @@ entry matches.
  </dd>
  <dd>
   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
-  <div class="codehilite">
-   <pre><span></span><code>    'OrganizationName' =&gt; [
-        'en' =&gt; 'Voorbeeld Organisatie Foundation b.a.',
-        'nl' =&gt; 'Stichting Voorbeeld Organisatie b.a.',
-    ],
-    'OrganizationDisplayName' =&gt; [
-        'en' =&gt; 'Example organization',
-        'nl' =&gt; 'Voorbeeldorganisatie',
-    ],
-    'OrganizationURL' =&gt; [
-        'en' =&gt; 'https://example.com',
-        'nl' =&gt; 'https://example.com/nl',
-    ],
-</code></pre>
-  </div>
  </dd>
+</dl>
+<div class="codehilite">
+ <pre><span></span><code><span class="x">'OrganizationName' =&gt; [</span>
+<span class="x">    'en' =&gt; 'Voorbeeld Organisatie Foundation b.a.',</span>
+<span class="x">    'nl' =&gt; 'Stichting Voorbeeld Organisatie b.a.',</span>
+<span class="x">],</span>
+<span class="x">'OrganizationDisplayName' =&gt; [</span>
+<span class="x">    'en' =&gt; 'Example organization',</span>
+<span class="x">    'nl' =&gt; 'Voorbeeldorganisatie',</span>
+<span class="x">],</span>
+<span class="x">'OrganizationURL' =&gt; [</span>
+<span class="x">    'en' =&gt; 'https://example.com',</span>
+<span class="x">    'nl' =&gt; 'https://example.com/nl',</span>
+<span class="x">],</span>
+</code></pre>
+</div>
+<dl>
  <dt>
   <code>
    privatekey
@@ -480,14 +482,14 @@ entry matches.
  <dd>
   <ol>
    <li>
-    <p>
-     SP Remote Metadata
-    </p>
-    <ol>
-     <li>
-      IdP Hosted Metadata
-     </li>
-    </ol>
+    SP Remote Metadata
+   </li>
+  </ol>
+ </dd>
+ <dd>
+  <ol>
+   <li>
+    IdP Hosted Metadata
    </li>
   </ol>
  </dd>
@@ -508,31 +510,31 @@ entry matches.
  <dd>
   <ul>
    <li>
-    <p>
-     <code>
-      urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified
-     </code>
-    </p>
-    <ul>
-     <li>
-      <p>
-       <code>
-        urn:oasis:names:tc:SAML:2.0:attrname-format:uri
-       </code>
-       (The default
-    in Shibboleth 2.0, mandatory as per SAML2INT)
-      </p>
-     </li>
-     <li>
-      <p>
-       <code>
-        urn:oasis:names:tc:SAML:2.0:attrname-format:basic
-       </code>
-       (The
-    default in Sun Access Manager)
-      </p>
-     </li>
-    </ul>
+    <code>
+     urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified
+    </code>
+   </li>
+  </ul>
+ </dd>
+ <dd>
+  <ul>
+   <li>
+    <code>
+     urn:oasis:names:tc:SAML:2.0:attrname-format:uri
+    </code>
+    (The default
+      in Shibboleth 2.0, mandatory as per SAML2INT)
+   </li>
+  </ul>
+ </dd>
+ <dd>
+  <ul>
+   <li>
+    <code>
+     urn:oasis:names:tc:SAML:2.0:attrname-format:basic
+    </code>
+    (The
+      default in Sun Access Manager)
    </li>
   </ul>
  </dd>
@@ -620,14 +622,14 @@ entry matches.
  <dd>
   <ol>
    <li>
-    <p>
-     SP Remote Metadata
-    </p>
-    <ol>
-     <li>
-      IdP Hosted Metadata
-     </li>
-    </ol>
+    SP Remote Metadata
+   </li>
+  </ol>
+ </dd>
+ <dd>
+  <ol>
+   <li>
+    IdP Hosted Metadata
    </li>
   </ol>
  </dd>
@@ -642,18 +644,24 @@ entry matches.
     <code>
      urn:oasis:names:tc:SAML:2.0:nameid-format:transient
     </code>
-    <ol>
-     <li>
-      <code>
-       urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
-      </code>
-     </li>
-     <li>
-      <code>
-       urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
-      </code>
-     </li>
-    </ol>
+   </li>
+  </ol>
+ </dd>
+ <dd>
+  <ol>
+   <li>
+    <code>
+     urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
+    </code>
+   </li>
+  </ol>
+ </dd>
+ <dd>
+  <ol>
+   <li>
+    <code>
+     urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
+    </code>
    </li>
   </ol>
  </dd>
@@ -717,7 +725,7 @@ entry matches.
   <code>
    true
   </code>
-  to enable the IdP to recieve authnrequests and send responses according the Enhanced Client or Proxy (ECP) Profile. Note: authentication filters that require interaction with the user will not work with ECP.
+  to enable the IdP to receive AuthnRequests and send responses according the Enhanced Client or Proxy (ECP) Profile. Note: authentication filters that require interaction with the user will not work with ECP.
   Defaults to
   <code>
    false
@@ -819,16 +827,40 @@ entry matches.
  </dd>
  <dd>
   Possible values:
-  <div class="codehilite">
-   <pre><span></span><code>* `http://www.w3.org/2000/09/xmldsig#rsa-sha1`
-   *Note*: the use of SHA1 is **deprecated** and will be disallowed in the future.
-* `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256`
-   The default.
-* `http://www.w3.org/2001/04/xmldsig-more#rsa-sha384`
-* `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512`
-</code></pre>
-  </div>
  </dd>
+</dl>
+<ul>
+ <li>
+  <code>
+   http://www.w3.org/2000/09/xmldsig#rsa-sha1
+  </code>
+  <em>
+   Note
+  </em>
+  : the use of SHA1 is
+  <strong>
+   deprecated
+  </strong>
+  and will be disallowed in the future.
+ </li>
+ <li>
+  <code>
+   http://www.w3.org/2001/04/xmldsig-more#rsa-sha256
+  </code>
+  The default.
+ </li>
+ <li>
+  <code>
+   http://www.w3.org/2001/04/xmldsig-more#rsa-sha384
+  </code>
+ </li>
+ <li>
+  <code>
+   http://www.w3.org/2001/04/xmldsig-more#rsa-sha512
+  </code>
+ </li>
+</ul>
+<dl>
  <dt>
   <code>
    sign.logout
@@ -869,28 +901,26 @@ entry matches.
   List of SingleSignOnService bindings that the IdP will claim support for.
  </dd>
  <dd>
-  <p>
-   Possible values:
-  </p>
-  <ul>
-   <li>
-    <code>
-     urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect
-    </code>
-   </li>
-   <li>
-    <code>
-     urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST
-    </code>
-   </li>
-  </ul>
+  Possible values:
  </dd>
+</dl>
+<ul>
+ <li>
+  <code>
+   urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect
+  </code>
+ </li>
+ <li>
+  <code>
+   urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST
+  </code>
+ </li>
+</ul>
+<dl>
  <dd>
-  <p>
-   Defaults to HTTP-Redirect binding. Please note that the order
+  Defaults to HTTP-Redirect binding. Please note that the order
   specified will be kept in the metadata, making the first binding
   the default one.
-  </p>
  </dd>
  <dt>
   <code>
@@ -919,28 +949,26 @@ entry matches.
   List of SingleLogoutService bindings the IdP will claim support for.
  </dd>
  <dd>
-  <p>
-   Possible values:
-  </p>
-  <ul>
-   <li>
-    <code>
-     urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect
-    </code>
-   </li>
-   <li>
-    <code>
-     urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST
-    </code>
-   </li>
-  </ul>
+  Possible values:
  </dd>
+</dl>
+<ul>
+ <li>
+  <code>
+   urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect
+  </code>
+ </li>
+ <li>
+  <code>
+   urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST
+  </code>
+ </li>
+</ul>
+<dl>
  <dd>
-  <p>
-   Defaults to HTTP-Redirect binding. Please note that the order
+  Defaults to HTTP-Redirect binding. Please note that the order
   specified will be kept in the metadata, making the first binding
   the default one.
-  </p>
  </dd>
  <dt>
   <code>
@@ -950,19 +978,20 @@ entry matches.
  <dd>
   Whether we require signatures on authentication requests sent to this IdP.
   Set it to:
-  <div class="codehilite">
-   <pre><span></span><code><span class="kc">true</span><span class="o">:</span><span class="w"> </span><span class="n">authnrequest</span><span class="w"> </span><span class="n">must</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">signed</span><span class="w"> </span><span class="o">(</span><span class="n">and</span><span class="w"> </span><span class="n">signature</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">validated</span><span class="o">)</span><span class="w"></span>
-<span class="kc">null</span><span class="o">:</span><span class="w"> </span><span class="n">authnrequest</span><span class="w"> </span><span class="n">may</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">signed</span><span class="o">,</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="k">is</span><span class="o">,</span><span class="w"> </span><span class="n">signature</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">validated</span><span class="w"></span>
-<span class="kc">false</span><span class="o">:</span><span class="w"> </span><span class="n">authnrequest</span><span class="w"> </span><span class="n">signature</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">never</span><span class="w"> </span><span class="n">checked</span><span class="w"></span>
-</code></pre>
-  </div>
  </dd>
  <dd>
-  <p>
-   Note that this option also exists in the SP-remote metadata, and
+  true: authnrequest must be signed (and signature will be validated)
+ </dd>
+ <dd>
+  null: authnrequest may be signed, if it is, signature will be validated
+ </dd>
+ <dd>
+  false: authnrequest signature is never checked
+ </dd>
+ <dd>
+  Note that this option also exists in the SP-remote metadata, and
   any value in the SP-remote metadata overrides the one configured
   in the IdP metadata.
-  </p>
  </dd>
  <dt>
   <code>
@@ -1037,9 +1066,10 @@ messages from that SP.
  <strong>
   Example: Configuration for signed messages
  </strong>
+ :
 </p>
 <div class="codehilite">
- <pre><span></span><code>   'redirect.sign' =&gt; true,
+ <pre><span></span><code><span class="x">'redirect.sign' =&gt; true,</span>
 </code></pre>
 </div>
 <h2 id="metadata-extensions">
@@ -1049,12 +1079,23 @@ messages from that SP.
  SimpleSAMLphp supports generating metadata with the MDUI, MDRPI and EntityAttributes metadata extensions.
 See the documentation for those extensions for more details:
 </p>
-<div class="codehilite">
- <pre><span></span><code><span class="o">*</span><span class="w"> </span><span class="p">[</span><span class="n">MDUI</span><span class="w"> </span><span class="n">extension</span><span class="p">](.</span><span class="o">/</span><span class="n">simplesamlphp</span><span class="o">-</span><span class="n">metadata</span><span class="o">-</span><span class="n">extensions</span><span class="o">-</span><span class="n">ui</span><span class="p">)</span><span class="w"></span>
-<span class="o">*</span><span class="w"> </span><span class="p">[</span><span class="n">MDRPI</span><span class="w"> </span><span class="n">extension</span><span class="p">](.</span><span class="o">/</span><span class="n">simplesamlphp</span><span class="o">-</span><span class="n">metadata</span><span class="o">-</span><span class="n">extensions</span><span class="o">-</span><span class="n">rpi</span><span class="p">)</span><span class="w"></span>
-<span class="o">*</span><span class="w"> </span><span class="p">[</span><span class="n">EntityAttributes</span><span class="p">](.</span><span class="o">/</span><span class="n">simplesamlphp</span><span class="o">-</span><span class="n">metadata</span><span class="o">-</span><span class="n">extensions</span><span class="o">-</span><span class="n">attributes</span><span class="p">)</span><span class="w"></span>
-</code></pre>
-</div>
+<ul>
+ <li>
+  <a href="./simplesamlphp-metadata-extensions-ui.html">
+   MDUI extension
+  </a>
+ </li>
+ <li>
+  <a href="./simplesamlphp-metadata-extensions-rpi.html">
+   MDRPI extension
+  </a>
+ </li>
+ <li>
+  <a href="./simplesamlphp-metadata-extensions-attributes.html">
+   EntityAttributes
+  </a>
+ </li>
+</ul>
 <p>
  For other metadata extensions, you can use the
  <code>
@@ -1080,9 +1121,12 @@ See the documentation for those extensions for more details:
   .
  </dd>
 </dl>
-<h2 id="examples">
- Examples
-</h2>
+<p>
+ <code>
+  Examples
+ </code>
+ :
+</p>
 <p>
  These are some examples of IdP metadata
 </p>
@@ -1090,25 +1134,25 @@ See the documentation for those extensions for more details:
  Minimal SAML 2.0 IdP
 </h3>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="cp">&lt;?php</span>
+ <pre><span></span><code><span class="cp">&lt;?php</span>
 
-  <span class="nv">$metadata</span><span class="p">[</span><span class="s1">'https://example.org/saml-idp'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
-      <span class="cm">/*</span>
-<span class="cm">       * We use '__DEFAULT__' as the hostname so we won't have to</span>
-<span class="cm">       * enter a hostname.</span>
-<span class="cm">       */</span>
-      <span class="s1">'host'</span> <span class="o">=&gt;</span> <span class="s1">'__DEFAULT__'</span><span class="p">,</span>
+<span class="nv">$metadata</span><span class="p">[</span><span class="s1">'https://example.org/saml-idp'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="cm">/*</span>
+<span class="cm">     * We use '__DEFAULT__' as the hostname so we won't have to</span>
+<span class="cm">     * enter a hostname.</span>
+<span class="cm">     */</span>
+    <span class="s1">'host'</span> <span class="o">=&gt;</span> <span class="s1">'__DEFAULT__'</span><span class="p">,</span>
 
-      <span class="cm">/* The private key and certificate used by this IdP. */</span>
-      <span class="s1">'certificate'</span> <span class="o">=&gt;</span> <span class="s1">'example.org.crt'</span><span class="p">,</span>
-      <span class="s1">'privatekey'</span> <span class="o">=&gt;</span> <span class="s1">'example.org.pem'</span><span class="p">,</span>
+    <span class="cm">/* The private key and certificate used by this IdP. */</span>
+    <span class="s1">'certificate'</span> <span class="o">=&gt;</span> <span class="s1">'example.org.crt'</span><span class="p">,</span>
+    <span class="s1">'privatekey'</span> <span class="o">=&gt;</span> <span class="s1">'example.org.pem'</span><span class="p">,</span>
 
-      <span class="cm">/*</span>
-<span class="cm">       * The authentication source for this IdP. Must be one</span>
-<span class="cm">       * from config/authsources.php.</span>
-<span class="cm">       */</span>
-      <span class="s1">'auth'</span> <span class="o">=&gt;</span> <span class="s1">'example-userpass'</span><span class="p">,</span>
-  <span class="p">];</span>
+    <span class="cm">/*</span>
+<span class="cm">     * The authentication source for this IdP. Must be one</span>
+<span class="cm">     * from config/authsources.php.</span>
+<span class="cm">     */</span>
+    <span class="s1">'auth'</span> <span class="o">=&gt;</span> <span class="s1">'example-userpass'</span><span class="p">,</span>
+<span class="p">];</span>
 </code></pre>
 </div>
 <h3 id="a-custom-metadata-extension-edugain-republish-request">

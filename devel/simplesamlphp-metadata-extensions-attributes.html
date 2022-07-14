@@ -137,10 +137,10 @@ An example of this is:
  <pre><span></span><code><span class="w">  </span><span class="cp">&lt;?php</span>
   <span class="nv">$metadata</span><span class="p">[</span><span class="s1">'entity-id-1'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
       <span class="cm">/* ... */</span>
-  <span class="s1">'EntityAttributes'</span> <span class="o">=&gt;</span> <span class="p">[</span>
-    <span class="s1">'urn:simplesamlphp:v1:simplesamlphp'</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'is'</span><span class="p">,</span> <span class="s1">'really'</span><span class="p">,</span> <span class="s1">'cool'</span><span class="p">],</span>
-    <span class="s1">'{urn:simplesamlphp:v1}foo'</span>          <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'bar'</span><span class="p">],</span>
-  <span class="p">],</span>
+      <span class="s1">'EntityAttributes'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+          <span class="s1">'urn:simplesamlphp:v1:simplesamlphp'</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'is'</span><span class="p">,</span> <span class="s1">'really'</span><span class="p">,</span> <span class="s1">'cool'</span><span class="p">],</span>
+          <span class="s1">'{urn:simplesamlphp:v1}foo'</span>          <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'bar'</span><span class="p">],</span>
+      <span class="p">],</span>
       <span class="cm">/* ... */</span>
   <span class="p">];</span>
 </code></pre>
@@ -185,7 +185,7 @@ metadata. Each item in the
   &lt;Attribute&gt;
  </code>
  item in the metadata. The value for each key must be an
-array. Each item in this array produces a separte
+array. Each item in this array produces a separate
  <code>
   &lt;AttributeValue&gt;
  </code>
@@ -197,7 +197,7 @@ array. Each item in this array produces a separte
 </p>
 <div class="codehilite">
  <pre><span></span><code>  'EntityAttributes' =&gt; [
-    'urn:simplesamlphp:v1:simplesamlphp' =&gt; ['is', 'really', 'cool'],
+      'urn:simplesamlphp:v1:simplesamlphp' =&gt; ['is', 'really', 'cool'],
   ],
 </code></pre>
 </div>
@@ -226,7 +226,7 @@ specified using curly braces at the beginning of the key name:
 </p>
 <div class="codehilite">
  <pre><span></span><code>  'EntityAttributes' =&gt; [
-    '{urn:simplesamlphp:v1}foo' =&gt; ['bar'],
+      '{urn:simplesamlphp:v1}foo' =&gt; ['bar'],
   ],
 </code></pre>
 </div>
@@ -256,38 +256,36 @@ to "urn:oasis:names:tc:SAML:2.0:attrname-format:uri".
 <span class="w">      </span><span class="s1">'privatekey'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'example.com.pem'</span><span class="p">,</span><span class="w"></span>
 <span class="w">      </span><span class="s1">'auth'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'example-userpass'</span><span class="p">,</span><span class="w"></span>
 
-<span class="w">  </span><span class="s1">'EntityAttributes'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span><span class="w"></span>
-<span class="w">    </span><span class="s1">'urn:simplesamlphp:v1:simplesamlphp'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span><span class="s1">'is'</span><span class="p">,</span><span class="w"> </span><span class="s1">'really'</span><span class="p">,</span><span class="w"> </span><span class="s1">'cool'</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
-<span class="w">    </span><span class="s1">'{urn:simplesamlphp:v1}foo'</span><span class="w">          </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span><span class="s1">'bar'</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
-<span class="w">  </span><span class="o">],</span><span class="w"></span>
-<span class="o">];</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'EntityAttributes'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span><span class="w"></span>
+<span class="w">          </span><span class="s1">'urn:simplesamlphp:v1:simplesamlphp'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span><span class="s1">'is'</span><span class="p">,</span><span class="w"> </span><span class="s1">'really'</span><span class="p">,</span><span class="w"> </span><span class="s1">'cool'</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
+<span class="w">          </span><span class="s1">'{urn:simplesamlphp:v1}foo'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span><span class="s1">'bar'</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
+<span class="w">      </span><span class="o">],</span><span class="w"></span>
+<span class="w">  </span><span class="o">];</span><span class="w"></span>
 </code></pre>
 </div>
 <p>
  ... will generate the following XML metadata:
 </p>
 <div class="codehilite">
- <pre><span></span><code><?xml version="1.0"?>
-
-
-<span class="nt">&lt;md:EntityDescriptor</span> <span class="na">xmlns:md=</span><span class="s">"urn:oasis:names:tc:SAML:2.0:metadata"</span> <span class="na">xmlns:mdattr=</span><span class="s">"urn:oasis:names:tc:SAML:metadata:attribute"</span> <span class="na">xmlns:saml=</span><span class="s">"urn:oasis:names:tc:SAML:2.0:assertion"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="na">xmlns:mdui=</span><span class="s">"urn:oasis:names:tc:SAML:metadata:ui"</span> <span class="na">xmlns:ds=</span><span class="s">"http://www.w3.org/2000/09/xmldsig#"</span> <span class="na">entityID=</span><span class="s">"https://example.com/saml-idp"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;md:Extensions&gt;</span>
-  <span class="nt">&lt;mdattr:EntityAttributes</span> <span class="na">xmlns:mdattr=</span><span class="s">"urn:oasis:names:tc:SAML:metadata:attribute"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;saml:Attribute</span> <span class="na">xmlns:saml=</span><span class="s">"urn:oasis:names:tc:SAML:2.0:assertion"</span> <span class="na">Name=</span><span class="s">"urn:simplesamlphp:v1:simplesamlphp"</span> <span class="na">NameFormat=</span><span class="s">"urn:oasis:names:tc:SAML:2.0:attrname-format:uri"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;saml:AttributeValue</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="na">xmlns:xs=</span><span class="s">"http://www.w3.org/2001/XMLSchema"</span> <span class="na">xsi:type=</span><span class="s">"xs:string"</span><span class="nt">&gt;</span>is<span class="nt">&lt;/saml:AttributeValue&gt;</span>
-    <span class="nt">&lt;saml:AttributeValue</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="na">xmlns:xs=</span><span class="s">"http://www.w3.org/2001/XMLSchema"</span> <span class="na">xsi:type=</span><span class="s">"xs:string"</span><span class="nt">&gt;</span>really<span class="nt">&lt;/saml:AttributeValue&gt;</span>
-    <span class="nt">&lt;saml:AttributeValue</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="na">xmlns:xs=</span><span class="s">"http://www.w3.org/2001/XMLSchema"</span> <span class="na">xsi:type=</span><span class="s">"xs:string"</span><span class="nt">&gt;</span>cool<span class="nt">&lt;/saml:AttributeValue&gt;</span>
-    <span class="nt">&lt;/saml:Attribute&gt;</span>
-    <span class="nt">&lt;saml:Attribute</span> <span class="na">xmlns:saml=</span><span class="s">"urn:oasis:names:tc:SAML:2.0:assertion"</span> <span class="na">Name=</span><span class="s">"foo"</span> <span class="na">NameFormat=</span><span class="s">"urn:simplesamlphp:v1"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;saml:AttributeValue</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="na">xmlns:xs=</span><span class="s">"http://www.w3.org/2001/XMLSchema"</span> <span class="na">xsi:type=</span><span class="s">"xs:string"</span><span class="nt">&gt;</span>bar<span class="nt">&lt;/saml:AttributeValue&gt;</span>
-    <span class="nt">&lt;/saml:Attribute&gt;</span>
-  <span class="nt">&lt;/mdattr:EntityAttributes&gt;</span>
-  <span class="nt">&lt;/md:Extensions&gt;</span>
-  <span class="nt">&lt;md:IDPSSODescriptor</span> <span class="na">protocolSupportEnumeration=</span><span class="s">"urn:oasis:names:tc:SAML:2.0:protocol"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;md:KeyDescriptor</span> <span class="na">use=</span><span class="s">"signing"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;ds:KeyInfo</span> <span class="na">xmlns:ds=</span><span class="s">"http://www.w3.org/2000/09/xmldsig#"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;ds:X509Data&gt;</span>
-          ...
+ <pre><span></span><code>  <span class="cp">&lt;?xml version="1.0"?&gt;</span>
+  <span class="nt">&lt;md:EntityDescriptor</span> <span class="na">xmlns:md=</span><span class="s">"urn:oasis:names:tc:SAML:2.0:metadata"</span> <span class="na">xmlns:mdattr=</span><span class="s">"urn:oasis:names:tc:SAML:metadata:attribute"</span> <span class="na">xmlns:saml=</span><span class="s">"urn:oasis:names:tc:SAML:2.0:assertion"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="na">xmlns:mdui=</span><span class="s">"urn:oasis:names:tc:SAML:metadata:ui"</span> <span class="na">xmlns:ds=</span><span class="s">"http://www.w3.org/2000/09/xmldsig#"</span> <span class="na">entityID=</span><span class="s">"https://example.com/saml-idp"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;md:Extensions&gt;</span>
+      <span class="nt">&lt;mdattr:EntityAttributes</span> <span class="na">xmlns:mdattr=</span><span class="s">"urn:oasis:names:tc:SAML:metadata:attribute"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;saml:Attribute</span> <span class="na">xmlns:saml=</span><span class="s">"urn:oasis:names:tc:SAML:2.0:assertion"</span> <span class="na">Name=</span><span class="s">"urn:simplesamlphp:v1:simplesamlphp"</span> <span class="na">NameFormat=</span><span class="s">"urn:oasis:names:tc:SAML:2.0:attrname-format:uri"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;saml:AttributeValue</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="na">xmlns:xs=</span><span class="s">"http://www.w3.org/2001/XMLSchema"</span> <span class="na">xsi:type=</span><span class="s">"xs:string"</span><span class="nt">&gt;</span>is<span class="nt">&lt;/saml:AttributeValue&gt;</span>
+          <span class="nt">&lt;saml:AttributeValue</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="na">xmlns:xs=</span><span class="s">"http://www.w3.org/2001/XMLSchema"</span> <span class="na">xsi:type=</span><span class="s">"xs:string"</span><span class="nt">&gt;</span>really<span class="nt">&lt;/saml:AttributeValue&gt;</span>
+          <span class="nt">&lt;saml:AttributeValue</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="na">xmlns:xs=</span><span class="s">"http://www.w3.org/2001/XMLSchema"</span> <span class="na">xsi:type=</span><span class="s">"xs:string"</span><span class="nt">&gt;</span>cool<span class="nt">&lt;/saml:AttributeValue&gt;</span>
+        <span class="nt">&lt;/saml:Attribute&gt;</span>
+        <span class="nt">&lt;saml:Attribute</span> <span class="na">xmlns:saml=</span><span class="s">"urn:oasis:names:tc:SAML:2.0:assertion"</span> <span class="na">Name=</span><span class="s">"foo"</span> <span class="na">NameFormat=</span><span class="s">"urn:simplesamlphp:v1"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;saml:AttributeValue</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="na">xmlns:xs=</span><span class="s">"http://www.w3.org/2001/XMLSchema"</span> <span class="na">xsi:type=</span><span class="s">"xs:string"</span><span class="nt">&gt;</span>bar<span class="nt">&lt;/saml:AttributeValue&gt;</span>
+        <span class="nt">&lt;/saml:Attribute&gt;</span>
+      <span class="nt">&lt;/mdattr:EntityAttributes&gt;</span>
+    <span class="nt">&lt;/md:Extensions&gt;</span>
+    <span class="nt">&lt;md:IDPSSODescriptor</span> <span class="na">protocolSupportEnumeration=</span><span class="s">"urn:oasis:names:tc:SAML:2.0:protocol"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;md:KeyDescriptor</span> <span class="na">use=</span><span class="s">"signing"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;ds:KeyInfo</span> <span class="na">xmlns:ds=</span><span class="s">"http://www.w3.org/2000/09/xmldsig#"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;ds:X509Data&gt;</span>
+            ...
 </code></pre>
 </div>
 <p>

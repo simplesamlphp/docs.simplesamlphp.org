@@ -210,7 +210,7 @@ template from
   config-templates/
  </code>
  and migrate the settings you require to the new
-config file manualy.
+config file manually.
 </p>
 <p>
  The date formatting when specifying a custom logging string has been changed from PHP's
@@ -226,11 +226,21 @@ deprecated
 </p>
 <p>
  Configuration options that have been removed:
- - simplesaml.nameidattribute. Use the appropriate authproc-filters instead
- - languages[priorities]
- - attributes.extradictionaries. Add an attributes.po to your configured theme instead.
- - admin.protectindexpage. Replaced by the admin module which always requires login.
 </p>
+<ul>
+ <li>
+  simplesaml.nameidattribute. Use the appropriate authproc-filters instead
+ </li>
+ <li>
+  languages[priorities]
+ </li>
+ <li>
+  attributes.extradictionaries. Add an attributes.po to your configured theme instead.
+ </li>
+ <li>
+  admin.protectindexpage. Replaced by the admin module which always requires login.
+ </li>
+</ul>
 <h2 id="changes-relevant-for-module-developers">
  Changes relevant for (module) developers
 </h2>
@@ -240,15 +250,19 @@ processing filters or interface with the SimpleSAMLphp development API.
 </p>
 <ul>
  <li>
-  Old JSON-formatted dictionaries have been replaced by gettext / .po-files;
-    You can find a migration guide here: https://github.com/simplesamlphp/simplesamlphp/wiki/Migrating-translations-(pre-migration)
+  Old JSON-formatted dictionaries have been replaced by gettext / .po-files; see
+  <a href="https://github.com/simplesamlphp/simplesamlphp/wiki/Migrating-translations-(pre-migration)">
+   migration guide
+  </a>
  </li>
  <li>
-  Old PHP templates have been replaced by Twig-templates; you can find a migration
-    guide here: https://github.com/simplesamlphp/simplesamlphp/wiki/Twig:-Migrating-templates
+  Old PHP templates have been replaced by Twig-templates; see
+  <a href="https://github.com/simplesamlphp/simplesamlphp/wiki/Twig:-Migrating-templates">
+   migration guide
+  </a>
  </li>
  <li>
-  The source was completely typehinted; if you have custom authsources or authproc filters, 
+  The source was completely typehinted; if you have custom authsources or authproc filters,
     make sure you change them to reflect the method signatures of the base classes.
  </li>
  <li>
@@ -322,19 +336,24 @@ processing filters or interface with the SimpleSAMLphp development API.
   <p>
    If you use any of these classes in your modules or themes, you will now have to instantiate them so that:
   </p>
-  <p>
-   // Old style
-$x = \SimpleSAML\Utils\Arrays::arrayize($someVar)
-  </p>
-  <p>
-   becomes:
-  </p>
-  <p>
-   // New style
-$arrayUtils = new \SimpleSAML\Utils\Arrays();
-$x = $arrayUtils-&gt;arrayize($someVar);
-  </p>
  </li>
+</ul>
+<div class="codehilite">
+ <pre><span></span><code><span class="x">// Old style</span>
+<span class="x">$x = \SimpleSAML\Utils\Arrays::arrayize($someVar)</span>
+</code></pre>
+</div>
+<div class="codehilite">
+ <pre><span></span><code>becomes:
+</code></pre>
+</div>
+<div class="codehilite">
+ <pre><span></span><code><span class="x">  // New style</span>
+<span class="x">  $arrayUtils = new \SimpleSAML\Utils\Arrays();</span>
+<span class="x">  $x = $arrayUtils-&gt;arrayize($someVar);</span>
+</code></pre>
+</div>
+<ul>
  <li>
   <p>
    Database table schemes have been flattened. Upgrade paths are:

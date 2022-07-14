@@ -111,11 +111,25 @@
        <a href="#fields-for-signing-and-validating-messages">
         Fields for signing and validating messages
        </a>
+       <ul>
+        <li>
+         <a href="#example-configuration-for-validating-messages">
+          Example: Configuration for validating messages
+         </a>
+        </li>
+       </ul>
       </li>
       <li>
        <a href="#fields-for-scoping">
         Fields for scoping
        </a>
+       <ul>
+        <li>
+         <a href="#example-configuration-for-scoping">
+          Example: Configuration for scoping
+         </a>
+        </li>
+       </ul>
       </li>
      </ul>
     </li>
@@ -226,14 +240,16 @@ Both files have the following format:
  <dd>
   This option can be translated into multiple languages by specifying
   the value as an array of language-code to translated name:
-  <div class="codehilite">
-   <pre><span></span><code>    'name' =&gt; [
-        'en' =&gt; 'A service',
-        'no' =&gt; 'En tjeneste',
-    ],
-</code></pre>
-  </div>
  </dd>
+</dl>
+<div class="codehilite">
+ <pre><span></span><code><span class="x">'name' =&gt; [</span>
+<span class="x">    'en' =&gt; 'A service',</span>
+<span class="x">    'no' =&gt; 'En tjeneste',</span>
+<span class="x">],</span>
+</code></pre>
+</div>
+<dl>
  <dt>
   <code>
    OrganizationName
@@ -245,14 +261,16 @@ Both files have the following format:
  </dd>
  <dd>
   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
+ </dd>
+ <dt>
   <div class="codehilite">
-   <pre><span></span><code>    'OrganizationName' =&gt; [
-        'en' =&gt; 'Example organization',
-        'no' =&gt; 'Eksempel organisation',
-    ],
+   <pre><span></span><code><span class="x">'OrganizationName' =&gt; [</span>
+<span class="x">    'en' =&gt; 'Example organization',</span>
+<span class="x">    'no' =&gt; 'Eksempel organisation',</span>
+<span class="x">],</span>
 </code></pre>
   </div>
- </dd>
+ </dt>
  <dd>
   <p>
    <em>
@@ -684,51 +702,39 @@ Both files have the following format:
  <dd>
   Possible values:
  </dd>
- <dd>
-  <ul>
-   <li>
-    <code>
-     http://www.w3.org/2000/09/xmldsig#rsa-sha1
-    </code>
-    <em>
-     Note
-    </em>
-    : the use of SHA1 is
-    <strong>
-     deprecated
-    </strong>
-    and will be disallowed in the future.
-   </li>
-  </ul>
- </dd>
- <dd>
-  <ul>
-   <li>
-    <code>
-     http://www.w3.org/2001/04/xmldsig-more#rsa-sha256
-    </code>
-    The default.
-   </li>
-  </ul>
- </dd>
- <dd>
-  <ul>
-   <li>
-    <code>
-     http://www.w3.org/2001/04/xmldsig-more#rsa-sha384
-    </code>
-   </li>
-  </ul>
- </dd>
- <dd>
-  <ul>
-   <li>
-    <code>
-     http://www.w3.org/2001/04/xmldsig-more#rsa-sha512
-    </code>
-   </li>
-  </ul>
- </dd>
+</dl>
+<ul>
+ <li>
+  <code>
+   http://www.w3.org/2000/09/xmldsig#rsa-sha1
+  </code>
+  <em>
+   Note
+  </em>
+  : the use of SHA1 is
+  <strong>
+   deprecated
+  </strong>
+  and will be disallowed in the future.
+ </li>
+ <li>
+  <code>
+   http://www.w3.org/2001/04/xmldsig-more#rsa-sha256
+  </code>
+  The default.
+ </li>
+ <li>
+  <code>
+   http://www.w3.org/2001/04/xmldsig-more#rsa-sha384
+  </code>
+ </li>
+ <li>
+  <code>
+   http://www.w3.org/2001/04/xmldsig-more#rsa-sha512
+  </code>
+ </li>
+</ul>
+<dl>
  <dt>
   <code>
    signature.privatekey
@@ -901,7 +907,7 @@ Both files have the following format:
   Whether to skip validating that the AssertionConsumerServiceURL sent in authentication
   requests exist in SP metadata.  Only allowed for signed requests.
   This option must be a simple boolean (true/false - although a value of false essentially has
-  no effect) or a callable.  When used as a callable, the static class method must accept the 
+  no effect) or a callable.  When used as a callable, the static class method must accept the
   SP metadata config as a parameter and return a boolean.
  </dd>
 </dl>
@@ -964,61 +970,39 @@ of the SP.
  <dd>
   Algorithm which should be used for encryption. Possible values are:
  </dd>
- <dd>
-  <ul>
-   <li>
-    <code>
-     http://www.w3.org/2001/04/xmlenc#aes128-cbc
-    </code>
-   </li>
-  </ul>
- </dd>
- <dd>
-  <ul>
-   <li>
-    <code>
-     http://www.w3.org/2001/04/xmlenc#aes192-cbc
-    </code>
-   </li>
-  </ul>
- </dd>
- <dd>
-  <ul>
-   <li>
-    <code>
-     http://www.w3.org/2001/04/xmlenc#aes256-cbc
-    </code>
-   </li>
-  </ul>
- </dd>
- <dd>
-  <ul>
-   <li>
-    <code>
-     http://www.w3.org/2009/xmlenc11#aes128-gcm
-    </code>
-   </li>
-  </ul>
- </dd>
- <dd>
-  <ul>
-   <li>
-    <code>
-     http://www.w3.org/2009/xmlenc11#aes192-gcm
-    </code>
-   </li>
-  </ul>
- </dd>
- <dd>
-  <ul>
-   <li>
-    <code>
-     http://www.w3.org/2009/xmlenc11#aes256-gcm
-    </code>
-   </li>
-  </ul>
- </dd>
 </dl>
+<ul>
+ <li>
+  <code>
+   http://www.w3.org/2001/04/xmlenc#aes128-cbc
+  </code>
+ </li>
+ <li>
+  <code>
+   http://www.w3.org/2001/04/xmlenc#aes192-cbc
+  </code>
+ </li>
+ <li>
+  <code>
+   http://www.w3.org/2001/04/xmlenc#aes256-cbc
+  </code>
+ </li>
+ <li>
+  <code>
+   http://www.w3.org/2009/xmlenc11#aes128-gcm
+  </code>
+ </li>
+ <li>
+  <code>
+   http://www.w3.org/2009/xmlenc11#aes192-gcm
+  </code>
+ </li>
+ <li>
+  <code>
+   http://www.w3.org/2009/xmlenc11#aes256-gcm
+  </code>
+ </li>
+</ul>
 <h3 id="fields-for-signing-and-validating-messages">
  Fields for signing and validating messages
 </h3>
@@ -1070,14 +1054,12 @@ can be enabled by the
   </code>
  </dd>
 </dl>
-<p>
- <strong>
-  Example: Configuration for validating messages
- </strong>
-</p>
+<h4 id="example-configuration-for-validating-messages">
+ Example: Configuration for validating messages
+</h4>
 <div class="codehilite">
- <pre><span></span><code>  'redirect.validate' =&gt; TRUE,
-  'certificate' =&gt; 'example.org.crt',
+ <pre><span></span><code><span class="x">'redirect.validate' =&gt; true,</span>
+<span class="x">'certificate' =&gt; 'example.org.crt',</span>
 </code></pre>
 </div>
 <h3 id="fields-for-scoping">
@@ -1099,13 +1081,11 @@ relevant for this SP. It will override any list set in the IdP's
 metadata.
  </dd>
 </dl>
-<p>
- <strong>
-  Example: Configuration for scoping
- </strong>
-</p>
+<h4 id="example-configuration-for-scoping">
+ Example: Configuration for scoping
+</h4>
 <div class="codehilite">
- <pre><span></span><code>   'IDPList' =&gt; ['https://idp1.wayf.dk', 'https://idp2.wayf.dk'],
+ <pre><span></span><code><span class="x">'IDPList' =&gt; ['https://idp1.wayf.dk', 'https://idp2.wayf.dk'],</span>
 </code></pre>
 </div></main></body>
 </html>

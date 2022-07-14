@@ -108,16 +108,11 @@
      </a>
      <ul>
       <li>
-       <a href="#note">
-        Note
+       <a href="#usage">
+        Usage
        </a>
       </li>
      </ul>
-    </li>
-    <li>
-     <a href="#usage">
-      Usage
-     </a>
     </li>
     <li>
      <a href="#requesterid-element">
@@ -128,11 +123,13 @@
      <a href="#authenticatingauthority-element">
       AuthenticatingAuthority element
      </a>
-    </li>
-    <li>
-     <a href="#support">
-      Support
-     </a>
+     <ul>
+      <li>
+       <a href="#support">
+        Support
+       </a>
+      </li>
+     </ul>
     </li>
    </ul>
   </li>
@@ -140,16 +137,16 @@
 </div>
 <p>
  Scoping allows a service provider to specify a list of identity providers in an
-authnRequest to a proxying identity provider. This is an indication to the 
+authnRequest to a proxying identity provider. This is an indication to the
 proxying identity provider that the service will only deal with the identity
 providers specified.
 </p>
 <p>
- A common use is for a service provider in a hub-and-spoke architecture to 
-manage its own discovery service and being able to tell the hub/proxy-IdP which 
-(backend-end) identity provider to use. The standard discovery service in 
-SimpleSAMLphp will show the intersection of all the known IdPs and the IdPs 
-specified in the scoping element. If this intersection only contains one IdP, 
+ A common use is for a service provider in a hub-and-spoke architecture to
+manage its own discovery service and being able to tell the hub/proxy-IdP which
+(backend-end) identity provider to use. The standard discovery service in
+SimpleSAMLphp will show the intersection of all the known IdPs and the IdPs
+specified in the scoping element. If this intersection only contains one IdP,
 then the request is automatically forwarded to that IdP.
 </p>
 <p>
@@ -169,8 +166,8 @@ then the request is automatically forwarded to that IdP.
  </dt>
  <dd>
   Specifies the number of proxying indirections permissible
-between the identity provider receiving the request and the identity provider 
-who ultimately authenticates the user. A count of zero permits no proxying. If 
+between the identity provider receiving the request and the identity provider
+who ultimately authenticates the user. A count of zero permits no proxying. If
 ProxyCount is unspecified the number of proxy indirections is not limited.
  </dd>
  <dt>
@@ -183,15 +180,15 @@ ProxyCount is unspecified the number of proxy indirections is not limited.
 that are relevant for a service provider in an authnRequest.
  </dd>
 </dl>
-<h3 id="note">
- Note
-</h3>
 <p>
- SimpleSAMLphp does not support specifying the GetComplete option.
+ <strong>
+  Note
+ </strong>
+ : SimpleSAMLphp does not support specifying the GetComplete option.
 </p>
-<h2 id="usage">
+<h3 id="usage">
  Usage
-</h2>
+</h3>
 <p>
  The ProxyCount and IDPList option can be specified in the following places:
 </p>
@@ -228,9 +225,9 @@ that are relevant for a service provider in an authnRequest.
  RequesterID element
 </h2>
 <p>
- To allow an identity provider to identify the original requester and the 
-proxying identity providers, SimpleSAMLphp adds the RequesterID element to 
-the request and if necessary the scoping element even if explicit scoping is 
+ To allow an identity provider to identify the original requester and the
+proxying identity providers, SimpleSAMLphp adds the RequesterID element to
+the request and if necessary the scoping element even if explicit scoping is
 not used.
 </p>
 <p>
@@ -245,12 +242,12 @@ instance the authenticate method in an authentication source
  AuthenticatingAuthority element
 </h2>
 <p>
- To allow a service provider to identify the authentication authorities that 
-were involved in the authentication of the user, SimpleSAMLphp adds the 
+ To allow a service provider to identify the authentication authorities that
+were involved in the authentication of the user, SimpleSAMLphp adds the
 AuthenticatingAuthority elements.
 </p>
 <p>
- The list of authenticating authorities (the AuthenticatingAuthority element) 
+ The list of authenticating authorities (the AuthenticatingAuthority element)
 can be retrieved as an array from the authentication data.
 </p>
 <div class="codehilite">
@@ -261,9 +258,9 @@ can be retrieved as an array from the authentication data.
 <span class="w">  </span><span class="o">$</span><span class="nt">aa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="nt">as-</span><span class="o">&gt;</span><span class="nt">getAuthData</span><span class="o">(</span><span class="s1">'saml:AuthenticatingAuthority'</span><span class="o">);</span><span class="w"></span>
 </code></pre>
 </div>
-<h2 id="support">
+<h3 id="support">
  Support
-</h2>
+</h3>
 <p>
  If you need help to make this work, or want to discuss SimpleSAMLphp with other users of the software, you are fortunate: Around SimpleSAMLphp there is a great Open source community, and you are welcome to join! The forums are open for you to ask questions, contribute answers other further questions, request improvements or contribute with code or plugins of your own.
 </p>

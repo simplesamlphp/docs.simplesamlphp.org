@@ -130,9 +130,9 @@ insecure redirections.
 order to process the NameID, a SAML2_XML_saml_NameID object can be used:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="err">$</span><span class="n">attributes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">$</span><span class="kr">as</span><span class="o">-&gt;</span><span class="n">getAttributes</span><span class="p">();</span><span class="w"></span>
-<span class="err">$</span><span class="n">eptid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">$</span><span class="n">attributes</span><span class="p">[</span><span class="s">'eduPersonTargetedID'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">item</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
-<span class="err">$</span><span class="n">nameID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">SAML2_XML_saml_NameID</span><span class="p">(</span><span class="err">$</span><span class="n">eptid</span><span class="p">);</span><span class="w"></span>
+ <pre><span></span><code><span class="x">$attributes = $as-&gt;getAttributes();</span>
+<span class="x">$eptid = $attributes['eduPersonTargetedID'][0]-&gt;item(0);</span>
+<span class="x">$nameID = new SAML2_XML_saml_NameID($eptid);</span>
 </code></pre>
 </div>
 <p>

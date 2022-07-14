@@ -234,23 +234,24 @@ authentication page for that source, and will never be shown the multiauth selec
  <code>
   source
  </code>
- to the calling URL, 
+ to the calling URL,
 when accessing a service, to allow the user to preselect the
 authsource to be used. This can be handy if you support different
-authentication types for different types of users and you want the 
-users to have a direct link to the service and not want them to 
+authentication types for different types of users and you want the
+users to have a direct link to the service and not want them to
 select the correct authentication source.
 </p>
 <p>
  For example:
 </p>
-<div class="codehilite">
- <pre><span></span><code>  htttps://example.com/service/?source=saml
-</code></pre>
-</div>
 <p>
- will take you directly to the SAML authentication source, instead 
-of hitting the multiauth select page, but this works only if you 
+ <code>
+  https://example.com/service/?source=saml
+ </code>
+</p>
+<p>
+ will take you directly to the SAML authentication source, instead
+of hitting the multiauth select page, but this works only if you
 don't have redirections during the authentication process.
 </p>
 <p>
@@ -287,7 +288,7 @@ don't have redirections during the authentication process.
           ],
       ],
       'preselect' =&gt; 'example-saml',
-  ),
+  ],
 </code></pre>
 </div>
 <p>

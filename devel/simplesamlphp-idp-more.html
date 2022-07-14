@@ -133,7 +133,7 @@
  If you have read about the AJAX iFrame Single Log-Out approach at Andreas' blog and want to enable it, edit your saml20-idp-hosted.php metadata, and add this configuration line for the IdP:
 </p>
 <div class="codehilite">
- <pre><span></span><code>'logouttype' =&gt; 'iframe',
+ <pre><span></span><code><span class="x">'logouttype' =&gt; 'iframe',</span>
 </code></pre>
 </div>
 <h2 id="attribute-release-consent">
@@ -202,10 +202,11 @@
 <p>
  Here is an example of such a URL:
 </p>
-<div class="codehilite">
- <pre><span></span><code>https://idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=urn:mace:feide.no:someservice
-</code></pre>
-</div>
+<p>
+ <code>
+  https://idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=urn:mace:feide.no:someservice
+ </code>
+</p>
 <p>
  You can also add a
  <code>
@@ -213,10 +214,11 @@
  </code>
  parameter to the IdP-first URL:
 </p>
-<div class="codehilite">
- <pre><span></span><code>https://idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=urn:mace:feide.no:someservice&amp;RelayState=https://sp.example.org/somepage
-</code></pre>
-</div>
+<p>
+ <code>
+  https://idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=urn:mace:feide.no:someservice&amp;RelayState=https://sp.example.org/somepage
+ </code>
+</p>
 <p>
  The
  <code>
@@ -262,10 +264,11 @@ Consumer URL with the
 <p>
  IdP-initiated logout can be initiated by visiting the URL:
 </p>
-<div class="codehilite">
- <pre><span></span><code>  <span class="nv">https</span>:<span class="o">//</span><span class="nv">idp</span>.<span class="nv">example</span>.<span class="nv">org</span><span class="o">/</span><span class="nv">simplesaml</span><span class="o">/</span><span class="nv">saml2</span><span class="o">/</span><span class="nv">idp</span><span class="o">/</span><span class="nv">SingleLogoutService</span>.<span class="nv">php</span>?<span class="nv">ReturnTo</span><span class="o">=&lt;</span><span class="nv">URL</span> <span class="nv">to</span> <span class="k">return</span> <span class="nv">to</span> <span class="nv">after</span> <span class="nv">logout</span><span class="o">&gt;</span>
-</code></pre>
-</div>
+<p>
+ <code>
+  https://idp.example.org/simplesaml/saml2/idp/SingleLogoutService.php?ReturnTo=&lt;URL to return to after logout&gt;
+ </code>
+</p>
 <p>
  It will send a logout request to each SP, and afterwards return the user to the URL specified in the
  <code>

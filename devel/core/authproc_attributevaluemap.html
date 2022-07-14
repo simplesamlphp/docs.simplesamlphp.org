@@ -97,23 +97,30 @@
 </p>
 <p>
  Besides the mapping of source values to target values, the filter has the following options:
-*
- <code>
-  %replace
- </code>
- can be used to replace all existing values in target with new ones (any existing values will be lost)
-*
- <code>
-  %keep
- </code>
- can be used to keep the source attribute, otherwise it will be removed.
 </p>
-<h2 id="examples">
- Examples
-</h2>
-<h3 id="add-student-affiliation-based-on-ldap-groupmembership">
+<ul>
+ <li>
+  <code>
+   %replace
+  </code>
+  can be used to replace all existing values in target with new ones (any existing values will be lost)
+ </li>
+ <li>
+  <code>
+   %keep
+  </code>
+  can be used to keep the source attribute, otherwise it will be removed.
+ </li>
+</ul>
+<p>
+ <strong>
+  Examples
+ </strong>
+ :
+</p>
+<h2 id="add-student-affiliation-based-on-ldap-groupmembership">
  Add student affiliation based on LDAP groupmembership
-</h3>
+</h2>
 <p>
  Will add eduPersonAffiliation containing value "
  <code>
@@ -168,9 +175,9 @@ The '
   ],
 </code></pre>
 </div>
-<h3 id="multiple-assignments">
+<h2 id="multiple-assignments">
  Multiple assignments
-</h3>
+</h2>
 <p>
  Add
  <code>
@@ -218,9 +225,9 @@ The '
   ],
 </code></pre>
 </div>
-<h3 id="replace-and-keep">
+<h2 id="replace-and-keep">
  Replace and Keep
-</h3>
+</h2>
 <p>
  Replace any existing '
  <code>

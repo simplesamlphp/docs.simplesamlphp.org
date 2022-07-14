@@ -90,11 +90,6 @@
 </header><main><h1 id="theming-the-user-interface-in-simplesamlphp">
  Theming the user interface in SimpleSAMLphp
 </h1>
-<!--
-  This file is written in Markdown syntax.
-  For more information about how to use the Markdown syntax, read here:
-  http://daringfireball.net/projects/markdown/syntax
--->
 <div class="toc">
  <ul>
   <li>
@@ -170,12 +165,12 @@
  there is a configuration option that controls theming. You need to set that option and enable the module that contains the theme. Here is an example:
 </p>
 <div class="codehilite">
- <pre><span></span><code>   'module.enable' =&gt; [
-       ...
-       'fancymodule' =&gt; true,
-   ],
+ <pre><span></span><code><span class="x">'module.enable' =&gt; [</span>
+<span class="x">    ...</span>
+<span class="x">    'fancymodule' =&gt; true,</span>
+<span class="x">],</span>
 
-   'theme.use' =&gt; 'fancymodule:fancytheme',
+<span class="x">'theme.use' =&gt; 'fancymodule:fancytheme',</span>
 </code></pre>
 </div>
 <p>
@@ -215,12 +210,16 @@ SimpleSAMLphp allows themes to override the included templates files only, if ne
  The first thing you need to do is having a SimpleSAMLphp module to place your theme in. If you do not have a module already, create a new one:
 </p>
 <div class="codehilite">
- <pre><span></span><code>cd modules
+ <pre><span></span><code><span class="nb">cd</span> modules
 mkdir mymodule
-
-Enable the module by setting `$config['module.enable' =&gt; ['mymodule' =&gt; true]]`
 </code></pre>
 </div>
+<p>
+ Enable the module by setting
+ <code>
+  $config['module.enable' =&gt; ['mymodule' =&gt; true]]
+ </code>
+</p>
 <p>
  Then within this module, you can create a new theme named
  <code>
@@ -229,7 +228,7 @@ Enable the module by setting `$config['module.enable' =&gt; ['mymodule' =&gt; tr
  .
 </p>
 <div class="codehilite">
- <pre><span></span><code>cd modules/mymodule
+ <pre><span></span><code><span class="nb">cd</span> modules/mymodule
 mkdir -p themes/fancytheme/default/
 </code></pre>
 </div>
@@ -241,7 +240,7 @@ mkdir -p themes/fancytheme/default/
  :
 </p>
 <div class="codehilite">
- <pre><span></span><code>'theme.use'     =&gt; 'mymodule:fancytheme',
+ <pre><span></span><code><span class="x">'theme.use' =&gt; 'mymodule:fancytheme',</span>
 </code></pre>
 </div>
 <p>
@@ -268,17 +267,16 @@ mkdir -p themes/fancytheme/default/
  </code>
  folder of your module, to make your module completely independent with included css, icons etc.
 </p>
-<div class="codehilite">
- <pre><span></span><code><span class="n">modules</span>
-└───<span class="n">mymodule</span>
-    └───<span class="n">lib</span>
-    └───<span class="n">themes</span>
-    └───<span class="n">www</span>
-        └───<span class="n">assets</span>
-            └───<span class="n">logo</span>.<span class="n">svg</span>
-            └───<span class="n">style</span>.<span class="n">css</span>
-</code></pre>
-</div>
+<p>
+ modules
+└───mymodule
+    └───lib
+    └───themes
+    └───www
+        └───assets
+            └───logo.svg
+            └───style.css
+</p>
 <p>
  Reference these resources in your custom templates under
  <code>
@@ -305,7 +303,7 @@ in
  :
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'theme.controller' =&gt; '\SimpleSAML\Module\mymodule\FancyThemeController',
+ <pre><span></span><code><span class="x">'theme.controller' =&gt; '\SimpleSAML\Module\mymodule\FancyThemeController',</span>
 </code></pre>
 </div>
 <p>

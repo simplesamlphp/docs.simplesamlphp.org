@@ -105,15 +105,29 @@
  SimpleSAMLphp supports generating metadata with the MDUI and MDRPI metadata extensions
 and with entity attributes. See the documentation for those extensions for more details:
 </p>
-<div class="codehilite">
- <pre><span></span><code><span class="o">*</span><span class="w"> </span><span class="p">[</span><span class="n">MDUI</span><span class="w"> </span><span class="n">extension</span><span class="p">](.</span><span class="o">/</span><span class="n">simplesamlphp</span><span class="o">-</span><span class="n">metadata</span><span class="o">-</span><span class="n">extensions</span><span class="o">-</span><span class="n">ui</span><span class="p">)</span><span class="w"></span>
-<span class="o">*</span><span class="w"> </span><span class="p">[</span><span class="n">MDRPI</span><span class="w"> </span><span class="n">extension</span><span class="p">](.</span><span class="o">/</span><span class="n">simplesamlphp</span><span class="o">-</span><span class="n">metadata</span><span class="o">-</span><span class="n">extensions</span><span class="o">-</span><span class="n">rpi</span><span class="p">)</span><span class="w"></span>
-<span class="o">*</span><span class="w"> </span><span class="p">[</span><span class="n">Attributes</span><span class="w"> </span><span class="n">extension</span><span class="p">](.</span><span class="o">/</span><span class="n">simplesamlphp</span><span class="o">-</span><span class="n">metadata</span><span class="o">-</span><span class="n">extensions</span><span class="o">-</span><span class="n">attributes</span><span class="p">)</span><span class="w"></span>
-</code></pre>
-</div>
-<h2 id="parameters">
- Parameters
-</h2>
+<ul>
+ <li>
+  <a href="./simplesamlphp-metadata-extensions-ui.html">
+   MDUI extension
+  </a>
+ </li>
+ <li>
+  <a href="./simplesamlphp-metadata-extensions-rpi.html">
+   MDRPI extension
+  </a>
+ </li>
+ <li>
+  <a href="./simplesamlphp-metadata-extensions-attributes.html">
+   Attributes extension
+  </a>
+ </li>
+</ul>
+<p>
+ <strong>
+  Parameters
+ </strong>
+ :
+</p>
 <p>
  These are parameters that can be used at runtime to control the authentication.
 All these parameters override the equivalent option from the configuration.
@@ -285,9 +299,12 @@ The following attributes are available:
   The SessionIndex we received from the IdP.
  </dd>
 </dl>
-<h2 id="options">
- Options
-</h2>
+<p>
+ <strong>
+  Options
+ </strong>
+ :
+</p>
 <dl>
  <dt>
   <code>
@@ -1129,9 +1146,12 @@ The following attributes are available:
   the exported SAML 2.0 metadata.
  </dd>
 </dl>
-<h2 id="examples">
- Examples
-</h2>
+<p>
+ <strong>
+  Examples
+ </strong>
+ :
+</p>
 <p>
  Here we will list some examples for this authentication source.
 </p>
@@ -1215,7 +1235,7 @@ The following attributes are available:
 </code></pre>
 </div>
 <h3 id="requesting-a-specific-authentication-method">
- Requesting a specific authentication method.
+ Requesting a specific authentication method
 </h3>
 <div class="codehilite">
  <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">auth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">new</span><span class="w"> </span><span class="err">\</span><span class="nt">SimpleSAML</span><span class="err">\</span><span class="nt">Auth</span><span class="err">\</span><span class="nt">Simple</span><span class="o">(</span><span class="s1">'default-sp'</span><span class="o">);</span><span class="w"></span>

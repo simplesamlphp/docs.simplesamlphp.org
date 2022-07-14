@@ -145,41 +145,41 @@
 </div>
 <p>
  This document describes how the module system in SimpleSAMLphp
-works. It descibes what types of modules there are, how they are
+works. It describes what types of modules there are, how they are
 configured, and how to write new modules.
 </p>
 <h2 id="overview">
  Overview
 </h2>
 <p>
- There are currently three parts of SimpleSAMLphp which can be stored in 
-modules - authentication sources, authentication processing filters and 
-themes. There is also support for defining hooks - functions run at 
-specific times. More than one thing can be stored in a single module. 
-There is also support for storing supporting files, such as templates 
+ There are currently three parts of SimpleSAMLphp which can be stored in
+modules - authentication sources, authentication processing filters and
+themes. There is also support for defining hooks - functions run at
+specific times. More than one thing can be stored in a single module.
+There is also support for storing supporting files, such as templates
 and dictionaries, in modules.
 </p>
 <p>
- The different functionalities which can be created as modules will be 
-described in more detail in the following sections; what follows is a 
+ The different functionalities which can be created as modules will be
+described in more detail in the following sections; what follows is a
 short introduction to what you can do with them:
 </p>
 <ul>
  <li>
-  Authentication sources implement different methods for 
-   authenticating users, for example simple login forms which 
-   authenticate against a database backend, or login methods which use 
-   client-side certificates.
+  Authentication sources implement different methods for
+  authenticating users, for example simple login forms which
+  authenticate against a database backend, or login methods which use
+  client-side certificates.
  </li>
  <li>
-  Authentication processing filters perform various tasks after the 
-   user is authenticated and has a set of attributes. They can add, 
-   remove and modify attributes, do additional authentication checks, 
-   ask questions of the user, +++.
+  Authentication processing filters perform various tasks after the
+  user is authenticated and has a set of attributes. They can add,
+  remove and modify attributes, do additional authentication checks,
+  ask questions of the user, +++.
  </li>
  <li>
-  Themes allow you to package custom templates for multiple modules 
-   into a single module.
+  Themes allow you to package custom templates for multiple modules
+  into a single module.
  </li>
 </ul>
 <h2 id="module-layout">
@@ -410,9 +410,9 @@ directories and files:
  Authentication sources
 </h2>
 <p>
- An authentication source is used to authenticate a user and receive a 
-set of attributes belonging to this user. In a single-signon setup, the 
-authentication source will only be called once, and the attributes 
+ An authentication source is used to authenticate a user and receive a
+set of attributes belonging to this user. In a single-signon setup, the
+authentication source will only be called once, and the attributes
 belonging to the user will be cached until the user logs out.
 </p>
 <p>
@@ -420,38 +420,38 @@ belonging to the user will be cached until the user logs out.
  <code>
   config/authsources.php
  </code>
- . This 
+ . This
 file contains an array of
  <code>
   name =&gt; configuration
  </code>
- pairs. The name is 
-used to refer to the authentication source in metadata. When 
-configuring an IdP to authenticate against an authentication source, 
+ pairs. The name is
+used to refer to the authentication source in metadata. When
+configuring an IdP to authenticate against an authentication source,
 \the
  <code>
   auth
  </code>
- option should be set to this name. The configuration for an 
-authentication source is an array. The first element in the array 
-identifies the class which implements the authentication source. The 
-remaining elements in the array are configuration entries for the 
+ option should be set to this name. The configuration for an
+authentication source is an array. The first element in the array
+identifies the class which implements the authentication source. The
+remaining elements in the array are configuration entries for the
 authentication source.
 </p>
 <p>
- A typical configuration entry for an authentication source looks like 
+ A typical configuration entry for an authentication source looks like
 this:
 </p>
 <div class="codehilite">
  <pre><span></span><code>  'example-static' =&gt; [
-    /* This maps to modules/exampleauth/lib/Auth/Source/Static.php */
-    'exampleauth:StaticSource',
+      /* This maps to modules/exampleauth/lib/Auth/Source/Static.php */
+      'exampleauth:StaticSource',
 
-    /* The following is configuration which is passed on to
-     * the exampleauth:StaticSource authentication source. */
-    'uid' =&gt; 'testuser',
-    'eduPersonAffiliation' =&gt; ['member', 'employee'],
-    'cn' =&gt; ['Test User'],
+      /* The following is configuration which is passed on to
+       * the exampleauth:StaticSource authentication source. */
+      'uid' =&gt; 'testuser',
+      'eduPersonAffiliation' =&gt; ['member', 'employee'],
+      'cn' =&gt; ['Test User'],
   ],
 </code></pre>
 </div>
@@ -468,10 +468,10 @@ this:
 </p>
 <div class="codehilite">
  <pre><span></span><code>  'https://example.org/saml-idp' =&gt; [
-    'host' =&gt; '__DEFAULT__',
-    'privatekey' =&gt; 'example.org.pem',
-    'certificate' =&gt; 'example.org.crt',
-    'auth' =&gt; 'example-static',
+      'host' =&gt; '__DEFAULT__',
+      'privatekey' =&gt; 'example.org.pem',
+      'certificate' =&gt; 'example.org.crt',
+      'auth' =&gt; 'example-static',
   ],
 </code></pre>
 </div>
@@ -481,10 +481,13 @@ this:
 <p>
  This is described in a separate document:
 </p>
-<div class="codehilite">
- <pre><span></span><code>* [Creating authentication sources](simplesamlphp-authsource)
-</code></pre>
-</div>
+<ul>
+ <li>
+  <a href="simplesamlphp-authsource.html">
+   Creating authentication sources
+  </a>
+ </li>
+</ul>
 <h2 id="authentication-processing-filters">
  Authentication processing filters
 </h2>
@@ -494,15 +497,18 @@ this:
  </em>
  is explained in a separate document:
 </p>
-<div class="codehilite">
- <pre><span></span><code>* [Authentication processing filters](simplesamlphp-authproc)
-</code></pre>
-</div>
+<ul>
+ <li>
+  <a href="simplesamlphp-authproc.html">
+   Authentication processing filters
+  </a>
+ </li>
+</ul>
 <h2 id="themes">
  Themes
 </h2>
 <p>
- This feature allows you to collect all your custom templates in one 
+ This feature allows you to collect all your custom templates in one
 place. The directory structure is like this:
  <code>
   modules/&lt;thememodule&gt;/themes/&lt;theme&gt;/&lt;module&gt;/&lt;template&gt;
@@ -530,7 +536,7 @@ place. The directory structure is like this:
  <code>
   template
  </code>
- is the template 
+ is the template
 in that module.
 </p>
 <p>
@@ -550,7 +556,7 @@ in that module.
  <code>
   templates/default/frontpage.php
  </code>
- . This theme can be activated by 
+ . This theme can be activated by
 setting
  <code>
   theme.use
@@ -565,14 +571,14 @@ setting
  Hook interface
 </h2>
 <p>
- The hook interface allows you to call a hook function in all enabled 
-modules which define that hook. Hook functions are stored in a 
-directory called 'hooks' in each module directory. Each hook is 
+ The hook interface allows you to call a hook function in all enabled
+modules which define that hook. Hook functions are stored in a
+directory called 'hooks' in each module directory. Each hook is
 stored in a file named
  <code>
   hook_&lt;hook name&gt;.php
  </code>
- , and each file defines a 
+ , and each file defines a
 function named
  <code>
   &lt;module name&gt;_hook_&lt;hook name&gt;
@@ -580,7 +586,7 @@ function named
  .
 </p>
 <p>
- Each hook function accepts a single argument. This argument will be 
+ Each hook function accepts a single argument. This argument will be
 passed by reference, which allows each hook to update that argument.
 </p>
 <p>

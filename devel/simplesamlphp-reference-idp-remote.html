@@ -126,15 +126,15 @@
  . The file has the following format:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="cp">&lt;?php</span>
-  <span class="cm">/* The index of the array is the entity ID of this IdP. */</span>
-  <span class="nv">$metadata</span><span class="p">[</span><span class="s1">'entity-id-1'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
-      <span class="cm">/* Configuration options for the first IdP. */</span>
-  <span class="p">];</span>
-  <span class="nv">$metadata</span><span class="p">[</span><span class="s1">'entity-id-2'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
-      <span class="cm">/* Configuration options for the second IdP. */</span>
-  <span class="p">];</span>
-  <span class="cm">/* ... */</span>
+ <pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="cm">/* The index of the array is the entity ID of this IdP. */</span>
+<span class="nv">$metadata</span><span class="p">[</span><span class="s1">'entity-id-1'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="cm">/* Configuration options for the first IdP. */</span>
+<span class="p">];</span>
+<span class="nv">$metadata</span><span class="p">[</span><span class="s1">'entity-id-2'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="cm">/* Configuration options for the second IdP. */</span>
+<span class="p">];</span>
+<span class="cm">/* ... */</span>
 </code></pre>
 </div>
 <h2 id="options">
@@ -166,23 +166,30 @@
   <p>
    The Comparison attribute of the AuthnContext that will be sent in the login request. This parameter won't be used unless AuthnContextClassRef is set and contains one or more values. Possible values:
   </p>
-  <div class="codehilite">
-   <pre><span></span><code>    SAML2\Constants::COMPARISON_EXACT (default)
-    SAML2\Constants::COMPARISON_BETTER
-    SAML2\Constants::COMPARISON_MINIMUM
-    SAML2\Constants::COMPARISON_MAXIMUM
-</code></pre>
-  </div>
  </dd>
+</dl>
+<ul>
+ <li>
+  SAML2\Constants::COMPARISON_EXACT (default)
+ </li>
+ <li>
+  SAML2\Constants::COMPARISON_BETTER
+ </li>
+ <li>
+  SAML2\Constants::COMPARISON_MINIMUM
+ </li>
+ <li>
+  SAML2\Constants::COMPARISON_MAXIMUM
+ </li>
+</ul>
+<dl>
  <dd>
-  <p>
-   Note that this option also exists in the SP configuration. This
+  Note that this option also exists in the SP configuration. This
   entry in the IdP-remote metadata overrides the option in the
-   <a href="./saml/sp.html">
-    SP configuration
-   </a>
-   .
-  </p>
+  <a href="./saml/sp.html">
+   SP configuration
+  </a>
+  .
  </dd>
  <dt>
   <code>
@@ -254,12 +261,12 @@
    FALSE
   </code>
   .
-   When set to
+  When set to
   <code>
    TRUE
   </code>
-  , no scoping elements will be sent. This does not comply with the SAML2 specification, but allows 
-   interoperability with ADFS which
+  , no scoping elements will be sent. This does not comply with the SAML2 specification, but allows
+  interoperability with ADFS which
   <a href="https://docs.microsoft.com/en-za/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#scoping">
    does not support Scoping elements
   </a>
@@ -337,14 +344,16 @@
  </dd>
  <dd>
   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
-  <div class="codehilite">
-   <pre><span></span><code>    'name' =&gt; [
-        'en' =&gt; 'A service',
-        'no' =&gt; 'En tjeneste',
-    ],
-</code></pre>
-  </div>
  </dd>
+</dl>
+<div class="codehilite">
+ <pre><span></span><code><span class="x">'name' =&gt; [</span>
+<span class="x">    'en' =&gt; 'A service',</span>
+<span class="x">    'no' =&gt; 'En tjeneste',</span>
+<span class="x">],</span>
+</code></pre>
+</div>
+<dl>
  <dt>
   <code>
    nameid.encryption
@@ -403,14 +412,16 @@
  </dd>
  <dd>
   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
+ </dd>
+ <dt>
   <div class="codehilite">
-   <pre><span></span><code>    'OrganizationName' =&gt; [
-        'en' =&gt; 'Example organization',
-        'no' =&gt; 'Eksempel organisation',
-    ],
+   <pre><span></span><code><span class="x">'OrganizationName' =&gt; [</span>
+<span class="x">   'en' =&gt; 'Example organization',</span>
+<span class="x">    'no' =&gt; 'Eksempel organisation',</span>
+<span class="x">],</span>
 </code></pre>
   </div>
- </dd>
+ </dt>
  <dd>
   <p>
    <em>
@@ -507,16 +518,40 @@
  </dd>
  <dd>
   Possible values:
-  <div class="codehilite">
-   <pre><span></span><code>* `http://www.w3.org/2000/09/xmldsig#rsa-sha1`
-   *Note*: the use of SHA1 is **deprecated** and will be disallowed in the future.
-* `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256`
-  The default.
-* `http://www.w3.org/2001/04/xmldsig-more#rsa-sha384`
-* `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512`
-</code></pre>
-  </div>
  </dd>
+</dl>
+<ul>
+ <li>
+  <code>
+   http://www.w3.org/2000/09/xmldsig#rsa-sha1
+  </code>
+  <em>
+   Note
+  </em>
+  : the use of SHA1 is
+  <strong>
+   deprecated
+  </strong>
+  and will be disallowed in the future.
+ </li>
+ <li>
+  <code>
+   http://www.w3.org/2001/04/xmldsig-more#rsa-sha256
+  </code>
+  The default.
+ </li>
+ <li>
+  <code>
+   http://www.w3.org/2001/04/xmldsig-more#rsa-sha384
+  </code>
+ </li>
+ <li>
+  <code>
+   http://www.w3.org/2001/04/xmldsig-more#rsa-sha512
+  </code>
+ </li>
+</ul>
+<dl>
  <dt>
   <code>
    sign.authnrequest
@@ -658,17 +693,40 @@
  </dt>
  <dd>
   Algorithm which should be used for decryption. Possible values are:
-  <div class="codehilite">
-   <pre><span></span><code>* http://www.w3.org/2001/04/xmlenc#aes128-cbc
-* http://www.w3.org/2001/04/xmlenc#aes192-cbc
-* http://www.w3.org/2001/04/xmlenc#aes256-cbc
-* http://www.w3.org/2009/xmlenc11#aes128-gcm
-* http://www.w3.org/2009/xmlenc11#aes192-gcm
-* http://www.w3.org/2009/xmlenc11#aes256-gcm
-</code></pre>
-  </div>
  </dd>
 </dl>
+<ul>
+ <li>
+  <code>
+   http://www.w3.org/2001/04/xmlenc#aes128-cbc
+  </code>
+ </li>
+ <li>
+  <code>
+   http://www.w3.org/2001/04/xmlenc#aes192-cbc
+  </code>
+ </li>
+ <li>
+  <code>
+   http://www.w3.org/2001/04/xmlenc#aes256-cbc
+  </code>
+ </li>
+ <li>
+  <code>
+   http://www.w3.org/2009/xmlenc11#aes128-gcm
+  </code>
+ </li>
+ <li>
+  <code>
+   http://www.w3.org/2009/xmlenc11#aes192-gcm
+  </code>
+ </li>
+ <li>
+  <code>
+   http://www.w3.org/2009/xmlenc11#aes256-gcm
+  </code>
+ </li>
+</ul>
 <h3 id="fields-for-signing-and-validating-messages">
  Fields for signing and validating messages
 </h3>
@@ -713,10 +771,11 @@
  <strong>
   Example: Configuration for validating messages
  </strong>
+ :
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'redirect.validate' =&gt; TRUE,
-  'certificate' =&gt; 'example.org.crt',
+ <pre><span></span><code><span class="x">'redirect.validate' =&gt; true,</span>
+<span class="x">'certificate' =&gt; 'example.org.crt',</span>
 </code></pre>
 </div></main></body>
 </html>

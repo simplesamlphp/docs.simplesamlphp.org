@@ -155,11 +155,11 @@
   Ask the user for consent, before the user is sent back to a service.
  </li>
  <li>
-  Implement basic Access Control on the IdP (not neccessarily a good idea), limiting access for some users to some SPs.
+  Implement basic Access Control on the IdP (not necessarily a good idea), limiting access for some users to some SPs.
  </li>
 </ul>
 <p>
- Be aware that Authentication Proccessing Filters do replace some of the previous features in SimpleSAMLphp, named:
+ Be aware that Authentication Processing Filters do replace some of the previous features in SimpleSAMLphp, named:
 </p>
 <ul>
  <li>
@@ -179,7 +179,7 @@
  </li>
 </ul>
 <p>
- Later in this document, we will describe in detail the alternative Authentication Proccessing Filters that will replicate these functionalities.
+ Later in this document, we will describe in detail the alternative Authentication Processing Filters that will replicate these functionalities.
 </p>
 <h2 id="how-to-configure-auth-proc-filters">
  How to configure Auth Proc Filters
@@ -246,20 +246,20 @@
  :
 </p>
 <div class="codehilite">
- <pre><span></span><code>'authproc.idp' =&gt; [
-  10 =&gt; [
-    'class' =&gt; 'core:AttributeMap', 
-    'addurnprefix'
-  ],
-  20 =&gt; 'core:TargetedID',
-  50 =&gt; 'core:AttributeLimit',
-  90 =&gt; [
-    'class'   =&gt; 'consent:Consent', 
-    'store'   =&gt; 'consent:Cookie', 
-    'focus'   =&gt; 'yes', 
-    'checked'   =&gt; TRUE
-  ],
-],
+ <pre><span></span><code><span class="x">'authproc.idp' =&gt; [</span>
+<span class="x">    10 =&gt; [</span>
+<span class="x">        'class' =&gt; 'core:AttributeMap', </span>
+<span class="x">        'addurnprefix'</span>
+<span class="x">    ],</span>
+<span class="x">    20 =&gt; 'core:TargetedID',</span>
+<span class="x">    50 =&gt; 'core:AttributeLimit',</span>
+<span class="x">    90 =&gt; [</span>
+<span class="x">        'class' =&gt; 'consent:Consent', </span>
+<span class="x">        'store' =&gt; 'consent:Cookie', </span>
+<span class="x">        'focus' =&gt; 'yes', </span>
+<span class="x">        'checked' =&gt; true</span>
+<span class="x">    ],</span>
+<span class="x">],</span>
 </code></pre>
 </div>
 <p>
@@ -327,16 +327,16 @@
  When you know the class definition of a filter, and the priority, the simple way to configure the filter is:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="mf">20</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">core</span><span class="p">:</span><span class="n">TargetedID</span><span class="err">'</span><span class="p">,</span><span class="w"></span>
+ <pre><span></span><code><span class="x">20 =&gt; 'core:TargetedID',</span>
 </code></pre>
 </div>
 <p>
  This is analogous to:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="mf">20</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span><span class="w"></span>
-<span class="w">  </span><span class="err">'</span><span class="n">class</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">core</span><span class="p">:</span><span class="n">TargetedID</span><span class="err">'</span><span class="w"></span>
-<span class="err">]</span><span class="p">,</span><span class="w"></span>
+ <pre><span></span><code><span class="x">20 =&gt; [</span>
+<span class="x">    'class' =&gt; 'core:TargetedID'</span>
+<span class="x">],</span>
 </code></pre>
 </div>
 <p>
@@ -355,12 +355,12 @@
  , you need to choose the second of the two alernatives above. Here is an example of provided parameters to the consent module:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="mf">90</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span><span class="w"></span>
-<span class="w">  </span><span class="err">'</span><span class="n">class</span><span class="err">'</span><span class="w">   </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">consent</span><span class="p">:</span><span class="n">Consent</span><span class="err">'</span><span class="p">,</span><span class="w"> </span>
-<span class="w">  </span><span class="err">'</span><span class="n">store</span><span class="err">'</span><span class="w">   </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">consent</span><span class="p">:</span><span class="n">Cookie</span><span class="err">'</span><span class="p">,</span><span class="w"> </span>
-<span class="w">  </span><span class="err">'</span><span class="n">focus</span><span class="err">'</span><span class="w">   </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">yes</span><span class="err">'</span><span class="p">,</span><span class="w"> </span>
-<span class="w">  </span><span class="err">'</span><span class="n">checked</span><span class="err">'</span><span class="w">   </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">TRUE</span><span class="w"></span>
-<span class="err">]</span><span class="p">,</span><span class="w"></span>
+ <pre><span></span><code><span class="x">90 =&gt; [</span>
+<span class="x">    'class' =&gt; 'consent:Consent', </span>
+<span class="x">    'store' =&gt; 'consent:Cookie', </span>
+<span class="x">    'focus' =&gt; 'yes', </span>
+<span class="x">    'checked' =&gt; true,</span>
+<span class="x">],</span>
 </code></pre>
 </div>
 <h3 id="filters-in-configphp">
@@ -532,7 +532,7 @@
     core:LanguageAdaptor
    </code>
   </a>
-  : Transfering language setting from IdP to SP.
+  : Transferring language setting from IdP to SP.
  </li>
  <li>
   <a href="./core/authproc_php.html">
