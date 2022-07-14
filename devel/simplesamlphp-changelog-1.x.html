@@ -1,0 +1,7196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Language" content="en">
+  <meta name="google-site-verification" content="2S8M18BgYs8cLRL6ClTrfW_xGxfFtMZu2b2jhjrNlss">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>SimpleSAMLphp Documentation</title>
+
+  <link rel="stylesheet" href="/res/css/style.css">
+  <link rel="stylesheet" href="/res/css/layout.css">
+</head>
+<body>
+<header>
+ <div id="header">
+  <div class="right">
+   <form action="https://www.google.com/cse" method="get" style="margin-top: 2.5rem; margin-right: 2rem">
+    <input name="cx" type="hidden" value="004202914224971217557:8ks4jjstupq"/>
+    <input name="siteurl" type="hidden" value="www.google.com/cse/home?cx=004202914224971217557:8ks4jjstupq"/>
+    <input name="adkw" type="hidden" value="AELymgVJ6Sk-kOvUjbxvgShTLwiFlma2evFuVCh0r8q23vn_4eVnkcdnPfbgMvYUTpJpVlb-KkGAKkbn0i-AlWHsVRR9O0J4CNb6cXFkEKRdjXxsC_NlVD4"/>
+    <input name="q" placeholder="Search" type="search" value=""/>
+   </form>
+  </div>
+  <div class="v-center logo-header">
+   <div id="logo">
+    <a href="https://simplesamlphp.org" style="color: #fff; text-decoration: none">
+     <span class="simple">
+      Simple
+     </span>
+     <span class="saml">
+      SAML
+     </span>
+     <span class="simple">
+      php
+     </span>
+    </a>
+   </div>
+  </div>
+ </div>
+ <!-- Grey header bar below -->
+ <nav>
+  <div id="headerbar" style="clear: both">
+   <p id="breadcrumb">
+    <a href="https://simplesamlphp.org">
+     Home
+    </a>
+    » Documentation
+   </p>
+   <div class="mtoolbar">
+    <div class="menuitem">
+     <a href="/docs/1.19/index.html">
+      1.19 (stable)
+     </a>
+    </div>
+    <div class="menuitem">
+     <a href="/docs/1.18/index.html">
+      1.18
+     </a>
+    </div>
+    <div class="menuitem">
+     <a href="/docs/1.17/index.html">
+      1.17
+     </a>
+    </div>
+    <div class="menuitem">
+     <a href="/docs/1.16/index.html">
+      1.16
+     </a>
+    </div>
+    <div class="menuitem first">
+     <a href="/docs/devel/index.html">
+      devel
+     </a>
+    </div>
+    <div class="menuitem last">
+     <a href="/docs/contributed_modules.html">
+      Contributed modules
+     </a>
+    </div>
+   </div>
+   <br style="height: 0px; clear: both"/>
+  </div>
+  <!-- /#headerbar -->
+ </nav>
+ <div id="content">
+ </div>
+</header><main><h1 id="simplesamlphp-changelog">
+ SimpleSAMLphp changelog
+</h1>
+<div class="toc">
+ <ul>
+  <li>
+   <a href="#simplesamlphp-changelog">
+    SimpleSAMLphp changelog
+   </a>
+   <ul>
+    <li>
+     <a href="#version-1196">
+      Version 1.19.6
+     </a>
+    </li>
+    <li>
+     <a href="#version-1195">
+      Version 1.19.5
+     </a>
+    </li>
+    <li>
+     <a href="#version-1194">
+      Version 1.19.4
+     </a>
+    </li>
+    <li>
+     <a href="#version-1193">
+      Version 1.19.3
+     </a>
+    </li>
+    <li>
+     <a href="#version-1192">
+      Version 1.19.2
+     </a>
+    </li>
+    <li>
+     <a href="#version-1191">
+      Version 1.19.1
+     </a>
+    </li>
+    <li>
+     <a href="#version-1190">
+      Version 1.19.0
+     </a>
+    </li>
+    <li>
+     <a href="#version-1188">
+      Version 1.18.8
+     </a>
+    </li>
+    <li>
+     <a href="#version-1187">
+      Version 1.18.7
+     </a>
+    </li>
+    <li>
+     <a href="#version-1186">
+      Version 1.18.6
+     </a>
+    </li>
+    <li>
+     <a href="#version-1185">
+      Version 1.18.5
+     </a>
+    </li>
+    <li>
+     <a href="#version-1184">
+      Version 1.18.4
+     </a>
+    </li>
+    <li>
+     <a href="#version-1183">
+      Version 1.18.3
+     </a>
+    </li>
+    <li>
+     <a href="#version-1182">
+      Version 1.18.2
+     </a>
+    </li>
+    <li>
+     <a href="#version-1181">
+      Version 1.18.1
+     </a>
+    </li>
+    <li>
+     <a href="#version-1180">
+      Version 1.18.0
+     </a>
+    </li>
+    <li>
+     <a href="#version-1178">
+      Version 1.17.8
+     </a>
+    </li>
+    <li>
+     <a href="#version-1177">
+      Version 1.17.7
+     </a>
+    </li>
+    <li>
+     <a href="#version-1176">
+      Version 1.17.6
+     </a>
+    </li>
+    <li>
+     <a href="#version-1175">
+      Version 1.17.5
+     </a>
+    </li>
+    <li>
+     <a href="#version-1174">
+      Version 1.17.4
+     </a>
+    </li>
+    <li>
+     <a href="#version-1173">
+      Version 1.17.3
+     </a>
+    </li>
+    <li>
+     <a href="#version-1172">
+      Version 1.17.2
+     </a>
+    </li>
+    <li>
+     <a href="#version-1171">
+      Version 1.17.1
+     </a>
+    </li>
+    <li>
+     <a href="#version-1170">
+      Version 1.17.0
+     </a>
+     <ul>
+      <li>
+       <a href="#interoperability">
+        Interoperability
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#version-1163">
+      Version 1.16.3
+     </a>
+    </li>
+    <li>
+     <a href="#version-1162">
+      Version 1.16.2
+     </a>
+    </li>
+    <li>
+     <a href="#version-1161">
+      Version 1.16.1
+     </a>
+    </li>
+    <li>
+     <a href="#version-1160">
+      Version 1.16.0
+     </a>
+     <ul>
+      <li>
+       <a href="#changes">
+        Changes
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#version-1154">
+      Version 1.15.4
+     </a>
+    </li>
+    <li>
+     <a href="#version-1153">
+      Version 1.15.3
+     </a>
+    </li>
+    <li>
+     <a href="#version-1152">
+      Version 1.15.2
+     </a>
+    </li>
+    <li>
+     <a href="#version-1151">
+      Version 1.15.1
+     </a>
+    </li>
+    <li>
+     <a href="#version-1150">
+      Version 1.15.0
+     </a>
+    </li>
+    <li>
+     <a href="#version-11417">
+      Version 1.14.17
+     </a>
+    </li>
+    <li>
+     <a href="#version-11416">
+      Version 1.14.16
+     </a>
+    </li>
+    <li>
+     <a href="#version-11415">
+      Version 1.14.15
+     </a>
+    </li>
+    <li>
+     <a href="#version-11414">
+      Version 1.14.14
+     </a>
+    </li>
+    <li>
+     <a href="#version-11413">
+      Version 1.14.13
+     </a>
+    </li>
+    <li>
+     <a href="#version-11412">
+      Version 1.14.12
+     </a>
+    </li>
+    <li>
+     <a href="#version-11411">
+      Version 1.14.11
+     </a>
+    </li>
+    <li>
+     <a href="#version-11410">
+      Version 1.14.10
+     </a>
+    </li>
+    <li>
+     <a href="#version-1149">
+      Version 1.14.9
+     </a>
+    </li>
+    <li>
+     <a href="#version-1148">
+      Version 1.14.8
+     </a>
+    </li>
+    <li>
+     <a href="#version-1147">
+      Version 1.14.7
+     </a>
+    </li>
+    <li>
+     <a href="#version-1146">
+      Version 1.14.6
+     </a>
+    </li>
+    <li>
+     <a href="#version-1145">
+      Version 1.14.5
+     </a>
+    </li>
+    <li>
+     <a href="#version-1144">
+      Version 1.14.4
+     </a>
+    </li>
+    <li>
+     <a href="#version-1143">
+      Version 1.14.3
+     </a>
+    </li>
+    <li>
+     <a href="#version-1142">
+      Version 1.14.2
+     </a>
+    </li>
+    <li>
+     <a href="#version-1141">
+      Version 1.14.1
+     </a>
+    </li>
+    <li>
+     <a href="#version-1140">
+      Version 1.14.0
+     </a>
+     <ul>
+      <li>
+       <a href="#security">
+        Security
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#version-1132">
+      Version 1.13.2
+     </a>
+    </li>
+    <li>
+     <a href="#version-1131">
+      Version 1.13.1
+     </a>
+    </li>
+    <li>
+     <a href="#version-113">
+      Version 1.13
+     </a>
+    </li>
+    <li>
+     <a href="#version-112">
+      Version 1.12
+     </a>
+    </li>
+    <li>
+     <a href="#version-111">
+      Version 1.11
+     </a>
+    </li>
+    <li>
+     <a href="#version-110">
+      Version 1.10
+     </a>
+    </li>
+    <li>
+     <a href="#version-192">
+      Version 1.9.2
+     </a>
+    </li>
+    <li>
+     <a href="#version-191">
+      Version 1.9.1
+     </a>
+    </li>
+    <li>
+     <a href="#version-19">
+      Version 1.9
+     </a>
+    </li>
+    <li>
+     <a href="#version-182">
+      Version 1.8.2
+     </a>
+    </li>
+    <li>
+     <a href="#version-181">
+      Version 1.8.1
+     </a>
+    </li>
+    <li>
+     <a href="#version-18">
+      Version 1.8
+     </a>
+    </li>
+    <li>
+     <a href="#version-17">
+      Version 1.7
+     </a>
+     <ul>
+      <li>
+       <a href="#internal-api-changes-features-removed">
+        Internal API changes &amp; features removed
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#version-163">
+      Version 1.6.3
+     </a>
+    </li>
+    <li>
+     <a href="#version-162">
+      Version 1.6.2
+     </a>
+    </li>
+    <li>
+     <a href="#version-161">
+      Version 1.6.1
+     </a>
+    </li>
+    <li>
+     <a href="#version-16">
+      Version 1.6
+     </a>
+     <ul>
+      <li>
+       <a href="#the-sp-api">
+        The SP API
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#version-151">
+      Version 1.5.1
+     </a>
+    </li>
+    <li>
+     <a href="#version-15">
+      Version 1.5
+     </a>
+    </li>
+    <li>
+     <a href="#version-14">
+      Version 1.4
+     </a>
+    </li>
+    <li>
+     <a href="#version-13">
+      Version 1.3
+     </a>
+    </li>
+    <li>
+     <a href="#version-12">
+      Version 1.2
+     </a>
+    </li>
+    <li>
+     <a href="#version-11">
+      Version 1.1
+     </a>
+    </li>
+    <li>
+     <a href="#version-10">
+      Version 1.0
+     </a>
+    </li>
+    <li>
+     <a href="#version-05">
+      Version 0.5
+     </a>
+     <ul>
+      <li>
+       <a href="#warning">
+        Warning
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#version-04">
+      Version 0.4
+     </a>
+    </li>
+   </ul>
+  </li>
+ </ul>
+</div>
+<p>
+ This document lists the changes between versions of SimpleSAMLphp.
+See the upgrade notes for specific information about upgrading.
+</p>
+<h2 id="version-1196">
+ Version 1.19.6
+</h2>
+<p>
+ Released 1-7-2022
+</p>
+<ul>
+ <li>
+  Fix several translations (#1572, #1573, #1577, #1578, #1603)
+ </li>
+ <li>
+  Fix HTTP status code for error pages (#1585)
+ </li>
+ <li>
+  \SimpleSAML\Utils\HTTP::getFirstPathElement() was marked deprecated
+ </li>
+ <li>
+  Bumped twig and minimist dependencies due to known vulnerabilities (CVE-2022-23614 and CVE-2021-44906)
+ </li>
+ <li>
+  Minor fixes to the old UI (#1632)
+ </li>
+ <li>
+  Fix several translations (#1572, #1573, #1577, #1578)
+ </li>
+</ul>
+<p>
+ <code>
+  saml2 library
+ </code>
+</p>
+<ul>
+ <li>
+  A mis-use of a constant was fixed (#249) that caused an error with HTTP-Artifact binding.
+ </li>
+</ul>
+<p>
+ <code>
+  metarefresh
+ </code>
+</p>
+<ul>
+ <li>
+  Added regex-template config keyword to apply a template to entityIDs matching a pattern. (v0.10)
+ </li>
+</ul>
+<h2 id="version-1195">
+ Version 1.19.5
+</h2>
+<p>
+ Released 24-01-2021
+</p>
+<ul>
+ <li>
+  Fix composer-file to prevent warnings
+ </li>
+ <li>
+  Fix database persistence (#1555)
+ </li>
+ <li>
+  Dropped dependency on jquery-ui and selectize
+ </li>
+</ul>
+<p>
+ <code>
+  adfs
+ </code>
+</p>
+<ul>
+ <li>
+  Bump the module version to the 1.0.x branch;  the 0.9 branch only works with versions before 1.19
+ </li>
+</ul>
+<p>
+ <code>
+  saml2 library
+ </code>
+</p>
+<ul>
+ <li>
+  Fix an issue with PHP 7.x support that was introduced in 1.19.4 (#1559)
+ </li>
+</ul>
+<h2 id="version-1194">
+ Version 1.19.4
+</h2>
+<p>
+ Released 13-12-2021
+</p>
+<p>
+ <code>
+  core
+ </code>
+</p>
+<ul>
+ <li>
+  Fix translations for included templates (i.e. metadata not found error)
+ </li>
+</ul>
+<p>
+ <code>
+  ldap
+ </code>
+</p>
+<ul>
+ <li>
+  Added the possibility to escape the additional search filters that were introduced in 1.19.2
+ </li>
+</ul>
+<p>
+ <code>
+  saml2 library
+ </code>
+</p>
+<ul>
+ <li>
+  The library has been quick-fixed to support PHP 8.1 (#1545)
+ </li>
+</ul>
+<p>
+ <code>
+  metarefresh
+ </code>
+</p>
+<ul>
+ <li>
+  Reverted an unintended update of the module. The v1,0-branch is intended for use with SSP 2.0 (dev-master) only
+ </li>
+</ul>
+<h2 id="version-1193">
+ Version 1.19.3
+</h2>
+<p>
+ Released 2021-10-28
+</p>
+<ul>
+ <li>
+  Fixed a wrong variable name introduced in v1.19.2 (#1480) that rendered the PHP session handler useless.
+ </li>
+</ul>
+<h2 id="version-1192">
+ Version 1.19.2
+</h2>
+<p>
+ Released 2021-10-27
+</p>
+<ul>
+ <li>
+  Restored PHP 8.0 compatibility (#1461), also on the saml2 library (v4.2.3)
+ </li>
+ <li>
+  Revert #1435; should not have ended up in a bugfix release. If you need the authproc-filters, please install the
+  simplesamlphp-module-subjectidattrs module.
+ </li>
+ <li>
+  Fixed a bug in the logger that would break encoded urls in the message
+ </li>
+ <li>
+  Return a proper HTTP/405 code when incorrect method is used (#1400)
+ </li>
+ <li>
+  Fixed the 'rememberenabled' config setting of the built-in IdP discovery.
+ </li>
+ <li>
+  Fixed a bug where code from external modules would run even though the module is explicitly enabled (#1463)
+ </li>
+ <li>
+  Fix unsolicited response with no RelayState (#1473)
+ </li>
+ <li>
+  Fix statistics being logged despite a configured loglevel that excludes statistics.
+ </li>
+ <li>
+  Fixed an issue with the PHP session handler (#1480, #1350, #1478) causing superfluous log messages.
+ </li>
+ <li>
+  Fixed the MetaDataStorageHandlerPdo for MySQL backends (#1392)
+ </li>
+ <li>
+  Use getVersion instead of getStats to determine whether a memcache-server is up (#1528)
+ </li>
+</ul>
+<p>
+ <code>
+  adfs
+ </code>
+</p>
+<ul>
+ <li>
+  Fixed several issues that rendered the old UI useless for this module (v0.9.8)
+ </li>
+</ul>
+<p>
+ <code>
+  admin
+ </code>
+</p>
+<ul>
+ <li>
+  Fix warning in FederationController (#1475)
+ </li>
+ <li>
+  Fix displayed metadata for hosted entities differing from actual metadata.
+ </li>
+</ul>
+<p>
+ <code>
+  consent
+ </code>
+</p>
+<ul>
+ <li>
+  Add possibility to set the sameSite flag on cookies set by this module (v0.9.7)
+ </li>
+</ul>
+<p>
+ <code>
+  discopower
+ </code>
+</p>
+<ul>
+ <li>
+  Fixed a dependency issue that caused the module to not install under some PHP-versions (v0.10.0)
+ </li>
+</ul>
+<p>
+ <code>
+  ldap
+ </code>
+</p>
+<ul>
+ <li>
+  Added search-filters to AttributeAddUserGroups and made the return-attribute configurable (v0.9.11)
+ </li>
+</ul>
+<p>
+ <code>
+  negotiate
+ </code>
+</p>
+<ul>
+ <li>
+  Fixed a regression that rendered the new UI useless for this module (v0.9.11)
+ </li>
+</ul>
+<p>
+ <code>
+  sqlauth
+ </code>
+</p>
+<ul>
+ <li>
+  Fixed a bug that rendered the module useless due to missing use-statements.
+ </li>
+</ul>
+<h2 id="version-1191">
+ Version 1.19.1
+</h2>
+<p>
+ Released TBD
+</p>
+<ul>
+ <li>
+  Fixed a bug in the Artifact Resolution Service (#1428)
+ </li>
+ <li>
+  Fixed compatibility with Composer pre 1.8.5 (Debian 10) (#1427)
+ </li>
+ <li>
+  Updated npm dependencies up to February 1, 2021
+ </li>
+</ul>
+<p>
+ <code>
+  memcacheMonitor
+ </code>
+</p>
+<ul>
+ <li>
+  Fix a bug in the Twig-template that causes an exception on newer Twig-versions
+ </li>
+</ul>
+<p>
+ <code>
+  negotiate
+ </code>
+</p>
+<ul>
+ <li>
+  Fix a bug that was breaking the module when using the old UI
+ </li>
+</ul>
+<p>
+ <code>
+  statistics
+ </code>
+</p>
+<ul>
+ <li>
+  Fix a bug in the Twig-template that causes an exception on newer Twig-versions
+ </li>
+</ul>
+<h2 id="version-1190">
+ Version 1.19.0
+</h2>
+<p>
+ Released 2021-01-21
+</p>
+<ul>
+ <li>
+  This version will be the last of the 1.x branch and will provide a migration path to our new
+  templating system, routing system and translation system.
+ </li>
+ <li>
+  SAML 1 / Shib 1.3 support is now marked deprecated and will be removed in SimpleSAMLphp 2.0.
+ </li>
+ <li>
+  Raised minimum PHP version to 7.1
+ </li>
+ <li>
+  Dropped support for Symfony 3.x
+ </li>
+ <li>
+  Update the SAML2 library dependency to 4.1.9
+ </li>
+ <li>
+  Fix a bug where SSP wouldn't write to the tmp-directory if it didn't own it, but could write to it (#1314)
+ </li>
+ <li>
+  Fixed several bugs in saml:NameIDAttribute (#1245)
+ </li>
+ <li>
+  Fix artifact resolution (#1343)
+ </li>
+ <li>
+  Allow additional audiences to be specified (#1345)
+ </li>
+ <li>
+  Allow configurable ProviderName (#1348)
+ </li>
+ <li>
+  Support saml:Extensions in saml:SP authsources (#1349)
+ </li>
+ <li>
+  The
+  <code>
+   attributename
+  </code>
+  -setting in the core:TargetedID authproc-filter has been deprecated in
+  favour of the
+  <code>
+   identifyingAttribute
+  </code>
+  -setting.
+ </li>
+ <li>
+  Filter multiauth authentication sources from SP using AuthnContextClassRef (#1362)
+ </li>
+ <li>
+  Allow easy enabling of SameSite = 'None' (#1382)
+ </li>
+ <li>
+  Do not accept the hashed admin password for authentication (#1418)
+ </li>
+</ul>
+<h2 id="version-1188">
+ Version 1.18.8
+</h2>
+<p>
+ Released 2020-09-02
+</p>
+<ul>
+ <li>
+  Fixed Artifact Resolution due to incorrect use of Issuer objects (#1343).
+ </li>
+ <li>
+  Fixed some of the German translations (#1331). Thanks @htto!
+ </li>
+ <li>
+  Harden against CVE-2020-13625;  this package is not affected, but 3rd party modules may (#1333).
+ </li>
+ <li>
+  Harden against several JS issues (npm update &amp; npm audit fix)
+ </li>
+ <li>
+  Fixed inconsistent configuration of backtraces logging
+ </li>
+ <li>
+  Support for Symfony 3.x is now deprecated
+ </li>
+ <li>
+  Support for Twig 1.x is now deprecated
+ </li>
+</ul>
+<p>
+ <code>
+  authcrypt
+ </code>
+</p>
+<ul>
+ <li>
+  The dependency for whitehat101/apr1-md5 was moved from the base repository to the module (v0.9.2)
+ </li>
+</ul>
+<p>
+ <code>
+  authx509
+ </code>
+</p>
+<ul>
+ <li>
+  Restore PHP 5.6 compatibility (v0.9.5)
+ </li>
+</ul>
+<p>
+ <code>
+  cron
+ </code>
+</p>
+<ul>
+ <li>
+  Fixed old-ui (#1248)
+ </li>
+</ul>
+<p>
+ <code>
+  ldap
+ </code>
+</p>
+<ul>
+ <li>
+  Moved array with binary attributes to authsource config (v0.9.9)
+  Instead of having to edit code, you can now set 'attributes.binary' in the authsource configuration.
+ </li>
+</ul>
+<p>
+ <code>
+  metarefresh
+ </code>
+</p>
+<ul>
+ <li>
+  Add attributewhitelist to support e.g. R&amp;S+Sirtfi (v0.9.5)
+ </li>
+ <li>
+  Restore PHP 5.6 compatibility (v0.9.6)
+ </li>
+</ul>
+<p>
+ <code>
+  negotiate
+ </code>
+</p>
+<ul>
+ <li>
+  Restore PHP 5.6 compatibility (v0.9.8)
+ </li>
+ <li>
+  Fixed a link (v0.9.9)
+ </li>
+</ul>
+<p>
+ <code>
+  saml2 library
+ </code>
+</p>
+<ul>
+ <li>
+  Fixed a bug in the AuthnRequest-class that would raise an InvalidArgumentException when setting
+  the AssertionConsumerServiceIndex as an integer on an saml:SP authsource.
+  Thanks to Andrea @ Oracle for reporting this.
+ </li>
+</ul>
+<h2 id="version-1187">
+ Version 1.18.7
+</h2>
+<p>
+ Released 2020-05-12
+</p>
+<ul>
+ <li>
+  Fix spurious warnings when session_create_id() fails to create ID (#1291)
+ </li>
+ <li>
+  Fix inconsistency in the way PATH_INFO is being used (#1227).
+ </li>
+ <li>
+  Fix a potential security issue
+  <a href="https://nvd.nist.gov/vuln/detail/CVE-2020-11022">
+   CVE-2020-11022
+  </a>
+  by updating jQuery. If any of your custom modules rely on jQuery,
+  make sure you read the following
+  <a href="https://jquery.com/upgrade-guide/3.5/">
+   update notes
+  </a>
+  , since jQuery has solved this in a non-BC way (#1321).
+ </li>
+ <li>
+  Fix incorrect Polish translations (#1311).
+ </li>
+ <li>
+  Fix a broken migration query in the LogoutStore (#1324).
+ </li>
+ <li>
+  Fix an issue with the SameSite cookie parameter when running on PHP versions older than 7.3 (#1320).
+ </li>
+</ul>
+<p>
+ <code>
+  adfs
+ </code>
+</p>
+<ul>
+ <li>
+  Fixed a broken link to one of the assets (v0.9.6).
+ </li>
+</ul>
+<p>
+ <code>
+  ldap
+ </code>
+</p>
+<ul>
+ <li>
+  Handle binary attributes in a generic way (v0.9.5).
+ </li>
+</ul>
+<p>
+ <code>
+  oauth
+ </code>
+</p>
+<ul>
+ <li>
+  Fix PHP 7.4 incompatibility (v0.9.2).
+ </li>
+</ul>
+<p>
+ <code>
+  preprodwarning
+ </code>
+</p>
+<ul>
+ <li>
+  Fix Dutch translations (v0.9.2).
+ </li>
+</ul>
+<p>
+ <code>
+  sanitycheck
+ </code>
+</p>
+<ul>
+ <li>
+  Fix broken HTML (v0.9.1).
+ </li>
+</ul>
+<p>
+ <code>
+  saml
+ </code>
+</p>
+<ul>
+ <li>
+  Fix several issues in the saml:NameIDAttribute authproc filter (#1325).
+ </li>
+</ul>
+<p>
+ <code>
+  saml2 library
+ </code>
+</p>
+<ul>
+ <li>
+  fixed a standards compliance issue regarding ContactPerson EMail addresses (v3.4.4).
+ </li>
+ <li>
+  fixed an issue parsing very large metadata files (v3.4.3).
+ </li>
+</ul>
+<h2 id="version-1186">
+ Version 1.18.6
+</h2>
+<p>
+ Released 2020-04-17
+</p>
+<ul>
+ <li>
+  Fix source code disclosure on case-insensitive file systems. See
+  <a href="https://simplesamlphp.org/security/202004-01">
+   SSPSA 202004-01
+  </a>
+  .
+ </li>
+ <li>
+  Fix spurious error in logs when using a custom theme (#1312).
+ </li>
+ <li>
+  Fix broken metadata converter (#1305).
+ </li>
+</ul>
+<h2 id="version-1185">
+ Version 1.18.5
+</h2>
+<p>
+ Released 2020-03-19
+</p>
+<ul>
+ <li>
+  Make the URLs for the cron module work again (#1248).
+ </li>
+ <li>
+  Email error reports now include metadata again (#1269).
+ </li>
+ <li>
+  Fix exampleauth module when using the legacy UI (#1275).
+ </li>
+ <li>
+  Fix authorize module when using custom reject message.
+ </li>
+ <li>
+  Documentation improvements.
+ </li>
+ <li>
+  Fix connection persistence for deployments that switched to memcached.
+ </li>
+</ul>
+<h2 id="version-1184">
+ Version 1.18.4
+</h2>
+<p>
+ Released 2020-01-24
+</p>
+<ul>
+ <li>
+  Resolved a security issue in email reports. See
+  <a href="https://simplesamlphp.org/security/202001-01">
+   SSPSA 202001-01
+  </a>
+  .
+ </li>
+ <li>
+  Resolved a security issue with the logging system. See
+  <a href="https://simplesamlphp.org/security/202001-02">
+   SSPSA 202001-02
+  </a>
+  .
+ </li>
+ <li>
+  Fixed SQL store index creation for PostgreSQL.
+ </li>
+ <li>
+  Handle case where cookie 'domain' parameter was not set.
+ </li>
+ <li>
+  Update versions of included JavaScript dependencies.
+ </li>
+</ul>
+<h2 id="version-1183">
+ Version 1.18.3
+</h2>
+<p>
+ Released 2019-12-09
+</p>
+<ul>
+ <li>
+  Fixed an issue with several modules being enabled by default (#1257).
+ </li>
+ <li>
+  Fixed an issue with metadata generation for trusted entities (#1247, #1251).
+ </li>
+</ul>
+<p>
+ <code>
+  ldap
+ </code>
+</p>
+<ul>
+ <li>
+  Fixed an issue affecting the installation in case-insensitive file systems (#1253).
+ </li>
+</ul>
+<h2 id="version-1182">
+ Version 1.18.2
+</h2>
+<p>
+ Released 2019-11-26
+</p>
+<ul>
+ <li>
+  Fixed an issue with the
+  <code>
+   ldap
+  </code>
+  module that prevented installing SimpleSAMLphp from the repository (#1241).
+ </li>
+</ul>
+<h2 id="version-1181">
+ Version 1.18.1
+</h2>
+<p>
+ Released 2019-11-26
+</p>
+<ul>
+ <li>
+  Fixed an issue that prevented custom themes from working (#1240).
+ </li>
+ <li>
+  Fixed an issue with translations in the discovery service (#1244).
+ </li>
+ <li>
+  Fixed an issue with schema validation.
+ </li>
+</ul>
+<h2 id="version-1180">
+ Version 1.18.0
+</h2>
+<p>
+ Released 2019-11-19
+</p>
+<ul>
+ <li>
+  Fixed an issue with warnings being logged when using PHP 7.2 or newer (#1168).
+ </li>
+ <li>
+  Fixed an issue with web server aliases or rewritten URLs not working (#1023, #1093).
+ </li>
+ <li>
+  Fixed an issue that prevented errors to be logged if the log file was not writeable (#1194).
+ </li>
+ <li>
+  Fixed an issue with old-style NameIDPolicy configurations that disallowed creating new NameIDs (#1230).
+ </li>
+ <li>
+  Resolved a security issue that exposed host information to unauthenticated users. See
+  <a href="https://simplesamlphp.org/security/201911-02">
+   SSPSA 201911-02
+  </a>
+  .
+ </li>
+ <li>
+  Replaced custom Email class with the phpmailer library.
+ </li>
+ <li>
+  Allow logging to STDERR in the
+  <code>
+   logging.handler
+  </code>
+  option by setting it to
+  <code>
+   stderr
+  </code>
+  .
+ </li>
+ <li>
+  Allow use of stream wrappers (e.g. s3://) in paths.
+ </li>
+ <li>
+  Improved 'update or insert' handling for different SQL drivers.
+ </li>
+ <li>
+  The default algorithm within the TimeLimitedToken class has been bumped from SHA-1 to SHA-256
+  as announced by deprecation notice in 1.15-RC1.
+ </li>
+ <li>
+  Most modules have been externalized. They will not be included in our future releases by default,
+  but will be easily installable using Composer. For now, they are still included in the package.
+ </li>
+ <li>
+  Many minor fixes to code, css, documentation
+ </li>
+</ul>
+<p>
+ <code>
+  metarefresh
+ </code>
+</p>
+<ul>
+ <li>
+  The algorithm to compute the fingerprint of the certificate that signed
+  metadata can be specified with the new
+  <code>
+   validateFingerprintAlgorithm
+  </code>
+  configuration option.
+ </li>
+</ul>
+<p>
+ <code>
+  saml
+ </code>
+</p>
+<ul>
+ <li>
+  Make the id of the generated signed metadata only change when metadata content changes.
+ </li>
+ <li>
+  New SP metadata configuration options
+  <code>
+   AssertionConsumerService
+  </code>
+  and
+  <code>
+   SingleLogoutServiceLocation
+  </code>
+  to allow overriding the default URL paths.
+ </li>
+ <li>
+  Added support for per-IDP configurable
+  <code>
+   AuthnContextClassRef
+  </code>
+  /
+  <code>
+   AuthnContextComparison
+  </code>
+  .
+ </li>
+</ul>
+<h2 id="version-1178">
+ Version 1.17.8
+</h2>
+<p>
+ Released 2019-11-20
+</p>
+<ul>
+ <li>
+  Resolved a security issue that exposed host information to unauthenticated users. See
+  <a href="https://simplesamlphp.org/security/201911-02">
+   SSPSA 201911-02
+  </a>
+  .
+ </li>
+</ul>
+<p>
+ <code>
+  consentAdmin
+ </code>
+</p>
+<ul>
+ <li>
+  Fixed an issue with CSS and JavaScript not loading for the module in the new user
+  interface.
+ </li>
+</ul>
+<h2 id="version-1177">
+ Version 1.17.7
+</h2>
+<p>
+ Released 2019-11-06
+</p>
+<ul>
+ <li>
+  Resolved a security issue that allows to bypass signature validation. See
+  <a href="https://simplesamlphp.org/security/201911-01">
+   SSPSA 201911-01
+  </a>
+  .
+ </li>
+</ul>
+<h2 id="version-1176">
+ Version 1.17.6
+</h2>
+<p>
+ Released 2019-08-29
+</p>
+<ul>
+ <li>
+  Fixed a regression with logout database initialization when using MySQL (#1177).
+ </li>
+ <li>
+  Fixed an issue with logout when using iframes (#1191).
+ </li>
+ <li>
+  Fixed an issue causing log entries to be logged with incorrect relative order (#1107).
+ </li>
+</ul>
+<h2 id="version-1175">
+ Version 1.17.5
+</h2>
+<p>
+ Released 2019-08-02
+</p>
+<ul>
+ <li>
+  Fixed a bug in the SP API where NameID objects weren't taken care of (introduced in 1.17.0).
+ </li>
+ <li>
+  Fixed a regression where MetaDataStorageHandlerPdo::getMetaData() would not return a value (#1165).
+ </li>
+ <li>
+  Fixed an issue with table indexes (#1089).
+ </li>
+ <li>
+  Fixed an issue with table migrations on SQlite (#1169).
+ </li>
+ <li>
+  Fixed an issue with generated eduPersonTargetedID lacking a format specified (#1135).
+ </li>
+ <li>
+  Updated composer dependencies.
+ </li>
+</ul>
+<h2 id="version-1174">
+ Version 1.17.4
+</h2>
+<p>
+ Released 2019-07-11
+</p>
+<ul>
+ <li>
+  Fix an issue introduced in 1.17.3 with
+  <code>
+   enable.http_post
+  </code>
+  .
+ </li>
+</ul>
+<h2 id="version-1173">
+ Version 1.17.3
+</h2>
+<p>
+ Released 2019-07-10
+</p>
+<ul>
+ <li>
+  Resolved a security issue that could lead to a reflected XSS.  See
+  <a href="https://simplesamlphp.org/security/201907-01">
+   SSPSA 201907-01
+  </a>
+  .
+ </li>
+ <li>
+  Add new options
+  <code>
+   session.cookie.samesite
+  </code>
+  and
+  <code>
+   language.cookie.samesite
+  </code>
+  that can be
+  used to set a specific value for the cookies' SameSite attribute. The default it not
+  to set it.
+ </li>
+ <li>
+  Upgraded jQuery to version 3.4.
+ </li>
+ <li>
+  HHVM is no longer supported.
+ </li>
+ <li>
+  Fixed a bug (#926) where dynamic metadata records where not loaded from a database.
+ </li>
+ <li>
+  Fixed an issue when an error occurs during a passive authentication request.
+ </li>
+ <li>
+  Handle duplicate insertions for SQL Server.
+ </li>
+ <li>
+  Fix a bug in Short SSO Interval warning filter.
+ </li>
+ <li>
+  Apply a workaround for SIGSEGVs during session creation with PHP-FPM 7.3.
+ </li>
+</ul>
+<p>
+ <code>
+  adfs
+ </code>
+</p>
+<ul>
+ <li>
+  Fixed a missing option to supply a passphrase for the ADFS IDP signing certificate.
+ </li>
+</ul>
+<p>
+ <code>
+  authlinkedin
+ </code>
+</p>
+<ul>
+ <li>
+  This module has been removed now that LinkedIn no longer supports OAuth1.
+  If you relied on this module, you may consider migrating to the
+  <a href="https://github.com/cirrusidentity/simplesamlphp-module-authoauth2">
+   authoauth2 module
+  </a>
+  .
+  A migration guide for LinkedIn authentication is included in their README.
+ </li>
+</ul>
+<h2 id="version-1172">
+ Version 1.17.2
+</h2>
+<p>
+ Released 2019-04-02
+</p>
+<ul>
+ <li>
+  Fixed that generated metadata was missing some information
+  when PHP's zend.assertions option is set to &lt; 1.
+ </li>
+ <li>
+  Fixed that MDUI Keywords and Logo were not parsed from metadata.
+ </li>
+ <li>
+  Fixed DiscoPower module tab display.
+ </li>
+ <li>
+  Fixed use group name in Attribute Add Users Groups filter.
+ </li>
+ <li>
+  Add metadatadir setting to the default config template.
+ </li>
+ <li>
+  Fixed exception processing in loadExceptionState().
+ </li>
+ <li>
+  Fixed preferredidp in built-in 'links'-style discovery.
+ </li>
+</ul>
+<h2 id="version-1171">
+ Version 1.17.1
+</h2>
+<p>
+ Released 2019-03-07
+</p>
+<ul>
+ <li>
+  Fixed an issue with composer that made it impossible to install modules
+  if SimpleSAMLphp was installed itself with the provided package (tar.gz file).
+ </li>
+</ul>
+<h2 id="version-1170">
+ Version 1.17.0
+</h2>
+<p>
+ Released 2019-03-07
+</p>
+<ul>
+ <li>
+  Introduce a new experimental user interface based on Twig templates.
+  The new Twig templates co-exist next to the old ones and come
+  with a new look-and-feel for SimpleSAMLphp and independent interfaces for
+  users and administrators. This new interface uses also a new build system
+  to generate bundled assets.
+ </li>
+ <li>
+  Introduce Symfony-style routing and dependency injection(#966).
+ </li>
+ <li>
+  Generate session IDs complying with PHP config settings when using the PHP
+  session handler (#569).
+ </li>
+ <li>
+  Update OpenSSL RSA bit length in docs (#993).
+ </li>
+ <li>
+  Update all code, configuration templates and documentation to PHP
+  short array syntax.
+ </li>
+ <li>
+  All classes moved to namespaces and code reformatted to PSR-2.
+ </li>
+ <li>
+  Use bcrypt for new password hashes, old ones will remain working (#996).
+ </li>
+ <li>
+  Many code cleanups.
+ </li>
+ <li>
+  Update the SAML2 library dependency to 3.2.5.
+ </li>
+ <li>
+  Update the Clipboard.JS library dependency to 2.0.4.
+ </li>
+ <li>
+  Translated to Zulu and Xhosa.
+ </li>
+ <li>
+  Multiple bug fixes and corrections.
+ </li>
+</ul>
+<h3 id="interoperability">
+ Interoperability
+</h3>
+<ul>
+ <li>
+  The minimum PHP version required is now 5.5.
+ </li>
+ <li>
+  Fixed compatibility with PHP 7.3 and HVVM.
+ </li>
+ <li>
+  SimpleSAMLphp can now be used with applications that use Twig 2 and/or Symfony 4.
+ </li>
+ <li>
+  The SAML2 library now uses getters/setters to manipulate objects properties.
+ </li>
+</ul>
+<p>
+ <code>
+  authfacebook
+ </code>
+</p>
+<ul>
+ <li>
+  Fix Facebook compatibility (query parameters).
+ </li>
+</ul>
+<p>
+ <code>
+  authorize
+ </code>
+</p>
+<ul>
+ <li>
+  Add the possibility to configure a custom rejection message.
+ </li>
+</ul>
+<p>
+ <code>
+  consent
+ </code>
+</p>
+<ul>
+ <li>
+  The module is now disabled by default.
+ </li>
+</ul>
+<p>
+ <code>
+  core
+ </code>
+</p>
+<ul>
+ <li>
+  Allow
+  <code>
+   core:PHP
+  </code>
+  to manipulate the entire state array.
+ </li>
+ <li>
+  IdP initiated login: add compatibility with Shibboleth parameters.
+ </li>
+</ul>
+<p>
+ `multiauth
+</p>
+<ul>
+ <li>
+  Added a
+  <code>
+   preselect
+  </code>
+  configuration option to skip authsource selection (#1005).
+ </li>
+</ul>
+<p>
+ <code>
+  negotiate
+ </code>
+</p>
+<ul>
+ <li>
+  The
+  <code>
+   keytab
+  </code>
+  setting now allows for relative paths too.
+ </li>
+</ul>
+<p>
+ <code>
+  preprodwarning
+ </code>
+</p>
+<ul>
+ <li>
+  This module is now deprecated. Use the
+  <code>
+   production
+  </code>
+  configuration
+  option instead; set it to
+  <code>
+   false
+  </code>
+  to show a pre-production warning
+  before authentication.
+ </li>
+</ul>
+<p>
+ <code>
+  saml
+ </code>
+</p>
+<ul>
+ <li>
+  Add initial support for SAML Subject ID Attributes.
+ </li>
+ <li>
+  Allow to specify multiple supported NameIdFormats in IdP hosted and SP
+  remote metadata.
+ </li>
+ <li>
+  Allow to specify NameIDPolicy Format and AllowCreate in hosted SP
+  and remote IdP configuration. Restore the possibility to omit it from
+  AuthnRequests entirely (#984).
+ </li>
+ <li>
+  Add a
+  <code>
+   assertion.allowed_clock_skew
+  </code>
+  setting to influence how lenient
+  we should be with the timestamps in received SAML messages.
+ </li>
+ <li>
+  If the Issuer of a SAML response does not match the entity we sent the
+  request to, log a warning instead of bailing out with an exception.
+ </li>
+ <li>
+  Allow setting the AudienceRestriction in SAML2 requests (#998).
+ </li>
+ <li>
+  Allow disabling the Scoping element in SP and remote IdP configuration with
+  the
+  <code>
+   disable_scoping
+  </code>
+  option, for compatibility with ADFS which does not
+  accept the element (#985).
+ </li>
+ <li>
+  Receiving an eduPersonTargetedID in string form will no longer break
+  parsing of the assertion.
+ </li>
+</ul>
+<p>
+ <code>
+  sanitycheck
+ </code>
+</p>
+<ul>
+ <li>
+  Translated into several languages.
+ </li>
+</ul>
+<h2 id="version-1163">
+ Version 1.16.3
+</h2>
+<p>
+ Released 2018-12-20
+</p>
+<ul>
+ <li>
+  Resolved a security issue that could expose the user's credentials locally.  See
+  <a href="https://simplesamlphp.org/security/201812-01">
+   SSPSA 201812-01
+  </a>
+  .
+ </li>
+ <li>
+  Downgraded the level of log messages regarding the
+  <code>
+   userid.attribute
+  </code>
+  configuration option
+  from
+  <em>
+   warning
+  </em>
+  to
+  <em>
+   debug
+  </em>
+  .
+ </li>
+ <li>
+  Make the
+  <code>
+   attr
+  </code>
+  configuration option of the
+  <em>
+   negotiate
+  </em>
+  allow both a string and an array.
+ </li>
+ <li>
+  Look for the
+  <em>
+   keytab
+  </em>
+  file used by the
+  <em>
+   negotiate
+  </em>
+  module in the
+  <code>
+   cert
+  </code>
+  directory, accepting
+  both absolute and relative paths.
+ </li>
+ <li>
+  Fixed some broken links.
+ </li>
+ <li>
+  Other minor bugfixes.
+ </li>
+</ul>
+<h2 id="version-1162">
+ Version 1.16.2
+</h2>
+<p>
+ Released 2018-09-28
+</p>
+<ul>
+ <li>
+  Fixed an issue with PHP sessions in PHP 7.2.
+ </li>
+ <li>
+  Fixed a bug in the OAuth module.
+ </li>
+ <li>
+  Make schema validation work again.
+ </li>
+ <li>
+  Properly document the
+  <code>
+   saml:AuthnContextClassRef
+  </code>
+  authentication processing filter.
+ </li>
+ <li>
+  Fixed an issue that made it impossible to install the software with composer using the
+  "stable" minimum-stability setting.
+ </li>
+ <li>
+  Changed the default authentication context class to "PasswordProtectedTransport" by default
+  when authentication happened on an HTTPS exchange.
+ </li>
+</ul>
+<h2 id="version-1161">
+ Version 1.16.1
+</h2>
+<p>
+ Released 2018-09-07
+</p>
+<ul>
+ <li>
+  Fix a bug preventing the consent page from showing.
+ </li>
+ <li>
+  Add Catalan to the list of available languages.
+ </li>
+</ul>
+<h2 id="version-1160">
+ Version 1.16.0
+</h2>
+<p>
+ Released 2018-09-06
+</p>
+<h3 id="changes">
+ Changes
+</h3>
+<ul>
+ <li>
+  Default signature algorithm is now RSA-SHA256.
+ </li>
+ <li>
+  Renamed class
+  <code>
+   SimpleSAML_Error_BadUserInnput
+  </code>
+  to
+  <code>
+   SimpleSAML_Error_BadUserInput
+  </code>
+ </li>
+ <li>
+  PHP 7.2 compatibility, including removing deprecated use of assert with string.
+ </li>
+ <li>
+  Avoid logging database credentials in backtraces.
+ </li>
+ <li>
+  Fix edge case in getServerPort.
+ </li>
+ <li>
+  Updated Spanish translation.
+ </li>
+ <li>
+  Improvements to documentation, testsuite, code quality and coding style.
+ </li>
+</ul>
+<p>
+ <code>
+  New features
+ </code>
+</p>
+<ul>
+ <li>
+  Added support for SAML "Enhanced Client or Proxy" (ECP) protocol,
+  IdP side with HTTP Basic Authentication as authentication method.
+  See the
+  <a href="./simplesamlphp-ecp-idp.html">
+   ECP IdP documentation
+  </a>
+  for details.
+ </li>
+ <li>
+  New option
+  <code>
+   sendmail_from
+  </code>
+  , the from address for email sent by SSP.
+ </li>
+ <li>
+  New option
+  <code>
+   options
+  </code>
+  for PDO database connections, e.g. for TLS setup.
+ </li>
+ <li>
+  New option
+  <code>
+   search.scope
+  </code>
+  for LDAP authsources.
+ </li>
+ <li>
+  Add support for the DiscoHints IPHint metadata property.
+ </li>
+ <li>
+  Add support to specify metadata XML in config with the
+  <code>
+   xml
+  </code>
+  parameter,
+  next to the existing
+  <code>
+   file
+  </code>
+  and
+  <code>
+   url
+  </code>
+  options.
+ </li>
+ <li>
+  Also support CGI/RewriteRule setups that set the
+  <code>
+   REDIRECT_SIMPLESAMLPHP_CONFIG_DIR
+  </code>
+  environment variable next to regular
+  <code>
+   SIMPLESAMLPHP_CONFIG_DIR
+  </code>
+  .
+ </li>
+ <li>
+  Support creating an AuthSource via factory, for example useful in tests.
+ </li>
+ <li>
+  Support preloading of a virtual config file via
+  <code>
+   SimpleSAML_Configuration::setPreLoadedConfig
+  </code>
+  to allow for dynamic population of authsources.php.
+ </li>
+ <li>
+  Add basic documentation on Nginx configuration.
+ </li>
+ <li>
+  Test authentication: optionally show AuthData array.
+ </li>
+ <li>
+  Improve performance of PDO Metadata Storage handler entity lookup.
+ </li>
+</ul>
+<p>
+ <code>
+  adfs
+ </code>
+</p>
+<ul>
+ <li>
+  Make signature algorithm configurable with
+  <code>
+   signature.algorithm
+  </code>
+  .
+ </li>
+ <li>
+  Use configuration assertion lifetime when available.
+ </li>
+ <li>
+  Use
+  <code>
+   adfs:wreply
+  </code>
+  parameter when available.
+ </li>
+</ul>
+<p>
+ <code>
+  authmyspace
+ </code>
+</p>
+<ul>
+ <li>
+  Module removed because service is no longer available.
+ </li>
+</ul>
+<p>
+ <code>
+  cas
+ </code>
+</p>
+<ul>
+ <li>
+  Respect all LDAP options in LDAP call.
+ </li>
+</ul>
+<p>
+ <code>
+  casserver
+ </code>
+</p>
+<ul>
+ <li>
+  Module removed; superseded by externally hosted module.
+ </li>
+</ul>
+<p>
+ <code>
+  consent
+ </code>
+</p>
+<ul>
+ <li>
+  Sort attribute values for consent.
+ </li>
+ <li>
+  Fix table layout for MySQL &gt; 5.6.
+ </li>
+ <li>
+  Rename
+  <code>
+   noconsentattributes
+  </code>
+  to
+  <code>
+   attributes.exclude
+  </code>
+  ; the former
+  is now considered deprecated.
+ </li>
+</ul>
+<p>
+ <code>
+  consentAdmin
+ </code>
+</p>
+<ul>
+ <li>
+  Work better with TargetedIDs when operating as a proxy.
+ </li>
+ <li>
+  Add
+  <code>
+   attributes.exclude
+  </code>
+  option to correspond to the same option
+  in the Consent module.
+ </li>
+</ul>
+<p>
+ <code>
+  core
+ </code>
+</p>
+<ul>
+ <li>
+  StatisticsWithAttribute: add
+  <code>
+   passive-
+  </code>
+  prefix when logging passive
+  requests, set new option
+  <code>
+   skipPassive
+  </code>
+  to skip logging these altogether.
+ </li>
+ <li>
+  Replace deprecated
+  <code>
+   create_function
+  </code>
+  with an anonymous function.
+ </li>
+ <li>
+  New authproc filter Cardinality to enforce attribute cardinality.
+ </li>
+ <li>
+  SQLPermanentStorage: proper expiration of stored values.
+ </li>
+ <li>
+  AttributeLimit: new options
+  <code>
+   regex
+  </code>
+  and
+  <code>
+   ignoreCase
+  </code>
+  .
+ </li>
+ <li>
+  AttributeMap: prevent possible infinite loop with some PHP versions.
+ </li>
+</ul>
+<p>
+ <code>
+  ldap
+ </code>
+</p>
+<ul>
+ <li>
+  AttributeAddUsersGroups: if
+  <code>
+   attribute.groupname
+  </code>
+  is set, use the
+  configured attribute as the group name rather than the DN.
+ </li>
+ <li>
+  Also base64encode the
+  <code>
+   ms-ds-consistencyguid
+  </code>
+  attribute.
+ </li>
+</ul>
+<p>
+ <code>
+  metarefresh
+ </code>
+</p>
+<ul>
+ <li>
+  Return XML parser error for better debugging of problems.
+ </li>
+ <li>
+  Only actually parse metadata types that have been enabled.
+ </li>
+ <li>
+  Fix missing translation.
+ </li>
+</ul>
+<p>
+ <code>
+  oauth
+ </code>
+</p>
+<ul>
+ <li>
+  Make module HTTP proxy-aware.
+ </li>
+ <li>
+  Remove unused demo app.
+ </li>
+</ul>
+<p>
+ <code>
+  saml
+ </code>
+</p>
+<ul>
+ <li>
+  AttributeConsumingService: allow to set isDefault and index options.
+ </li>
+ <li>
+  Encrypted attributes in an assertion are now decrypted correctly.
+ </li>
+ <li>
+  Prefer the HTTP-Redirect binding for AuthnRequests if available.
+ </li>
+</ul>
+<p>
+ <code>
+  smartattributes
+ </code>
+</p>
+<ul>
+ <li>
+  Fix to make the
+  <code>
+   add_authority
+  </code>
+  option work.
+ </li>
+</ul>
+<p>
+ <code>
+  sqlauth
+ </code>
+</p>
+<ul>
+ <li>
+  The module is now disabled by default.
+ </li>
+</ul>
+<p>
+ <code>
+  statistics
+ </code>
+</p>
+<ul>
+ <li>
+  Show a decent error message when no data is available.
+ </li>
+</ul>
+<h2 id="version-1154">
+ Version 1.15.4
+</h2>
+<p>
+ Released 2018-03-02
+</p>
+<ul>
+ <li>
+  Resolved a security issue related to signature validation in the SAML2 library. See
+  <a href="https://simplesamlphp.org/security/201803-01">
+   SSPSA 201803-01
+  </a>
+  .
+ </li>
+</ul>
+<h2 id="version-1153">
+ Version 1.15.3
+</h2>
+<p>
+ Released 2018-02-27
+</p>
+<ul>
+ <li>
+  Resolved a security issue related to signature validation in the SAML2 library. See
+  <a href="https://simplesamlphp.org/security/201802-01">
+   SSPSA 201802-01
+  </a>
+  .
+ </li>
+ <li>
+  Fixed edge-case scenario where an application uses one of the known LoggingHandlers' name as a defined class
+ </li>
+ <li>
+  Fixed issue #793 in the PHP logging handler.
+ </li>
+</ul>
+<h2 id="version-1152">
+ Version 1.15.2
+</h2>
+<p>
+ Released 2018-01-31
+</p>
+<ul>
+ <li>
+  Resolved a Denial of Service security issue when validating timestamps in the SAML2 library. See
+  <a href="https://simplesamlphp.org/security/201801-01">
+   SSPSA 201801-01
+  </a>
+  .
+ </li>
+ <li>
+  Resolved a security issue with the open redirect protection mechanism. See
+  <a href="https://simplesamlphp.org/security/201801-02">
+   SSPSA 201801-02
+  </a>
+  .
+ </li>
+ <li>
+  Fix
+  <em>
+   undefined method
+  </em>
+  error when using memcacheD.
+ </li>
+</ul>
+<p>
+ <code>
+  authfacebook
+ </code>
+</p>
+<ul>
+ <li>
+  Fix compatibility with Facebook strict URI match.
+ </li>
+</ul>
+<p>
+ <code>
+  consent
+ </code>
+</p>
+<ul>
+ <li>
+  Fix statistics not being gathered.
+ </li>
+</ul>
+<p>
+ <code>
+  sqlauth
+ </code>
+</p>
+<ul>
+ <li>
+  Prevented a security issue with the connection charset used for MySQL backends. See
+  <a href="https://simplesamlphp.org/security/201801-03">
+   SSPSA 201801-03
+  </a>
+  .
+ </li>
+</ul>
+<h2 id="version-1151">
+ Version 1.15.1
+</h2>
+<p>
+ Released 2018-01-12
+</p>
+<p>
+ <code>
+  Bug fixes
+ </code>
+</p>
+<ul>
+ <li>
+  AuthX509 error messages were broken.
+ </li>
+ <li>
+  Properly calculate supported protocols based on config.
+ </li>
+ <li>
+  NameIDAttribute filter: update to use SAML2\XML\saml\NameID.
+ </li>
+ <li>
+  Replace remaining uses of SimpleSAML_Logger with namespace version.
+ </li>
+ <li>
+  Statistics: prevent mixed content errors.
+ </li>
+ <li>
+  Add 'no-store' to the cache-control header to avoid Chrome
+  caching redirects.
+ </li>
+</ul>
+<h2 id="version-1150">
+ Version 1.15.0
+</h2>
+<p>
+ Released 2017-11-20
+</p>
+<p>
+ <code>
+  New features
+ </code>
+</p>
+<ul>
+ <li>
+  Added support for authenticated web proxies with the
+  <code>
+   proxy.auth
+  </code>
+  setting.
+ </li>
+ <li>
+  Added new
+  <code>
+   AttributeValueMap
+  </code>
+  authproc filter.
+ </li>
+ <li>
+  Added attributemaps for OIDs from SIS (Swedish Standards Institute) and
+  for eduPersonUniqueId, eduPersonOrcid and sshPublicKey.
+ </li>
+ <li>
+  Added an option to specify metadata signing and digest algorithm
+  <code>
+   metadata.sign.algorithm
+  </code>
+  .
+ </li>
+ <li>
+  Added an option for regular expression matching of trusted.url.domains via new
+  <code>
+   trusted.url.regex
+  </code>
+  setting.
+ </li>
+ <li>
+  The
+  <code>
+   debug
+  </code>
+  option is more finegrained and allows one to specify whether
+  to log full SAML messages, backtraces or schema validations separately.
+ </li>
+ <li>
+  Added a check for the latest SimpleSAMLphp version on the front page.
+  It can be disabled via the new setting
+  <code>
+   admin.checkforupdates
+  </code>
+  .
+ </li>
+ <li>
+  Added a warning when there's a probable misconfiguration of PHP sessions.
+ </li>
+ <li>
+  Added ability to define additional attributes on ContactPerson elements
+  in metadata, e.g. for use in Sirtfi contacts.
+ </li>
+ <li>
+  Added option to set a secure flag also on the language cookie.
+ </li>
+ <li>
+  Added option to specify the base URL for the application protected.
+ </li>
+ <li>
+  Added support for PHP Memcached extension next to Memcache extension.
+ </li>
+ <li>
+  Added Redis as possible session storage mechanism.
+ </li>
+ <li>
+  Added support to specify custom metadata storage handlers.
+ </li>
+ <li>
+  Invalidate opcache after writing a file, so simpleSAMLphp works when
+  <code>
+   opcache.validate_timestamps
+  </code>
+  is disabled.
+ </li>
+ <li>
+  Metadata converter will deal properly with XML with leading whitespace.
+ </li>
+ <li>
+  Update
+  <code>
+   ldapwhoami()
+  </code>
+  call for PHP 7.3.
+ </li>
+ <li>
+  Made response POST page compatible with strict Content Security Policy on
+  calling webpage.
+ </li>
+ <li>
+  Updated Greek, Polish, Traditional Chinese and Spanish translations and
+  added Afrikaans.
+ </li>
+</ul>
+<p>
+ <code>
+  Bug fixes
+ </code>
+</p>
+<ul>
+ <li>
+  The deprecated OpenIdP has been removed from the metadata template.
+ </li>
+ <li>
+  Trailing slash is no longer required in
+  <code>
+   baseurlpath
+  </code>
+  .
+ </li>
+ <li>
+  Make redirections more resilient.
+ </li>
+ <li>
+  Fixed empty protocolSupportEnumeration in AttributeAuthorityDescriptor.
+ </li>
+ <li>
+  Other bug fixes and numerous documentation enhancements.
+ </li>
+ <li>
+  Fixed a bug in the Redis store that could lead to incorrect
+  <em>
+   duplicate assertion
+  </em>
+  errors.
+ </li>
+</ul>
+<p>
+ <code>
+  API and user interface
+ </code>
+</p>
+<ul>
+ <li>
+  Updated to Xmlseclibs 3.0.
+  Minimum PHP version is now 5.4, mcrypt requirement dropped.
+ </li>
+ <li>
+  Added a PSR-4 autoloader for modules. Now modules can declare their
+  classes under the SimpleSAML\Module namespace.
+ </li>
+ <li>
+  Added new hook for module loader exception handling
+  <code>
+   exception_handler
+  </code>
+  .
+ </li>
+ <li>
+  Expose RegistrationInfo in parsed SAML metadata.
+ </li>
+ <li>
+  The AuthnInstant is now available in the state array.
+ </li>
+ <li>
+  Introduced Twig templating for user interface.
+ </li>
+ <li>
+  Lots of refactoring, code cleanup and added many unit tests.
+ </li>
+</ul>
+<p>
+ <code>
+  adfs
+ </code>
+</p>
+<ul>
+ <li>
+  Fixed POST response form parameter encoding.
+ </li>
+</ul>
+<p>
+ <code>
+  authYubiKey
+ </code>
+</p>
+<ul>
+ <li>
+  Fixed PHP 7 support.
+ </li>
+</ul>
+<p>
+ <code>
+  authfacebook
+ </code>
+</p>
+<ul>
+ <li>
+  Updated to work with latest Facebook API.
+ </li>
+</ul>
+<p>
+ <code>
+  authlinkedin
+ </code>
+</p>
+<ul>
+ <li>
+  Added setting
+  <code>
+   attributes
+  </code>
+  to specify which attributes to request
+  from LinkedIn.
+ </li>
+</ul>
+<p>
+ <code>
+  authtwitter
+ </code>
+</p>
+<ul>
+ <li>
+  Added support for fetching the user's email address as attribute.
+ </li>
+</ul>
+<p>
+ <code>
+  consent
+ </code>
+</p>
+<ul>
+ <li>
+  Added support for regular expressions in
+  <code>
+   consent.disable
+  </code>
+  .
+ </li>
+</ul>
+<p>
+ <code>
+  core
+ </code>
+</p>
+<ul>
+ <li>
+  Added logging of
+  <code>
+   REMOTE_ADDR
+  </code>
+  on successful login.
+ </li>
+ <li>
+  <code>
+   AttributeMap
+  </code>
+  : allow fetching mapping files from modules.
+ </li>
+ <li>
+  <code>
+   ScopeAttribute
+  </code>
+  : added option
+  <code>
+   onlyIfEmpty
+  </code>
+  to add a scope only if
+   none was present.
+ </li>
+ <li>
+  <code>
+   AttributeCopy
+  </code>
+  : added option to copy to multiple destination attributes.
+ </li>
+</ul>
+<p>
+ <code>
+  cron
+ </code>
+</p>
+<ul>
+ <li>
+  Allow invocation via PHP command line interface.
+ </li>
+</ul>
+<p>
+ <code>
+  discopower
+ </code>
+</p>
+<ul>
+ <li>
+  Added South Africa tab.
+ </li>
+</ul>
+<p>
+ <code>
+  ldap
+ </code>
+</p>
+<ul>
+ <li>
+  Added
+  <code>
+   search.filter
+  </code>
+  setting to limit LDAP queries to a custom search
+  filter.
+ </li>
+ <li>
+  Added OpenLDAP support in AttributeAddUsersGroups.
+ </li>
+ <li>
+  Fixed for using non standard LDAP port numbers.
+ </li>
+ <li>
+  Fixed configuration option of whether to follow LDAP referrals.
+ </li>
+</ul>
+<p>
+ <code>
+  memcacheMonitor
+ </code>
+</p>
+<ul>
+ <li>
+  Fixed several missing strings.
+ </li>
+</ul>
+<p>
+ <code>
+  metarefresh
+ </code>
+</p>
+<ul>
+ <li>
+  Fixed several spurious PHP notices.
+ </li>
+</ul>
+<p>
+ <code>
+  multiauth
+ </code>
+</p>
+<ul>
+ <li>
+  Fixed selected source timeout.
+ </li>
+</ul>
+<p>
+ <code>
+  negotiate
+ </code>
+</p>
+<ul>
+ <li>
+  Fixed authentication failure on empty attributes-array.
+ </li>
+ <li>
+  Fixed PHP notices concerning missing arguments.
+ </li>
+</ul>
+<p>
+ <code>
+  oauth
+ </code>
+</p>
+<ul>
+ <li>
+  Updated library to improve support for OAuth 1.0 Revision A.
+ </li>
+</ul>
+<p>
+ <code>
+  radius
+ </code>
+</p>
+<ul>
+ <li>
+  Improved error messages.
+ </li>
+ <li>
+  Added parameter
+  <code>
+   realm
+  </code>
+  that will be suffixed to the username entered.
+ </li>
+</ul>
+<p>
+ <code>
+  saml
+ </code>
+</p>
+<ul>
+ <li>
+  Handle instead of reject assertions that do not contain a NameID.
+ </li>
+ <li>
+  Added options to configure
+  <code>
+   AllowCreate
+  </code>
+  and
+  <code>
+   SPNameQualifier
+  </code>
+  .
+ </li>
+ <li>
+  Added option
+  <code>
+   saml:NameID
+  </code>
+  to set the Subject NameID in a SAML AuthnRequest.
+ </li>
+ <li>
+  Added filter
+  <code>
+   FilterScopes
+  </code>
+  to remove values which are not properly scoped.
+ </li>
+ <li>
+  Make sure we log the user out before reauthenticating.
+ </li>
+ <li>
+  More robust handling of IDPList support in proxy mode.
+ </li>
+ <li>
+  Increased
+  <code>
+   _authSource
+  </code>
+  field length in Logout Store.
+ </li>
+ <li>
+  We now send the eduPersonTargetedID attribute in the correct
+  NameID XML form, instead of the incorrect simple string. We will also
+  refuse to parse an assertion with an eduPersonTargetedID in 'string' format.
+ </li>
+</ul>
+<p>
+ <code>
+  smartattributes
+ </code>
+</p>
+<ul>
+ <li>
+  Fix SmartName authproc that failed to load.
+ </li>
+</ul>
+<p>
+ <code>
+  sqlauth
+ </code>
+</p>
+<ul>
+ <li>
+  Fixed SQL schema for usergroups table.
+ </li>
+</ul>
+<h2 id="version-11417">
+ Version 1.14.17
+</h2>
+<p>
+ Released 2017-10-25
+</p>
+<ul>
+ <li>
+  Resolved a security issue with the SAML 1.1 Service Provider. See
+  <a href="https://simplesamlphp.org/security/201710-01">
+   SSPSA 201710-01
+  </a>
+  .
+ </li>
+</ul>
+<h2 id="version-11416">
+ Version 1.14.16
+</h2>
+<p>
+ Released 2017-09-04
+</p>
+<ul>
+ <li>
+  Resolved a security issue in the consentAdmin module. See
+  <a href="https://simplesamlphp.org/security/201709-01">
+   SSPSA 201709-01
+  </a>
+  .
+ </li>
+</ul>
+<h2 id="version-11415">
+ Version 1.14.15
+</h2>
+<p>
+ Released 2017-08-08
+</p>
+<ul>
+ <li>
+  Resolved a security issue with the creation and validation of time-limited tokens. See
+  <a href="https://simplesamlphp.org/security/201708-01">
+   SSPSA 201708-01
+  </a>
+  .
+ </li>
+ <li>
+  Fixed an issue with session handling that could lead to crashes after upgrading from earlier 1.14.x versions.
+ </li>
+ <li>
+  Fixed issue #557 with instances of SimpleSAMLphp installed from the repository as well as custom modules.
+ </li>
+ <li>
+  Fixed issue #648 to properly handle SAML responses being sent to reply the same request, but using different response IDs.
+ </li>
+ <li>
+  Fixed issues #612 and #618 with the mobile view of the web interface.
+ </li>
+ <li>
+  Fixed issue #639 related to IdP names containing special characters not being properly displayed by discopower.
+ </li>
+ <li>
+  Fixed issue #571 causing timeouts when using Active Directory as a backend.
+ </li>
+ <li>
+  Other minor fixes.
+ </li>
+</ul>
+<h2 id="version-11414">
+ Version 1.14.14
+</h2>
+<p>
+ Released 2017-05-05
+</p>
+<ul>
+ <li>
+  Resolved a security issue with in the authcrypt module (Htpasswd authentication source) and in SimpleSAMLphp's session validation. See
+  <a href="https://simplesamlphp.org/security/201705-01">
+   SSPSA 201705-01
+  </a>
+  .
+ </li>
+ <li>
+  Resolved a security issue with in the multiauth module. See
+  <a href="https://simplesamlphp.org/security/201704-02">
+   SSPSA 201704-02
+  </a>
+  .
+ </li>
+</ul>
+<h2 id="version-11413">
+ Version 1.14.13
+</h2>
+<p>
+ Released 2017-04-27
+</p>
+<ul>
+ <li>
+  Resolved a security issue with unauthenticated encryption in the SimpleSAML\Utils\Crypto class. See
+  <a href="https://simplesamlphp.org/security/201704-01">
+   SSPSA 201704-01
+  </a>
+  .
+ </li>
+ <li>
+  Added requirement for the Multibyte String PHP extension and the corresponding checks.
+ </li>
+ <li>
+  Set a default name for SimpleSAMLphp sessions in the configuration template for the PHP session handler.
+ </li>
+</ul>
+<h2 id="version-11412">
+ Version 1.14.12
+</h2>
+<p>
+ Released 2017-03-30
+</p>
+<ul>
+ <li>
+  Resolved a security issue in the authcrypt module (Htpasswd authentication source) and in SimpleSAMLphp's session validation. See
+  <a href="https://simplesamlphp.org/security/201703-01">
+   SSPSA 201703-01
+  </a>
+  .
+ </li>
+ <li>
+  Resolved a security issue with IV generation in the
+  <code>
+   SimpleSAML\Utils\Crypto::_aesEncrypt()
+  </code>
+  method. See
+  <a href="https://simplesamlphp.org/security/201703-02">
+   SSPSA 201703-02
+  </a>
+  .
+ </li>
+ <li>
+  Fixed an issue with the authfacebook module, broken after a change in Facebook's API.
+ </li>
+ <li>
+  Fixed an issue in the discopower module that ignored the
+  <code>
+   hide.from.discovery
+  </code>
+  metadata option.
+ </li>
+ <li>
+  Fixed an issue with trusted URLs validation that prevented a URL from being accepted if a standard port was explicitly included but not specified in the configuration.
+ </li>
+ <li>
+  Fixed an issue that prevented detecting a Memcache server being down when fetching Memcache statistics.
+ </li>
+ <li>
+  Fixed an issue with operating system detection that made SimpleSAMLphp identify OSX as Windows.
+ </li>
+</ul>
+<h2 id="version-11411">
+ Version 1.14.11
+</h2>
+<p>
+ Released 2016-12-12
+</p>
+<ul>
+ <li>
+  Resolved a security issue involving signature validation of SAML 1.1 messages. See
+  <a href="https://simplesamlphp.org/security/201612-02">
+   SSPSA 201612-02
+  </a>
+  .
+ </li>
+ <li>
+  Fixed an issue when the user identifier used to generate a persistent NameID was missing due to a misconfiguration, causing SimpleSAMLphp to generate the nameID based on the null data type.
+ </li>
+ <li>
+  Fixed an issue when persistent NameIDs were generated out of attributes with empty strings or multiple values.
+ </li>
+ <li>
+  Fixed issue #530. An empty SubjectConfirmation element was causing SimpleSAMLphp to crash. On the other hand, invalid SubjectConfirmation elements were ignored in PHP 7.0.
+ </li>
+</ul>
+<h2 id="version-11410">
+ Version 1.14.10
+</h2>
+<p>
+ Released 2016-12-02
+</p>
+<ul>
+ <li>
+  Resolved a security issue involving signature validation. See
+  <a href="https://simplesamlphp.org/security/201612-01">
+   SSPSA 201612-01
+  </a>
+  .
+ </li>
+ <li>
+  Fixed issue #517. A misconfigured session when acting as a service provider was leading to a PHP fatal error.
+ </li>
+ <li>
+  Fixed issue #519. Prevent persistent NameIDs from being generated from empty strings.
+ </li>
+ <li>
+  Fixed issue #520. It was impossible to verify Apache's custom MD5 passwords when using the Htpasswd authentication source.
+ </li>
+ <li>
+  Fixed issue #523. Avoid problems caused by different line-ending strategies in the project files.
+ </li>
+ <li>
+  Other minor fixes and enhancements.
+ </li>
+</ul>
+<h2 id="version-1149">
+ Version 1.14.9
+</h2>
+<p>
+ Released 2016-11-10
+</p>
+<ul>
+ <li>
+  Fixed an issue that resulted in PHP 7 errors being masked.
+ </li>
+ <li>
+  Fixed the smartattributes:SmartName authentication processing filter.
+ </li>
+ <li>
+  Fixed issue #500. When parsing metadata, two 'attributes.required' options were generated.
+ </li>
+ <li>
+  Fixed the list of requirements in composer, the documentation, and the configuration page.
+ </li>
+ <li>
+  Fixed issue #479. There were several minor issues with XHTML compliance.
+ </li>
+ <li>
+  Other minor fixes.
+ </li>
+</ul>
+<h2 id="version-1148">
+ Version 1.14.8
+</h2>
+<p>
+ Released 2016-08-23
+</p>
+<ul>
+ <li>
+  Fixed an issue in AuthMemCookie causing it to crash when an attribute received contains XML as its value.
+ </li>
+ <li>
+  Fixed an issue in AuthMemCookie that made it impossible to set its own cookie.
+ </li>
+ <li>
+  Fixed an issue when acting as a proxy and receiving attributes that contain XML as their values.
+ </li>
+ <li>
+  Fixed an issue that led to incorrect URL guessing when a script is invoked with a URI that doesn't include its name.
+ </li>
+</ul>
+<h2 id="version-1147">
+ Version 1.14.7
+</h2>
+<p>
+ Released 2016-08-01
+</p>
+<ul>
+ <li>
+  Fixed issue #424. Attributes containing XML as their values (like eduPersonTargetedID) were empty.
+ </li>
+</ul>
+<h2 id="version-1146">
+ Version 1.14.6
+</h2>
+<p>
+ Released 2016-07-18
+</p>
+<ul>
+ <li>
+  Fixed issue #418. SimpleSAMLphp was unable to obtain the current URL correctly when invoked from third-party applications.
+ </li>
+</ul>
+<h2 id="version-1145">
+ Version 1.14.5
+</h2>
+<p>
+ Released 2016-07-12
+</p>
+<ul>
+ <li>
+  Fixed several issues with session handling when cookies couldn't be set for some reason.
+ </li>
+ <li>
+  Fixed an issue that caused wrong URLs to be generated in the web interface under certain circumstances.
+ </li>
+ <li>
+  Fixed the exception handler to be compatible with PHP 7.
+ </li>
+ <li>
+  Fixed an issue in the dropdown IdP selection page that prevented it to work with PHP 5.3.
+ </li>
+ <li>
+  Fixed compatibility with Windows machines.
+ </li>
+ <li>
+  Fixed an issue with the PDO and Serialize metadata storage handlers.
+ </li>
+ <li>
+  Fixed the authwindowslive module. It stopped working after the former API was discontinued.
+ </li>
+ <li>
+  Other minor issues and fixes.
+ </li>
+</ul>
+<h2 id="version-1144">
+ Version 1.14.4
+</h2>
+<p>
+ Released 2016-06-08
+</p>
+<ul>
+ <li>
+  Fixed two minor security issues that allowed malicious URLs to be presented to the user in a link. Reported by John Page.
+ </li>
+ <li>
+  Fixed issue #366. The LDAP class was trying to authenticate even when no password was provided (using the CAS module).
+ </li>
+ <li>
+  Fixed issue #401. The authenticate.php script was printing exceptions instead of throwing them for the exception handler to capture them.
+ </li>
+ <li>
+  Fixed issue #399. The size limitation of the TEXT type in MySQL was creating problems in certain setups.
+ </li>
+ <li>
+  Fixed issue #5. Incoherent population of the $_SERVER variable was creating broken links when running PHP with FastCGI.
+ </li>
+ <li>
+  Other typos and minor bugs: #389, #392.
+ </li>
+</ul>
+<h2 id="version-1143">
+ Version 1.14.3
+</h2>
+<p>
+ Released 2016-04-19
+</p>
+<ul>
+ <li>
+  Fixed a bug in the login form that prevented the login button to be displayed in mobile devices.
+ </li>
+ <li>
+  Resolved an issue in the PHP session handler that made it impossible to use PHP sessions simultaneously with other applications.
+ </li>
+</ul>
+<h2 id="version-1142">
+ Version 1.14.2
+</h2>
+<p>
+ Released 2016-03-11
+</p>
+<ul>
+ <li>
+  Use stable versions of the externalized modules to prevent possible issues when further developing them.
+ </li>
+</ul>
+<h2 id="version-1141">
+ Version 1.14.1
+</h2>
+<p>
+ Released 2016-03-08
+</p>
+<ul>
+ <li>
+  Resolved an information leakage security issue in the sanitycheck module. See
+  <a href="/security/201603-01.html">
+   SSPSA 201603-01
+  </a>
+  .
+ </li>
+</ul>
+<h2 id="version-1140">
+ Version 1.14.0
+</h2>
+<p>
+ Released 2016-02-15
+</p>
+<h3 id="security">
+ Security
+</h3>
+<ul>
+ <li>
+  Resolved a security issue with multiple modules that were not validating the URLs they were redirecting to.
+ </li>
+ <li>
+  Added a security check to disable loading external entities in XML documents.
+ </li>
+ <li>
+  Enforced admin access to the metadata converter tool.
+ </li>
+ <li>
+  Changed
+  <code>
+   xmlseclibs
+  </code>
+  dependency to point to
+  <code>
+   robrichards/xmlseclibs
+  </code>
+  version 1.4.1.
+ </li>
+</ul>
+<p>
+ <code>
+  New features
+ </code>
+</p>
+<ul>
+ <li>
+  Allow setting the location of the configuration directory with an environment variable.
+ </li>
+ <li>
+  Added support for the Metadata Query Protocol by means of the new MDX metadata storage handler.
+ </li>
+ <li>
+  Added support for the Sender-Vouches method.
+ </li>
+ <li>
+  Added support for WantAssertionsSigned and AuthnRequestsSigned in SAML 2.0 SP metadata.
+ </li>
+ <li>
+  Added support for file uploads in the metadata converter.
+ </li>
+ <li>
+  Added support for setting the prefix for Memcache keys.
+ </li>
+ <li>
+  Added support for the Hide From Discovery REFEDS Entity Category.
+ </li>
+ <li>
+  Added support for the eduPersonAssurance attribute.
+ </li>
+ <li>
+  Added support for the full SCHAC 1.5.0 schema.
+ </li>
+ <li>
+  Added support for UNIX sockets when configuring memcache servers.
+ </li>
+ <li>
+  Added the SAML NameID to the attributes status page, when available.
+ </li>
+ <li>
+  Added attribute definitions for schacGender (schac), sisSchoolGrade and sisLegalGuardianFor (skolfederation.se).
+ </li>
+ <li>
+  Attributes required in metadata are now taken into account when parsing.
+ </li>
+</ul>
+<p>
+ <code>
+  Bug fixes
+ </code>
+</p>
+<ul>
+ <li>
+  Fixed an issue with friendly names in the attributes released.
+ </li>
+ <li>
+  Fixed an issue with memcache that would result in a push for every fetch, when several servers configured.
+ </li>
+ <li>
+  Fixed an issue with memcache that would result in an endless loop if all servers are down.
+ </li>
+ <li>
+  Fixed an issue with HTML escaping in error reports.
+ </li>
+ <li>
+  Fixed an issue with the 'admin.protectmetadata' option not being enforced for SP metadata.
+ </li>
+ <li>
+  Fixed an issue with SAML 1.X SSO authentications that removed the NameID of the subject from available data.
+ </li>
+ <li>
+  Fixed an issue with the login form that resulted in a
+  <code>
+   NOSTATE
+  </code>
+  error if the user clicked the login button twice.
+ </li>
+ <li>
+  Fixed an issue with replay detection in IdP-initiated flows.
+ </li>
+ <li>
+  Fixed an issue with SessionNotOnOrAfter that kept moving forward in the future with every SSO authentication.
+ </li>
+ <li>
+  Fixed an issue with the session cookie being set twice for the first time.
+ </li>
+ <li>
+  Fixed an issue with the XXE attack prevention mechanism conflicting with other applications running in the same server.
+ </li>
+ <li>
+  Fixed an issue that prevented the SAML 1.X IdP to restart when the session is lost.
+ </li>
+ <li>
+  Fixed an issue that prevented classes using namespaces to be loaded automatically.
+ </li>
+ <li>
+  Fixed an issue that prevented certain metadata signatures to be verified (fixed upstream in
+  <code>
+   xmlseclibs
+  </code>
+  ).
+ </li>
+ <li>
+  Other bug fixes and numerous documentation enhancements.
+ </li>
+</ul>
+<p>
+ <code>
+  API and user interface
+ </code>
+</p>
+<ul>
+ <li>
+  Added a new and simple database class to serve as PDO interface for all the database needs.
+ </li>
+ <li>
+  Added the possibility to copy metadata and other elements by clicking a button in the web interface.
+ </li>
+ <li>
+  Removed the old, unused
+  <code>
+   pack
+  </code>
+  installer tool.
+ </li>
+ <li>
+  Improved usability by telling users the endpoints are not to be accessed directly.
+ </li>
+ <li>
+  Moved the hostname, port and protocol diagnostics tool to the admin directory.
+ </li>
+ <li>
+  Several classes and functions deprecated.
+ </li>
+ <li>
+  Changed the signature of several functions.
+ </li>
+ <li>
+  Deleted old and deprecated code, interfaces and endpoints.
+ </li>
+ <li>
+  Deleted old jQuery remnants.
+ </li>
+ <li>
+  Deleted the undocumented dynamic XML metadata storage handler.
+ </li>
+ <li>
+  Deleted the backwards-compatible authentication source.
+ </li>
+ <li>
+  Updated jQuery to the latest 1.8.X version.
+ </li>
+ <li>
+  Updated translations.
+ </li>
+</ul>
+<p>
+ <code>
+  authcrypt
+ </code>
+</p>
+<ul>
+ <li>
+  Added whitehat101/apr1-md5 as a dependency for Apache htpasswd.
+ </li>
+</ul>
+<p>
+ <code>
+  authX509
+ </code>
+</p>
+<ul>
+ <li>
+  Added an authentication processing filter to warn about certificate expiration.
+ </li>
+</ul>
+<p>
+ <code>
+  ldap
+ </code>
+</p>
+<ul>
+ <li>
+  Added a new
+  <code>
+   port
+  </code>
+  configuration option.
+ </li>
+ <li>
+  Better error reporting.
+ </li>
+</ul>
+<p>
+ <code>
+  metaedit
+ </code>
+</p>
+<ul>
+ <li>
+  Removed the
+  <code>
+   admins
+  </code>
+  configuration option.
+ </li>
+</ul>
+<p>
+ <code>
+  metarefresh
+ </code>
+</p>
+<ul>
+ <li>
+  Added the possibility to specify which types of entities to load.
+ </li>
+ <li>
+  Added the possibility to verify metadata signatures by using the public key present in a certificate.
+ </li>
+ <li>
+  Fix
+  <code>
+   certificate
+  </code>
+  precedence over
+  <code>
+   fingerprint
+  </code>
+  in the configuration options when verifying metadata signatures.
+ </li>
+</ul>
+<p>
+ <code>
+  smartnameattribute
+ </code>
+</p>
+<ul>
+ <li>
+  This module was deprecated long time ago and has now been removed. Use the
+  <code>
+   smartattributes
+  </code>
+  module instead.
+ </li>
+</ul>
+<h2 id="version-1132">
+ Version 1.13.2
+</h2>
+<p>
+ Released 2014-11-04
+</p>
+<ul>
+ <li>
+  Solved performance issues when processing large metadata sets.
+ </li>
+ <li>
+  Fix an issue in the web interface when only one language is enabled.
+ </li>
+</ul>
+<h2 id="version-1131">
+ Version 1.13.1
+</h2>
+<p>
+ Released 2014-10-27
+</p>
+<ul>
+ <li>
+  Solved an issue with empty fields in metadata to cause SimpleSAMLphp to fail with a translation error. Issues #97 and #114.
+ </li>
+ <li>
+  Added Basque language to the list of known languages. Issue #117.
+ </li>
+ <li>
+  Optimized the execution of redirections by removing an additional, unnecessary function call.
+ </li>
+ <li>
+  Solved an issue that caused SimpleSAMLphp to fail when the RelayState parameter was empty or missing on an IdP-initiated authentication. Issues #99 and # 104.
+ </li>
+ <li>
+  Fixed a certificate check for SubjectConfirmations with Holder of Key methods.
+ </li>
+</ul>
+<h2 id="version-113">
+ Version 1.13
+</h2>
+<p>
+ Released 2014-09-25.
+</p>
+<ul>
+ <li>
+  Added the 'remember me' option to the default login page.
+ </li>
+ <li>
+  Improved error reporting.
+ </li>
+ <li>
+  Added a new 'logging.format' option to control the formatting of the logs.
+ </li>
+ <li>
+  Added support for the 'objectguid' binary attribute in LDAP modules.
+ </li>
+ <li>
+  Added support for custom search and private attributes read credentials in all LDAP modules.
+ </li>
+ <li>
+  Added support for the WantAuthnRequestsSigned option in generated SAML metadata.
+ </li>
+ <li>
+  Tracking identifiers are no longer generated based on MD5.
+ </li>
+ <li>
+  Several functions, classes and interfaces marked as deprecated.
+ </li>
+ <li>
+  Bug fixes and documentation enhancements.
+ </li>
+ <li>
+  Updated translations.
+ </li>
+ <li>
+  New language: Basque.
+ </li>
+</ul>
+<p>
+ <code>
+  adfs
+ </code>
+</p>
+<ul>
+ <li>
+  Honour the 'wreply' parameter when redirecting.
+ </li>
+</ul>
+<p>
+ <code>
+  aggregator
+ </code>
+</p>
+<ul>
+ <li>
+  Fixed an issue when regenerating metadata from certain metadata sources.
+ </li>
+</ul>
+<p>
+ <code>
+  discopower
+ </code>
+</p>
+<ul>
+ <li>
+  Bug fix.
+ </li>
+</ul>
+<p>
+ <code>
+  expirycheck
+ </code>
+</p>
+<ul>
+ <li>
+  Translations are now possible for this module.
+ </li>
+</ul>
+<p>
+ <code>
+  metarefresh
+ </code>
+</p>
+<ul>
+ <li>
+  Use cached metadata if something goes wrong when refreshing feeds.
+ </li>
+</ul>
+<p>
+ <code>
+  openidProvider
+ </code>
+</p>
+<ul>
+ <li>
+  Fix for compatibility with versions of PHP greater or equal to 5.4.
+ </li>
+</ul>
+<p>
+ <code>
+  saml
+ </code>
+</p>
+<ul>
+ <li>
+  Make it possible to add friendly names to attributes in SP metadata.
+ </li>
+ <li>
+  The RSA_1.5 (RSA with PKCS#1 v1.5 padding) encryption algorithm is now blacklisted by default for security reasons.
+ </li>
+ <li>
+  Stop checking the 'IDPList' parameter in IdPs.
+ </li>
+ <li>
+  Solved an issue that allowed bypassing authentication status checks when presenting an 'IDPList' parameter.
+ </li>
+ <li>
+  The 'Destination' attribute is now always sent in logout responses issued by an SP.
+ </li>
+</ul>
+<p>
+ <code>
+  sqlauth
+ </code>
+</p>
+<ul>
+ <li>
+  Updated documentation to remove bad practice with regard to password storage.
+ </li>
+</ul>
+<h2 id="version-112">
+ Version 1.12
+</h2>
+<p>
+ Released 2014-03-24.
+</p>
+<ul>
+ <li>
+  Removed example authproc filters from configuration template.
+ </li>
+ <li>
+  Stopped using the 'target-densitydpi' option removed from WebKit.
+ </li>
+ <li>
+  The SimpleSAML_Utilities::generateRandomBytesMTrand() function is now deprecated.
+ </li>
+ <li>
+  Removed code for compatibility with PHP versions older than 5.3.
+ </li>
+ <li>
+  Removed the old interface of SimpleSAML_Session.
+ </li>
+ <li>
+  Fixed a memory leak in SimpleSAML_Session regarding serialization and unserialization.
+ </li>
+ <li>
+  Support for RegistrationInfo (MDRPI) elements in the metadata of identity and service providers.
+ </li>
+ <li>
+  Renamed SimpleSAML_Utilities::parseSAML2Time() function to xsDateTimeToTimestamp().
+ </li>
+ <li>
+  New SimpleSAML_Utilities::redirectTrustedURL() and redirectUntrustedURL() functions.
+ </li>
+ <li>
+  Deprecated the SimpleSAML_Utilities::redirect() function.
+ </li>
+ <li>
+  Improved Russian translation.
+ </li>
+ <li>
+  Added Czech translation.
+ </li>
+ <li>
+  New 'errorreporting' option to enable or disable error reporting feature.
+ </li>
+ <li>
+  Example certificate removed.
+ </li>
+ <li>
+  New SimpleSAML_Configuration::getEndpointPrioritizedByBinding() function.
+ </li>
+ <li>
+  PHP 5.3 or newer required.
+ </li>
+ <li>
+  Started using Composer as dependency manager.
+ </li>
+ <li>
+  Detached the basic SAML2 library and moved to a standalone library in GitHub.
+ </li>
+ <li>
+  Added support for exporting shibmd:Scope metadata with regular expressions.
+ </li>
+ <li>
+  Remember me option in the IdP.
+ </li>
+ <li>
+  New SimpleSAML_Utilities::setCookie wrapper.
+ </li>
+ <li>
+  Custom HTTP codes on error.
+ </li>
+ <li>
+  Added Romanian translation.
+ </li>
+ <li>
+  Bug fixes and documentation enhancements.
+ </li>
+</ul>
+<p>
+ <code>
+  adfs
+ </code>
+</p>
+<ul>
+ <li>
+  Support for exporting metadata.
+ </li>
+</ul>
+<p>
+ <code>
+  aggregator
+ </code>
+</p>
+<ul>
+ <li>
+  Support for RegistrationInfo (MDRPI) elements in the metadata.
+ </li>
+ <li>
+  Fix for HTTP header injection vulnerability.
+ </li>
+ <li>
+  Fix for directory traversal vulnerability.
+ </li>
+</ul>
+<p>
+ <code>
+  aggregator2
+ </code>
+</p>
+<ul>
+ <li>
+  Support for RegistrationInfo (MDRPI) elements in the metadata.
+ </li>
+</ul>
+<p>
+ <code>
+  aselect
+ </code>
+</p>
+<ul>
+ <li>
+  License changed to LGPL 2.1.
+ </li>
+</ul>
+<p>
+ <code>
+  authfacebook
+ </code>
+</p>
+<ul>
+ <li>
+  Updated extlibinc to 3.2.2.
+ </li>
+</ul>
+<p>
+ <code>
+  authtwitter
+ </code>
+</p>
+<ul>
+ <li>
+  Added 'force_login' configuration option.
+ </li>
+</ul>
+<p>
+ <code>
+  cdc
+ </code>
+</p>
+<ul>
+ <li>
+  Bugfix related to request validation.
+ </li>
+</ul>
+<p>
+ <code>
+  core
+ </code>
+</p>
+<ul>
+ <li>
+  The AttributeAlter filter no longer throws an exception if the attribute was not found.
+ </li>
+ <li>
+  Support for removal of values in the AttributeAlter filter, with '%remove' flag.
+ </li>
+ <li>
+  Support for empty strings and NULL values as a replacement in the AttributeAlter filter.
+ </li>
+ <li>
+  Bugfixes in the AttributeAlter filter.
+ </li>
+ <li>
+  Support for NULL attribute values.
+ </li>
+ <li>
+  Support for limiting values and not only attributes in the AttributeLimit filter.
+ </li>
+ <li>
+  Log a message when a user authenticates successfully.
+ </li>
+ <li>
+  Added %duplicate flag to AttributeMap, to leave original names in place when using map file.
+ </li>
+ <li>
+  Fix infinite loop when overwriting attributes with AttributeMap.
+ </li>
+</ul>
+<p>
+ <code>
+  discopower
+ </code>
+</p>
+<ul>
+ <li>
+  Bugfix for incorrect handling of the 'idpdisco.extDiscoveryStorage' option.
+ </li>
+</ul>
+<p>
+ <code>
+  ldap
+ </code>
+</p>
+<ul>
+ <li>
+  Support for configuring the duplicate attribute handling policy in AttributeAddFromLDAP, 'attribute.policy' option.
+ </li>
+ <li>
+  Support for binary attributes in the AttributeAddFromLDAP filter.
+ </li>
+ <li>
+  Support for multiple attributes in the AttributeAddFromLDAP filter.
+ </li>
+</ul>
+<p>
+ <code>
+  metarefresh
+ </code>
+</p>
+<ul>
+ <li>
+  Support for specifying permissions of the resulting files.
+ </li>
+</ul>
+<p>
+ <code>
+  negotiate
+ </code>
+</p>
+<ul>
+ <li>
+  Added support for "attributes"-parameter.
+ </li>
+</ul>
+<p>
+ <code>
+  oauth
+ </code>
+</p>
+<ul>
+ <li>
+  Bugfix related to authorize URL building.
+ </li>
+</ul>
+<p>
+ <code>
+  openidProvider
+ </code>
+</p>
+<ul>
+ <li>
+  Support for SReg and AX requests.
+ </li>
+</ul>
+<p>
+ <code>
+  saml
+ </code>
+</p>
+<ul>
+ <li>
+  Send 'isPassive' in passive discovery requests.
+ </li>
+ <li>
+  Support for generating NameIDFormat in service providers with NameIDPolicy set.
+ </li>
+ <li>
+  Support for AttributeConsumingService and AssertionConsumingServiceIndex.
+ </li>
+ <li>
+  Support for the HTTP-POST binding in WebSSO profile.
+ </li>
+ <li>
+  Fix for entity ID validation problems when using the IDPList configuration option.
+ </li>
+</ul>
+<p>
+ <code>
+  smartattributes
+ </code>
+</p>
+<ul>
+ <li>
+  New 'add_candidate' option to allow the user to decide whether to prepend or not the candidate attribute name to the resulting value.
+ </li>
+</ul>
+<p>
+ <code>
+  statistics
+ </code>
+</p>
+<ul>
+ <li>
+  Bugfix in statistics aggregator.
+ </li>
+</ul>
+<h2 id="version-111">
+ Version 1.11
+</h2>
+<p>
+ Released 2013-06-05.
+</p>
+<ul>
+ <li>
+  Support for RSA_SHA256, RSA_SHA384 and RSA_SHA512 in HTTP Redirect binding.
+ </li>
+ <li>
+  Support for RegistrationInfo element in SAML 2.0 metadata.
+ </li>
+ <li>
+  Support for AuthnRequestsSigned and WantAssertionsSigned when generating metadata.
+ </li>
+ <li>
+  Third party OpenID library updated with a bugfix.
+ </li>
+ <li>
+  Added the Name attribute to EntitiesDescriptor.
+ </li>
+ <li>
+  Removed deprecated option 'session.requestcache' from config-template.
+ </li>
+ <li>
+  Workaround for SSL SNI extension not being correctly set.
+ </li>
+ <li>
+  New language cookie and parameter config options.
+ </li>
+ <li>
+  Add 'module.enable' configuration option for enabling/disabling modules.
+ </li>
+ <li>
+  Check for existence of memcache extension.
+ </li>
+ <li>
+  Initial support for limiting redirects to trusted hosts.
+ </li>
+ <li>
+  Demo example now shows both friendly and canonical name of the attributes.
+ </li>
+ <li>
+  Other minor fixes for bugs and typos.
+ </li>
+ <li>
+  Several translations updated.
+ </li>
+ <li>
+  Added Latvian translation.
+ </li>
+</ul>
+<p>
+ <code>
+  authorize
+ </code>
+</p>
+<ul>
+ <li>
+  Added a logout link to the 403 error page.
+ </li>
+</ul>
+<p>
+ <code>
+  authtwitter
+ </code>
+</p>
+<ul>
+ <li>
+  Updated API endpoint for version 1.1.
+ </li>
+ <li>
+  Fix for oauth_verifier parameter.
+ </li>
+</ul>
+<p>
+ <code>
+  authX509
+ </code>
+</p>
+<ul>
+ <li>
+  ldapusercert validation made optional.
+ </li>
+</ul>
+<p>
+ <code>
+  consent
+ </code>
+</p>
+<ul>
+ <li>
+  Added support for SQLite databases.
+ </li>
+</ul>
+<p>
+ <code>
+  core
+ </code>
+</p>
+<ul>
+ <li>
+  Fix error propagation in UserPass(Org)Base authentication sources.
+ </li>
+ <li>
+  MCrypt module marked as required.
+ </li>
+</ul>
+<p>
+ <code>
+  discopower
+ </code>
+</p>
+<ul>
+ <li>
+  Get the name of an IdP from mdui:DisplayName.
+ </li>
+</ul>
+<p>
+ <code>
+  expirycheck
+ </code>
+</p>
+<ul>
+ <li>
+  PHP 5.4 compatibility fixes.
+ </li>
+</ul>
+<p>
+ <code>
+  InfoCard
+ </code>
+</p>
+<ul>
+ <li>
+  PHP 5.4 compatibility fixes.
+ </li>
+</ul>
+<p>
+ <code>
+  ldap
+ </code>
+</p>
+<ul>
+ <li>
+  Added an option to disable following referrals.
+ </li>
+</ul>
+<p>
+ <code>
+  metarefresh
+ </code>
+</p>
+<ul>
+ <li>
+  Improved help message.
+ </li>
+</ul>
+<p>
+ <code>
+  oauth
+ </code>
+</p>
+<ul>
+ <li>
+  PHP 5.4 compatibility fixes.
+ </li>
+</ul>
+<p>
+ <code>
+  saml
+ </code>
+</p>
+<ul>
+ <li>
+  Verify that the issuer of an AuthnResponse is the same entity ID we sent a request to.
+ </li>
+ <li>
+  Added separate option to enable Holder of Key support on SP.
+ </li>
+ <li>
+  Fix for HoK profile metadata.
+ </li>
+ <li>
+  New filter for storing persistent NameID in eduPersonTargetedID attribute.
+ </li>
+ <li>
+  Support for UIInfo elements.
+ </li>
+ <li>
+  Bugfix for SAML SP metadata signing.
+ </li>
+ <li>
+  Ignore default technical contact.
+ </li>
+ <li>
+  Support for MDUI elements in SP metadata.
+ </li>
+ <li>
+  Support for more contact types in SP metadata.
+ </li>
+ <li>
+  New information in statistics with the time it took for a login to happen.
+ </li>
+</ul>
+<p>
+ <code>
+  sanitycheck
+ </code>
+</p>
+<ul>
+ <li>
+  Configuration file made optional.
+ </li>
+</ul>
+<p>
+ <code>
+  smartattributes
+ </code>
+</p>
+<ul>
+ <li>
+  New filter: smartattributes:SmartID.
+ </li>
+ <li>
+  New filter: smartattributes:SmartName.
+ </li>
+</ul>
+<p>
+ <code>
+  smartnameattribute
+ </code>
+</p>
+<ul>
+ <li>
+  Deprecated.
+ </li>
+</ul>
+<p>
+ <code>
+  wsfed
+ </code>
+</p>
+<ul>
+ <li>
+  Support for SLO in WS-Fed.
+ </li>
+</ul>
+<h2 id="version-110">
+ Version 1.10
+</h2>
+<p>
+ Released 2012-09-25.
+</p>
+<ul>
+ <li>
+  Add support for storing data without expiration timestamp in memcache.
+ </li>
+ <li>
+  Fix for reauthentication in old shib13 authentication handler.
+ </li>
+ <li>
+  Clean up executable-permissions on files.
+ </li>
+ <li>
+  Change encryption to use the rsa-oaep-mgf1p key padding instead of PKCS 1.5.
+ </li>
+ <li>
+  Update translations.
+ </li>
+ <li>
+  Added Serbian translation.
+ </li>
+</ul>
+<p>
+ <code>
+  core
+ </code>
+</p>
+<ul>
+ <li>
+  <code>
+   core:UserPass(Org)Base
+  </code>
+  : Add "remember username" option.
+ </li>
+</ul>
+<p>
+ <code>
+  papi
+ </code>
+</p>
+<ul>
+ <li>
+  New authentication module supporting PAPI protocol.
+ </li>
+</ul>
+<p>
+ <code>
+  radius
+ </code>
+</p>
+<ul>
+ <li>
+  New feature to configure multiple radius servers.
+ </li>
+</ul>
+<p>
+ <code>
+  riak
+ </code>
+</p>
+<ul>
+ <li>
+  New module for storing sessions in a Riak database.
+ </li>
+</ul>
+<p>
+ <code>
+  saml
+ </code>
+</p>
+<ul>
+ <li>
+  Add support for overriding SAML 2.0 SP authentication request generation.
+ </li>
+ <li>
+  Add support for blacklisting encryption algorithms.
+ </li>
+</ul>
+<h2 id="version-192">
+ Version 1.9.2
+</h2>
+<p>
+ Released 2012-08-29
+</p>
+<ul>
+ <li>
+  Fix related to the security issue addressed in version 1.9.1.
+ </li>
+</ul>
+<h2 id="version-191">
+ Version 1.9.1
+</h2>
+<p>
+ Released 2012-08-02.
+</p>
+<ul>
+ <li>
+  Fix for a new attack against PKCS 1.5 in XML encryption.
+ </li>
+</ul>
+<h2 id="version-19">
+ Version 1.9
+</h2>
+<p>
+ Released 2012-06-13.
+</p>
+<ul>
+ <li>
+  Restructure error templates to share a common base template.
+ </li>
+ <li>
+  Warnings about URL length limits from Suhosin PHP extension.
+ </li>
+ <li>
+  New base class for errors from authentication sources.
+ </li>
+ <li>
+  Support for overriding URL generation when behind a reverse proxy.
+ </li>
+ <li>
+  New languages: Russian, Estonian, Hebrew, Chinese, Indonesian
+ </li>
+ <li>
+  Add getAuthSource()-function to SimpleSAML_Auth_Simple.
+ </li>
+ <li>
+  Add reauthenticate()-function to SimpleSAML_Auth_Source. (Is called when the IdP receives a new authentication request.)
+ </li>
+ <li>
+  iframe logout: Make it possible to skip the "question-page" for code on the IdP.
+ </li>
+ <li>
+  RTL text support.
+ </li>
+ <li>
+  Make SimpleSAMLAuthToken cookie name configurable.
+ </li>
+ <li>
+  Block writing secure cookies when we are on http.
+ </li>
+ <li>
+  Fix state information being unavailable to UserPassOrgBase authentication templates.
+ </li>
+ <li>
+  Make it possible to send POST-messages to http-endpoints without triggering a warning when the IdP supports both http and https.
+ </li>
+ <li>
+  Add IPv6-support to the SimpleSAML_Utilities::ipCIDRcheck()-function.
+ </li>
+ <li>
+  Do not allow users to switch to a language that is not enabled.
+ </li>
+ <li>
+  iframe logout: Add a per-SP timeout option.
+ </li>
+ <li>
+  SimpleSAML_Auth_LDAP: Better logging of the cause of exceptions.
+ </li>
+ <li>
+  SimpleSAML_Auth_State: Add $allowMissing-parameter to loadState().
+ </li>
+ <li>
+  module.php: More strict URL parsing.
+ </li>
+ <li>
+  Add support for hashed admin passwords.
+ </li>
+ <li>
+  Use openssl_random_pseudo_bytes() for better cross-platform random number generation.
+ </li>
+ <li>
+  Add the current hostname to the error reports.
+ </li>
+ <li>
+  Make the lifetime of SimpleSAML_Auth_State "state-arrays" configurable (via the
+  <code>
+   session.state.timeout
+  </code>
+  -option).
+ </li>
+ <li>
+  SimpleSAML_Auth_State: Add cloneState()-function.
+ </li>
+ <li>
+  Fix log levels used on Windows.
+ </li>
+ <li>
+  SimpleSAML_Auth_LDAP: Clean up some unused code.
+ </li>
+ <li>
+  core:UserPassOrgBase: Add selected organization to the authentication data that is stored in the session.
+ </li>
+ <li>
+  Do not warn about missing Radius and LDAP PHP extensions unless those modules are enabled.
+ </li>
+ <li>
+  Support for overriding the logic to determine the language.
+ </li>
+ <li>
+  Avoid crashes due to deprecation-warnings issued by PHP.
+ </li>
+ <li>
+  Use case-insensitive matching of language codes.
+ </li>
+ <li>
+  Add X-Frame-Options to prevent other sites from loading the SSP-pages in an iframe.
+ </li>
+ <li>
+  Add SimpleSAML_Utilities::isWindowsOS()-helper function.
+ </li>
+ <li>
+  chmod() generated files to only be accessible to the owner of the files.
+ </li>
+ <li>
+  Fix "re-posting" of POST data containing a key named "submit".
+ </li>
+ <li>
+  Do not attempt to read new sessions from the session handler.
+ </li>
+ <li>
+  Fix some pass-by-reference uses. (Support removed in PHP 5.4.)
+ </li>
+ <li>
+  Warn the user if the secretsalt-option isn't set.
+ </li>
+ <li>
+  A prototype for a new statistics logging core. Provides more structured logging of events, and support for multiple storage backends.
+ </li>
+ <li>
+  Support for arbitrary namespace-prefixed attributes in md:EndpointType-elements.
+ </li>
+ <li>
+  Fix invalid HTML for login pages where username is set.
+ </li>
+ <li>
+  Remove unnecessary check for PHP version &gt;= 5.2 when setting cookies.
+ </li>
+ <li>
+  Better error message when a module is missing a default-enable or default-disable file.
+ </li>
+ <li>
+  Support for validating RSA-SHA256 signatures.
+ </li>
+ <li>
+  Fixes for session expiration handling.
+ </li>
+</ul>
+<p>
+ <code>
+  aselect
+ </code>
+</p>
+<ul>
+ <li>
+  New module that replaces the previous module.
+ </li>
+ <li>
+  Better error handling.
+ </li>
+ <li>
+  Support for request signing.
+ </li>
+ <li>
+  Loses support for A-Select Cross.
+ </li>
+</ul>
+<p>
+ <code>
+  authcrypt
+ </code>
+</p>
+<ul>
+ <li>
+  <code>
+   authcrypt:Hash
+  </code>
+  : New authentication source for checking username &amp; password against a list of usernames and hashed passwords.
+ </li>
+ <li>
+  <code>
+   authcrypt:Htpasswd
+  </code>
+  : New authentication source for checking username &amp; password against a
+  <code>
+   .htpasswd
+  </code>
+  -file.
+ </li>
+</ul>
+<p>
+ <code>
+  authfacebook
+ </code>
+</p>
+<ul>
+ <li>
+  Update to latest Facebook PHP SDK.
+ </li>
+</ul>
+<p>
+ <code>
+  authorize
+ </code>
+</p>
+<ul>
+ <li>
+  <code>
+   authorize:Authorize
+  </code>
+  : Add flag to change the behaviour from default-deny to default-allow.
+ </li>
+ <li>
+  <code>
+   authorize:Authorize
+  </code>
+  : Add flag to do simple string matching instead of regex-matching.
+ </li>
+</ul>
+<p>
+ <code>
+  authtwitter
+ </code>
+</p>
+<ul>
+ <li>
+  Update to use the correct API endpoint.
+ </li>
+ <li>
+  Propagate "user aborted" errors back to the caller.
+ </li>
+ <li>
+  Changes to error handling, throw more relevant exceptions.
+ </li>
+ <li>
+  Store state information directly in the state array, instead of the session.
+ </li>
+</ul>
+<p>
+ <code>
+  authYubiKey
+ </code>
+</p>
+<ul>
+ <li>
+  Remove deprecated uses of split().
+ </li>
+</ul>
+<p>
+ <code>
+  cas
+ </code>
+</p>
+<ul>
+ <li>
+  Make it possible for subclasses to override finalState().
+ </li>
+</ul>
+<p>
+ <code>
+  core
+ </code>
+</p>
+<ul>
+ <li>
+  <code>
+   core:AttributeCopy
+  </code>
+  : New filter to copy attributes.
+ </li>
+</ul>
+<p>
+ <code>
+  consent
+ </code>
+</p>
+<ul>
+ <li>
+  Add a timeout option for the database connection.
+ </li>
+ <li>
+  Fix disabling of consent when the data store is down.
+ </li>
+ <li>
+  Simpler configuration for disabling consent for one SP or one IdP.
+ </li>
+ <li>
+  Do not connect to the database when consent is disabled for the current SP/IdP.
+ </li>
+</ul>
+<p>
+ <code>
+  consentAdmin
+ </code>
+</p>
+<ul>
+ <li>
+  Fix for bridged IdP setup with
+  <code>
+   userid.attribute
+  </code>
+  set in
+  <code>
+   saml20-idp-hosted
+  </code>
+  metadata.
+ </li>
+</ul>
+<p>
+ <code>
+  cron
+ </code>
+</p>
+<ul>
+ <li>
+  Set the From-address to be the technical contact email address.
+ </li>
+</ul>
+<p>
+ <code>
+  expirycheck
+ </code>
+</p>
+<ul>
+ <li>
+  <code>
+   expirycheck:ExpiryDate
+  </code>
+  : New module to check account expiration.
+ </li>
+</ul>
+<p>
+ <code>
+  ldap
+ </code>
+</p>
+<ul>
+ <li>
+  Add a base class for authentication processing filters which fetch data from LDAP.
+ </li>
+ <li>
+  <code>
+   ldap:AttributeAddUsersGroups
+  </code>
+  : Authentication processing filter that adds group information from LDAP.
+ </li>
+</ul>
+<p>
+ <code>
+  metarefresh
+ </code>
+</p>
+<ul>
+ <li>
+  Support for blacklisting and whitelisting entities.
+ </li>
+ <li>
+  Support for conditional GET of metadata files.
+ </li>
+ <li>
+  Reuse old metadata when fetching metadata fails.
+ </li>
+</ul>
+<p>
+ <code>
+  multiauth
+ </code>
+</p>
+<ul>
+ <li>
+  Add
+  <code>
+   multiauth:preselect
+  </code>
+  -parameter, to skip the page to select authentication source.
+ </li>
+ <li>
+  Make it possible to configure the names of the authentication sources.
+ </li>
+ <li>
+  Remember the last selected authentication source.
+ </li>
+</ul>
+<p>
+ <code>
+  negotiate
+ </code>
+</p>
+<ul>
+ <li>
+  New module implementing "negotiate" authentication, which can be used for Kerberos authentication (including Windows SSO).
+ </li>
+</ul>
+<p>
+ <code>
+  oauth
+ </code>
+</p>
+<ul>
+ <li>
+  Update to latest version of the OAuth library.
+ </li>
+ <li>
+  Remove support for older versions of OAuth than OAuth Rev A.
+ </li>
+</ul>
+<p>
+ <code>
+  openid
+ </code>
+</p>
+<ul>
+ <li>
+  Separate linkback URL from page displaying OpenID URL field.
+ </li>
+ <li>
+  Throw more relevant exceptions.
+ </li>
+ <li>
+  Update to latest version of the OpenID library.
+ </li>
+ <li>
+  Support for sending authentication requests via GET requests (with the prefer_http_redirect option).
+ </li>
+ <li>
+  Prevent deprecation warnings from the OpenID library from causing deadlocks in the class loader.
+ </li>
+</ul>
+<p>
+ <code>
+  openidProvider
+ </code>
+</p>
+<ul>
+ <li>
+  Prevent deprecation warnings from the OpenID library from causing deadlocks in the class loader.
+ </li>
+</ul>
+<p>
+ <code>
+  radius
+ </code>
+</p>
+<ul>
+ <li>
+  Support for setting the "NAS-Identifier" attribute.
+ </li>
+</ul>
+<p>
+ <code>
+  saml
+ </code>
+</p>
+<ul>
+ <li>
+  Preserve ID-attributes on elements during signing. (Makes it possible to change the binding for some messages.)
+ </li>
+ <li>
+  Allow SAML artifacts to be received through a POST request.
+ </li>
+ <li>
+  Log more debug information when we are unable to determine the binding a message was sent with.
+ </li>
+ <li>
+  Require HTTP-POST messages to be sent as POST data and HTTP-Redirect messages to be sent as query parameters.
+ </li>
+ <li>
+  Link to download certificates from metadata pages.
+ </li>
+ <li>
+  Fix canonicalization of &lt;md:EntityDescriptor&gt; and &lt;md:EntitiesDescriptor&gt;.
+ </li>
+ <li>
+  Support for receiving and sending extension in authentication request messages.
+ </li>
+ <li>
+  Reuse SimpleSAML_Utilities::postRedirect() to send HTTP-POST messages.
+ </li>
+ <li>
+  Allow ISO8601 durations with subsecond precision.
+ </li>
+ <li>
+  Add support for parsing and serializing the &lt;mdrpi:PublicationInfo&gt; metadata extension.
+ </li>
+ <li>
+  Ignore cacheDuration when validating metadata.
+ </li>
+ <li>
+  Add support for the Holder-of-Key profile, on both the
+  <a href="./simplesamlphp-hok-sp.html">
+   SP
+  </a>
+  and
+  <a href="./simplesamlphp-hok-idp.html">
+   IdP
+  </a>
+  .
+ </li>
+ <li>
+  Better error handling when receiving a SAML 2.0 artifact from an unknown entity.
+ </li>
+ <li>
+  Fix parsing of &lt;md:AssertionIDRequestService&gt; metadata elements.
+ </li>
+ <li>
+  IdP: Do not always trigger reauthentication when the authentication request contains a IdPList-element.
+ </li>
+ <li>
+  IdP: Add
+  <code>
+   saml:AllowCreate
+  </code>
+  to the state array. This makes it possible to access this parameter from authentication processing filters.
+ </li>
+ <li>
+  IdP: Sign the artifact response message.
+ </li>
+ <li>
+  IdP: Allow the "host" metadata option to include more than one path element.
+ </li>
+ <li>
+  IdP: Support for generating metadata with MDUI extension elements.
+ </li>
+ <li>
+  SP: Use the discojuice-module as a discovery service if it is enabled.
+ </li>
+ <li>
+  SP: Add
+  <code>
+   saml:idp
+  </code>
+  -parameter to trigger login to a specific IdP to as_login.php.
+ </li>
+ <li>
+  SP: Do not display error on duplicate response when we have a valid session.
+ </li>
+ <li>
+  SP: Fix for logout after IdP initiated authentication.
+ </li>
+ <li>
+  SP: Fix handling of authentication response without a saml:Issuer element.
+ </li>
+ <li>
+  SP: Support for specifying required attributes in metadata.
+ </li>
+ <li>
+  SP: Support for limiting the AssertionConsumerService endpoints listed in metadata.
+ </li>
+ <li>
+  SP: Fix session expiration when the IdP limits the session lifetime.
+ </li>
+ <li>
+  <code>
+   saml:PersistentNameID
+  </code>
+  : Fail when the user has more than one value in the user ID attribute.
+ </li>
+ <li>
+  <code>
+   saml:SQLPersistentNameID
+  </code>
+  : Persistent NameID stored in a SQL database.
+ </li>
+ <li>
+  <code>
+   saml:AuthnContextClassRef
+  </code>
+  : New filter to set the AuthnContextClassRef in responses.
+ </li>
+ <li>
+  <code>
+   saml:ExpectedAuthnContextClassRef
+  </code>
+  : New filter to verify that the SP received the correct authentication class from the IdP.
+ </li>
+</ul>
+<h2 id="version-182">
+ Version 1.8.2
+</h2>
+<p>
+ Released 2012-01-10.
+</p>
+<ul>
+ <li>
+  Fix for user-assisted cross site scripting on a couple of pages.
+ </li>
+</ul>
+<h2 id="version-181">
+ Version 1.8.1
+</h2>
+<p>
+ Released 2011-10-27.
+</p>
+<ul>
+ <li>
+  Fix for key oracle attack against XML encryption on SP.
+ </li>
+ <li>
+  Fix for IdP initiated logout with IdP-initiated SSO.
+ </li>
+ <li>
+  Fix a PHP notice if we are unable to open /dev/urandom.
+ </li>
+ <li>
+  Fix a PHP notice during SAML 1.1 authentication.
+ </li>
+</ul>
+<h2 id="version-18">
+ Version 1.8
+</h2>
+<ul>
+ <li>
+  New authentication modules:
+  <ul>
+   <li>
+    <a href="./authmyspace/oauthmyspace.html">
+     <code>
+      authmyspace
+     </code>
+    </a>
+   </li>
+   <li>
+    <a href="./authlinkedin/oauthlinkedin.html">
+     <code>
+      authlinkedin
+     </code>
+    </a>
+   </li>
+   <li>
+    <a href="./authwindowslive/windowsliveid.html">
+     <code>
+      authwindowslive
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li>
+  Support for custom error handler, replacing the default display function.
+ </li>
+ <li>
+  Allow error codes to be defined in modules.
+ </li>
+ <li>
+  Better control of logout what we do after logout request.
+  <ul>
+   <li>
+    This makes it possible for the SP to display a warning when receiving a PartialLogout response from the IdP.
+   </li>
+  </ul>
+ </li>
+ <li>
+  New
+  <code>
+   cdc
+  </code>
+  module, for setting and reading common domain cookies.
+ </li>
+</ul>
+<p>
+ <code>
+  consent
+ </code>
+</p>
+<ul>
+ <li>
+  Support for disabling consent for some attributes.
+ </li>
+</ul>
+<p>
+ <code>
+  ldap
+ </code>
+</p>
+<ul>
+ <li>
+  <code>
+   ldap:AttributeAddFromLDAP
+  </code>
+  : Extract values from multiple matching entries.
+ </li>
+</ul>
+<p>
+ <code>
+  oauth
+ </code>
+</p>
+<ul>
+ <li>
+  Added support for:
+  <ul>
+   <li>
+    RSASHA1 signatures
+   </li>
+   <li>
+    consent
+   </li>
+   <li>
+    callbackurl
+   </li>
+   <li>
+    verifier code
+   </li>
+   <li>
+    request parameters
+   </li>
+  </ul>
+ </li>
+</ul>
+<p>
+ <code>
+  openid
+ </code>
+</p>
+<ul>
+ <li>
+  Support for sending custom extension arguments (e.g. UI extensions).
+ </li>
+</ul>
+<p>
+ <code>
+  saml
+ </code>
+</p>
+<ul>
+ <li>
+  Extract Extensions from AuthnRequest for use by custom modules when authenticating.
+ </li>
+ <li>
+  Allow signing of SP metadata.
+ </li>
+ <li>
+  Better control over NameIDPolicy when sending AuthnRequest.
+ </li>
+ <li>
+  Support encrypting/decrypting NameID in LogoutRequest.
+ </li>
+ <li>
+  Option to disable client certificate in SOAP client.
+ </li>
+ <li>
+  Better selection of AssertionConsumerService endpoint based on parameters in AuthnRequest.
+ </li>
+ <li>
+  Set NotOnOrAfter in IdP LogoutRequest.
+ </li>
+ <li>
+  Only return PartialLogout from the IdP.
+ </li>
+</ul>
+<h2 id="version-17">
+ Version 1.7
+</h2>
+<ul>
+ <li>
+  New authentication modules:
+  <ul>
+   <li>
+    <code>
+     aselect
+    </code>
+   </li>
+   <li>
+    <code>
+     authX509
+    </code>
+   </li>
+  </ul>
+ </li>
+ <li>
+  Unified cookie configuration settings.
+ </li>
+ <li>
+  Added protection against session fixation attacks.
+ </li>
+ <li>
+  Error logging when failing to initialize the Session class.
+ </li>
+ <li>
+  New session storage framework.
+  <ul>
+   <li>
+    Add and use generic key/value store.
+   </li>
+   <li>
+    Support for storing sessions in SQL databases (MySQL, PostgreSQL &amp; SQLite).
+   </li>
+   <li>
+    Support for implementing custom session storage handlers.
+   </li>
+   <li>
+    Allow loading of multiple sessions simultaneously.
+   </li>
+  </ul>
+ </li>
+ <li>
+  Set headers allowing caching of static files.
+ </li>
+ <li>
+  More descriptive error pages:
+  <ul>
+   <li>
+    Unable to load $state array because the session was lost.
+   </li>
+   <li>
+    Unable to find metadata for the given entityID.
+   </li>
+  </ul>
+ </li>
+ <li>
+  Support for multiple keys in metadata.
+  <ul>
+   <li>
+    Allow verification with any of the public keys in metadata.
+   </li>
+   <li>
+    Allow key rollower by defining new and old certificate in configuration.
+   </li>
+   <li>
+    Verify with signing keys, encrypt with encryption keys.
+   </li>
+  </ul>
+ </li>
+ <li>
+  Change
+  <code>
+   debug
+  </code>
+  -option to log messages instead of displaying them in the browser.
+  <ul>
+   <li>
+    Also logs data before encryption and after decryption.
+   </li>
+  </ul>
+ </li>
+ <li>
+  Support for custom attribute dictionaries.
+ </li>
+ <li>
+  Add support for several authentication sessions within a single session.
+  <ul>
+   <li>
+    Allows several SPs on a single host.
+   </li>
+   <li>
+    Allows for combining an SP and an IdP on a single host.
+   </li>
+  </ul>
+ </li>
+ <li>
+  HTTP proxy support.
+ </li>
+</ul>
+<h3 id="internal-api-changes-features-removed">
+ Internal API changes &amp; features removed
+</h3>
+<ul>
+ <li>
+  The
+  <code>
+   saml2
+  </code>
+  module has been removed.
+  <ul>
+   <li>
+    The
+    <code>
+     saml2:SP
+    </code>
+    authsource has been removed.
+   </li>
+   <li>
+    The
+    <code>
+     sspmod_saml2_Error
+    </code>
+    class has been renamed to
+    <code>
+     sspmod_saml_Error
+    </code>
+    .
+   </li>
+   <li>
+    The
+    <code>
+     sspmod_saml2_Message
+    </code>
+    class has been renamed to
+    <code>
+     sspmod_saml_Message
+    </code>
+    .
+   </li>
+  </ul>
+ </li>
+ <li>
+  Moved IdP functions from
+  <code>
+   sspmod_saml_Message
+  </code>
+  to
+  <code>
+   sspmod_saml_IdP_SAML2
+  </code>
+  .
+ </li>
+ <li>
+  Removed several functions and classes that are unused:
+  <ul>
+   <li>
+    <code>
+     SimpleSAML_Utilities::strleft
+    </code>
+   </li>
+   <li>
+    <code>
+     SimpleSAML_Utilities::array_values_equal
+    </code>
+   </li>
+   <li>
+    <code>
+     SimpleSAML_Utilities::getRequestURI
+    </code>
+   </li>
+   <li>
+    <code>
+     SimpleSAML_Utilities::getScriptName
+    </code>
+   </li>
+   <li>
+    <code>
+     SimpleSAML_Utilities::getSelfProtocol
+    </code>
+   </li>
+   <li>
+    <code>
+     SimpleSAML_Utilities::cert_fingerprint
+    </code>
+   </li>
+   <li>
+    <code>
+     SimpleSAML_Utilities::generateTrackID
+    </code>
+   </li>
+   <li>
+    <code>
+     SimpleSAML_Utilities::buildBacktrace
+    </code>
+   </li>
+   <li>
+    <code>
+     SimpleSAML_Utilities::formatBacktrace
+    </code>
+   </li>
+   <li>
+    <code>
+     SimpleSAML_Metadata_MetaDataStorageHandlerSAML2Meta
+    </code>
+   </li>
+   <li>
+    <code>
+     SimpleSAML_ModifiedInfo
+    </code>
+   </li>
+  </ul>
+ </li>
+ <li>
+  Moved function from Utilities-class to more appropriate locations.
+  <ul>
+   <li>
+    <code>
+     getAuthority
+    </code>
+    to
+    <code>
+     SimpleSAML_IdP
+    </code>
+   </li>
+   <li>
+    <code>
+     generateUserId
+    </code>
+    to
+    <code>
+     sspmod_saml_IdP_SAML2
+    </code>
+    .
+   </li>
+  </ul>
+ </li>
+ <li>
+  Replaced calls to  with throwing an
+  <code>
+   SimpleSAML_Error_Error
+  </code>
+  exception.
+ </li>
+ <li>
+  Removed metadata send functionality from old SP code.
+ </li>
+ <li>
+  Removed bin/test.php and www/admin/test.php.
+ </li>
+ <li>
+  Removed metashare.
+ </li>
+ <li>
+  Removed www/auth/login-auto.php.
+ </li>
+ <li>
+  Removed www/auth/login-feide.php.
+ </li>
+ <li>
+  Removed optional parameters from
+  <code>
+   SimpleSAML_XHTML_Template::getLanguage()
+  </code>
+  .
+ </li>
+ <li>
+  Removed functions from
+  <code>
+   SAML2_Assertion
+  </code>
+  :
+  <code>
+   get/setDestination
+  </code>
+  ,
+  <code>
+   get/setInResponseTo
+  </code>
+  .
+  Replaced with
+  <code>
+   setSubjectConfirmation
+  </code>
+  .
+ </li>
+ <li>
+  Removed several unused files &amp; templates.
+ </li>
+</ul>
+<p>
+ <code>
+  SAML2 IdP
+ </code>
+</p>
+<ul>
+ <li>
+  Support for generation of NameID values via
+  <a href="./saml/nameid.html">
+   processing filters
+  </a>
+ </li>
+ <li>
+  Obey the NameIDPolicy Format in authentication request.
+ </li>
+ <li>
+  Allow AuthnContextClassRef to be set by processing filters.
+ </li>
+ <li>
+  Rework iframe logout page to not rely on cookies.
+ </li>
+</ul>
+<p>
+ <code>
+  SAML2 SP
+ </code>
+</p>
+<ul>
+ <li>
+  Support SOAP logout.
+ </li>
+ <li>
+  Various fixes to adhere more closely to the specification.
+  <ul>
+   <li>
+    Allow multiple SessionIndex-elements in LogoutRequest.
+   </li>
+   <li>
+    Handle multiple Assertion-elements in Response.
+   </li>
+   <li>
+    Reject duplicate assertions.
+   </li>
+   <li>
+    Support for encrypted NameID in LogoutRequest.
+   </li>
+   <li>
+    Verify Destination-attribute in LogoutRequest messages.
+   </li>
+  </ul>
+ </li>
+ <li>
+  Add specific options for signing and verifying authentication request and logout messages.
+ </li>
+ <li>
+  <code>
+   saml:NameIDAttribute
+  </code>
+  filter for extracting NameID from authentication response.
+ </li>
+</ul>
+<p>
+ <code>
+  SAML1 IdP
+ </code>
+</p>
+<ul>
+ <li>
+  Add
+  <code>
+   urn:mace:shibboleth:1.0
+  </code>
+  as supported protocol in generated metadata.
+ </li>
+</ul>
+<p>
+ <code>
+  SAML1 SP
+ </code>
+</p>
+<ul>
+ <li>
+  Support for IdP initiated authentication.
+ </li>
+</ul>
+<p>
+ <code>
+  aggregator
+ </code>
+</p>
+<ul>
+ <li>
+  Allow metadata generation from command line.
+ </li>
+</ul>
+<p>
+ <code>
+  authfacebook
+ </code>
+</p>
+<ul>
+ <li>
+  Change attribute names.
+ </li>
+</ul>
+<p>
+ <code>
+  casserver
+ </code>
+</p>
+<ul>
+ <li>
+  Support for proxying.
+ </li>
+ <li>
+  Add ttl for tickets.
+ </li>
+</ul>
+<p>
+ <code>
+  core
+ </code>
+</p>
+<ul>
+ <li>
+  <code>
+   core:AttributeLimit
+  </code>
+  : Make it possible to specify a default set of attributes.
+ </li>
+ <li>
+  Make the SP metadata available on the login pages.
+ </li>
+</ul>
+<p>
+ <code>
+  discoPower
+ </code>
+</p>
+<ul>
+ <li>
+  Sort IdPs without a name (where we only have an entityID) last in the list.
+ </li>
+ <li>
+  CDC cookie support.
+ </li>
+</ul>
+<p>
+ <code>
+  exampleAuth
+ </code>
+</p>
+<ul>
+ <li>
+  Add example of integration with external authentication page.
+ </li>
+</ul>
+<p>
+ <code>
+  ldap
+ </code>
+</p>
+<ul>
+ <li>
+  Add
+  <code>
+   ldap:AttributeAddFromLDAP
+  </code>
+  filter for adding attributes from a LDAP directory.
+ </li>
+</ul>
+<p>
+ <code>
+  metarefresh
+ </code>
+</p>
+<ul>
+ <li>
+  Don't stop updates on the first exception.
+ </li>
+</ul>
+<p>
+ <code>
+  openid
+ </code>
+</p>
+<ul>
+ <li>
+  Don't require access to the PHP session.
+ </li>
+ <li>
+  Remove OpenID test page. (May as well use the normal test pages.)
+ </li>
+ <li>
+  Support for attribute exchange.
+ </li>
+ <li>
+  Add
+  <code>
+   target
+  </code>
+  option, for directing authentication to a specific OpenID provider.
+ </li>
+ <li>
+  Add
+  <code>
+   realm
+  </code>
+  option, for specifying the realm we should send to the OpenID provider.
+ </li>
+</ul>
+<p>
+ <code>
+  portal
+ </code>
+</p>
+<ul>
+ <li>
+  Make it possible to register pages from modules, and not only from configuration.
+ </li>
+</ul>
+<p>
+ <code>
+  statistics
+ </code>
+</p>
+<ul>
+ <li>
+  New y-axis scaling algorithm
+ </li>
+</ul>
+<p>
+ <code>
+  twitter
+ </code>
+</p>
+<ul>
+ <li>
+  Change attribute names returned from twitter.
+ </li>
+</ul>
+<h2 id="version-163">
+ Version 1.6.3
+</h2>
+<p>
+ Released 2010-12-17.
+</p>
+<ul>
+ <li>
+  Fix for cross site scripting in redirect page.
+ </li>
+</ul>
+<h2 id="version-162">
+ Version 1.6.2
+</h2>
+<p>
+ Released 2010-07-29.
+</p>
+<ul>
+ <li>
+  Various security fixes.
+ </li>
+</ul>
+<h2 id="version-161">
+ Version 1.6.1
+</h2>
+<p>
+ Released 2010-06-25.
+</p>
+<ul>
+ <li>
+  saml:SP: Fix SingleLogoutService endpoint in SSP-format metadata array.
+ </li>
+ <li>
+  Shib13:IdP: Add urn:mace:shibboleth:1.0 to supported protocols.
+ </li>
+ <li>
+  Fix SAMLParser::parseElement().
+ </li>
+ <li>
+  SAML2:IdP: Fix persistent NameID generation.
+ </li>
+ <li>
+  Fix scoping on IdP discovery page.
+ </li>
+ <li>
+  metaedit: Fix endpoints parsed from XML.
+ </li>
+ <li>
+  Dictionary update.
+ </li>
+ <li>
+  Documentation fixes.
+ </li>
+</ul>
+<h2 id="version-16">
+ Version 1.6
+</h2>
+<p>
+ Released 2010-05-31.
+</p>
+<p>
+ <a href="./simplesamlphp-upgrade-notes-1.6.html">
+  Upgrade notes
+ </a>
+</p>
+<ul>
+ <li>
+  Detection of cookies disabled on the IdP.
+ </li>
+ <li>
+  New IdP core, which makes it simpler to share code between different IdPs, e.g. between SAML 1.1 and SAML 2.0.
+ </li>
+ <li>
+  Dictionaries moved to JSON format.
+ </li>
+ <li>
+  New authentication module:
+  <a href="./cas/cas.html">
+   <code>
+    cas:CAS
+   </code>
+  </a>
+  .
+ </li>
+ <li>
+  All images that doesn't permit non-commercial use have been replaced.
+ </li>
+ <li>
+  Better support for OrganizationName, OrganizationDisplayName and OrganizationURL in metadata.
+ </li>
+ <li>
+  Cookie secure flag no longer automatically set.
+ </li>
+ <li>
+  Cross-protocol logout between ADFS and SAML 2.
+ </li>
+ <li>
+  New experimental module for aggregating metadata:
+  <a href="./aggregator2/aggregator2.html">
+   <code>
+    aggregator2
+   </code>
+  </a>
+ </li>
+ <li>
+  Metadata support for multiple endpoints with
+  <a href="./simplesamlphp-metadata-endpoints.html">
+   multiple bindings
+  </a>
+  .
+ </li>
+ <li>
+  The metadata generation is using a new set of classes.
+  As a result, all generated metadata elements now have a
+  <code>
+   md:
+  </code>
+  -prefix.
+ </li>
+ <li>
+  The deprecated functions
+  <code>
+   init(...)
+  </code>
+  and
+  <code>
+   setAuthenticated(...)
+  </code>
+  in the
+  <code>
+   SimpleSAML_Session
+  </code>
+  class have been removed.
+ </li>
+ <li>
+  Configuration check and metadata check was removed, as they were often wrong.
+ </li>
+</ul>
+<p>
+ <code>
+  SAML2 SP
+ </code>
+</p>
+<ul>
+ <li>
+  SAML 2.0 HTTP-Artifact support on the
+  <a href="./simplesamlphp-artifact-sp.html">
+   SP
+  </a>
+  .
+ </li>
+</ul>
+<p>
+ <code>
+  SAML2 IdP
+ </code>
+</p>
+<ul>
+ <li>
+  SAML 2.0 HTTP-Artifact support on the
+  <a href="./simplesamlphp-artifact-idp.html">
+   IdP
+  </a>
+  .
+ </li>
+ <li>
+  Support for sending PartialLogout status code in logout response.
+ </li>
+ <li>
+  Set AuthnInstant to the timestamp for authentication.
+ </li>
+ <li>
+  Combine normal and iframe versions of the logout handlers into a single endpoint.
+ </li>
+ <li>
+  The SessionIndex is now unique per SP.
+ </li>
+ <li>
+  Statistics for logout failures.
+ </li>
+ <li>
+  Better generation of persistent NameID when
+  <code>
+   nameid.attribute
+  </code>
+  isn't specified.
+ </li>
+</ul>
+<h3 id="the-sp-api">
+ The SP API
+</h3>
+<ul>
+ <li>
+  Support for handling errors from the IdP.
+ </li>
+ <li>
+  Support for passing parameters to the authentication module.
+  This can be used to specify SAML 2 parameters, such as isPassive and ForceAuthn.
+ </li>
+</ul>
+<p>
+ <code>
+  adfs
+ </code>
+</p>
+<ul>
+ <li>
+  Move to new IdP core.
+ </li>
+</ul>
+<p>
+ <code>
+  casserver
+ </code>
+</p>
+<ul>
+ <li>
+  Collect all endpoints in a single file.
+ </li>
+ <li>
+  Fix prefix on the tickets.
+ </li>
+</ul>
+<p>
+ <code>
+  consent
+ </code>
+</p>
+<ul>
+ <li>
+  Support for deactivating consent for specific services.
+ </li>
+</ul>
+<p>
+ <code>
+  consentAdmin
+ </code>
+</p>
+<ul>
+ <li>
+  Support for the SAML SP module.
+ </li>
+</ul>
+<p>
+ <code>
+  core
+ </code>
+</p>
+<ul>
+ <li>
+  New filter:
+  <a href="./core/authproc_php.html">
+   <code>
+    core:PHP
+   </code>
+  </a>
+  , which allows processing of attributes with arbitrary PHP code.
+ </li>
+ <li>
+  Support for multiple target attributes in
+  <a href="./core/authproc_attributemap.html">
+   <code>
+    core:AttributeMap
+   </code>
+  </a>
+  .
+ </li>
+ <li>
+  New filter:
+  <a href="./core/authproc_scopefromattribute.html">
+   <code>
+    core:ScopeFromAttribute
+   </code>
+  </a>
+  , which allows the creation an attribute based on the scope of another attribute.
+ </li>
+ <li>
+  Support for a target attribute in
+  <a href="./core/authproc_attributealter.html">
+   <code>
+    core:AttributeAlter
+   </code>
+  </a>
+  .
+ </li>
+</ul>
+<p>
+ <code>
+  discoPower
+ </code>
+</p>
+<ul>
+ <li>
+  Support for new scoring algorithm.
+ </li>
+</ul>
+<p>
+ <code>
+  ldap
+ </code>
+</p>
+<ul>
+ <li>
+  SASL support in LDAPMulti
+ </li>
+</ul>
+<p>
+ <code>
+  ldapstatus
+ </code>
+</p>
+<ul>
+ <li>
+  This module was removed, as it was very specific for Feide.
+ </li>
+</ul>
+<p>
+ <code>
+  multiauth
+ </code>
+</p>
+<ul>
+ <li>
+  Support for specifying the target authentication source through a request parameter.
+ </li>
+</ul>
+<p>
+ <code>
+  oauth
+ </code>
+</p>
+<ul>
+ <li>
+  Configurable which authentication source should be used.
+ </li>
+</ul>
+<p>
+ <code>
+  openidProvider
+ </code>
+</p>
+<ul>
+ <li>
+  OpenID 2.0 support.
+ </li>
+ <li>
+  XRDS generation support.
+ </li>
+</ul>
+<p>
+ <code>
+  saml
+ </code>
+</p>
+<ul>
+ <li>
+  Support for specifying parameters for authentication request.
+ </li>
+ <li>
+  Add AttributeConsumingService to generated metadata.
+ </li>
+ <li>
+  The two SPSSODescriptor elements in the metadata has been merged.
+ </li>
+</ul>
+<h2 id="version-151">
+ Version 1.5.1
+</h2>
+<p>
+ Released 2010-01-08.
+</p>
+<ul>
+ <li>
+  Fix security vulnerability due to insecure temp file creation:
+  <ul>
+   <li>
+    statistics: The logcleaner script outputs to a file in /tmp.
+   </li>
+   <li>
+    InfoCard: Saves state directly in /tmp. Changed to the SimpleSAMLphp temp directory.
+   </li>
+   <li>
+    openidProvider: Default configuration saves state information in /tmp.
+  Changed to '/var/lib/simplesamlphp-openid-provider'.
+   </li>
+   <li>
+    SAML 1 artifact support: Saves certificates temporarily in '/tmp/simplesaml', but directory creation was insecure.
+   </li>
+  </ul>
+ </li>
+ <li>
+  statistics: Handle new year wraparound.
+ </li>
+ <li>
+  Dictionary updates.
+ </li>
+ <li>
+  Fix bridged logout.
+ </li>
+ <li>
+  Some documentation updates.
+ </li>
+ <li>
+  Fix all metadata to use assignments to arrays.
+ </li>
+ <li>
+  Fix $session-&gt;getIdP().
+ </li>
+ <li>
+  Support AuthnContextClassRef in saml-module.
+ </li>
+ <li>
+  Do not attempt to send logout request to an IdP that does not support logout.
+ </li>
+ <li>
+  LDAP: Disallow bind with empty password.
+ </li>
+ <li>
+  LDAP: Assume that LDAP_NO_SUCH_OBJECT is an error due to invalid username/password.
+ </li>
+ <li>
+  statistics: Fix configuration template.
+ </li>
+ <li>
+  Handle missing authority in idp-hosted metadata better.
+ </li>
+</ul>
+<h2 id="version-15">
+ Version 1.5
+</h2>
+<p>
+ Released 2009-11-05. Revision 1937.
+</p>
+<ul>
+ <li>
+  New API for SP authentication.
+ </li>
+ <li>
+  Make use of the portal module on the frontpage.
+ </li>
+ <li>
+  SQL datastore.
+ </li>
+ <li>
+  Support for setting timezone in config (instead of php.ini).
+ </li>
+ <li>
+  Logging of PHP errors and notices to SimpleSAMLphp log file.
+ </li>
+ <li>
+  Improve handling of unhandled errors and exceptions.
+ </li>
+ <li>
+  Admin authentication through authentication sources.
+ </li>
+ <li>
+  Various bugfixes &amp; cleanups.
+ </li>
+ <li>
+  Translation updates.
+ </li>
+ <li>
+  Set the dropdown list as default for built in disco service.
+ </li>
+</ul>
+<p>
+ <code>
+  New modules
+ </code>
+</p>
+<ul>
+ <li>
+  <code>
+   adfs
+  </code>
+ </li>
+ <li>
+  <a href="./authorize/authorize.html">
+   <code>
+    authorize
+   </code>
+  </a>
+ </li>
+ <li>
+  <code>
+   authtwitter
+  </code>
+ </li>
+ <li>
+  <a href="./autotest/test.html">
+   <code>
+    autotest
+   </code>
+  </a>
+ </li>
+ <li>
+  <code>
+   exampleattributeserver
+  </code>
+ </li>
+ <li>
+  <code>
+   metaedit
+  </code>
+ </li>
+ <li>
+  <a href="./multiauth/multiauth.html">
+   <code>
+    multiauth
+   </code>
+  </a>
+ </li>
+ <li>
+  <code>
+   oauth
+  </code>
+ </li>
+ <li>
+  <a href="./openidProvider/provider.html">
+   <code>
+    openidProvider
+   </code>
+  </a>
+ </li>
+ <li>
+  <a href="./radius/radius.html">
+   <code>
+    radius
+   </code>
+  </a>
+ </li>
+ <li>
+  <a href="./saml/sp.html">
+   <code>
+    saml
+   </code>
+  </a>
+ </li>
+</ul>
+<p>
+ <code>
+  aggregator
+ </code>
+</p>
+<ul>
+ <li>
+  Add ARP + ARP signing functionality to the aggregator.
+ </li>
+ <li>
+  Improvements to the aggregator module. Added documentation, and re-written more OO-oriented.
+ </li>
+ <li>
+  Add support for reconstructing XML where XML for an entity is already cached.
+ </li>
+ <li>
+  Add support for excluding tags in metadata aggregator.
+ </li>
+</ul>
+<p>
+ <code>
+  AuthMemCookie
+ </code>
+</p>
+<ul>
+ <li>
+  Delete the session cookie when deleting the session.
+ </li>
+ <li>
+  Support for authentication sources.
+ </li>
+ <li>
+  Set expiry time of session data when saving to memcache.
+ </li>
+ <li>
+  Support multiple memcache servers.
+ </li>
+</ul>
+<p>
+ <code>
+  cas
+ </code>
+</p>
+<ul>
+ <li>
+  Added support for attributes in
+  <cas:serviceresponse>
+   .
+  </cas:serviceresponse>
+ </li>
+</ul>
+<p>
+ <code>
+  consent
+ </code>
+</p>
+<ul>
+ <li>
+  Support for hiding some attribute values.
+ </li>
+</ul>
+<p>
+ <code>
+  consentAdmin
+ </code>
+</p>
+<ul>
+ <li>
+  Added config option to display description.
+ </li>
+</ul>
+<p>
+ <code>
+  core
+ </code>
+</p>
+<ul>
+ <li>
+  New WarnShortSSOInterval filter.
+ </li>
+</ul>
+<p>
+ <code>
+  discopower
+ </code>
+</p>
+<ul>
+ <li>
+  Live search in discopower-module.
+ </li>
+</ul>
+<p>
+ <code>
+  ldap
+ </code>
+</p>
+<ul>
+ <li>
+  Support for proxy authentication.
+ </li>
+ <li>
+  Add 'debug' and 'timeout' options.
+ </li>
+ <li>
+  Privilege separation for LDAP attribute retrieval.
+ </li>
+ <li>
+  Allow search.base to be an array.
+ </li>
+ <li>
+  (LDAPMulti) Add support for including the organization as part of the username.
+ </li>
+</ul>
+<p>
+ <code>
+  ldapstatus
+ </code>
+</p>
+<ul>
+ <li>
+  Do a connect-test to all ip-addresses for a hostname.
+ </li>
+ <li>
+  Check whether hostname exists before attempting to connect.
+ </li>
+ <li>
+  hobbit output.
+ </li>
+ <li>
+  Check schema version.
+ </li>
+ <li>
+  Add command line tab to single LDAP status page for easier debugging.
+ </li>
+</ul>
+<p>
+ <code>
+  logpeek
+ </code>
+</p>
+<ul>
+ <li>
+  Blockwise reading of logfile for faster execution.
+ </li>
+</ul>
+<p>
+ <code>
+  metarefresh
+ </code>
+</p>
+<ul>
+ <li>
+  Adding support for generating Shibboleth ARP files.
+ </li>
+ <li>
+  Add 'serialize' metadata format.
+ </li>
+</ul>
+<p>
+ <code>
+  preprodwarning
+ </code>
+</p>
+<ul>
+ <li>
+  Don't show warning in passive request.
+ </li>
+ <li>
+  Focus on continue-button.
+ </li>
+</ul>
+<p>
+ <code>
+  saml
+ </code>
+</p>
+<ul>
+ <li>
+  Support for multiple AssertionConsumerService endpoints.
+ </li>
+ <li>
+  SAML 1 artifact support on the SP side.
+ </li>
+ <li>
+  New SAML authentication module.
+ </li>
+ <li>
+  Deprecation of www/saml2/sp &amp; www/shib13/sp.
+ </li>
+ <li>
+  Support for encrypted NameID.
+ </li>
+ <li>
+  NameIDPolicy replaces NameIDFormat.
+ </li>
+ <li>
+  Better support for IdP initiated SSO and bookmarked login pages.
+ </li>
+ <li>
+  Improvements to iframe logout page.
+ </li>
+ <li>
+  Scoping support.
+ </li>
+ <li>
+  New library for SAML 2 messages.
+ </li>
+ <li>
+  Support for transporting errors from the IdP to the SP.
+ </li>
+ <li>
+  Sign both the assertion and the response element by default.
+ </li>
+ <li>
+  Support for sending XML attribute values from the IdP.
+ </li>
+</ul>
+<p>
+ <code>
+  statistics
+ </code>
+</p>
+<ul>
+ <li>
+  Extended Google chart encoding... Add option of alternative compare plot in graph...
+ </li>
+ <li>
+  Added support for Ratio type reports in the statistics module..
+ </li>
+ <li>
+  Changed default rule to SSO.
+ </li>
+ <li>
+  Added incremental aggregation, independent time resolution from rule def, combined coldefs and more.
+ </li>
+ <li>
+  Add DST support in date handler. Added summary columns per delimiter. Added pie chart. +++
+ </li>
+ <li>
+  Log first SSO to a service during a session.
+ </li>
+</ul>
+<h2 id="version-14">
+ Version 1.4
+</h2>
+<p>
+ Released 2009-03-12. Revision 1405.
+</p>
+<p>
+ Updates to
+ <code>
+  config.php
+ </code>
+ . Please check for updates in your local modified configuration.
+</p>
+<ul>
+ <li>
+  Language updates
+ </li>
+ <li>
+  Documentation update. New authentication source API now default and documented.
+ </li>
+ <li>
+  New authentication source (new API):
+  <ul>
+   <li>
+    LDAP
+   </li>
+   <li>
+    LDAPMulti
+   </li>
+   <li>
+    YubiKey authentication source. (Separate module)
+   </li>
+   <li>
+    Facebook authentication source. (Separate module)
+   </li>
+  </ul>
+ </li>
+ <li>
+  New Authentication Processing Filter:
+  <ul>
+   <li>
+    AttributeAlter
+   </li>
+   <li>
+    AttributeFilter
+   </li>
+   <li>
+    AttributeMap
+   </li>
+   <li>
+    Smartname. does it best to guess the full name of the user based on several attributes.
+   </li>
+   <li>
+    Language adaptor: allow adopting UI by preferredLanguage SAML 2.0 Attribute both on the IdP and the SP. And if the user selects a language, this can be sent to the SP as an attribute.
+   </li>
+  </ul>
+ </li>
+ <li>
+  New module: portal, allows you to created tabbed interface for custom pages within SimpleSAMLphp. In example user consent management and attribute viewer.
+ </li>
+ <li>
+  New module: ldapstatus. Used by Feide to monitor connections to a large list of LDAP connections. Contact Feide on details on how to use.
+ </li>
+ <li>
+  ldapstatus also got certificate check capabilities.
+ </li>
+ <li>
+  New module: MemcacheMonitor: Show statistics for memcache servers.
+ </li>
+ <li>
+  New module: DiscoPower. A tabbed discovery service module with a lot of functionality.
+ </li>
+ <li>
+  New module: SAML 2.0 Debugginer. An improved version of the one found on rnd.feide.no earlier is not included in SimpleSAMLphp allowing you to run it locally.
+ </li>
+ <li>
+  New module: Simple Consent Amdin module that have one button to remove all consent for one user.
+ </li>
+ <li>
+  New module: Consent Administration. Contribution from Wayf.
+ </li>
+ <li>
+  We also have a consent administration module that we use in Feide that is not checked in to subversion.
+ </li>
+ <li>
+  New module: logpeek. Lets administrator lookup loglines matching a TRackID.
+ </li>
+ <li>
+  New module: PreprodWarning: Adding a warning to users that access a preprod system.
+ </li>
+ <li>
+  New module: CAS Server
+ </li>
+ <li>
+  New module: Aggregator: Aggregates metadata. Used in Kalmar Union.
+ </li>
+ <li>
+  New module: Metarefresh, download, parses and consumes metadata.
+ </li>
+ <li>
+  New module: SanityCheck. Checks if things looks good and reports bad configuration etc.
+ </li>
+ <li>
+  New module: Cron. Will perform tasks regularly.
+ </li>
+ <li>
+  Module: SAML2.0. SAML 2.0 SP implemented as an module. Yet not documented how to use, but all SAML 2.0 SP functionality may be moved out to this module for better modularization.
+ </li>
+ <li>
+  New module: statistics. Parses STAT log files, and aggregates based on a generic rule system. Output is stored in aggregated text files, and a frontend is included to present statistics with tables and graphs. Used sanitycheck and cron.
+ </li>
+ <li>
+  Added support for IdP initiated SSO.
+ </li>
+ <li>
+  Added support for IdP-initiated SLO with iFrame type logout.
+ </li>
+ <li>
+  Major updates to iFrame AJAX SLO. Improved user experience.
+ </li>
+ <li>
+  iFrame AJAX SLO is not safe against simultaneous update of the session.
+ </li>
+ <li>
+  Added support for bookmarking login pages. By adding enough information in the URL to be able to bootstrap a new IdP-initiated SSO and sending.
+ </li>
+ <li>
+  Major updates to the infocard module.
+ </li>
+ <li>
+  Added some handling of isPassive with authentication processing filters.
+ </li>
+ <li>
+  More localized UI.
+ </li>
+ <li>
+  New login as administrator link on frontpage.
+ </li>
+ <li>
+  Tabbed frontpage. Restructured.
+ </li>
+ <li>
+  Simplifications to the theming and updated documentation on theming SimpleSAMLphp.
+ </li>
+ <li>
+  Attribute presentation hook allows you to tweak attributes before presentation in the attribute viewers. Used by Feide to group orgUnit information in a hieararchy.
+ </li>
+ <li>
+  Verification of the Recipient attribute in the response. Will improve security if for some reason an IdP is not includeding sufficient Audience restrictions.
+ </li>
+ <li>
+  Added hook to let modules tell about themself moduleinfo hook.
+ </li>
+ <li>
+  Improved cron mails
+ </li>
+ <li>
+  Improved sanity check exception handling
+ </li>
+ <li>
+  Preserver line breaks in stack trace UI
+ </li>
+ <li>
+  Improvements to WS-Federation support: dynamic realms, logout etc.
+ </li>
+ <li>
+  Better handling of presentation of JPEG photos as attributes.
+ </li>
+ <li>
+  Support limiting size of attribute retrieved from LDAP.
+ </li>
+ <li>
+  Added notes about how to aggregate and consume metadata. Just a start.
+ </li>
+ <li>
+  Large improvements to Configuration class, and config helper functions.
+ </li>
+ <li>
+  STAT logging is moved into separate authentication processing filter.
+ </li>
+ <li>
+  Fix for NoPassive responses to Google Apps with alternative NameIDFormats.
+ </li>
+ <li>
+  LDAP module allows to search multiple searchbases.
+ </li>
+ <li>
+  All documentation is converted from docbook to markdown format.
+ </li>
+ <li>
+  Added headers to not allow google to index pages.
+ </li>
+ <li>
+  Added check on frontpage for magic quotes
+ </li>
+ <li>
+  Added statistic logging to Consent class.
+ </li>
+ <li>
+  Improvements to Exception handler in LDAP class, and better logging.
+ </li>
+ <li>
+  LDAP class supports turning on LDAP-debug logging.
+ </li>
+ <li>
+  Much improvements to SAML 2.0 Metadata generation and parsing.
+ </li>
+ <li>
+  Adding more recent jQuery library.
+ </li>
+ <li>
+  Generic interface for including jQuery dependencies in template headers.
+ </li>
+ <li>
+  Improved UI on default theme
+ </li>
+ <li>
+  Fix for session duration in the Conditions element in the Assertion (SAML 2.0).
+ </li>
+ <li>
+  Updated with new Feide IdP metadata in metadata-templates
+ </li>
+</ul>
+<h2 id="version-13">
+ Version 1.3
+</h2>
+<p>
+ Released 2008-11-04. Revision 973.
+</p>
+<p>
+ Configuration file
+ <code>
+  config.php
+ </code>
+ should not include significant changes, except one language added.
+</p>
+<p>
+ <code>
+  New features
+ </code>
+</p>
+<ul>
+ <li>
+  Documentation update
+ </li>
+ <li>
+  Added new language. Now there are two different portuguese
+  dialects.
+ </li>
+ <li>
+  Consent "module" modified. Now added support for preselecting the
+  checkbox by a configuration parameter. Consent module supports
+  including attributes values (possible to configure).
+ </li>
+ <li>
+  CSS and look changed. Removed transparency to fix problem for some
+  browsers.
+ </li>
+ <li>
+  The login-admin authentication module does not ask for username any
+  more.
+ </li>
+ <li>
+  Added support for persistent NameID Format. (Added by Hans
+  ZAndbelt)
+ </li>
+ <li>
+  Added experimental SAML 2.0 SP AuthSource module.
+ </li>
+ <li>
+  More readable XML output formatting. In example metadata.
+ </li>
+ <li>
+  Better support for choosing whether or not to sign authnrequest.
+  Possible to specify both at SP hosted and IdP remote.
+ </li>
+ <li>
+  Adding more example metadata in metadata-templates.
+ </li>
+ <li>
+  Improved e-mails sent from SimpleSAMLphp. Now both plain text and
+  html.
+ </li>
+ <li>
+  Configuration class may return information about what version.
+ </li>
+ <li>
+  iFrame AJAX SLO improved. Now with non-JavaScript fallback
+  handling.
+ </li>
+</ul>
+<p>
+ <code>
+  Bug fixes
+ </code>
+</p>
+<ul>
+ <li>
+  Fixed warning with XML validator.
+ </li>
+ <li>
+  Improved loading of private/public keys in XML/Signer.
+ </li>
+ <li>
+  Improvements to CAS module.
+ </li>
+ <li>
+  Fixed memcache stats.
+ </li>
+</ul>
+<h2 id="version-12">
+ Version 1.2
+</h2>
+<p>
+ Released 2008-09-26. Revision 899.
+</p>
+<p>
+ There are some changes in the configuration files from version 1.1 to 1.2.
+ <code>
+  /simplesaml/admin/config.php
+ </code>
+ should be used to check what options have changed.
+</p>
+<p>
+ When you upgrade from an previous version you should copy
+ <code>
+  authsources.php
+ </code>
+ from
+ <code>
+  config-templates
+ </code>
+ into
+ <code>
+  config
+ </code>
+ directory.
+</p>
+<p>
+ There are also some changes to the templates. If you have any custom templates, they should be updated to match the ones included. Of notable changes is that the
+ <code>
+  t(...)
+ </code>
+ -functtes, they should be updated to match the ones included. Of notable changes is that the
+ <code>
+  t(...)
+ </code>
+ -function has been simplified, and takes far fewer parameters. It is backwardscompatible, but will write a warning to the log until updated. The backwards compatibility will be removed in a future version.
+</p>
+<p>
+ <code>
+  New features
+ </code>
+</p>
+<ul>
+ <li>
+  Experimental support for modules. Currently modules can contain
+  custom authentication sources, authentication processing filters
+  and themes.
+ </li>
+ <li>
+  An generic SQL authentication module added for those who store their
+  users in an SQL database.
+ </li>
+ <li>
+  Limited support for validating against a CA root certificate. The
+  current implementation only supports cases where the certificate is
+  directly signed by the CA.
+ </li>
+ <li>
+  Allow an IdP to have multiple valid certificate fingerprints, to
+  allow for easier updating of certificates.
+ </li>
+ <li>
+  Shibboleth 1.3 authentication for Auth MemCookie.
+ </li>
+ <li>
+  Support for link to privacy policy on consent-pages.
+ </li>
+ <li>
+  Customizable initial focus on consent-page.
+ </li>
+ <li>
+  Almost all pages should be translatable.
+ </li>
+ <li>
+  Allow SAML 2.0 SP to handle error replies from IdP.
+ </li>
+ <li>
+  PostgreSQL support for consent storage.
+ </li>
+ <li>
+  Add support for encrypted private keys.
+ </li>
+ <li>
+  Proof-of-concept MetaShare service, for easy publishing and sharing
+  of metadata.
+ </li>
+</ul>
+<p>
+ <code>
+  Bug fixes
+ </code>
+</p>
+<ul>
+ <li>
+  Fixed generated SAML 2.0 metadata to be correct.
+ </li>
+ <li>
+  Fixed logout for Auth MemCookie.
+ </li>
+ <li>
+  Sign SAML 2.0 authentication response on failure (such as NoPassive).
+ </li>
+ <li>
+  Fixes for IsPassive in the SAML 2.0 IdP.
+ </li>
+ <li>
+  Fix default syslog configuration on Windows.
+ </li>
+ <li>
+  Fix order of signing and encryption of SAML 2.0 responses
+ </li>
+ <li>
+  Fix generated metadata for Shib 1.3
+ </li>
+ <li>
+  Fix order of elements in encrypted assertions to be schema compliant.
+ </li>
+ <li>
+  Fix session index sent to SAML 2.0 SPs.
+ </li>
+ <li>
+  Remember SAML 2.0 NameID sent to SPs, and include it in logout requests.
+ </li>
+</ul>
+<h2 id="version-11">
+ Version 1.1
+</h2>
+<p>
+ Released 2008-06-19. Revision 673.
+</p>
+<p>
+ When upgrading to version 1.1 from version 1.0, you should update the configuration files. Many options have been added, and some have moved or removed. The new configuration check page:
+ <code>
+  /simplesaml/admin/config.php
+ </code>
+ may be useful for determining what should be updated. Also note that the
+ <code>
+  language.available
+ </code>
+ option in
+ <code>
+  config.php
+ </code>
+ should be updated to reflect the new languages which have been added.
+</p>
+<p>
+ There are also several changes to the template files. If you have done any customizations to these, you should test them to make sure that they still work. Some changes, such as allowing the users to save the IdP choice they make in the discovery service, will not work without updating the templates.
+</p>
+<p>
+ New localizations in version 1.1: Sami, Svenska (swedish), Suomeksi (finnish), Nederlands, Luxembourgish, Slovenian, Hrvatski (Croatian), Magyar (Hungarian).
+</p>
+<p>
+ <code>
+  New features
+ </code>
+</p>
+<ul>
+ <li>
+  Add support for saving the users choice of IdP in the IdP discovery
+  service.
+ </li>
+ <li>
+  Add a config option for whether the Response element or the
+  Assertion element in the response should be signed.
+ </li>
+ <li>
+  Make it easier to add attribute alteration functions.
+ </li>
+ <li>
+  Added support for multiple languages in metadata name and
+  description (for IdP discovery service).
+ </li>
+ <li>
+  Added configuration checker for checking if configuration files
+  should be updated.
+ </li>
+ <li>
+  Add support for icons in IdP discovery service.
+ </li>
+ <li>
+  Add support for external IdP discovery services.
+ </li>
+ <li>
+  Support password encrypted private keys.
+ </li>
+ <li>
+  Added PHP autoloading as the preferred way of loading the
+  SimpleSAMLphp library.
+ </li>
+ <li>
+  New error report script which will report errors to the
+  <code>
+   technicalcontact_email
+  </code>
+  address.
+ </li>
+ <li>
+  Support lookup of the DN of the user who is logging in by searching
+  for an attribute when using the LDAP authentication module.
+ </li>
+ <li>
+  Add support for fetching name and description of entities from XML
+  metadata files.
+ </li>
+ <li>
+  Support for setting custom AttributeNameFormats.
+ </li>
+ <li>
+  Support for signing generated metadata.
+ </li>
+ <li>
+  Support for signature validation of metadata.
+ </li>
+ <li>
+  Added consent support for Shib 1.3 logging.
+ </li>
+ <li>
+  Added errorlog logging handler for logging to the default Apache
+  error log.
+ </li>
+ <li>
+  Added support for WS-Federation single signon.
+ </li>
+ <li>
+  Allow
+  <code>
+   session_save_path
+  </code>
+  to be overridden by setting the
+  <code>
+   session.phpsession.savepath
+  </code>
+  option in
+  <code>
+   config.php
+  </code>
+  .
+ </li>
+ <li>
+  Add support for overriding autogenerated metadata values, such as
+  the
+  <code>
+   AssertionConsumerService
+  </code>
+  address.
+ </li>
+ <li>
+  Added IsPassive support in the SAML 2.0 IdP.
+ </li>
+ <li>
+  Add attribute filter for generating eduPersonTargetedID attribute.
+ </li>
+ <li>
+  Add support for validation of sent and received messages and
+  metadata.
+ </li>
+ <li>
+  Add support for dynamic metadata loading with cache.
+ </li>
+ <li>
+  Add support for dynamic generation of entityid and metadata.
+ </li>
+ <li>
+  Added wayf.dk login module.
+ </li>
+ <li>
+  Add support for encrypting and decrypting assertions.
+ </li>
+ <li>
+  CAS authentication module: Add support for serviceValidate.
+ </li>
+ <li>
+  CAS authentication module: Add support for getting attributes from
+  response by specifying XPath mappings.
+ </li>
+ <li>
+  Add support for specifying a certificate in the
+  <code>
+   saml20-idp-remote
+  </code>
+  metadata instead of a fingerprint.
+ </li>
+ <li>
+  Add an attribute alter function for dynamic group generation.
+ </li>
+ <li>
+  Add support for attribute processing in SAML 2 SP.
+ </li>
+ <li>
+  Added tlsclient authentication module.
+ </li>
+ <li>
+  Allow the templates to override the header and footer of pages.
+ </li>
+ <li>
+  Major improvements to the Feide authentication module.
+ </li>
+ <li>
+  Add support for ForceAuthn in the SAML 2.0 IdP.
+ </li>
+ <li>
+  Choose language based on the languages the user has selected in the
+  web browser.
+ </li>
+ <li>
+  Added fallback to base language if translation isn't found.
+ </li>
+</ul>
+<p>
+ <code>
+  Bug fixes
+ </code>
+</p>
+<ul>
+ <li>
+  Modified IdP discovery service to support Shibboleth 2.0 SP.
+ </li>
+ <li>
+  Fix setcookie warning for PHP version \&lt; 5.2.
+ </li>
+ <li>
+  Fix logout not being performed for Auth MemCache sometimes.
+ </li>
+ <li>
+  Preserve case of attribute names during LDAP attribute retrieval.
+ </li>
+ <li>
+  Fix IdP-initiated logout.
+ </li>
+ <li>
+  Ensure that changed sessions with changed SP associations are
+  written to memcache.
+ </li>
+ <li>
+  Prevent infinite recursion during logging.
+ </li>
+ <li>
+  Don't send the relaystate from the SP which initiated the logout to
+  other SPs during logout.
+ </li>
+ <li>
+  Prevent consent module from revealing DB password when an error
+  occurs.
+ </li>
+ <li>
+  Fix logout with memcache session handler.
+ </li>
+ <li>
+  Allow new session to be created in login modules.
+ </li>
+ <li>
+  Removed the strict parameter from base64_decode for PHP 5.1
+  compatibility.
+ </li>
+</ul>
+<h2 id="version-10">
+ Version 1.0
+</h2>
+<p>
+ Released 2008-03-28. Revision 470.
+</p>
+<h2 id="version-05">
+ Version 0.5
+</h2>
+<p>
+ Released 2007-10-15. Revision 28.
+</p>
+<h3 id="warning">
+ Warning
+</h3>
+<p>
+ Both
+ <code>
+  config.php
+ </code>
+ and metadata format are changed. Look at the
+templates to understand the new format.
+</p>
+<ul>
+ <li>
+  Documentation is updated!
+ </li>
+ <li>
+  Metadata files made tidier. Unused entries removed. Look at the new
+  templates on how to change your existing metadata.
+ </li>
+ <li>
+  Support for sending metadata by mail to Feide. Automatically
+  detecting whether you have configured Feide as the default IdP or
+  not.
+ </li>
+ <li>
+  Improved SAML 2.0 Metadata generation
+ </li>
+ <li>
+  Added support for Shibboleth 1.3 IdP functionality (beta, contact
+  me if any problems)
+ </li>
+ <li>
+  Added RADIUS authentication backend
+ </li>
+ <li>
+  Added support for HTTP-Redirect debugging when enable
+  <code>
+   debug=true
+  </code>
+ </li>
+ <li>
+  SAML 2.0 SP example now contains a logout page.
+ </li>
+ <li>
+  Added new authentication backend with support for multiple LDAP
+  based on which organization the user selects.
+ </li>
+ <li>
+  Added SAML 2.0 Discovery Service
+ </li>
+ <li>
+  Initial 'proof of concept' implementation of "User consent on
+  attribute release"
+ </li>
+ <li>
+  Fixed some minor bugs.
+ </li>
+</ul>
+<h2 id="version-04">
+ Version 0.4
+</h2>
+<p>
+ Released 2007-09-14. Revision X.
+</p>
+<ul>
+ <li>
+  Improved documentation
+ </li>
+ <li>
+  Authentication plugin API. Only LDAP authentication plugin is
+  included, but it is now easier to implement your own plugin.
+ </li>
+ <li>
+  Added support for SAML 2.0 IdP to work with Google Apps for
+  Education. Tested.
+ </li>
+ <li>
+  Initial implementation of SAML 2.0 Single Log Out functionality
+  both for SP and IdP. Seems to work, but not yet well-tested.
+ </li>
+ <li>
+  Added support for bridging SAML 2.0 to SAML 2.0.
+ </li>
+ <li>
+  Added some time skew offset to the NotBefore timestamp on the
+  assertion, to allow some time skew between the SP and IdP.
+ </li>
+ <li>
+  Fixed Browser/POST page to automatically submit, and have fall back
+  functionality for user agents with no JavaScript support.
+ </li>
+ <li>
+  Fixed some bug with warning traversing Shibboleth 1.3 Assertions.
+ </li>
+ <li>
+  Fixed tabindex on the login page of the LDAP authentication module
+  to allow you to tab from username, to password and then to submit.
+ </li>
+ <li>
+  Fixed bug on autodiscovering hostname in multihost environments.
+ </li>
+ <li>
+  Cleaned out some debug messages, and added a debug option in the
+  configuration file. This debug option let's you turn on the
+  possibility of showing all SAML messages to users in the web
+  browser, and manually submit them.
+ </li>
+ <li>
+  Several minor bugfixes.
+ </li>
+</ul></main></body>
+</html>
