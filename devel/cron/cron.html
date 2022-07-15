@@ -239,9 +239,9 @@ your SimpleSAMLphp installation.
 </p>
 <div class="codehilite">
  <pre><span></span><code># Run cron [daily]
-02 0 * * * curl --silent "https://YOUR_SERVER/simplesaml/module.php/cron/cron.php?key=RANDOM_KEY&amp;tag=daily" &gt; /dev/null 2&gt;&amp;1
+02 0 * * * curl -sS "https://YOUR_SERVER/simplesaml/module.php/cron/run/daily/RANDOM_KEY"
 # Run cron [hourly]
-01 * * * * curl --silent "https://YOUR_SERVER/simplesaml/module.php/cron/cron.php?key=RANDOM_KEY&amp;tag=hourly" &gt; /dev/null 2&gt;&amp;1
+01 * * * * curl -sS "https://YOUR_SERVER/simplesaml/module.php/cron/run/hourly/RANDOM_KEY"
 </code></pre>
 </div>
 <p>
