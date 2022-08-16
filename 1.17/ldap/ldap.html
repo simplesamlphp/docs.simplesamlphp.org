@@ -144,72 +144,72 @@ server with all the users. To create an LDAP authentication source, open
 authentication source:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="s1">'</span><span class="s">example-ldap</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="nv">array</span><span class="ss">(</span>
-  <span class="s1">'</span><span class="s">ldap:LDAP</span><span class="s1">'</span>,
+ <pre><span></span><code><span class="s1">'example-ldap'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nv">array</span><span class="ss">(</span><span class="w"></span>
+<span class="w">  </span><span class="s1">'ldap:LDAP'</span>,<span class="w"></span>
 
-  <span class="cm">/* The hostname of the LDAP server. */</span>
-  <span class="s1">'</span><span class="s">hostname</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="s1">'</span><span class="s">ldap.example.org</span><span class="s1">'</span>,
+<span class="w">  </span><span class="cm">/* The hostname of the LDAP server. */</span><span class="w"></span>
+<span class="w">  </span><span class="s1">'hostname'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'ldap.example.org'</span>,<span class="w"></span>
 
-  <span class="cm">/* Whether SSL/TLS should be used when contacting the LDAP server. */</span>
-  <span class="s1">'</span><span class="s">enable_tls</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="nv">FALSE</span>,
+<span class="w">  </span><span class="cm">/* Whether SSL/TLS should be used when contacting the LDAP server. */</span><span class="w"></span>
+<span class="w">  </span><span class="s1">'enable_tls'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nv">FALSE</span>,<span class="w"></span>
 
-  <span class="cm">/*</span>
+<span class="w">  </span><span class="cm">/*</span>
 <span class="cm">   * Which attributes should be retrieved from the LDAP server.</span>
 <span class="cm">   * This can be an array of attribute names, or NULL, in which case</span>
 <span class="cm">   * all attributes are fetched.</span>
-<span class="cm">   */</span>
-  <span class="s1">'</span><span class="s">attributes</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="nv">NULL</span>,
+<span class="cm">   */</span><span class="w"></span>
+<span class="w">  </span><span class="s1">'attributes'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nv">NULL</span>,<span class="w"></span>
 
-  <span class="cm">/*</span>
+<span class="w">  </span><span class="cm">/*</span>
 <span class="cm">   * The pattern which should be used to create the user's DN given the username.</span>
 <span class="cm">   * %username% in this pattern will be replaced with the user's username.</span>
 <span class="cm">   *</span>
 <span class="cm">   * This option is not used if the search.enable option is set to TRUE.</span>
-<span class="cm">   */</span>
-  <span class="s1">'</span><span class="s">dnpattern</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="s1">'</span><span class="s">uid=%username%,ou=people,dc=example,dc=org</span><span class="s1">'</span>,
+<span class="cm">   */</span><span class="w"></span>
+<span class="w">  </span><span class="s1">'dnpattern'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'uid=%username%,ou=people,dc=example,dc=org'</span>,<span class="w"></span>
 
-  <span class="cm">/*</span>
+<span class="w">  </span><span class="cm">/*</span>
 <span class="cm">   * As an alternative to specifying a pattern for the users DN, it is possible to</span>
 <span class="cm">   * search for the username in a set of attributes. This is enabled by this option.</span>
-<span class="cm">   */</span>
-  <span class="s1">'</span><span class="s">search.enable</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="nv">FALSE</span>,
+<span class="cm">   */</span><span class="w"></span>
+<span class="w">  </span><span class="s1">'search.enable'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nv">FALSE</span>,<span class="w"></span>
 
-  <span class="cm">/*</span>
+<span class="w">  </span><span class="cm">/*</span>
 <span class="cm">   * The DN which will be used as a base for the search.</span>
 <span class="cm">   * This can be a single string, in which case only that DN is searched, or an</span>
 <span class="cm">   * array of strings, in which case they will be searched in the order given.</span>
-<span class="cm">   */</span>
-  <span class="s1">'</span><span class="s">search.base</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="s1">'</span><span class="s">ou=people,dc=example,dc=org</span><span class="s1">'</span>,
+<span class="cm">   */</span><span class="w"></span>
+<span class="w">  </span><span class="s1">'search.base'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'ou=people,dc=example,dc=org'</span>,<span class="w"></span>
 
-              <span class="cm">/*</span>
+<span class="w">              </span><span class="cm">/*</span>
 <span class="cm">               * The scope of the search. Valid values are 'subtree' and 'onelevel' and 'base',</span>
 <span class="cm">               * first one being the default if no value is set.</span>
-<span class="cm">               */</span>
-              <span class="s1">'</span><span class="s">search.scope</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="s1">'</span><span class="s">subtree</span><span class="s1">'</span>,
+<span class="cm">               */</span><span class="w"></span>
+<span class="w">              </span><span class="s1">'search.scope'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'subtree'</span>,<span class="w"></span>
 
-  <span class="cm">/*</span>
+<span class="w">  </span><span class="cm">/*</span>
 <span class="cm">   * The attribute(s) the username should match against.</span>
 <span class="cm">   *</span>
 <span class="cm">   * This is an array with one or more attribute names. Any of the attributes in</span>
 <span class="cm">   * the array may match the value the username.</span>
-<span class="cm">   */</span>
-  <span class="s1">'</span><span class="s">search.attributes</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="nv">array</span><span class="ss">(</span><span class="s1">'</span><span class="s">uid</span><span class="s1">'</span>, <span class="s1">'</span><span class="s">mail</span><span class="s1">'</span><span class="ss">)</span>,
+<span class="cm">   */</span><span class="w"></span>
+<span class="w">  </span><span class="s1">'search.attributes'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nv">array</span><span class="ss">(</span><span class="s1">'uid'</span>,<span class="w"> </span><span class="s1">'mail'</span><span class="ss">)</span>,<span class="w"></span>
 
-  <span class="cm">/*</span>
+<span class="w">  </span><span class="cm">/*</span>
 <span class="cm">   * Additional filters that must match for the entire LDAP search to be TRUE</span>
 <span class="cm">   *</span>
 <span class="cm">   * This should be a single string conforming to (RFC 1960, 2544)</span>
 <span class="cm">   * The string is appended to the search attributes</span>
-<span class="cm">   */</span>
-  <span class="s1">'</span><span class="s">search.filter</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="s1">'</span><span class="s">(&amp;(objectClass=Person)(|(sn=Doe)(cn=John *)))</span><span class="s1">'</span>,
+<span class="cm">   */</span><span class="w"></span>
+<span class="w">  </span><span class="s1">'search.filter'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'(&amp;(objectClass=Person)(|(sn=Doe)(cn=John *)))'</span>,<span class="w"></span>
 
-  <span class="cm">/*</span>
+<span class="w">  </span><span class="cm">/*</span>
 <span class="cm">   * The username &amp; password where SimpleSAMLphp should bind to before searching. If</span>
 <span class="cm">   * this is left NULL, no bind will be performed before searching.</span>
-<span class="cm">   */</span>
-  <span class="s1">'</span><span class="s">search.username</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="nv">NULL</span>,
-  <span class="s1">'</span><span class="s">search.password</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="nv">NULL</span>,
-<span class="ss">)</span>,
+<span class="cm">   */</span><span class="w"></span>
+<span class="w">  </span><span class="s1">'search.username'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nv">NULL</span>,<span class="w"></span>
+<span class="w">  </span><span class="s1">'search.password'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nv">NULL</span>,<span class="w"></span>
+<span class="ss">)</span>,<span class="w"></span>
 </code></pre>
 </div>
 <p>

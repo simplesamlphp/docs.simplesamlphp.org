@@ -395,14 +395,19 @@ be sure to use them from the authoritative source.
  <dd>
   The sets of entities to load. An array containing strings identifying the different types of entities that will be
   loaded. Valid types are:
-  <div class="codehilite">
-   <pre><span></span><code><span class="o">*</span><span class="w"> </span><span class="n">saml20</span><span class="o">-</span><span class="n">idp</span><span class="o">-</span><span class="k">remote</span><span class="w"></span>
-<span class="o">*</span><span class="w"> </span><span class="n">saml20</span><span class="o">-</span><span class="n">sp</span><span class="o">-</span><span class="k">remote</span><span class="w"></span>
-<span class="o">*</span><span class="w"> </span><span class="n">attributeauthority</span><span class="o">-</span><span class="k">remote</span><span class="w"></span>
-
-<span class="n">All</span><span class="w"> </span><span class="n">entity</span><span class="w"> </span><span class="n">types</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">loaded</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">default</span><span class="o">.</span><span class="w"></span>
-</code></pre>
-  </div>
+  <code>
+   saml20-idp-remote
+  </code>
+  ,
+  <code>
+   saml20-sp-remote
+  </code>
+  ,
+  <code>
+   attributeauthority-remote
+  </code>
+  .
+  All entity types will be loaded by default.
  </dd>
 </dl>
 <p>
@@ -490,17 +495,21 @@ be sure to use them from the authoritative source.
   This is a multilevel array for selectively refreshing a list of identity providers based on specific attributes
   patterns in their metadata. Only data from identity providers that match at least one element of the top-level array
   will be processed and written to disk.
-  <br/>
   Matching of such a top-level element, itself being a (multi-level) array, means that at each level (recursively) the
   key and value match with the identity provider's metadata. Scalar keys and values are matched using PCRE.
-  <br/>
   A typical use-case is to accept only identity providers from eduGAIN that match a combination of specific
-  EntityAttributes, such as the https://refeds.org/sirtfi assurance-certification
+  EntityAttributes, such as the
+  <code>
+   https://refeds.org/sirtfi
+  </code>
+  assurance-certification
   <em>
    and
   </em>
-  http://refeds.org/category/research-and-scholarship entity-category.
-  <br/>
+  <code>
+   http://refeds.org/category/research-and-scholarship
+  </code>
+  entity-category.
   Another example is filtering identity providers from a specific federation, by filtering on specific values of the
   registrationAuthority inside the RegistrationInfo.
  </dd>

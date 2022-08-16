@@ -478,14 +478,14 @@ What follows is an example of an authentication source that fetches an user from
 A SSHA password is created like this:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  $<span class="nv">password</span> <span class="o">=</span> <span class="s1">'</span><span class="s">secret</span><span class="s1">'</span><span class="c1">;</span>
-  $<span class="nv">numSalt</span> <span class="o">=</span> <span class="mi">8</span><span class="c1">; /* Number of bytes with salt. */</span>
-  $<span class="nv">salt</span> <span class="o">=</span> <span class="s1">''</span><span class="c1">;</span>
-  <span class="k">for</span> <span class="ss">(</span>$<span class="nv">i</span> <span class="o">=</span> <span class="mi">0</span><span class="c1">; $i &lt; $numSalt; $i++) {</span>
-      $<span class="nv">salt</span> .<span class="o">=</span> <span class="nv">chr</span><span class="ss">(</span><span class="nv">mt_rand</span><span class="ss">(</span><span class="mi">0</span>, <span class="mi">255</span><span class="ss">))</span><span class="c1">;</span>
-  }
-  <span class="mh">$d</span><span class="nv">igest</span> <span class="o">=</span> <span class="nv">sha1</span><span class="ss">(</span>$<span class="nv">password</span> . $<span class="nv">salt</span>, <span class="nv">TRUE</span><span class="ss">)</span><span class="c1">;</span>
-  $<span class="nv">password_hash</span> <span class="o">=</span> <span class="nv">base64_encode</span><span class="ss">(</span><span class="mh">$d</span><span class="nv">igest</span> . $<span class="nv">salt</span><span class="ss">)</span><span class="c1">;</span>
+ <pre><span></span><code><span class="w">  </span>$<span class="nv">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'secret'</span><span class="c1">;</span><span class="w"></span>
+<span class="w">  </span>$<span class="nv">numSalt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="c1">; /* Number of bytes with salt. */</span><span class="w"></span>
+<span class="w">  </span>$<span class="nv">salt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">''</span><span class="c1">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="ss">(</span>$<span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="c1">; $i &lt; $numSalt; $i++) {</span><span class="w"></span>
+<span class="w">      </span>$<span class="nv">salt</span><span class="w"> </span>.<span class="o">=</span><span class="w"> </span><span class="nv">chr</span><span class="ss">(</span><span class="nv">mt_rand</span><span class="ss">(</span><span class="mi">0</span>,<span class="w"> </span><span class="mi">255</span><span class="ss">))</span><span class="c1">;</span><span class="w"></span>
+<span class="w">  </span>}<span class="w"></span>
+<span class="w">  </span><span class="mh">$d</span><span class="nv">igest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">sha1</span><span class="ss">(</span>$<span class="nv">password</span><span class="w"> </span>.<span class="w"> </span>$<span class="nv">salt</span>,<span class="w"> </span><span class="nv">TRUE</span><span class="ss">)</span><span class="c1">;</span><span class="w"></span>
+<span class="w">  </span>$<span class="nv">password_hash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">base64_encode</span><span class="ss">(</span><span class="mh">$d</span><span class="nv">igest</span><span class="w"> </span>.<span class="w"> </span>$<span class="nv">salt</span><span class="ss">)</span><span class="c1">;</span><span class="w"></span>
 </code></pre>
 </div>
 <p>

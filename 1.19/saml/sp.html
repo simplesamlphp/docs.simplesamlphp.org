@@ -1376,26 +1376,26 @@ The following attributes are available:
  Specifying attributes and required attributes
 </h3>
 <div class="codehilite">
- <pre><span></span><code>  <span class="nv">An</span> <span class="nv">SP</span> <span class="nv">that</span> <span class="nv">wants</span> <span class="nv">eduPersonPrincipalName</span> <span class="nv">and</span> <span class="nv">mail</span>, <span class="nv">where</span> <span class="nv">eduPersonPrincipalName</span> <span class="nv">should</span> <span class="nv">be</span> <span class="nv">listed</span> <span class="nv">as</span> <span class="nv">required</span>:
+ <pre><span></span><code><span class="w">  </span><span class="nv">An</span><span class="w"> </span><span class="nv">SP</span><span class="w"> </span><span class="nv">that</span><span class="w"> </span><span class="nv">wants</span><span class="w"> </span><span class="nv">eduPersonPrincipalName</span><span class="w"> </span><span class="nv">and</span><span class="w"> </span><span class="nv">mail</span>,<span class="w"> </span><span class="nv">where</span><span class="w"> </span><span class="nv">eduPersonPrincipalName</span><span class="w"> </span><span class="nv">should</span><span class="w"> </span><span class="nv">be</span><span class="w"> </span><span class="nv">listed</span><span class="w"> </span><span class="nv">as</span><span class="w"> </span><span class="nv">required</span>:<span class="w"></span>
 
-  <span class="s1">'</span><span class="s">example-attributes =&gt; array(</span>
-      <span class="s1">'</span><span class="s">saml:SP</span><span class="s1">'</span>,
-      <span class="s1">'</span><span class="s">name</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="nv">array</span><span class="ss">(</span> <span class="o">//</span> <span class="nv">Name</span> <span class="nv">required</span> <span class="k">for</span> <span class="nv">AttributeConsumingService</span><span class="o">-</span><span class="nv">element</span>.
-          <span class="s1">'</span><span class="s">en</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="s1">'</span><span class="s">Example service</span><span class="s1">'</span>,
-          <span class="s1">'</span><span class="s">no</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="s1">'</span><span class="s">Eksempeltjeneste</span><span class="s1">'</span>,
-      <span class="ss">)</span>,
-      <span class="s1">'</span><span class="s">attributes</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="nv">array</span><span class="ss">(</span>
-          <span class="s1">'</span><span class="s">eduPersonPrincipalName</span><span class="s1">'</span>,
-          <span class="s1">'</span><span class="s">mail</span><span class="s1">'</span>,
-          <span class="o">//</span> <span class="nv">Specify</span> <span class="nv">friendly</span> <span class="nv">names</span> <span class="k">for</span> <span class="nv">these</span> <span class="nv">attributes</span>:
-          <span class="s1">'</span><span class="s">sn</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="s1">'</span><span class="s">urn:oid:2.5.4.4</span><span class="s1">'</span>,
-          <span class="s1">'</span><span class="s">givenName</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="s1">'</span><span class="s">urn:oid:2.5.4.42</span><span class="s1">'</span>,
-      <span class="ss">)</span>,
-      <span class="s1">'</span><span class="s">attributes.required</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="nv">array</span> <span class="ss">(</span>
-          <span class="s1">'</span><span class="s">eduPersonPrincipalName</span><span class="s1">'</span>,
-      <span class="ss">)</span>,
-      <span class="s1">'</span><span class="s">attributes.NameFormat</span><span class="s1">'</span> <span class="o">=&gt;</span> <span class="s1">'</span><span class="s">urn:oasis:names:tc:SAML:2.0:attrname-format:basic</span><span class="s1">'</span>,
-  <span class="ss">)</span>,
+<span class="w">  </span><span class="err">'example-attributes =&gt; array(</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'saml:SP'</span>,<span class="w"></span>
+<span class="w">      </span><span class="s1">'name'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nv">array</span><span class="ss">(</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="nv">Name</span><span class="w"> </span><span class="nv">required</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">AttributeConsumingService</span><span class="o">-</span><span class="nv">element</span>.<span class="w"></span>
+<span class="w">          </span><span class="s1">'en'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Example service'</span>,<span class="w"></span>
+<span class="w">          </span><span class="s1">'no'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Eksempeltjeneste'</span>,<span class="w"></span>
+<span class="w">      </span><span class="ss">)</span>,<span class="w"></span>
+<span class="w">      </span><span class="s1">'attributes'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nv">array</span><span class="ss">(</span><span class="w"></span>
+<span class="w">          </span><span class="s1">'eduPersonPrincipalName'</span>,<span class="w"></span>
+<span class="w">          </span><span class="s1">'mail'</span>,<span class="w"></span>
+<span class="w">          </span><span class="o">//</span><span class="w"> </span><span class="nv">Specify</span><span class="w"> </span><span class="nv">friendly</span><span class="w"> </span><span class="nv">names</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">these</span><span class="w"> </span><span class="nv">attributes</span>:<span class="w"></span>
+<span class="w">          </span><span class="s1">'sn'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'urn:oid:2.5.4.4'</span>,<span class="w"></span>
+<span class="w">          </span><span class="s1">'givenName'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'urn:oid:2.5.4.42'</span>,<span class="w"></span>
+<span class="w">      </span><span class="ss">)</span>,<span class="w"></span>
+<span class="w">      </span><span class="s1">'attributes.required'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nv">array</span><span class="w"> </span><span class="ss">(</span><span class="w"></span>
+<span class="w">          </span><span class="s1">'eduPersonPrincipalName'</span>,<span class="w"></span>
+<span class="w">      </span><span class="ss">)</span>,<span class="w"></span>
+<span class="w">      </span><span class="s1">'attributes.NameFormat'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'urn:oasis:names:tc:SAML:2.0:attrname-format:basic'</span>,<span class="w"></span>
+<span class="w">  </span><span class="ss">)</span>,<span class="w"></span>
 </code></pre>
 </div>
 <h3 id="limiting-supported-assertionconsumerservice-endpoint-bindings">

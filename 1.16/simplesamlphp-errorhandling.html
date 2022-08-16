@@ -130,11 +130,11 @@ The simplest case is if you want to throw it during the
 In those methods, you can just throw an exception:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  <span class="nv">public</span> <span class="nv">function</span> <span class="nv">process</span><span class="ss">(</span><span class="o">&amp;</span>$<span class="nv">state</span><span class="ss">)</span> {
-      <span class="k">if</span> <span class="ss">(</span>$<span class="nv">state</span>[<span class="s1">'</span><span class="s">something</span><span class="s1">'</span>] <span class="o">===</span> <span class="nv">FALSE</span><span class="ss">)</span> {
-          <span class="nv">throw</span> <span class="nv">new</span> <span class="nv">SimpleSAML_Error_Exception</span><span class="ss">(</span><span class="s1">'</span><span class="s">Something is wrong...</span><span class="s1">'</span><span class="ss">)</span><span class="c1">;</span>
-      }
-  }
+ <pre><span></span><code><span class="w">  </span><span class="nv">public</span><span class="w"> </span><span class="nv">function</span><span class="w"> </span><span class="nv">process</span><span class="ss">(</span><span class="o">&amp;</span>$<span class="nv">state</span><span class="ss">)</span><span class="w"> </span>{<span class="w"></span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="ss">(</span>$<span class="nv">state</span>[<span class="s1">'something'</span>]<span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nv">FALSE</span><span class="ss">)</span><span class="w"> </span>{<span class="w"></span>
+<span class="w">          </span><span class="nv">throw</span><span class="w"> </span><span class="nv">new</span><span class="w"> </span><span class="nv">SimpleSAML_Error_Exception</span><span class="ss">(</span><span class="s1">'Something is wrong...'</span><span class="ss">)</span><span class="c1">;</span><span class="w"></span>
+<span class="w">      </span>}<span class="w"></span>
+<span class="w">  </span>}<span class="w"></span>
 </code></pre>
 </div>
 <p>
