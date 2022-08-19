@@ -93,21 +93,48 @@
 <p>
  This document gives a quick guide to doing key rollover with a SimpleSAMLphp service provider or identity provider.
 </p>
-<h2 id="create-the-new-key-and-certificate">
- Create the new key and certificate
+<h2 id="background">
+ Background
 </h2>
+<p>
+ A key rollover must perform several steps so that authentication does not break while remote SPs and IdPs learn about the new certificate. If you follow this procedure there should be no need for a synchronised switchover moment. It takes the following steps, which are detailed below:
+</p>
+<ol>
+ <li>
+  You generate a new keypair for your entity to use.
+ </li>
+ <li>
+  You configure both old and new key in your SimpleSAMLphp config. Your
+entity publishes metadata with two certificates in it. Meanwhile it continues to sign with the old key.
+ </li>
+ <li>
+  Relying parties (remote SPs or IdPs) refresh your metadata and will hence thereby trust the two listed certs (old and new). If they do not automatically refresh metadata their config needs to be updated manually to trust both the old and new certificate.
+ </li>
+ <li>
+  Once all relying parties have updated metadata with both certificates, you remove old certificate from your SimpleSAMLphp configuration, effectively doing the actual key rollover. Your SimpleSAMLphp now signs with the new key. Everything remains working because all relying parties will trust old and new certificate.
+ </li>
+ <li>
+  Your SimpleSAMLphp now publishes metadata with only the new cert. Relying parties will refresh metadata and drop the old certificate, not trusting it anymore (or remove the old certificate from their config manually). This last step is essential to ensure that the old certificate is actually distrusted.
+ </li>
+</ol>
+<h2 id="the-steps">
+ The steps
+</h2>
+<h3 id="create-the-new-key-and-certificate">
+ Create the new key and certificate
+</h3>
 <p>
  First you must create the new key that you are going to use.
 To create a self signed certificate, you may use the following command:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  cd cert
-  openssl req -newkey rsa:3072 -new -x509 -days 3652 -nodes -out new.crt -keyout new.pem
+ <pre><span></span><code><span class="nb">cd</span> cert
+openssl req -newkey rsa:3072 -new -x509 -days <span class="m">3652</span> -nodes -out new.crt -keyout new.pem
 </code></pre>
 </div>
-<h2 id="add-the-new-key-to-simplesamlphp">
+<h3 id="add-the-new-key-to-simplesamlphp">
  Add the new key to SimpleSAMLphp
-</h2>
+</h3>
 <p>
  Where you add the new key depends on whether you are doing key rollover for a service provider or an identity provider.
 If you are doing key rollover for a service provider, the new key must be added to
@@ -148,18 +175,18 @@ This ensures that both those entities that use your old metadata and those that 
  :
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'default-sp' =&gt; [
-      'saml:SP',
-      'privatekey' =&gt; 'old.pem',
-      'certificate' =&gt; 'old.crt',
-      // When private key is passphrase protected.
-      'privatekey_pass' =&gt; '&lt;old-secret&gt;',
+ <pre><span></span><code><span class="x">    'default-sp' =&gt; [</span>
+<span class="x">        'saml:SP',</span>
+<span class="x">        'privatekey' =&gt; 'old.pem',</span>
+<span class="x">        'certificate' =&gt; 'old.crt',</span>
+<span class="x">        // When private key is passphrase protected.</span>
+<span class="x">        'privatekey_pass' =&gt; '&lt;old-secret&gt;',</span>
 
-      'new_privatekey' =&gt; 'new.pem',
-      'new_certificate' =&gt; 'new.crt',
-      // When new private key is passphrase protected.
-      'new_privatekey_pass' =&gt; '&lt;new-secret&gt;',
-  ],
+<span class="x">        'new_privatekey' =&gt; 'new.pem',</span>
+<span class="x">        'new_certificate' =&gt; 'new.crt',</span>
+<span class="x">        // When new private key is passphrase protected.</span>
+<span class="x">        'new_privatekey_pass' =&gt; '&lt;new-secret&gt;',</span>
+<span class="x">    ],</span>
 </code></pre>
 </div>
 <p>
@@ -170,24 +197,24 @@ This ensures that both those entities that use your old metadata and those that 
  :
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'urn:x-simplesamlphp:idp'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cp">[</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'host'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'__DEFAULT__'</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'auth'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'example-userpass'</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'privatekey'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'old.pem'</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'certificate'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'old.crt'</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="c1">// When private key is passphrase protected.</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'privatekey_pass'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'&lt;old-secret&gt;'</span><span class="p">,</span><span class="w"></span>
+ <pre><span></span><code><span class="x">    $metadata['urn:x-simplesamlphp:idp'] = [</span>
+<span class="x">        'host' =&gt; '__DEFAULT__',</span>
+<span class="x">        'auth' =&gt; 'example-userpass',</span>
+<span class="x">        'privatekey' =&gt; 'old.pem',</span>
+<span class="x">        'certificate' =&gt; 'old.crt',</span>
+<span class="x">        // When private key is passphrase protected.</span>
+<span class="x">        'privatekey_pass' =&gt; '&lt;old-secret&gt;',</span>
 
-<span class="w">      </span><span class="s1">'new_privatekey'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'new.pem'</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'new_certificate'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'new.crt'</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="c1">// When new private key is passphrase protected.</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'new_privatekey_pass'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'&lt;new-secret&gt;'</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="cp">]</span><span class="o">;</span><span class="w"></span>
+<span class="x">        'new_privatekey' =&gt; 'new.pem',</span>
+<span class="x">        'new_certificate' =&gt; 'new.crt',</span>
+<span class="x">        // When new private key is passphrase protected.</span>
+<span class="x">        'new_privatekey_pass' =&gt; '&lt;new-secret&gt;',</span>
+<span class="x">    ];</span>
 </code></pre>
 </div>
-<h2 id="distribute-your-new-metadata">
+<h3 id="distribute-your-new-metadata">
  Distribute your new metadata
-</h2>
+</h3>
 <p>
  Now, you need to make sure that all your peers are using your new metadata.
 How you go about this depends on how your peers have added your metadata.
@@ -198,9 +225,9 @@ If you are part of an federation, you would probably either send it to the feder
  Once the peers are using your new metadata, they will accept messages from you signed with either your old or your new key.
 If they send encrypted messages to you, they will use your new key for encryption.
 </p>
-<h2 id="remove-the-old-key">
+<h3 id="remove-the-old-key">
  Remove the old key
-</h2>
+</h3>
 <p>
  Once you are certain that all your peers are using the new metadata, you must remove the old key.
 Replace the existing
@@ -215,7 +242,7 @@ Replace the existing
  <code>
   certificate
  </code>
- options in your configuration with the
+ values op in your configuration with values from the
  <code>
   new_privatekey
  </code>
@@ -227,7 +254,7 @@ Replace the existing
  <code>
   new_certificate
  </code>
- options.
+ , and remove the latter options..
 This will cause your old key to be removed from your metadata.
 </p>
 <p>
@@ -244,36 +271,30 @@ This will cause your old key to be removed from your metadata.
  :
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'default-sp' =&gt; [
-      'saml:SP',
-      'certificate' =&gt; 'new.crt',
-      'privatekey' =&gt; 'new.pem',
-      // When private key is passphrase protected.
-      'privatekey_pass' =&gt; '&lt;new-secret&gt;',
-  ],
+ <pre><span></span><code><span class="x">    'default-sp' =&gt; [</span>
+<span class="x">        'saml:SP',</span>
+<span class="x">        'certificate' =&gt; 'new.crt',</span>
+<span class="x">        'privatekey' =&gt; 'new.pem',</span>
+<span class="x">        // When private key is passphrase protected.</span>
+<span class="x">        'privatekey_pass' =&gt; '&lt;new-secret&gt;',</span>
+<span class="x">    ],</span>
+
+<span class="x">In `metadata/saml20-idp-hosted.php`:</span>
+
+<span class="x">```php</span>
+<span class="x">    $metadata['urn:x-simplesamlphp:idp'] = [</span>
+<span class="x">        'host' =&gt; '__DEFAULT__',</span>
+<span class="x">        'auth' =&gt; 'example-userpass',</span>
+<span class="x">        'certificate' =&gt; 'new.crt',</span>
+<span class="x">        'privatekey' =&gt; 'new.pem',</span>
+<span class="x">        // When private key is passphrase protected.</span>
+<span class="x">        'privatekey_pass' =&gt; '&lt;new-secret&gt;',</span>
+<span class="x">    ];</span>
 </code></pre>
 </div>
-<p>
- In
- <code>
-  metadata/saml20-idp-hosted.php
- </code>
- :
-</p>
-<div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'urn:x-simplesamlphp:idp'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cp">[</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'host'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'__DEFAULT__'</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'auth'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'example-userpass'</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'certificate'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'new.crt'</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'privatekey'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'new.pem'</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="c1">// When private key is passphrase protected.</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'privatekey_pass'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'&lt;new-secret&gt;'</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="cp">]</span><span class="o">;</span><span class="w"></span>
-</code></pre>
-</div>
-<h2 id="distribute-your-final-metadata">
+<h3 id="distribute-your-final-metadata">
  Distribute your final metadata
-</h2>
+</h3>
 <p>
  Now you need to update the metadata of all your peers again, so that your old signing certificate is removed.
 This will cause those entities to no longer accept messages signed using your old key.
