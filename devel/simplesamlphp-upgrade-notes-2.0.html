@@ -143,6 +143,17 @@ For example, to use the LDAP module:
   in the module's root directory.
  </li>
  <li>
+  The base URL of the SimpleSAMLphp installation no longer provides an admin menu. Instead this is now at the location
+  <code>
+   &lt;simpleSAMLphp base URL&gt;/admin
+  </code>
+  . The
+  <code>
+   admin
+  </code>
+  module needs to be enabled for this to work.
+ </li>
+ <li>
   SAML AuthnRequests that are signed will have their signature validated unless specifically disabled
   by setting
   <code>
