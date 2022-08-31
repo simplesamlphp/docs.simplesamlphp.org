@@ -155,7 +155,7 @@
 </p>
 <ol>
  <li>
-  <a href="https://simplesamlphp.org/docs/stable/cron:cron">
+  <a href="https://simplesamlphp.org/docs/stable/cron/cron.html">
    cron
   </a>
  </li>
@@ -165,10 +165,16 @@
 </ol>
 <p>
  The cron module allows you to do tasks regularly, by setting up a cron job that calls a hook in SimpleSAMLphp.
+It is shipped with the SimpleSAMLphp core.
 </p>
 <p>
- The metarefresh module will download and parse the metadata document and store it in metadata files cached locally.
+ The metarefresh module will download and parse the metadata document and store it in metadata files cached locally
+and needs to be installed separately:
 </p>
+<div class="codehilite">
+ <pre><span></span><code>composer require simplesamlphp/simplesamlphp-module-metarefresh
+</code></pre>
+</div>
 <p>
  In
  <code>
