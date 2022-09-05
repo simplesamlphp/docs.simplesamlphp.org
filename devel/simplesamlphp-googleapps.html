@@ -598,23 +598,8 @@ like this:
  </code>
 </p>
 <p>
- You must also configure the IdP initiated Single LogOut endpoint of your server.
-You will find this in your metadata XML in the tag
- <code>
-  &lt;md:SingleLogoutService&gt;
- </code>
- . It will look something like:
-</p>
-<p>
- <code>
-  http://dev2.andreas.feide.no/simplesaml/saml2/idp/SingleLogoutService.php
- </code>
-</p>
-<p>
- again, using the host name of your IdP server.
-</p>
-<p>
  The Sign-out page or change password URL can be static pages on your server.
+(Google does not support SAML Single Log Out.)
 </p>
 <p>
  The network mask determines which IP addresses will be asked for SSO login.
