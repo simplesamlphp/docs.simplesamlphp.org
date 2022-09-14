@@ -226,8 +226,8 @@ like this:
 </p>
 <div class="codehilite">
  <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'https://saml2sp.example.org'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cp">[</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'AssertionConsumerService'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://saml2sp.example.org/simplesaml/module.php/saml/sp/assertionConsumerService/default-sp'</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'SingleLogoutService'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://saml2sp.example.org/simplesaml/module.php/saml/sp/singleLogoutService/default-sp'</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'AssertionConsumerService'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp'</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'SingleLogoutService'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-logout.php/default-sp'</span><span class="p">,</span><span class="w"></span>
 <span class="w">      </span><span class="nx">...</span><span class="w"></span>
 <span class="w">      </span><span class="s1">'attributes'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span><span class="s1">'cn'</span><span class="p">,</span><span class="w"> </span><span class="s1">'mail'</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
 <span class="w">      </span><span class="o">...</span><span class="w"></span>
@@ -240,8 +240,8 @@ to be used by a service provider (among other attributes):
 </p>
 <div class="codehilite">
  <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'https://saml2sp.example.org'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cp">[</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'AssertionConsumerService'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://saml2sp.example.org/simplesaml/module.php/saml/sp/assertionConsumerService/default-sp'</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'SingleLogoutService'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://saml2sp.example.org/simplesaml/module.php/saml/sp/singleLogoutService/default-sp'</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'AssertionConsumerService'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp'</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'SingleLogoutService'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-logout.php/default-sp'</span><span class="p">,</span><span class="w"></span>
 <span class="w">      </span><span class="nx">...</span><span class="w"></span>
 <span class="w">      </span><span class="s1">'attributes'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span><span class="w"></span>
 <span class="w">          </span><span class="s1">'uid'</span><span class="p">,</span><span class="w"></span>
