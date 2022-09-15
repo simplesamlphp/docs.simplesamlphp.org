@@ -158,6 +158,13 @@
        <a href="#configuring-redis-storage">
         Configuring Redis storage
        </a>
+       <ul>
+        <li>
+         <a href="#redis-sentinel">
+          Redis-Sentinel
+         </a>
+        </li>
+       </ul>
       </li>
      </ul>
     </li>
@@ -659,6 +666,54 @@ Username and password for accessing the database can be configured in the
   options
  </li>
 </ul>
+<h4 id="redis-sentinel">
+ Redis-Sentinel
+</h4>
+<p>
+ If your Redis servers are controlled by
+ <a href="https://redis.io/docs/manual/sentinel/">
+  Redis-Sentinel
+ </a>
+ , then configure your sentinels by setting
+ <code>
+  store.redis.sentinels
+ </code>
+ to
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="x">[</span>
+<span class="x">    'tcp://[yoursentinel1]:[port]',</span>
+<span class="x">    'tcp://[yoursentinel2]:[port]',</span>
+<span class="x">    'tcp://[yoursentinel3]:[port]',</span>
+<span class="x">]</span>
+</code></pre>
+</div>
+<p>
+ If your sentinels are password-protected and use the same password as your Redis servers, then setting
+ <code>
+  store.redis.password
+ </code>
+ is enough. However if your sentinels use a different password than that of your Redis servers, then set the password of each sentinel:
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="x">[</span>
+<span class="x">    'tcp://[yoursentinel1]:[port]?password=[password1]',</span>
+<span class="x">    'tcp://[yoursentinel2]:[port]?password=[password2]',</span>
+<span class="x">    'tcp://[yoursentinel3]:[port]?password=[password3]',</span>
+<span class="x">]</span>
+</code></pre>
+</div>
+<p>
+ Configure your master group by setting
+ <code>
+  store.redis.mastergroup
+ </code>
+ (
+ <code>
+  mymaster
+ </code>
+ by default).
+</p>
 <h2 id="metadata-storage">
  Metadata storage
 </h2>
