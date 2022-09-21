@@ -111,6 +111,13 @@
      <a href="#testing-it-manually">
       Testing it manually
      </a>
+     <ul>
+      <li>
+       <a href="#note">
+        Note
+       </a>
+      </li>
+     </ul>
     </li>
     <li>
      <a href="#configuring-the-metarefresh-module">
@@ -232,6 +239,24 @@ SWITCH AAI Test Federation:
 <div class="codehilite">
  <pre><span></span><code><span class="nb">cd</span> modules/metarefresh/bin
 ./metarefresh.php -s http://metadata.aai.switch.ch/metadata.aaitest.xml
+</code></pre>
+</div>
+<h3 id="note">
+ Note
+</h3>
+<p>
+ If you have the SimpleSAMLphp configuration-directory in a non-default place, remember to set the
+ <code>
+  SIMPLESAMLPHP_CONFIG_DIR
+ </code>
+ environment-variable to point to this directory
+ <em>
+  before
+ </em>
+ running the commands above.
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="nb">export</span> <span class="nv">SIMPLESAMLPHP_CONFIG_DIR</span><span class="o">=</span><span class="s1">'/custom/config/location'</span>
 </code></pre>
 </div>
 <p>
