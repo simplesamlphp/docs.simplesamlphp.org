@@ -127,7 +127,7 @@ authentication source providing REMOTE_USER.
  </li>
  <li>
   Fall back to other SimpleSamlPhp module for any client/user that
-   fails to authenticate in the Negotiate-Ext module
+  fails to authenticate in the Negotiate-Ext module
  </li>
  <li>
   Check only clients from a certain subnet
@@ -172,23 +172,28 @@ client.
  All configuration is handled in authsources.php:
 </p>
 <div class="codehilite">
- <pre><span></span><code>   'weblogin' =&gt; [
-           'negotiateext:Negotiate',
-           'fallback' =&gt; 'ldap',
-           'hostname' =&gt; 'ldap.example.com',
-           'enable_tls' =&gt; TRUE,
-           'base' =&gt; 'cn=people,dc=example,dc=com',
-           'adminUser' =&gt; 'cn=idp-fallback,cn=services,dc=example,dc=com',
-           'adminPassword' =&gt; 'VerySecretPassphraseHush'
-   ],
-   'ldap' =&gt; [
-           'ldap:LDAP',
-           'hostname' =&gt; 'ldap.example.com',
-           'enable_tls' =&gt; TRUE,
-           'timeout' =&gt; 10,
-           'dnpattern' =&gt; 'uid=%username%,cn=people,dc=example,dc=com',
-           'search.enable' =&gt; FALSE
-   ],
+ <pre><span></span><code><span class="x">'weblogin' =&gt; [</span>
+<span class="x">    'negotiateext:Negotiate',</span>
+<span class="x">    'backend' =&gt; 'ldap',</span>
+<span class="x">    'fallback' =&gt; 'crypto-hash',</span>
+<span class="x">    'spn' =&gt; null,</span>
+<span class="x">],</span>
+<span class="x">'ldap' =&gt; [</span>
+<span class="x">    'ldap:LDAP',</span>
+<span class="x">    'hostname' =&gt; 'ldap.example.com',</span>
+<span class="x">    'enable_tls' =&gt; true,</span>
+<span class="x">    'timeout' =&gt; 10,</span>
+<span class="x">    'dnpattern' =&gt; 'uid=%username%,cn=people,dc=example,dc=com',</span>
+<span class="x">    'search.enable' =&gt; false,</span>
+<span class="x">],</span>
+<span class="x">'crypto-hash' =&gt; [</span>
+<span class="x">    'authcrypt:Hash',</span>
+<span class="x">    // hashed version of 'verysecret', made with bin/pwgen.php</span>
+<span class="x">    'professor:{SSHA256}P6FDTEEIY2EnER9a6P2GwHhI5JDrwBgjQ913oVQjBngmCtrNBUMowA==' =&gt; [</span>
+<span class="x">        'uid' =&gt; ['prof_a'],</span>
+<span class="x">        'eduPersonAffiliation' =&gt; ['member', 'employee', 'board'],</span>
+<span class="x">    ],</span>
+<span class="x">]</span>
 </code></pre>
 </div>
 <h2 id="authentication-handling">
@@ -223,16 +228,16 @@ follows: (Example for
  )
 </p>
 <div class="codehilite">
- <pre><span></span><code>  <span class="nt">&lt;LocationMatch</span> <span class="err">/negotiateext/auth</span><span class="nt">&gt;</span>
-      AuthType KerberosV5
-      KrbMethodK5Passwd off
-      KrbMethodK4Passwd off
+ <pre><span></span><code><span class="nt">&lt;LocationMatch</span><span class="w"> </span><span class="s">/negotiateext/auth</span><span class="nt">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="nb">AuthType</span><span class="w"> </span>KerberosV5<span class="w"></span>
+<span class="w">    </span><span class="nb">KrbMethodK5Passwd</span><span class="w"> </span><span class="k">off</span><span class="w"></span>
+<span class="w">    </span><span class="nb">KrbMethodK4Passwd</span><span class="w"> </span><span class="k">off</span><span class="w"></span>
 
-      Krb5Keytab /etc/httpd.keytab
-      AuthName "Kerberos SSO"
-      Require valid-user
-      ErrorDocument 401 /module.php/negotiateext/error
-  <span class="nt">&lt;/LocationMatch&gt;</span>
+<span class="w">    </span><span class="nb">Krb5Keytab</span><span class="w"> </span><span class="sx">/etc/httpd.keytab</span><span class="w"></span>
+<span class="w">    </span><span class="nb">AuthName</span><span class="w"> </span><span class="s2">"Kerberos SSO"</span><span class="w"></span>
+<span class="w">    </span><span class="nb">Require</span><span class="w"> </span>valid-user<span class="w"></span>
+<span class="w">    </span><span class="nb">ErrorDocument</span><span class="w"> </span><span class="m">401</span><span class="w"> </span><span class="sx">/module.php/negotiateext/error</span><span class="w"></span>
+<span class="nt">&lt;/LocationMatch&gt;</span><span class="w"></span>
 </code></pre>
 </div>
 <p>
@@ -248,54 +253,6 @@ Kerberos. A domain can contain lots of kiosk users, non-personal
 accounts and the likes. The LDAP lookup will authorize and fetch
 attributes as defined by SimpleSAMLphp metadata.
 </p>
-<p>
- <code>
-  hostname
- </code>
- ,
- <code>
-  enable_tls
- </code>
- ,
- <code>
-  debugLDAP
- </code>
- ,
- <code>
-  timeout
- </code>
- and
- <code>
-  base
- </code>
- are
-self-explanatory. Read the documentation of the LDAP auth module for
-more information.
- <code>
-  attr
- </code>
- is the attribute that will be used to look up
-user objects in the directory after extracting it from the Kerberos
-session. Default is
- <code>
-  uid
- </code>
- .
-</p>
-<p>
- For LDAP directories with restricted access to objects or attributes
-Negotiate implements
- <code>
-  adminUser
- </code>
- and
- <code>
-  adminPassword
- </code>
- . adminUser must
-be a DN to an object with access to search for all relevant user
-objects and to look up attributes needed by the SP.
-</p>
 <h2 id="subnet-filtering">
  Subnet filtering
 </h2>
@@ -307,7 +264,7 @@ WWW-Authenticate request.
  Syntax is:
 </p>
 <div class="codehilite">
- <pre><span></span><code>   'subnet' =&gt; ['127.0.0.0/16','192.168.0.0/16'],
+ <pre><span></span><code><span class="x">'subnet' =&gt; ['127.0.0.0/16','192.168.0.0/16'],</span>
 </code></pre>
 </div>
 <p>
@@ -319,7 +276,7 @@ purpose of this module.
 </p>
 <p>
  TBD: Replace or supplement with LDAP lookups in the domain. Machines
-currently in the domain should be the only ones that are promted with
+currently in the domain should be the only ones that are prompted with
 WWW-Authenticate: Negotiate.
 </p>
 <h2 id="enablingdisabling-negotiate-from-a-web-browser">
@@ -354,56 +311,55 @@ box of information to the user explaining what's happening.
 module:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="nt">This</span><span class="w"> </span><span class="nt">should</span><span class="w"> </span><span class="nt">be</span><span class="w"> </span><span class="nt">placed</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nt">your</span><span class="w"> </span><span class="nt">www</span><span class="w"> </span><span class="nt">script</span><span class="w"> </span><span class="nt">modules</span><span class="o">/</span><span class="nt">core</span><span class="o">/</span><span class="nt">www</span><span class="o">/</span><span class="nt">loginuserpass</span><span class="p">.</span><span class="nc">php</span><span class="w"></span>
+ <pre><span></span><code><span class="x">// This should be placed in your www script modules/core/www/loginuserpass.php</span>
 
-<span class="w">  </span><span class="o">$</span><span class="nt">nego_perm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">FALSE</span><span class="o">;</span><span class="w"></span>
-<span class="w">  </span><span class="o">$</span><span class="nt">nego_retry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">NULL</span><span class="o">;</span><span class="w"></span>
-<span class="w">  </span><span class="nt">if</span><span class="w"> </span><span class="o">(</span><span class="nt">is_array</span><span class="o">($</span><span class="nt">state</span><span class="o">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nt">array_key_exists</span><span class="o">(</span><span class="s1">'negotiate:authId'</span><span class="o">,</span><span class="w"> </span><span class="o">$</span><span class="nt">state</span><span class="o">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="err">$nego</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="n">SimpleSAML_Auth_Source</span><span class="p">:</span><span class="o">:</span><span class="nf">getById</span><span class="p">(</span><span class="err">$</span><span class="n">state</span><span class="cp">[</span><span class="s1">'negotiate:authId'</span><span class="cp">]</span><span class="p">);</span><span class="w"></span>
-<span class="w">      </span><span class="err">$mask</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">$nego-&gt;checkMask()</span><span class="p">;</span><span class="w"></span>
-<span class="w">      </span><span class="err">$disabled</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">$nego-&gt;spDisabledInMetadata($spMetadata)</span><span class="p">;</span><span class="w"></span>
-<span class="w">      </span><span class="err">$session</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="n">SimpleSAML_Session</span><span class="p">:</span><span class="o">:</span><span class="nf">getSessionFromRequest</span><span class="p">();</span><span class="w"></span>
-<span class="w">      </span><span class="err">$session_disabled</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">$session</span><span class="w"> </span><span class="err">&amp;&amp;</span><span class="w"> </span><span class="err">$session-&gt;getData('</span><span class="n">negotiate</span><span class="p">:</span><span class="n">disable</span><span class="s1">', '</span><span class="n">session</span><span class="s1">');</span>
-<span class="s1">      if ($mask and !$disabled) {</span>
-<span class="s1">          if(array_key_exists('</span><span class="n">NEGOTIATE_AUTOLOGIN_DISABLE_PERMANENT</span><span class="s1">', $_COOKIE) &amp;&amp;</span>
-<span class="s1">             $_COOKIE</span><span class="cp">[</span><span class="s1">'NEGOTIATE_AUTOLOGIN_DISABLE_PERMANENT'</span><span class="cp">]</span><span class="s1"> == '</span><span class="n">True</span><span class="s1">') {</span>
-<span class="s1">              $nego_perm = TRUE;</span>
-<span class="s1">          } else {</span>
-<span class="s1">              $retryState = SimpleSAML_Auth_State::cloneState($state);</span>
-<span class="s1">              unset($retryState</span><span class="cp">[</span><span class="nx">SimpleSAML_Auth_State</span><span class="p">::</span><span class="nl">ID</span><span class="cp">]</span><span class="s1">);</span>
-<span class="s1">              $nego_retry = SimpleSAML_Auth_State::saveState($retryState, '</span><span class="n">sspmod_negotiateext_Auth_Source_Negotiate</span><span class="o">.</span><span class="n">StageId</span><span class="s1">');</span>
-<span class="s1">              $nego_session = TRUE;</span>
-<span class="s1">          }</span>
-<span class="s1">      }</span>
-<span class="s1">  }</span>
-<span class="s1">  $t-&gt;data</span><span class="cp">[</span><span class="s1">'nego'</span><span class="cp">]</span><span class="s1"> = array (</span>
-<span class="s1">      '</span><span class="n">disable_perm</span><span class="s1">' =&gt; $nego_perm,</span>
-<span class="s1">      '</span><span class="n">retry_id</span><span class="err">'</span><span class="w">     </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">$</span><span class="n">nego_retry</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="p">);</span><span class="w"></span>
+<span class="x">$nego_perm = false;</span>
+<span class="x">$nego_retry = null;</span>
+<span class="x">if (is_array($state) &amp;&amp; array_key_exists('negotiate:authId', $state)) {</span>
+<span class="x">    $nego = SimpleSAML_Auth_Source::getById($state['negotiate:authId']);</span>
+<span class="x">    $mask = $nego-&gt;checkMask();</span>
+<span class="x">    $disabled = $nego-&gt;spDisabledInMetadata($spMetadata);</span>
+<span class="x">    $session = SimpleSAML_Session::getSessionFromRequest();</span>
+<span class="x">    $session_disabled = $session &amp;&amp; $session-&gt;getData('negotiate:disable', 'session');</span>
+<span class="x">    if ($mask &amp;&amp; !$disabled) {</span>
+<span class="x">        if (</span>
+<span class="x">            array_key_exists('NEGOTIATE_AUTOLOGIN_DISABLE_PERMANENT', $_COOKIE) &amp;&amp;</span>
+<span class="x">            $_COOKIE['NEGOTIATE_AUTOLOGIN_DISABLE_PERMANENT'] === 'true'</span>
+<span class="x">        ) {</span>
+<span class="x">            $nego_perm = true;</span>
+<span class="x">        } else {</span>
+<span class="x">            $retryState = SimpleSAML_Auth_State::cloneState($state);</span>
+<span class="x">            unset($retryState[SimpleSAML_Auth_State::ID]);</span>
+<span class="x">            $nego_retry = SimpleSAML_Auth_State::saveState($retryState, 'sspmod_negotiateext_Auth_Source_Negotiate.StageId');</span>
+<span class="x">            $nego_session = true;</span>
+<span class="x">        }</span>
+<span class="x">    }</span>
+<span class="x">}</span>
+<span class="x">$t-&gt;data['nego'] = [</span>
+<span class="x">    'disable_perm' =&gt; $nego_perm,</span>
+<span class="x">    'retry_id'     =&gt; $nego_retry,</span>
+<span class="x">];</span>
 </code></pre>
 </div>
-<p>
- -
-</p>
 <div class="codehilite">
- <pre><span></span><code>  // This should reside in your template modules/core/templates/loginuserpass.php
+ <pre><span></span><code><span class="x">// This should reside in your template modules/core/templates/loginuserpass.php</span>
 
-  <span class="cp">&lt;?php</span>
-  <span class="k">if</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">data</span><span class="p">[</span><span class="s1">'nego'</span><span class="p">][</span><span class="s1">'disable_perm'</span><span class="p">])</span> <span class="p">{</span>
-      <span class="k">echo</span> <span class="s1">'&lt;span id="login-extra-info-uio.no" class="login-extra-info"&gt;'</span>
-            <span class="o">.</span> <span class="s1">'&lt;span class="login-extra-info-divider"&gt;&lt;/span&gt;'</span>
-            <span class="o">.</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">t</span><span class="p">(</span><span class="s1">'{negotiate:negotiate:disabled_info}'</span><span class="p">)</span>
-            <span class="o">.</span> <span class="s1">'&lt;/span&gt;'</span><span class="p">;</span>
-  <span class="p">}</span> <span class="k">elseif</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">data</span><span class="p">[</span><span class="s1">'nego'</span><span class="p">][</span><span class="s1">'retry_id'</span><span class="p">])</span> <span class="p">{</span>
-       <span class="k">echo</span> <span class="s1">'&lt;span id="login-extra-info-uio.no" class="login-extra-info"&gt;'</span>
-            <span class="o">.</span> <span class="s1">'&lt;span class="login-extra-info-divider"&gt;&lt;/span&gt;'</span>
-            <span class="o">.</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">t</span><span class="p">(</span><span class="s1">'{negotiate:negotiate:failed_info}'</span><span class="p">)</span>
-            <span class="o">.</span> <span class="s1">' &lt;a class="btn" href="'</span><span class="o">.</span><span class="nx">SimpleSAML_Module</span><span class="o">::</span><span class="na">getModuleURL</span><span class="p">(</span><span class="s1">'negotiateext/retry'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">'AuthState'</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">data</span><span class="p">[</span><span class="s1">'nego'</span><span class="p">][</span><span class="s1">'retry_id'</span><span class="p">]))</span><span class="o">.</span><span class="s1">'"&gt;'</span>
-            <span class="o">.</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">t</span><span class="p">(</span><span class="s1">'{negotiate:negotiate:retry_link}'</span><span class="p">)</span>
-            <span class="o">.</span> <span class="s1">'&lt;/a&gt;'</span>
-            <span class="o">.</span> <span class="s1">'&lt;/span&gt;'</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="cp">?&gt;</span>
+<span class="cp">&lt;?php</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">data</span><span class="p">[</span><span class="s1">'nego'</span><span class="p">][</span><span class="s1">'disable_perm'</span><span class="p">])</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'&lt;span id="login-extra-info-uio.no" class="login-extra-info"&gt;'</span>
+          <span class="o">.</span> <span class="s1">'&lt;span class="login-extra-info-divider"&gt;&lt;/span&gt;'</span>
+          <span class="o">.</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">t</span><span class="p">(</span><span class="s1">'{negotiate:negotiate:disabled_info}'</span><span class="p">)</span>
+          <span class="o">.</span> <span class="s1">'&lt;/span&gt;'</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">elseif</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">data</span><span class="p">[</span><span class="s1">'nego'</span><span class="p">][</span><span class="s1">'retry_id'</span><span class="p">])</span> <span class="p">{</span>
+     <span class="k">echo</span> <span class="s1">'&lt;span id="login-extra-info-uio.no" class="login-extra-info"&gt;'</span>
+          <span class="o">.</span> <span class="s1">'&lt;span class="login-extra-info-divider"&gt;&lt;/span&gt;'</span>
+          <span class="o">.</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">t</span><span class="p">(</span><span class="s1">'{negotiate:negotiate:failed_info}'</span><span class="p">)</span>
+          <span class="o">.</span> <span class="s1">' &lt;a class="btn" href="'</span><span class="o">.</span><span class="nx">SimpleSAML_Module</span><span class="o">::</span><span class="na">getModuleURL</span><span class="p">(</span><span class="s1">'negotiateext/retry'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">'AuthState'</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">data</span><span class="p">[</span><span class="s1">'nego'</span><span class="p">][</span><span class="s1">'retry_id'</span><span class="p">]))</span><span class="o">.</span><span class="s1">'"&gt;'</span>
+          <span class="o">.</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">t</span><span class="p">(</span><span class="s1">'{negotiate:negotiate:retry_link}'</span><span class="p">)</span>
+          <span class="o">.</span> <span class="s1">'&lt;/a&gt;'</span>
+          <span class="o">.</span> <span class="s1">'&lt;/span&gt;'</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span><span class="x"></span>
 </code></pre>
 </div>
 <p>
@@ -422,10 +378,11 @@ security check in SSP's state handling library. If you omit this and
 pass on the original state you will see a warning in the log like
 this:
 </p>
-<div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="n">Sep</span><span class="w"> </span><span class="mi">27</span><span class="w"> </span><span class="mi">13</span><span class="err">:</span><span class="mi">47</span><span class="err">:</span><span class="mi">36</span><span class="w"> </span><span class="n">simplesamlphp</span><span class="w"> </span><span class="n">WARNING</span><span class="w"> </span><span class="o">[</span><span class="n">b99e6131ee</span><span class="o">]</span><span class="w"> </span><span class="n">Wrong</span><span class="w"> </span><span class="n">stage</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">state</span><span class="p">.</span><span class="w"> </span><span class="n">Was</span><span class="w"> </span><span class="s1">'foo'</span><span class="p">,</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="s1">'sspmod_negotiateext_Auth_Source_Negotiate.StageId'</span><span class="p">.</span><span class="w"></span>
-</code></pre>
-</div>
+<blockquote>
+ <p>
+  Sep 27 13:47:36 simplesamlphp WARNING [b99e6131ee] Wrong stage in state. Was 'foo', should be 'sspmod_negotiateext_Auth_Source_Negotiate.StageId'.
+ </p>
+</blockquote>
 <p>
  It will work as loadState will take control and call
 Negotiate-&gt;authenticate() but remaining code in retry.php will be
@@ -473,10 +430,13 @@ this is true (on a Windows machine). Next locate
 with the following content:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  {"AuthServerWhitelist":"your.idp.host"}
+ <pre><span></span><code><span class="p">{</span><span class="nt">"AuthServerWhitelist"</span><span class="p">:</span><span class="s2">"your.idp.host"</span><span class="p">}</span><span class="w"></span>
 </code></pre>
 </div>
 <p>
- Chrome on OSX: Configure AuthServerWhitelist using Apple Workgroup Manager as detailed on https://www.chromium.org/administrators/mac-quick-start
+ Chrome on OSX: Configure AuthServerWhitelist using
+ <a href="https://www.chromium.org/administrators/mac-quick-start">
+  Apple Workgroup Manager
+ </a>
 </p></main></body>
 </html>
