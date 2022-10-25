@@ -479,13 +479,13 @@ An optional company name []:
 <span class="x"> * must properly configure the saml:AttributeNameID authproc-filter with the name of an attribute that for this user has the value of 'john'.</span>
 <span class="x"> */</span>
 <span class="x">$metadata['https://www.google.com/a/g.feide.no'] =&gt; [</span>
-<span class="x">    'AssertionConsumerService' =&gt; 'https://www.google.com/a/g.feide.no/acs', </span>
+<span class="x">    'AssertionConsumerService' =&gt; 'https://www.google.com/a/g.feide.no/acs',</span>
 <span class="x">    'NameIDFormat' =&gt; 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress',</span>
 <span class="x">    'simplesaml.attributes' =&gt; false,</span>
 <span class="x">    'authproc' =&gt; [</span>
 <span class="x">        1 =&gt; [</span>
 <span class="x">          'saml:AttributeNameID',</span>
-<span class="x">          'attribute' =&gt; 'uid',</span>
+<span class="x">          'identifyingAttribute' =&gt; 'uid',</span>
 <span class="x">          'format' =&gt; 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress',</span>
 <span class="x">        ],</span>
 <span class="x">    ],</span>
