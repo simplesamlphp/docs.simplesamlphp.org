@@ -211,11 +211,16 @@ For example, to use the LDAP module:
   the upgrade process. How to do this depends on your session backend.
  </li>
  <li>
-  EntityIDs are no longer auto-generated. Make sure to set it to something sensible in the array-keys in
+  EntityIDs are no longer auto-generated. Make sure to set something sensible in the array-keys in
   <code>
    metadata/saml20-idp-hosted.php
   </code>
-  (or to the existing entityID when upgrading an existing installation).
+  and for any saml:SP in
+  <code>
+   config/authsources.php
+  </code>
+  (or to the existing entityIDs when
+  upgrading an existing installation).
   If you are using a database to store metadata, make sure to replace any __DYNAMIC% entityID's with
   a real value manually. Dynamic records are no longer loaded from the database.
  </li>
