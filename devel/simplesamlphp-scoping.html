@@ -90,11 +90,6 @@
 </header><main><h1 id="scoping">
  Scoping
 </h1>
-<!-- 
-    This file is written in Markdown syntax. 
-    For more information about how to use the Markdown syntax, read here:
-    http://daringfireball.net/projects/markdown/syntax
--->
 <div class="toc">
  <ul>
   <li>
@@ -115,21 +110,26 @@
      </ul>
     </li>
     <li>
-     <a href="#requesterid-element">
-      RequesterID element
-     </a>
-    </li>
-    <li>
-     <a href="#authenticatingauthority-element">
-      AuthenticatingAuthority element
+     <a href="#retrieving-information">
+      Retrieving information
      </a>
      <ul>
       <li>
-       <a href="#support">
-        Support
+       <a href="#requesterid-element">
+        RequesterID element
+       </a>
+      </li>
+      <li>
+       <a href="#authenticatingauthority-element">
+        AuthenticatingAuthority element
        </a>
       </li>
      </ul>
+    </li>
+    <li>
+     <a href="#support">
+      Support
+     </a>
     </li>
    </ul>
   </li>
@@ -221,9 +221,12 @@ that are relevant for a service provider in an authnRequest.
   'ProxyCount' =&gt; 2,
 </code></pre>
 </div>
-<h2 id="requesterid-element">
- RequesterID element
+<h2 id="retrieving-information">
+ Retrieving information
 </h2>
+<h3 id="requesterid-element">
+ RequesterID element
+</h3>
 <p>
  To allow an identity provider to identify the original requester and the
 proxying identity providers, SimpleSAMLphp adds the RequesterID element to
@@ -232,15 +235,15 @@ not used.
 </p>
 <p>
  The RequesterId elements are available from the state array as an array, for
-instance the authenticate method in an authentication source
+instance via the authenticate method on an authentication source.
 </p>
 <div class="codehilite">
  <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">requesterIDs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="nt">state</span><span class="cp">[</span><span class="s1">'saml:RequesterID'</span><span class="cp">]</span><span class="o">;</span><span class="w"></span>
 </code></pre>
 </div>
-<h2 id="authenticatingauthority-element">
+<h3 id="authenticatingauthority-element">
  AuthenticatingAuthority element
-</h2>
+</h3>
 <p>
  To allow a service provider to identify the authentication authorities that
 were involved in the authentication of the user, SimpleSAMLphp adds the
@@ -258,9 +261,9 @@ can be retrieved as an array from the authentication data.
 <span class="w">  </span><span class="o">$</span><span class="nt">aa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="nt">as-</span><span class="o">&gt;</span><span class="nt">getAuthData</span><span class="o">(</span><span class="s1">'saml:AuthenticatingAuthority'</span><span class="o">);</span><span class="w"></span>
 </code></pre>
 </div>
-<h3 id="support">
+<h2 id="support">
  Support
-</h3>
+</h2>
 <p>
  If you need help to make this work, or want to discuss SimpleSAMLphp with other users of the software, you are fortunate: Around SimpleSAMLphp there is a great Open source community, and you are welcome to join! The forums are open for you to ask questions, contribute answers other further questions, request improvements or contribute with code or plugins of your own.
 </p>
