@@ -128,8 +128,8 @@ authentication source which uses the
  :
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="s1">'example-radius'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">array</span><span class="p">(</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'radius:Radius'</span><span class="p">,</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="s1">'example-radius'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">array</span><span class="p">(</span>
+<span class="w">      </span><span class="s1">'radius:Radius'</span><span class="p">,</span>
 
 <span class="w">      </span><span class="cm">/*</span>
 <span class="cm">       * An array with the radius servers to use, up to 10.</span>
@@ -137,19 +137,19 @@ authentication source which uses the
 <span class="cm">       *  - hostname: the hostname of the radius server, or its IP address. Required.</span>
 <span class="cm">       *  - port: the port of the radius server. Optional, defaults to 1812.</span>
 <span class="cm">       *  - secret: the radius secret to use with this server. Required.</span>
-<span class="cm">       */</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'servers'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">array</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">'hostname'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'radius1.example.org'</span><span class="p">,</span><span class="w"></span>
-<span class="w">                               </span><span class="s1">'port'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">1812</span><span class="p">,</span><span class="w"></span>
-<span class="w">                               </span><span class="s1">'secret'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'topsecret'</span><span class="p">),</span><span class="w"></span>
-<span class="w">                         </span><span class="k">array</span><span class="p">(</span><span class="s1">'hostname'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'radius2.example.org'</span><span class="p">,</span><span class="w"></span>
-<span class="w">                               </span><span class="s1">'port'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">1812</span><span class="p">,</span><span class="w"></span>
-<span class="w">                               </span><span class="s1">'secret'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'topsecret'</span><span class="p">)),</span><span class="w"></span>
+<span class="cm">       */</span>
+<span class="w">      </span><span class="s1">'servers'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">array</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">'hostname'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'radius1.example.org'</span><span class="p">,</span>
+<span class="w">                               </span><span class="s1">'port'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">1812</span><span class="p">,</span>
+<span class="w">                               </span><span class="s1">'secret'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'topsecret'</span><span class="p">),</span>
+<span class="w">                         </span><span class="k">array</span><span class="p">(</span><span class="s1">'hostname'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'radius2.example.org'</span><span class="p">,</span>
+<span class="w">                               </span><span class="s1">'port'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">1812</span><span class="p">,</span>
+<span class="w">                               </span><span class="s1">'secret'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'topsecret'</span><span class="p">)),</span>
 
 <span class="w">      </span><span class="cm">/*</span>
 <span class="cm">       * The timeout for contacting the RADIUS server, in seconds.</span>
 <span class="cm">       * Optional, defaults to 5 seconds.</span>
-<span class="cm">       */</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'timeout'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"></span>
+<span class="cm">       */</span>
+<span class="w">      </span><span class="s1">'timeout'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
 
 <span class="w">      </span><span class="cm">/*</span>
 <span class="cm">       * The number of times we should retry connections to the RADIUS server.</span>
@@ -157,14 +157,14 @@ authentication source which uses the
 <span class="cm">       * trying with the next server in the queue, so if you want not to wait</span>
 <span class="cm">       * before trying the next server, retries should be set to 1.</span>
 <span class="cm">       * Optional, defaults to 3 attempts.</span>
-<span class="cm">       */</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'retries'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"></span>
+<span class="cm">       */</span>
+<span class="w">      </span><span class="s1">'retries'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
 
 <span class="w">      </span><span class="cm">/*</span>
 <span class="cm">       * The NAS identifier to use when querying the radius server.</span>
 <span class="cm">       * Optional, defaults to the current host name.</span>
-<span class="cm">       */</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'nas_identifier'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'client.example.org'</span><span class="p">,</span><span class="w"></span>
+<span class="cm">       */</span>
+<span class="w">      </span><span class="s1">'nas_identifier'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'client.example.org'</span><span class="p">,</span>
 
 <span class="w">      </span><span class="cm">/*</span>
 <span class="cm">       * An optional realm that will be suffixed to the username entered</span>
@@ -172,16 +172,16 @@ authentication source which uses the
 <span class="cm">       * "bob" as their username, the radius server will be queried for</span>
 <span class="cm">       * the username "bob@example.edu".</span>
 <span class="cm">       * Optional, defaults to NULL.</span>
-<span class="cm">       */</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'realm'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'example.edu'</span><span class="p">,</span><span class="w"></span>
+<span class="cm">       */</span>
+<span class="w">      </span><span class="s1">'realm'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'example.edu'</span><span class="p">,</span>
 
 <span class="w">      </span><span class="cm">/*</span>
 <span class="cm">       * The attribute name we should store the username in. Ths username</span>
 <span class="cm">       * will not be saved in any attribute if this is NULL.</span>
 <span class="cm">       * Optional, defaults to NULL.</span>
-<span class="cm">       */</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'username_attribute'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'eduPersonPrincipalName'</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="p">),</span><span class="w"></span>
+<span class="cm">       */</span>
+<span class="w">      </span><span class="s1">'username_attribute'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'eduPersonPrincipalName'</span><span class="p">,</span>
+<span class="w">  </span><span class="p">),</span>
 </code></pre>
 </div>
 <h2 id="user-attributes">
@@ -206,20 +206,20 @@ contain a value of the form
  The following configuration options are available for user attributes:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">      </span><span class="cm">/*</span>
-<span class="cm">       * This is the vendor for the vendor-specific attribute which contains</span>
-<span class="cm">       * the attributes for this user. This can be NULL if no attributes are</span>
-<span class="cm">       * included in the response.</span>
-<span class="cm">       * Optional, defaults to NULL.</span>
-<span class="cm">       */</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'attribute_vendor'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">23735</span>,<span class="w"></span>
+ <pre><span></span><code><span class="w">      </span><span class="o">/*</span>
+<span class="w">       </span><span class="o">*</span><span class="w"> </span><span class="n">This</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">vendor</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">vendor</span><span class="o">-</span><span class="n">specific</span><span class="w"> </span><span class="n">attribute</span><span class="w"> </span><span class="n">which</span><span class="w"> </span><span class="n">contains</span>
+<span class="w">       </span><span class="o">*</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">attributes</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="nb">user</span><span class="p">.</span><span class="w"> </span><span class="n">This</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">NULL</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">no</span><span class="w"> </span><span class="n">attributes</span><span class="w"> </span><span class="n">are</span>
+<span class="w">       </span><span class="o">*</span><span class="w"> </span><span class="n">included</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">response</span><span class="p">.</span>
+<span class="w">       </span><span class="o">*</span><span class="w"> </span><span class="n">Optional</span><span class="p">,</span><span class="w"> </span><span class="n">defaults</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">NULL</span><span class="p">.</span>
+<span class="w">       </span><span class="o">*/</span>
+<span class="w">      </span><span class="s">'attribute_vendor'</span><span class="w"> </span><span class="p">=</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">23735</span><span class="p">,</span>
 
-<span class="w">      </span><span class="cm">/*</span>
-<span class="cm">       * The vendor attribute-type of the attribute which contains the</span>
-<span class="cm">       * attributes for the user.</span>
-<span class="cm">       * Required if 'vendor' is set.</span>
-<span class="cm">       */</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'attribute_vendor_type'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">4</span>,<span class="w"></span>
+<span class="w">      </span><span class="o">/*</span>
+<span class="w">       </span><span class="o">*</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">vendor</span><span class="w"> </span><span class="n">attribute</span><span class="o">-</span><span class="nb">type</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">attribute</span><span class="w"> </span><span class="n">which</span><span class="w"> </span><span class="n">contains</span><span class="w"> </span><span class="n">the</span>
+<span class="w">       </span><span class="o">*</span><span class="w"> </span><span class="n">attributes</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nb">user</span><span class="p">.</span>
+<span class="w">       </span><span class="o">*</span><span class="w"> </span><span class="n">Required</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="s">'vendor'</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="k">set</span><span class="p">.</span>
+<span class="w">       </span><span class="o">*/</span>
+<span class="w">      </span><span class="s">'attribute_vendor_type'</span><span class="w"> </span><span class="p">=</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
 </code></pre>
 </div></main></body>
 </html>

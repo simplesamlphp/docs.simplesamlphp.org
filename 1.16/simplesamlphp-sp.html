@@ -365,7 +365,7 @@ lines of PHP code:
  </li>
  <li>
   <div class="codehilite">
-   <pre><span></span><code><span class="w">  </span><span class="nv">Require</span><span class="w"> </span><span class="nv">authentication</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">user</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">those</span><span class="w"> </span><span class="nv">places</span><span class="w"> </span><span class="nv">it</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="nv">required</span>.<span class="w"></span>
+   <pre><span></span><code><span class="w">  </span><span class="nv">Require</span><span class="w"> </span><span class="nv">authentication</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">user</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">those</span><span class="w"> </span><span class="nv">places</span><span class="w"> </span><span class="nv">it</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="nv">required</span>.
 </code></pre>
   </div>
  </li>
@@ -383,7 +383,7 @@ lines of PHP code:
  We start off with loading a file which registers the SimpleSAMLphp classes with the autoloader.
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="n">require_once</span><span class="p">(</span><span class="s1">'../../lib/_autoload.php'</span><span class="p">);</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="n">require_once</span><span class="p">(</span><span class="s1">'../../lib/_autoload.php'</span><span class="p">);</span>
 </code></pre>
 </div>
 <p>
@@ -397,15 +397,15 @@ lines of PHP code:
  We then require authentication:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="err">$</span><span class="kr">as</span><span class="o">-&gt;</span><span class="n">requireAuth</span><span class="p">();</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="err">$</span><span class="kr">as</span><span class="o">-&gt;</span><span class="n">requireAuth</span><span class="p">();</span>
 </code></pre>
 </div>
 <p>
  And print the attributes:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="err">$</span><span class="n">attributes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">$</span><span class="kr">as</span><span class="o">-&gt;</span><span class="n">getAttributes</span><span class="p">();</span><span class="w"></span>
-<span class="w">  </span><span class="n">print_r</span><span class="p">(</span><span class="err">$</span><span class="n">attributes</span><span class="p">);</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="err">$</span><span class="n">attributes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">$</span><span class="kr">as</span><span class="o">-&gt;</span><span class="n">getAttributes</span><span class="p">();</span>
+<span class="w">  </span><span class="n">print_r</span><span class="p">(</span><span class="err">$</span><span class="n">attributes</span><span class="p">);</span>
 </code></pre>
 </div>
 <p>
@@ -415,9 +415,9 @@ lines of PHP code:
  We can also request authentication with a specific IdP:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">as-</span><span class="o">&gt;</span><span class="nt">login</span><span class="o">(</span><span class="nt">array</span><span class="o">(</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'saml:idp'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://idp.example.org/'</span><span class="o">,</span><span class="w"></span>
-<span class="w">  </span><span class="o">));</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">as-</span><span class="o">&gt;</span><span class="nt">login</span><span class="o">(</span><span class="nt">array</span><span class="o">(</span>
+<span class="w">      </span><span class="s1">'saml:idp'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://idp.example.org/'</span><span class="o">,</span>
+<span class="w">  </span><span class="o">));</span>
 </code></pre>
 </div>
 <p>
@@ -434,8 +434,8 @@ existing session when invoked for the first time, and its own session will preva
 your own session after calling SimpleSAMLphp, you can do so by cleaning up the session like this:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">session</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">SimpleSAML_Session</span><span class="p">::</span><span class="nd">getSessionFromRequest</span><span class="o">();</span><span class="w"></span>
-<span class="w">  </span><span class="o">$</span><span class="nt">session-</span><span class="o">&gt;</span><span class="nt">cleanup</span><span class="o">();</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">session</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">SimpleSAML_Session</span><span class="p">::</span><span class="nd">getSessionFromRequest</span><span class="o">();</span>
+<span class="w">  </span><span class="o">$</span><span class="nt">session-</span><span class="o">&gt;</span><span class="nt">cleanup</span><span class="o">();</span>
 </code></pre>
 </div>
 <p>

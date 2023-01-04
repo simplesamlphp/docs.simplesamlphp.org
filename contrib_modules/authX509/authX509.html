@@ -111,13 +111,13 @@ stores it in the environment variable SSL_CLIENT_CERT. This can be achieved
 with such a configuration:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">    </span><span class="nb">SSLEngine</span><span class="w"> </span><span class="k">on</span><span class="w"></span>
-<span class="w">    </span><span class="nb">SSLCertificateFile</span><span class="w"> </span><span class="sx">/etc/openssl/certs/server.crt</span><span class="w"></span>
-<span class="w">    </span><span class="nb">SSLCertificateKeyFile</span><span class="w"> </span><span class="sx">/etc/openssl/private/server.key</span><span class="w"></span>
-<span class="w">    </span><span class="nb">SSLCACertificateFile</span><span class="w"> </span><span class="sx">/etc/openssl/certs/ca.crt</span><span class="w"></span>
-<span class="w">    </span><span class="nb">SSLVerifyClient</span><span class="w"> </span>require<span class="w"></span>
-<span class="w">    </span><span class="nb">SSLVerifyDepth</span><span class="w"> </span><span class="m">2</span><span class="w"></span>
-<span class="w">    </span><span class="nb">SSLOptions</span><span class="w"> </span>+ExportCertData<span class="w"></span>
+ <pre><span></span><code><span class="w">    </span><span class="nb">SSLEngine</span><span class="w"> </span><span class="k">on</span>
+<span class="w">    </span><span class="nb">SSLCertificateFile</span><span class="w"> </span><span class="sx">/etc/openssl/certs/server.crt</span>
+<span class="w">    </span><span class="nb">SSLCertificateKeyFile</span><span class="w"> </span><span class="sx">/etc/openssl/private/server.key</span>
+<span class="w">    </span><span class="nb">SSLCACertificateFile</span><span class="w"> </span><span class="sx">/etc/openssl/certs/ca.crt</span>
+<span class="w">    </span><span class="nb">SSLVerifyClient</span><span class="w"> </span>require
+<span class="w">    </span><span class="nb">SSLVerifyDepth</span><span class="w"> </span><span class="m">2</span>
+<span class="w">    </span><span class="nb">SSLOptions</span><span class="w"> </span>+ExportCertData
 </code></pre>
 </div>
 <p>
@@ -202,7 +202,7 @@ two options:
 how to convert from PEM to DER:
 </p>
 <div class="codehilite">
- <pre><span></span><code>    openssl x509 -in cert.pem -inform PEM -outform DER -out cert.der
+ <pre><span></span><code><span class="w">    </span>openssl<span class="w"> </span>x509<span class="w"> </span>-in<span class="w"> </span>cert.pem<span class="w"> </span>-inform<span class="w"> </span>PEM<span class="w"> </span>-outform<span class="w"> </span>DER<span class="w"> </span>-out<span class="w"> </span>cert.der
 </code></pre>
 </div>
 <p>

@@ -96,8 +96,8 @@
   http://daringfireball.net/projects/markdown/syntax
 -->
 <div class="codehilite">
- <pre><span></span><code><span class="o">*</span><span class="w"> </span><span class="nl">Author</span><span class="p">:</span><span class="w"> </span><span class="n">Ernesto</span><span class="w"> </span><span class="n">Revilla</span><span class="w"> </span><span class="o">&lt;</span><span class="n">erny</span><span class="nv">@yaco</span><span class="p">.</span><span class="n">es</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">Yaco</span><span class="w"> </span><span class="n">Sistemas</span><span class="p">,</span><span class="w"> </span><span class="n">Ryan</span><span class="w"> </span><span class="n">Panning</span><span class="w"></span>
-<span class="o">*</span><span class="w"> </span><span class="nl">Package</span><span class="p">:</span><span class="w"> </span><span class="n">SimpleSAMLphp</span><span class="w"></span>
+ <pre><span></span><code><span class="o">*</span><span class="w"> </span><span class="nl">Author</span><span class="p">:</span><span class="w"> </span><span class="n">Ernesto</span><span class="w"> </span><span class="n">Revilla</span><span class="w"> </span><span class="o">&lt;</span><span class="n">erny</span><span class="nv">@yaco</span><span class="p">.</span><span class="n">es</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">Yaco</span><span class="w"> </span><span class="n">Sistemas</span><span class="p">,</span><span class="w"> </span><span class="n">Ryan</span><span class="w"> </span><span class="n">Panning</span>
+<span class="o">*</span><span class="w"> </span><span class="nl">Package</span><span class="p">:</span><span class="w"> </span><span class="n">SimpleSAMLphp</span>
 </code></pre>
 </div>
 <p>
@@ -175,46 +175,46 @@
  :
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="s1">'authproc.sp'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">array</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="mi">60</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">array</span><span class="p">(</span><span class="w"></span>
-<span class="w">    </span><span class="s1">'class'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'authorize:Authorize'</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="s1">'uid'</span><span class="w">   </span><span class="o">=&gt;</span><span class="w">  </span><span class="k">array</span><span class="p">(</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'/.*@example.com/'</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'/(user1|user2|user3)@example.edu/'</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="p">),</span><span class="w"></span>
-<span class="w">    </span><span class="s1">'schacUserStatus'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'@urn:mace:terena.org:userStatus:'</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'example.org:service:active.*@'</span><span class="p">,</span><span class="w"></span>
-<span class="p">)</span><span class="w"></span>
+ <pre><span></span><code><span class="s1">'authproc.sp'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">array</span><span class="p">(</span>
+<span class="w">  </span><span class="mi">60</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">array</span><span class="p">(</span>
+<span class="w">    </span><span class="s1">'class'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'authorize:Authorize'</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">'uid'</span><span class="w">   </span><span class="o">=&gt;</span><span class="w">  </span><span class="k">array</span><span class="p">(</span>
+<span class="w">      </span><span class="s1">'/.*@example.com/'</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">'/(user1|user2|user3)@example.edu/'</span><span class="p">,</span>
+<span class="w">    </span><span class="p">),</span>
+<span class="w">    </span><span class="s1">'schacUserStatus'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'@urn:mace:terena.org:userStatus:'</span><span class="w"> </span><span class="p">.</span>
+<span class="w">      </span><span class="s1">'example.org:service:active.*@'</span><span class="p">,</span>
+<span class="p">)</span>
 </code></pre>
 </div>
 <p>
  An alternate way of using this filter is to deny certain users. Or even use multiple filters to create a simple ACL, by first allowing a group of users but then denying a "black list" of users.
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="s1">'authproc.sp'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">array</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="mi">60</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">array</span><span class="p">(</span><span class="w"></span>
-<span class="w">    </span><span class="s1">'class'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'authorize:Authorize'</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="s1">'deny'</span><span class="w">  </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">TRUE</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="s1">'uid'</span><span class="w">   </span><span class="o">=&gt;</span><span class="w">  </span><span class="k">array</span><span class="p">(</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'/.*@students.example.edu/'</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'/(stu1|stu2|stu3)@example.edu/'</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="p">)</span><span class="w"></span>
-<span class="p">)</span><span class="w"></span>
+ <pre><span></span><code><span class="s1">'authproc.sp'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">array</span><span class="p">(</span>
+<span class="w">  </span><span class="mi">60</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">array</span><span class="p">(</span>
+<span class="w">    </span><span class="s1">'class'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'authorize:Authorize'</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">'deny'</span><span class="w">  </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">TRUE</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">'uid'</span><span class="w">   </span><span class="o">=&gt;</span><span class="w">  </span><span class="k">array</span><span class="p">(</span>
+<span class="w">      </span><span class="s1">'/.*@students.example.edu/'</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">'/(stu1|stu2|stu3)@example.edu/'</span><span class="p">,</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">)</span>
 </code></pre>
 </div>
 <p>
  The regex pattern matching can be turned off, allowing for exact attribute matching rules. This can be helpful in cases where you know what the value should be. An example of this is with the memberOf attribute or using the ldap:AttributeAddUsersGroups filter with the group attribute.
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="p">'</span><span class="n">authproc</span><span class="p">.</span><span class="n">sp</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">array</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="mh">60</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">array</span><span class="p">(</span><span class="w"></span>
-<span class="w">    </span><span class="p">'</span><span class="n">class</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">'</span><span class="nl">authorize:</span><span class="n">Authorize</span><span class="p">',</span><span class="w"></span>
-<span class="w">    </span><span class="p">'</span><span class="n">regex</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">FALSE</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="p">'</span><span class="n">group</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w">  </span><span class="n">array</span><span class="p">(</span><span class="w"></span>
-<span class="w">      </span><span class="p">'</span><span class="n">CN</span><span class="o">=</span><span class="n">SimpleSAML</span><span class="w"> </span><span class="n">Students</span><span class="p">,</span><span class="n">CN</span><span class="o">=</span><span class="n">Users</span><span class="p">,</span><span class="n">DC</span><span class="o">=</span><span class="n">example</span><span class="p">,</span><span class="n">DC</span><span class="o">=</span><span class="n">edu</span><span class="p">',</span><span class="w"></span>
-<span class="w">      </span><span class="p">'</span><span class="n">CN</span><span class="o">=</span><span class="n">All</span><span class="w"> </span><span class="n">Teachers</span><span class="p">,</span><span class="n">OU</span><span class="o">=</span><span class="n">Staff</span><span class="p">,</span><span class="n">DC</span><span class="o">=</span><span class="n">example</span><span class="p">,</span><span class="n">DC</span><span class="o">=</span><span class="n">edu</span><span class="p">',</span><span class="w"></span>
-<span class="w">    </span><span class="p">)</span><span class="w"></span>
-<span class="p">)</span><span class="w"></span>
+ <pre><span></span><code><span class="p">'</span><span class="n">authproc</span><span class="p">.</span><span class="n">sp</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">array</span><span class="p">(</span>
+<span class="w">  </span><span class="mh">60</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">array</span><span class="p">(</span>
+<span class="w">    </span><span class="p">'</span><span class="n">class</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">'</span><span class="nl">authorize:</span><span class="n">Authorize</span><span class="p">',</span>
+<span class="w">    </span><span class="p">'</span><span class="n">regex</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">FALSE</span><span class="p">,</span>
+<span class="w">    </span><span class="p">'</span><span class="n">group</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w">  </span><span class="n">array</span><span class="p">(</span>
+<span class="w">      </span><span class="p">'</span><span class="n">CN</span><span class="o">=</span><span class="n">SimpleSAML</span><span class="w"> </span><span class="n">Students</span><span class="p">,</span><span class="n">CN</span><span class="o">=</span><span class="n">Users</span><span class="p">,</span><span class="n">DC</span><span class="o">=</span><span class="n">example</span><span class="p">,</span><span class="n">DC</span><span class="o">=</span><span class="n">edu</span><span class="p">',</span>
+<span class="w">      </span><span class="p">'</span><span class="n">CN</span><span class="o">=</span><span class="n">All</span><span class="w"> </span><span class="n">Teachers</span><span class="p">,</span><span class="n">OU</span><span class="o">=</span><span class="n">Staff</span><span class="p">,</span><span class="n">DC</span><span class="o">=</span><span class="n">example</span><span class="p">,</span><span class="n">DC</span><span class="o">=</span><span class="n">edu</span><span class="p">',</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">)</span>
 </code></pre>
 </div></main></body>
 </html>

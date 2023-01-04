@@ -147,17 +147,17 @@ with different IP address/port combinations.
 example authsources.php entry:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="s1">'x509'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'authX509:X509userCert'</span><span class="o">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'hostname'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'ldaps://ldap.example.net'</span><span class="o">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'enable_tls'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">false</span><span class="o">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'attributes'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span><span class="s1">'cn'</span><span class="o">,</span><span class="w"> </span><span class="s1">'uid'</span><span class="o">,</span><span class="w"> </span><span class="s1">'mail'</span><span class="o">,</span><span class="w"> </span><span class="s1">'ou'</span><span class="o">,</span><span class="w"> </span><span class="s1">'sn'</span><span class="o">),</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'search.enable'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">true</span><span class="o">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'search.attributes'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span><span class="s1">'uid'</span><span class="o">,</span><span class="w"> </span><span class="s1">'mail'</span><span class="o">),</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'search.base'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'dc=example,dc=net'</span><span class="o">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'authX509:x509attributes'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span><span class="s1">'UID'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'uid'</span><span class="o">),</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'authX509:ldapusercert'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span><span class="s1">'userCertificate;binary'</span><span class="o">),</span><span class="w"></span>
-<span class="w">  </span><span class="o">),</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="s1">'x509'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span>
+<span class="w">      </span><span class="s1">'authX509:X509userCert'</span><span class="o">,</span>
+<span class="w">      </span><span class="s1">'hostname'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'ldaps://ldap.example.net'</span><span class="o">,</span>
+<span class="w">      </span><span class="s1">'enable_tls'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">false</span><span class="o">,</span>
+<span class="w">      </span><span class="s1">'attributes'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span><span class="s1">'cn'</span><span class="o">,</span><span class="w"> </span><span class="s1">'uid'</span><span class="o">,</span><span class="w"> </span><span class="s1">'mail'</span><span class="o">,</span><span class="w"> </span><span class="s1">'ou'</span><span class="o">,</span><span class="w"> </span><span class="s1">'sn'</span><span class="o">),</span>
+<span class="w">      </span><span class="s1">'search.enable'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">true</span><span class="o">,</span>
+<span class="w">      </span><span class="s1">'search.attributes'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span><span class="s1">'uid'</span><span class="o">,</span><span class="w"> </span><span class="s1">'mail'</span><span class="o">),</span>
+<span class="w">      </span><span class="s1">'search.base'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'dc=example,dc=net'</span><span class="o">,</span>
+<span class="w">      </span><span class="s1">'authX509:x509attributes'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span><span class="s1">'UID'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'uid'</span><span class="o">),</span>
+<span class="w">      </span><span class="s1">'authX509:ldapusercert'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span><span class="s1">'userCertificate;binary'</span><span class="o">),</span>
+<span class="w">  </span><span class="o">),</span>
 </code></pre>
 </div>
 <p>
@@ -194,10 +194,10 @@ how to convert from PEM to DER:
  Here is some LDIF to upload the certificate in the directory:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="nt">dn</span><span class="o">:</span><span class="w"> </span><span class="nt">uid</span><span class="o">=</span><span class="nt">jdoe</span><span class="o">,</span><span class="nt">dc</span><span class="o">=</span><span class="nt">example</span><span class="o">,</span><span class="nt">dc</span><span class="o">=</span><span class="nt">net</span><span class="w"></span>
-<span class="w">  </span><span class="nt">changetype</span><span class="o">:</span><span class="w"> </span><span class="nt">modify</span><span class="w"></span>
-<span class="w">  </span><span class="nt">add</span><span class="o">:</span><span class="w"> </span><span class="nt">userCertificate</span><span class="o">;</span><span class="nt">binary</span><span class="w"></span>
-<span class="w">  </span><span class="nt">userCertificate</span><span class="o">;</span><span class="nt">binary</span><span class="o">:&lt;</span><span class="w"> </span><span class="nt">file</span><span class="o">:///</span><span class="nt">path</span><span class="o">/</span><span class="nt">to</span><span class="o">/</span><span class="nt">cert</span><span class="p">.</span><span class="nc">der</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="nt">dn</span><span class="o">:</span><span class="w"> </span><span class="nt">uid</span><span class="o">=</span><span class="nt">jdoe</span><span class="o">,</span><span class="nt">dc</span><span class="o">=</span><span class="nt">example</span><span class="o">,</span><span class="nt">dc</span><span class="o">=</span><span class="nt">net</span>
+<span class="w">  </span><span class="nt">changetype</span><span class="o">:</span><span class="w"> </span><span class="nt">modify</span>
+<span class="w">  </span><span class="nt">add</span><span class="o">:</span><span class="w"> </span><span class="nt">userCertificate</span><span class="o">;</span><span class="nt">binary</span>
+<span class="w">  </span><span class="nt">userCertificate</span><span class="o">;</span><span class="nt">binary</span><span class="o">:&lt;</span><span class="w"> </span><span class="nt">file</span><span class="o">:///</span><span class="nt">path</span><span class="o">/</span><span class="nt">to</span><span class="o">/</span><span class="nt">cert</span><span class="p">.</span><span class="nc">der</span>
 </code></pre>
 </div>
 <h1 id="supporting-both-certificate-and-login-authentication">

@@ -103,8 +103,8 @@
  Here is an example of how two terms are included in a template from dictionary files:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  <span class="nt">&lt;h2&gt;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">t</span><span class="p">(</span><span class="s1">'{core:frontpage:about_header}'</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="nt">&lt;/h2&gt;</span>
-  <span class="nt">&lt;p&gt;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">t</span><span class="p">(</span><span class="s1">'{core:frontpage:about_text}'</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="nt">&lt;/p&gt;</span>
+ <pre><span></span><code><span class="w">  </span><span class="nt">&lt;h2&gt;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">t</span><span class="p">(</span><span class="s1">'{core:frontpage:about_header}'</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="nt">&lt;/h2&gt;</span>
+<span class="w">  </span><span class="nt">&lt;p&gt;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">t</span><span class="p">(</span><span class="s1">'{core:frontpage:about_text}'</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="nt">&lt;/p&gt;</span>
 </code></pre>
 </div>
 <p>
@@ -140,7 +140,7 @@
 </p>
 <div class="codehilite">
  <pre><span></span><code><span class="o">*</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">definition</span><span class="w"> </span><span class="nv">file</span>,<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">English</span><span class="w"> </span><span class="nv">translation</span>,<span class="w"> </span><span class="nv">and</span><span class="w"> </span>
-<span class="o">*</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">translation</span><span class="w"> </span><span class="nv">file</span>,<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">translation</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">other</span><span class="w"> </span><span class="nv">languages</span>.<span class="w"></span>
+<span class="o">*</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">translation</span><span class="w"> </span><span class="nv">file</span>,<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">translation</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">other</span><span class="w"> </span><span class="nv">languages</span>.
 </code></pre>
 </div>
 <p>
@@ -206,10 +206,10 @@
  index is used in order to at a later point in time introduce more meta information for each term, like in example:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="s2">"header"</span>:<span class="w"> </span>{<span class="w"></span>
-<span class="w">      </span><span class="s2">"en"</span>:<span class="w"> </span><span class="s2">"Missing cookie"</span>,<span class="w"></span>
-<span class="w">      </span><span class="s2">"_note"</span>:<span class="w"> </span><span class="s2">"This text shows up on the error page when the browser do not support cookies."</span><span class="w"></span>
-<span class="w">  </span>},<span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="s2">"header"</span>:<span class="w"> </span>{
+<span class="w">      </span><span class="s2">"en"</span>:<span class="w"> </span><span class="s2">"Missing cookie"</span>,
+<span class="w">      </span><span class="s2">"_note"</span>:<span class="w"> </span><span class="s2">"This text shows up on the error page when the browser do not support cookies."</span>
+<span class="w">  </span>},
 </code></pre>
 </div>
 <p>

@@ -219,9 +219,9 @@ keytab file) or set it to the specific entry you are trying to match.
 php_krb5 to read the HTTP_AUTHORIZATION header:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="nb">RewriteEngine</span><span class="w"> </span><span class="k">on</span><span class="w"></span>
-<span class="nb">RewriteCond</span><span class="w"> </span>%{HTTP:Authorization}<span class="w">  </span>!^$<span class="w"></span>
-<span class="nb">RewriteRule</span><span class="w"> </span>.*<span class="w"> </span>-<span class="w"> </span>[E=HTTP_AUTHORIZATION:%{HTTP:Authorization},L]<span class="w"></span>
+ <pre><span></span><code><span class="nb">RewriteEngine</span><span class="w"> </span><span class="k">on</span>
+<span class="nb">RewriteCond</span><span class="w"> </span>%{HTTP:Authorization}<span class="w">  </span>!^$
+<span class="nb">RewriteRule</span><span class="w"> </span>.*<span class="w"> </span>-<span class="w"> </span>[E=HTTP_AUTHORIZATION:%{HTTP:Authorization},L]
 </code></pre>
 </div>
 <p>
@@ -392,36 +392,36 @@ this:
 Sep 27 13:47:36 simplesamlphp WARNING [b99e6131ee] Wrong stage in state. Was 'foo', should be '\SimpleSAML\Module\negotiate\Auth\Source\Negotiate.StageId'.
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="n">It</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">work</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">loadState</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">take</span><span class="w"> </span><span class="n">control</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">call</span><span class="w"></span>
-<span class="n">Negotiate</span><span class="o">-&gt;</span><span class="n">authenticate</span><span class="p">()</span><span class="w"> </span><span class="n">but</span><span class="w"> </span><span class="n">remaining</span><span class="w"> </span><span class="n">code</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">retry</span><span class="o">.</span><span class="n">php</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">be</span><span class="w"></span>
-<span class="n">discarded</span><span class="o">.</span><span class="w"> </span><span class="n">Other</span><span class="w"> </span><span class="n">side</span><span class="o">-</span><span class="n">effects</span><span class="w"> </span><span class="n">may</span><span class="w"> </span><span class="n">occur</span><span class="o">.</span><span class="w"></span>
+ <pre><span></span><code><span class="n">It</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">work</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">loadState</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">take</span><span class="w"> </span><span class="n">control</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">call</span>
+<span class="n">Negotiate</span><span class="o">-&gt;</span><span class="n">authenticate</span><span class="p">()</span><span class="w"> </span><span class="n">but</span><span class="w"> </span><span class="n">remaining</span><span class="w"> </span><span class="n">code</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">retry</span><span class="o">.</span><span class="n">php</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">be</span>
+<span class="n">discarded</span><span class="o">.</span><span class="w"> </span><span class="n">Other</span><span class="w"> </span><span class="n">side</span><span class="o">-</span><span class="n">effects</span><span class="w"> </span><span class="n">may</span><span class="w"> </span><span class="n">occur</span><span class="o">.</span>
 
-<span class="c1">### Clients</span><span class="w"></span>
+<span class="c1">### Clients</span>
 
-<span class="c1">#### Internet Explorer</span><span class="w"></span>
+<span class="c1">#### Internet Explorer</span>
 
 <span class="n">YMMV</span><span class="w"> </span><span class="n">but</span><span class="w"> </span><span class="n">generally</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">need</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">IdP</span><span class="w"> </span><span class="n">defined</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="s2">"Internet</span>
 <span class="n">Options</span><span class="s2">" -&gt; "</span><span class="n">Security</span><span class="s2">" -&gt; "</span><span class="n">Local</span><span class="w"> </span><span class="n">intranet</span><span class="s2">" -&gt; "</span><span class="n">Sites</span><span class="s2">" -&gt; "</span><span class="n">Advanced</span><span class="s2">".</span>
-<span class="n">You</span><span class="w"> </span><span class="n">also</span><span class="w"> </span><span class="n">need</span><span class="w"> </span><span class="s2">"Internet Options"</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s2">"Advanced"</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s2">"Security"</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Enable</span><span class="w"></span>
+<span class="n">You</span><span class="w"> </span><span class="n">also</span><span class="w"> </span><span class="n">need</span><span class="w"> </span><span class="s2">"Internet Options"</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s2">"Advanced"</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s2">"Security"</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Enable</span>
 <span class="n">Integrated</span><span class="w"> </span><span class="n">Windows</span><span class="w"> </span><span class="n">Authentication</span><span class="s2">" enabled.</span>
 
-<span class="c1">#### Firefox</span><span class="w"></span>
+<span class="c1">#### Firefox</span>
 
-<span class="n">Open</span><span class="w"> </span><span class="s2">"about:config"</span><span class="o">.</span><span class="w"> </span><span class="n">Locate</span><span class="w"> </span><span class="s2">"network.auth.use-sspi"</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">verify</span><span class="w"> </span><span class="n">that</span><span class="w"></span>
-<span class="n">this</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="bp">true</span><span class="w"> </span><span class="p">(</span><span class="n">on</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">Windows</span><span class="w"> </span><span class="n">machine</span><span class="p">)</span><span class="o">.</span><span class="w"> </span><span class="n">Next</span><span class="w"> </span><span class="n">locate</span><span class="w"></span>
-<span class="s2">"network.negotiate-auth.trusted-uris"</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">insert</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">IdP</span><span class="o">.</span><span class="w"></span>
+<span class="n">Open</span><span class="w"> </span><span class="s2">"about:config"</span><span class="o">.</span><span class="w"> </span><span class="n">Locate</span><span class="w"> </span><span class="s2">"network.auth.use-sspi"</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">verify</span><span class="w"> </span><span class="n">that</span>
+<span class="n">this</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="bp">true</span><span class="w"> </span><span class="p">(</span><span class="n">on</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">Windows</span><span class="w"> </span><span class="n">machine</span><span class="p">)</span><span class="o">.</span><span class="w"> </span><span class="n">Next</span><span class="w"> </span><span class="n">locate</span>
+<span class="s2">"network.negotiate-auth.trusted-uris"</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">insert</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">IdP</span><span class="o">.</span>
 
-<span class="c1">#### Safari</span><span class="w"></span>
+<span class="c1">#### Safari</span>
 
-<span class="n">TODO</span><span class="w"></span>
+<span class="n">TODO</span>
 
-<span class="c1">#### Chromium</span><span class="w"></span>
+<span class="c1">#### Chromium</span>
 
-<span class="n">To</span><span class="w"> </span><span class="n">allow</span><span class="w"> </span><span class="n">Kerberos</span><span class="w"> </span><span class="n">SPN</span><span class="w"> </span><span class="n">generation</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="n">Linux</span><span class="o">-</span><span class="n">based</span><span class="w"> </span><span class="n">platforms</span><span class="p">,</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="n">the</span><span class="w"></span>
-<span class="n">following</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">chromium</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">default</span><span class="o">-</span><span class="n">flags</span><span class="p">:</span><span class="w"></span>
+<span class="n">To</span><span class="w"> </span><span class="n">allow</span><span class="w"> </span><span class="n">Kerberos</span><span class="w"> </span><span class="n">SPN</span><span class="w"> </span><span class="n">generation</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="n">Linux</span><span class="o">-</span><span class="n">based</span><span class="w"> </span><span class="n">platforms</span><span class="p">,</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="n">the</span>
+<span class="n">following</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">chromium</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">default</span><span class="o">-</span><span class="n">flags</span><span class="p">:</span>
 
-<span class="err">```</span><span class="n">bash</span><span class="w"></span>
-<span class="k">export</span><span class="w"> </span><span class="n">CHROMIUM_FLAGS</span><span class="o">=</span><span class="s2">"$CHROMIUM_FLAGS --auth-server-whitelist=.example.com"</span><span class="w"></span>
+<span class="err">```</span><span class="n">bash</span>
+<span class="k">export</span><span class="w"> </span><span class="n">CHROMIUM_FLAGS</span><span class="o">=</span><span class="s2">"$CHROMIUM_FLAGS --auth-server-whitelist=.example.com"</span>
 </code></pre>
 </div></main></body>
 </html>

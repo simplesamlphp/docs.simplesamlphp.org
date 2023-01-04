@@ -106,8 +106,8 @@
 See the documentation for those extensions for more details:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="o">*</span><span class="w"> </span><span class="p">[</span><span class="n">MDUI</span><span class="w"> </span><span class="n">extension</span><span class="p">](.</span><span class="o">/</span><span class="n">simplesamlphp</span><span class="o">-</span><span class="n">metadata</span><span class="o">-</span><span class="n">extensions</span><span class="o">-</span><span class="n">ui</span><span class="p">)</span><span class="w"></span>
-<span class="o">*</span><span class="w"> </span><span class="p">[</span><span class="n">MDRPI</span><span class="w"> </span><span class="n">extension</span><span class="p">](.</span><span class="o">/</span><span class="n">simplesamlphp</span><span class="o">-</span><span class="n">metadata</span><span class="o">-</span><span class="n">extensions</span><span class="o">-</span><span class="n">rpi</span><span class="p">)</span><span class="w"></span>
+ <pre><span></span><code><span class="o">*</span><span class="w"> </span><span class="p">[</span><span class="n">MDUI</span><span class="w"> </span><span class="n">extension</span><span class="p">](.</span><span class="o">/</span><span class="n">simplesamlphp</span><span class="o">-</span><span class="n">metadata</span><span class="o">-</span><span class="n">extensions</span><span class="o">-</span><span class="n">ui</span><span class="p">)</span>
+<span class="o">*</span><span class="w"> </span><span class="p">[</span><span class="n">MDRPI</span><span class="w"> </span><span class="n">extension</span><span class="p">](.</span><span class="o">/</span><span class="n">simplesamlphp</span><span class="o">-</span><span class="n">metadata</span><span class="o">-</span><span class="n">extensions</span><span class="o">-</span><span class="n">rpi</span><span class="p">)</span>
 </code></pre>
 </div>
 <h2 id="parameters">
@@ -526,16 +526,16 @@ The following attributes are available:
  <dd>
   For example, specifying a support contact:
   <div class="codehilite">
-   <pre><span></span><code><span class="w">    </span><span class="s1">'contacts'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">array</span><span class="p">(</span><span class="w"></span>
-<span class="w">        </span><span class="k">array</span><span class="p">(</span><span class="w"></span>
-<span class="w">            </span><span class="s1">'contactType'</span><span class="w">       </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'support'</span><span class="p">,</span><span class="w"></span>
-<span class="w">            </span><span class="s1">'emailAddress'</span><span class="w">      </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'support@example.org'</span><span class="p">,</span><span class="w"></span>
-<span class="w">            </span><span class="s1">'givenName'</span><span class="w">         </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'John'</span><span class="p">,</span><span class="w"></span>
-<span class="w">            </span><span class="s1">'surName'</span><span class="w">           </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Doe'</span><span class="p">,</span><span class="w"></span>
-<span class="w">            </span><span class="s1">'telephoneNumber'</span><span class="w">   </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'+31(0)12345678'</span><span class="p">,</span><span class="w"></span>
-<span class="w">            </span><span class="s1">'company'</span><span class="w">           </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Example Inc.'</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">),</span><span class="w"></span>
+   <pre><span></span><code><span class="w">    </span><span class="s1">'contacts'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">array</span><span class="p">(</span>
+<span class="w">        </span><span class="k">array</span><span class="p">(</span>
+<span class="w">            </span><span class="s1">'contactType'</span><span class="w">       </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'support'</span><span class="p">,</span>
+<span class="w">            </span><span class="s1">'emailAddress'</span><span class="w">      </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'support@example.org'</span><span class="p">,</span>
+<span class="w">            </span><span class="s1">'givenName'</span><span class="w">         </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'John'</span><span class="p">,</span>
+<span class="w">            </span><span class="s1">'surName'</span><span class="w">           </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Doe'</span><span class="p">,</span>
+<span class="w">            </span><span class="s1">'telephoneNumber'</span><span class="w">   </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'+31(0)12345678'</span><span class="p">,</span>
+<span class="w">            </span><span class="s1">'company'</span><span class="w">           </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Example Inc.'</span><span class="p">,</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">),</span>
 </code></pre>
   </div>
  </dd>
@@ -1263,26 +1263,26 @@ The following attributes are available:
  Specifying attributes and required attributes
 </h3>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="nv">An</span><span class="w"> </span><span class="nv">SP</span><span class="w"> </span><span class="nv">that</span><span class="w"> </span><span class="nv">wants</span><span class="w"> </span><span class="nv">eduPersonPrincipalName</span><span class="w"> </span><span class="nv">and</span><span class="w"> </span><span class="nv">mail</span>,<span class="w"> </span><span class="nv">where</span><span class="w"> </span><span class="nv">eduPersonPrincipalName</span><span class="w"> </span><span class="nv">should</span><span class="w"> </span><span class="nv">be</span><span class="w"> </span><span class="nv">listed</span><span class="w"> </span><span class="nv">as</span><span class="w"> </span><span class="nv">required</span>:<span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="nv">An</span><span class="w"> </span><span class="nv">SP</span><span class="w"> </span><span class="nv">that</span><span class="w"> </span><span class="nv">wants</span><span class="w"> </span><span class="nv">eduPersonPrincipalName</span><span class="w"> </span><span class="nv">and</span><span class="w"> </span><span class="nv">mail</span>,<span class="w"> </span><span class="nv">where</span><span class="w"> </span><span class="nv">eduPersonPrincipalName</span><span class="w"> </span><span class="nv">should</span><span class="w"> </span><span class="nv">be</span><span class="w"> </span><span class="nv">listed</span><span class="w"> </span><span class="nv">as</span><span class="w"> </span><span class="nv">required</span>:
 
-<span class="w">  </span><span class="err">'example-attributes =&gt; array(</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'saml:SP'</span>,<span class="w"></span>
-<span class="w">      </span><span class="s1">'name'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nv">array</span><span class="ss">(</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="nv">Name</span><span class="w"> </span><span class="nv">required</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">AttributeConsumingService</span><span class="o">-</span><span class="nv">element</span>.<span class="w"></span>
-<span class="w">          </span><span class="s1">'en'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Example service'</span>,<span class="w"></span>
-<span class="w">          </span><span class="s1">'no'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Eksempeltjeneste'</span>,<span class="w"></span>
-<span class="w">      </span><span class="ss">)</span>,<span class="w"></span>
-<span class="w">      </span><span class="s1">'attributes'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nv">array</span><span class="ss">(</span><span class="w"></span>
-<span class="w">          </span><span class="s1">'eduPersonPrincipalName'</span>,<span class="w"></span>
-<span class="w">          </span><span class="s1">'mail'</span>,<span class="w"></span>
-<span class="w">          </span><span class="o">//</span><span class="w"> </span><span class="nv">Specify</span><span class="w"> </span><span class="nv">friendly</span><span class="w"> </span><span class="nv">names</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">these</span><span class="w"> </span><span class="nv">attributes</span>:<span class="w"></span>
-<span class="w">          </span><span class="s1">'sn'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'urn:oid:2.5.4.4'</span>,<span class="w"></span>
-<span class="w">          </span><span class="s1">'givenName'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'urn:oid:2.5.4.42'</span>,<span class="w"></span>
-<span class="w">      </span><span class="ss">)</span>,<span class="w"></span>
-<span class="w">      </span><span class="s1">'attributes.required'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nv">array</span><span class="w"> </span><span class="ss">(</span><span class="w"></span>
-<span class="w">          </span><span class="s1">'eduPersonPrincipalName'</span>,<span class="w"></span>
-<span class="w">      </span><span class="ss">)</span>,<span class="w"></span>
-<span class="w">      </span><span class="s1">'attributes.NameFormat'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'urn:oasis:names:tc:SAML:2.0:attrname-format:basic'</span>,<span class="w"></span>
-<span class="w">  </span><span class="ss">)</span>,<span class="w"></span>
+<span class="w">  </span><span class="err">'example-attributes =&gt; array(</span>
+<span class="w">      </span><span class="s1">'saml:SP'</span>,
+<span class="w">      </span><span class="s1">'name'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nv">array</span><span class="ss">(</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="nv">Name</span><span class="w"> </span><span class="nv">required</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">AttributeConsumingService</span><span class="o">-</span><span class="nv">element</span>.
+<span class="w">          </span><span class="s1">'en'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Example service'</span>,
+<span class="w">          </span><span class="s1">'no'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Eksempeltjeneste'</span>,
+<span class="w">      </span><span class="ss">)</span>,
+<span class="w">      </span><span class="s1">'attributes'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nv">array</span><span class="ss">(</span>
+<span class="w">          </span><span class="s1">'eduPersonPrincipalName'</span>,
+<span class="w">          </span><span class="s1">'mail'</span>,
+<span class="w">          </span><span class="o">//</span><span class="w"> </span><span class="nv">Specify</span><span class="w"> </span><span class="nv">friendly</span><span class="w"> </span><span class="nv">names</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">these</span><span class="w"> </span><span class="nv">attributes</span>:
+<span class="w">          </span><span class="s1">'sn'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'urn:oid:2.5.4.4'</span>,
+<span class="w">          </span><span class="s1">'givenName'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'urn:oid:2.5.4.42'</span>,
+<span class="w">      </span><span class="ss">)</span>,
+<span class="w">      </span><span class="s1">'attributes.required'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nv">array</span><span class="w"> </span><span class="ss">(</span>
+<span class="w">          </span><span class="s1">'eduPersonPrincipalName'</span>,
+<span class="w">      </span><span class="ss">)</span>,
+<span class="w">      </span><span class="s1">'attributes.NameFormat'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'urn:oasis:names:tc:SAML:2.0:attrname-format:basic'</span>,
+<span class="w">  </span><span class="ss">)</span>,
 </code></pre>
 </div>
 <h3 id="limiting-supported-assertionconsumerservice-endpoint-bindings">
@@ -1302,24 +1302,24 @@ The following attributes are available:
  Requesting a specific authentication method.
 </h3>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">auth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">new</span><span class="w"> </span><span class="err">\</span><span class="nt">SimpleSAML</span><span class="err">\</span><span class="nt">Auth</span><span class="err">\</span><span class="nt">Simple</span><span class="o">(</span><span class="s1">'default-sp'</span><span class="o">);</span><span class="w"></span>
-<span class="w">  </span><span class="o">$</span><span class="nt">auth-</span><span class="o">&gt;</span><span class="nt">login</span><span class="o">(</span><span class="nt">array</span><span class="o">(</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'saml:AuthnContextClassRef'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'urn:oasis:names:tc:SAML:2.0:ac:classes:Password'</span><span class="o">,</span><span class="w"></span>
-<span class="w">  </span><span class="o">));</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">auth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">new</span><span class="w"> </span><span class="err">\</span><span class="nt">SimpleSAML</span><span class="err">\</span><span class="nt">Auth</span><span class="err">\</span><span class="nt">Simple</span><span class="o">(</span><span class="s1">'default-sp'</span><span class="o">);</span>
+<span class="w">  </span><span class="o">$</span><span class="nt">auth-</span><span class="o">&gt;</span><span class="nt">login</span><span class="o">(</span><span class="nt">array</span><span class="o">(</span>
+<span class="w">      </span><span class="s1">'saml:AuthnContextClassRef'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'urn:oasis:names:tc:SAML:2.0:ac:classes:Password'</span><span class="o">,</span>
+<span class="w">  </span><span class="o">));</span>
 </code></pre>
 </div>
 <h3 id="using-samlpextensions">
  Using samlp:Extensions
 </h3>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">dom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">\</span><span class="nt">SAML2</span><span class="err">\</span><span class="nt">DOMDocumentFactory</span><span class="p">::</span><span class="nd">create</span><span class="o">();</span><span class="w"></span>
-<span class="w">  </span><span class="o">$</span><span class="nt">ce</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="nt">dom-</span><span class="o">&gt;</span><span class="nt">createElementNS</span><span class="o">(</span><span class="s1">'http://www.example.com/XFoo'</span><span class="o">,</span><span class="w"> </span><span class="s1">'xfoo:test'</span><span class="o">,</span><span class="w"> </span><span class="s1">'Test data!'</span><span class="o">);</span><span class="w"></span>
-<span class="w">  </span><span class="o">$</span><span class="nt">ext</span><span class="cp">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">new</span><span class="w"> </span><span class="err">\</span><span class="nt">SAML2</span><span class="err">\</span><span class="nt">XML</span><span class="err">\</span><span class="nt">Chunk</span><span class="o">($</span><span class="nt">ce</span><span class="o">);</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">dom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">\</span><span class="nt">SAML2</span><span class="err">\</span><span class="nt">DOMDocumentFactory</span><span class="p">::</span><span class="nd">create</span><span class="o">();</span>
+<span class="w">  </span><span class="o">$</span><span class="nt">ce</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="nt">dom-</span><span class="o">&gt;</span><span class="nt">createElementNS</span><span class="o">(</span><span class="s1">'http://www.example.com/XFoo'</span><span class="o">,</span><span class="w"> </span><span class="s1">'xfoo:test'</span><span class="o">,</span><span class="w"> </span><span class="s1">'Test data!'</span><span class="o">);</span>
+<span class="w">  </span><span class="o">$</span><span class="nt">ext</span><span class="cp">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">new</span><span class="w"> </span><span class="err">\</span><span class="nt">SAML2</span><span class="err">\</span><span class="nt">XML</span><span class="err">\</span><span class="nt">Chunk</span><span class="o">($</span><span class="nt">ce</span><span class="o">);</span>
 
-<span class="w">  </span><span class="o">$</span><span class="nt">auth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">new</span><span class="w"> </span><span class="err">\</span><span class="nt">SimpleSAML</span><span class="err">\</span><span class="nt">Auth</span><span class="err">\</span><span class="nt">Simple</span><span class="o">(</span><span class="s1">'default-sp'</span><span class="o">);</span><span class="w"></span>
-<span class="w">  </span><span class="o">$</span><span class="nt">auth-</span><span class="o">&gt;</span><span class="nt">login</span><span class="o">(</span><span class="nt">array</span><span class="o">(</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'saml:Extensions'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">$</span><span class="nt">ext</span><span class="o">,</span><span class="w"></span>
-<span class="w">  </span><span class="o">));</span><span class="w"></span>
+<span class="w">  </span><span class="o">$</span><span class="nt">auth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">new</span><span class="w"> </span><span class="err">\</span><span class="nt">SimpleSAML</span><span class="err">\</span><span class="nt">Auth</span><span class="err">\</span><span class="nt">Simple</span><span class="o">(</span><span class="s1">'default-sp'</span><span class="o">);</span>
+<span class="w">  </span><span class="o">$</span><span class="nt">auth-</span><span class="o">&gt;</span><span class="nt">login</span><span class="o">(</span><span class="nt">array</span><span class="o">(</span>
+<span class="w">      </span><span class="s1">'saml:Extensions'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">$</span><span class="nt">ext</span><span class="o">,</span>
+<span class="w">  </span><span class="o">));</span>
 </code></pre>
 </div></main></body>
 </html>

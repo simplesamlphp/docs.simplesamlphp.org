@@ -362,7 +362,7 @@ Please see the
  Example code for the function with GeoIP country check:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="nt">public</span><span class="w"> </span><span class="nt">static</span><span class="w"> </span><span class="nt">function</span><span class="w"> </span><span class="nt">checkSession</span><span class="o">($</span><span class="nt">session</span><span class="o">,</span><span class="w"> </span><span class="o">$</span><span class="nt">init</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">FALSE</span><span class="o">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="nt">public</span><span class="w"> </span><span class="nt">static</span><span class="w"> </span><span class="nt">function</span><span class="w"> </span><span class="nt">checkSession</span><span class="o">($</span><span class="nt">session</span><span class="o">,</span><span class="w"> </span><span class="o">$</span><span class="nt">init</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">FALSE</span><span class="o">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="err">$data_type</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">'</span><span class="n">example</span><span class="p">:</span><span class="n">check_session</span><span class="s1">';</span>
 <span class="s1">      $data_key = '</span><span class="n">remote_addr</span><span class="s1">';</span>
 
@@ -383,23 +383,23 @@ Please see the
 
 <span class="s1">      $stored_remote_addr = $session-&gt;getData($data_type, $data_key);</span>
 <span class="s1">      if ($stored_remote_addr === NULL) {</span>
-<span class="s1">          SimpleSAML\Logger::warning('</span><span class="n">Stored</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="n">found</span><span class="o">.</span><span class="err">'</span><span class="p">);</span><span class="w"></span>
-<span class="w">          </span><span class="err">return</span><span class="w"> </span><span class="err">FALSE</span><span class="p">;</span><span class="w"></span>
-<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="s1">          SimpleSAML\Logger::warning('</span><span class="n">Stored</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="n">found</span><span class="o">.</span><span class="err">'</span><span class="p">);</span>
+<span class="w">          </span><span class="err">return</span><span class="w"> </span><span class="err">FALSE</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
 
-<span class="w">      </span><span class="o">$</span><span class="nt">country_a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">geoip_country_code_by_name</span><span class="o">($</span><span class="nt">remote_addr</span><span class="o">);</span><span class="w"></span>
-<span class="w">      </span><span class="o">$</span><span class="nt">country_b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">geoip_country_code_by_name</span><span class="o">($</span><span class="nt">stored_remote_addr</span><span class="o">);</span><span class="w"></span>
+<span class="w">      </span><span class="o">$</span><span class="nt">country_a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">geoip_country_code_by_name</span><span class="o">($</span><span class="nt">remote_addr</span><span class="o">);</span>
+<span class="w">      </span><span class="o">$</span><span class="nt">country_b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">geoip_country_code_by_name</span><span class="o">($</span><span class="nt">stored_remote_addr</span><span class="o">);</span>
 
-<span class="w">      </span><span class="nt">if</span><span class="w"> </span><span class="o">($</span><span class="nt">country_a</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="o">$</span><span class="nt">country_b</span><span class="o">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">          </span><span class="err">if</span><span class="w"> </span><span class="err">($stored_remote_addr</span><span class="w"> </span><span class="err">!==</span><span class="w"> </span><span class="err">$remote_addr)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
-<span class="w">              </span><span class="err">$session-&gt;setData($data_type,</span><span class="w"> </span><span class="err">$data_key,</span><span class="w"> </span><span class="err">$remote_addr,</span><span class="w"> </span><span class="err">\SimpleSAML\</span><span class="n">Session</span><span class="p">:</span><span class="o">:</span><span class="n">DATA_TIMEOUT_SESSION_END</span><span class="p">);</span><span class="w"></span>
-<span class="w">          </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="nt">if</span><span class="w"> </span><span class="o">($</span><span class="nt">country_a</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="o">$</span><span class="nt">country_b</span><span class="o">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="err">if</span><span class="w"> </span><span class="err">($stored_remote_addr</span><span class="w"> </span><span class="err">!==</span><span class="w"> </span><span class="err">$remote_addr)</span><span class="w"> </span><span class="err">{</span>
+<span class="w">              </span><span class="err">$session-&gt;setData($data_type,</span><span class="w"> </span><span class="err">$data_key,</span><span class="w"> </span><span class="err">$remote_addr,</span><span class="w"> </span><span class="err">\SimpleSAML\</span><span class="n">Session</span><span class="p">:</span><span class="o">:</span><span class="n">DATA_TIMEOUT_SESSION_END</span><span class="p">);</span>
+<span class="w">          </span><span class="p">}</span>
 
-<span class="w">          </span><span class="nt">return</span><span class="w"> </span><span class="nt">TRUE</span><span class="o">;</span><span class="w"></span>
-<span class="w">      </span><span class="err">}</span><span class="w"></span>
+<span class="w">          </span><span class="nt">return</span><span class="w"> </span><span class="nt">TRUE</span><span class="o">;</span>
+<span class="w">      </span><span class="err">}</span>
 
-<span class="w">      </span><span class="nt">return</span><span class="w"> </span><span class="nt">FALSE</span><span class="o">;</span><span class="w"></span>
-<span class="w">  </span><span class="err">}</span><span class="w"></span>
+<span class="w">      </span><span class="nt">return</span><span class="w"> </span><span class="nt">FALSE</span><span class="o">;</span>
+<span class="w">  </span><span class="err">}</span>
 </code></pre>
 </div>
 <h2 id="support">

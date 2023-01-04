@@ -203,16 +203,16 @@ entry matches.
   Specify contacts in addition to the technical contact configured through config/config.php.
   For example, specifying a support contact:
   <div class="codehilite">
-   <pre><span></span><code><span class="s1">'contacts'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">array</span><span class="p">(</span><span class="w"></span>
-<span class="w">    </span><span class="k">array</span><span class="p">(</span><span class="w"></span>
-<span class="w">        </span><span class="s1">'contactType'</span><span class="w">       </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'support'</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="s1">'emailAddress'</span><span class="w">      </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'support@example.org'</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="s1">'givenName'</span><span class="w">         </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'John'</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="s1">'surName'</span><span class="w">           </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Doe'</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="s1">'telephoneNumber'</span><span class="w">   </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'+31(0)12345678'</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="s1">'company'</span><span class="w">           </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Example Inc.'</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="p">),</span><span class="w"></span>
-<span class="p">),</span><span class="w"></span>
+   <pre><span></span><code><span class="s1">'contacts'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">array</span><span class="p">(</span>
+<span class="w">    </span><span class="k">array</span><span class="p">(</span>
+<span class="w">        </span><span class="s1">'contactType'</span><span class="w">       </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'support'</span><span class="p">,</span>
+<span class="w">        </span><span class="s1">'emailAddress'</span><span class="w">      </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'support@example.org'</span><span class="p">,</span>
+<span class="w">        </span><span class="s1">'givenName'</span><span class="w">         </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'John'</span><span class="p">,</span>
+<span class="w">        </span><span class="s1">'surName'</span><span class="w">           </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Doe'</span><span class="p">,</span>
+<span class="w">        </span><span class="s1">'telephoneNumber'</span><span class="w">   </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'+31(0)12345678'</span><span class="p">,</span>
+<span class="w">        </span><span class="s1">'company'</span><span class="w">           </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Example Inc.'</span><span class="p">,</span>
+<span class="w">    </span><span class="p">),</span>
+<span class="p">),</span>
 </code></pre>
   </div>
  </dd>
@@ -221,20 +221,20 @@ entry matches.
    If you have support for a trust framework that requires extra attributes on the contact person element in your IdP metadata (for example, SIRTFI), you can specify an array of attributes on a contact.
   </p>
   <div class="codehilite">
-   <pre><span></span><code><span class="s1">'contacts'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">array</span><span class="p">(</span><span class="w"></span>
-<span class="w">    </span><span class="k">array</span><span class="p">(</span><span class="w"></span>
-<span class="w">        </span><span class="s1">'contactType'</span><span class="w">       </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'other'</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="s1">'emailAddress'</span><span class="w">      </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'mailto:abuse@example.org'</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="s1">'givenName'</span><span class="w">         </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'John'</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="s1">'surName'</span><span class="w">           </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Doe'</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="s1">'telephoneNumber'</span><span class="w">   </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'+31(0)12345678'</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="s1">'company'</span><span class="w">           </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Example Inc.'</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="s1">'attributes'</span><span class="w">        </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">array</span><span class="p">(</span><span class="w"></span>
-<span class="w">            </span><span class="s1">'xmlns:remd'</span><span class="w">        </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'http://refeds.org/metadata'</span><span class="p">,</span><span class="w"></span>
-<span class="w">            </span><span class="s1">'remd:contactType'</span><span class="w">  </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'http://refeds.org/metadata/contactType/security'</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="p">),</span><span class="w"></span>
-<span class="w">    </span><span class="p">),</span><span class="w"></span>
-<span class="p">),</span><span class="w"></span>
+   <pre><span></span><code><span class="s1">'contacts'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">array</span><span class="p">(</span>
+<span class="w">    </span><span class="k">array</span><span class="p">(</span>
+<span class="w">        </span><span class="s1">'contactType'</span><span class="w">       </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'other'</span><span class="p">,</span>
+<span class="w">        </span><span class="s1">'emailAddress'</span><span class="w">      </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'mailto:abuse@example.org'</span><span class="p">,</span>
+<span class="w">        </span><span class="s1">'givenName'</span><span class="w">         </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'John'</span><span class="p">,</span>
+<span class="w">        </span><span class="s1">'surName'</span><span class="w">           </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Doe'</span><span class="p">,</span>
+<span class="w">        </span><span class="s1">'telephoneNumber'</span><span class="w">   </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'+31(0)12345678'</span><span class="p">,</span>
+<span class="w">        </span><span class="s1">'company'</span><span class="w">           </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Example Inc.'</span><span class="p">,</span>
+<span class="w">        </span><span class="s1">'attributes'</span><span class="w">        </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">array</span><span class="p">(</span>
+<span class="w">            </span><span class="s1">'xmlns:remd'</span><span class="w">        </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'http://refeds.org/metadata'</span><span class="p">,</span>
+<span class="w">            </span><span class="s1">'remd:contactType'</span><span class="w">  </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'http://refeds.org/metadata/contactType/security'</span><span class="p">,</span>
+<span class="w">        </span><span class="p">),</span>
+<span class="w">    </span><span class="p">),</span>
+<span class="p">),</span>
 </code></pre>
   </div>
  </dd>
@@ -1077,9 +1077,9 @@ messages from that SP.
 See the documentation for those extensions for more details:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="o">*</span><span class="w"> </span><span class="p">[</span><span class="n">MDUI</span><span class="w"> </span><span class="n">extension</span><span class="p">](.</span><span class="o">/</span><span class="n">simplesamlphp</span><span class="o">-</span><span class="n">metadata</span><span class="o">-</span><span class="n">extensions</span><span class="o">-</span><span class="n">ui</span><span class="p">)</span><span class="w"></span>
-<span class="o">*</span><span class="w"> </span><span class="p">[</span><span class="n">MDRPI</span><span class="w"> </span><span class="n">extension</span><span class="p">](.</span><span class="o">/</span><span class="n">simplesamlphp</span><span class="o">-</span><span class="n">metadata</span><span class="o">-</span><span class="n">extensions</span><span class="o">-</span><span class="n">rpi</span><span class="p">)</span><span class="w"></span>
-<span class="o">*</span><span class="w"> </span><span class="p">[</span><span class="n">EntityAttributes</span><span class="p">](.</span><span class="o">/</span><span class="n">simplesamlphp</span><span class="o">-</span><span class="n">metadata</span><span class="o">-</span><span class="n">extensions</span><span class="o">-</span><span class="n">attributes</span><span class="p">)</span><span class="w"></span>
+ <pre><span></span><code><span class="o">*</span><span class="w"> </span><span class="p">[</span><span class="n">MDUI</span><span class="w"> </span><span class="n">extension</span><span class="p">](.</span><span class="o">/</span><span class="n">simplesamlphp</span><span class="o">-</span><span class="n">metadata</span><span class="o">-</span><span class="n">extensions</span><span class="o">-</span><span class="n">ui</span><span class="p">)</span>
+<span class="o">*</span><span class="w"> </span><span class="p">[</span><span class="n">MDRPI</span><span class="w"> </span><span class="n">extension</span><span class="p">](.</span><span class="o">/</span><span class="n">simplesamlphp</span><span class="o">-</span><span class="n">metadata</span><span class="o">-</span><span class="n">extensions</span><span class="o">-</span><span class="n">rpi</span><span class="p">)</span>
+<span class="o">*</span><span class="w"> </span><span class="p">[</span><span class="n">EntityAttributes</span><span class="p">](.</span><span class="o">/</span><span class="n">simplesamlphp</span><span class="o">-</span><span class="n">metadata</span><span class="o">-</span><span class="n">extensions</span><span class="o">-</span><span class="n">attributes</span><span class="p">)</span>
 </code></pre>
 </div>
 <h2 id="examples">

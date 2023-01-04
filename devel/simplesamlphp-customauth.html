@@ -169,8 +169,8 @@ It will be located under
  First we need to create the module directory:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="nb">cd</span> modules
-mkdir mymodule
+ <pre><span></span><code><span class="nb">cd</span><span class="w"> </span>modules
+mkdir<span class="w"> </span>mymodule
 </code></pre>
 </div>
 <p>
@@ -528,18 +528,18 @@ What follows is an example of an authentication source that fetches an user from
  This code assumes that the database contains a table that looks like this:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">userdb</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">    </span><span class="n">username</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="n">password_hash</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="n">full_name</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">);</span><span class="w"></span>
+ <pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">userdb</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">username</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">password_hash</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">full_name</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">);</span>
 </code></pre>
 </div>
 <p>
  An example user (with password "secret"):
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">userdb</span><span class="w"> </span><span class="p">(</span><span class="n">username</span><span class="p">,</span><span class="w"> </span><span class="n">password_hash</span><span class="p">,</span><span class="w"> </span><span class="n">full_name</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="k">VALUES</span><span class="p">(</span><span class="s1">'exampleuser'</span><span class="p">,</span><span class="w"> </span><span class="s1">'QwVYkvlrAMsXIgULyQ/pDDwDI3dF2aJD4XeVxg=='</span><span class="p">,</span><span class="w"> </span><span class="s1">'Example User'</span><span class="p">);</span><span class="w"></span>
+ <pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">userdb</span><span class="w"> </span><span class="p">(</span><span class="n">username</span><span class="p">,</span><span class="w"> </span><span class="n">password_hash</span><span class="p">,</span><span class="w"> </span><span class="n">full_name</span><span class="p">)</span>
+<span class="w">    </span><span class="k">VALUES</span><span class="p">(</span><span class="s1">'exampleuser'</span><span class="p">,</span><span class="w"> </span><span class="s1">'QwVYkvlrAMsXIgULyQ/pDDwDI3dF2aJD4XeVxg=='</span><span class="p">,</span><span class="w"> </span><span class="s1">'Example User'</span><span class="p">);</span>
 </code></pre>
 </div>
 <p>

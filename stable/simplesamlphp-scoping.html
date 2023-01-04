@@ -196,7 +196,7 @@ not used.
 instance the authenticate method in an authentication source
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">requesterIDs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="nt">state</span><span class="cp">[</span><span class="s1">'saml:RequesterID'</span><span class="cp">]</span><span class="o">;</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">requesterIDs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="nt">state</span><span class="cp">[</span><span class="s1">'saml:RequesterID'</span><span class="cp">]</span><span class="o">;</span>
 </code></pre>
 </div>
 <h2 id="authenticatingauthority-element">
@@ -212,11 +212,11 @@ AuthenticatingAuthority elements.
 can be retrieved as an array from the authentication data.
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="nt">Get</span><span class="w"> </span><span class="nt">the</span><span class="w"> </span><span class="nt">authentication</span><span class="w"> </span><span class="nt">source</span><span class="o">.</span><span class="w"></span>
-<span class="w">  </span><span class="o">$</span><span class="nt">as</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">new</span><span class="w"> </span><span class="err">\</span><span class="nt">SimpleSAML</span><span class="err">\</span><span class="nt">Auth</span><span class="err">\</span><span class="nt">Simple</span><span class="o">();</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="nt">Get</span><span class="w"> </span><span class="nt">the</span><span class="w"> </span><span class="nt">authentication</span><span class="w"> </span><span class="nt">source</span><span class="o">.</span>
+<span class="w">  </span><span class="o">$</span><span class="nt">as</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">new</span><span class="w"> </span><span class="err">\</span><span class="nt">SimpleSAML</span><span class="err">\</span><span class="nt">Auth</span><span class="err">\</span><span class="nt">Simple</span><span class="o">();</span>
 
-<span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="nt">Get</span><span class="w"> </span><span class="nt">the</span><span class="w"> </span><span class="nt">AuthenticatingAuthority</span><span class="w"></span>
-<span class="w">  </span><span class="o">$</span><span class="nt">aa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="nt">as-</span><span class="o">&gt;</span><span class="nt">getAuthData</span><span class="o">(</span><span class="s1">'saml:AuthenticatingAuthority'</span><span class="o">);</span><span class="w"></span>
+<span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="nt">Get</span><span class="w"> </span><span class="nt">the</span><span class="w"> </span><span class="nt">AuthenticatingAuthority</span>
+<span class="w">  </span><span class="o">$</span><span class="nt">aa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="nt">as-</span><span class="o">&gt;</span><span class="nt">getAuthData</span><span class="o">(</span><span class="s1">'saml:AuthenticatingAuthority'</span><span class="o">);</span>
 </code></pre>
 </div>
 <h2 id="support">

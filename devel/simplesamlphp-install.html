@@ -377,9 +377,9 @@ repository
  Go to the directory where you want to install SimpleSAMLphp and extract the archive file you just downloaded:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="nb">cd</span> /var
-tar xzf simplesamlphp-x.y.z.tar.gz
-mv simplesamlphp-x.y.z simplesamlphp
+ <pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/var
+tar<span class="w"> </span>xzf<span class="w"> </span>simplesamlphp-x.y.z.tar.gz
+mv<span class="w"> </span>simplesamlphp-x.y.z<span class="w"> </span>simplesamlphp
 </code></pre>
 </div>
 <h2 id="upgrading-from-a-previous-version-of-simplesamlphp">
@@ -397,8 +397,8 @@ changes.
  Extract the new version:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="nb">cd</span> /var
-tar xzf simplesamlphp-x.y.z.tar.gz
+ <pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/var
+tar<span class="w"> </span>xzf<span class="w"> </span>simplesamlphp-x.y.z.tar.gz
 </code></pre>
 </div>
 <p>
@@ -406,10 +406,10 @@ tar xzf simplesamlphp-x.y.z.tar.gz
 keep reading for other alternatives):
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="nb">cd</span> /var/simplesamlphp-x.y.z
-rm -rf config metadata
-cp -rv ../simplesamlphp/config config
-cp -rv ../simplesamlphp/metadata metadata
+ <pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/var/simplesamlphp-x.y.z
+rm<span class="w"> </span>-rf<span class="w"> </span>config<span class="w"> </span>metadata
+cp<span class="w"> </span>-rv<span class="w"> </span>../simplesamlphp/config<span class="w"> </span>config
+cp<span class="w"> </span>-rv<span class="w"> </span>../simplesamlphp/metadata<span class="w"> </span>metadata
 </code></pre>
 </div>
 <p>
@@ -428,9 +428,9 @@ you should check whether your third-party modules need upgrading and then copy o
  Replace the old version with the new version:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="nb">cd</span> /var
-mv simplesamlphp simplesamlphp.old
-mv simplesamlphp-x.y.z simplesamlphp
+ <pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/var
+mv<span class="w"> </span>simplesamlphp<span class="w"> </span>simplesamlphp.old
+mv<span class="w"> </span>simplesamlphp-x.y.z<span class="w"> </span>simplesamlphp
 </code></pre>
 </div>
 <p>
@@ -528,18 +528,18 @@ one possible configuration.
 look like this:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="s">*</span><span class="nt">&gt;</span><span class="w"></span>
-<span class="w">    </span><span class="nb">ServerName</span><span class="w"> </span>service.example.com<span class="w"></span>
-<span class="w">    </span><span class="nb">DocumentRoot</span><span class="w"> </span><span class="sx">/var/www/service.example.com</span><span class="w"></span>
+ <pre><span></span><code><span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="s">*</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nb">ServerName</span><span class="w"> </span>service.example.com
+<span class="w">    </span><span class="nb">DocumentRoot</span><span class="w"> </span><span class="sx">/var/www/service.example.com</span>
 
-<span class="w">    </span><span class="nb">SetEnv</span><span class="w"> </span>SIMPLESAMLPHP_CONFIG_DIR<span class="w"> </span><span class="sx">/var/simplesamlphp/config</span><span class="w"></span>
+<span class="w">    </span><span class="nb">SetEnv</span><span class="w"> </span>SIMPLESAMLPHP_CONFIG_DIR<span class="w"> </span><span class="sx">/var/simplesamlphp/config</span>
 
-<span class="w">    </span><span class="nb">Alias</span><span class="w"> </span><span class="sx">/simplesaml</span><span class="w"> </span><span class="sx">/var/simplesamlphp/www</span><span class="w"></span>
+<span class="w">    </span><span class="nb">Alias</span><span class="w"> </span><span class="sx">/simplesaml</span><span class="w"> </span><span class="sx">/var/simplesamlphp/www</span>
 
-<span class="w">    </span><span class="nt">&lt;Directory</span><span class="w"> </span><span class="s">/var/simplesamlphp/www</span><span class="nt">&gt;</span><span class="w"></span>
-<span class="w">        </span><span class="nb">Require</span><span class="w"> </span><span class="k">all</span><span class="w"> </span>granted<span class="w"></span>
-<span class="w">    </span><span class="nt">&lt;/Directory&gt;</span><span class="w"></span>
-<span class="nt">&lt;/VirtualHost&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&lt;Directory</span><span class="w"> </span><span class="s">/var/simplesamlphp/www</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nb">Require</span><span class="w"> </span><span class="k">all</span><span class="w"> </span>granted
+<span class="w">    </span><span class="nt">&lt;/Directory&gt;</span>
+<span class="nt">&lt;/VirtualHost&gt;</span>
 </code></pre>
 </div>
 <p>
@@ -655,30 +655,30 @@ one possible configuration.
 look like this:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="k">server</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kn">listen</span><span class="w"> </span><span class="mi">443</span><span class="w"> </span><span class="s">ssl</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="kn">server_name</span><span class="w"> </span><span class="s">idp.example.com</span><span class="p">;</span><span class="w"></span>
+ <pre><span></span><code><span class="k">server</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">listen</span><span class="w"> </span><span class="mi">443</span><span class="w"> </span><span class="s">ssl</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">server_name</span><span class="w"> </span><span class="s">idp.example.com</span><span class="p">;</span>
 
-<span class="w">    </span><span class="kn">ssl_certificate</span><span class="w">        </span><span class="s">/etc/pki/tls/certs/idp.example.com.crt</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="kn">ssl_certificate_key</span><span class="w">    </span><span class="s">/etc/pki/tls/private/idp.example.com.key</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="kn">ssl_protocols</span><span class="w">          </span><span class="s">TLSv1.3</span><span class="w"> </span><span class="s">TLSv1.2</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="kn">ssl_ciphers</span><span class="w">            </span><span class="s">EECDH+AESGCM:EDH+AESGCM</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kn">ssl_certificate</span><span class="w">        </span><span class="s">/etc/pki/tls/certs/idp.example.com.crt</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">ssl_certificate_key</span><span class="w">    </span><span class="s">/etc/pki/tls/private/idp.example.com.key</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">ssl_protocols</span><span class="w">          </span><span class="s">TLSv1.3</span><span class="w"> </span><span class="s">TLSv1.2</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">ssl_ciphers</span><span class="w">            </span><span class="s">EECDH+AESGCM:EDH+AESGCM</span><span class="p">;</span>
 
-<span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="s">^~</span><span class="w"> </span><span class="s">/simplesaml</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="kn">alias</span><span class="w"> </span><span class="s">/var/simplesamlphp/www</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="s">^~</span><span class="w"> </span><span class="s">/simplesaml</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kn">alias</span><span class="w"> </span><span class="s">/var/simplesamlphp/www</span><span class="p">;</span>
 
-<span class="w">        </span><span class="kn">location</span><span class="w"> </span><span class="p">~</span><span class="sr">^(?&lt;prefix&gt;/simplesaml)(?&lt;phpfile&gt;.+?\.php)(?&lt;pathinfo&gt;/.*)?$</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="kn">include</span><span class="w">          </span><span class="s">fastcgi_params</span><span class="p">;</span><span class="w"></span>
-<span class="w">            </span><span class="kn">fastcgi_pass</span><span class="w">     </span><span class="nv">$fastcgi_pass</span><span class="p">;</span><span class="w"></span>
-<span class="w">            </span><span class="kn">fastcgi_param</span><span class="w"> </span><span class="s">SCRIPT_FILENAME</span><span class="w"> </span><span class="nv">$document_root$phpfile</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="kn">location</span><span class="w"> </span><span class="p">~</span><span class="sr">^(?&lt;prefix&gt;/simplesaml)(?&lt;phpfile&gt;.+?\.php)(?&lt;pathinfo&gt;/.*)?$</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kn">include</span><span class="w">          </span><span class="s">fastcgi_params</span><span class="p">;</span>
+<span class="w">            </span><span class="kn">fastcgi_pass</span><span class="w">     </span><span class="nv">$fastcgi_pass</span><span class="p">;</span>
+<span class="w">            </span><span class="kn">fastcgi_param</span><span class="w"> </span><span class="s">SCRIPT_FILENAME</span><span class="w"> </span><span class="nv">$document_root$phpfile</span><span class="p">;</span>
 
 <span class="w">            </span><span class="c1"># Must be prepended with the baseurlpath</span>
-<span class="w">            </span><span class="kn">fastcgi_param</span><span class="w"> </span><span class="s">SCRIPT_NAME</span><span class="w"> </span><span class="s">/simplesaml</span><span class="nv">$phpfile</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="kn">fastcgi_param</span><span class="w"> </span><span class="s">SCRIPT_NAME</span><span class="w"> </span><span class="s">/simplesaml</span><span class="nv">$phpfile</span><span class="p">;</span>
 
-<span class="w">            </span><span class="kn">fastcgi_param</span><span class="w"> </span><span class="s">PATH_INFO</span><span class="w"> </span><span class="nv">$pathinfo</span><span class="w"> </span><span class="s">if_not_empty</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="kn">fastcgi_param</span><span class="w"> </span><span class="s">PATH_INFO</span><span class="w"> </span><span class="nv">$pathinfo</span><span class="w"> </span><span class="s">if_not_empty</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 </code></pre>
 </div>
 <h2 id="simplesamlphp-configuration-configphp">
@@ -706,10 +706,10 @@ look like this:
 </code></pre>
 </div>
 <div class="codehilite">
- <pre><span></span><code><span class="n">Please</span><span class="w"> </span><span class="n">note</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">canonical</span><span class="w"> </span><span class="n">URL</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="k">always</span><span class="w"> </span><span class="k">use</span><span class="w"> </span><span class="n">HTTPS</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">protect</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">users</span><span class="p">.</span><span class="w"> </span><span class="n">Additionally</span><span class="p">,</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">you</span><span class="w"></span>
-<span class="n">are</span><span class="w"> </span><span class="n">running</span><span class="w"> </span><span class="n">behind</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">**</span><span class="k">reverse</span><span class="w"> </span><span class="k">proxy</span><span class="o">**</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="n">offloading</span><span class="w"> </span><span class="k">TLS</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">it</span><span class="p">,</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">proper</span><span class="w"> </span><span class="n">way</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">tell</span><span class="w"> </span><span class="n">SimpleSAMLphp</span><span class="w"> </span><span class="n">that</span><span class="w"></span>
-<span class="n">its</span><span class="w"> </span><span class="n">base</span><span class="w"> </span><span class="n">URL</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="k">use</span><span class="w"> </span><span class="n">HTTPS</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n n-Quoted">`baseurlpath`</span><span class="w"> </span><span class="n">configuration</span><span class="w"> </span><span class="k">option</span><span class="w"> </span><span class="n">properly</span><span class="p">.</span><span class="w"> </span><span class="n">SimpleSAMLphp</span><span class="w"> </span><span class="n">deliberately</span><span class="w"></span>
-<span class="o">**</span><span class="n">ignores</span><span class="o">**</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n n-Quoted">`X-Forwarded-*`</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">headers</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="k">proxy</span><span class="w"> </span><span class="n">might</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="k">set</span><span class="n">ting</span><span class="p">,</span><span class="w"> </span><span class="n">so</span><span class="w"> </span><span class="o">**</span><span class="k">do</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="n">rely</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">those</span><span class="o">**</span><span class="p">.</span><span class="w"></span>
+ <pre><span></span><code><span class="n">Please</span><span class="w"> </span><span class="n">note</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">canonical</span><span class="w"> </span><span class="n">URL</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="k">always</span><span class="w"> </span><span class="k">use</span><span class="w"> </span><span class="n">HTTPS</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">protect</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">users</span><span class="p">.</span><span class="w"> </span><span class="n">Additionally</span><span class="p">,</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">you</span>
+<span class="n">are</span><span class="w"> </span><span class="n">running</span><span class="w"> </span><span class="n">behind</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">**</span><span class="k">reverse</span><span class="w"> </span><span class="k">proxy</span><span class="o">**</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="n">offloading</span><span class="w"> </span><span class="k">TLS</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">it</span><span class="p">,</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">proper</span><span class="w"> </span><span class="n">way</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">tell</span><span class="w"> </span><span class="n">SimpleSAMLphp</span><span class="w"> </span><span class="n">that</span>
+<span class="n">its</span><span class="w"> </span><span class="n">base</span><span class="w"> </span><span class="n">URL</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="k">use</span><span class="w"> </span><span class="n">HTTPS</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n n-Quoted">`baseurlpath`</span><span class="w"> </span><span class="n">configuration</span><span class="w"> </span><span class="k">option</span><span class="w"> </span><span class="n">properly</span><span class="p">.</span><span class="w"> </span><span class="n">SimpleSAMLphp</span><span class="w"> </span><span class="n">deliberately</span>
+<span class="o">**</span><span class="n">ignores</span><span class="o">**</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n n-Quoted">`X-Forwarded-*`</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">headers</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="k">proxy</span><span class="w"> </span><span class="n">might</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="k">set</span><span class="n">ting</span><span class="p">,</span><span class="w"> </span><span class="n">so</span><span class="w"> </span><span class="o">**</span><span class="k">do</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="n">rely</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">those</span><span class="o">**</span><span class="p">.</span>
 </code></pre>
 </div>
 <ul>
@@ -742,7 +742,7 @@ for more information.
  </li>
 </ul>
 <div class="codehilite">
- <pre><span></span><code>tr -c -d <span class="s1">'0123456789abcdefghijklmnopqrstuvwxyz'</span> &lt;/dev/urandom <span class="p">|</span> dd <span class="nv">bs</span><span class="o">=</span><span class="m">32</span> <span class="nv">count</span><span class="o">=</span><span class="m">1</span> <span class="m">2</span>&gt;/dev/null<span class="p">;</span><span class="nb">echo</span>
+ <pre><span></span><code>tr<span class="w"> </span>-c<span class="w"> </span>-d<span class="w"> </span><span class="s1">'0123456789abcdefghijklmnopqrstuvwxyz'</span><span class="w"> </span>&lt;/dev/urandom<span class="w"> </span><span class="p">|</span><span class="w"> </span>dd<span class="w"> </span><span class="nv">bs</span><span class="o">=</span><span class="m">32</span><span class="w"> </span><span class="nv">count</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="p">;</span><span class="nb">echo</span>
 </code></pre>
 </div>
 <div class="codehilite">
@@ -754,7 +754,7 @@ for more information.
 </code></pre>
 </div>
 <div class="codehilite">
- <pre><span></span><code><span class="o">**</span><span class="nv">Please</span><span class="w"> </span><span class="nv">note</span><span class="w"> </span><span class="nv">that</span><span class="w"> </span><span class="nv">changing</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">secret</span><span class="w"> </span><span class="nv">salt</span><span class="w"> </span><span class="nv">may</span><span class="w"> </span><span class="k">break</span><span class="w"> </span><span class="nv">access</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">services</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">your</span><span class="w"> </span><span class="nv">users</span><span class="o">**</span>.<span class="w"></span>
+ <pre><span></span><code><span class="o">**</span><span class="nv">Please</span><span class="w"> </span><span class="nv">note</span><span class="w"> </span><span class="nv">that</span><span class="w"> </span><span class="nv">changing</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">secret</span><span class="w"> </span><span class="nv">salt</span><span class="w"> </span><span class="nv">may</span><span class="w"> </span><span class="k">break</span><span class="w"> </span><span class="nv">access</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">services</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">your</span><span class="w"> </span><span class="nv">users</span><span class="o">**</span>.
 </code></pre>
 </div>
 <ul>
@@ -951,8 +951,8 @@ extensions or external PHP packages (e.g. you need the PHP LDAP extension to use
  Run the following commands to build the default theme.
 </p>
 <div class="codehilite">
- <pre><span></span><code>npm install
-npm run build
+ <pre><span></span><code>npm<span class="w"> </span>install
+npm<span class="w"> </span>run<span class="w"> </span>build
 </code></pre>
 </div>
 <h2 id="next-steps">
@@ -1189,8 +1189,8 @@ possible way, though.
  folder instead of symlinking it:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="nb">cd</span> ~/public_html
-mv ../simplesamlphp/www simplesaml
+ <pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/public_html
+mv<span class="w"> </span>../simplesamlphp/www<span class="w"> </span>simplesaml
 </code></pre>
 </div>
 <p>
@@ -1237,14 +1237,14 @@ mv ../simplesamlphp/www simplesaml
  Change the two lines from:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="x">require_once(dirname(dirname(__FILE__)) . '/lib/_autoload.php');</span>
+ <pre><span></span><code><span class="x">require_once(dirname(_FILE__, 2) . '/lib/_autoload.php');</span>
 </code></pre>
 </div>
 <p>
  to something like:
 </p>
 <div class="codehilite">
- <pre><span></span><code>require_once<span class="o">(</span>dirname<span class="o">(</span>dirname<span class="o">(</span>dirname<span class="o">(</span>__FILE__<span class="o">)))</span> . <span class="s1">'/lib/_autoload.php'</span><span class="o">)</span><span class="p">;</span>
+ <pre><span></span><code><span class="x">require_once(dirname(__FILE__, 3) . '/lib/_autoload.php');</span>
 </code></pre>
 </div>
 <p>

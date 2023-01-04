@@ -100,9 +100,9 @@ in one log file. Here is how I do it in syslog.conf:
 </p>
 <div class="codehilite">
  <pre><span></span><code><span class="c1"># SimpleSAMLphp logging</span>
-local5.*                        /var/log/simplesamlphp.log
+local5.*<span class="w">                        </span>/var/log/simplesamlphp.log
 <span class="c1"># Notice level is reserved for statistics only...</span>
-local5.<span class="o">=</span>notice                  /var/log/simplesamlphp.stat
+local5.<span class="o">=</span>notice<span class="w">                  </span>/var/log/simplesamlphp.stat
 </code></pre>
 </div>
 <p>
@@ -111,7 +111,7 @@ have one log file like this:
 </p>
 <div class="codehilite">
  <pre><span></span><code><span class="c1"># ls -la /var/log/simplesamlphp.stat</span>
--rw-r--r-- <span class="m">1</span> root root <span class="m">76740</span> Nov <span class="m">15</span> <span class="m">13</span>:37 /var/log/simplesamlphp.stat
+-rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span><span class="m">76740</span><span class="w"> </span>Nov<span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="m">13</span>:37<span class="w"> </span>/var/log/simplesamlphp.stat
 </code></pre>
 </div>
 <p>
@@ -170,7 +170,7 @@ into separate files (your preference).
  Then take the configuration template:
 </p>
 <div class="codehilite">
- <pre><span></span><code>cp modules/statistics/config-templates/*.php config/
+ <pre><span></span><code>cp<span class="w"> </span>modules/statistics/config-templates/*.php<span class="w"> </span>config/
 </code></pre>
 </div>
 <p>
@@ -320,8 +320,8 @@ example if the STAT keyword is not in column 3.
  You also should setup the cron module:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="nb">cd</span> modules/cron
-touch <span class="nb">enable</span>
+ <pre><span></span><code><span class="nb">cd</span><span class="w"> </span>modules/cron
+touch<span class="w"> </span><span class="nb">enable</span>
 </code></pre>
 </div>
 <h3 id="alternative-to-using-the-cron-module">

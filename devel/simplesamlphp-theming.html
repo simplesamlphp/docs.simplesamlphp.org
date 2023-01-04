@@ -210,8 +210,8 @@ SimpleSAMLphp allows themes to override the included templates files only, if ne
  The first thing you need to do is having a SimpleSAMLphp module to place your theme in. If you do not have a module already, create a new one:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="nb">cd</span> modules
-mkdir mymodule
+ <pre><span></span><code><span class="nb">cd</span><span class="w"> </span>modules
+mkdir<span class="w"> </span>mymodule
 </code></pre>
 </div>
 <p>
@@ -228,8 +228,8 @@ mkdir mymodule
  .
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="nb">cd</span> modules/mymodule
-mkdir -p themes/fancytheme/default/
+ <pre><span></span><code><span class="nb">cd</span><span class="w"> </span>modules/mymodule
+mkdir<span class="w"> </span>-p<span class="w"> </span>themes/fancytheme/default/
 </code></pre>
 </div>
 <p>
@@ -247,7 +247,7 @@ mkdir -p themes/fancytheme/default/
  Next, we copy the header file from the base theme:
 </p>
 <div class="codehilite">
- <pre><span></span><code>cp templates/_header.twig modules/mymodule/themes/fancytheme/default/
+ <pre><span></span><code>cp<span class="w"> </span>templates/_header.twig<span class="w"> </span>modules/mymodule/themes/fancytheme/default/
 </code></pre>
 </div>
 <p>
@@ -286,9 +286,9 @@ mkdir -p themes/fancytheme/default/
 Example for a custom CSS stylesheet file:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="cp">{%</span> <span class="k">block</span> <span class="nv">preload</span> <span class="cp">%}</span><span class="x"></span>
+ <pre><span></span><code><span class="cp">{%</span> <span class="k">block</span> <span class="nv">preload</span> <span class="cp">%}</span>
 <span class="x">&lt;link rel="stylesheet" href="</span><span class="cp">{{</span> <span class="nv">asset</span><span class="o">(</span><span class="s1">'style.css'</span><span class="o">,</span> <span class="s1">'mymodule'</span><span class="o">)</span> <span class="cp">}}</span><span class="x">"&gt;</span>
-<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span>
 </code></pre>
 </div>
 <h2 id="a-custom-theme-controller">
@@ -348,14 +348,14 @@ templating enging to be compatible with SimpleSAMLphp 2.0.
  file. This can be customized by copying it from the base template:
 </p>
 <div class="codehilite">
- <pre><span></span><code>cp templates/_header.twig modules/mymodule/themes/fancytheme/default/
+ <pre><span></span><code>cp<span class="w"> </span>templates/_header.twig<span class="w"> </span>modules/mymodule/themes/fancytheme/default/
 </code></pre>
 </div>
 <p>
  If you need to make more extensive customizations to the base template, you should copy it from the base theme:
 </p>
 <div class="codehilite">
- <pre><span></span><code>cp templates/base.twig modules/mymodule/themes/fancytheme/default/
+ <pre><span></span><code>cp<span class="w"> </span>templates/base.twig<span class="w"> </span>modules/mymodule/themes/fancytheme/default/
 </code></pre>
 </div>
 <p>

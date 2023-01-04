@@ -181,11 +181,11 @@ If you are running memcache on a different server than the IdP, you must also ch
  metadata file:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'__DYNAMIC:1__'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span><span class="w"></span>
-<span class="w">      </span><span class="cp">[</span><span class="nx">....</span><span class="cp">]</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'auth'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'example-userpass'</span><span class="o">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'saml20.sendartifact'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">TRUE</span><span class="o">,</span><span class="w"></span>
-<span class="w">  </span><span class="o">);</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'__DYNAMIC:1__'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span>
+<span class="w">      </span><span class="cp">[</span><span class="nx">....</span><span class="cp">]</span>
+<span class="w">      </span><span class="s1">'auth'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'example-userpass'</span><span class="o">,</span>
+<span class="w">      </span><span class="s1">'saml20.sendartifact'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">TRUE</span><span class="o">,</span>
+<span class="w">  </span><span class="o">);</span>
 </code></pre>
 </div>
 <h2 id="add-new-metadata-to-sps">
@@ -257,12 +257,12 @@ To do this, you need to set the
 That option should refer to a file containing the webserver certificate.
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'__DYNAMIC:1__'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span><span class="w"></span>
-<span class="w">      </span><span class="cp">[</span><span class="nx">....</span><span class="cp">]</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'auth'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'example-userpass'</span><span class="o">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'saml20.sendartifact'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">TRUE</span><span class="o">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'https.certificate'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'/etc/apache2/webserver.crt'</span><span class="o">,</span><span class="w"></span>
-<span class="w">  </span><span class="o">);</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'__DYNAMIC:1__'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span>
+<span class="w">      </span><span class="cp">[</span><span class="nx">....</span><span class="cp">]</span>
+<span class="w">      </span><span class="s1">'auth'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'example-userpass'</span><span class="o">,</span>
+<span class="w">      </span><span class="s1">'saml20.sendartifact'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">TRUE</span><span class="o">,</span>
+<span class="w">      </span><span class="s1">'https.certificate'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'/etc/apache2/webserver.crt'</span><span class="o">,</span>
+<span class="w">  </span><span class="o">);</span>
 </code></pre>
 </div></main></body>
 </html>

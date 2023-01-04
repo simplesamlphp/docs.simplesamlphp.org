@@ -108,26 +108,26 @@
  Go to the directory where you want to install SimpleSAMLphp:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="nb">cd</span> /var
+ <pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/var
 </code></pre>
 </div>
 <p>
  Then do a git clone:
 </p>
 <div class="codehilite">
- <pre><span></span><code>git clone git@github.com:simplesamlphp/simplesamlphp.git simplesamlphp
+ <pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>git@github.com:simplesamlphp/simplesamlphp.git<span class="w"> </span>simplesamlphp
 </code></pre>
 </div>
 <p>
  Initialize configuration and metadata:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="nb">cd</span> /var/simplesamlphp
-cp config/config.php.dist config/config.php
-cp config/authsources.php.dist config/authsources.php
-cp metadata/saml20-idp-hosted.php.dist metadata/saml20-idp-hosted.php
-cp metadata/saml20-idp-remote.php.dist metadata/saml20-idp-remote.php
-cp metadata/saml20-sp-remote.php.dist metadata/saml20-sp-remote.php
+ <pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/var/simplesamlphp
+cp<span class="w"> </span>config/config.php.dist<span class="w"> </span>config/config.php
+cp<span class="w"> </span>config/authsources.php.dist<span class="w"> </span>config/authsources.php
+cp<span class="w"> </span>metadata/saml20-idp-hosted.php.dist<span class="w"> </span>metadata/saml20-idp-hosted.php
+cp<span class="w"> </span>metadata/saml20-idp-remote.php.dist<span class="w"> </span>metadata/saml20-idp-remote.php
+cp<span class="w"> </span>metadata/saml20-sp-remote.php.dist<span class="w"> </span>metadata/saml20-sp-remote.php
 </code></pre>
 </div>
 <p>
@@ -139,15 +139,15 @@ cp metadata/saml20-sp-remote.php.dist metadata/saml20-sp-remote.php
 instructions on how to install Composer itself) and npm:
 </p>
 <div class="codehilite">
- <pre><span></span><code>php composer.phar install
-npm install
+ <pre><span></span><code>php<span class="w"> </span>composer.phar<span class="w"> </span>install
+npm<span class="w"> </span>install
 </code></pre>
 </div>
 <p>
  Build the assets:
 </p>
 <div class="codehilite">
- <pre><span></span><code>npm run build
+ <pre><span></span><code>npm<span class="w"> </span>run<span class="w"> </span>build
 </code></pre>
 </div>
 <h2 id="upgrading">
@@ -157,24 +157,24 @@ npm install
  Go to the root directory of your SimpleSAMLphp installation:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="nb">cd</span> /var/simplesamlphp
+ <pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/var/simplesamlphp
 </code></pre>
 </div>
 <p>
  Ask git to update to the latest version:
 </p>
 <div class="codehilite">
- <pre><span></span><code>git fetch origin
-git pull origin master
+ <pre><span></span><code>git<span class="w"> </span>fetch<span class="w"> </span>origin
+git<span class="w"> </span>pull<span class="w"> </span>origin<span class="w"> </span>master
 </code></pre>
 </div>
 <p>
  Install or upgrade the external dependencies with Composer and npm:
 </p>
 <div class="codehilite">
- <pre><span></span><code>php composer.phar install
-npm install
-npm run build
+ <pre><span></span><code>php<span class="w"> </span>composer.phar<span class="w"> </span>install
+npm<span class="w"> </span>install
+npm<span class="w"> </span>run<span class="w"> </span>build
 </code></pre>
 </div></main></body>
 </html>

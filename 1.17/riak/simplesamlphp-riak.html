@@ -156,11 +156,11 @@ module above into the global
  directory.
 </p>
 <div class="codehilite">
- <pre><span></span><code>$ <span class="nb">cd</span> /var/simplesamlphp
-$ touch modules/cron/enable
-$ cp modules/cron/config-templates/*.php config/
-$ touch modules/riak/enable
-$ cp modules/riak/config-templates/*.php config/
+ <pre><span></span><code>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/var/simplesamlphp
+$<span class="w"> </span>touch<span class="w"> </span>modules/cron/enable
+$<span class="w"> </span>cp<span class="w"> </span>modules/cron/config-templates/*.php<span class="w"> </span>config/
+$<span class="w"> </span>touch<span class="w"> </span>modules/riak/enable
+$<span class="w"> </span>cp<span class="w"> </span>modules/riak/config-templates/*.php<span class="w"> </span>config/
 </code></pre>
 </div>
 <h2 id="configuring-the-cron-module">
@@ -173,7 +173,7 @@ $ cp modules/riak/config-templates/*.php config/
  </code>
 </p>
 <div class="codehilite">
- <pre><span></span><code>$ vi module_cron.php
+ <pre><span></span><code>$<span class="w"> </span>vi<span class="w"> </span>module_cron.php
 </code></pre>
 </div>
 <p>
@@ -195,23 +195,23 @@ $ cp modules/riak/config-templates/*.php config/
  And copy the cron's sugestion:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="nb">-------------------------------------------------------------------------------------------------------------------</span><span class="c"></span>
-<span class="c">Cron is a way to run things regularly on unix systems</span><span class="nt">.</span><span class="c"></span>
+ <pre><span></span><code><span class="nb">-------------------------------------------------------------------------------------------------------------------</span>
+<span class="c">Cron is a way to run things regularly on unix systems</span><span class="nt">.</span>
 
 <span class="c">Here is a suggestion for a crontab file:</span>
 
-<span class="c"># Run cron </span><span class="k">[</span><span class="c">daily</span><span class="k">]</span><span class="c"></span>
+<span class="c"># Run cron </span><span class="k">[</span><span class="c">daily</span><span class="k">]</span>
 <span class="c">02 0 * * * curl </span><span class="nb">--</span><span class="c">silent "https://simplesamlphp_machine/simplesaml/module</span><span class="nt">.</span><span class="c">php/cron/cron</span><span class="nt">.</span><span class="c">php?key=secret&amp;tag=daily" </span><span class="nv">&gt;</span><span class="c"> /dev/null 2</span><span class="nv">&gt;</span><span class="c">&amp;1</span>
-<span class="c"># Run cron </span><span class="k">[</span><span class="c">hourly</span><span class="k">]</span><span class="c"></span>
+<span class="c"># Run cron </span><span class="k">[</span><span class="c">hourly</span><span class="k">]</span>
 <span class="c">01 * * * * curl </span><span class="nb">--</span><span class="c">silent "https://simplesamlphp_machine/simplesaml/module</span><span class="nt">.</span><span class="c">php/cron/cron</span><span class="nt">.</span><span class="c">php?key=secret&amp;tag=hourly" </span><span class="nv">&gt;</span><span class="c"> /dev/null 2</span><span class="nv">&gt;</span><span class="c">&amp;1</span>
-<span class="c"># Run cron </span><span class="k">[</span><span class="c">frequent</span><span class="k">]</span><span class="c"></span>
+<span class="c"># Run cron </span><span class="k">[</span><span class="c">frequent</span><span class="k">]</span>
 <span class="c">XXXXXXXXXX curl </span><span class="nb">--</span><span class="c">silent "https://simplesamlphp_machine/simplesaml/module</span><span class="nt">.</span><span class="c">php/cron/cron</span><span class="nt">.</span><span class="c">php?key=secret&amp;tag=frequent" </span><span class="nv">&gt;</span><span class="c"> /dev/null 2</span><span class="nv">&gt;</span><span class="c">&amp;1</span>
 <span class="c">  Click here to run the cron jobs:</span>
 
-<span class="c">Run cron </span><span class="k">[</span><span class="c">daily</span><span class="k">]</span><span class="c"></span>
-<span class="c">Run cron </span><span class="k">[</span><span class="c">hourly</span><span class="k">]</span><span class="c"></span>
-<span class="c">Run cron </span><span class="k">[</span><span class="c">frequent</span><span class="k">]</span><span class="c"></span>
-<span class="nb">-------------------------------------------------------------------------------------------------------------------</span><span class="c"></span>
+<span class="c">Run cron </span><span class="k">[</span><span class="c">daily</span><span class="k">]</span>
+<span class="c">Run cron </span><span class="k">[</span><span class="c">hourly</span><span class="k">]</span>
+<span class="c">Run cron </span><span class="k">[</span><span class="c">frequent</span><span class="k">]</span>
+<span class="nb">-------------------------------------------------------------------------------------------------------------------</span>
 </code></pre>
 </div>
 <p>

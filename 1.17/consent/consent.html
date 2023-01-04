@@ -184,10 +184,10 @@ cookies as storage you need to set the
  Example:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="mf">90</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">array</span><span class="p">(</span><span class="w"></span>
+ <pre><span></span><code><span class="mf">90</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">array</span><span class="p">(</span>
 <span class="w">  </span><span class="err">'</span><span class="n">class</span><span class="err">'</span><span class="w">   </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">consent</span><span class="p">:</span><span class="n">Consent</span><span class="err">'</span><span class="p">,</span><span class="w"> </span>
 <span class="w">  </span><span class="err">'</span><span class="n">store</span><span class="err">'</span><span class="w">   </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">consent</span><span class="p">:</span><span class="n">Cookie</span><span class="err">'</span><span class="p">,</span><span class="w"> </span>
-<span class="p">),</span><span class="w"></span>
+<span class="p">),</span>
 </code></pre>
 </div>
 <h3 id="using-a-database-as-storage">
@@ -281,30 +281,30 @@ and defaults to
  Example config using PostgreSQL database:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="nt">90</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="nt">90</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span>
 <span class="w">      </span><span class="s1">'class'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'consent:Consent'</span><span class="o">,</span><span class="w"> </span>
-<span class="w">      </span><span class="s1">'store'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'store'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span>
 <span class="w">          </span><span class="s1">'consent:Database'</span><span class="o">,</span><span class="w"> </span>
-<span class="w">          </span><span class="s1">'dsn'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'pgsql:host=sql.example.org;dbname=consent'</span><span class="o">,</span><span class="w"></span>
-<span class="w">          </span><span class="s1">'username'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'simplesaml'</span><span class="o">,</span><span class="w"></span>
-<span class="w">          </span><span class="s1">'password'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'sdfsdf'</span><span class="o">,</span><span class="w"></span>
-<span class="w">      </span><span class="o">),</span><span class="w"></span>
-<span class="w">  </span><span class="o">),</span><span class="w"></span>
+<span class="w">          </span><span class="s1">'dsn'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'pgsql:host=sql.example.org;dbname=consent'</span><span class="o">,</span>
+<span class="w">          </span><span class="s1">'username'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'simplesaml'</span><span class="o">,</span>
+<span class="w">          </span><span class="s1">'password'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'sdfsdf'</span><span class="o">,</span>
+<span class="w">      </span><span class="o">),</span>
+<span class="w">  </span><span class="o">),</span>
 </code></pre>
 </div>
 <p>
  Example config using MySQL database:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="nt">90</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="nt">90</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span>
 <span class="w">      </span><span class="s1">'class'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'consent:Consent'</span><span class="o">,</span><span class="w"> </span>
-<span class="w">      </span><span class="s1">'store'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'store'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span>
 <span class="w">          </span><span class="s1">'consent:Database'</span><span class="o">,</span><span class="w"> </span>
-<span class="w">          </span><span class="s1">'dsn'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'mysql:host=db.example.org;dbname=simplesaml'</span><span class="o">,</span><span class="w"></span>
-<span class="w">          </span><span class="s1">'username'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'simplesaml'</span><span class="o">,</span><span class="w"></span>
-<span class="w">          </span><span class="s1">'password'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'sdfsdf'</span><span class="o">,</span><span class="w"></span>
-<span class="w">      </span><span class="o">),</span><span class="w"></span>
-<span class="w">  </span><span class="o">),</span><span class="w"></span>
+<span class="w">          </span><span class="s1">'dsn'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'mysql:host=db.example.org;dbname=simplesaml'</span><span class="o">,</span>
+<span class="w">          </span><span class="s1">'username'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'simplesaml'</span><span class="o">,</span>
+<span class="w">          </span><span class="s1">'password'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'sdfsdf'</span><span class="o">,</span>
+<span class="w">      </span><span class="o">),</span>
+<span class="w">  </span><span class="o">),</span>
 </code></pre>
 </div>
 <h2 id="options">
@@ -489,23 +489,23 @@ more IdPs for a given SP, add the
  Disable consent for a given IdP:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'https://idp.example.org/'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span><span class="w"></span>
-<span class="w">      </span><span class="cp">[</span><span class="nx">...</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'consent.disable'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">TRUE</span><span class="o">,</span><span class="w"></span>
-<span class="w">  </span><span class="o">);</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'https://idp.example.org/'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span>
+<span class="w">      </span><span class="cp">[</span><span class="nx">...</span><span class="cp">]</span><span class="o">,</span>
+<span class="w">      </span><span class="s1">'consent.disable'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">TRUE</span><span class="o">,</span>
+<span class="w">  </span><span class="o">);</span>
 </code></pre>
 </div>
 <p>
  Disable consent for some SPs connected to a given IdP:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'https://idp.example.org/'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span><span class="w"></span>
-<span class="w">      </span><span class="cp">[</span><span class="nx">...</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'consent.disable'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span><span class="w"></span>
-<span class="w">          </span><span class="s1">'https://sp1.example.org/'</span><span class="o">,</span><span class="w"></span>
-<span class="w">          </span><span class="s1">'https://sp2.example.org/'</span><span class="o">,</span><span class="w"></span>
-<span class="w">      </span><span class="o">),</span><span class="w"></span>
-<span class="w">  </span><span class="o">);</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'https://idp.example.org/'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span>
+<span class="w">      </span><span class="cp">[</span><span class="nx">...</span><span class="cp">]</span><span class="o">,</span>
+<span class="w">      </span><span class="s1">'consent.disable'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span>
+<span class="w">          </span><span class="s1">'https://sp1.example.org/'</span><span class="o">,</span>
+<span class="w">          </span><span class="s1">'https://sp2.example.org/'</span><span class="o">,</span>
+<span class="w">      </span><span class="o">),</span>
+<span class="w">  </span><span class="o">);</span>
 </code></pre>
 </div>
 <p>
@@ -543,12 +543,12 @@ at the same time) :
 </p>
 <div class="codehilite">
  <pre><span></span><code><span class="w">  </span><span class="n">$metadata</span><span class="p">['</span><span class="nl">https:</span><span class="c1">//sp.example.org'] = array(</span>
-<span class="w">      </span><span class="p">[...]</span><span class="w"></span>
-<span class="w">      </span><span class="p">'</span><span class="n">consent</span><span class="p">.</span><span class="k">disable</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">array</span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="p">[...]</span>
+<span class="w">      </span><span class="p">'</span><span class="n">consent</span><span class="p">.</span><span class="k">disable</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">array</span><span class="p">(</span>
 <span class="w">          </span><span class="p">'</span><span class="nl">https:</span><span class="c1">//idp1.example.org/',</span>
-<span class="w">          </span><span class="n">array</span><span class="p">('</span><span class="k">type</span><span class="p">'</span><span class="o">=&gt;</span><span class="p">'</span><span class="n">regex</span><span class="p">',</span><span class="w"> </span><span class="p">'</span><span class="n">pattern</span><span class="p">'</span><span class="o">=&gt;</span><span class="p">'</span><span class="o">/</span><span class="p">.</span><span class="o">*</span><span class="n">\.mycompany\.com.*/i'),</span><span class="w"></span>
-<span class="w">      </span><span class="p">),</span><span class="w"></span>
-<span class="w">  </span><span class="p">),</span><span class="w"></span>
+<span class="w">          </span><span class="n">array</span><span class="p">('</span><span class="k">type</span><span class="p">'</span><span class="o">=&gt;</span><span class="p">'</span><span class="n">regex</span><span class="p">',</span><span class="w"> </span><span class="p">'</span><span class="n">pattern</span><span class="p">'</span><span class="o">=&gt;</span><span class="p">'</span><span class="o">/</span><span class="p">.</span><span class="o">*</span><span class="n">\.mycompany\.com.*/i'),</span>
+<span class="w">      </span><span class="p">),</span>
+<span class="w">  </span><span class="p">),</span>
 </code></pre>
 </div>
 <h2 id="attribute-presentation">
@@ -604,12 +604,12 @@ attribute tree.
  These values will be listed as an bullet list
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="k">Array</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">      </span><span class="o">[</span><span class="n">objectClass</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">Array</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">          </span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">top</span><span class="w"></span>
-<span class="w">          </span><span class="o">[</span><span class="n">1</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">person</span><span class="w"></span>
-<span class="w">      </span><span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="p">)</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="k">Array</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="o">[</span><span class="n">objectClass</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">Array</span><span class="w"> </span><span class="p">(</span>
+<span class="w">          </span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">top</span>
+<span class="w">          </span><span class="o">[</span><span class="n">1</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">person</span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
 </code></pre>
 </div>
 <p>
@@ -617,26 +617,26 @@ attribute tree.
 tables.
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="k">Array</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">      </span><span class="o">[</span><span class="n">child_eduPersonOrgUnitDN</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">Array</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">          </span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">Array</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">              </span><span class="o">[</span><span class="n">ou</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">Array</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">                  </span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">ET</span><span class="w"></span>
-<span class="w">              </span><span class="p">)</span><span class="w"></span>
-<span class="w">              </span><span class="o">[</span><span class="n">cn</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">Array</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">                  </span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">Eksterne</span><span class="w"> </span><span class="n">tjenester</span><span class="w"></span>
-<span class="w">              </span><span class="p">)</span><span class="w"></span>
-<span class="w">          </span><span class="p">)</span><span class="w"></span>
-<span class="w">          </span><span class="o">[</span><span class="n">1</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">Array</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">              </span><span class="o">[</span><span class="n">ou</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">Array</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">                  </span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">TA</span><span class="w"></span>
-<span class="w">              </span><span class="p">)</span><span class="w"></span>
-<span class="w">              </span><span class="o">[</span><span class="n">cn</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">Array</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">                  </span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">Tjenesteavdeling</span><span class="w"></span>
-<span class="w">              </span><span class="p">)</span><span class="w"></span>
-<span class="w">          </span><span class="p">)</span><span class="w"></span>
-<span class="w">      </span><span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="p">)</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="k">Array</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="o">[</span><span class="n">child_eduPersonOrgUnitDN</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">Array</span><span class="w"> </span><span class="p">(</span>
+<span class="w">          </span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">Array</span><span class="w"> </span><span class="p">(</span>
+<span class="w">              </span><span class="o">[</span><span class="n">ou</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">Array</span><span class="w"> </span><span class="p">(</span>
+<span class="w">                  </span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">ET</span>
+<span class="w">              </span><span class="p">)</span>
+<span class="w">              </span><span class="o">[</span><span class="n">cn</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">Array</span><span class="w"> </span><span class="p">(</span>
+<span class="w">                  </span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">Eksterne</span><span class="w"> </span><span class="n">tjenester</span>
+<span class="w">              </span><span class="p">)</span>
+<span class="w">          </span><span class="p">)</span>
+<span class="w">          </span><span class="o">[</span><span class="n">1</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">Array</span><span class="w"> </span><span class="p">(</span>
+<span class="w">              </span><span class="o">[</span><span class="n">ou</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">Array</span><span class="w"> </span><span class="p">(</span>
+<span class="w">                  </span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">TA</span>
+<span class="w">              </span><span class="p">)</span>
+<span class="w">              </span><span class="o">[</span><span class="n">cn</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">Array</span><span class="w"> </span><span class="p">(</span>
+<span class="w">                  </span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">Tjenesteavdeling</span>
+<span class="w">              </span><span class="p">)</span>
+<span class="w">          </span><span class="p">)</span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
 </code></pre>
 </div></main></body>
 </html>

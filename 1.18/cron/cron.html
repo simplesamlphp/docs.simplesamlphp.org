@@ -122,9 +122,9 @@ job that calls a hook in SimpleSAMLphp.  This will invoke
  directory.
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="p">[</span><span class="n">root</span><span class="err">@</span><span class="n">simplesamlphp</span><span class="p">]</span><span class="w"> </span><span class="n">cd</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">simplesamlphp</span><span class="w"></span>
-<span class="p">[</span><span class="n">root</span><span class="err">@</span><span class="n">simplesamlphp</span><span class="w"> </span><span class="n">simplesamlphp</span><span class="p">]</span><span class="w"> </span><span class="n">touch</span><span class="w"> </span><span class="n">modules</span><span class="o">/</span><span class="n">cron</span><span class="o">/</span><span class="n">enable</span><span class="w"></span>
-<span class="p">[</span><span class="n">root</span><span class="err">@</span><span class="n">simplesamlphp</span><span class="w"> </span><span class="n">simplesamlphp</span><span class="p">]</span><span class="w"> </span><span class="n">cp</span><span class="w"> </span><span class="n">modules</span><span class="o">/</span><span class="n">cron</span><span class="o">/</span><span class="n">config</span><span class="o">-</span><span class="n">templates</span><span class="o">/*.</span><span class="n">php</span><span class="w"> </span><span class="n">config</span><span class="o">/</span><span class="w"></span>
+ <pre><span></span><code><span class="p">[</span><span class="n">root</span><span class="err">@</span><span class="n">simplesamlphp</span><span class="p">]</span><span class="w"> </span><span class="n">cd</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">simplesamlphp</span>
+<span class="p">[</span><span class="n">root</span><span class="err">@</span><span class="n">simplesamlphp</span><span class="w"> </span><span class="n">simplesamlphp</span><span class="p">]</span><span class="w"> </span><span class="n">touch</span><span class="w"> </span><span class="n">modules</span><span class="o">/</span><span class="n">cron</span><span class="o">/</span><span class="n">enable</span>
+<span class="p">[</span><span class="n">root</span><span class="err">@</span><span class="n">simplesamlphp</span><span class="w"> </span><span class="n">simplesamlphp</span><span class="p">]</span><span class="w"> </span><span class="n">cp</span><span class="w"> </span><span class="n">modules</span><span class="o">/</span><span class="n">cron</span><span class="o">/</span><span class="n">config</span><span class="o">-</span><span class="n">templates</span><span class="o">/*.</span><span class="n">php</span><span class="w"> </span><span class="n">config</span><span class="o">/</span>
 </code></pre>
 </div>
 <h2 id="configuring-the-cron-module">
@@ -189,9 +189,9 @@ your SimpleSAMLphp installation.
  Now, copy the cron configuration suggested on that page:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="n">Run</span><span class="w"> </span><span class="n">cron</span><span class="w"> </span><span class="o">[</span><span class="n">daily</span><span class="o">]</span><span class="w"></span>
-<span class="mi">02</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">curl</span><span class="w"> </span><span class="o">--</span><span class="n">silent</span><span class="w"> </span><span class="ss">"https://YOUR_SERVER/simplesaml/module.php/cron/cron.php?key=RANDOM_KEY&amp;tag=daily"</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="k">null</span><span class="w"> </span><span class="mi">2</span><span class="o">&gt;&amp;</span><span class="mi">1</span><span class="w"></span>
-<span class="err">#</span><span class="w"> </span><span class="n">Run</span><span class="w"> </span><span class="n">cron</span><span class="w"> </span><span class="o">[</span><span class="n">hourly</span><span class="o">]</span><span class="w"></span>
+ <pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="n">Run</span><span class="w"> </span><span class="n">cron</span><span class="w"> </span><span class="o">[</span><span class="n">daily</span><span class="o">]</span>
+<span class="mi">02</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">curl</span><span class="w"> </span><span class="o">--</span><span class="n">silent</span><span class="w"> </span><span class="ss">"https://YOUR_SERVER/simplesaml/module.php/cron/cron.php?key=RANDOM_KEY&amp;tag=daily"</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="k">null</span><span class="w"> </span><span class="mi">2</span><span class="o">&gt;&amp;</span><span class="mi">1</span>
+<span class="err">#</span><span class="w"> </span><span class="n">Run</span><span class="w"> </span><span class="n">cron</span><span class="w"> </span><span class="o">[</span><span class="n">hourly</span><span class="o">]</span>
 <span class="mi">01</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">curl</span><span class="w"> </span><span class="c1">--silent "https://YOUR_SERVER/simplesaml/module.php/cron/cron.php?key=RANDOM_KEY&amp;tag=hourly" &gt; /dev/null 2&gt;&amp;1</span>
 </code></pre>
 </div>
@@ -199,7 +199,7 @@ your SimpleSAMLphp installation.
  Finally, add it to your crontab by going back to the terminal, and editing with:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="o">[</span><span class="n">root@simplesamlphp config</span><span class="o">]</span><span class="err">#</span><span class="w"> </span><span class="n">crontab</span><span class="w"> </span><span class="o">-</span><span class="n">e</span><span class="w"></span>
+ <pre><span></span><code><span class="o">[</span><span class="n">root@simplesamlphp config</span><span class="o">]</span><span class="err">#</span><span class="w"> </span><span class="n">crontab</span><span class="w"> </span><span class="o">-</span><span class="n">e</span>
 </code></pre>
 </div>
 <p>
@@ -211,7 +211,7 @@ the one you use normally appears, exit, and configure the
  variable to tell the command line which editor it should use:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="p">[</span><span class="n">root</span><span class="err">@</span><span class="n">simplesamlphp</span><span class="w"> </span><span class="n">config</span><span class="p">]</span><span class="c1"># export EDITOR=emacs</span><span class="w"></span>
+ <pre><span></span><code><span class="p">[</span><span class="n">root</span><span class="err">@</span><span class="n">simplesamlphp</span><span class="w"> </span><span class="n">config</span><span class="p">]</span><span class="c1"># export EDITOR=emacs</span>
 </code></pre>
 </div>
 <p>
@@ -298,11 +298,11 @@ logging configuration from
  </li>
 </ul>
 <div class="codehilite">
- <pre><span></span><code><span class="n">su</span><span class="w"> </span><span class="o">-</span><span class="n">s</span><span class="w"> </span><span class="s2">"/bin/sh"</span><span class="w"> </span>\<span class="w"></span>
+ <pre><span></span><code><span class="n">su</span><span class="w"> </span><span class="o">-</span><span class="n">s</span><span class="w"> </span><span class="s2">"/bin/sh"</span><span class="w"> </span>\
 <span class="w">   </span><span class="o">-</span><span class="n">c</span><span class="w"> </span><span class="s2">"nice -n 10 </span><span class="se">\</span>
 <span class="s2">       php -d max_execution_time=120 -d memory_limit=600M </span><span class="se">\</span>
-<span class="s2">       /var/simplesamlphp/modules/cron/bin/cron.php -t hourly"</span><span class="w"> </span>\<span class="w"></span>
-<span class="w">    </span><span class="n">apache</span><span class="w"></span>
+<span class="s2">       /var/simplesamlphp/modules/cron/bin/cron.php -t hourly"</span><span class="w"> </span>\
+<span class="w">    </span><span class="n">apache</span>
 </code></pre>
 </div></main></body>
 </html>

@@ -147,10 +147,10 @@ This authentication source must exist in
  Example
 </h3>
 <div class="codehilite">
- <pre><span></span><code>  if (!$auth-&gt;isAuthenticated()) {
-      /* Show login link. */
-      print('<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/login"</span><span class="nt">&gt;</span>Login<span class="nt">&lt;/a&gt;</span>');
-  }
+ <pre><span></span><code><span class="w">  </span>if<span class="w"> </span>(!$auth-&gt;isAuthenticated())<span class="w"> </span>{
+<span class="w">      </span>/*<span class="w"> </span>Show<span class="w"> </span>login<span class="w"> </span>link.<span class="w"> </span>*/
+<span class="w">      </span>print('<span class="nt">&lt;a</span><span class="w"> </span><span class="na">href=</span><span class="s">"/login"</span><span class="nt">&gt;</span>Login<span class="nt">&lt;/a&gt;</span>');
+<span class="w">  </span>}
 </code></pre>
 </div>
 <h2 id="requireauth">
@@ -185,23 +185,23 @@ See the documentation for the
  Example 1
 </h3>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="err">$</span><span class="n">auth</span><span class="o">-&gt;</span><span class="n">requireAuth</span><span class="p">();</span><span class="w"></span>
-<span class="w">  </span><span class="n">print</span><span class="p">(</span><span class="s">"Hello, authenticated user!"</span><span class="p">);</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="err">$</span><span class="n">auth</span><span class="o">-&gt;</span><span class="n">requireAuth</span><span class="p">();</span>
+<span class="w">  </span><span class="n">print</span><span class="p">(</span><span class="s">"Hello, authenticated user!"</span><span class="p">);</span>
 </code></pre>
 </div>
 <h3 id="example-2">
  Example 2
 </h3>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="c">/*</span>
-<span class="c">   * Return the user to the frontpage after authentication, don't post</span>
-<span class="c">   * the current POST data.</span>
-<span class="c">   */</span><span class="w"></span>
-<span class="w">  </span><span class="o">$</span><span class="nt">auth-</span><span class="o">&gt;</span><span class="nt">requireAuth</span><span class="o">(</span><span class="cp">[</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'ReturnTo'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://sp.example.org/'</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'KeepPost'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="cp">]</span><span class="o">);</span><span class="w"></span>
-<span class="w">  </span><span class="nt">print</span><span class="o">(</span><span class="s2">"Hello, authenticated user!"</span><span class="o">);</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="o">/*</span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">Return</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nb">user</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">frontpage</span><span class="w"> </span><span class="n">after</span><span class="w"> </span><span class="n">authentication</span><span class="p">,</span><span class="w"> </span><span class="n">don</span><span class="o">'</span><span class="n">t</span><span class="w"> </span><span class="n">post</span>
+<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="n">POST</span><span class="w"> </span><span class="n">data</span><span class="p">.</span>
+<span class="w">   </span><span class="o">*/</span>
+<span class="w">  </span><span class="no">$</span><span class="n">auth</span><span class="o">-&gt;</span><span class="n">requireAuth</span><span class="p">([</span>
+<span class="w">      </span><span class="s">'ReturnTo'</span><span class="w"> </span><span class="p">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">'https://sp.example.org/'</span><span class="p">,</span>
+<span class="w">      </span><span class="s">'KeepPost'</span><span class="w"> </span><span class="p">=</span><span class="o">&gt;</span><span class="w"> </span><span class="n">FALSE</span><span class="p">,</span>
+<span class="w">  </span><span class="p">]);</span>
+<span class="w">  </span><span class="nb">print</span><span class="p">(</span><span class="s">"Hello, authenticated user!"</span><span class="p">);</span>
 </code></pre>
 </div>
 <h2 id="login">
@@ -308,11 +308,11 @@ This function will always start a new authentication process.
  Example
 </h3>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="nt">Send</span><span class="w"> </span><span class="nt">a</span><span class="w"> </span><span class="nt">passive</span><span class="w"> </span><span class="nt">authentication</span><span class="w"> </span><span class="nt">request</span><span class="o">.</span><span class="w"></span>
-<span class="w">  </span><span class="o">$</span><span class="nt">auth-</span><span class="o">&gt;</span><span class="nt">login</span><span class="o">(</span><span class="cp">[</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'isPassive'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'ErrorURL'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://.../error_handler.php'</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="cp">]</span><span class="o">);</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="nt">Send</span><span class="w"> </span><span class="nt">a</span><span class="w"> </span><span class="nt">passive</span><span class="w"> </span><span class="nt">authentication</span><span class="w"> </span><span class="nt">request</span><span class="o">.</span>
+<span class="w">  </span><span class="o">$</span><span class="nt">auth-</span><span class="o">&gt;</span><span class="nt">login</span><span class="o">(</span><span class="cp">[</span>
+<span class="w">      </span><span class="s1">'isPassive'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">'ErrorURL'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://.../error_handler.php'</span><span class="p">,</span>
+<span class="w">  </span><span class="cp">]</span><span class="o">);</span>
 </code></pre>
 </div>
 <h2 id="logout">
@@ -343,14 +343,14 @@ This function never returns.
   This can either be a simple string, in which case it is interpreted as the URL the user should be redirected to after logout, or an associative array with logout parameters.
   If this parameter isn't specified, we will redirect the user to the current URL after logout.
   <div class="codehilite">
-   <pre><span></span><code><span class="k">If</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">parameter</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="k">array</span><span class="p">,</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">following</span><span class="w"> </span><span class="k">options</span><span class="o">:</span><span class="w"></span>
+   <pre><span></span><code><span class="k">If</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">parameter</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="k">array</span><span class="p">,</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">following</span><span class="w"> </span><span class="k">options</span><span class="o">:</span>
 
-<span class="o">-</span><span class="w"> </span><span class="n n-Quoted">`ReturnTo`</span><span class="o">:</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">URL</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">returned</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">after</span><span class="w"> </span><span class="n">logout</span><span class="p">.</span><span class="w"></span>
-<span class="o">-</span><span class="w"> </span><span class="n n-Quoted">`ReturnCallback`</span><span class="o">:</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">called</span><span class="w"> </span><span class="k">after</span><span class="w"> </span><span class="n">logout</span><span class="p">.</span><span class="w"></span>
-<span class="o">-</span><span class="w"> </span><span class="n n-Quoted">`ReturnStateParam`</span><span class="o">:</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">parameter</span><span class="w"> </span><span class="n">we</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">when</span><span class="w"> </span><span class="n">redirecting</span><span class="p">.</span><span class="w"></span>
-<span class="o">-</span><span class="w"> </span><span class="n n-Quoted">`ReturnStateStage`</span><span class="o">:</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">stage</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="k">array</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">saved</span><span class="w"> </span><span class="k">with</span><span class="p">.</span><span class="w"></span>
+<span class="o">-</span><span class="w"> </span><span class="n n-Quoted">`ReturnTo`</span><span class="o">:</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">URL</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">returned</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">after</span><span class="w"> </span><span class="n">logout</span><span class="p">.</span>
+<span class="o">-</span><span class="w"> </span><span class="n n-Quoted">`ReturnCallback`</span><span class="o">:</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">called</span><span class="w"> </span><span class="k">after</span><span class="w"> </span><span class="n">logout</span><span class="p">.</span>
+<span class="o">-</span><span class="w"> </span><span class="n n-Quoted">`ReturnStateParam`</span><span class="o">:</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">parameter</span><span class="w"> </span><span class="n">we</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">when</span><span class="w"> </span><span class="n">redirecting</span><span class="p">.</span>
+<span class="o">-</span><span class="w"> </span><span class="n n-Quoted">`ReturnStateStage`</span><span class="o">:</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">stage</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="k">array</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">saved</span><span class="w"> </span><span class="k">with</span><span class="p">.</span>
 
-<span class="n">The</span><span class="w"> </span><span class="n n-Quoted">`ReturnState`</span><span class="w"> </span><span class="n">parameters</span><span class="w"> </span><span class="n">allow</span><span class="w"> </span><span class="n">access</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">logout</span><span class="w"> </span><span class="n">operation</span><span class="w"> </span><span class="k">after</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="n">completes</span><span class="p">.</span><span class="w"></span>
+<span class="n">The</span><span class="w"> </span><span class="n n-Quoted">`ReturnState`</span><span class="w"> </span><span class="n">parameters</span><span class="w"> </span><span class="n">allow</span><span class="w"> </span><span class="n">access</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">logout</span><span class="w"> </span><span class="n">operation</span><span class="w"> </span><span class="k">after</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="n">completes</span><span class="p">.</span>
 </code></pre>
   </div>
  </dd>
@@ -362,7 +362,7 @@ This function never returns.
  Logout, and redirect to the specified URL.
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">auth-</span><span class="o">&gt;</span><span class="nt">logout</span><span class="o">(</span><span class="s1">'https://sp.example.org/logged_out.php'</span><span class="o">);</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">auth-</span><span class="o">&gt;</span><span class="nt">logout</span><span class="o">(</span><span class="s1">'https://sp.example.org/logged_out.php'</span><span class="o">);</span>
 </code></pre>
 </div>
 <h3 id="example-2_1">
@@ -372,26 +372,26 @@ This function never returns.
  Same as the previous, but check the result of the logout operation afterwards.
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">auth-</span><span class="o">&gt;</span><span class="nt">logout</span><span class="o">(</span><span class="cp">[</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'ReturnTo'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://sp.example.org/logged_out.php'</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'ReturnStateParam'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'LogoutState'</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'ReturnStateStage'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'MyLogoutState'</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="cp">]</span><span class="o">);</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">auth-</span><span class="o">&gt;</span><span class="nt">logout</span><span class="o">(</span><span class="cp">[</span>
+<span class="w">      </span><span class="s1">'ReturnTo'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://sp.example.org/logged_out.php'</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">'ReturnStateParam'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'LogoutState'</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">'ReturnStateStage'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'MyLogoutState'</span><span class="p">,</span>
+<span class="w">  </span><span class="cp">]</span><span class="o">);</span>
 </code></pre>
 </div>
 <p>
  And in logged_out.php:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>\<span class="n">SimpleSAML</span>\<span class="n">Auth</span>\<span class="n">State</span><span class="p">::</span><span class="n">loadState</span><span class="p">((</span><span class="n">string</span><span class="p">)</span><span class="o">$</span><span class="n">_REQUEST</span><span class="p">[</span><span class="s1">'LogoutState'</span><span class="p">],</span><span class="w"> </span><span class="s1">'MyLogoutState'</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="o">$</span><span class="n">ls</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">state</span><span class="p">[</span><span class="s1">'saml:sp:LogoutStatus'</span><span class="p">];</span><span class="w"> </span><span class="o">/*</span><span class="w"> </span><span class="n">Only</span><span class="w"> </span><span class="n">works</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">SAML</span><span class="w"> </span><span class="n">SP</span><span class="w"> </span><span class="o">*/</span><span class="w"></span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">$</span><span class="n">ls</span><span class="p">[</span><span class="s1">'Code'</span><span class="p">]</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">'urn:oasis:names:tc:SAML:2.0:status:Success'</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">isset</span><span class="p">(</span><span class="o">$</span><span class="n">ls</span><span class="p">[</span><span class="s1">'SubCode'</span><span class="p">]))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="o">/*</span><span class="w"> </span><span class="n">Successful</span><span class="w"> </span><span class="n">logout</span><span class="o">.</span><span class="w"> </span><span class="o">*/</span><span class="w"></span>
-<span class="w">      </span><span class="n">echo</span><span class="p">(</span><span class="s2">"You have been logged out."</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="o">/*</span><span class="w"> </span><span class="n">Logout</span><span class="w"> </span><span class="n">failed</span><span class="o">.</span><span class="w"> </span><span class="n">Tell</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">close</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">browser</span><span class="o">.</span><span class="w"> </span><span class="o">*/</span><span class="w"></span>
-<span class="w">      </span><span class="n">echo</span><span class="p">(</span><span class="s2">"We were unable to log you out of all your sessions. To be completely sure that you are logged out, you need to close your web browser."</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>\<span class="n">SimpleSAML</span>\<span class="n">Auth</span>\<span class="n">State</span><span class="p">::</span><span class="n">loadState</span><span class="p">((</span><span class="n">string</span><span class="p">)</span><span class="o">$</span><span class="n">_REQUEST</span><span class="p">[</span><span class="s1">'LogoutState'</span><span class="p">],</span><span class="w"> </span><span class="s1">'MyLogoutState'</span><span class="p">);</span>
+<span class="w">  </span><span class="o">$</span><span class="n">ls</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">state</span><span class="p">[</span><span class="s1">'saml:sp:LogoutStatus'</span><span class="p">];</span><span class="w"> </span><span class="o">/*</span><span class="w"> </span><span class="n">Only</span><span class="w"> </span><span class="n">works</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">SAML</span><span class="w"> </span><span class="n">SP</span><span class="w"> </span><span class="o">*/</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">$</span><span class="n">ls</span><span class="p">[</span><span class="s1">'Code'</span><span class="p">]</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">'urn:oasis:names:tc:SAML:2.0:status:Success'</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">isset</span><span class="p">(</span><span class="o">$</span><span class="n">ls</span><span class="p">[</span><span class="s1">'SubCode'</span><span class="p">]))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="o">/*</span><span class="w"> </span><span class="n">Successful</span><span class="w"> </span><span class="n">logout</span><span class="o">.</span><span class="w"> </span><span class="o">*/</span>
+<span class="w">      </span><span class="n">echo</span><span class="p">(</span><span class="s2">"You have been logged out."</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="o">/*</span><span class="w"> </span><span class="n">Logout</span><span class="w"> </span><span class="n">failed</span><span class="o">.</span><span class="w"> </span><span class="n">Tell</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">close</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">browser</span><span class="o">.</span><span class="w"> </span><span class="o">*/</span>
+<span class="w">      </span><span class="n">echo</span><span class="p">(</span><span class="s2">"We were unable to log you out of all your sessions. To be completely sure that you are logged out, you need to close your web browser."</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
 </code></pre>
 </div>
 <h2 id="getattributes">
@@ -421,13 +421,13 @@ If the user isn't authenticated, an empty array will be returned.
  Example
 </h3>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="err">$</span><span class="n">attrs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">$</span><span class="n">auth</span><span class="o">-&gt;</span><span class="n">getAttributes</span><span class="p">();</span><span class="w"></span>
-<span class="w">  </span><span class="nf">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">isset</span><span class="p">(</span><span class="err">$</span><span class="n">attrs</span><span class="p">[</span><span class="s">'displayName'</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="n">throw</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">Exception</span><span class="p">(</span><span class="s">'displayName attribute missing.'</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="err">$</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">$</span><span class="n">attrs</span><span class="p">[</span><span class="s">'displayName'</span><span class="p">][</span><span class="mi">0</span><span class="p">];</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="err">$</span><span class="n">attrs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">$</span><span class="n">auth</span><span class="o">-&gt;</span><span class="n">getAttributes</span><span class="p">();</span>
+<span class="w">  </span><span class="nf">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">isset</span><span class="p">(</span><span class="err">$</span><span class="n">attrs</span><span class="p">[</span><span class="s">'displayName'</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">throw</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">Exception</span><span class="p">(</span><span class="s">'displayName attribute missing.'</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="err">$</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">$</span><span class="n">attrs</span><span class="p">[</span><span class="s">'displayName'</span><span class="p">][</span><span class="mi">0</span><span class="p">];</span>
 
-<span class="w">  </span><span class="n">print</span><span class="p">(</span><span class="s">'Hello, '</span><span class="w"> </span><span class="p">.</span><span class="w"> </span><span class="n">htmlspecialchars</span><span class="p">(</span><span class="err">$</span><span class="n">name</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">print</span><span class="p">(</span><span class="s">'Hello, '</span><span class="w"> </span><span class="p">.</span><span class="w"> </span><span class="n">htmlspecialchars</span><span class="p">(</span><span class="err">$</span><span class="n">name</span><span class="p">));</span>
 </code></pre>
 </div>
 <h2 id="getauthdata">
@@ -457,8 +457,8 @@ See the
  Example
 </h3>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">idp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="nt">auth-</span><span class="o">&gt;</span><span class="nt">getAuthData</span><span class="o">(</span><span class="s1">'saml:sp:IdP'</span><span class="o">);</span><span class="w"></span>
-<span class="w">  </span><span class="nt">print</span><span class="o">(</span><span class="s1">'You are logged in from: '</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="nt">htmlspecialchars</span><span class="o">($</span><span class="nt">idp</span><span class="o">));</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">idp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="nt">auth-</span><span class="o">&gt;</span><span class="nt">getAuthData</span><span class="o">(</span><span class="s1">'saml:sp:IdP'</span><span class="o">);</span>
+<span class="w">  </span><span class="nt">print</span><span class="o">(</span><span class="s1">'You are logged in from: '</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="nt">htmlspecialchars</span><span class="o">($</span><span class="nt">idp</span><span class="o">));</span>
 </code></pre>
 </div>
 <h2 id="getloginurl">
@@ -493,9 +493,9 @@ See the
  Example
 </h3>
 <div class="codehilite">
- <pre><span></span><code>  $url = $auth-&gt;getLoginURL();
+ <pre><span></span><code><span class="w">  </span>$url<span class="w"> </span>=<span class="w"> </span>$auth-&gt;getLoginURL();
 
-  print('<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"' . htmlspecialchars($url) . '"</span><span class="nt">&gt;</span>Login<span class="nt">&lt;/a&gt;</span>');
+<span class="w">  </span>print('<span class="nt">&lt;a</span><span class="w"> </span><span class="na">href=</span><span class="s">"' . htmlspecialchars($url) . '"</span><span class="nt">&gt;</span>Login<span class="nt">&lt;/a&gt;</span>');
 </code></pre>
 </div>
 <h3 id="note">
@@ -507,7 +507,7 @@ You can easily create your own links without using this function.
 The URL should be:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">   </span>...<span class="o">/</span><span class="nv">simplesaml</span><span class="o">/</span><span class="nv">module</span>.<span class="nv">php</span><span class="o">/</span><span class="nv">core</span><span class="o">/</span><span class="nv">as_login</span>.<span class="nv">php</span>?<span class="nv">AuthId</span><span class="o">=&lt;</span><span class="nv">authentication</span><span class="w"> </span><span class="nv">source</span><span class="o">&gt;&amp;</span><span class="nv">ReturnTo</span><span class="o">=&lt;</span><span class="k">return</span><span class="w"> </span><span class="nv">URL</span><span class="o">&gt;</span><span class="w"></span>
+ <pre><span></span><code><span class="w">   </span>...<span class="o">/</span><span class="nv">simplesaml</span><span class="o">/</span><span class="nv">module</span>.<span class="nv">php</span><span class="o">/</span><span class="nv">core</span><span class="o">/</span><span class="nv">as_login</span>.<span class="nv">php</span>?<span class="nv">AuthId</span><span class="o">=&lt;</span><span class="nv">authentication</span><span class="w"> </span><span class="nv">source</span><span class="o">&gt;&amp;</span><span class="nv">ReturnTo</span><span class="o">=&lt;</span><span class="k">return</span><span class="w"> </span><span class="nv">URL</span><span class="o">&gt;</span>
 </code></pre>
 </div>
 <h2 id="getlogouturl">
@@ -542,9 +542,9 @@ The URL should be:
  Example
 </h3>
 <div class="codehilite">
- <pre><span></span><code>  $url = $auth-&gt;getLogoutURL();
+ <pre><span></span><code><span class="w">  </span>$url<span class="w"> </span>=<span class="w"> </span>$auth-&gt;getLogoutURL();
 
-  print('<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"' . htmlspecialchars($url) . '"</span><span class="nt">&gt;</span>Logout<span class="nt">&lt;/a&gt;</span>');
+<span class="w">  </span>print('<span class="nt">&lt;a</span><span class="w"> </span><span class="na">href=</span><span class="s">"' . htmlspecialchars($url) . '"</span><span class="nt">&gt;</span>Logout<span class="nt">&lt;/a&gt;</span>');
 </code></pre>
 </div>
 <h3 id="note_1">
@@ -556,7 +556,7 @@ You can easily create your own links without using this function.
 The URL should be:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">   </span>...<span class="o">/</span><span class="nv">simplesaml</span><span class="o">/</span><span class="nv">module</span>.<span class="nv">php</span><span class="o">/</span><span class="nv">core</span><span class="o">/</span><span class="nv">as_logout</span>.<span class="nv">php</span>?<span class="nv">AuthId</span><span class="o">=&lt;</span><span class="nv">authentication</span><span class="w"> </span><span class="nv">source</span><span class="o">&gt;&amp;</span><span class="nv">ReturnTo</span><span class="o">=&lt;</span><span class="k">return</span><span class="w"> </span><span class="nv">URL</span><span class="o">&gt;</span><span class="w"></span>
+ <pre><span></span><code><span class="w">   </span>...<span class="o">/</span><span class="nv">simplesaml</span><span class="o">/</span><span class="nv">module</span>.<span class="nv">php</span><span class="o">/</span><span class="nv">core</span><span class="o">/</span><span class="nv">as_logout</span>.<span class="nv">php</span>?<span class="nv">AuthId</span><span class="o">=&lt;</span><span class="nv">authentication</span><span class="w"> </span><span class="nv">source</span><span class="o">&gt;&amp;</span><span class="nv">ReturnTo</span><span class="o">=&lt;</span><span class="k">return</span><span class="w"> </span><span class="nv">URL</span><span class="o">&gt;</span>
 </code></pre>
 </div></main></body>
 </html>

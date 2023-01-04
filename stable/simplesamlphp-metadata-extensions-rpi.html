@@ -96,7 +96,7 @@
     http://daringfireball.net/projects/markdown/syntax
 -->
 <div class="codehilite">
- <pre><span></span><code><span class="o">*</span><span class="w"> </span><span class="nl">Author</span><span class="p">:</span><span class="w"> </span><span class="n">Jaime</span><span class="w"> </span><span class="n">Perez</span><span class="w"> </span><span class="o">[</span><span class="n">jaime.perez@uninett.no</span><span class="o">]</span><span class="p">(</span><span class="nl">mailto</span><span class="p">:</span><span class="n">jaime</span><span class="p">.</span><span class="n">perez</span><span class="nv">@uninett</span><span class="p">.</span><span class="k">no</span><span class="p">)</span><span class="w"></span>
+ <pre><span></span><code><span class="o">*</span><span class="w"> </span><span class="nl">Author</span><span class="p">:</span><span class="w"> </span><span class="n">Jaime</span><span class="w"> </span><span class="n">Perez</span><span class="w"> </span><span class="o">[</span><span class="n">jaime.perez@uninett.no</span><span class="o">]</span><span class="p">(</span><span class="nl">mailto</span><span class="p">:</span><span class="n">jaime</span><span class="p">.</span><span class="n">perez</span><span class="nv">@uninett</span><span class="p">.</span><span class="k">no</span><span class="p">)</span>
 </code></pre>
 </div>
 <!-- {{TOC}} -->
@@ -276,14 +276,14 @@ configuration file:
  Identity Provider:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'__DYNAMIC:1__'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cp">[</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'host'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'__DEFAULT__'</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nx">...</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'RegistrationInfo'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span><span class="w"></span>
-<span class="w">          </span><span class="s1">'authority'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'urn:mace:idp.example.org'</span><span class="p">,</span><span class="w"></span>
-<span class="w">          </span><span class="s1">'instant'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'2008-01-17T11:28:03.577Z'</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
-<span class="w">  </span><span class="o">];</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'__DYNAMIC:1__'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cp">[</span>
+<span class="w">      </span><span class="s1">'host'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'__DEFAULT__'</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">...</span>
+<span class="w">      </span><span class="s1">'RegistrationInfo'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span>
+<span class="w">          </span><span class="s1">'authority'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'urn:mace:idp.example.org'</span><span class="p">,</span>
+<span class="w">          </span><span class="s1">'instant'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'2008-01-17T11:28:03.577Z'</span><span class="p">,</span>
+<span class="w">      </span><span class="cp">]</span><span class="o">,</span>
+<span class="w">  </span><span class="o">];</span>
 </code></pre>
 </div>
 <p>
@@ -293,19 +293,19 @@ configuration file:
  module:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="n">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'aggregators'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
-<span class="w">          </span><span class="o">...</span><span class="w"></span>
-<span class="w">      </span><span class="p">],</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'maxDuration'</span><span class="w">   </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">24</span><span class="o">*</span><span class="mi">5</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'reconstruct'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">FALSE</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="o">...</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'RegistrationInfo'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
-<span class="w">          </span><span class="s1">'authority'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'urn:mace:example.federation'</span><span class="p">,</span><span class="w"></span>
-<span class="w">          </span><span class="s1">'instant'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'2008-01-17T11:28:03Z'</span><span class="p">,</span><span class="w"></span>
-<span class="w">          </span><span class="s1">'policies'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="s1">'en'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'http://example.org/federation_policy'</span><span class="p">,</span><span class="w"> </span><span class="s1">'es'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://example.org/politica_federacion'</span><span class="p">],</span><span class="w"></span>
-<span class="w">      </span><span class="p">],</span><span class="w"></span>
-<span class="w">  </span><span class="p">];</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="n">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="s1">'aggregators'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="o">...</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="s1">'maxDuration'</span><span class="w">   </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">24</span><span class="o">*</span><span class="mi">5</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">'reconstruct'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">FALSE</span><span class="p">,</span>
+<span class="w">      </span><span class="o">...</span>
+<span class="w">      </span><span class="s1">'RegistrationInfo'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="s1">'authority'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'urn:mace:example.federation'</span><span class="p">,</span>
+<span class="w">          </span><span class="s1">'instant'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'2008-01-17T11:28:03Z'</span><span class="p">,</span>
+<span class="w">          </span><span class="s1">'policies'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="s1">'en'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'http://example.org/federation_policy'</span><span class="p">,</span><span class="w"> </span><span class="s1">'es'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://example.org/politica_federacion'</span><span class="p">],</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">  </span><span class="p">];</span>
 </code></pre>
 </div>
 <p>
@@ -315,17 +315,17 @@ configuration file:
  module:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cp">[</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'example.org'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span><span class="w"></span>
-<span class="w">          </span><span class="s1">'sources'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span><span class="w"></span>
-<span class="w">              </span><span class="nx">...</span><span class="w"></span>
-<span class="w">          </span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
-<span class="w">          </span><span class="s1">'RegistrationInfo'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span><span class="w"></span>
-<span class="w">              </span><span class="s1">'authority'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'urn:mace:example.federation'</span><span class="p">,</span><span class="w"></span>
-<span class="w">              </span><span class="s1">'policies'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span><span class="s1">'en'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'http://example.org/federation_policy'</span><span class="p">,</span><span class="w"> </span><span class="s1">'es'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://example.org/politica_federacion'</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
-<span class="w">          </span><span class="o">],</span><span class="w"></span>
-<span class="w">      </span><span class="o">],</span><span class="w"></span>
-<span class="w">  </span><span class="o">];</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cp">[</span>
+<span class="w">      </span><span class="s1">'example.org'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span>
+<span class="w">          </span><span class="s1">'sources'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span>
+<span class="w">              </span><span class="nx">...</span>
+<span class="w">          </span><span class="cp">]</span><span class="o">,</span>
+<span class="w">          </span><span class="s1">'RegistrationInfo'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span>
+<span class="w">              </span><span class="s1">'authority'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'urn:mace:example.federation'</span><span class="p">,</span>
+<span class="w">              </span><span class="s1">'policies'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span><span class="s1">'en'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'http://example.org/federation_policy'</span><span class="p">,</span><span class="w"> </span><span class="s1">'es'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://example.org/politica_federacion'</span><span class="cp">]</span><span class="o">,</span>
+<span class="w">          </span><span class="o">],</span>
+<span class="w">      </span><span class="o">],</span>
+<span class="w">  </span><span class="o">];</span>
 </code></pre>
 </div></main></body>
 </html>

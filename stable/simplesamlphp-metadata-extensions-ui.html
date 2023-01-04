@@ -96,7 +96,7 @@
     http://daringfireball.net/projects/markdown/syntax
 -->
 <div class="codehilite">
- <pre><span></span><code><span class="o">*</span><span class="w"> </span><span class="nl">Author</span><span class="p">:</span><span class="w"> </span><span class="n">Timothy</span><span class="w"> </span><span class="n">Ace</span><span class="w"> </span><span class="o">[</span><span class="n">tace@synacor.com</span><span class="o">]</span><span class="p">(</span><span class="nl">mailto</span><span class="p">:</span><span class="n">tace</span><span class="nv">@synacor</span><span class="p">.</span><span class="n">com</span><span class="p">)</span><span class="w"></span>
+ <pre><span></span><code><span class="o">*</span><span class="w"> </span><span class="nl">Author</span><span class="p">:</span><span class="w"> </span><span class="n">Timothy</span><span class="w"> </span><span class="n">Ace</span><span class="w"> </span><span class="o">[</span><span class="n">tace@synacor.com</span><span class="o">]</span><span class="p">(</span><span class="nl">mailto</span><span class="p">:</span><span class="n">tace</span><span class="nv">@synacor</span><span class="p">.</span><span class="n">com</span><span class="p">)</span>
 </code></pre>
 </div>
 <!-- {{TOC}} -->
@@ -428,89 +428,89 @@ present an IdP. These properties are all children of the
  If given the following configuration...
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'https://www.example.com/saml/saml2/idp/metadata.php'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cp">[</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'host'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'www.example.com'</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'certificate'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'example.com.crt'</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'privatekey'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'example.com.pem'</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'auth'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'example-userpass'</span><span class="p">,</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'https://www.example.com/saml/saml2/idp/metadata.php'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cp">[</span>
+<span class="w">      </span><span class="s1">'host'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'www.example.com'</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">'certificate'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'example.com.crt'</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">'privatekey'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'example.com.pem'</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">'auth'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'example-userpass'</span><span class="p">,</span>
 
-<span class="w">      </span><span class="s1">'UIInfo'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span><span class="w"></span>
-<span class="w">          </span><span class="s1">'DisplayName'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span><span class="w"></span>
-<span class="w">              </span><span class="s1">'en'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'English name'</span><span class="p">,</span><span class="w"></span>
-<span class="w">              </span><span class="s1">'es'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Nombre en Español'</span><span class="p">,</span><span class="w"></span>
-<span class="w">          </span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
-<span class="w">          </span><span class="s1">'Description'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span><span class="w"></span>
-<span class="w">              </span><span class="s1">'en'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'English description'</span><span class="p">,</span><span class="w"></span>
-<span class="w">              </span><span class="s1">'es'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Descripción en Español'</span><span class="p">,</span><span class="w"></span>
-<span class="w">          </span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
-<span class="w">          </span><span class="s1">'InformationURL'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span><span class="w"></span>
-<span class="w">              </span><span class="s1">'en'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'http://example.com/info/en'</span><span class="p">,</span><span class="w"></span>
-<span class="w">              </span><span class="s1">'es'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'http://example.com/info/es'</span><span class="p">,</span><span class="w"></span>
-<span class="w">          </span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
-<span class="w">          </span><span class="s1">'PrivacyStatementURL'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span><span class="w"></span>
-<span class="w">              </span><span class="s1">'en'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'http://example.com/privacy/en'</span><span class="p">,</span><span class="w"></span>
-<span class="w">              </span><span class="s1">'es'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'http://example.com/privacy/es'</span><span class="p">,</span><span class="w"></span>
-<span class="w">          </span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
-<span class="w">          </span><span class="s1">'Keywords'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span><span class="w"></span>
-<span class="w">              </span><span class="s1">'en'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span><span class="s1">'communication'</span><span class="p">,</span><span class="w"> </span><span class="s1">'federated session'</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
-<span class="w">              </span><span class="s1">'es'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span><span class="s1">'comunicación'</span><span class="p">,</span><span class="w"> </span><span class="s1">'sesión federated'</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
-<span class="w">          </span><span class="o">],</span><span class="w"></span>
-<span class="w">          </span><span class="s1">'Logo'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span><span class="w"></span>
-<span class="w">              </span><span class="err">[</span><span class="w"></span>
-<span class="w">                  </span><span class="s1">'url'</span><span class="w">    </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'http://example.com/logo1.png'</span><span class="p">,</span><span class="w"></span>
-<span class="w">                  </span><span class="s1">'height'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w"></span>
-<span class="w">                  </span><span class="s1">'width'</span><span class="w">  </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w"></span>
-<span class="w">              </span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
-<span class="w">              </span><span class="cp">[</span><span class="w"></span>
-<span class="w">                  </span><span class="s1">'url'</span><span class="w">    </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'http://example.com/logo2.png'</span><span class="p">,</span><span class="w"></span>
-<span class="w">                  </span><span class="s1">'height'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">201</span><span class="p">,</span><span class="w"></span>
-<span class="w">                  </span><span class="s1">'width'</span><span class="w">  </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">401</span><span class="p">,</span><span class="w"></span>
-<span class="w">              </span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
-<span class="w">          </span><span class="o">],</span><span class="w"></span>
-<span class="w">      </span><span class="o">],</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'DiscoHints'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span><span class="w"></span>
-<span class="w">          </span><span class="s1">'IPHint'</span><span class="w">          </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span><span class="s1">'130.59.0.0/16'</span><span class="p">,</span><span class="w"> </span><span class="s1">'2001:620::0/96'</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
-<span class="w">          </span><span class="s1">'DomainHint'</span><span class="w">      </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span><span class="s1">'example.com'</span><span class="p">,</span><span class="w"> </span><span class="s1">'www.example.com'</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
-<span class="w">          </span><span class="s1">'GeolocationHint'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span><span class="s1">'geo:47.37328,8.531126'</span><span class="p">,</span><span class="w"> </span><span class="s1">'geo:19.34343,12.342514'</span><span class="cp">]</span><span class="o">,</span><span class="w"></span>
-<span class="w">      </span><span class="o">],</span><span class="w"></span>
-<span class="w">  </span><span class="o">];</span><span class="w"></span>
+<span class="w">      </span><span class="s1">'UIInfo'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span>
+<span class="w">          </span><span class="s1">'DisplayName'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span>
+<span class="w">              </span><span class="s1">'en'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'English name'</span><span class="p">,</span>
+<span class="w">              </span><span class="s1">'es'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Nombre en Español'</span><span class="p">,</span>
+<span class="w">          </span><span class="cp">]</span><span class="o">,</span>
+<span class="w">          </span><span class="s1">'Description'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span>
+<span class="w">              </span><span class="s1">'en'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'English description'</span><span class="p">,</span>
+<span class="w">              </span><span class="s1">'es'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Descripción en Español'</span><span class="p">,</span>
+<span class="w">          </span><span class="cp">]</span><span class="o">,</span>
+<span class="w">          </span><span class="s1">'InformationURL'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span>
+<span class="w">              </span><span class="s1">'en'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'http://example.com/info/en'</span><span class="p">,</span>
+<span class="w">              </span><span class="s1">'es'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'http://example.com/info/es'</span><span class="p">,</span>
+<span class="w">          </span><span class="cp">]</span><span class="o">,</span>
+<span class="w">          </span><span class="s1">'PrivacyStatementURL'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span>
+<span class="w">              </span><span class="s1">'en'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'http://example.com/privacy/en'</span><span class="p">,</span>
+<span class="w">              </span><span class="s1">'es'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'http://example.com/privacy/es'</span><span class="p">,</span>
+<span class="w">          </span><span class="cp">]</span><span class="o">,</span>
+<span class="w">          </span><span class="s1">'Keywords'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span>
+<span class="w">              </span><span class="s1">'en'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span><span class="s1">'communication'</span><span class="p">,</span><span class="w"> </span><span class="s1">'federated session'</span><span class="cp">]</span><span class="o">,</span>
+<span class="w">              </span><span class="s1">'es'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span><span class="s1">'comunicación'</span><span class="p">,</span><span class="w"> </span><span class="s1">'sesión federated'</span><span class="cp">]</span><span class="o">,</span>
+<span class="w">          </span><span class="o">],</span>
+<span class="w">          </span><span class="s1">'Logo'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span>
+<span class="w">              </span><span class="err">[</span>
+<span class="w">                  </span><span class="s1">'url'</span><span class="w">    </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'http://example.com/logo1.png'</span><span class="p">,</span>
+<span class="w">                  </span><span class="s1">'height'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span>
+<span class="w">                  </span><span class="s1">'width'</span><span class="w">  </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span>
+<span class="w">              </span><span class="cp">]</span><span class="o">,</span>
+<span class="w">              </span><span class="cp">[</span>
+<span class="w">                  </span><span class="s1">'url'</span><span class="w">    </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'http://example.com/logo2.png'</span><span class="p">,</span>
+<span class="w">                  </span><span class="s1">'height'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">201</span><span class="p">,</span>
+<span class="w">                  </span><span class="s1">'width'</span><span class="w">  </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">401</span><span class="p">,</span>
+<span class="w">              </span><span class="cp">]</span><span class="o">,</span>
+<span class="w">          </span><span class="o">],</span>
+<span class="w">      </span><span class="o">],</span>
+<span class="w">      </span><span class="s1">'DiscoHints'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span>
+<span class="w">          </span><span class="s1">'IPHint'</span><span class="w">          </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span><span class="s1">'130.59.0.0/16'</span><span class="p">,</span><span class="w"> </span><span class="s1">'2001:620::0/96'</span><span class="cp">]</span><span class="o">,</span>
+<span class="w">          </span><span class="s1">'DomainHint'</span><span class="w">      </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span><span class="s1">'example.com'</span><span class="p">,</span><span class="w"> </span><span class="s1">'www.example.com'</span><span class="cp">]</span><span class="o">,</span>
+<span class="w">          </span><span class="s1">'GeolocationHint'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span><span class="s1">'geo:47.37328,8.531126'</span><span class="p">,</span><span class="w"> </span><span class="s1">'geo:19.34343,12.342514'</span><span class="cp">]</span><span class="o">,</span>
+<span class="w">      </span><span class="o">],</span>
+<span class="w">  </span><span class="o">];</span>
 </code></pre>
 </div>
 <p>
  ... will generate the following XML metadata:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  <span class="cp">&lt;?xml version="1.0"?&gt;</span>
-  <span class="nt">&lt;md:EntityDescriptor</span> <span class="na">xmlns:md=</span><span class="s">"urn:oasis:names:tc:SAML:2.0:metadata"</span> <span class="na">xmlns:mdattr=</span><span class="s">"urn:oasis:names:tc:SAML:metadata:attribute"</span> <span class="na">xmlns:saml=</span><span class="s">"urn:oasis:names:tc:SAML:2.0:assertion"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="na">xmlns:mdui=</span><span class="s">"urn:oasis:names:tc:SAML:metadata:ui"</span> <span class="na">xmlns:ds=</span><span class="s">"http://www.w3.org/2000/09/xmldsig#"</span> <span class="na">entityID=</span><span class="s">"https://www.example.com/saml/saml2/idp/metadata.php"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;md:IDPSSODescriptor</span> <span class="na">protocolSupportEnumeration=</span><span class="s">"urn:oasis:names:tc:SAML:2.0:protocol"</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;md:Extensions&gt;</span>
-        <span class="nt">&lt;mdui:UIInfo</span> <span class="na">xmlns:mdui=</span><span class="s">"urn:oasis:names:tc:SAML:metadata:ui"</span><span class="nt">&gt;</span>
-          <span class="nt">&lt;mdui:DisplayName</span> <span class="na">xml:lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>English name<span class="nt">&lt;/mdui:DisplayName&gt;</span>
-          <span class="nt">&lt;mdui:DisplayName</span> <span class="na">xml:lang=</span><span class="s">"es"</span><span class="nt">&gt;</span>Nombre en Espa<span class="ni">&amp;#xF1;</span>ol<span class="nt">&lt;/mdui:DisplayName&gt;</span>
-          <span class="nt">&lt;mdui:Description</span> <span class="na">xml:lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>English description<span class="nt">&lt;/mdui:Description&gt;</span>
-          <span class="nt">&lt;mdui:Description</span> <span class="na">xml:lang=</span><span class="s">"es"</span><span class="nt">&gt;</span>Descripci<span class="ni">&amp;#xF3;</span>n en Espa<span class="ni">&amp;#xF1;</span>ol<span class="nt">&lt;/mdui:Description&gt;</span>
-          <span class="nt">&lt;mdui:InformationURL</span> <span class="na">xml:lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>http://example.com/info/en<span class="nt">&lt;/mdui:InformationURL&gt;</span>
-          <span class="nt">&lt;mdui:InformationURL</span> <span class="na">xml:lang=</span><span class="s">"es"</span><span class="nt">&gt;</span>http://example.com/info/es<span class="nt">&lt;/mdui:InformationURL&gt;</span>
-          <span class="nt">&lt;mdui:PrivacyStatementURL</span> <span class="na">xml:lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>http://example.com/privacy/en<span class="nt">&lt;/mdui:PrivacyStatementURL&gt;</span>
-          <span class="nt">&lt;mdui:PrivacyStatementURL</span> <span class="na">xml:lang=</span><span class="s">"es"</span><span class="nt">&gt;</span>http://example.com/privacy/es<span class="nt">&lt;/mdui:PrivacyStatementURL&gt;</span>
-          <span class="nt">&lt;mdui:Keywords</span> <span class="na">xml:lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>communication federated+session<span class="nt">&lt;/mdui:Keywords&gt;</span>
-          <span class="nt">&lt;mdui:Keywords</span> <span class="na">xml:lang=</span><span class="s">"es"</span><span class="nt">&gt;</span>comunicaci<span class="ni">&amp;#xF3;</span>n sesi<span class="ni">&amp;#xF3;</span>n+federated<span class="nt">&lt;/mdui:Keywords&gt;</span>
-          <span class="nt">&lt;mdui:Logo</span> <span class="na">width=</span><span class="s">"400"</span> <span class="na">height=</span><span class="s">"200"</span> <span class="na">xml:lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>http://example.com/logo1.png<span class="nt">&lt;/mdui:Logo&gt;</span>
-          <span class="nt">&lt;mdui:Logo</span> <span class="na">width=</span><span class="s">"401"</span> <span class="na">height=</span><span class="s">"201"</span><span class="nt">&gt;</span>http://example.com/logo2.png<span class="nt">&lt;/mdui:Logo&gt;</span>
-        <span class="nt">&lt;/mdui:UIInfo&gt;</span>
-        <span class="nt">&lt;mdui:DiscoHints</span> <span class="na">xmlns:mdui=</span><span class="s">"urn:oasis:names:tc:SAML:metadata:ui"</span><span class="nt">&gt;</span>
-          <span class="nt">&lt;mdui:IPHint&gt;</span>130.59.0.0/16<span class="nt">&lt;/mdui:IPHint&gt;</span>
-          <span class="nt">&lt;mdui:IPHint&gt;</span>2001:620::0/96<span class="nt">&lt;/mdui:IPHint&gt;</span>
-          <span class="nt">&lt;mdui:DomainHint&gt;</span>example.com<span class="nt">&lt;/mdui:DomainHint&gt;</span>
-          <span class="nt">&lt;mdui:DomainHint&gt;</span>www.example.com<span class="nt">&lt;/mdui:DomainHint&gt;</span>
-          <span class="nt">&lt;mdui:GeolocationHint&gt;</span>geo:47.37328,8.531126<span class="nt">&lt;/mdui:GeolocationHint&gt;</span>
-          <span class="nt">&lt;mdui:GeolocationHint&gt;</span>geo:19.34343,12.342514<span class="nt">&lt;/mdui:GeolocationHint&gt;</span>
-        <span class="nt">&lt;/mdui:DiscoHints&gt;</span>
-      <span class="nt">&lt;/md:Extensions&gt;</span>
-      <span class="nt">&lt;md:KeyDescriptor</span> <span class="na">use=</span><span class="s">"signing"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;ds:KeyInfo</span> <span class="na">xmlns:ds=</span><span class="s">"http://www.w3.org/2000/09/xmldsig#"</span><span class="nt">&gt;</span>
-          <span class="nt">&lt;ds:X509Data&gt;</span>
-          ...
+ <pre><span></span><code><span class="w">  </span><span class="cp">&lt;?xml version="1.0"?&gt;</span>
+<span class="w">  </span><span class="nt">&lt;md:EntityDescriptor</span><span class="w"> </span><span class="na">xmlns:md=</span><span class="s">"urn:oasis:names:tc:SAML:2.0:metadata"</span><span class="w"> </span><span class="na">xmlns:mdattr=</span><span class="s">"urn:oasis:names:tc:SAML:metadata:attribute"</span><span class="w"> </span><span class="na">xmlns:saml=</span><span class="s">"urn:oasis:names:tc:SAML:2.0:assertion"</span><span class="w"> </span><span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span><span class="w"> </span><span class="na">xmlns:mdui=</span><span class="s">"urn:oasis:names:tc:SAML:metadata:ui"</span><span class="w"> </span><span class="na">xmlns:ds=</span><span class="s">"http://www.w3.org/2000/09/xmldsig#"</span><span class="w"> </span><span class="na">entityID=</span><span class="s">"https://www.example.com/saml/saml2/idp/metadata.php"</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;md:IDPSSODescriptor</span><span class="w"> </span><span class="na">protocolSupportEnumeration=</span><span class="s">"urn:oasis:names:tc:SAML:2.0:protocol"</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;md:Extensions&gt;</span>
+<span class="w">        </span><span class="nt">&lt;mdui:UIInfo</span><span class="w"> </span><span class="na">xmlns:mdui=</span><span class="s">"urn:oasis:names:tc:SAML:metadata:ui"</span><span class="nt">&gt;</span>
+<span class="w">          </span><span class="nt">&lt;mdui:DisplayName</span><span class="w"> </span><span class="na">xml:lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>English<span class="w"> </span>name<span class="nt">&lt;/mdui:DisplayName&gt;</span>
+<span class="w">          </span><span class="nt">&lt;mdui:DisplayName</span><span class="w"> </span><span class="na">xml:lang=</span><span class="s">"es"</span><span class="nt">&gt;</span>Nombre<span class="w"> </span>en<span class="w"> </span>Espa<span class="ni">&amp;#xF1;</span>ol<span class="nt">&lt;/mdui:DisplayName&gt;</span>
+<span class="w">          </span><span class="nt">&lt;mdui:Description</span><span class="w"> </span><span class="na">xml:lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>English<span class="w"> </span>description<span class="nt">&lt;/mdui:Description&gt;</span>
+<span class="w">          </span><span class="nt">&lt;mdui:Description</span><span class="w"> </span><span class="na">xml:lang=</span><span class="s">"es"</span><span class="nt">&gt;</span>Descripci<span class="ni">&amp;#xF3;</span>n<span class="w"> </span>en<span class="w"> </span>Espa<span class="ni">&amp;#xF1;</span>ol<span class="nt">&lt;/mdui:Description&gt;</span>
+<span class="w">          </span><span class="nt">&lt;mdui:InformationURL</span><span class="w"> </span><span class="na">xml:lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>http://example.com/info/en<span class="nt">&lt;/mdui:InformationURL&gt;</span>
+<span class="w">          </span><span class="nt">&lt;mdui:InformationURL</span><span class="w"> </span><span class="na">xml:lang=</span><span class="s">"es"</span><span class="nt">&gt;</span>http://example.com/info/es<span class="nt">&lt;/mdui:InformationURL&gt;</span>
+<span class="w">          </span><span class="nt">&lt;mdui:PrivacyStatementURL</span><span class="w"> </span><span class="na">xml:lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>http://example.com/privacy/en<span class="nt">&lt;/mdui:PrivacyStatementURL&gt;</span>
+<span class="w">          </span><span class="nt">&lt;mdui:PrivacyStatementURL</span><span class="w"> </span><span class="na">xml:lang=</span><span class="s">"es"</span><span class="nt">&gt;</span>http://example.com/privacy/es<span class="nt">&lt;/mdui:PrivacyStatementURL&gt;</span>
+<span class="w">          </span><span class="nt">&lt;mdui:Keywords</span><span class="w"> </span><span class="na">xml:lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>communication<span class="w"> </span>federated+session<span class="nt">&lt;/mdui:Keywords&gt;</span>
+<span class="w">          </span><span class="nt">&lt;mdui:Keywords</span><span class="w"> </span><span class="na">xml:lang=</span><span class="s">"es"</span><span class="nt">&gt;</span>comunicaci<span class="ni">&amp;#xF3;</span>n<span class="w"> </span>sesi<span class="ni">&amp;#xF3;</span>n+federated<span class="nt">&lt;/mdui:Keywords&gt;</span>
+<span class="w">          </span><span class="nt">&lt;mdui:Logo</span><span class="w"> </span><span class="na">width=</span><span class="s">"400"</span><span class="w"> </span><span class="na">height=</span><span class="s">"200"</span><span class="w"> </span><span class="na">xml:lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>http://example.com/logo1.png<span class="nt">&lt;/mdui:Logo&gt;</span>
+<span class="w">          </span><span class="nt">&lt;mdui:Logo</span><span class="w"> </span><span class="na">width=</span><span class="s">"401"</span><span class="w"> </span><span class="na">height=</span><span class="s">"201"</span><span class="nt">&gt;</span>http://example.com/logo2.png<span class="nt">&lt;/mdui:Logo&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/mdui:UIInfo&gt;</span>
+<span class="w">        </span><span class="nt">&lt;mdui:DiscoHints</span><span class="w"> </span><span class="na">xmlns:mdui=</span><span class="s">"urn:oasis:names:tc:SAML:metadata:ui"</span><span class="nt">&gt;</span>
+<span class="w">          </span><span class="nt">&lt;mdui:IPHint&gt;</span>130.59.0.0/16<span class="nt">&lt;/mdui:IPHint&gt;</span>
+<span class="w">          </span><span class="nt">&lt;mdui:IPHint&gt;</span>2001:620::0/96<span class="nt">&lt;/mdui:IPHint&gt;</span>
+<span class="w">          </span><span class="nt">&lt;mdui:DomainHint&gt;</span>example.com<span class="nt">&lt;/mdui:DomainHint&gt;</span>
+<span class="w">          </span><span class="nt">&lt;mdui:DomainHint&gt;</span>www.example.com<span class="nt">&lt;/mdui:DomainHint&gt;</span>
+<span class="w">          </span><span class="nt">&lt;mdui:GeolocationHint&gt;</span>geo:47.37328,8.531126<span class="nt">&lt;/mdui:GeolocationHint&gt;</span>
+<span class="w">          </span><span class="nt">&lt;mdui:GeolocationHint&gt;</span>geo:19.34343,12.342514<span class="nt">&lt;/mdui:GeolocationHint&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/mdui:DiscoHints&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/md:Extensions&gt;</span>
+<span class="w">      </span><span class="nt">&lt;md:KeyDescriptor</span><span class="w"> </span><span class="na">use=</span><span class="s">"signing"</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;ds:KeyInfo</span><span class="w"> </span><span class="na">xmlns:ds=</span><span class="s">"http://www.w3.org/2000/09/xmldsig#"</span><span class="nt">&gt;</span>
+<span class="w">          </span><span class="nt">&lt;ds:X509Data&gt;</span>
+<span class="w">          </span>...
 </code></pre>
 </div></main></body>
 </html>

@@ -166,14 +166,14 @@ This ensures that both those entities that use your old metadata and those that 
  :
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'__DYNAMIC:1__'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'host'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'__DEFAULT__'</span><span class="o">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'auth'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'example-userpass'</span><span class="o">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'privatekey'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'old.pem'</span><span class="o">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'certificate'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'old.crt'</span><span class="o">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'new_privatekey'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'new.pem'</span><span class="o">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'new_certificate'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'new.crt'</span><span class="o">,</span><span class="w"></span>
-<span class="w">  </span><span class="o">);</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'__DYNAMIC:1__'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span>
+<span class="w">      </span><span class="s1">'host'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'__DEFAULT__'</span><span class="o">,</span>
+<span class="w">      </span><span class="s1">'auth'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'example-userpass'</span><span class="o">,</span>
+<span class="w">      </span><span class="s1">'privatekey'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'old.pem'</span><span class="o">,</span>
+<span class="w">      </span><span class="s1">'certificate'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'old.crt'</span><span class="o">,</span>
+<span class="w">      </span><span class="s1">'new_privatekey'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'new.pem'</span><span class="o">,</span>
+<span class="w">      </span><span class="s1">'new_certificate'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'new.crt'</span><span class="o">,</span>
+<span class="w">  </span><span class="o">);</span>
 </code></pre>
 </div>
 <h2 id="distribute-your-new-metadata">
@@ -239,12 +239,12 @@ This will cause your old key to be removed from your metadata.
  :
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'__DYNAMIC:1__'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'host'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'__DEFAULT__'</span><span class="o">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'auth'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'example-userpass'</span><span class="o">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'privatekey'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'new.pem'</span><span class="o">,</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'certificate'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'new.crt'</span><span class="o">,</span><span class="w"></span>
-<span class="w">  </span><span class="o">);</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'__DYNAMIC:1__'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span>
+<span class="w">      </span><span class="s1">'host'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'__DEFAULT__'</span><span class="o">,</span>
+<span class="w">      </span><span class="s1">'auth'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'example-userpass'</span><span class="o">,</span>
+<span class="w">      </span><span class="s1">'privatekey'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'new.pem'</span><span class="o">,</span>
+<span class="w">      </span><span class="s1">'certificate'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'new.crt'</span><span class="o">,</span>
+<span class="w">  </span><span class="o">);</span>
 </code></pre>
 </div>
 <h2 id="distribute-your-final-metadata">

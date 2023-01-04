@@ -112,11 +112,11 @@ This certificate is usually selfsigned and stored in the certificate store of th
  The IdP requests a client certificate from the user agent during the TLS handshake. This behaviour is enabled with the following Apache webserver configuration:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="nb">SSLEngine</span><span class="w"> </span><span class="k">on</span><span class="w"></span>
-<span class="nb">SSLCertificateFile</span><span class="w"> </span><span class="sx">/etc/openssl/certs/server.crt</span><span class="w"></span>
-<span class="nb">SSLCertificateKeyFile</span><span class="w"> </span><span class="sx">/etc/openssl/private/server.key</span><span class="w"></span>
-<span class="nb">SSLVerifyClient</span><span class="w"> </span>optional_no_ca<span class="w"></span>
-<span class="nb">SSLOptions</span><span class="w"> </span>+ExportCertData<span class="w"></span>
+ <pre><span></span><code><span class="nb">SSLEngine</span><span class="w"> </span><span class="k">on</span>
+<span class="nb">SSLCertificateFile</span><span class="w"> </span><span class="sx">/etc/openssl/certs/server.crt</span>
+<span class="nb">SSLCertificateKeyFile</span><span class="w"> </span><span class="sx">/etc/openssl/private/server.key</span>
+<span class="nb">SSLVerifyClient</span><span class="w"> </span>optional_no_ca
+<span class="nb">SSLOptions</span><span class="w"> </span>+ExportCertData
 </code></pre>
 </div>
 <p>

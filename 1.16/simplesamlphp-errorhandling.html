@@ -130,11 +130,11 @@ The simplest case is if you want to throw it during the
 In those methods, you can just throw an exception:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="nv">public</span><span class="w"> </span><span class="nv">function</span><span class="w"> </span><span class="nv">process</span><span class="ss">(</span><span class="o">&amp;</span>$<span class="nv">state</span><span class="ss">)</span><span class="w"> </span>{<span class="w"></span>
-<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="ss">(</span>$<span class="nv">state</span>[<span class="s1">'something'</span>]<span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nv">FALSE</span><span class="ss">)</span><span class="w"> </span>{<span class="w"></span>
-<span class="w">          </span><span class="nv">throw</span><span class="w"> </span><span class="nv">new</span><span class="w"> </span><span class="nv">SimpleSAML_Error_Exception</span><span class="ss">(</span><span class="s1">'Something is wrong...'</span><span class="ss">)</span><span class="c1">;</span><span class="w"></span>
-<span class="w">      </span>}<span class="w"></span>
-<span class="w">  </span>}<span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="nv">public</span><span class="w"> </span><span class="nv">function</span><span class="w"> </span><span class="nv">process</span><span class="ss">(</span><span class="o">&amp;</span>$<span class="nv">state</span><span class="ss">)</span><span class="w"> </span>{
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="ss">(</span>$<span class="nv">state</span>[<span class="s1">'something'</span>]<span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nv">FALSE</span><span class="ss">)</span><span class="w"> </span>{
+<span class="w">          </span><span class="nv">throw</span><span class="w"> </span><span class="nv">new</span><span class="w"> </span><span class="nv">SimpleSAML_Error_Exception</span><span class="ss">(</span><span class="s1">'Something is wrong...'</span><span class="ss">)</span><span class="c1">;</span>
+<span class="w">      </span>}
+<span class="w">  </span>}
 </code></pre>
 </div>
 <p>
@@ -148,12 +148,12 @@ In those methods, you can just throw an exception:
  function:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">&lt;</span><span class="err">?</span><span class="n">php</span><span class="w"></span>
-<span class="w">  </span><span class="o">$</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">_REQUEST</span><span class="p">[</span><span class="s1">'StateId'</span><span class="p">];</span><span class="w"></span>
-<span class="w">  </span><span class="o">$</span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SimpleSAML_Auth_State</span><span class="p">::</span><span class="n">loadState</span><span class="p">(</span><span class="o">$</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="s1">'somestage...'</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="n">SimpleSAML_Auth_State</span><span class="p">::</span><span class="n">throwException</span><span class="p">(</span><span class="o">$</span><span class="n">state</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="n">new</span><span class="w"> </span><span class="n">SimpleSAML_Error_Exception</span><span class="p">(</span><span class="s1">'Something is wrong...'</span><span class="p">));</span><span class="w"></span>
-<span class="w">  </span><span class="err">?</span><span class="o">&gt;</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="o">&lt;</span><span class="err">?</span><span class="n">php</span>
+<span class="w">  </span><span class="o">$</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">_REQUEST</span><span class="p">[</span><span class="s1">'StateId'</span><span class="p">];</span>
+<span class="w">  </span><span class="o">$</span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SimpleSAML_Auth_State</span><span class="p">::</span><span class="n">loadState</span><span class="p">(</span><span class="o">$</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="s1">'somestage...'</span><span class="p">);</span>
+<span class="w">  </span><span class="n">SimpleSAML_Auth_State</span><span class="p">::</span><span class="n">throwException</span><span class="p">(</span><span class="o">$</span><span class="n">state</span><span class="p">,</span>
+<span class="w">      </span><span class="n">new</span><span class="w"> </span><span class="n">SimpleSAML_Error_Exception</span><span class="p">(</span><span class="s1">'Something is wrong...'</span><span class="p">));</span>
+<span class="w">  </span><span class="err">?</span><span class="o">&gt;</span>
 </code></pre>
 </div>
 <p>
@@ -501,12 +501,12 @@ The exception can be located in a field named
 The following code illustrates this behaviour:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">array_key_exists</span><span class="p">(</span><span class="n">SimpleSAML_Auth_State</span><span class="p">::</span><span class="n">EXCEPTION_PARAM</span><span class="p">,</span><span class="w"> </span><span class="o">$</span><span class="n">_REQUEST</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="o">$</span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SimpleSAML_Auth_State</span><span class="p">::</span><span class="n">loadExceptionState</span><span class="p">();</span><span class="w"></span>
-<span class="w">      </span><span class="o">$</span><span class="n">exception</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">state</span><span class="p">[</span><span class="n">SimpleSAML_Auth_State</span><span class="p">::</span><span class="n">EXCEPTION_DATA</span><span class="p">];</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">array_key_exists</span><span class="p">(</span><span class="n">SimpleSAML_Auth_State</span><span class="p">::</span><span class="n">EXCEPTION_PARAM</span><span class="p">,</span><span class="w"> </span><span class="o">$</span><span class="n">_REQUEST</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="o">$</span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SimpleSAML_Auth_State</span><span class="p">::</span><span class="n">loadExceptionState</span><span class="p">();</span>
+<span class="w">      </span><span class="o">$</span><span class="n">exception</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">state</span><span class="p">[</span><span class="n">SimpleSAML_Auth_State</span><span class="p">::</span><span class="n">EXCEPTION_DATA</span><span class="p">];</span>
 
-<span class="w">      </span><span class="o">/*</span><span class="w"> </span><span class="n">Process</span><span class="w"> </span><span class="n">exception</span><span class="o">.</span><span class="w"> </span><span class="o">*/</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="o">/*</span><span class="w"> </span><span class="n">Process</span><span class="w"> </span><span class="n">exception</span><span class="o">.</span><span class="w"> </span><span class="o">*/</span>
+<span class="w">  </span><span class="p">}</span>
 </code></pre>
 </div>
 <h3 id="simplesaml_auth_default">
@@ -574,28 +574,28 @@ The result will be delivered directly if it is possible, but if not, it will be 
  The code for handling this becomes something like:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">array_key_exists</span><span class="p">(</span><span class="n">SimpleSAML_Auth_State</span><span class="p">::</span><span class="n">EXCEPTION_PARAM</span><span class="p">,</span><span class="w"> </span><span class="o">$</span><span class="n">_REQUEST</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="o">$</span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SimpleSAML_Auth_State</span><span class="p">::</span><span class="n">loadExceptionState</span><span class="p">();</span><span class="w"></span>
-<span class="w">      </span><span class="o">$</span><span class="n">exception</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">state</span><span class="p">[</span><span class="n">SimpleSAML_Auth_State</span><span class="p">::</span><span class="n">EXCEPTION_DATA</span><span class="p">];</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">array_key_exists</span><span class="p">(</span><span class="n">SimpleSAML_Auth_State</span><span class="p">::</span><span class="n">EXCEPTION_PARAM</span><span class="p">,</span><span class="w"> </span><span class="o">$</span><span class="n">_REQUEST</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="o">$</span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SimpleSAML_Auth_State</span><span class="p">::</span><span class="n">loadExceptionState</span><span class="p">();</span>
+<span class="w">      </span><span class="o">$</span><span class="n">exception</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">state</span><span class="p">[</span><span class="n">SimpleSAML_Auth_State</span><span class="p">::</span><span class="n">EXCEPTION_DATA</span><span class="p">];</span>
 
-<span class="w">      </span><span class="o">/*</span><span class="w"> </span><span class="n">Handle</span><span class="w"> </span><span class="n">exception</span><span class="o">...</span><span class="w"> </span><span class="o">*/</span><span class="w"></span>
-<span class="w">      </span><span class="p">[</span><span class="o">...</span><span class="p">]</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="o">/*</span><span class="w"> </span><span class="n">Handle</span><span class="w"> </span><span class="n">exception</span><span class="o">...</span><span class="w"> </span><span class="o">*/</span>
+<span class="w">      </span><span class="p">[</span><span class="o">...</span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="o">$</span><span class="n">procChain</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">...</span><span class="p">];</span><span class="w"></span>
+<span class="w">  </span><span class="o">$</span><span class="n">procChain</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">...</span><span class="p">];</span>
 
-<span class="w">  </span><span class="o">$</span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">array</span><span class="p">(</span><span class="w"></span>
-<span class="w">      </span><span class="s1">'ReturnURL'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">SimpleSAML_Utilities</span><span class="p">::</span><span class="n">selfURLNoQuery</span><span class="p">(),</span><span class="w"></span>
-<span class="w">      </span><span class="n">SimpleSAML_Auth_State</span><span class="p">::</span><span class="n">EXCEPTION_HANDLER_URL</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">SimpleSAML_Utilities</span><span class="p">::</span><span class="n">selfURLNoQuery</span><span class="p">(),</span><span class="w"></span>
-<span class="w">      </span><span class="p">[</span><span class="o">...</span><span class="p">],</span><span class="w"></span>
-<span class="w">  </span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="o">$</span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">array</span><span class="p">(</span>
+<span class="w">      </span><span class="s1">'ReturnURL'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">SimpleSAML_Utilities</span><span class="p">::</span><span class="n">selfURLNoQuery</span><span class="p">(),</span>
+<span class="w">      </span><span class="n">SimpleSAML_Auth_State</span><span class="p">::</span><span class="n">EXCEPTION_HANDLER_URL</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">SimpleSAML_Utilities</span><span class="p">::</span><span class="n">selfURLNoQuery</span><span class="p">(),</span>
+<span class="w">      </span><span class="p">[</span><span class="o">...</span><span class="p">],</span>
+<span class="w">  </span><span class="p">)</span>
 
-<span class="w">  </span><span class="n">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="o">$</span><span class="n">procChain</span><span class="o">-&gt;</span><span class="n">processState</span><span class="p">(</span><span class="o">$</span><span class="n">state</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="n">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SimpleSAML_Error_Exception</span><span class="w"> </span><span class="o">$</span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="o">/*</span><span class="w"> </span><span class="n">Handle</span><span class="w"> </span><span class="n">exception</span><span class="o">.</span><span class="w"> </span><span class="o">*/</span><span class="w"></span>
-<span class="w">      </span><span class="p">[</span><span class="o">...</span><span class="p">];</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="n">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="o">$</span><span class="n">procChain</span><span class="o">-&gt;</span><span class="n">processState</span><span class="p">(</span><span class="o">$</span><span class="n">state</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="n">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SimpleSAML_Error_Exception</span><span class="w"> </span><span class="o">$</span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="o">/*</span><span class="w"> </span><span class="n">Handle</span><span class="w"> </span><span class="n">exception</span><span class="o">.</span><span class="w"> </span><span class="o">*/</span>
+<span class="w">      </span><span class="p">[</span><span class="o">...</span><span class="p">];</span>
+<span class="w">  </span><span class="p">}</span>
 </code></pre>
 </div>
 <h4 id="note_3">
@@ -624,12 +624,12 @@ This is done to be consistent in what the application receives - now it will alw
  Example code for this function, which implements the same functionality as SimpleSAML_Error_Error::show, looks something like:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="n">public</span><span class="w"> </span><span class="n">static</span><span class="w"> </span><span class="kr">function</span><span class="w"> </span><span class="n">show</span><span class="p">(</span><span class="n">SimpleSAML_Configuration</span><span class="w"> </span><span class="err">$</span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="n">array</span><span class="w"> </span><span class="err">$</span><span class="n">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="err">$</span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">SimpleSAML_XHTML_Template</span><span class="p">(</span><span class="err">$</span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="s">'error.php'</span><span class="p">,</span><span class="w"> </span><span class="s">'errors'</span><span class="p">);</span><span class="w"></span>
-<span class="w">      </span><span class="err">$</span><span class="n">t</span><span class="o">-&gt;</span><span class="kt">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">array_merge</span><span class="p">(</span><span class="err">$</span><span class="n">t</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="err">$</span><span class="n">data</span><span class="p">);</span><span class="w"></span>
-<span class="w">      </span><span class="err">$</span><span class="n">t</span><span class="o">-&gt;</span><span class="n">show</span><span class="p">();</span><span class="w"></span>
-<span class="w">      </span><span class="n">exit</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+ <pre><span></span><code><span class="w">  </span><span class="n">public</span><span class="w"> </span><span class="n">static</span><span class="w"> </span><span class="kr">function</span><span class="w"> </span><span class="n">show</span><span class="p">(</span><span class="n">SimpleSAML_Configuration</span><span class="w"> </span><span class="err">$</span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="n">array</span><span class="w"> </span><span class="err">$</span><span class="n">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="err">$</span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">SimpleSAML_XHTML_Template</span><span class="p">(</span><span class="err">$</span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="s">'error.php'</span><span class="p">,</span><span class="w"> </span><span class="s">'errors'</span><span class="p">);</span>
+<span class="w">      </span><span class="err">$</span><span class="n">t</span><span class="o">-&gt;</span><span class="kt">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">array_merge</span><span class="p">(</span><span class="err">$</span><span class="n">t</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="err">$</span><span class="n">data</span><span class="p">);</span>
+<span class="w">      </span><span class="err">$</span><span class="n">t</span><span class="o">-&gt;</span><span class="n">show</span><span class="p">();</span>
+<span class="w">      </span><span class="n">exit</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
 </code></pre>
 </div></main></body>
 </html>

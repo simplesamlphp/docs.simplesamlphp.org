@@ -239,14 +239,14 @@ mkdir -p themes/fancytheme
  A good start is to modify the reference to the default CSS:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="o">&lt;</span><span class="nx">link</span><span class="w"> </span><span class="nx">rel</span><span class="o">=</span><span class="s2">"stylesheet"</span><span class="w"> </span><span class="nx">type</span><span class="o">=</span><span class="s2">"text/css"</span><span class="w"> </span><span class="nx">href</span><span class="o">=</span><span class="s2">"/</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">data</span><span class="p">[</span><span class="s1">'baseurlpath'</span><span class="p">];</span> <span class="cp">?&gt;</span><span class="s2">resources/default.css"</span><span class="w"> </span><span class="o">/&gt;</span><span class="w"></span>
+ <pre><span></span><code><span class="o">&lt;</span><span class="nx">link</span><span class="w"> </span><span class="nx">rel</span><span class="o">=</span><span class="s2">"stylesheet"</span><span class="w"> </span><span class="nx">type</span><span class="o">=</span><span class="s2">"text/css"</span><span class="w"> </span><span class="nx">href</span><span class="o">=</span><span class="s2">"/</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">data</span><span class="p">[</span><span class="s1">'baseurlpath'</span><span class="p">];</span> <span class="cp">?&gt;</span><span class="s2">resources/default.css"</span><span class="w"> </span><span class="o">/&gt;</span>
 </code></pre>
 </div>
 <p>
  to in example:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="o">&lt;</span><span class="nx">link</span><span class="w"> </span><span class="nx">rel</span><span class="o">=</span><span class="s2">"stylesheet"</span><span class="w"> </span><span class="nx">type</span><span class="o">=</span><span class="s2">"text/css"</span><span class="w"> </span><span class="nx">href</span><span class="o">=</span><span class="s2">"/</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">data</span><span class="p">[</span><span class="s1">'baseurlpath'</span><span class="p">];</span> <span class="cp">?&gt;</span><span class="s2">resources/fancytheme/default.css"</span><span class="w"> </span><span class="o">/&gt;</span><span class="w"></span>
+ <pre><span></span><code><span class="o">&lt;</span><span class="nx">link</span><span class="w"> </span><span class="nx">rel</span><span class="o">=</span><span class="s2">"stylesheet"</span><span class="w"> </span><span class="nx">type</span><span class="o">=</span><span class="s2">"text/css"</span><span class="w"> </span><span class="nx">href</span><span class="o">=</span><span class="s2">"/</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">data</span><span class="p">[</span><span class="s1">'baseurlpath'</span><span class="p">];</span> <span class="cp">?&gt;</span><span class="s2">resources/fancytheme/default.css"</span><span class="w"> </span><span class="o">/&gt;</span>
 </code></pre>
 </div>
 <h2 id="examples">
@@ -335,14 +335,14 @@ mkdir -p themes/fancytheme
  by using a generator for the URL:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">SimpleSAML\Module</span><span class="o">::</span><span class="na">getModuleURL</span><span class="p">(</span><span class="s1">'mymodule/logo.png'</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="w"></span>
+ <pre><span></span><code><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">SimpleSAML\Module</span><span class="o">::</span><span class="na">getModuleURL</span><span class="p">(</span><span class="s1">'mymodule/logo.png'</span><span class="p">);</span> <span class="cp">?&gt;</span>
 </code></pre>
 </div>
 <p>
  Example for a custom CSS stylesheet file:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="o">&lt;</span><span class="nx">link</span><span class="w"> </span><span class="nx">rel</span><span class="o">=</span><span class="s2">"stylesheet"</span><span class="w"> </span><span class="nx">href</span><span class="o">=</span><span class="s2">"</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">SimpleSAML\Module</span><span class="o">::</span><span class="na">getModuleURL</span><span class="p">(</span><span class="s1">'mymodule/style.css'</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s2">"</span><span class="o">&gt;</span><span class="w"></span>
+ <pre><span></span><code><span class="o">&lt;</span><span class="nx">link</span><span class="w"> </span><span class="nx">rel</span><span class="o">=</span><span class="s2">"stylesheet"</span><span class="w"> </span><span class="nx">href</span><span class="o">=</span><span class="s2">"</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">SimpleSAML\Module</span><span class="o">::</span><span class="na">getModuleURL</span><span class="p">(</span><span class="s1">'mymodule/style.css'</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s2">"</span><span class="o">&gt;</span>
 </code></pre>
 </div>
 <h2 id="migrating-to-twig-templates">

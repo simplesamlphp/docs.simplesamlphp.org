@@ -172,9 +172,9 @@ panel to trigger jobs manually.
  directory.
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="o">[</span>root@simplesamlphp<span class="o">]</span> <span class="nb">cd</span> /var/simplesamlphp
-<span class="o">[</span>root@simplesamlphp simplesamlphp<span class="o">]</span> touch modules/cron/enable
-<span class="o">[</span>root@simplesamlphp simplesamlphp<span class="o">]</span> cp modules/cron/config/module_cron.php.dist config/module_cron.php
+ <pre><span></span><code><span class="o">[</span>root@simplesamlphp<span class="o">]</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/var/simplesamlphp
+<span class="o">[</span>root@simplesamlphp<span class="w"> </span>simplesamlphp<span class="o">]</span><span class="w"> </span>touch<span class="w"> </span>modules/cron/enable
+<span class="o">[</span>root@simplesamlphp<span class="w"> </span>simplesamlphp<span class="o">]</span><span class="w"> </span>cp<span class="w"> </span>modules/cron/config/module_cron.php.dist<span class="w"> </span>config/module_cron.php
 </code></pre>
 </div>
 <h2 id="configuring-the-cron-module">
@@ -248,7 +248,7 @@ your SimpleSAMLphp installation.
  Finally, add it to your crontab by going back to the terminal, and editing with:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="o">[</span>root@simplesamlphp config<span class="o">]</span><span class="c1"># crontab -e</span>
+ <pre><span></span><code><span class="o">[</span>root@simplesamlphp<span class="w"> </span>config<span class="o">]</span><span class="c1"># crontab -e</span>
 </code></pre>
 </div>
 <p>
@@ -260,7 +260,7 @@ the one you use normally appears, exit, and configure the
  variable to tell the command line which editor it should use:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="o">[</span>root@simplesamlphp config<span class="o">]</span><span class="c1"># export EDITOR=emacs</span>
+ <pre><span></span><code><span class="o">[</span>root@simplesamlphp<span class="w"> </span>config<span class="o">]</span><span class="c1"># export EDITOR=emacs</span>
 </code></pre>
 </div>
 <p>
@@ -351,11 +351,11 @@ logging configuration from
  </li>
 </ul>
 <div class="codehilite">
- <pre><span></span><code>su -s <span class="s2">"/bin/sh"</span> <span class="se">\</span>
-   -c <span class="s2">"nice -n 10 \</span>
+ <pre><span></span><code>su<span class="w"> </span>-s<span class="w"> </span><span class="s2">"/bin/sh"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>-c<span class="w"> </span><span class="s2">"nice -n 10 \</span>
 <span class="s2">       php -d max_execution_time=120 -d memory_limit=600M \</span>
-<span class="s2">       /var/simplesamlphp/modules/cron/bin/cron.php -t hourly"</span> <span class="se">\</span>
-    apache
+<span class="s2">       /var/simplesamlphp/modules/cron/bin/cron.php -t hourly"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>apache
 </code></pre>
 </div></main></body>
 </html>
