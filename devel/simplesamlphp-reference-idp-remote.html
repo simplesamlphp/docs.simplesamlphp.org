@@ -386,20 +386,13 @@
    [ 'Format' =&gt; the format, 'AllowCreate' =&gt; true or false ]
   </code>
   .
-  Set to
+  Set to an empty array
   <code>
-   false
+   []
   </code>
-  instead of an array to omit sending any specific NameIDPolicy
-  in the AuthnRequest.
- </dd>
- <dd>
-  For compatibility purposes,
-  <code>
-   null
-  </code>
-  is equivalent to Transient and a format
-  can be defined as a string instead of an array. These variants are deprecated.
+  to omit sending any specific NameIDPolicy element
+  in the AuthnRequest. When the entire option or either array key is unset,
+  the defaults are transient and true respectively.
  </dd>
  <dt>
   <code>
