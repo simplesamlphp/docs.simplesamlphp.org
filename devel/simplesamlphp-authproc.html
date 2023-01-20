@@ -136,7 +136,7 @@
  at the IdP after authentication is complete, and just before you are sent back to the SP. The same API is available on the SP, after you have received a successful Authentication Response from the IdP and before you are sent back to the SP application.
 </p>
 <p>
- Authentication processing filters postprocess authentication information received from authentication sources. It is possible to use this for additional authentication checks, requesting the user's consent before delivering attributes about the user, modifying the user's attributes, and other things which should be performed before returning the user to the service provider he came from.
+ Authentication processing filters postprocess authentication information received from authentication sources. It is possible to use this for additional authentication checks, requesting the user's consent before delivering attributes about the user, modifying the user's attributes, and other things which should be performed before returning the user to the service provider they came from.
 </p>
 <p>
  Examples of neat things to do using Authentication Processing Filters:
@@ -155,32 +155,9 @@
   Ask the user for consent, before the user is sent back to a service.
  </li>
  <li>
-  Implement basic Access Control on the IdP (not necessarily a good idea), limiting access for some users to some SPs.
+  Implement basic Access Control on the IdP, limiting access for some users to some SPs.
  </li>
 </ul>
-<p>
- Be aware that Authentication Processing Filters do replace some of the previous features in SimpleSAMLphp, named:
-</p>
-<ul>
- <li>
-  <code>
-   attributemap
-  </code>
- </li>
- <li>
-  <code>
-   attributealter
-  </code>
- </li>
- <li>
-  <code>
-   attribute filter
-  </code>
- </li>
-</ul>
-<p>
- Later in this document, we will describe in detail the alternative Authentication Processing Filters that will replicate these functionalities.
-</p>
 <h2 id="how-to-configure-auth-proc-filters">
  How to configure Auth Proc Filters
 </h2>
@@ -226,6 +203,16 @@
   </code>
  </li>
 </ul>
+<p>
+ <em>
+  Note
+ </em>
+ : An Auth Proc Filter will not work in the "Test authentication sources" option in the web UI of a SimpleSAMLphp IdP. It will only be triggered in conjunction with an actual SP. So you need to set up an IdP
+ <em>
+  and
+ </em>
+ and SP when testing your filter.
+</p>
 <p>
  The configuration of
  <em>
@@ -300,7 +287,7 @@
  </em>
  then be:
  <code>
-  modules/core/lib/Auth/Process/AttributeLimit.php
+  modules/core/src/Auth/Process/AttributeLimit.php
  </code>
  .
 </p>
@@ -309,19 +296,15 @@
  <code>
   core
  </code>
- module. In addition the
- <code>
-  consent
- </code>
- module that is included in the SimpleSAMLphp distribution implements a filter. Beyond that, you are encouraged to create your own filters and share with the community. If you have created a cool
+ module, but there are
+many others publised as [SimpleSAMLphp modules)[https://simplesamlphp.org/modules/] you can install. Beyond that, you are
+encouraged to create your own filters and share with the community. If you have
+created a cool
  <em>
   Auth Proc Filter
  </em>
- that does something useful, let us know, and we may share it on the
- <a href="http://simplesamlphp.org">
-  SimpleSAMLphp web site
- </a>
- .
+ that does something useful, let us know, and
+we may add it on the Modules overview.
 </p>
 <p>
  When you know the class definition of a filter, and the priority, the simple way to configure the filter is:
@@ -425,7 +408,7 @@
  metadata. Here is an example of a filter added in a metadata file:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="x">'https://example.org/saml-idp' =&gt; [</span>
+ <pre><span></span><code><span class="x">$metadata['https://example.org/saml-idp'] = [</span>
 <span class="x">    'host' =&gt; '__DEFAULT_',</span>
 <span class="x">    'privatekey' =&gt; 'example.org.pem',</span>
 <span class="x">    'certificate' =&gt; 'example.org.crt',</span>
@@ -711,14 +694,14 @@ for externally hosted modules that may provide a processing filter.
   -class.
  </li>
  <li>
-  If a constructor is implemented, it must first call the parent constructor, passing along all parameters, before accessing any of the parameters. In general, only the $config parameter should be accessed.
+  If a constructor is implemented, it must first call the parent constructor, passing along all parameters, before accessing any of the parameters. Only the $config parameter can be accessed.
  </li>
  <li>
   The
   <code>
-   process(&amp;$request)
+   process(array &amp;$state)
   </code>
-  -function must be implemented. If this function completes, it is assumed that processing is completed, and that the $request array has been updated.
+  -function must be implemented. If this function completes, it is assumed that processing is completed, and that the $state array has been updated.
  </li>
  <li>
   If the
@@ -757,16 +740,6 @@ for externally hosted modules that may provide a processing filter.
   -function.
  </li>
 </ul>
-<p>
- <em>
-  Note
- </em>
- : An Auth Proc Filter will not work in the "Test authentication sources" option in the web UI of a SimpleSAMLphp IdP. It will only be triggered in conjunction with an actual SP. So you need to set up an IdP
- <em>
-  and
- </em>
- and SP when testing your filter.
-</p>
 <p>
  Don't hestitate to ask on the SimpleSAMLphp mailinglist if you have problems or questions, or want to share your
  <em>

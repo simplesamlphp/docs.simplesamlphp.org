@@ -93,7 +93,7 @@
 <p>
  All authentication sources are located in the
  <code>
-  lib/Auth/Source/
+  src/Auth/Source/
  </code>
  directory in a module, and the class name is
  <code>
@@ -269,7 +269,7 @@ If the username or password is incorrect, it should throw an error saying so:
   <p>
    The
    <code>
-    authenticate(&amp;$state)
+    authenticate(array &amp;$state)
    </code>
    -function must be implemented.
   If this function completes, it is assumed that the user is authenticated, and that the

@@ -240,7 +240,7 @@ directories and files:
   hook-section in the documentation for more information.
  </dd>
  <dt>
-  lib
+  src
  </dt>
  <dd>
   This directory contains classes which belong to this module.
@@ -255,7 +255,7 @@ directories and files:
   </code>
   in the
   <code>
-   lib
+   src
   </code>
   directory. Underscores in the class name will be translated into
   slashes.
@@ -267,7 +267,7 @@ directories and files:
   </code>
   , it will load the file named
   <code>
-   modules/example/lib/Auth/Source/Example.php
+   modules/example/src/Auth/Source/Example.php
   </code>
   .
  </dd>
@@ -278,7 +278,7 @@ directories and files:
   These are module-specific templates. To use one of these
   templates, specify
   <code>
-   &lt;module name&gt;:&lt;template file&gt;.php
+   &lt;module name&gt;:&lt;template file&gt;.twig
   </code>
   as the template file in the constructor of
   <code>
@@ -286,11 +286,11 @@ directories and files:
   </code>
   . For example,
   <code>
-   example:login-form.php
+   example:login-form.twig
   </code>
   is translated to the file
   <code>
-   modules/example/templates/default/login-form.php
+   modules/example/templates/default/login-form.twig
   </code>
   . Note that
   <code>
@@ -343,20 +343,20 @@ directories and files:
   </code>
   , the template
   <code>
-   templates/default/login.php
+   templates/default/login.twig
   </code>
   will be overridden by
   <code>
-   modules/example/themes/blue/default/login.php
+   modules/example/themes/blue/default/login.twig
   </code>
   , while the template
   <code>
-   modules/core/templates/default/loginuserpass.php
+   modules/core/templates/default/loginuserpass.twig
   </code>
   will be
   overridden by
   <code>
-   modules/example/themes/blue/core/loginuserpass.php
+   modules/example/themes/blue/core/loginuserpass.twig
   </code>
   .
  </dd>
@@ -444,7 +444,7 @@ this:
 </p>
 <div class="codehilite">
  <pre><span></span><code>  'example-static' =&gt; [
-      /* This maps to modules/exampleauth/lib/Auth/Source/Static.php */
+      /* This maps to modules/exampleauth/src/Auth/Source/Static.php */
       'exampleauth:StaticSource',
 
       /* The following is configuration which is passed on to
