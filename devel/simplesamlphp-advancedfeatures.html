@@ -365,15 +365,12 @@ Please see the
  Example code for the function with GeoIP country check:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="x">public static function checkSession($session, $init = false)</span>
+ <pre><span></span><code><span class="x">public static function checkSession(\SimpleSAML\Session $session, bool $init = false)</span>
 <span class="x">{</span>
 <span class="x">    $data_type = 'example:check_session';</span>
 <span class="x">    $data_key = 'remote_addr';</span>
 
-<span class="x">    $remote_addr = null;</span>
-<span class="x">    if (!empty($_SERVER['REMOTE_ADDR'])) {</span>
-<span class="x">        $remote_addr = (string)$_SERVER['REMOTE_ADDR'];</span>
-<span class="x">    }</span>
+<span class="x">    $remote_addr = strval($_SERVER['REMOTE_ADDR']);</span>
 
 <span class="x">    if ($init) {</span>
 <span class="x">        $session-&gt;setData(</span>
