@@ -272,7 +272,7 @@ deprecated
   simplesaml.nameidattribute. Use the appropriate authproc-filters instead
  </li>
  <li>
-  languages[priorities]
+  languages[priorities]. No replacement.
  </li>
  <li>
   attributes.extradictionaries. Add an attributes.po to your configured theme instead.
@@ -283,6 +283,12 @@ deprecated
  <li>
   base64attributes. Obsolete functionality, individual attributes can still be en/decoded
   with the existing attributeencodings feature.
+ </li>
+ <li>
+  database.slaves. This is now called database.secondaries.
+ </li>
+ <li>
+  metadata.handler. Since a long time the preferred option is metadata.sources.
  </li>
 </ul>
 <h2 id="changes-relevant-for-module-developers">
