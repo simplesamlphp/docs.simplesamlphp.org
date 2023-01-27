@@ -517,7 +517,7 @@ in alternative locations
  </code>
  that needs to be accessible from the web is
  <code>
-  www
+  public
  </code>
  . There are several ways of
 exposing SimpleSAMLphp depending on the way web sites are structured on your Apache web server. The following is just
@@ -534,9 +534,9 @@ look like this:
 
 <span class="w">    </span><span class="nb">SetEnv</span><span class="w"> </span>SIMPLESAMLPHP_CONFIG_DIR<span class="w"> </span><span class="sx">/var/simplesamlphp/config</span>
 
-<span class="w">    </span><span class="nb">Alias</span><span class="w"> </span><span class="sx">/simplesaml</span><span class="w"> </span><span class="sx">/var/simplesamlphp/www</span>
+<span class="w">    </span><span class="nb">Alias</span><span class="w"> </span><span class="sx">/simplesaml</span><span class="w"> </span><span class="sx">/var/simplesamlphp/public</span>
 
-<span class="w">    </span><span class="nt">&lt;Directory</span><span class="w"> </span><span class="s">/var/simplesamlphp/www</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Directory</span><span class="w"> </span><span class="s">/var/simplesamlphp/public</span><span class="nt">&gt;</span>
 <span class="w">        </span><span class="nb">Require</span><span class="w"> </span><span class="k">all</span><span class="w"> </span>granted
 <span class="w">    </span><span class="nt">&lt;/Directory&gt;</span>
 <span class="nt">&lt;/VirtualHost&gt;</span>
@@ -554,7 +554,7 @@ look like this:
  . SimpleSAMLphp makes several SAML interfaces available on the web; all of
 them are accessible through the
  <code>
-  www
+  public
  </code>
  subdirectory of your SimpleSAMLphp installation. You can name the alias
 whatever you want, but the name must be specified in the
@@ -644,7 +644,7 @@ in alternative locations
  </code>
  that needs to be accessible from the web is
  <code>
-  www
+  public
  </code>
  . There are several ways of
 exposing SimpleSAMLphp depending on the way web sites are structured on your Nginx web server. The following is just
@@ -665,7 +665,7 @@ look like this:
 <span class="w">    </span><span class="kn">ssl_ciphers</span><span class="w">            </span><span class="s">EECDH+AESGCM:EDH+AESGCM</span><span class="p">;</span>
 
 <span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="s">^~</span><span class="w"> </span><span class="s">/simplesaml</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kn">alias</span><span class="w"> </span><span class="s">/var/simplesamlphp/www</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">alias</span><span class="w"> </span><span class="s">/var/simplesamlphp/public</span><span class="p">;</span>
 
 <span class="w">        </span><span class="kn">location</span><span class="w"> </span><span class="p">~</span><span class="sr">^(?&lt;prefix&gt;/simplesaml)(?&lt;phpfile&gt;.+?\.php)(?&lt;pathinfo&gt;/.*)?$</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="kn">include</span><span class="w">          </span><span class="s">fastcgi_params</span><span class="p">;</span>
@@ -1078,7 +1078,7 @@ code or plugins of your own.
  is the version number). In
 this folder there are a lot of subfolders for library, metadata, configuration, etc. One of these folders is named
  <code>
-  www
+  public
  </code>
  .
  <strong>
@@ -1090,7 +1090,7 @@ this folder there are a lot of subfolders for library, metadata, configuration, 
  </code>
  folder outside the web root, and then link to the
  <code>
-  www
+  public
  </code>
  folder by using the
  <code>
@@ -1133,7 +1133,7 @@ possible way, though.
    <code>
     bash
  cd ~/public_html
- ln -s ../simplesamlphp/www simplesaml
+ ln -s ../simplesamlphp/public simplesaml
    </code>
   </p>
  </li>
@@ -1184,13 +1184,13 @@ possible way, though.
  </code>
  folder. If so, you can move the
  <code>
-  www
+  public
  </code>
  folder instead of symlinking it:
 </p>
 <div class="codehilite">
  <pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/public_html
-mv<span class="w"> </span>../simplesamlphp/www<span class="w"> </span>simplesaml
+mv<span class="w"> </span>../simplesamlphp/public<span class="w"> </span>simplesaml
 </code></pre>
 </div>
 <p>
@@ -1215,7 +1215,7 @@ mv<span class="w"> </span>../simplesamlphp/www<span class="w"> </span>simplesaml
    </code>
    is the
    <code>
-    www
+    public
    </code>
    directory from the
    <code>
@@ -1253,7 +1253,7 @@ mv<span class="w"> </span>../simplesamlphp/www<span class="w"> </span>simplesaml
  </strong>
  : note that this will make upgrading SimpleSAMLphp much more difficult, since you will need to move the
  <code>
-  www
+  public
  </code>
  directory and manually edit files every time you upgrade. It is also possible that this method does not work in
 future versions of SimpleSAMLphp, and therefore it is discouraged and should be used only as a last resort.

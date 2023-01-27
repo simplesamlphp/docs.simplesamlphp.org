@@ -290,6 +290,18 @@ deprecated
  <li>
   metadata.handler. Since a long time the preferred option is metadata.sources.
  </li>
+ <li>
+  Our assets have been moved from the
+  <code>
+   www
+  </code>
+  to the
+  <code>
+   public
+  </code>
+  directory. You may have to update
+  your webserver to reflect this change.
+ </li>
 </ul>
 <h2 id="changes-relevant-for-module-developers">
  Changes relevant for (module) developers
@@ -303,6 +315,9 @@ processing filters or interface with the SimpleSAMLphp development API.
   We expect your source-files to exist in the src/ directory within your module. This used to be the
   lib/ directory, so you have to rename the directory and for composer-modules you have to update
   your composer.json file (specifically the psr-0 and psr-4 entries if you have them).
+ </li>
+ <li>
+  We exoect your module assets to exist in the public/ directory within your module (was: www).
  </li>
  <li>
   Old JSON-formatted dictionaries have been replaced by gettext / .po-files; see
