@@ -112,15 +112,15 @@ abstract
  method. This method must return the name of the
 Authentication Source to use, based on whatever logic is necessary.
 </p>
-<h2 id="ipsourceselector">
- IPSourceSelector
+<h2 id="sourceipselector">
+ SourceIPSelector
 </h2>
 <p>
- The IPSourceSelector is an implementation of the
+ The SourceIPSelector is an implementation of the
  <code>
   AbstractSourceSelector
  </code>
- and
+ that
 uses the client IP to decide what Authentication Source is called.
 It works by defining zones with corresponding IP-ranges and Authentication
 Sources. The 'default' zone is required and acts as a fallback when none
@@ -131,7 +131,7 @@ of the zones match a client's IP-address.
 </p>
 <div class="codehilite">
  <pre><span></span><code><span class="x">    'selector' =&gt; [</span>
-<span class="x">        'core:IPSourceSelector',</span>
+<span class="x">        'core:SourceIPSelector',</span>
 
 <span class="x">        'zones' =&gt; [</span>
 <span class="x">            'internal' =&gt; [</span>
@@ -151,6 +151,43 @@ of the zones match a client's IP-address.
 <span class="x">            ],</span>
 
 <span class="x">            'default' =&gt; 'yubikey',</span>
+<span class="x">        ],</span>
+<span class="x">    ],</span>
+</code></pre>
+</div>
+<h2 id="requestedauthncontextselector">
+ RequestedAuthnContextSelector
+</h2>
+<p>
+ The RequestedAuthnContextSelector is an implementation of the
+ <code>
+  AbstractSourceSelector
+ </code>
+ that
+uses the RequestedAuthnContext to decide what Authentication Source is called.
+It works by defining AuthnContexts with their corresponding Authentication
+Sources. The 'default' will be used as a fallback when no RequestedAuthnContext
+is passed in the request.
+</p>
+<p>
+ An example configuration would look like this:
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="x">    'selector' =&gt; [</span>
+<span class="x">        'core:RequestedAuthnContextSelector',</span>
+
+<span class="x">        'contexts' =&gt; [</span>
+<span class="x">            'userpass' =&gt; [</span>
+<span class="x">                'identifier' =&gt; 'urn:x-simplesamlphp:loa1',</span>
+<span class="x">                'source' =&gt; 'ldap',</span>
+<span class="x">            ],</span>
+
+<span class="x">            'mfa' =&gt; [</span>
+<span class="x">                'identifier' =&gt; 'urn:x-simplesamlphp:loa2',</span>
+<span class="x">                'source' =&gt; 'radius',</span>
+<span class="x">            ],</span>
+
+<span class="x">            'default' =&gt; 'ldap',</span>
 <span class="x">        ],</span>
 <span class="x">    ],</span>
 </code></pre>
