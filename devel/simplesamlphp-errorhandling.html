@@ -329,11 +329,7 @@ The
  <code>
   fromException()
  </code>
- function is used by
- <code>
-  www/saml2/idp/SSOService.php
- </code>
- to return SAML 2 errors to the SP.
+ function is used to return SAML 2 errors to the SP.
 The function contains a list which maps various exceptions to specific SAML 2 errors.
 If it is unable to convert the exception, it will return a generic SAML 2 error describing the original exception in its status message.
 </p>
@@ -515,11 +511,6 @@ It is therefore recommended to use the getBacktrace() method.
 </h4>
 <p>
  This method delivers the exception to the code that initialized the exception handling in the authentication state.
-That would be
- <code>
-  www/saml2/idp/SSOService.php
- </code>
- for processing filters.
 To configure how and where the exception should be delivered, there are two fields in the state-array which can be set:
 </p>
 <ul>
