@@ -90,19 +90,6 @@
 </header><main><h1 id="saml-v20-metadata-extensions-for-registration-and-publication-information">
  SAML V2.0 Metadata Extensions for Registration and Publication Information
 </h1>
-<!--
-    This file is written in Markdown syntax.
-    For more information about how to use the Markdown syntax, read here:
-    http://daringfireball.net/projects/markdown/syntax
--->
-<ul>
- <li>
-  Author: Jaime Perez
-  <a href="mailto/jaime.perez@uninett.no.html">
-   jaime.perez@uninett.no
-  </a>
- </li>
-</ul>
 <div class="toc">
  <ul>
   <li>
@@ -154,18 +141,12 @@ extension can be used for:
  </li>
  <li>
   metadata collected and published by means of the
-  <a href="./aggregator/aggregator.html">
-   <code>
-    aggregator
-   </code>
-  </a>
-  or
   <a href="./aggregator2/aggregator2.html">
    <code>
     aggregator2
    </code>
   </a>
-  modules.
+  module.
  </li>
 </ul>
 <p>
@@ -191,16 +172,6 @@ configuration file:
    config/authsources.php
   </code>
   for hosted service providers.
- </li>
- <li>
-  <code>
-   config/module_aggregator.php
-  </code>
-  for the
-  <code>
-   aggregator
-  </code>
-  module.
  </li>
  <li>
   <code>
@@ -308,28 +279,6 @@ configuration file:
 <span class="w">          </span><span class="s1">'instant'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'2008-01-17T11:28:03.577Z'</span><span class="p">,</span>
 <span class="w">      </span><span class="cp">]</span><span class="o">,</span>
 <span class="w">  </span><span class="o">];</span>
-</code></pre>
-</div>
-<p>
- <code>
-  aggregator
- </code>
- module:
-</p>
-<div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="n">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<span class="w">      </span><span class="s1">'aggregators'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span>
-<span class="w">          </span><span class="o">...</span>
-<span class="w">      </span><span class="p">],</span>
-<span class="w">      </span><span class="s1">'maxDuration'</span><span class="w">   </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">24</span><span class="o">*</span><span class="mi">5</span><span class="p">,</span>
-<span class="w">      </span><span class="s1">'reconstruct'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">FALSE</span><span class="p">,</span>
-<span class="w">      </span><span class="o">...</span>
-<span class="w">      </span><span class="s1">'RegistrationInfo'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span>
-<span class="w">          </span><span class="s1">'authority'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'urn:mace:example.federation'</span><span class="p">,</span>
-<span class="w">          </span><span class="s1">'instant'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'2008-01-17T11:28:03Z'</span><span class="p">,</span>
-<span class="w">          </span><span class="s1">'policies'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="s1">'en'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'http://example.org/federation_policy'</span><span class="p">,</span><span class="w"> </span><span class="s1">'es'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://example.org/politica_federacion'</span><span class="p">],</span>
-<span class="w">      </span><span class="p">],</span>
-<span class="w">  </span><span class="p">];</span>
 </code></pre>
 </div>
 <p>
