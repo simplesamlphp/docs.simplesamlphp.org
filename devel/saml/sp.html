@@ -819,11 +819,27 @@ The following attributes are available:
  </dd>
  <dt>
   <code>
+   NameIDFormat
+  </code>
+ </dt>
+ <dd>
+  An array of the format(s) listed in the SP metadata that this SP will accept. Example:
+  <div class="codehilite">
+   <pre><span></span><code>    'NameIDFormat' =&gt; [
+        \SAML2\Constants::NAMEID_PERSISTENT,
+        \SAML2\Constants::NAMEID_TRANSIENT,
+    ],
+</code></pre>
+  </div>
+ </dd>
+ <dt>
+  <code>
    NameIDPolicy
   </code>
  </dt>
  <dd>
-  The format of the NameID we request from the idp: an array in the form of
+  The format of the NameID we request from the IdP in the Authentiction Request:
+  an array in the form of
   <code>
    [ 'Format' =&gt; the format, 'AllowCreate' =&gt; true or false ]
   </code>
