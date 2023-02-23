@@ -51,8 +51,13 @@
    </p>
    <div class="mtoolbar">
     <div class="menuitem">
+     <a href="/docs/2.0/index.html">
+      2.0 (stable)
+     </a>
+    </div>
+    <div class="menuitem">
      <a href="/docs/1.19/index.html">
-      1.19 (stable)
+      1.19
      </a>
     </div>
     <div class="menuitem">
@@ -93,14 +98,6 @@
 <p>
  These are some notes about running SimpleSAMLphp from the repository.
 </p>
-<h2 id="prerequisites">
- Prerequisites
-</h2>
-<ul>
- <li>
-  NodeJS version &gt;= 10.0.
- </li>
-</ul>
 <h2 id="installing-from-git">
  Installing from git
 </h2>
@@ -108,23 +105,26 @@
  Go to the directory where you want to install SimpleSAMLphp:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="n">cd</span><span class="w"> </span><span class="o">/</span><span class="k">var</span>
+ <pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/var
 </code></pre>
 </div>
 <p>
  Then do a git clone:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="n">git</span><span class="w"> </span><span class="n">clone</span><span class="w"> </span><span class="n">git</span><span class="nv">@github</span><span class="p">.</span><span class="nl">com</span><span class="p">:</span><span class="n">simplesamlphp</span><span class="o">/</span><span class="n">simplesamlphp</span><span class="p">.</span><span class="n">git</span><span class="w"> </span><span class="n">simplesamlphp</span>
+ <pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>git@github.com:simplesamlphp/simplesamlphp.git<span class="w"> </span>simplesamlphp
 </code></pre>
 </div>
 <p>
  Initialize configuration and metadata:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="n">cd</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">simplesamlphp</span>
-<span class="w">  </span><span class="n">cp</span><span class="w"> </span><span class="o">-</span><span class="n">r</span><span class="w"> </span><span class="n">config</span><span class="o">-</span><span class="n">templates</span><span class="o">/*</span><span class="w"> </span><span class="n">config</span><span class="o">/</span>
-<span class="w">  </span><span class="n">cp</span><span class="w"> </span><span class="o">-</span><span class="n">r</span><span class="w"> </span><span class="n">metadata</span><span class="o">-</span><span class="n">templates</span><span class="o">/*</span><span class="w"> </span><span class="n">metadata</span><span class="o">/</span>
+ <pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/var/simplesamlphp
+cp<span class="w"> </span>config/config.php.dist<span class="w"> </span>config/config.php
+cp<span class="w"> </span>config/authsources.php.dist<span class="w"> </span>config/authsources.php
+cp<span class="w"> </span>metadata/saml20-idp-hosted.php.dist<span class="w"> </span>metadata/saml20-idp-hosted.php
+cp<span class="w"> </span>metadata/saml20-idp-remote.php.dist<span class="w"> </span>metadata/saml20-idp-remote.php
+cp<span class="w"> </span>metadata/saml20-sp-remote.php.dist<span class="w"> </span>metadata/saml20-sp-remote.php
 </code></pre>
 </div>
 <p>
@@ -133,18 +133,10 @@
   getcomposer.org
  </a>
  to get detailed
-instructions on how to install Composer itself) and npm:
+instructions on how to install Composer itself):
 </p>
 <div class="codehilite">
- <pre><span></span><code>  php composer.phar install
-  npm install
-</code></pre>
-</div>
-<p>
- Build the assets:
-</p>
-<div class="codehilite">
- <pre><span></span><code>  npm run build
+ <pre><span></span><code>php<span class="w"> </span>composer.phar<span class="w"> </span>install
 </code></pre>
 </div>
 <h2 id="upgrading">
@@ -154,24 +146,22 @@ instructions on how to install Composer itself) and npm:
  Go to the root directory of your SimpleSAMLphp installation:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="n">cd</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">simplesamlphp</span>
+ <pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/var/simplesamlphp
 </code></pre>
 </div>
 <p>
  Ask git to update to the latest version:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  git fetch origin
-  git pull origin master
+ <pre><span></span><code>git<span class="w"> </span>fetch<span class="w"> </span>origin
+git<span class="w"> </span>pull<span class="w"> </span>origin<span class="w"> </span>master
 </code></pre>
 </div>
 <p>
- Install or upgrade the external dependencies with Composer and npm:
+ Install or upgrade the external dependencies with Composer:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  php composer.phar install
-  npm install
-  npm run build
+ <pre><span></span><code>php<span class="w"> </span>composer.phar<span class="w"> </span>install
 </code></pre>
 </div></main></body>
 </html>

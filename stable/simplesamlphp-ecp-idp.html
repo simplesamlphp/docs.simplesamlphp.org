@@ -51,8 +51,13 @@
    </p>
    <div class="mtoolbar">
     <div class="menuitem">
+     <a href="/docs/2.0/index.html">
+      2.0 (stable)
+     </a>
+    </div>
+    <div class="menuitem">
      <a href="/docs/1.19/index.html">
-      1.19 (stable)
+      1.19
      </a>
     </div>
     <div class="menuitem">
@@ -139,11 +144,11 @@
  metadata file:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'__DYNAMIC:1__'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cp">[</span>
-<span class="w">      </span><span class="err">[</span><span class="nx">....</span><span class="cp">]</span>
-<span class="w">      </span><span class="s1">'auth'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'example-userpass'</span><span class="o">,</span>
-<span class="w">      </span><span class="s1">'saml20.ecp'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">true</span><span class="o">,</span>
-<span class="w">  </span><span class="o">];</span>
+ <pre><span></span><code><span class="x">$metadata['https://example.org/saml-idp'] = [</span>
+<span class="x">    [....]</span>
+<span class="x">    'auth' =&gt; 'example-userpass',</span>
+<span class="x">    'saml20.ecp' =&gt; true,</span>
+<span class="x">];</span>
 </code></pre>
 </div>
 <p>
@@ -166,20 +171,17 @@ The
  metadata for simpleSAMLphp SPs should contain something like the following code:
 </p>
 <div class="codehilite">
- <pre><span></span><code>'SingleSignOnService' =&gt;
-  array (
-    0 =&gt;
-    array (
-      'Binding' =&gt; 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
-      'Location' =&gt; 'https://idp.example.org/simplesaml/saml2/idp/SSOService.php',
-    ),
-    1 =&gt;
-    array (
-      'index' =&gt; 0,
-      'Location' =&gt; 'https://didp.example.org/simplesaml/saml2/idp/SSOService.php',
-      'Binding' =&gt; 'urn:oasis:names:tc:SAML:2.0:bindings:SOAP',
-    ),
-  ),
+ <pre><span></span><code><span class="x">'SingleSignOnService' =&gt; [</span>
+<span class="x">    0 =&gt; [</span>
+<span class="x">        'Binding' =&gt; 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',</span>
+<span class="x">        'Location' =&gt; 'https://idp.example.org/simplesaml/saml2/idp/SSOService.php',</span>
+<span class="x">    ],</span>
+<span class="x">    1 =&gt; [</span>
+<span class="x">        'index' =&gt; 0,</span>
+<span class="x">        'Location' =&gt; 'https://didp.example.org/simplesaml/saml2/idp/SSOService.php',</span>
+<span class="x">        'Binding' =&gt; 'urn:oasis:names:tc:SAML:2.0:bindings:SOAP',</span>
+<span class="x">    ],</span>
+<span class="x">],</span>
 </code></pre>
 </div>
 <h2 id="sp-metadata-on-the-idp">
@@ -199,21 +201,18 @@ This means that you have to use the complex endpoint format in
 In general, this should look like the following code:
 </p>
 <div class="codehilite">
- <pre><span></span><code>'AssertionConsumerService' =&gt;
-  array (
-    0 =&gt;
-    array (
-      'Binding' =&gt; 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
-      'Location' =&gt; 'https://sp.example.org/Shibboleth.sso/SAML2/POST',
-      'index' =&gt; 1,
-    ),
-    1 =&gt;
-    array (
-      'Binding' =&gt; 'urn:oasis:names:tc:SAML:2.0:bindings:PAOS',
-      'Location' =&gt; 'https://sp.example.org/ECP',
-      'index' =&gt; 2,
-    ),
-  ),
+ <pre><span></span><code><span class="x">'AssertionConsumerService' =&gt; [</span>
+<span class="x">    0 =&gt; [</span>
+<span class="x">      'Binding' =&gt; 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',</span>
+<span class="x">      'Location' =&gt; 'https://sp.example.org/Shibboleth.sso/SAML2/POST',</span>
+<span class="x">      'index' =&gt; 1,</span>
+<span class="x">    ],</span>
+<span class="x">    1 =&gt; [</span>
+<span class="x">      'Binding' =&gt; 'urn:oasis:names:tc:SAML:2.0:bindings:PAOS',</span>
+<span class="x">      'Location' =&gt; 'https://sp.example.org/ECP',</span>
+<span class="x">      'index' =&gt; 2,</span>
+<span class="x">    ],</span>
+<span class="x">],</span>
 </code></pre>
 </div></main></body>
 </html>

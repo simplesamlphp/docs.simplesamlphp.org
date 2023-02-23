@@ -51,8 +51,13 @@
    </p>
    <div class="mtoolbar">
     <div class="menuitem">
+     <a href="/docs/2.0/index.html">
+      2.0 (stable)
+     </a>
+    </div>
+    <div class="menuitem">
      <a href="/docs/1.19/index.html">
-      1.19 (stable)
+      1.19
      </a>
     </div>
     <div class="menuitem">
@@ -95,44 +100,91 @@
   For more information about how to use the Markdown syntax, read here:
   http://daringfireball.net/projects/markdown/syntax
 -->
-<!-- {{TOC}} -->
+<div class="toc">
+ <ul>
+  <li>
+   <a href="#simplesamlphp-modules">
+    SimpleSAMLphp modules
+   </a>
+   <ul>
+    <li>
+     <a href="#overview">
+      Overview
+     </a>
+    </li>
+    <li>
+     <a href="#module-layout">
+      Module layout
+     </a>
+    </li>
+    <li>
+     <a href="#authentication-sources">
+      Authentication sources
+     </a>
+     <ul>
+      <li>
+       <a href="#creating-authentication-sources">
+        Creating authentication sources
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#authentication-processing-filters">
+      Authentication processing filters
+     </a>
+    </li>
+    <li>
+     <a href="#themes">
+      Themes
+     </a>
+    </li>
+    <li>
+     <a href="#hook-interface">
+      Hook interface
+     </a>
+    </li>
+   </ul>
+  </li>
+ </ul>
+</div>
 <p>
  This document describes how the module system in SimpleSAMLphp
-works. It descibes what types of modules there are, how they are
+works. It describes what types of modules there are, how they are
 configured, and how to write new modules.
 </p>
 <h2 id="overview">
  Overview
 </h2>
 <p>
- There are currently three parts of SimpleSAMLphp which can be stored in 
-modules - authentication sources, authentication processing filters and 
-themes. There is also support for defining hooks - functions run at 
-specific times. More than one thing can be stored in a single module. 
-There is also support for storing supporting files, such as templates 
+ There are currently three parts of SimpleSAMLphp which can be stored in
+modules - authentication sources, authentication processing filters and
+themes. There is also support for defining hooks - functions run at
+specific times. More than one thing can be stored in a single module.
+There is also support for storing supporting files, such as templates
 and dictionaries, in modules.
 </p>
 <p>
- The different functionalities which can be created as modules will be 
-described in more detail in the following sections; what follows is a 
+ The different functionalities which can be created as modules will be
+described in more detail in the following sections; what follows is a
 short introduction to what you can do with them:
 </p>
 <ul>
  <li>
-  Authentication sources implement different methods for 
-   authenticating users, for example simple login forms which 
-   authenticate against a database backend, or login methods which use 
-   client-side certificates.
+  Authentication sources implement different methods for
+  authenticating users, for example simple login forms which
+  authenticate against a database backend, or login methods which use
+  client-side certificates.
  </li>
  <li>
-  Authentication processing filters perform various tasks after the 
-   user is authenticated and has a set of attributes. They can add, 
-   remove and modify attributes, do additional authentication checks, 
-   ask questions of the user, +++.
+  Authentication processing filters perform various tasks after the
+  user is authenticated and has a set of attributes. They can add,
+  remove and modify attributes, do additional authentication checks,
+  ask questions of the user, +++.
  </li>
  <li>
-  Themes allow you to package custom templates for multiple modules 
-   into a single module.
+  Themes allow you to package custom templates for multiple modules
+  into a single module.
  </li>
 </ul>
 <h2 id="module-layout">
@@ -148,37 +200,7 @@ directories and files:
 </p>
 <dl>
  <dt>
-  default-disable
- </dt>
- <dd>
-  The presence of this file indicates that the module is disabled
-  by default. It can be enabled using the
-  <code>
-   module.enable
-  </code>
-  option in
-  <code>
-   config.php
-  </code>
-  .
- </dd>
- <dt>
-  default-enable
- </dt>
- <dd>
-  The presence of this file indicates that the module is enabled
-  by default. It can be disabled using the
-  <code>
-   module.enable
-  </code>
-  option in
-  <code>
-   config.php
-  </code>
-  .
- </dd>
- <dt>
-  dictionaries
+  locales
  </dt>
  <dd>
   This directory contains dictionaries which belong to this
@@ -198,7 +220,7 @@ directories and files:
   </code>
   in
   <code>
-   modules/example/dictionaries/login.php
+   modules/example/locales/&lt;lang&gt;/login.po
   </code>
   .
  </dd>
@@ -223,7 +245,7 @@ directories and files:
   hook-section in the documentation for more information.
  </dd>
  <dt>
-  lib
+  src
  </dt>
  <dd>
   This directory contains classes which belong to this module.
@@ -238,7 +260,7 @@ directories and files:
   </code>
   in the
   <code>
-   lib
+   src
   </code>
   directory. Underscores in the class name will be translated into
   slashes.
@@ -250,7 +272,7 @@ directories and files:
   </code>
   , it will load the file named
   <code>
-   modules/example/lib/Auth/Source/Example.php
+   modules/example/src/Auth/Source/Example.php
   </code>
   .
  </dd>
@@ -261,7 +283,7 @@ directories and files:
   These are module-specific templates. To use one of these
   templates, specify
   <code>
-   &lt;module name&gt;:&lt;template file&gt;.php
+   &lt;module name&gt;:&lt;template file&gt;.twig
   </code>
   as the template file in the constructor of
   <code>
@@ -269,11 +291,11 @@ directories and files:
   </code>
   . For example,
   <code>
-   example:login-form.php
+   example:login-form.twig
   </code>
   is translated to the file
   <code>
-   modules/example/templates/default/login-form.php
+   modules/example/templates/default/login-form.twig
   </code>
   . Note that
   <code>
@@ -326,25 +348,25 @@ directories and files:
   </code>
   , the template
   <code>
-   templates/default/login.php
+   templates/default/login.twig
   </code>
   will be overridden by
   <code>
-   modules/example/themes/blue/default/login.php
+   modules/example/themes/blue/default/login.twig
   </code>
   , while the template
   <code>
-   modules/core/templates/default/loginuserpass.php
+   modules/core/templates/default/loginuserpass.twig
   </code>
   will be
   overridden by
   <code>
-   modules/example/themes/blue/core/loginuserpass.php
+   modules/example/themes/blue/core/loginuserpass.twig
   </code>
   .
  </dd>
  <dt>
-  www
+  public
  </dt>
  <dd>
   All files stored in this directory will be available by
@@ -359,7 +381,7 @@ directories and files:
   </code>
   is stored in
   <code>
-   modules/example/www/
+   modules/example/public/
   </code>
   , it can be accessed by the URL
   <code>
@@ -380,7 +402,7 @@ directories and files:
   .
   This function will then return a URL to the given file in the
   <code>
-   www
+   public
   </code>
   -directory of
   <code>
@@ -393,9 +415,9 @@ directories and files:
  Authentication sources
 </h2>
 <p>
- An authentication source is used to authenticate a user and receive a 
-set of attributes belonging to this user. In a single-signon setup, the 
-authentication source will only be called once, and the attributes 
+ An authentication source is used to authenticate a user and receive a
+set of attributes belonging to this user. In a single-signon setup, the
+authentication source will only be called once, and the attributes
 belonging to the user will be cached until the user logs out.
 </p>
 <p>
@@ -403,38 +425,38 @@ belonging to the user will be cached until the user logs out.
  <code>
   config/authsources.php
  </code>
- . This 
+ . This
 file contains an array of
  <code>
   name =&gt; configuration
  </code>
- pairs. The name is 
-used to refer to the authentication source in metadata. When 
-configuring an IdP to authenticate against an authentication source, 
+ pairs. The name is
+used to refer to the authentication source in metadata. When
+configuring an IdP to authenticate against an authentication source,
 \the
  <code>
   auth
  </code>
- option should be set to this name. The configuration for an 
-authentication source is an array. The first element in the array 
-identifies the class which implements the authentication source. The 
-remaining elements in the array are configuration entries for the 
+ option should be set to this name. The configuration for an
+authentication source is an array. The first element in the array
+identifies the class which implements the authentication source. The
+remaining elements in the array are configuration entries for the
 authentication source.
 </p>
 <p>
- A typical configuration entry for an authentication source looks like 
+ A typical configuration entry for an authentication source looks like
 this:
 </p>
 <div class="codehilite">
  <pre><span></span><code>  'example-static' =&gt; [
-    /* This maps to modules/exampleauth/lib/Auth/Source/Static.php */
-    'exampleauth:StaticSource',
+      /* This maps to modules/exampleauth/src/Auth/Source/Static.php */
+      'exampleauth:StaticSource',
 
-    /* The following is configuration which is passed on to
-     * the exampleauth:StaticSource authentication source. */
-    'uid' =&gt; 'testuser',
-    'eduPersonAffiliation' =&gt; ['member', 'employee'],
-    'cn' =&gt; ['Test User'],
+      /* The following is configuration which is passed on to
+       * the exampleauth:StaticSource authentication source. */
+      'uid' =&gt; 'testuser',
+      'eduPersonAffiliation' =&gt; ['member', 'employee'],
+      'cn' =&gt; ['Test User'],
   ],
 </code></pre>
 </div>
@@ -450,11 +472,11 @@ this:
  :
 </p>
 <div class="codehilite">
- <pre><span></span><code>  '__DYNAMIC:1__' =&gt; [
-    'host' =&gt; '__DEFAULT__',
-    'privatekey' =&gt; 'example.org.pem',
-    'certificate' =&gt; 'example.org.crt',
-    'auth' =&gt; 'example-static',
+ <pre><span></span><code>  'https://example.org/saml-idp' =&gt; [
+      'host' =&gt; '__DEFAULT__',
+      'privatekey' =&gt; 'example.org.pem',
+      'certificate' =&gt; 'example.org.crt',
+      'auth' =&gt; 'example-static',
   ],
 </code></pre>
 </div>
@@ -464,10 +486,13 @@ this:
 <p>
  This is described in a separate document:
 </p>
-<div class="codehilite">
- <pre><span></span><code>* [Creating authentication sources](simplesamlphp-authsource)
-</code></pre>
-</div>
+<ul>
+ <li>
+  <a href="simplesamlphp-authsource.html">
+   Creating authentication sources
+  </a>
+ </li>
+</ul>
 <h2 id="authentication-processing-filters">
  Authentication processing filters
 </h2>
@@ -477,15 +502,18 @@ this:
  </em>
  is explained in a separate document:
 </p>
-<div class="codehilite">
- <pre><span></span><code>* [Authentication processing filters](simplesamlphp-authproc)
-</code></pre>
-</div>
+<ul>
+ <li>
+  <a href="simplesamlphp-authproc.html">
+   Authentication processing filters
+  </a>
+ </li>
+</ul>
 <h2 id="themes">
  Themes
 </h2>
 <p>
- This feature allows you to collect all your custom templates in one 
+ This feature allows you to collect all your custom templates in one
 place. The directory structure is like this:
  <code>
   modules/&lt;thememodule&gt;/themes/&lt;theme&gt;/&lt;module&gt;/&lt;template&gt;
@@ -513,7 +541,7 @@ place. The directory structure is like this:
  <code>
   template
  </code>
- is the template 
+ is the template
 in that module.
 </p>
 <p>
@@ -533,7 +561,7 @@ in that module.
  <code>
   templates/default/frontpage.php
  </code>
- . This theme can be activated by 
+ . This theme can be activated by
 setting
  <code>
   theme.use
@@ -548,14 +576,14 @@ setting
  Hook interface
 </h2>
 <p>
- The hook interface allows you to call a hook function in all enabled 
-modules which define that hook. Hook functions are stored in a 
-directory called 'hooks' in each module directory. Each hook is 
+ The hook interface allows you to call a hook function in all enabled
+modules which define that hook. Hook functions are stored in a
+directory called 'hooks' in each module directory. Each hook is
 stored in a file named
  <code>
   hook_&lt;hook name&gt;.php
  </code>
- , and each file defines a 
+ , and each file defines a
 function named
  <code>
   &lt;module name&gt;_hook_&lt;hook name&gt;
@@ -563,25 +591,16 @@ function named
  .
 </p>
 <p>
- Each hook function accepts a single argument. This argument will be 
+ Each hook function accepts a single argument. This argument will be
 passed by reference, which allows each hook to update that argument.
 </p>
 <p>
- There is currently a single user of the hook interface - the front 
-page. The front page defines a hook named
+ For an example of hook usage, see the cron module, which adds a link
+to its information page in the Configuration section of the admin
+module, through the file
  <code>
-  frontpage
+  modules/cron/hooks/hook_configpage.php
  </code>
- , which allows 
-modules to add things to the different sections on the front page. For 
-an example of this, see the
- <code>
-  modules/modinfo/hooks/hook_frontpage.php
- </code>
- file in the
- <a href="https://github.com/simplesamlphp/simplesamlphp-module-modinfo">
-  modinfo module
- </a>
  .
 </p></main></body>
 </html>

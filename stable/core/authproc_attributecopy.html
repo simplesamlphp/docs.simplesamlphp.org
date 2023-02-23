@@ -51,8 +51,13 @@
    </p>
    <div class="mtoolbar">
     <div class="menuitem">
+     <a href="/docs/2.0/index.html">
+      2.0 (stable)
+     </a>
+    </div>
+    <div class="menuitem">
      <a href="/docs/1.19/index.html">
-      1.19 (stable)
+      1.19
      </a>
     </div>
     <div class="menuitem">
@@ -110,16 +115,16 @@
  ):
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'authproc' =&gt; array(
-      50 =&gt; array(
+ <pre><span></span><code>  'authproc' =&gt; [
+      50 =&gt; [
           'class' =&gt; 'core:AttributeCopy',
           'uid' =&gt; 'username',
-      ),
-  ),
+      ],
+  ],
 </code></pre>
 </div>
 <p>
- Copy a single attribute to more then one attribute (user's
+ Copy a single attribute to more than one attribute (user's
  <code>
   uid
  </code>
@@ -134,12 +139,12 @@
  )
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'authproc' =&gt; array(
-      50 =&gt; array(
+ <pre><span></span><code>  'authproc' =&gt; [
+      50 =&gt; [
           'class' =&gt; 'core:AttributeCopy',
-          'uid' =&gt; array('username', 'urn:mace:dir:attribute-def:uid'),
-      ),
-  ),
+          'uid' =&gt; ['username', 'urn:mace:dir:attribute-def:uid'],
+      ],
+  ],
 </code></pre>
 </div></main></body>
 </html>

@@ -51,8 +51,13 @@
    </p>
    <div class="mtoolbar">
     <div class="menuitem">
+     <a href="/docs/2.0/index.html">
+      2.0 (stable)
+     </a>
+    </div>
+    <div class="menuitem">
      <a href="/docs/1.19/index.html">
-      1.19 (stable)
+      1.19
      </a>
     </div>
     <div class="menuitem">
@@ -97,23 +102,30 @@
 </p>
 <p>
  Besides the mapping of source values to target values, the filter has the following options:
-*
- <code>
-  %replace
- </code>
- can be used to replace all existing values in target with new ones (any existing values will be lost)
-*
- <code>
-  %keep
- </code>
- can be used to keep the source attribute, otherwise it will be removed.
 </p>
-<h2 id="examples">
- Examples
-</h2>
-<h3 id="add-student-affiliation-based-on-ldap-groupmembership">
+<ul>
+ <li>
+  <code>
+   %replace
+  </code>
+  can be used to replace all existing values in target with new ones (any existing values will be lost)
+ </li>
+ <li>
+  <code>
+   %keep
+  </code>
+  can be used to keep the source attribute, otherwise it will be removed.
+ </li>
+</ul>
+<p>
+ <strong>
+  Examples
+ </strong>
+ :
+</p>
+<h2 id="add-student-affiliation-based-on-ldap-groupmembership">
  Add student affiliation based on LDAP groupmembership
-</h3>
+</h2>
 <p>
  Will add eduPersonAffiliation containing value "
  <code>
@@ -153,24 +165,24 @@ The '
  to replace them).
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'authproc' =&gt; array(
-      50 =&gt; array(
+ <pre><span></span><code>  'authproc' =&gt; [
+      50 =&gt; [
           'class' =&gt; 'core:AttributeValueMap',
           'sourceattribute' =&gt; 'memberOf',
           'targetattribute' =&gt; 'eduPersonAffiliation',
-          'values' =&gt; array(
-              'student' =&gt; array(
+          'values' =&gt; [
+              'student' =&gt; [
                   'cn=student,o=some,o=organization,dc=org',
                   'cn=student,o=other,o=organization,dc=org',
-              ),
-          ),
-      ),
-  )
+              ],
+          ],
+      ],
+  ],
 </code></pre>
 </div>
-<h3 id="multiple-assignments">
+<h2 id="multiple-assignments">
  Multiple assignments
-</h3>
+</h2>
 <p>
  Add
  <code>
@@ -191,36 +203,36 @@ The '
  attribute.
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'authproc' =&gt; array(
-      50 =&gt; array(
+ <pre><span></span><code>  'authproc' =&gt; [
+      50 =&gt; [
           'class' =&gt; 'core:AttributeValueMap',
           'sourceattribute' =&gt; 'memberOf',
           'targetattribute' =&gt; 'eduPersonAffiliation',
-          'values' =&gt; array(
-              'student' =&gt; array(
+          'values' =&gt; [
+              'student' =&gt; [
                   'cn=student,o=some,o=organization,dc=org',
                   'cn=student,o=other,o=organization,dc=org',
-              ),
-              'employee' =&gt; array(
+              ],
+              'employee' =&gt; [
                   'cn=employees,o=some,o=organization,dc=org',
                   'cn=employee,o=other,o=organization,dc=org',
                   'cn=workers,o=any,o=organization,dc=org',
-              ),
-              'both' =&gt; array(
+              ],
+              'both' =&gt; [
                   'cn=student,o=some,o=organization,dc=org',
                   'cn=student,o=other,o=organization,dc=org',
                   'cn=employees,o=some,o=organization,dc=org',
                   'cn=employee,o=other,o=organization,dc=org',
                   'cn=workers,o=any,o=organization,dc=org',
-              ),
-          ),
-      ),
-  )
+              ],
+          ],
+      ],
+  ],
 </code></pre>
 </div>
-<h3 id="replace-and-keep">
+<h2 id="replace-and-keep">
  Replace and Keep
-</h3>
+</h2>
 <p>
  Replace any existing '
  <code>
@@ -233,26 +245,26 @@ The '
  ' attribute.
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'authproc' =&gt; array(
-      50 =&gt; array(
+ <pre><span></span><code>  'authproc' =&gt; [
+      50 =&gt; [
           'class' =&gt; 'core:AttributeValueMap',
           'sourceattribute' =&gt; 'groups',
           'targetattribute' =&gt; 'affiliation',
           '%replace',
           '%keep',
-          'values' =&gt; array(
-              'student' =&gt; array(
+          'values' =&gt; [
+              'student' =&gt; [
                   'cn=student,o=some,o=organization,dc=org',
                   'cn=student,o=other,o=organization,dc=org',
-              ),
-              'employee' =&gt; array(
+              ],
+              'employee' =&gt; [
                   'cn=employees,o=some,o=organization,dc=org',
                   'cn=employee,o=other,o=organization,dc=org',
                   'cn=workers,o=any,o=organization,dc=org',
-              ),
-          ),
-      ),
-  )
+              ],
+          ],
+      ],
+  ],
 </code></pre>
 </div></main></body>
 </html>

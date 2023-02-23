@@ -51,8 +51,13 @@
    </p>
    <div class="mtoolbar">
     <div class="menuitem">
+     <a href="/docs/2.0/index.html">
+      2.0 (stable)
+     </a>
+    </div>
+    <div class="menuitem">
      <a href="/docs/1.19/index.html">
-      1.19 (stable)
+      1.19
      </a>
     </div>
     <div class="menuitem">
@@ -123,26 +128,26 @@ also be used by specifying the file with the
  Attribute maps embedded as parameters:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'authproc' =&gt; array(
-      50 =&gt; array(
+ <pre><span></span><code>  'authproc' =&gt; [
+      50 =&gt; [
           'class' =&gt; 'core:AttributeMap',
           'mail' =&gt; 'email',
           'uid' =&gt; 'user'
-          'cn' =&gt; array('name', 'displayName'),
-      ),
-  ),
+          'cn' =&gt; ['name', 'displayName'],
+      ],
+  ],
 </code></pre>
 </div>
 <p>
  Attribute map in separate file:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'authproc' =&gt; array(
-      50 =&gt; array(
+ <pre><span></span><code>  'authproc' =&gt; [
+      50 =&gt; [
           'class' =&gt; 'core:AttributeMap',
           'name2oid',
-      ),
-  ),
+      ],
+  ],
 </code></pre>
 </div>
 <p>
@@ -156,12 +161,12 @@ also be used by specifying the file with the
  Attribute map in a file contained in a module:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'authproc' =&gt; array(
-      50 =&gt; array(
+ <pre><span></span><code>  'authproc' =&gt; [
+      50 =&gt; [
           'class' =&gt; 'core:AttributeMap',
           'module:src2dst'
-      ),
-  ),
+      ],
+  ],
 </code></pre>
 </div>
 <p>
@@ -175,13 +180,13 @@ also be used by specifying the file with the
  Duplicate attributes based on a map file:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'authproc' =&gt; array(
-      50 =&gt; array(
+ <pre><span></span><code>  'authproc' =&gt; [
+      50 =&gt; [
           'class' =&gt; 'core:AttributeMap',
           'name2urn', 'name2oid',
           '%duplicate',
-      ),
-  ),
+      ],
+  ],
 </code></pre>
 </div></main></body>
 </html>

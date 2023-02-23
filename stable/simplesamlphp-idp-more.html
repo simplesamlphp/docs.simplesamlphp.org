@@ -51,8 +51,13 @@
    </p>
    <div class="mtoolbar">
     <div class="menuitem">
+     <a href="/docs/2.0/index.html">
+      2.0 (stable)
+     </a>
+    </div>
+    <div class="menuitem">
      <a href="/docs/1.19/index.html">
-      1.19 (stable)
+      1.19
      </a>
     </div>
     <div class="menuitem">
@@ -116,13 +121,6 @@
      <a href="#idp-first-flow">
       IdP-first flow
      </a>
-     <ul>
-      <li>
-       <a href="#idp-first-with-saml-11">
-        IdP first with SAML 1.1
-       </a>
-      </li>
-     </ul>
     </li>
     <li>
      <a href="#idp-initiated-logout">
@@ -140,7 +138,7 @@
  If you have read about the AJAX iFrame Single Log-Out approach at Andreas' blog and want to enable it, edit your saml20-idp-hosted.php metadata, and add this configuration line for the IdP:
 </p>
 <div class="codehilite">
- <pre><span></span><code>'logouttype' =&gt; 'iframe',
+ <pre><span></span><code><span class="x">'logouttype' =&gt; 'iframe',</span>
 </code></pre>
 </div>
 <h2 id="attribute-release-consent">
@@ -209,10 +207,11 @@
 <p>
  Here is an example of such a URL:
 </p>
-<div class="codehilite">
- <pre><span></span><code>https://idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=urn:mace:feide.no:someservice
-</code></pre>
-</div>
+<p>
+ <code>
+  https://idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=urn:mace:feide.no:someservice
+ </code>
+</p>
 <p>
  You can also add a
  <code>
@@ -220,10 +219,11 @@
  </code>
  parameter to the IdP-first URL:
 </p>
-<div class="codehilite">
- <pre><span></span><code>https://idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=urn:mace:feide.no:someservice&amp;RelayState=https://sp.example.org/somepage
-</code></pre>
-</div>
+<p>
+ <code>
+  https://idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=urn:mace:feide.no:someservice&amp;RelayState=https://sp.example.org/somepage
+ </code>
+</p>
 <p>
  The
  <code>
@@ -263,74 +263,17 @@ Consumer URL with the
  </code>
  , respectively.
 </p>
-<h3 id="idp-first-with-saml-11">
- IdP first with SAML 1.1
-</h3>
-<p>
- A SAML 1.1 SP does not send an authentication request to the IdP, but instead triggers IdP initiated authentication directly.
-If you want to do it manually, you can access the following URL:
-</p>
-<div class="codehilite">
- <pre><span></span><code>https://idp.example.org/simplesaml/shib13/idp/SSOService.php?providerId=urn:mace:feide.no:someservice&amp;shire=https://sp.example.org/acs-endpoint&amp;target=https://sp.example.org/somepage
-</code></pre>
-</div>
-<p>
- The parameters are as follows:
-</p>
-<dl>
- <dt>
-  <code>
-   providerID
-  </code>
- </dt>
- <dd>
-  The entityID of the SP.
-  This parameter is required.
- </dd>
- <dt>
-  <code>
-   shire
-  </code>
- </dt>
- <dd>
-  The AssertionConsumerService endpoint of the SP.
-  This parameter is required.
- </dd>
- <dt>
-  <code>
-   target
-  </code>
- </dt>
- <dd>
-  The target parameter the SP should receive with the authentication response.
-  This is often the page the user should be sent to after authentication.
-  This parameter is optional for the IdP, but must be specified if the SP you are targeting is running SimpleSAMLphp.
- </dd>
- <dd>
-  <em>
-   Note
-  </em>
-  : This parameter must be sent as
-  <code>
-   target
-  </code>
-  (with lowercase letters) when starting the authentication, while it is sent as
-  <code>
-   TARGET
-  </code>
-  (with uppercase letters) in the authentication response.
- </dd>
-</dl>
 <h2 id="idp-initiated-logout">
  IdP-initiated logout
 </h2>
 <p>
  IdP-initiated logout can be initiated by visiting the URL:
 </p>
-<div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="nv">https</span>:<span class="o">//</span><span class="nv">idp</span>.<span class="nv">example</span>.<span class="nv">org</span><span class="o">/</span><span class="nv">simplesaml</span><span class="o">/</span><span class="nv">saml2</span><span class="o">/</span><span class="nv">idp</span><span class="o">/</span><span class="nv">SingleLogoutService</span>.<span class="nv">php</span>?<span class="nv">ReturnTo</span><span class="o">=&lt;</span><span class="nv">URL</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">after</span><span class="w"> </span><span class="nv">logout</span><span class="o">&gt;</span>
-</code></pre>
-</div>
+<p>
+ <code>
+  https://idp.example.org/simplesaml/saml2/idp/SingleLogoutService.php?ReturnTo=&lt;URL to return to after logout&gt;
+ </code>
+</p>
 <p>
  It will send a logout request to each SP, and afterwards return the user to the URL specified in the
  <code>

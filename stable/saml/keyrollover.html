@@ -51,8 +51,13 @@
    </p>
    <div class="mtoolbar">
     <div class="menuitem">
+     <a href="/docs/2.0/index.html">
+      2.0 (stable)
+     </a>
+    </div>
+    <div class="menuitem">
      <a href="/docs/1.19/index.html">
-      1.19 (stable)
+      1.19
      </a>
     </div>
     <div class="menuitem">
@@ -128,8 +133,8 @@ entity publishes metadata with two certificates in it. Meanwhile it continues to
 To create a self signed certificate, you may use the following command:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  cd cert
-  openssl req -newkey rsa:3072 -new -x509 -days 3652 -nodes -out new.crt -keyout new.pem
+ <pre><span></span><code><span class="nb">cd</span><span class="w"> </span>cert
+openssl<span class="w"> </span>req<span class="w"> </span>-newkey<span class="w"> </span>rsa:3072<span class="w"> </span>-new<span class="w"> </span>-x509<span class="w"> </span>-days<span class="w"> </span><span class="m">3652</span><span class="w"> </span>-nodes<span class="w"> </span>-out<span class="w"> </span>new.crt<span class="w"> </span>-keyout<span class="w"> </span>new.pem
 </code></pre>
 </div>
 <h3 id="add-the-new-key-to-simplesamlphp">
@@ -146,10 +151,6 @@ To do key rollover for an identity provider, you must add the new key to
  <code>
   metadata/saml20-idp-hosted.php
  </code>
- and/or
- <code>
-  metadata/shib13-idp-hosted.php
- </code>
  .
 If you are changing the keys for both an service provider and identity provider at the same time, you must update both locations.
 </p>
@@ -165,9 +166,12 @@ If you are changing the keys for both an service provider and identity provider 
 The metadata will be updated to list the new key for signing and encryption, and the old key will no longer listed as available for encryption.
 This ensures that both those entities that use your old metadata and those that use your new metadata will be able to send and receive messages from you.
 </p>
-<h3 id="examples">
- Examples
-</h3>
+<p>
+ <strong>
+  Examples
+ </strong>
+ :
+</p>
 <p>
  In
  <code>
@@ -187,7 +191,7 @@ This ensures that both those entities that use your old metadata and those that 
 <span class="x">        'new_certificate' =&gt; 'new.crt',</span>
 <span class="x">        // When new private key is passphrase protected.</span>
 <span class="x">        'new_privatekey_pass' =&gt; '&lt;new-secret&gt;',</span>
-<span class="x">    ),</span>
+<span class="x">    ],</span>
 </code></pre>
 </div>
 <p>
@@ -258,9 +262,12 @@ Replace the existing
  , and remove the latter options..
 This will cause your old key to be removed from your metadata.
 </p>
-<h3 id="examples_1">
- Examples
-</h3>
+<p>
+ <strong>
+  Examples
+ </strong>
+ :
+</p>
 <p>
  In
  <code>
@@ -276,17 +283,11 @@ This will cause your old key to be removed from your metadata.
 <span class="x">        // When private key is passphrase protected.</span>
 <span class="x">        'privatekey_pass' =&gt; '&lt;new-secret&gt;',</span>
 <span class="x">    ],</span>
-</code></pre>
-</div>
-<p>
- In
- <code>
-  metadata/saml20-idp-hosted.php
- </code>
- :
-</p>
-<div class="codehilite">
- <pre><span></span><code><span class="x">    $metadata['urn:x-simplesamlphp:idp'] = [</span>
+
+<span class="x">In `metadata/saml20-idp-hosted.php`:</span>
+
+<span class="x">```php</span>
+<span class="x">    $metadata['urn:x-simplesamlphp:idp'] = [</span>
 <span class="x">        'host' =&gt; '__DEFAULT__',</span>
 <span class="x">        'auth' =&gt; 'example-userpass',</span>
 <span class="x">        'certificate' =&gt; 'new.crt',</span>

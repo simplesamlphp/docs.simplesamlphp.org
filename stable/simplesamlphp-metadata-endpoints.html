@@ -51,8 +51,13 @@
    </p>
    <div class="mtoolbar">
     <div class="menuitem">
+     <a href="/docs/2.0/index.html">
+      2.0 (stable)
+     </a>
+    </div>
+    <div class="menuitem">
      <a href="/docs/1.19/index.html">
-      1.19 (stable)
+      1.19
      </a>
     </div>
     <div class="menuitem">
@@ -119,12 +124,17 @@
 <p>
  The various endpoints can be specified in three different ways:
 </p>
-<div class="codehilite">
- <pre><span></span><code>* A single string.
-* Array of strings.
-* Array of arrays.
-</code></pre>
-</div>
+<ul>
+ <li>
+  A single string.
+ </li>
+ <li>
+  Array of strings.
+ </li>
+ <li>
+  Array of arrays.
+ </li>
+</ul>
 <h2 id="a-single-string">
  A single string
 </h2>
@@ -156,7 +166,7 @@ It can be used when there is only a single endpoint that uses the default bindin
  <pre><span></span><code>  'AssertionConsumerService' =&gt; [
       [
           'index' =&gt; 1,
-          'isDefault' =&gt; TRUE,
+          'isDefault' =&gt; true,
           'Location' =&gt; 'https://sp.example.org/ACS',
           'Binding' =&gt; 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
       ],

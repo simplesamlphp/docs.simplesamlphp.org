@@ -51,8 +51,13 @@
    </p>
    <div class="mtoolbar">
     <div class="menuitem">
+     <a href="/docs/2.0/index.html">
+      2.0 (stable)
+     </a>
+    </div>
+    <div class="menuitem">
      <a href="/docs/1.19/index.html">
-      1.19 (stable)
+      1.19
      </a>
     </div>
     <div class="menuitem">
@@ -95,7 +100,42 @@
   For more information about how to use the Markdown syntax, read here:
   http://daringfireball.net/projects/markdown/syntax
 -->
-<!-- {{TOC}} -->
+<div class="toc">
+ <ul>
+  <li>
+   <a href="#pdo-metadata-storage-handler">
+    PDO Metadata Storage Handler
+   </a>
+   <ul>
+    <li>
+     <a href="#introduction">
+      Introduction
+     </a>
+    </li>
+    <li>
+     <a href="#preparations">
+      Preparations
+     </a>
+    </li>
+    <li>
+     <a href="#configuring-simplesamlphp">
+      Configuring SimpleSAMLphp
+     </a>
+    </li>
+    <li>
+     <a href="#initializing-the-database">
+      Initializing the Database
+     </a>
+    </li>
+    <li>
+     <a href="#adding-metadata">
+      Adding Metadata
+     </a>
+    </li>
+   </ul>
+  </li>
+ </ul>
+</div>
 <h2 id="introduction">
  Introduction
 </h2>
@@ -118,17 +158,17 @@
  You will first need to configure a PDO metadata source.
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="o">[</span><span class="n">root@simplesamlphp simplesamlphp</span><span class="o">]</span><span class="err">#</span><span class="w"> </span><span class="n">vi</span><span class="w"> </span><span class="n">config</span><span class="o">/</span><span class="n">config</span><span class="p">.</span><span class="n">php</span>
+ <pre><span></span><code><span class="o">[</span>root@simplesamlphp<span class="w"> </span>simplesamlphp<span class="o">]</span><span class="c1"># vi config/config.php</span>
 </code></pre>
 </div>
 <p>
  Here is an example of flatfile plus PDO:
 </p>
 <div class="codehilite">
- <pre><span></span><code>'metadata.sources' =&gt; [
-  ['type' =&gt; 'flatfile'],
-  ['type' =&gt; 'pdo'],
-],
+ <pre><span></span><code><span class="x">'metadata.sources' =&gt; [</span>
+<span class="x">    ['type' =&gt; 'flatfile'],</span>
+<span class="x">    ['type' =&gt; 'pdo'],</span>
+<span class="x">],</span>
 </code></pre>
 </div>
 <h2 id="initializing-the-database">
@@ -138,7 +178,7 @@
  Once you have configured your metadata sources to include a PDO source, you will need to initialize the database. This process will create tables in the database for each type of metadata set (saml20-idp-hosted, saml20-idp-remote, saml20-sp-remote, etc).
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="o">[</span><span class="n">root@simplesamlphp simplesamlphp</span><span class="o">]</span><span class="err">#</span><span class="w"> </span><span class="n">php</span><span class="w"> </span><span class="n">bin</span><span class="o">/</span><span class="n">initMDSPdo</span><span class="p">.</span><span class="n">php</span>
+ <pre><span></span><code><span class="o">[</span>root@simplesamlphp<span class="w"> </span>simplesamlphp<span class="o">]</span><span class="c1"># php bin/initMDSPdo.php</span>
 </code></pre>
 </div>
 <p>
@@ -159,7 +199,7 @@
  <code>
   __DEFAULT:1__
  </code>
- | {"host":"__DEFAULT__","privatekey":"idp.key","certificate":"idp.crt","auth":"example-ldap","userid.attribute":"uid"}
+ | {"host":"__DEFAULT__","privatekey":"idp.key","certificate":"idp.crt","auth":"example-ldap","identifyingAttribute":"uid"}
 </p>
 <p>
  Another example is the saml20_idp_remote table:
@@ -167,7 +207,10 @@
 <p>
  entity_id                | entity_data
 -------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-https://openidp.feide.no | {"name":{"en":"Feide OpenIdP - guest users","no":"Feide Gjestebrukere"},"description":"Here you can login with your account on Feide RnD OpenID. If you do not already have an account on this identity provider, you can create a new one by following the create new account link and follow the instructions.","SingleSignOnService":"https:\/\/openidp.feide.no\/simplesaml\/saml2\/idp\/SSOService.php","SingleLogoutService":"https:\/\/openidp.feide.no\/simplesaml\/saml2\/idp\/SingleLogoutService.php","certFingerprint":"c9ed4dfb07caf13fc21e0fec1572047eb8a7a4cb"}
+ <code>
+  https://openidp.feide.no
+ </code>
+ | {"name":{"en":"Feide OpenIdP - guest users","no":"Feide Gjestebrukere"},"description":"Here you can login with your account on Feide RnD OpenID. If you do not already have an account on this identity provider, you can create a new one by following the create new account link and follow the instructions.","SingleSignOnService":"https:\/\/openidp.feide.no\/simplesaml\/saml2\/idp\/SSOService.php","SingleLogoutService":"https:\/\/openidp.feide.no\/simplesaml\/saml2\/idp\/SingleLogoutService.php","certFingerprint":"c9ed4dfb07caf13fc21e0fec1572047eb8a7a4cb"}
 </p>
 <p>
  There is an included script in the
@@ -180,7 +223,7 @@ https://openidp.feide.no | {"name":{"en":"Feide OpenIdP - guest users","no":"Fei
  To import all flatfile metadata files into the PDO database, run the following script
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="o">[</span><span class="n">root@simplesamlphp simplesamlphp</span><span class="o">]</span><span class="err">#</span><span class="w"> </span><span class="n">php</span><span class="w"> </span><span class="n">bin</span><span class="o">/</span><span class="n">importPdoMetadata</span><span class="p">.</span><span class="n">php</span>
+ <pre><span></span><code><span class="o">[</span>root@simplesamlphp<span class="w"> </span>simplesamlphp<span class="o">]</span><span class="c1"># php bin/importPdoMetadata.php</span>
 </code></pre>
 </div>
 <p>

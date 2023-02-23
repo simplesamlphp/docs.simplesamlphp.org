@@ -51,8 +51,13 @@
    </p>
    <div class="mtoolbar">
     <div class="menuitem">
+     <a href="/docs/2.0/index.html">
+      2.0 (stable)
+     </a>
+    </div>
+    <div class="menuitem">
      <a href="/docs/1.19/index.html">
-      1.19 (stable)
+      1.19
      </a>
     </div>
     <div class="menuitem">
@@ -90,37 +95,77 @@
 </header><main><h1 id="sp-remote-metadata-reference">
  SP remote metadata reference
 </h1>
-<!-- {{TOC}} -->
+<div class="toc">
+ <ul>
+  <li>
+   <a href="#sp-remote-metadata-reference">
+    SP remote metadata reference
+   </a>
+   <ul>
+    <li>
+     <a href="#common-options">
+      Common options
+     </a>
+     <ul>
+      <li>
+       <a href="#encrypting-assertions">
+        Encrypting assertions
+       </a>
+      </li>
+      <li>
+       <a href="#fields-for-signing-and-validating-messages">
+        Fields for signing and validating messages
+       </a>
+       <ul>
+        <li>
+         <a href="#example-configuration-for-validating-messages">
+          Example: Configuration for validating messages
+         </a>
+        </li>
+       </ul>
+      </li>
+      <li>
+       <a href="#fields-for-scoping">
+        Fields for scoping
+       </a>
+       <ul>
+        <li>
+         <a href="#example-configuration-for-scoping">
+          Example: Configuration for scoping
+         </a>
+        </li>
+       </ul>
+      </li>
+     </ul>
+    </li>
+   </ul>
+  </li>
+ </ul>
+</div>
 <p>
  This is a reference for metadata options available for
  <code>
   metadata/saml20-sp-remote.php
  </code>
- and
- <code>
-  metadata/shib13-sp-remote.php
- </code>
- .
-Both files have the following format:
+ . The file has the following format:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="cp">&lt;?php</span>
-  <span class="cm">/* The index of the array is the entity ID of this SP. */</span>
-  <span class="nv">$metadata</span><span class="p">[</span><span class="s1">'entity-id-1'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
-      <span class="cm">/* Configuration options for the first SP. */</span>
-  <span class="p">];</span>
-  <span class="nv">$metadata</span><span class="p">[</span><span class="s1">'entity-id-2'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
-      <span class="cm">/* Configuration options for the second SP. */</span>
-  <span class="p">];</span>
-  <span class="cm">/* ... */</span>
+ <pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="cm">/* The index of the array is the entity ID of this SP. */</span>
+<span class="nv">$metadata</span><span class="p">[</span><span class="s1">'entity-id-1'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="cm">/* Configuration options for the first SP. */</span>
+<span class="p">];</span>
+<span class="nv">$metadata</span><span class="p">[</span><span class="s1">'entity-id-2'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="cm">/* Configuration options for the second SP. */</span>
+<span class="p">];</span>
+<span class="cm">/* ... */</span>
 </code></pre>
 </div>
 <h2 id="common-options">
  Common options
 </h2>
 <p>
- The following options are common between both the SAML 2.0 protocol
-and Shibboleth 1.3 protocol:
+ The following options can be set:
 </p>
 <dl>
  <dt>
@@ -156,19 +201,6 @@ and Shibboleth 1.3 protocol:
  </dd>
  <dt>
   <code>
-   base64attributes
-  </code>
- </dt>
- <dd>
-  Whether attributes sent to this SP should be base64 encoded. The
-  default is
-  <code>
-   FALSE
-  </code>
-  .
- </dd>
- <dt>
-  <code>
    description
   </code>
  </dt>
@@ -199,14 +231,16 @@ and Shibboleth 1.3 protocol:
  <dd>
   This option can be translated into multiple languages by specifying
   the value as an array of language-code to translated name:
-  <div class="codehilite">
-   <pre><span></span><code>    'name' =&gt; [
-        'en' =&gt; 'A service',
-        'no' =&gt; 'En tjeneste',
-    ],
-</code></pre>
-  </div>
  </dd>
+</dl>
+<div class="codehilite">
+ <pre><span></span><code><span class="x">'name' =&gt; [</span>
+<span class="x">    'en' =&gt; 'A service',</span>
+<span class="x">    'no' =&gt; 'En tjeneste',</span>
+<span class="x">],</span>
+</code></pre>
+</div>
+<dl>
  <dt>
   <code>
    OrganizationName
@@ -218,14 +252,16 @@ and Shibboleth 1.3 protocol:
  </dd>
  <dd>
   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
+ </dd>
+ <dt>
   <div class="codehilite">
-   <pre><span></span><code>    'OrganizationName' =&gt; [
-        'en' =&gt; 'Example organization',
-        'no' =&gt; 'Eksempel organisation',
-    ],
+   <pre><span></span><code><span class="x">'OrganizationName' =&gt; [</span>
+<span class="x">    'en' =&gt; 'Example organization',</span>
+<span class="x">    'no' =&gt; 'Eksempel organisation',</span>
+<span class="x">],</span>
 </code></pre>
   </div>
- </dd>
+ </dt>
  <dd>
   <p>
    <em>
@@ -288,59 +324,6 @@ and Shibboleth 1.3 protocol:
  </dd>
  <dt>
   <code>
-   privacypolicy
-  </code>
- </dt>
- <dd>
-  This is an absolute URL for where an user can find a privacypolicy
-  for this SP. If set, this will be shown on the consent page.
-  <code>
-   %SPENTITYID%
-  </code>
-  in the URL will be replaced with the entity id of
-  this service provider.
- </dd>
- <dd>
-  Note that this option also exists in the IdP-hosted metadata. This
-  entry in the SP-remote metadata overrides the option in the
-  IdP-hosted metadata.
- </dd>
- <dd>
-  <em>
-   Note
-  </em>
-  :
-  <strong>
-   deprecated
-  </strong>
-  Will be removed in a future release; use the MDUI-extension instead
- </dd>
- <dt>
-  <code>
-   userid.attribute
-  </code>
- </dt>
- <dd>
-  The attribute name of an attribute which uniquely identifies
-  the user. This attribute is used if SimpleSAMLphp needs to generate
-  a persistent unique identifier for the user. This option can be set
-  in both the IdP-hosted and the SP-remote metadata. The value in the
-  SP-remote metadata has the highest priority. The default value is
-  <code>
-   eduPersonPrincipalName
-  </code>
-  .
- </dd>
-</dl>
-<h2 id="saml-20-options">
- SAML 2.0 options
-</h2>
-<p>
- The following SAML 2.0 options are available:
-</p>
-<dl>
- <dt>
-  <code>
    AssertionConsumerService
   </code>
  </dt>
@@ -383,16 +366,7 @@ and Shibboleth 1.3 protocol:
     <code>
      base64
     </code>
-    : Store the attribute as a base64 encoded string. This
-      is the default when the
-    <code>
-     base64attributes
-    </code>
-    -option is set to
-    <code>
-     TRUE
-    </code>
-    .
+    : Store the attribute as a base64 encoded string.
    </li>
   </ul>
  </dd>
@@ -421,14 +395,10 @@ and Shibboleth 1.3 protocol:
  <dd>
   <ol>
    <li>
-    <p>
-     SP Remote Metadata
-    </p>
-    <ol>
-     <li>
-      IdP Hosted Metadata
-     </li>
-    </ol>
+    SP Remote Metadata
+   </li>
+   <li>
+    IdP Hosted Metadata
    </li>
   </ol>
  </dd>
@@ -436,7 +406,7 @@ and Shibboleth 1.3 protocol:
   <p>
    The default value is:
    <code>
-    urn:oasis:names:tc:SAML:2.0:attrname-format:basic
+    urn:oasis:names:tc:SAML:2.0:attrname-format:uri
    </code>
   </p>
  </dd>
@@ -449,31 +419,29 @@ and Shibboleth 1.3 protocol:
  <dd>
   <ul>
    <li>
-    <p>
-     <code>
-      urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified
-     </code>
-    </p>
-    <ul>
-     <li>
-      <p>
-       <code>
-        urn:oasis:names:tc:SAML:2.0:attrname-format:uri
-       </code>
-       (The default
-    in Shibboleth 2.0)
-      </p>
-     </li>
-     <li>
-      <p>
-       <code>
-        urn:oasis:names:tc:SAML:2.0:attrname-format:basic
-       </code>
-       (The
-    default in Sun Access Manager)
-      </p>
-     </li>
-    </ul>
+    <code>
+     urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified
+    </code>
+   </li>
+  </ul>
+ </dd>
+ <dd>
+  <ul>
+   <li>
+    <code>
+     urn:oasis:names:tc:SAML:2.0:attrname-format:uri
+    </code>
+    (The default in Shibboleth 2.0, mandatory as per SAML2INT)
+   </li>
+  </ul>
+ </dd>
+ <dd>
+  <ul>
+   <li>
+    <code>
+     urn:oasis:names:tc:SAML:2.0:attrname-format:basic
+    </code>
+    (The default in Sun Access Manager)
    </li>
   </ul>
  </dd>
@@ -487,15 +455,6 @@ and Shibboleth 1.3 protocol:
    Note that this option also exists in the IdP-hosted metadata. This
   entry in the SP-remote metadata overrides the option in the
   IdP-hosted metadata.
-  </p>
- </dd>
- <dd>
-  <p>
-   (This option was previously named
-   <code>
-    AttributeNameFormat
-   </code>
-   .)
   </p>
  </dd>
  <dt>
@@ -524,7 +483,7 @@ and Shibboleth 1.3 protocol:
   </code>
  </dt>
  <dd>
-  Name of certificate file for this SP. The certificate is used to
+  Location of certificate data for this SP. The certificate is used to
   verify the signature of messages received from the SP (if
   <code>
    redirect.validate
@@ -606,18 +565,16 @@ and Shibboleth 1.3 protocol:
     <code>
      urn:oasis:names:tc:SAML:2.0:nameid-format:transient
     </code>
-    <ol>
-     <li>
-      <code>
-       urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
-      </code>
-     </li>
-     <li>
-      <code>
-       urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
-      </code>
-     </li>
-    </ol>
+   </li>
+   <li>
+    <code>
+     urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
+    </code>
+   </li>
+   <li>
+    <code>
+     urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
+    </code>
    </li>
   </ol>
  </dd>
@@ -726,23 +683,47 @@ and Shibboleth 1.3 protocol:
  </dd>
  <dd>
   Possible values:
-  <div class="codehilite">
-   <pre><span></span><code>* `http://www.w3.org/2000/09/xmldsig#rsa-sha1`
-   *Note*: the use of SHA1 is **deprecated** and will be disallowed in the future.
-* `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256`
-  The default.
-* `http://www.w3.org/2001/04/xmldsig-more#rsa-sha384`
-* `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512`
-</code></pre>
-  </div>
  </dd>
+</dl>
+<ul>
+ <li>
+  <code>
+   http://www.w3.org/2000/09/xmldsig#rsa-sha1
+  </code>
+  <em>
+   Note
+  </em>
+  : the use of SHA1 is
+  <strong>
+   deprecated
+  </strong>
+  and will be disallowed in the future.
+ </li>
+ <li>
+  <code>
+   http://www.w3.org/2001/04/xmldsig-more#rsa-sha256
+  </code>
+  The default.
+ </li>
+ <li>
+  <code>
+   http://www.w3.org/2001/04/xmldsig-more#rsa-sha384
+  </code>
+ </li>
+ <li>
+  <code>
+   http://www.w3.org/2001/04/xmldsig-more#rsa-sha512
+  </code>
+ </li>
+</ul>
+<dl>
  <dt>
   <code>
    signature.privatekey
   </code>
  </dt>
  <dd>
-  Name of private key file for this IdP, in PEM format. The filename is relative to the cert/-directory.
+  Location of private key data for this IdP, in PEM format.
  </dd>
  <dd>
   Note that this option also exists in the IdP-hosted metadata. This entry in the SP-remote metadata overrides the option
@@ -772,7 +753,7 @@ and Shibboleth 1.3 protocol:
   </code>
  </dt>
  <dd>
-  Certificate file included by IdP for KeyInfo within the signature for the SP, in PEM format. The filename is relative to the cert/-directory.
+  Location of certificate data included by IdP for KeyInfo within the signature for the SP, in PEM format.
  </dd>
  <dd>
   If
@@ -796,72 +777,6 @@ and Shibboleth 1.3 protocol:
  <dd>
   Note that this option also exists in the IdP-hosted metadata.
   The value in the SP-remote metadata overrides the value in the IdP-hosted metadata.
- </dd>
- <dt>
-  <code>
-   simplesaml.nameidattribute
-  </code>
- </dt>
- <dd>
-  When the value of the
-  <code>
-   NameIDFormat
-  </code>
-  -option is set to either
-  <code>
-   email
-  </code>
-  or
-  <code>
-   persistent
-  </code>
-  , this is the name of the attribute which
-  should be used as the value of the
-  <code>
-   NameID
-  </code>
-  . The attribute must
-  be in the set of attributes exported to the SP (that is, be in
-  the
-  <code>
-   attributes
-  </code>
-  array). For more advanced control over
-  <code>
-   NameID
-  </code>
-  ,
-  including the ability to specify any attribute regardless of
-  the set sent to the SP, see the
-  <a href="./saml/nameid.html">
-   NameID processing filters
-  </a>
-  .
-  Note that the value of the attribute is collected
-  <strong>
-   after
-  </strong>
-  authproc-filters have run.
- </dd>
- <dd>
-  Typical values can be
-  <code>
-   mail
-  </code>
-  for when using the
-  <code>
-   email
-  </code>
-  format,
-  and
-  <code>
-   eduPersonTargetedID
-  </code>
-  when using the
-  <code>
-   persistent
-  </code>
-  format.
  </dd>
  <dt>
   <code>
@@ -924,10 +839,34 @@ and Shibboleth 1.3 protocol:
  </dt>
  <dd>
   Whether we require signatures on authentication requests sent from this SP.
+  Set it to:
  </dd>
  <dd>
-  Note that this option also exists in the IdP-hosted metadata.
+  <ul>
+   <li>
+    true: authnrequest must be signed (and signature will be validated)
+   </li>
+  </ul>
+ </dd>
+ <dd>
+  <ul>
+   <li>
+    null: authnrequest may be signed, if it is, signature will be validated
+   </li>
+  </ul>
+ </dd>
+ <dd>
+  <ul>
+   <li>
+    false: authnrequest signature is never checked
+   </li>
+  </ul>
+ </dd>
+ <dd>
+  <p>
+   Note that this option also exists in the IdP-hosted metadata.
   The value in the SP-remote metadata overrides the value in the IdP-hosted metadata.
+  </p>
  </dd>
  <dt>
   <code>
@@ -940,6 +879,18 @@ and Shibboleth 1.3 protocol:
  <dd>
   Note that this option also exists in the IdP-hosted metadata.
   The value in the SP-remote metadata overrides the value in the IdP-hosted metadata.
+ </dd>
+ <dt>
+  <code>
+   skipEndpointValidationWhenSigned
+  </code>
+ </dt>
+ <dd>
+  Whether to skip validating that the AssertionConsumerServiceURL sent in authentication
+  requests exist in SP metadata.  Only allowed for signed requests.
+  This option must be a simple boolean (true/false - although a value of false essentially has
+  no effect) or a callable.  When used as a callable, the static class method must accept the
+  SP metadata config as a parameter and return a boolean.
  </dd>
 </dl>
 <h3 id="encrypting-assertions">
@@ -1000,17 +951,40 @@ of the SP.
  </dt>
  <dd>
   Algorithm which should be used for encryption. Possible values are:
-  <div class="codehilite">
-   <pre><span></span><code>* http://www.w3.org/2001/04/xmlenc#aes128-cbc
-* http://www.w3.org/2001/04/xmlenc#aes192-cbc
-* http://www.w3.org/2001/04/xmlenc#aes256-cbc
-* http://www.w3.org/2009/xmlenc11#aes128-gcm
-* http://www.w3.org/2009/xmlenc11#aes192-gcm
-* http://www.w3.org/2009/xmlenc11#aes256-gcm
-</code></pre>
-  </div>
  </dd>
 </dl>
+<ul>
+ <li>
+  <code>
+   http://www.w3.org/2001/04/xmlenc#aes128-cbc
+  </code>
+ </li>
+ <li>
+  <code>
+   http://www.w3.org/2001/04/xmlenc#aes192-cbc
+  </code>
+ </li>
+ <li>
+  <code>
+   http://www.w3.org/2001/04/xmlenc#aes256-cbc
+  </code>
+ </li>
+ <li>
+  <code>
+   http://www.w3.org/2009/xmlenc11#aes128-gcm
+  </code>
+ </li>
+ <li>
+  <code>
+   http://www.w3.org/2009/xmlenc11#aes192-gcm
+  </code>
+ </li>
+ <li>
+  <code>
+   http://www.w3.org/2009/xmlenc11#aes256-gcm
+  </code>
+ </li>
+</ul>
 <h3 id="fields-for-signing-and-validating-messages">
  Fields for signing and validating messages
 </h3>
@@ -1062,14 +1036,12 @@ can be enabled by the
   </code>
  </dd>
 </dl>
-<p>
- <strong>
-  Example: Configuration for validating messages
- </strong>
-</p>
+<h4 id="example-configuration-for-validating-messages">
+ Example: Configuration for validating messages
+</h4>
 <div class="codehilite">
- <pre><span></span><code>  'redirect.validate' =&gt; TRUE,
-  'certificate' =&gt; 'example.org.crt',
+ <pre><span></span><code><span class="x">'redirect.validate' =&gt; true,</span>
+<span class="x">'certificate' =&gt; 'example.org.crt',</span>
 </code></pre>
 </div>
 <h3 id="fields-for-scoping">
@@ -1086,129 +1058,16 @@ sp can use.
   </code>
  </dt>
  <dd>
-  The list of scoped idps ie. the list of entityids for idps that are
-relevant for this sp. The final list is the concatenation of the list
-given as parameter to InitSSO (at the sp), the list configured at the
-sp and the list configured at the ipd (here) for this sp. The intersection
-of the final list and the idps configured at the at this idp will be
-presented to the user at the discovery service if neccessary. If only one
-idp is in the intersection the discoveryservice will go directly to the idp.
+  The list of scoped IdPs, i.e. the list of entityids for IdPs that are
+relevant for this SP. It will override any list set in the IdP's
+metadata.
  </dd>
 </dl>
-<p>
- <strong>
-  Example: Configuration for scoping
- </strong>
-</p>
+<h4 id="example-configuration-for-scoping">
+ Example: Configuration for scoping
+</h4>
 <div class="codehilite">
- <pre><span></span><code>   'IDPList' =&gt; ['https://idp1.wayf.dk', 'https://idp2.wayf.dk'],
+ <pre><span></span><code><span class="x">'IDPList' =&gt; ['https://idp1.wayf.dk', 'https://idp2.wayf.dk'],</span>
 </code></pre>
-</div>
-<h2 id="shibboleth-13-options">
- Shibboleth 1.3 options
-</h2>
-<p>
- Note that Shibboleth 1.3 support is deprecated and will be removed in the next major release of SimpleSAMLphp.
-</p>
-<p>
- The following options for Shibboleth 1.3 SP's are avaiblable:
-</p>
-<dl>
- <dt>
-  <code>
-   audience
-  </code>
- </dt>
- <dd>
-  The value which should be given in the
-  <code>
-   &lt;Audience&gt;
-  </code>
-  -element in the
-  <code>
-   &lt;AudienceRestrictionCondition&gt;
-  </code>
-  -element in the response. The
-  default value is the entity ID of the SP.
- </dd>
- <dt>
-  <code>
-   AssertionConsumerService
-  </code>
- </dt>
- <dd>
-  The URL of the AssertionConsumerService endpoint for this SP.
-  This endpoint must accept the SAML responses encoded with the
-  <code>
-   urn:oasis:names:tc:SAML:1.0:profiles:browser-post
-  </code>
-  encoding.
-  This option is required - without it you will not be able to send
-  responses back to the SP.
- </dd>
- <dd>
-  The value of this option is specified in one of several
-  <a href="./simplesamlphp-metadata-endpoints.html">
-   endpoint formats
-  </a>
-  .
- </dd>
- <dt>
-  <code>
-   NameQualifier
-  </code>
- </dt>
- <dd>
-  What the value of the
-  <code>
-   NameQualifier
-  </code>
-  -attribute of the
-  <code>
-   &lt;NameIdentifier&gt;
-  </code>
-  -element should be. The default value is the
-  entity ID of the SP.
- </dd>
- <dt>
-  <code>
-   scopedattributes
-  </code>
- </dt>
- <dd>
-  Array with names of attributes which should be scoped. Scoped
-  attributes will receive a
-  <code>
-   Scope
-  </code>
-  -attribute on the
-  <code>
-   AttributeValue
-  </code>
-  -element. The value of the Scope-attribute will
-  be taken from the attribute value:
- </dd>
- <dd>
-  <code>
-   &lt;AttributeValue&gt;someuser@example.org&lt;/AttributeValue&gt;
-  </code>
- </dd>
- <dd>
-  will be transformed into
- </dd>
- <dd>
-  <code>
-   &lt;AttributeValue Scope="example.org"&gt;someuser&lt;/AttributeValue&gt;
-  </code>
- </dd>
- <dd>
-  By default, no attributes are scoped. This option overrides the
-  option with the same name in the
-  <code>
-   shib13-idp-hosted.php
-  </code>
-  metadata
-  file.
- </dd>
-</dl></main></body>
+</div></main></body>
 </html>

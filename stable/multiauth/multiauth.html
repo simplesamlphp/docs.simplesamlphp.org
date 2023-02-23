@@ -51,8 +51,13 @@
    </p>
    <div class="mtoolbar">
     <div class="menuitem">
+     <a href="/docs/2.0/index.html">
+      2.0 (stable)
+     </a>
+    </div>
+    <div class="menuitem">
      <a href="/docs/1.19/index.html">
-      1.19 (stable)
+      1.19
      </a>
     </div>
     <div class="menuitem">
@@ -134,41 +139,41 @@ cases and then switch to the
 authentication source:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'example-multi' =&gt; array(
+ <pre><span></span><code>  'example-multi' =&gt; [
       'multiauth:MultiAuth',
 
       /*
        * The available authentication sources.
        * They must be defined in this authsources.php file.
        */
-      'sources' =&gt; array(
-          'example-saml' =&gt; array(
-              'text' =&gt; array(
+      'sources' =&gt; [
+          'example-saml' =&gt; [
+              'text' =&gt; [
                   'en' =&gt; 'Log in using a SAML SP',
                   'es' =&gt; 'Entrar usando un SP SAML',
-              ),
-              'css-class' =&gt; 'SAML',
-              'AuthnContextClassRef' =&gt; array('urn:oasis:names:tc:SAML:2.0:ac:classes:SmartcardPKI', 'urn:oasis:names:tc:SAML:2.0:ac:classes:MobileTwoFactorContract'),
-          ),
-          'example-admin' =&gt; array(
-              'text' =&gt; array(
+              ],
+              'css_class' =&gt; 'SAML',
+              'AuthnContextClassRef' =&gt; ['urn:oasis:names:tc:SAML:2.0:ac:classes:SmartcardPKI', 'urn:oasis:names:tc:SAML:2.0:ac:classes:MobileTwoFactorContract'],
+          ],
+          'example-admin' =&gt; [
+              'text' =&gt; [
                   'en' =&gt; 'Log in using the admin password',
                   'es' =&gt; 'Entrar usando la contraseña de administrador',
-              ),
+              ],
               'AuthnContextClassRef' =&gt; 'urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport',
-          ),
-      ),
-  ),
+          ],
+      ],
+  ],
 
-  'example-saml' =&gt; array(
+  'example-saml' =&gt; [
       'saml:SP',
-      'entityId' =&gt; 'my-entity-id',
+      'entityId' =&gt; 'https://myapp.example.org',
       'idp' =&gt; 'my-idp',
-  ),
+  ],
 
-  'example-admin' =&gt; array(
+  'example-admin' =&gt; [
       'core:AdminPassword',
-  ),
+  ],
 </code></pre>
 </div>
 <p>
@@ -198,19 +203,16 @@ is the one that decides which one to use.
 sources defined in the authsources.php configuration file. The
 values are arrays with information used to create the user
 interface that will let the user select the authentication source
-he wants. Older versions of the multiauth module did not have
-this structure and just have the authsources identifiers as the
-values of the sources array. It has been improved in a backwards
-compatible fashion so both cases should work.
+they want.
 </p>
 <p>
  Each source in the sources array has a key and a value. As
 mentioned above the key is the authsource identifier and the value
-is another array with optional keys: 'text', 'css-class', 'help', and 'AuthnContextClassRef'.
+is another array with optional keys: 'text', 'css_class', 'help', and 'AuthnContextClassRef'.
 The text element is another array with localized strings for one
 or more languages. These texts will be shown in the selectsource.php
 view. Note that you should at least enter the text in the default
-language as specified in your config.php file. The css-class
+language as specified in your config.php file. The css_class
 element is a string with the css class that will be applied to
 the &lt;li&gt; element in the selectsource.php view. By default the
 authtype of the authsource is used as the css class with colons
@@ -234,23 +236,24 @@ authentication page for that source, and will never be shown the multiauth selec
  <code>
   source
  </code>
- to the calling URL, 
+ to the calling URL,
 when accessing a service, to allow the user to preselect the
 authsource to be used. This can be handy if you support different
-authentication types for different types of users and you want the 
-users to have a direct link to the service and not want them to 
+authentication types for different types of users and you want the
+users to have a direct link to the service and not want them to
 select the correct authentication source.
 </p>
 <p>
  For example:
 </p>
-<div class="codehilite">
- <pre><span></span><code>  htttps://example.com/service/?source=saml
-</code></pre>
-</div>
 <p>
- will take you directly to the SAML authentication source, instead 
-of hitting the multiauth select page, but this works only if you 
+ <code>
+  https://example.com/service/?source=saml
+ </code>
+</p>
+<p>
+ will take you directly to the SAML authentication source, instead
+of hitting the multiauth select page, but this works only if you
 don't have redirections during the authentication process.
 </p>
 <p>
@@ -258,9 +261,9 @@ don't have redirections during the authentication process.
 </p>
 <div class="codehilite">
  <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">as</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">new</span><span class="w"> </span><span class="err">\</span><span class="nt">SimpleSAML</span><span class="err">\</span><span class="nt">Auth</span><span class="err">\</span><span class="nt">Simple</span><span class="o">(</span><span class="s1">'my-multiauth-authsource'</span><span class="o">);</span>
-<span class="w">  </span><span class="o">$</span><span class="nt">as-</span><span class="o">&gt;</span><span class="nt">login</span><span class="o">(</span><span class="nt">array</span><span class="o">(</span>
-<span class="w">      </span><span class="s1">'multiauth:preselect'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'default-sp'</span><span class="o">,</span>
-<span class="w">  </span><span class="o">));</span>
+<span class="w">  </span><span class="o">$</span><span class="nt">as-</span><span class="o">&gt;</span><span class="nt">login</span><span class="o">(</span><span class="cp">[</span>
+<span class="w">      </span><span class="s1">'multiauth:preselect'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'default-sp'</span><span class="p">,</span>
+<span class="w">  </span><span class="cp">]</span><span class="o">);</span>
 </code></pre>
 </div>
 <p>
@@ -271,23 +274,23 @@ don't have redirections during the authentication process.
  option in the filter:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'example-multi' =&gt; array(
+ <pre><span></span><code>  'example-multi' =&gt; [
       'multiauth:MultiAuth',
 
       /*
        * The available authentication sources.
        * They must be defined in this authsources.php file.
        */
-      'sources' =&gt; array(
-          'example-saml' =&gt; array(
+      'sources' =&gt; [
+          'example-saml' =&gt; [
           // ...
-          ),
-          'example-admin' =&gt; array(
+          ],
+          'example-admin' =&gt; [
           // ...
-          ),
-      ),
+          ],
+      ],
       'preselect' =&gt; 'example-saml',
-  ),
+  ],
 </code></pre>
 </div>
 <p>

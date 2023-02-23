@@ -51,8 +51,13 @@
    </p>
    <div class="mtoolbar">
     <div class="menuitem">
+     <a href="/docs/2.0/index.html">
+      2.0 (stable)
+     </a>
+    </div>
+    <div class="menuitem">
      <a href="/docs/1.19/index.html">
-      1.19 (stable)
+      1.19
      </a>
     </div>
     <div class="menuitem">
@@ -90,12 +95,49 @@
 </header><main><h1 id="cron">
  Cron
 </h1>
-<!-- 
-  This file is written in Markdown syntax. 
-  For more information about how to use the Markdown syntax, read here:
-  http://daringfireball.net/projects/markdown/syntax
--->
-<!-- {{TOC}} -->
+<div class="toc">
+ <ul>
+  <li>
+   <a href="#cron">
+    Cron
+   </a>
+   <ul>
+    <li>
+     <a href="#introduction">
+      Introduction
+     </a>
+    </li>
+    <li>
+     <a href="#preparations">
+      Preparations
+     </a>
+    </li>
+    <li>
+     <a href="#configuring-the-cron-module">
+      Configuring the cron module
+     </a>
+    </li>
+    <li>
+     <a href="#triggering-cron">
+      Triggering Cron
+     </a>
+     <ul>
+      <li>
+       <a href="#with-http">
+        With HTTP
+       </a>
+      </li>
+      <li>
+       <a href="#with-cli">
+        With CLI
+       </a>
+      </li>
+     </ul>
+    </li>
+   </ul>
+  </li>
+ </ul>
+</div>
 <h2 id="introduction">
  Introduction
 </h2>
@@ -106,6 +148,19 @@ job that calls a hook in SimpleSAMLphp.  This will invoke
   hooks/hook_cron.php
  </code>
  in any enabled modules
+</p>
+<p>
+ Modules, like e.g. the metarefresh module, that want to invoke tasks
+on set times, can register cron hooks for use by this module. You in turn
+configure your system's
+ <code>
+  cron
+ </code>
+ or other time based execution functionality
+to periodically trigger this module's endpoint, so all registered hooks
+will be executed at that time. This module also takes care of reporting
+back the result and provides an interface in SimpleSAMLphp's admin
+panel to trigger jobs manually.
 </p>
 <h2 id="preparations">
  Preparations
@@ -122,9 +177,9 @@ job that calls a hook in SimpleSAMLphp.  This will invoke
  directory.
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="p">[</span><span class="n">root</span><span class="err">@</span><span class="n">simplesamlphp</span><span class="p">]</span><span class="w"> </span><span class="n">cd</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">simplesamlphp</span>
-<span class="p">[</span><span class="n">root</span><span class="err">@</span><span class="n">simplesamlphp</span><span class="w"> </span><span class="n">simplesamlphp</span><span class="p">]</span><span class="w"> </span><span class="n">touch</span><span class="w"> </span><span class="n">modules</span><span class="o">/</span><span class="n">cron</span><span class="o">/</span><span class="n">enable</span>
-<span class="p">[</span><span class="n">root</span><span class="err">@</span><span class="n">simplesamlphp</span><span class="w"> </span><span class="n">simplesamlphp</span><span class="p">]</span><span class="w"> </span><span class="n">cp</span><span class="w"> </span><span class="n">modules</span><span class="o">/</span><span class="n">cron</span><span class="o">/</span><span class="n">config</span><span class="o">-</span><span class="n">templates</span><span class="o">/*.</span><span class="n">php</span><span class="w"> </span><span class="n">config</span><span class="o">/</span>
+ <pre><span></span><code><span class="o">[</span>root@simplesamlphp<span class="o">]</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/var/simplesamlphp
+<span class="o">[</span>root@simplesamlphp<span class="w"> </span>simplesamlphp<span class="o">]</span><span class="w"> </span>touch<span class="w"> </span>modules/cron/enable
+<span class="o">[</span>root@simplesamlphp<span class="w"> </span>simplesamlphp<span class="o">]</span><span class="w"> </span>cp<span class="w"> </span>modules/cron/config/module_cron.php.dist<span class="w"> </span>config/module_cron.php
 </code></pre>
 </div>
 <h2 id="configuring-the-cron-module">
@@ -138,13 +193,12 @@ job that calls a hook in SimpleSAMLphp.  This will invoke
  ) should look similar to this:
 </p>
 <div class="codehilite">
- <pre><span></span><code>$config = array (
-       'key' =&gt; 'RANDOM_KEY',
-       'allowed_tags' =&gt; array('daily', 'hourly', 'frequent'),
-       'debug_message' =&gt; TRUE,
-       'sendemail' =&gt; TRUE,
-
-);
+ <pre><span></span><code><span class="x">$config = [</span>
+<span class="x">   'key' =&gt; 'RANDOM_KEY',</span>
+<span class="x">   'allowed_tags' =&gt; ['daily', 'hourly', 'frequent'],</span>
+<span class="x">   'debug_message' =&gt; true,</span>
+<span class="x">   'sendemail' =&gt; true,</span>
+<span class="x">];</span>
 </code></pre>
 </div>
 <p>
@@ -189,17 +243,17 @@ your SimpleSAMLphp installation.
  Now, copy the cron configuration suggested on that page:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="n">Run</span><span class="w"> </span><span class="n">cron</span><span class="w"> </span><span class="o">[</span><span class="n">daily</span><span class="o">]</span>
-<span class="mi">02</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">curl</span><span class="w"> </span><span class="o">--</span><span class="n">silent</span><span class="w"> </span><span class="ss">"https://YOUR_SERVER/simplesaml/module.php/cron/cron.php?key=RANDOM_KEY&amp;tag=daily"</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="k">null</span><span class="w"> </span><span class="mi">2</span><span class="o">&gt;&amp;</span><span class="mi">1</span>
-<span class="err">#</span><span class="w"> </span><span class="n">Run</span><span class="w"> </span><span class="n">cron</span><span class="w"> </span><span class="o">[</span><span class="n">hourly</span><span class="o">]</span>
-<span class="mi">01</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">curl</span><span class="w"> </span><span class="c1">--silent "https://YOUR_SERVER/simplesaml/module.php/cron/cron.php?key=RANDOM_KEY&amp;tag=hourly" &gt; /dev/null 2&gt;&amp;1</span>
+ <pre><span></span><code># Run cron [daily]
+02 0 * * * curl -sS "https://YOUR_SERVER/simplesaml/module.php/cron/run/daily/RANDOM_KEY"
+# Run cron [hourly]
+01 * * * * curl -sS "https://YOUR_SERVER/simplesaml/module.php/cron/run/hourly/RANDOM_KEY"
 </code></pre>
 </div>
 <p>
  Finally, add it to your crontab by going back to the terminal, and editing with:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="o">[</span><span class="n">root@simplesamlphp config</span><span class="o">]</span><span class="err">#</span><span class="w"> </span><span class="n">crontab</span><span class="w"> </span><span class="o">-</span><span class="n">e</span>
+ <pre><span></span><code><span class="o">[</span>root@simplesamlphp<span class="w"> </span>config<span class="o">]</span><span class="c1"># crontab -e</span>
 </code></pre>
 </div>
 <p>
@@ -211,7 +265,7 @@ the one you use normally appears, exit, and configure the
  variable to tell the command line which editor it should use:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="p">[</span><span class="n">root</span><span class="err">@</span><span class="n">simplesamlphp</span><span class="w"> </span><span class="n">config</span><span class="p">]</span><span class="c1"># export EDITOR=emacs</span>
+ <pre><span></span><code><span class="o">[</span>root@simplesamlphp<span class="w"> </span>config<span class="o">]</span><span class="c1"># export EDITOR=emacs</span>
 </code></pre>
 </div>
 <p>
@@ -276,7 +330,11 @@ logging configuration from
  </li>
  <li>
   Override INI entries to increase memory and execution time.
-    * This allows for processing large metadata files in metarefresh
+  <ul>
+   <li>
+    This allows for processing large metadata files in metarefresh
+   </li>
+  </ul>
  </li>
  <li>
   Run the
@@ -298,11 +356,11 @@ logging configuration from
  </li>
 </ul>
 <div class="codehilite">
- <pre><span></span><code><span class="n">su</span><span class="w"> </span><span class="o">-</span><span class="n">s</span><span class="w"> </span><span class="s2">"/bin/sh"</span><span class="w"> </span>\
-<span class="w">   </span><span class="o">-</span><span class="n">c</span><span class="w"> </span><span class="s2">"nice -n 10 </span><span class="se">\</span>
-<span class="s2">       php -d max_execution_time=120 -d memory_limit=600M </span><span class="se">\</span>
-<span class="s2">       /var/simplesamlphp/modules/cron/bin/cron.php -t hourly"</span><span class="w"> </span>\
-<span class="w">    </span><span class="n">apache</span>
+ <pre><span></span><code>su<span class="w"> </span>-s<span class="w"> </span><span class="s2">"/bin/sh"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>-c<span class="w"> </span><span class="s2">"nice -n 10 \</span>
+<span class="s2">       php -d max_execution_time=120 -d memory_limit=600M \</span>
+<span class="s2">       /var/simplesamlphp/modules/cron/bin/cron.php -t hourly"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>apache
 </code></pre>
 </div></main></body>
 </html>

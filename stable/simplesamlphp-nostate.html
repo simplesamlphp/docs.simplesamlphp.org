@@ -51,8 +51,13 @@
    </p>
    <div class="mtoolbar">
     <div class="menuitem">
+     <a href="/docs/2.0/index.html">
+      2.0 (stable)
+     </a>
+    </div>
+    <div class="menuitem">
      <a href="/docs/1.19/index.html">
-      1.19 (stable)
+      1.19
      </a>
     </div>
     <div class="menuitem">
@@ -106,7 +111,59 @@ SimpleSAMLphp. Unfortunately, it is also a generic error that can have many
 possible causes. This document will attempt to describe what this error
 actually means, and some of the situations that can cause it.
 </p>
-<!-- {{TOC}} -->
+<div class="toc">
+ <ul>
+  <li>
+   <a href="#debugging-state-information-lost-errors">
+    Debugging "State Information Lost" errors
+   </a>
+   <ul>
+    <li>
+     <a href="#what-is-state-information">
+      What is "state information"?
+     </a>
+    </li>
+    <li>
+     <a href="#what-does-it-mean-that-it-was-lost">
+      What does it mean that it was lost?
+     </a>
+    </li>
+    <li>
+     <a href="#what-can-cause-it-to-be-lost">
+      What can cause it to be lost?
+     </a>
+     <ul>
+      <li>
+       <a href="#the-domain-name-changed-during-authentication">
+        The domain name changed during authentication
+       </a>
+      </li>
+      <li>
+       <a href="#hopping-between-http-and-https">
+        Hopping between http and https
+       </a>
+      </li>
+      <li>
+       <a href="#mismatch-between-php-session-settings-for-the-application-and-simplesamlphp">
+        Mismatch between PHP session settings for the application and SimpleSAMLphp
+       </a>
+      </li>
+      <li>
+       <a href="#browsers-with-samesitelax-as-default">
+        Browsers with SameSite=Lax as default
+       </a>
+      </li>
+      <li>
+       <a href="#a-generic-problem-saving-sessions">
+        A generic problem saving sessions
+       </a>
+      </li>
+     </ul>
+    </li>
+   </ul>
+  </li>
+ </ul>
+</div>
 <h2 id="what-is-state-information">
  What is "state information"?
 </h2>
@@ -210,14 +267,14 @@ change this in
 be set to the top-level domain with a "dot" in front of it. E.g.:
 </p>
 <div class="codehilite">
- <pre><span></span><code>'session.cookie.domain' =&gt; '.example.org',
+ <pre><span></span><code>  'session.cookie.domain' =&gt; '.example.org',
 </code></pre>
 </div>
 <p>
  Or in php.ini:
 </p>
 <div class="codehilite">
- <pre><span></span><code>session.cookie_domain = ".example.org"
+ <pre><span></span><code>  session.cookie_domain = ".example.org"
 </code></pre>
 </div>
 <p>

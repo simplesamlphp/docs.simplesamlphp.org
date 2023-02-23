@@ -51,8 +51,13 @@
    </p>
    <div class="mtoolbar">
     <div class="menuitem">
+     <a href="/docs/2.0/index.html">
+      2.0 (stable)
+     </a>
+    </div>
+    <div class="menuitem">
      <a href="/docs/1.19/index.html">
-      1.19 (stable)
+      1.19
      </a>
     </div>
     <div class="menuitem">
@@ -175,12 +180,12 @@ That is, the value will be
  Add eduPersonScopedAffiliation based on eduPersonAffiliation and eduPersonPrincipalName.
 </p>
 <div class="codehilite">
- <pre><span></span><code>  10 =&gt; array(
+ <pre><span></span><code>  10 =&gt; [
       'class' =&gt; 'core:ScopeAttribute',
       'scopeAttribute' =&gt; 'eduPersonPrincipalName',
       'sourceAttribute' =&gt; 'eduPersonAffiliation',
       'targetAttribute' =&gt; 'eduPersonScopedAffiliation',
-  ),
+  ],
 </code></pre>
 </div>
 <p>

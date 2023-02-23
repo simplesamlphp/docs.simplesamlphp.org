@@ -51,8 +51,13 @@
    </p>
    <div class="mtoolbar">
     <div class="menuitem">
+     <a href="/docs/2.0/index.html">
+      2.0 (stable)
+     </a>
+    </div>
+    <div class="menuitem">
      <a href="/docs/1.19/index.html">
-      1.19 (stable)
+      1.19
      </a>
     </div>
     <div class="menuitem">
@@ -172,26 +177,26 @@
  .
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'authproc' =&gt; array(
-      50 =&gt; array(
+ <pre><span></span><code>  'authproc' =&gt; [
+      50 =&gt; [
           'class' =&gt; 'core:Cardinality',
-          'givenName' =&gt; array('min' =&gt; 1),
-          'mail' =&gt; array('max' =&gt; 2),
-          'eduPersonScopedAffiliation' =&gt; array('min' =&gt; 2, 'max' =&gt; 4),
-      ),
-  ),
+          'givenName' =&gt; ['min' =&gt; 1],
+          'mail' =&gt; ['max' =&gt; 2],
+          'eduPersonScopedAffiliation' =&gt; ['min' =&gt; 2, 'max' =&gt; 4],
+      ],
+  ],
 </code></pre>
 </div>
 <p>
  Use the shorthand notation for min, max:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'authproc' =&gt; array(
-      50 =&gt; array(
+ <pre><span></span><code>  'authproc' =&gt; [
+      50 =&gt; [
           'class' =&gt; 'core:Cardinality',
-          'mail' =&gt; array(0, 2),
-      ),
-  ),
+          'mail' =&gt; [0, 2],
+      ],
+  ],
 </code></pre>
 </div></main></body>
 </html>

@@ -51,8 +51,13 @@
    </p>
    <div class="mtoolbar">
     <div class="menuitem">
+     <a href="/docs/2.0/index.html">
+      2.0 (stable)
+     </a>
+    </div>
+    <div class="menuitem">
      <a href="/docs/1.19/index.html">
-      1.19 (stable)
+      1.19
      </a>
     </div>
     <div class="menuitem">
@@ -106,15 +111,15 @@ If the given AuthnContextClassRef does not match any accepted value, the user wi
  Examples
 </h2>
 <div class="codehilite">
- <pre><span></span><code>  'authproc.sp' =&gt; array(
-    91 =&gt; array(
+ <pre><span></span><code>  'authproc.sp' =&gt; [
+    91 =&gt; [
       'class' =&gt; 'saml:ExpectedAuthnContextClassRef',
-      'accepted' =&gt; array(
+      'accepted' =&gt; [
         'urn:oasis:names:tc:SAML:2.0:post:ac:classes:nist-800-63:3',
         'urn:oasis:names:tc:SAML:2.0:ac:classes:Password',
-      ),
-    ),
-  ),
+      ],
+    ],
+  ],
 </code></pre>
 </div></main></body>
 </html>

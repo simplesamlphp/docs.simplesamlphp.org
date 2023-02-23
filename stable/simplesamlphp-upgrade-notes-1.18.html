@@ -51,8 +51,13 @@
    </p>
    <div class="mtoolbar">
     <div class="menuitem">
+     <a href="/docs/2.0/index.html">
+      2.0 (stable)
+     </a>
+    </div>
+    <div class="menuitem">
      <a href="/docs/1.19/index.html">
-      1.19 (stable)
+      1.19
      </a>
     </div>
     <div class="menuitem">
@@ -93,9 +98,9 @@
 <p>
  The minimum PHP version required is now PHP 5.6.
 </p>
-<h3 id="deprecations">
+<h2 id="deprecations">
  Deprecations
-</h3>
+</h2>
 <ul>
  <li>
   <p>
@@ -113,16 +118,39 @@ In order to keep using memcache functionality you have to move to the PHP
     memcached
    </code>
    extension,
-which is available from PECL; see https://pecl.php.net/package/memcached. The former is considered abandoned
+which is available from PECL; see
+   <a href="https://pecl.php.net/package/memcached">
+    memcached
+   </a>
+   . The former is considered abandoned
 and it's safe use can no longer be guaranteed.
   </p>
   <p>
    There are a few options here:
- - Depending on your distribution, the package may just be available for you to install
- - You could use the package from the REMI repository if you're on RHEL; https://rpms.remirepo.net/
- - Download the source from https://pecl.php.net/package/memcached and compile the source as a PHP-extension manually;
-   https://www.php.net/manual/en/install.pecl.phpize.php
   </p>
+  <ul>
+   <li>
+    Depending on your distribution, the package may just be available for you to install
+   </li>
+   <li>
+    You could use the package from the
+    <a href="https://rpms.remirepo.net">
+     REMI repository
+    </a>
+    if you're on RHEL.
+   </li>
+   <li>
+    Download the source from
+    <a href="https://pecl.php.net/package/memcached">
+     memcached
+    </a>
+    and
+    <a href="https://www.php.net/manual/en/install.pecl.phpize.php">
+     compile
+    </a>
+    the source as a PHP-extension manually.
+   </li>
+  </ul>
  </li>
  <li>
   <p>
@@ -153,7 +181,11 @@ and it's safe use can no longer be guaranteed.
    PrivacyStatementURL
   </code>
   .
-  See https://simplesamlphp.org/docs/stable/simplesamlphp-metadata-extensions-ui on how to configure this.
+  See
+  <a href="https://simplesamlphp.org/docs/stable/simplesamlphp-metadata-extensions-ui">
+   Metadata extensions
+  </a>
+  on how to configure this.
  </li>
 </ul></main></body>
 </html>

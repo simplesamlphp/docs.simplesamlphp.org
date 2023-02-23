@@ -51,8 +51,13 @@
    </p>
    <div class="mtoolbar">
     <div class="menuitem">
+     <a href="/docs/2.0/index.html">
+      2.0 (stable)
+     </a>
+    </div>
+    <div class="menuitem">
      <a href="/docs/1.19/index.html">
-      1.19 (stable)
+      1.19
      </a>
     </div>
     <div class="menuitem">
@@ -93,7 +98,7 @@
  </code>
 </h1>
 <p>
- This authentication source is used to authenticate against SAML 1 and SAML 2 IdPs.
+ This authentication source is used to authenticate against SAML 2 IdPs.
 </p>
 <h2 id="metadata">
  Metadata
@@ -122,9 +127,12 @@ and with entity attributes. See the documentation for those extensions for more 
   </a>
  </li>
 </ul>
-<h2 id="parameters">
- Parameters
-</h2>
+<p>
+ <strong>
+  Parameters
+ </strong>
+ :
+</p>
 <p>
  These are parameters that can be used at runtime to control the authentication.
 All these parameters override the equivalent option from the configuration.
@@ -137,12 +145,6 @@ All these parameters override the equivalent option from the configuration.
  </dt>
  <dd>
   The AuthnContextClassRef that will be sent in the login request.
- </dd>
- <dd>
-  <em>
-   Note
-  </em>
-  : SAML 2 specific.
  </dd>
  <dt>
   <code>
@@ -165,14 +167,6 @@ All these parameters override the equivalent option from the configuration.
 </code></pre>
   </div>
  </dd>
- <dd>
-  <p>
-   <em>
-    Note
-   </em>
-   : SAML 2 specific.
-  </p>
- </dd>
  <dt>
   <code>
    ForceAuthn
@@ -180,12 +174,6 @@ All these parameters override the equivalent option from the configuration.
  </dt>
  <dd>
   Force authentication allows you to force re-authentication of users even if the user has a SSO session at the IdP.
- </dd>
- <dd>
-  <em>
-   Note
-  </em>
-  : SAML 2 specific.
  </dd>
  <dt>
   <code>
@@ -203,11 +191,14 @@ All these parameters override the equivalent option from the configuration.
  <dd>
   Send a passive authentication request.
  </dd>
+ <dt>
+  <code>
+   IDPList
+  </code>
+ </dt>
  <dd>
-  <em>
-   Note
-  </em>
-  : SAML 2 specific.
+  List of IdP entity ids that should be sent in the AuthnRequest to the IdP in the IDPList element, part of the
+  Scoping element.
  </dd>
  <dt>
   <code>
@@ -215,13 +206,15 @@ All these parameters override the equivalent option from the configuration.
   </code>
  </dt>
  <dd>
-  The samlp:Extensions that will be sent in the login request.
+  The samlp:Extensions (an XML chunk) that will be sent in the login request.
  </dd>
+ <dt>
+  <code>
+   saml:logout:Extensions
+  </code>
+ </dt>
  <dd>
-  <em>
-   Note
-  </em>
-  : SAML 2 specific.
+  The samlp:Extensions (an XML chunk) that will be sent in the logout request.
  </dd>
  <dt>
   <code>
@@ -232,12 +225,6 @@ All these parameters override the equivalent option from the configuration.
   Add a Subject element with a NameID to the SAML AuthnRequest for the IdP.
   This must be a \SAML2\XML\saml\NameID object.
  </dd>
- <dd>
-  <em>
-   Note
-  </em>
-  : SAML 2 specific.
- </dd>
  <dt>
   <code>
    saml:NameIDPolicy
@@ -246,29 +233,15 @@ All these parameters override the equivalent option from the configuration.
  <dd>
   The format of the NameID we request from the IdP: an array in the form of
   <code>
-   [ 'Format' =&gt; the format, 'allowcreate' =&gt; true or false ]
+   [ 'Format' =&gt; the format, 'AllowCreate' =&gt; true or false ]
   </code>
   .
-  Set to
+  Set to an empty array
   <code>
-   false
+   []
   </code>
-  instead of an array to omit sending any specific NameIDPolicy
+  to omit sending any specific NameIDPolicy element
   in the AuthnRequest.
- </dd>
- <dd>
-  For compatibility purposes,
-  <code>
-   null
-  </code>
-  is equivalent to transient and a format
-  can be defined as a string instead of an array. These variants are deprecated.
- </dd>
- <dd>
-  <em>
-   Note
-  </em>
-  : SAML 2 specific.
  </dd>
  <dt>
   <code>
@@ -278,12 +251,6 @@ All these parameters override the equivalent option from the configuration.
  <dd>
   Add a Conditions element to the SAML AuthnRequest containing an
   AudienceRestriction with one or more audiences.
- </dd>
- <dd>
-  <em>
-   Note
-  </em>
-  : SAML 2 specific.
  </dd>
 </dl>
 <h2 id="authentication-data">
@@ -329,9 +296,12 @@ The following attributes are available:
   The SessionIndex we received from the IdP.
  </dd>
 </dl>
-<h2 id="options">
- Options
-</h2>
+<p>
+ <strong>
+  Options
+ </strong>
+ :
+</p>
 <dl>
  <dt>
   <code>
@@ -345,9 +315,7 @@ The following attributes are available:
   Possible values:
   <div class="codehilite">
    <pre><span></span><code>* `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST`
-* `urn:oasis:names:tc:SAML:1.0:profiles:browser-post`
 * `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact`
-* `urn:oasis:names:tc:SAML:1.0:profiles:artifact-01`
 * `urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser`
 </code></pre>
   </div>
@@ -360,23 +328,17 @@ The following attributes are available:
  <dd>
   Whether assertions received by this SP must be encrypted. The default value is
   <code>
-   FALSE
+   false
   </code>
   .
   If this option is set to
   <code>
-   TRUE
+   true
   </code>
   , unencrypted assertions will be rejected.
  </dd>
  <dd>
   Note that this option can be overridden for a specific IdP in saml20-idp-remote.
- </dd>
- <dd>
-  <em>
-   Note
-  </em>
-  : SAML 2 specific.
  </dd>
  <dt>
   <code>
@@ -389,12 +351,9 @@ The following attributes are available:
   <a href="./simplesamlphp-metadata-endpoints.html">
    Metadata endpoints
   </a>
-  documentation. Note: you must ensure that you set the
-  <code>
-   acs.Bindings
-  </code>
-  option to the set
-  of bindings that you use here if it is different from the default.
+  documentation. Note that this list is taken at face value, so it's not useful to list
+  anything here that the SP auth source does not actually support (unless the URLs point
+  externally).
  </dd>
  <dt>
   <code>
@@ -510,12 +469,6 @@ The following attributes are available:
   The SP can request authentication with a specific authentication context class.
   One example of usage could be if the IdP supports both username/password authentication as well as software-PKI.
  </dd>
- <dd>
-  <em>
-   Note
-  </em>
-  : SAML 2 specific.
- </dd>
  <dt>
   <code>
    AuthnContextComparison
@@ -536,14 +489,6 @@ The following attributes are available:
 * `SAML2\Constants::COMPARISON_MAXIMUM`
 </code></pre>
   </div>
- </dd>
- <dd>
-  <p>
-   <em>
-    Note
-   </em>
-   : SAML 2 specific.
-  </p>
  </dd>
  <dt>
   <code>
@@ -597,16 +542,16 @@ The following attributes are available:
  <dd>
   For example, specifying a support contact:
   <div class="codehilite">
-   <pre><span></span><code><span class="w">    </span><span class="s1">'contacts'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">array</span><span class="p">(</span>
-<span class="w">        </span><span class="k">array</span><span class="p">(</span>
-<span class="w">            </span><span class="s1">'contactType'</span><span class="w">       </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'support'</span><span class="p">,</span>
-<span class="w">            </span><span class="s1">'emailAddress'</span><span class="w">      </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'support@example.org'</span><span class="p">,</span>
-<span class="w">            </span><span class="s1">'givenName'</span><span class="w">         </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'John'</span><span class="p">,</span>
-<span class="w">            </span><span class="s1">'surName'</span><span class="w">           </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Doe'</span><span class="p">,</span>
-<span class="w">            </span><span class="s1">'telephoneNumber'</span><span class="w">   </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'+31(0)12345678'</span><span class="p">,</span>
-<span class="w">            </span><span class="s1">'company'</span><span class="w">           </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Example Inc.'</span><span class="p">,</span>
-<span class="w">        </span><span class="p">)</span>
-<span class="w">    </span><span class="p">),</span>
+   <pre><span></span><code><span class="w">    </span><span class="s1">'contacts'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">[</span>
+<span class="n">        [</span>
+<span class="n">            'contactType'       =&gt; 'support',</span>
+<span class="n">            'emailAddress'      =&gt; 'support@example.org',</span>
+<span class="n">            'givenName'         =&gt; 'John',</span>
+<span class="n">            'surName'           =&gt; 'Doe',</span>
+<span class="n">            'telephoneNumber'   =&gt; '+31(0)12345678',</span>
+<span class="n">            'company'           =&gt; 'Example Inc.',</span>
+<span class="n">        </span><span class="o">]</span><span class="p">,</span>
+<span class="w">    </span><span class="err">]</span><span class="p">,</span>
 </code></pre>
   </div>
  </dd>
@@ -656,10 +601,10 @@ The following attributes are available:
  <dd>
   This option can be translated into multiple languages by specifying the value as an array of language-code to translated description:
   <div class="codehilite">
-   <pre><span></span><code>    'description' =&gt; array(
+   <pre><span></span><code>    'description' =&gt; [
         'en' =&gt; 'A service',
         'no' =&gt; 'En tjeneste',
-    ),
+    ],
 </code></pre>
   </div>
  </dd>
@@ -687,12 +632,12 @@ The following attributes are available:
  <dd>
   Whether sending of samlp:Scoping elements in authentication requests should be suppressed. The default value is
   <code>
-   FALSE
+   false
   </code>
   .
    When set to
   <code>
-   TRUE
+   true
   </code>
   , no scoping elements will be sent. This does not comply with the SAML2 specification, but allows
    interoperability with ADFS which
@@ -708,6 +653,18 @@ The following attributes are available:
  </dd>
  <dt>
   <code>
+   enable_unsolicited
+  </code>
+ </dt>
+ <dd>
+  Whether this SP is willing to process unsolicited responses. The default value is
+  <code>
+   true
+  </code>
+  .
+ </dd>
+ <dt>
+  <code>
    discoURL
   </code>
  </dt>
@@ -715,7 +672,7 @@ The following attributes are available:
   Set which IdP discovery service this SP should use.
   If this is unset, the IdP discovery service specified in the global option
   <code>
-   idpdisco.url.{saml20|shib13}
+   idpdisco.url.saml20
   </code>
   in
   <code>
@@ -734,16 +691,10 @@ The following attributes are available:
  </dd>
  <dd>
   Note that this option can be set for each IdP in the
-  <a href="./simplesamlphp-reference-idp-remote.html">
+  <a href="../simplesamlphp-reference-idp-remote.html">
    IdP-remote metadata
   </a>
   .
- </dd>
- <dd>
-  <em>
-   Note
-  </em>
-  : SAML 2 specific.
  </dd>
  <dt>
   <code>
@@ -751,11 +702,30 @@ The following attributes are available:
   </code>
  </dt>
  <dd>
-  The entity ID this SP should use.
+  The entity ID this SP should use. (Must be set or an error will be generated.)
  </dd>
  <dd>
-  If this option is unset, a default entity ID will be generated.
-  The generated entity ID will be a URL where the metadata of this SP can be downloaded.
+  The entity ID must be a URI, that is unlikely to change for technical or political
+  reasons. We recommend it to be a domain name, like above, if your organization's main
+  domain is
+  <code>
+   example.org
+  </code>
+  and this SP is for the application
+  <code>
+   myapp
+  </code>
+  .
+  The URL does not have to resolve to actual content, it's
+  just an identifier. Hence you don't need to and should not change it if the actual domain
+  of your application changes.
+ </dd>
+ <dd>
+  For guidance in picking an entityID, see
+  <a href="https://spaces.at.internet2.edu/display/federation/saml-metadata-entityid">
+   InCommon's best practice
+  </a>
+  on the matter.
  </dd>
  <dt>
   <code>
@@ -764,12 +734,6 @@ The following attributes are available:
  </dt>
  <dd>
   Force authentication allows you to force re-authentication of users even if the user has a SSO session at the IdP.
- </dd>
- <dd>
-  <em>
-   Note
-  </em>
-  : SAML 2 specific.
  </dd>
  <dt>
   <code>
@@ -790,11 +754,22 @@ The following attributes are available:
  <dd>
   IsPassive allows you to enable passive authentication by default for this SP.
  </dd>
+ <dt>
+  <code>
+   key_name
+  </code>
+ </dt>
  <dd>
-  <em>
-   Note
-  </em>
-  : SAML 2 specific.
+  The name of the certificate. It is possible the IDP requires your certificate to have a name.
+  If provided, it will be exposed in the SAML 2.0 metadata as
+  <code>
+   KeyName
+  </code>
+  inside the
+  <code>
+   KeyDescriptor
+  </code>
+  . This also requires a certificate to be provided.
  </dd>
  <dt>
   <code>
@@ -808,10 +783,10 @@ The following attributes are available:
  <dd>
   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
   <div class="codehilite">
-   <pre><span></span><code>    'name' =&gt; array(
+   <pre><span></span><code>    'name' =&gt; [
         'en' =&gt; 'A service',
         'no' =&gt; 'En tjeneste',
-    ),
+    ],,
 </code></pre>
   </div>
  </dd>
@@ -836,22 +811,31 @@ The following attributes are available:
   Whether NameIDs sent from this SP should be encrypted. The default
   value is
   <code>
-   FALSE
+   false
   </code>
   .
  </dd>
  <dd>
   Note that this option can be set for each IdP in the
-  <a href="./simplesamlphp-reference-idp-remote.html">
+  <a href="../simplesamlphp-reference-idp-remote.html">
    IdP-remote metadata
   </a>
   .
  </dd>
+ <dt>
+  <code>
+   NameIDFormat
+  </code>
+ </dt>
  <dd>
-  <em>
-   Note
-  </em>
-  : SAML 2 specific.
+  An array of the format(s) listed in the SP metadata that this SP will accept. Example:
+  <div class="codehilite">
+   <pre><span></span><code>    'NameIDFormat' =&gt; [
+        \SAML2\Constants::NAMEID_PERSISTENT,
+        \SAML2\Constants::NAMEID_TRANSIENT,
+    ],
+</code></pre>
+  </div>
  </dd>
  <dt>
   <code>
@@ -859,110 +843,62 @@ The following attributes are available:
   </code>
  </dt>
  <dd>
-  The format of the NameID we request from the idp: an array in the form of
+  The format of the NameID we request from the IdP in the AuthnRequest:
+  an array in the form of
   <code>
    [ 'Format' =&gt; the format, 'AllowCreate' =&gt; true or false ]
   </code>
   .
-  Set to
+  Set to an empty array
   <code>
-   false
+   []
   </code>
-  instead of an array to omit sending any specific NameIDPolicy
-  in the AuthnRequest.
- </dd>
- <dd>
-  For compatibility purposes,
-  <code>
-   null
-  </code>
-  is equivalent to transient and a format
-  can be defined as a string instead of an array. These variants are deprecated.
- </dd>
- <dd>
-  <em>
-   Note
-  </em>
-  : SAML 2 specific.
+  to omit sending any specific NameIDPolicy element
+  in the AuthnRequest. When the entire option or either array key is unset,
+  the defaults are transient and true respectively.
  </dd>
  <dt>
   <code>
    OrganizationName
   </code>
- </dt>
- <dd>
-  The name of the organization responsible for this SP.
-  This name does not need to be suitable for display to end users.
- </dd>
- <dd>
-  This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
-  <div class="codehilite">
-   <pre><span></span><code>    'OrganizationName' =&gt; array(
-        'en' =&gt; 'Example organization',
-        'no' =&gt; 'Eksempel organisation',
-    ),
-</code></pre>
-  </div>
- </dd>
- <dd>
-  <p>
-   <em>
-    Note
-   </em>
-   : If you specify this option, you must also specify the
-   <code>
-    OrganizationURL
-   </code>
-   option.
-  </p>
- </dd>
- <dt>
+  ,
   <code>
    OrganizationDisplayName
   </code>
- </dt>
- <dd>
-  The name of the organization responsible for this SP.
-  This name must be suitable for display to end users.
-  If this option isn't specified,
-  <code>
-   OrganizationName
-  </code>
-  will be used instead.
- </dd>
- <dd>
-  This option can be translated into multiple languages by specifying the value as an array of language-code to translated name.
- </dd>
- <dd>
-  <em>
-   Note
-  </em>
-  : If you specify this option, you must also specify the
-  <code>
-   OrganizationName
-  </code>
-  option.
- </dd>
- <dt>
+  ,
   <code>
    OrganizationURL
   </code>
  </dt>
  <dd>
-  A URL the end user can access for more information about the organization.
- </dd>
- <dd>
-  This option can be translated into multiple languages by specifying the value as an array of language-code to translated URL.
- </dd>
- <dd>
+  The name and URL of the organization responsible for this IdP.
+  You need to either specify
   <em>
-   Note
+   all three
   </em>
-  : If you specify this option, you must also specify the
-  <code>
-   OrganizationName
-  </code>
-  option.
+  or none of these options.
+ </dd>
+ <dd>
+  The Name does not need to be suitable for display to end users, the DisplayName should be.
+  The URL is a website the user can access for more information about the organization.
+ </dd>
+ <dd>
+  This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
+  <div class="codehilite">
+   <pre><span></span><code>    'OrganizationName' =&gt; [
+        'en' =&gt; 'Voorbeeld Organisatie Foundation b.a.',
+        'nl' =&gt; 'Stichting Voorbeeld Organisatie b.a.',
+    ],
+    'OrganizationDisplayName' =&gt; [
+        'en' =&gt; 'Example organization',
+        'nl' =&gt; 'Voorbeeldorganisatie',
+    ],
+    'OrganizationURL' =&gt; [
+        'en' =&gt; 'https://example.com',
+        'nl' =&gt; 'https://example.com/nl',
+    ],
+</code></pre>
+  </div>
  </dd>
  <dt>
   <code>
@@ -972,12 +908,6 @@ The following attributes are available:
  <dd>
   File name of private key to be used for signing messages and decrypting messages from the IdP. This option is only required if you use encrypted assertions or if you enable signing of messages.
  </dd>
- <dd>
-  <em>
-   Note
-  </em>
-  : SAML 2 specific.
- </dd>
  <dt>
   <code>
    privatekey_pass
@@ -986,12 +916,6 @@ The following attributes are available:
  <dd>
   The passphrase for the private key, if it is encrypted. If the private key is unencrypted, this can be left out.
  </dd>
- <dd>
-  <em>
-   Note
-  </em>
-  : SAML 2 specific.
- </dd>
  <dt>
   <code>
    ProviderName
@@ -999,12 +923,6 @@ The following attributes are available:
  </dt>
  <dd>
   Human readable name of the local SP sent with the authentication request.
- </dd>
- <dd>
-  <em>
-   Note
-  </em>
-  : SAML 2 specific.
  </dd>
  <dt>
   <code>
@@ -1016,12 +934,6 @@ The following attributes are available:
   This option controls the binding that is requested through the AuthnRequest message to the IdP.
   By default the HTTP-Post binding is used.
  </dd>
- <dd>
-  <em>
-   Note
-  </em>
-  : SAML 2 specific.
- </dd>
  <dt>
   <code>
    redirect.sign
@@ -1030,7 +942,7 @@ The following attributes are available:
  <dd>
   Whether authentication requests, logout requests and logout responses sent from this SP should be signed. The default is
   <code>
-   FALSE
+   false
   </code>
   .
   If set, the
@@ -1048,12 +960,6 @@ The following attributes are available:
   </code>
   option in any metadata generated for this SP.
  </dd>
- <dd>
-  <em>
-   Note
-  </em>
-  : SAML 2 specific.
- </dd>
  <dt>
   <code>
    redirect.validate
@@ -1062,15 +968,9 @@ The following attributes are available:
  <dd>
   Whether logout requests and logout responses received by this SP should be validated. The default is
   <code>
-   FALSE
+   false
   </code>
   .
- </dd>
- <dd>
-  <em>
-   Note
-  </em>
-  : SAML 2 specific.
  </dd>
  <dt>
   <code>
@@ -1079,7 +979,7 @@ The following attributes are available:
  </dt>
  <dd>
   Allows to specify information about the registrar of this SP. Please refer to the
-  <a href="./simplesamlphp-metadata-extensions-rpi.html">
+  <a href="../simplesamlphp-metadata-extensions-rpi.html">
    MDRPI extension
   </a>
   document for further information.
@@ -1091,23 +991,6 @@ The following attributes are available:
  </dt>
  <dd>
   The page the user should be redirected to after an IdP initiated SSO.
- </dd>
- <dd>
-  <em>
-   Note
-  </em>
-  : SAML 2 specific.
-  For SAML 1.1 SPs, you must specify the
-  <code>
-   TARGET
-  </code>
-  parameter in the authentication response.
-  How to set that parameter is depends on the IdP.
-  For SimpleSAMLphp, see the documentation for
-  <a href="./simplesamlphp-idp-more#section_4_1.html">
-   IdP-first flow
-  </a>
-  .
  </dd>
  <dt>
   <code>
@@ -1125,7 +1008,7 @@ The following attributes are available:
  <dd>
   This option can also be set to
   <code>
-   FALSE
+   false
   </code>
   , in which case no client certificate will be used.
  </dd>
@@ -1140,32 +1023,6 @@ The following attributes are available:
    saml.SOAPClient.certificate
   </code>
   .
- </dd>
- <dt>
-  <code>
-   saml1.useartifact
-  </code>
- </dt>
- <dd>
-  Request that the IdP returns the result to the artifact binding.
-  The default is to use the POST binding, set this option to TRUE to use the artifact binding instead.
- </dd>
- <dd>
-  This option can also be set in the
-  <code>
-   shib13-idp-remote
-  </code>
-  metadata, in which case the setting in
-  <code>
-   shib13-idp-remote
-  </code>
-  takes precedence.
- </dd>
- <dd>
-  <em>
-   Note
-  </em>
-  : SAML 1 specific.
  </dd>
  <dt>
   <code>
@@ -1201,12 +1058,6 @@ The following attributes are available:
   any value in the IdP-remote metadata overrides the one configured
   in the SP configuration.
  </dd>
- <dd>
-  <em>
-   Note
-  </em>
-  : SAML 2 specific.
- </dd>
  <dt>
   <code>
    sign.logout
@@ -1219,12 +1070,6 @@ The following attributes are available:
   Note that this option also exists in the IdP-remote metadata, and
   any value in the IdP-remote metadata overrides the one configured
   in the SP configuration.
- </dd>
- <dd>
-  <em>
-   Note
-  </em>
-  : SAML 2 specific.
  </dd>
  <dt>
   <code>
@@ -1273,24 +1118,6 @@ The following attributes are available:
  </dd>
  <dt>
   <code>
-   url
-  </code>
- </dt>
- <dd>
-  A URL to your service provider. Will be added as an OrganizationURL-element in the metadata.
- </dd>
- <dd>
-  This option can be translated into multiple languages by specifying the value as an array of language-code to language-specific URL:
-  <div class="codehilite">
-   <pre><span></span><code>    'url' =&gt; array(
-        'en' =&gt; 'http://sp.example.net/en/info.html',
-        'no' =&gt; 'http://sp.example.net/no/info.html',
-    ),
-</code></pre>
-  </div>
- </dd>
- <dt>
-  <code>
    validate.logout
   </code>
  </dt>
@@ -1302,12 +1129,6 @@ The following attributes are available:
   any value in the IdP-remote metadata overrides the one configured
   in the IdP metadata.
  </dd>
- <dd>
-  <em>
-   Note
-  </em>
-  : SAML 2 specific.
- </dd>
  <dt>
   <code>
    WantAssertionsSigned
@@ -1316,7 +1137,7 @@ The following attributes are available:
  <dd>
   Whether assertions received by this SP must be signed. The default value is
   <code>
-   FALSE
+   false
   </code>
   .
   The value set for this option will be used to set the
@@ -1331,9 +1152,12 @@ The following attributes are available:
   the exported SAML 2.0 metadata.
  </dd>
 </dl>
-<h2 id="examples">
- Examples
-</h2>
+<p>
+ <strong>
+  Examples
+ </strong>
+ :
+</p>
 <p>
  Here we will list some examples for this authentication source.
 </p>
@@ -1341,29 +1165,21 @@ The following attributes are available:
  Minimal
 </h3>
 <div class="codehilite">
- <pre><span></span><code>  'example-minimal' =&gt; array(
+ <pre><span></span><code>  'example-minimal' =&gt; [
       'saml:SP',
-  ),
+      'entityID' =&gt; 'https://myapp.example.org',
+  ],
 </code></pre>
 </div>
 <h3 id="connecting-to-a-specific-idp">
  Connecting to a specific IdP
 </h3>
 <div class="codehilite">
- <pre><span></span><code>  'example' =&gt; array(
+ <pre><span></span><code>  'example' =&gt; [
       'saml:SP',
-      'idp' =&gt; 'https://idp.example.net/',
-  ),
-</code></pre>
-</div>
-<h3 id="using-a-specific-entity-id">
- Using a specific entity ID
-</h3>
-<div class="codehilite">
- <pre><span></span><code>  'example' =&gt; array(
-      'saml:SP',
-      'entityID' =&gt; 'https://sp.example.net',
-  ),
+      'entityID' =&gt; 'https://myapp.example.org',
+      'idp' =&gt; 'https://example.net/saml-idp',
+  ],
 </code></pre>
 </div>
 <h3 id="encryption-and-signing">
@@ -1372,15 +1188,16 @@ The following attributes are available:
 <div class="codehilite">
  <pre><span></span><code>  This SP will accept encrypted assertions, and will sign and validate all messages.
 
-  'example-enc' =&gt; array(
+  'example-enc' =&gt; [
       'saml:SP',
+      'entityID' =&gt; 'https://myapp.example.org',
 
       'certificate' =&gt; 'example.crt',
       'privatekey' =&gt; 'example.key',
       'privatekey_pass' =&gt; 'secretpassword',
-      'redirect.sign' =&gt; TRUE,
-      'redirect.validate' =&gt; TRUE,
-  ),
+      'redirect.sign' =&gt; true,
+      'redirect.validate' =&gt; true,
+  ],
 </code></pre>
 </div>
 <h3 id="specifying-attributes-and-required-attributes">
@@ -1389,47 +1206,48 @@ The following attributes are available:
 <div class="codehilite">
  <pre><span></span><code><span class="w">  </span><span class="nv">An</span><span class="w"> </span><span class="nv">SP</span><span class="w"> </span><span class="nv">that</span><span class="w"> </span><span class="nv">wants</span><span class="w"> </span><span class="nv">eduPersonPrincipalName</span><span class="w"> </span><span class="nv">and</span><span class="w"> </span><span class="nv">mail</span>,<span class="w"> </span><span class="nv">where</span><span class="w"> </span><span class="nv">eduPersonPrincipalName</span><span class="w"> </span><span class="nv">should</span><span class="w"> </span><span class="nv">be</span><span class="w"> </span><span class="nv">listed</span><span class="w"> </span><span class="nv">as</span><span class="w"> </span><span class="nv">required</span>:
 
-<span class="w">  </span><span class="err">'example-attributes =&gt; array(</span>
+<span class="w">  </span><span class="err">'example-attributes =&gt; [</span>
 <span class="w">      </span><span class="s1">'saml:SP'</span>,
-<span class="w">      </span><span class="s1">'name'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nv">array</span><span class="ss">(</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="nv">Name</span><span class="w"> </span><span class="nv">required</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">AttributeConsumingService</span><span class="o">-</span><span class="nv">element</span>.
+<span class="w">      </span><span class="s1">'entityID'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://myapp.example.org'</span>,
+<span class="w">      </span><span class="s1">'name'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>[<span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="nv">Name</span><span class="w"> </span><span class="nv">required</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">AttributeConsumingService</span><span class="o">-</span><span class="nv">element</span>.
 <span class="w">          </span><span class="s1">'en'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Example service'</span>,
 <span class="w">          </span><span class="s1">'no'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Eksempeltjeneste'</span>,
-<span class="w">      </span><span class="ss">)</span>,
-<span class="w">      </span><span class="s1">'attributes'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nv">array</span><span class="ss">(</span>
+<span class="w">      </span>],
+<span class="w">      </span><span class="s1">'attributes'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>[
 <span class="w">          </span><span class="s1">'eduPersonPrincipalName'</span>,
 <span class="w">          </span><span class="s1">'mail'</span>,
 <span class="w">          </span><span class="o">//</span><span class="w"> </span><span class="nv">Specify</span><span class="w"> </span><span class="nv">friendly</span><span class="w"> </span><span class="nv">names</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">these</span><span class="w"> </span><span class="nv">attributes</span>:
 <span class="w">          </span><span class="s1">'sn'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'urn:oid:2.5.4.4'</span>,
 <span class="w">          </span><span class="s1">'givenName'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'urn:oid:2.5.4.42'</span>,
-<span class="w">      </span><span class="ss">)</span>,
-<span class="w">      </span><span class="s1">'attributes.required'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nv">array</span><span class="w"> </span><span class="ss">(</span>
+<span class="w">      </span>],
+<span class="w">      </span><span class="s1">'attributes.required'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>[
 <span class="w">          </span><span class="s1">'eduPersonPrincipalName'</span>,
-<span class="w">      </span><span class="ss">)</span>,
+<span class="w">      </span>],
 <span class="w">      </span><span class="s1">'attributes.NameFormat'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'urn:oasis:names:tc:SAML:2.0:attrname-format:basic'</span>,
-<span class="w">  </span><span class="ss">)</span>,
+<span class="w">  </span>],
 </code></pre>
 </div>
 <h3 id="limiting-supported-assertionconsumerservice-endpoint-bindings">
  Limiting supported AssertionConsumerService endpoint bindings
 </h3>
 <div class="codehilite">
- <pre><span></span><code>  'example-acs-limit' =&gt; array(
+ <pre><span></span><code>  'example-acs-limit' =&gt; [
       'saml:SP',
-      'acs.Bindings' =&gt; array(
+      'entityID' =&gt; 'https://myapp.example.org',
+      'acs.Bindings' =&gt; [
           'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
-          'urn:oasis:names:tc:SAML:1.0:profiles:browser-post',
-      ),
-  ),
+      ],
+  ],
 </code></pre>
 </div>
 <h3 id="requesting-a-specific-authentication-method">
- Requesting a specific authentication method.
+ Requesting a specific authentication method
 </h3>
 <div class="codehilite">
  <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">auth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">new</span><span class="w"> </span><span class="err">\</span><span class="nt">SimpleSAML</span><span class="err">\</span><span class="nt">Auth</span><span class="err">\</span><span class="nt">Simple</span><span class="o">(</span><span class="s1">'default-sp'</span><span class="o">);</span>
-<span class="w">  </span><span class="o">$</span><span class="nt">auth-</span><span class="o">&gt;</span><span class="nt">login</span><span class="o">(</span><span class="nt">array</span><span class="o">(</span>
-<span class="w">      </span><span class="s1">'saml:AuthnContextClassRef'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'urn:oasis:names:tc:SAML:2.0:ac:classes:Password'</span><span class="o">,</span>
-<span class="w">  </span><span class="o">));</span>
+<span class="w">  </span><span class="o">$</span><span class="nt">auth-</span><span class="o">&gt;</span><span class="nt">login</span><span class="o">(</span><span class="cp">[</span>
+<span class="w">      </span><span class="s1">'saml:AuthnContextClassRef'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'urn:oasis:names:tc:SAML:2.0:ac:classes:Password'</span><span class="p">,</span>
+<span class="w">  </span><span class="cp">]</span><span class="o">);</span>
 </code></pre>
 </div>
 <h3 id="using-samlpextensions">
@@ -1441,9 +1259,9 @@ The following attributes are available:
 <span class="w">  </span><span class="o">$</span><span class="nt">ext</span><span class="cp">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">new</span><span class="w"> </span><span class="err">\</span><span class="nt">SAML2</span><span class="err">\</span><span class="nt">XML</span><span class="err">\</span><span class="nt">Chunk</span><span class="o">($</span><span class="nt">ce</span><span class="o">);</span>
 
 <span class="w">  </span><span class="o">$</span><span class="nt">auth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">new</span><span class="w"> </span><span class="err">\</span><span class="nt">SimpleSAML</span><span class="err">\</span><span class="nt">Auth</span><span class="err">\</span><span class="nt">Simple</span><span class="o">(</span><span class="s1">'default-sp'</span><span class="o">);</span>
-<span class="w">  </span><span class="o">$</span><span class="nt">auth-</span><span class="o">&gt;</span><span class="nt">login</span><span class="o">(</span><span class="nt">array</span><span class="o">(</span>
-<span class="w">      </span><span class="s1">'saml:Extensions'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">$</span><span class="nt">ext</span><span class="o">,</span>
-<span class="w">  </span><span class="o">));</span>
+<span class="w">  </span><span class="o">$</span><span class="nt">auth-</span><span class="o">&gt;</span><span class="nt">login</span><span class="o">(</span><span class="cp">[</span>
+<span class="w">      </span><span class="s1">'saml:Extensions'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nv">$ext</span><span class="p">,</span>
+<span class="w">  </span><span class="cp">]</span><span class="o">);</span>
 </code></pre>
 </div></main></body>
 </html>

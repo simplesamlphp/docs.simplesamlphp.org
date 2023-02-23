@@ -51,8 +51,13 @@
    </p>
    <div class="mtoolbar">
     <div class="menuitem">
+     <a href="/docs/2.0/index.html">
+      2.0 (stable)
+     </a>
+    </div>
+    <div class="menuitem">
      <a href="/docs/1.19/index.html">
-      1.19 (stable)
+      1.19
      </a>
     </div>
     <div class="menuitem">
@@ -90,24 +95,63 @@
 </header><main><h1 id="scoping">
  Scoping
 </h1>
-<!-- 
-    This file is written in Markdown syntax. 
-    For more information about how to use the Markdown syntax, read here:
-    http://daringfireball.net/projects/markdown/syntax
--->
-<!-- {{TOC}} -->
+<div class="toc">
+ <ul>
+  <li>
+   <a href="#scoping">
+    Scoping
+   </a>
+   <ul>
+    <li>
+     <a href="#options">
+      Options
+     </a>
+     <ul>
+      <li>
+       <a href="#usage">
+        Usage
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#retrieving-information">
+      Retrieving information
+     </a>
+     <ul>
+      <li>
+       <a href="#requesterid-element">
+        RequesterID element
+       </a>
+      </li>
+      <li>
+       <a href="#authenticatingauthority-element">
+        AuthenticatingAuthority element
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#support">
+      Support
+     </a>
+    </li>
+   </ul>
+  </li>
+ </ul>
+</div>
 <p>
  Scoping allows a service provider to specify a list of identity providers in an
-authnRequest to a proxying identity provider. This is an indication to the 
+authnRequest to a proxying identity provider. This is an indication to the
 proxying identity provider that the service will only deal with the identity
 providers specified.
 </p>
 <p>
- A common use is for a service provider in a hub-and-spoke architecture to 
-manage its own discovery service and being able to tell the hub/proxy-IdP which 
-(backend-end) identity provider to use. The standard discovery service in 
-SimpleSAMLphp will show the intersection of all the known IdPs and the IdPs 
-specified in the scoping element. If this intersection only contains one IdP, 
+ A common use is for a service provider in a hub-and-spoke architecture to
+manage its own discovery service and being able to tell the hub/proxy-IdP which
+(backend-end) identity provider to use. The standard discovery service in
+SimpleSAMLphp will show the intersection of all the known IdPs and the IdPs
+specified in the scoping element. If this intersection only contains one IdP,
 then the request is automatically forwarded to that IdP.
 </p>
 <p>
@@ -127,8 +171,8 @@ then the request is automatically forwarded to that IdP.
  </dt>
  <dd>
   Specifies the number of proxying indirections permissible
-between the identity provider receiving the request and the identity provider 
-who ultimately authenticates the user. A count of zero permits no proxying. If 
+between the identity provider receiving the request and the identity provider
+who ultimately authenticates the user. A count of zero permits no proxying. If
 ProxyCount is unspecified the number of proxy indirections is not limited.
  </dd>
  <dt>
@@ -141,15 +185,15 @@ ProxyCount is unspecified the number of proxy indirections is not limited.
 that are relevant for a service provider in an authnRequest.
  </dd>
 </dl>
-<h3 id="note">
- Note
-</h3>
 <p>
- SimpleSAMLphp does not support specifying the GetComplete option.
+ <strong>
+  Note
+ </strong>
+ : SimpleSAMLphp does not support specifying the GetComplete option.
 </p>
-<h2 id="usage">
+<h3 id="usage">
  Usage
-</h2>
+</h3>
 <p>
  The ProxyCount and IDPList option can be specified in the following places:
 </p>
@@ -182,33 +226,36 @@ that are relevant for a service provider in an authnRequest.
   'ProxyCount' =&gt; 2,
 </code></pre>
 </div>
-<h2 id="requesterid-element">
- RequesterID element
+<h2 id="retrieving-information">
+ Retrieving information
 </h2>
+<h3 id="requesterid-element">
+ RequesterID element
+</h3>
 <p>
- To allow an identity provider to identify the original requester and the 
-proxying identity providers, SimpleSAMLphp adds the RequesterID element to 
-the request and if necessary the scoping element even if explicit scoping is 
+ To allow an identity provider to identify the original requester and the
+proxying identity providers, SimpleSAMLphp adds the RequesterID element to
+the request and if necessary the scoping element even if explicit scoping is
 not used.
 </p>
 <p>
  The RequesterId elements are available from the state array as an array, for
-instance the authenticate method in an authentication source
+instance via the authenticate method on an authentication source.
 </p>
 <div class="codehilite">
  <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">requesterIDs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="nt">state</span><span class="cp">[</span><span class="s1">'saml:RequesterID'</span><span class="cp">]</span><span class="o">;</span>
 </code></pre>
 </div>
-<h2 id="authenticatingauthority-element">
+<h3 id="authenticatingauthority-element">
  AuthenticatingAuthority element
-</h2>
+</h3>
 <p>
- To allow a service provider to identify the authentication authorities that 
-were involved in the authentication of the user, SimpleSAMLphp adds the 
+ To allow a service provider to identify the authentication authorities that
+were involved in the authentication of the user, SimpleSAMLphp adds the
 AuthenticatingAuthority elements.
 </p>
 <p>
- The list of authenticating authorities (the AuthenticatingAuthority element) 
+ The list of authenticating authorities (the AuthenticatingAuthority element)
 can be retrieved as an array from the authentication data.
 </p>
 <div class="codehilite">

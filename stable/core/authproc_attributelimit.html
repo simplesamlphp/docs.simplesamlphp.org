@@ -51,8 +51,13 @@
    </p>
    <div class="mtoolbar">
     <div class="menuitem">
+     <a href="/docs/2.0/index.html">
+      2.0 (stable)
+     </a>
+    </div>
+    <div class="menuitem">
      <a href="/docs/1.19/index.html">
-      1.19 (stable)
+      1.19
      </a>
     </div>
     <div class="menuitem">
@@ -123,12 +128,12 @@ different values allowed for it.
  attribute:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'authproc' =&gt; array(
-      50 =&gt; array(
+ <pre><span></span><code>  'authproc' =&gt; [
+      50 =&gt; [
           'class' =&gt; 'core:AttributeLimit',
           'cn', 'mail'
-      ),
-  ),
+      ],
+  ],
 </code></pre>
 </div>
 <p>
@@ -143,68 +148,68 @@ different values allowed for it.
  by default, but allow the metadata to override the limitation.
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'authproc' =&gt; array(
-      50 =&gt; array(
+ <pre><span></span><code>  'authproc' =&gt; [
+      50 =&gt; [
           'class' =&gt; 'core:AttributeLimit',
-        'default' =&gt; TRUE,
+          'default' =&gt; true,
           'eduPersonTargetedID', 'eduPersonAffiliation',
-      ),
-  ),
+      ],
+  ],
 </code></pre>
 </div>
 <p>
  Only allow specific values for an attribute.
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'authproc' =&gt; array(
-      50 =&gt; array(
+ <pre><span></span><code>  'authproc' =&gt; [
+      50 =&gt; [
           'class' =&gt; 'core:AttributeLimit',
-          'eduPersonEntitlement' =&gt; array('urn:x-surfnet:surf.nl:surfdrive:quota:100')
-      ),
-  ),
+          'eduPersonEntitlement' =&gt; ['urn:mace:surf.nl:surfdrive:quota:100']
+      ],
+  ],
 </code></pre>
 </div>
 <p>
  Only allow specific values for an attribute ignoring case.
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'authproc' =&gt; array(
-      50 =&gt; array(
+ <pre><span></span><code>  'authproc' =&gt; [
+      50 =&gt; [
           'class' =&gt; 'core:AttributeLimit',
-          'eduPersonEntitlement' =&gt; array(
+          'eduPersonEntitlement' =&gt; [
               'ignoreCase' =&gt; true,
-              'URN:x-surfnet:surf.nl:SURFDRIVE:quota:100'
-           )
-      ),
-  ),
+              'URN:mace:surf.nl:SURFDRIVE:quota:100'
+           ]
+      ],
+  ],
 </code></pre>
 </div>
 <p>
  Only allow specific values for an attribute that match a regex pattern
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="p">'</span><span class="n">authproc</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">array</span><span class="p">(</span>
-<span class="w">      </span><span class="mh">50</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">array</span><span class="p">(</span>
+ <pre><span></span><code><span class="w">  </span><span class="p">'</span><span class="n">authproc</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="mh">50</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span>
 <span class="w">          </span><span class="p">'</span><span class="n">class</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">'</span><span class="nl">core:</span><span class="n">AttributeLimit</span><span class="p">',</span>
-<span class="w">          </span><span class="p">'</span><span class="n">eduPersonEntitlement</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">array</span><span class="p">(</span>
+<span class="w">          </span><span class="p">'</span><span class="n">eduPersonEntitlement</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span>
 <span class="w">              </span><span class="p">'</span><span class="n">regex</span><span class="p">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">true</span><span class="p">,</span>
-<span class="w">              </span><span class="p">'</span><span class="o">/^</span><span class="nl">urn:</span><span class="n">x</span><span class="o">-</span><span class="nl">surfnet:</span><span class="n">surf</span><span class="o">/</span><span class="p">',</span>
+<span class="w">              </span><span class="p">'</span><span class="o">/^</span><span class="nl">urn:mace:</span><span class="n">surf</span><span class="o">/</span><span class="p">',</span>
 <span class="w">              </span><span class="p">'</span><span class="o">/^</span><span class="nl">urn:</span><span class="n">x</span><span class="o">-</span><span class="n">IGNORE_Case</span><span class="o">/</span><span class="n">i</span><span class="p">',</span>
-<span class="w">          </span><span class="p">)</span>
-<span class="w">      </span><span class="p">),</span>
-<span class="w">  </span><span class="p">),</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">  </span><span class="p">],</span>
 </code></pre>
 </div>
 <p>
  Don't allow any attributes by default, but allow the metadata to override it.
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'authproc' =&gt; array(
-      50 =&gt; array(
+ <pre><span></span><code>  'authproc' =&gt; [
+      50 =&gt; [
           'class' =&gt; 'core:AttributeLimit',
-        'default' =&gt; TRUE,
-      ),
-  ),
+          'default' =&gt; true,
+      ],
+  ],
 </code></pre>
 </div>
 <p>
@@ -212,9 +217,9 @@ different values allowed for it.
 like this:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'authproc' =&gt; array(
+ <pre><span></span><code>  'authproc' =&gt; [
       50 =&gt; 'core:AttributeLimit',
-  ),
+  ],
 </code></pre>
 </div>
 <p>
@@ -225,13 +230,13 @@ like this:
  option:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'https://saml2sp.example.org'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span>
-<span class="w">      </span><span class="s1">'AssertionConsumerService'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp'</span><span class="o">,</span>
-<span class="w">      </span><span class="s1">'SingleLogoutService'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-logout.php/default-sp'</span><span class="o">,</span>
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'https://saml2sp.example.org'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cp">[</span>
+<span class="w">      </span><span class="s1">'AssertionConsumerService'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp'</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">'SingleLogoutService'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-logout.php/default-sp'</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">...</span>
+<span class="w">      </span><span class="s1">'attributes'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span><span class="s1">'cn'</span><span class="p">,</span><span class="w"> </span><span class="s1">'mail'</span><span class="cp">]</span><span class="o">,</span>
 <span class="w">      </span><span class="o">...</span>
-<span class="w">      </span><span class="s1">'attributes'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span><span class="s1">'cn'</span><span class="o">,</span><span class="w"> </span><span class="s1">'mail'</span><span class="o">),</span>
-<span class="w">      </span><span class="o">...</span>
-<span class="w">  </span><span class="o">);</span>
+<span class="w">  </span><span class="o">];</span>
 </code></pre>
 </div>
 <p>
@@ -239,20 +244,20 @@ like this:
 to be used by a service provider (among other attributes):
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'https://saml2sp.example.org'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span>
-<span class="w">      </span><span class="s1">'AssertionConsumerService'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp'</span><span class="o">,</span>
-<span class="w">      </span><span class="s1">'SingleLogoutService'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-logout.php/default-sp'</span><span class="o">,</span>
+ <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'https://saml2sp.example.org'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cp">[</span>
+<span class="w">      </span><span class="s1">'AssertionConsumerService'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp'</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">'SingleLogoutService'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-logout.php/default-sp'</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">...</span>
+<span class="w">      </span><span class="s1">'attributes'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span>
+<span class="w">          </span><span class="s1">'uid'</span><span class="p">,</span>
+<span class="w">          </span><span class="s1">'mail'</span><span class="p">,</span>
+<span class="w">          </span><span class="s1">'eduPersonEntitlement'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span>
+<span class="w">              </span><span class="s1">'urn:mace:example.org:admin'</span><span class="p">,</span>
+<span class="w">              </span><span class="s1">'urn:mace:example.org:user'</span><span class="p">,</span>
+<span class="w">          </span><span class="cp">]</span><span class="o">,</span>
+<span class="w">      </span><span class="o">],</span>
 <span class="w">      </span><span class="o">...</span>
-<span class="w">      </span><span class="s1">'attributes'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span>
-<span class="w">          </span><span class="s1">'uid'</span><span class="o">,</span>
-<span class="w">          </span><span class="s1">'mail'</span><span class="o">,</span>
-<span class="w">          </span><span class="s1">'eduPersonEntitlement'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span>
-<span class="w">              </span><span class="s1">'urn:mace:example.org:admin'</span><span class="o">,</span>
-<span class="w">              </span><span class="s1">'urn:mace:example.org:user'</span><span class="o">,</span>
-<span class="w">          </span><span class="o">),</span>
-<span class="w">      </span><span class="o">),</span>
-<span class="w">      </span><span class="o">...</span>
-<span class="w">  </span><span class="o">);</span>
+<span class="w">  </span><span class="o">];</span>
 </code></pre>
 </div>
 <p>
@@ -260,18 +265,18 @@ to be used by a service provider (among other attributes):
 values ever reach the service providers. Bear in mind that this configuration can be overridden by metadata:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'authproc' =&gt; array(
+ <pre><span></span><code>  'authproc' =&gt; [
       50 =&gt; 'core:AttributeLimit',
-      'default' =&gt; TRUE,
-      'eduPersonAffiliation' =&gt; array(
+      'default' =&gt; true,
+      'eduPersonAffiliation' =&gt; [
           'student',
           'staff',
           'member',
           'faculty',
           'employee',
           'affiliate',
-      ),
-  ),
+      ],
+  ],
 </code></pre>
 </div></main></body>
 </html>

@@ -51,8 +51,13 @@
    </p>
    <div class="mtoolbar">
     <div class="menuitem">
+     <a href="/docs/2.0/index.html">
+      2.0 (stable)
+     </a>
+    </div>
+    <div class="menuitem">
      <a href="/docs/1.19/index.html">
-      1.19 (stable)
+      1.19
      </a>
     </div>
     <div class="menuitem">
@@ -169,10 +174,10 @@ when multi-valued attributes are received where single-valued ones are expected.
  Abort with an error if any attribute defined as single-valued in the eduPerson or SCHAC schemas exists and has more than one value:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'authproc' =&gt; array(
-      50 =&gt; array(
+ <pre><span></span><code>  'authproc' =&gt; [
+      50 =&gt; [
           'class' =&gt; 'core:CardinalitySingle',
-          'singleValued' =&gt; array(
+          'singleValued' =&gt; [
               /* from eduPerson (internet2-mace-dir-eduperson-201602) */
               'eduPersonOrgDN', 'eduPersonPrimaryAffiliation', 'eduPersonPrimaryOrgUnitDN',
               'eduPersonPrincipalName', 'eduPersonUniqueId',
@@ -182,9 +187,9 @@ when multi-valued attributes are received where single-valued ones are expected.
               'schacMotherTongue', 'schacGender', 'schacDateOfBirth', 'schacPlaceOfBirth',
               'schacPersonalTitle', 'schacHomeOrganization', 'schacHomeOrganizationType',
               'schacExpiryDate',
-          ),
-      ),
-  ),
+          ],
+      ],
+  ],
 </code></pre>
 </div>
 <p>
@@ -199,14 +204,14 @@ when multi-valued attributes are received where single-valued ones are expected.
  :
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'authproc' =&gt; array(
-      50 =&gt; array(
+ <pre><span></span><code>  'authproc' =&gt; [
+      50 =&gt; [
           'class' =&gt; 'core:CardinalitySingle',
-          'singleValued' =&gt; array('eduPersonPrincipalName'),
-          'firstValue' =&gt; array('eduPersonPrimaryAffiliation'),
-          ),
-      ),
-  ),
+          'singleValued' =&gt; ['eduPersonPrincipalName'],
+          'firstValue' =&gt; ['eduPersonPrimaryAffiliation'],
+          ],
+      ],
+  ],
 </code></pre>
 </div>
 <p>
@@ -221,16 +226,16 @@ when multi-valued attributes are received where single-valued ones are expected.
  :
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'authproc' =&gt; array(
-      50 =&gt; array(
+ <pre><span></span><code>  'authproc' =&gt; [
+      50 =&gt; [
           'class' =&gt; 'core:AttributeCopy',
           'eduPersonAffiliation' =&gt; 'eduPersonPrimaryAffiliation',
-      ),
-      51 =&gt; array(
+      ],
+      51 =&gt; [
           'class' =&gt; 'core:CardinalitySingle',
-          'firstValue' =&gt; array('eduPersonPrimaryAffiliation'),
-      ),
-  ),
+          'firstValue' =&gt; ['eduPersonPrimaryAffiliation'],
+      ],
+  ],
 </code></pre>
 </div>
 <p>
@@ -241,17 +246,17 @@ when multi-valued attributes are received where single-valued ones are expected.
  :
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'authproc' =&gt; array(
-      50 =&gt; array(
+ <pre><span></span><code>  'authproc' =&gt; [
+      50 =&gt; [
           'class' =&gt; 'core:AttributeCopy',
           'eduPersonAffiliation' =&gt; 'eduPersonAffiliationWithCommas',
-      ),
-      51 =&gt; array(
+      ],
+      51 =&gt; [
           'class' =&gt; 'core:CardinalitySingle',
-          'flatten' =&gt; array('eduPersonAffiliationWithCommas'),
-    'flattenWith' =&gt; ',',
-      ),
-  ),
+          'flatten' =&gt; ['eduPersonAffiliationWithCommas'],
+          'flattenWith' =&gt; ',',
+      ],
+  ],
 </code></pre>
 </div></main></body>
 </html>

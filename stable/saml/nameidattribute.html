@@ -51,8 +51,13 @@
    </p>
    <div class="mtoolbar">
     <div class="menuitem">
+     <a href="/docs/2.0/index.html">
+      2.0 (stable)
+     </a>
+    </div>
+    <div class="menuitem">
      <a href="/docs/1.19/index.html">
-      1.19 (stable)
+      1.19
      </a>
     </div>
     <div class="menuitem">
@@ -146,42 +151,42 @@
  Minimal configuration:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'default-sp' =&gt; array(
+ <pre><span></span><code>  'default-sp' =&gt; [
       'saml:SP',
-      'authproc' =&gt; array(
+      'authproc' =&gt; [
           20 =&gt; 'saml:NameIDAttribute',
-      ),
-  ),
+      ],
+  ],
 </code></pre>
 </div>
 <p>
  Custom attribute name:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'default-sp' =&gt; array(
+ <pre><span></span><code>  'default-sp' =&gt; [
       'saml:SP',
-      'authproc' =&gt; array(
-          20 =&gt; array(
+      'authproc' =&gt; [
+          20 =&gt; [
               'class' =&gt; 'saml:NameIDAttribute',
               'attribute' =&gt; 'someattributename',
-          ),
-      ),
-  ),
+          ],
+      ],
+  ],
 </code></pre>
 </div>
 <p>
  Only extract the value of the NameID.
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'default-sp' =&gt; array(
+ <pre><span></span><code>  'default-sp' =&gt; [
       'saml:SP',
-      'authproc' =&gt; array(
-          20 =&gt; array(
+      'authproc' =&gt; [
+          20 =&gt; [
               'class' =&gt; 'saml:NameIDAttribute',
               'format' =&gt; '%V',
-          ),
-      ),
-  ),
+          ],
+      ],
+  ],
 </code></pre>
 </div>
 <h2 id="see-also">

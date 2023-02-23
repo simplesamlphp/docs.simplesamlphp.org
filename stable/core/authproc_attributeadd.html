@@ -51,8 +51,13 @@
    </p>
    <div class="mtoolbar">
     <div class="menuitem">
+     <a href="/docs/2.0/index.html">
+      2.0 (stable)
+     </a>
+    </div>
+    <div class="menuitem">
      <a href="/docs/1.19/index.html">
-      1.19 (stable)
+      1.19
      </a>
     </div>
     <div class="menuitem">
@@ -110,50 +115,50 @@ If you instead want to replace the existing attribute, you may add the
  Add a single-valued attributes:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'authproc' =&gt; array(
-      50 =&gt; array(
+ <pre><span></span><code>  'authproc' =&gt; [
+      50 =&gt; [
           'class' =&gt; 'core:AttributeAdd',
-          'source' =&gt; array('myidp'),
-      ),
-  ),
+          'source' =&gt; ['myidp'],
+      ],
+  ],
 </code></pre>
 </div>
 <p>
  Add a multi-valued attribute:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'authproc' =&gt; array(
-      50 =&gt; array(
+ <pre><span></span><code>  'authproc' =&gt; [
+      50 =&gt; [
           'class' =&gt; 'core:AttributeAdd',
-          'groups' =&gt; array('users', 'members'),
-      ),
-  ),
+          'groups' =&gt; ['users', 'members'],
+      ],
+  ],
 </code></pre>
 </div>
 <p>
  Add multiple attributes:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'authproc' =&gt; array(
-      50 =&gt; array(
+ <pre><span></span><code>  'authproc' =&gt; [
+      50 =&gt; [
           'class' =&gt; 'core:AttributeAdd',
-    'eduPersonPrimaryAffiliation' =&gt; 'student',
-          'eduPersonAffiliation' =&gt; array('student', 'employee', 'members'),
-      ),
-  ),
+          'eduPersonPrimaryAffiliation' =&gt; 'student',
+          'eduPersonAffiliation' =&gt; ['student', 'employee', 'members'],
+      ],
+  ],
 </code></pre>
 </div>
 <p>
  Replace an existing attributes:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'authproc' =&gt; array(
-      50 =&gt; array(
+ <pre><span></span><code>  'authproc' =&gt; [
+      50 =&gt; [
           'class' =&gt; 'core:AttributeAdd',
           '%replace',
-          'uid' =&gt; array('guest'),
-      ),
-  ),
+          'uid' =&gt; ['guest'],
+      ],
+  ],
 </code></pre>
 </div></main></body>
 </html>

@@ -51,8 +51,13 @@
    </p>
    <div class="mtoolbar">
     <div class="menuitem">
+     <a href="/docs/2.0/index.html">
+      2.0 (stable)
+     </a>
+    </div>
+    <div class="menuitem">
      <a href="/docs/1.19/index.html">
-      1.19 (stable)
+      1.19
      </a>
     </div>
     <div class="menuitem">
@@ -90,12 +95,44 @@
 </header><main><h1 id="authentication-processing-filters-in-simplesamlphp">
  Authentication Processing Filters in SimpleSAMLphp
 </h1>
-<!-- 
-  This file is written in Markdown syntax. 
-  For more information about how to use the Markdown syntax, read here:
-  http://daringfireball.net/projects/markdown/syntax
--->
-<!-- {{TOC}} -->
+<div class="toc">
+ <ul>
+  <li>
+   <a href="#authentication-processing-filters-in-simplesamlphp">
+    Authentication Processing Filters in SimpleSAMLphp
+   </a>
+   <ul>
+    <li>
+     <a href="#how-to-configure-auth-proc-filters">
+      How to configure Auth Proc Filters
+     </a>
+     <ul>
+      <li>
+       <a href="#filters-in-configphp">
+        Filters in config.php
+       </a>
+      </li>
+      <li>
+       <a href="#filters-in-metadata">
+        Filters in metadata
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#auth-proc-filters-included-in-the-simplesamlphp-distribution">
+      Auth Proc Filters included in the SimpleSAMLphp distribution
+     </a>
+    </li>
+    <li>
+     <a href="#writing-your-own-auth-proc-filter">
+      Writing your own Auth Proc Filter
+     </a>
+    </li>
+   </ul>
+  </li>
+ </ul>
+</div>
 <p>
  In SimpleSAMLphp, there is an API where you can
  <em>
@@ -104,31 +141,28 @@
  at the IdP after authentication is complete, and just before you are sent back to the SP. The same API is available on the SP, after you have received a successful Authentication Response from the IdP and before you are sent back to the SP application.
 </p>
 <p>
- Authentication processing filters postprocess authentication information received from authentication sources. It is possible to use this for additional authentication checks, requesting the user's consent before delivering attributes about the user, modifying the user's attributes, and other things which should be performed before returning the user to the service provider he came from.
+ Authentication processing filters postprocess authentication information received from authentication sources. It is possible to use this for additional authentication checks, requesting the user's consent before delivering attributes about the user, modifying the user's attributes, and other things which should be performed before returning the user to the service provider they came from.
 </p>
 <p>
  Examples of neat things to do using Authentication Processing Filters:
 </p>
-<div class="codehilite">
- <pre><span></span><code><span class="o">*</span><span class="w"> </span><span class="nv">Filter</span><span class="w"> </span><span class="nv">out</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">subset</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">available</span><span class="w"> </span><span class="nv">attributes</span><span class="w"> </span><span class="nv">that</span><span class="w"> </span><span class="nv">are</span><span class="w"> </span><span class="nv">sent</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">SP</span>.
-<span class="o">*</span><span class="w"> </span><span class="nv">Modify</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">attributes</span>.
-<span class="o">*</span><span class="w"> </span><span class="nv">Generate</span><span class="w"> </span><span class="nv">new</span><span class="w"> </span><span class="nv">attributes</span><span class="w"> </span><span class="nv">that</span><span class="w"> </span><span class="nv">are</span><span class="w"> </span><span class="nv">composed</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">others</span>,<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">example</span><span class="w"> </span><span class="nv">eduPersonTargetedID</span>.
-<span class="o">*</span><span class="w"> </span><span class="nv">Ask</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">user</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">consent</span>,<span class="w"> </span><span class="nv">before</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">user</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="nv">sent</span><span class="w"> </span><span class="nv">back</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">service</span>.
-<span class="o">*</span><span class="w"> </span><span class="nv">Implement</span><span class="w"> </span><span class="nv">basic</span><span class="w"> </span><span class="nv">Access</span><span class="w"> </span><span class="nv">Control</span><span class="w"> </span><span class="nv">on</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">IdP</span><span class="w"> </span><span class="ss">(</span><span class="nv">not</span><span class="w"> </span><span class="nv">neccessarily</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">good</span><span class="w"> </span><span class="nv">idea</span><span class="ss">)</span>,<span class="w"> </span><span class="nv">limiting</span><span class="w"> </span><span class="nv">access</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">some</span><span class="w"> </span><span class="nv">users</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">some</span><span class="w"> </span><span class="nv">SPs</span>.
-</code></pre>
-</div>
-<p>
- Be aware that Authentication Proccessing Filters do replace some of the previous features in SimpleSAMLphp, named:
-</p>
-<div class="codehilite">
- <pre><span></span><code><span class="o">*</span><span class="w"> </span><span class="n n-Quoted">`attributemap`</span>
-<span class="o">*</span><span class="w"> </span><span class="n n-Quoted">`attributealter`</span>
-<span class="o">*</span><span class="w"> </span><span class="n n-Quoted">`attribute filter`</span>
-</code></pre>
-</div>
-<p>
- Later in this document, we will desribe in detail the alternative Authentication Proccessing Filters that will replicate these functionalities.
-</p>
+<ul>
+ <li>
+  Filter out a subset of available attributes that are sent to a SP.
+ </li>
+ <li>
+  Modify the name of attributes.
+ </li>
+ <li>
+  Generate new attributes that are composed of others, for example eduPersonTargetedID.
+ </li>
+ <li>
+  Ask the user for consent, before the user is sent back to a service.
+ </li>
+ <li>
+  Implement basic Access Control on the IdP, limiting access for some users to some SPs.
+ </li>
+</ul>
 <h2 id="how-to-configure-auth-proc-filters">
  How to configure Auth Proc Filters
 </h2>
@@ -142,14 +176,48 @@
  </em>
  :
 </p>
-<div class="codehilite">
- <pre><span></span><code><span class="o">*</span><span class="w"> </span><span class="nv">Globally</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span>`<span class="nv">config</span>.<span class="nv">php</span>`
-<span class="o">*</span><span class="w"> </span><span class="nv">On</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">SP</span>:<span class="w"> </span><span class="nv">Specific</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">only</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">SP</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span>`<span class="nv">authsources</span>.<span class="nv">php</span>`
-<span class="o">*</span><span class="w"> </span><span class="nv">On</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">SP</span>:<span class="w"> </span><span class="nv">Specific</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">only</span><span class="w"> </span><span class="nv">one</span><span class="w"> </span><span class="nv">remote</span><span class="w"> </span><span class="nv">IdP</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span>`<span class="nv">saml20</span><span class="o">-</span><span class="nv">idp</span><span class="o">-</span><span class="nv">remote</span>`<span class="w"> </span><span class="nv">or</span><span class="w"> </span>`<span class="nv">shib13</span><span class="o">-</span><span class="nv">idp</span><span class="o">-</span><span class="nv">remote</span>`
-<span class="o">*</span><span class="w"> </span><span class="nv">On</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">IdP</span>:<span class="w"> </span><span class="nv">Specific</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">only</span><span class="w"> </span><span class="nv">one</span><span class="w"> </span><span class="nv">hosted</span><span class="w"> </span><span class="nv">IdP</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span>`<span class="nv">saml20</span><span class="o">-</span><span class="nv">idp</span><span class="o">-</span><span class="nv">hosted</span>`<span class="w"> </span><span class="nv">or</span><span class="w"> </span>`<span class="nv">shib13</span><span class="o">-</span><span class="nv">idp</span><span class="o">-</span><span class="nv">hosted</span>`
-<span class="o">*</span><span class="w"> </span><span class="nv">On</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">IdP</span>:<span class="w"> </span><span class="nv">Specific</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">only</span><span class="w"> </span><span class="nv">one</span><span class="w"> </span><span class="nv">remote</span><span class="w"> </span><span class="nv">SP</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span>`<span class="nv">saml20</span><span class="o">-</span><span class="nv">sp</span><span class="o">-</span><span class="nv">remote</span>`<span class="w"> </span><span class="nv">or</span><span class="w"> </span>`<span class="nv">shib13</span><span class="o">-</span><span class="nv">sp</span><span class="o">-</span><span class="nv">remote</span>`
-</code></pre>
-</div>
+<ul>
+ <li>
+  Globally in
+  <code>
+   config.php
+  </code>
+ </li>
+ <li>
+  On the SP: Specific for only the SP in
+  <code>
+   authsources.php
+  </code>
+ </li>
+ <li>
+  On the SP: Specific for only one remote IdP in
+  <code>
+   saml20-idp-remote
+  </code>
+ </li>
+ <li>
+  On the IdP: Specific for only one hosted IdP in
+  <code>
+   saml20-idp-hosted
+  </code>
+ </li>
+ <li>
+  On the IdP: Specific for only one remote SP in
+  <code>
+   saml20-sp-remote
+  </code>
+ </li>
+</ul>
+<p>
+ <em>
+  Note
+ </em>
+ : An Auth Proc Filter will not work in the "Test authentication sources" option in the web UI of a SimpleSAMLphp IdP. It will only be triggered in conjunction with an actual SP. So you need to set up an IdP
+ <em>
+  and
+ </em>
+ and SP when testing your filter.
+</p>
 <p>
  The configuration of
  <em>
@@ -170,20 +238,20 @@
  :
 </p>
 <div class="codehilite">
- <pre><span></span><code>'authproc.idp' =&gt; [
-  10 =&gt; [
-    'class' =&gt; 'core:AttributeMap', 
-    'addurnprefix'
-  ],
-  20 =&gt; 'core:TargetedID',
-  50 =&gt; 'core:AttributeLimit',
-  90 =&gt; [
-    'class'   =&gt; 'consent:Consent', 
-    'store'   =&gt; 'consent:Cookie', 
-    'focus'   =&gt; 'yes', 
-    'checked'   =&gt; TRUE
-  ],
-],
+ <pre><span></span><code><span class="x">'authproc.idp' =&gt; [</span>
+<span class="x">    10 =&gt; [</span>
+<span class="x">        'class' =&gt; 'core:AttributeMap', </span>
+<span class="x">        'addurnprefix'</span>
+<span class="x">    ],</span>
+<span class="x">    20 =&gt; 'core:TargetedID',</span>
+<span class="x">    50 =&gt; 'core:AttributeLimit',</span>
+<span class="x">    90 =&gt; [</span>
+<span class="x">        'class' =&gt; 'consent:Consent', </span>
+<span class="x">        'store' =&gt; 'consent:Cookie', </span>
+<span class="x">        'focus' =&gt; 'yes', </span>
+<span class="x">        'checked' =&gt; true</span>
+<span class="x">    ],</span>
+<span class="x">],</span>
 </code></pre>
 </div>
 <p>
@@ -224,7 +292,7 @@
  </em>
  then be:
  <code>
-  modules/core/lib/Auth/Process/AttributeLimit.php
+  modules/core/src/Auth/Process/AttributeLimit.php
  </code>
  .
 </p>
@@ -233,34 +301,34 @@
  <code>
   core
  </code>
- module. In addition the
+ and
  <code>
-  consent
+  saml
  </code>
- module that is included in the SimpleSAMLphp distribution implements a filter. Beyond that, you are encouraged to create your own filters and share with the community. If you have created a cool
+ modules, but there are
+many others published as [SimpleSAMLphp modules)[https://simplesamlphp.org/modules/] you can install. Beyond that, you are
+encouraged to create your own filters and share with the community. If you have
+created a cool
  <em>
   Auth Proc Filter
  </em>
- that does something useful, let us know, and we may share it on the
- <a href="http://simplesamlphp.org">
-  SimpleSAMLphp web site
- </a>
- .
+ that does something useful, let us know, and
+we may add it on the Modules overview.
 </p>
 <p>
  When you know the class definition of a filter, and the priority, the simple way to configure the filter is:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="mf">20</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">core</span><span class="p">:</span><span class="n">TargetedID</span><span class="err">'</span><span class="p">,</span>
+ <pre><span></span><code><span class="x">20 =&gt; 'core:TargetedID',</span>
 </code></pre>
 </div>
 <p>
  This is analogous to:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="mf">20</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span>
-<span class="w">  </span><span class="err">'</span><span class="n">class</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">core</span><span class="p">:</span><span class="n">TargetedID</span><span class="err">'</span>
-<span class="err">]</span><span class="p">,</span>
+ <pre><span></span><code><span class="x">20 =&gt; [</span>
+<span class="x">    'class' =&gt; 'core:TargetedID'</span>
+<span class="x">],</span>
 </code></pre>
 </div>
 <p>
@@ -279,12 +347,12 @@
  , you need to choose the second of the two alernatives above. Here is an example of provided parameters to the consent module:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="mf">90</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span>
-<span class="w">  </span><span class="err">'</span><span class="n">class</span><span class="err">'</span><span class="w">   </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">consent</span><span class="p">:</span><span class="n">Consent</span><span class="err">'</span><span class="p">,</span><span class="w"> </span>
-<span class="w">  </span><span class="err">'</span><span class="n">store</span><span class="err">'</span><span class="w">   </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">consent</span><span class="p">:</span><span class="n">Cookie</span><span class="err">'</span><span class="p">,</span><span class="w"> </span>
-<span class="w">  </span><span class="err">'</span><span class="n">focus</span><span class="err">'</span><span class="w">   </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="n">yes</span><span class="err">'</span><span class="p">,</span><span class="w"> </span>
-<span class="w">  </span><span class="err">'</span><span class="n">checked</span><span class="err">'</span><span class="w">   </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">TRUE</span>
-<span class="err">]</span><span class="p">,</span>
+ <pre><span></span><code><span class="x">90 =&gt; [</span>
+<span class="x">    'class' =&gt; 'consent:Consent', </span>
+<span class="x">    'store' =&gt; 'consent:Cookie', </span>
+<span class="x">    'focus' =&gt; 'yes', </span>
+<span class="x">    'checked' =&gt; true,</span>
+<span class="x">],</span>
 </code></pre>
 </div>
 <h3 id="filters-in-configphp">
@@ -307,11 +375,19 @@
 <p>
  There are two config parameters:
 </p>
-<div class="codehilite">
- <pre><span></span><code>* `authproc.idp` and
-* `authproc.sp`
-</code></pre>
-</div>
+<ul>
+ <li>
+  <code>
+   authproc.idp
+  </code>
+  and
+ </li>
+ <li>
+  <code>
+   authproc.sp
+  </code>
+ </li>
+</ul>
 <p>
  The filters in
  <code>
@@ -341,15 +417,15 @@
  metadata. Here is an example of a filter added in a metadata file:
 </p>
 <div class="codehilite">
- <pre><span></span><code>'__DYNAMIC:1__' =&gt; [
-  'host'        =&gt;  '__DEFAULT_',
-  'privatekey'    =&gt;  'example.org.pem',
-  'certificate'   =&gt;  'example.org.crt',
-  'auth'        =&gt;  'feide',
-  'authproc' =&gt; [
-    40 =&gt; 'core:TargetedID',
-  ],
-]
+ <pre><span></span><code><span class="x">$metadata['https://example.org/saml-idp'] = [</span>
+<span class="x">    'host' =&gt; '__DEFAULT_',</span>
+<span class="x">    'privatekey' =&gt; 'example.org.pem',</span>
+<span class="x">    'certificate' =&gt; 'example.org.crt',</span>
+<span class="x">    'auth' =&gt; 'feide',</span>
+<span class="x">    'authproc' =&gt; [</span>
+<span class="x">        40 =&gt; 'core:TargetedID',</span>
+<span class="x">    ],</span>
+<span class="x">]</span>
 </code></pre>
 </div>
 <p>
@@ -407,14 +483,6 @@
   : Change the name of the attributes.
  </li>
  <li>
-  <a href="./core/authproc_attributerealm.html">
-   <code>
-    core:AttributeRealm
-   </code>
-  </a>
-  : (deprecated) Create an attribute with the realm of the user.
- </li>
- <li>
   <a href="./core/authproc_attributevaluemap.html">
    <code>
     core:AttributeValueMap
@@ -456,7 +524,7 @@
     core:LanguageAdaptor
    </code>
   </a>
-  : Transfering language setting from IdP to SP.
+  : Transferring language setting from IdP to SP.
  </li>
  <li>
   <a href="./core/authproc_php.html">
@@ -574,6 +642,22 @@
   </a>
   : Generate transient NameID.
  </li>
+ <li>
+  <a href="./saml/authproc_subjectid.html">
+   <code>
+    saml:SubjectID
+   </code>
+  </a>
+  : Generate SubjectID.
+ </li>
+ <li>
+  <a href="./saml/authproc_pairwiseid.html">
+   <code>
+    saml:PairwiseID
+   </code>
+  </a>
+  : Generate PairwiseID.
+ </li>
 </ul>
 <p>
  See the
@@ -635,14 +719,14 @@ for externally hosted modules that may provide a processing filter.
   -class.
  </li>
  <li>
-  If a constructor is implemented, it must first call the parent constructor, passing along all parameters, before accessing any of the parameters. In general, only the $config parameter should be accessed.
+  If a constructor is implemented, it must first call the parent constructor, passing along all parameters, before accessing any of the parameters. Only the $config parameter can be accessed.
  </li>
  <li>
   The
   <code>
-   process(&amp;$request)
+   process(array &amp;$state)
   </code>
-  -function must be implemented. If this function completes, it is assumed that processing is completed, and that the $request array has been updated.
+  -function must be implemented. If this function completes, it is assumed that processing is completed, and that the $state array has been updated.
  </li>
  <li>
   If the
@@ -681,16 +765,6 @@ for externally hosted modules that may provide a processing filter.
   -function.
  </li>
 </ul>
-<p>
- <em>
-  Note
- </em>
- : An Auth Proc Filter will not work in the "Test authentication sources" option in the web UI of a SimpleSAMLphp IdP. It will only be triggered in conjunction with an actual SP. So you need to set up an IdP
- <em>
-  and
- </em>
- and SP when testing your filter.
-</p>
 <p>
  Don't hestitate to ask on the SimpleSAMLphp mailinglist if you have problems or questions, or want to share your
  <em>

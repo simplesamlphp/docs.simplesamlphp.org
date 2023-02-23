@@ -51,8 +51,13 @@
    </p>
    <div class="mtoolbar">
     <div class="menuitem">
+     <a href="/docs/2.0/index.html">
+      2.0 (stable)
+     </a>
+    </div>
+    <div class="menuitem">
      <a href="/docs/1.19/index.html">
-      1.19 (stable)
+      1.19
      </a>
     </div>
     <div class="menuitem">
@@ -192,6 +197,16 @@ attributes.
  <dd>
   Indicates that the whole value of the attribute should be removed completely if there is a match.
   If no other values exist, the attribute will be removed completely.
+  This parameter is OPTIONAL.
+ </dd>
+ <dt>
+  <code>
+   %merge
+  </code>
+ </dt>
+ <dd>
+  Indicates whether the altered values must be merged with the target attribute values. The default
+  behaviour is to overwrite the target attribute completely.
   This parameter is OPTIONAL.
  </dd>
 </dl>

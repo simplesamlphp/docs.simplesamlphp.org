@@ -51,8 +51,13 @@
    </p>
    <div class="mtoolbar">
     <div class="menuitem">
+     <a href="/docs/2.0/index.html">
+      2.0 (stable)
+     </a>
+    </div>
+    <div class="menuitem">
      <a href="/docs/1.19/index.html">
-      1.19 (stable)
+      1.19
      </a>
     </div>
     <div class="menuitem">
@@ -90,12 +95,130 @@
 </header><main><h1 id="simplesamlphp-maintenance">
  SimpleSAMLphp Maintenance
 </h1>
-<!--
-  This file is written in Markdown syntax.
-  For more information about how to use the Markdown syntax, read here:
-  http://daringfireball.net/projects/markdown/syntax
--->
-<!-- {{TOC}} -->
+<div class="toc">
+ <ul>
+  <li>
+   <a href="#simplesamlphp-maintenance">
+    SimpleSAMLphp Maintenance
+   </a>
+   <ul>
+    <li>
+     <a href="#simplesamlphp-news-and-documentation">
+      SimpleSAMLphp news and documentation
+     </a>
+    </li>
+    <li>
+     <a href="#session-management">
+      Session management
+     </a>
+     <ul>
+      <li>
+       <a href="#configuring-php-sessions">
+        Configuring PHP sessions
+       </a>
+      </li>
+      <li>
+       <a href="#configuring-memcache">
+        Configuring memcache
+       </a>
+      </li>
+      <li>
+       <a href="#example-1-example-of-redundant-configuration-with-load-balancing">
+        Example 1. Example of redundant configuration with load balancing
+       </a>
+      </li>
+      <li>
+       <a href="#example-2-example-of-simple-configuration-with-only-one-memcache-server">
+        Example 2. Example of simple configuration with only one memcache server
+       </a>
+      </li>
+      <li>
+       <a href="#example-3-example-of-configuration-setting-for-session-expiration">
+        Example 3. Example of configuration setting for session expiration
+       </a>
+       <ul>
+        <li>
+         <a href="#memcache-php-configuration">
+          Memcache PHP configuration
+         </a>
+        </li>
+        <li>
+         <a href="#environmental-configuration">
+          Environmental configuration
+         </a>
+        </li>
+       </ul>
+      </li>
+      <li>
+       <a href="#configuring-sql-storage">
+        Configuring SQL storage
+       </a>
+      </li>
+      <li>
+       <a href="#configuring-redis-storage">
+        Configuring Redis storage
+       </a>
+       <ul>
+        <li>
+         <a href="#redis-sentinel">
+          Redis-Sentinel
+         </a>
+        </li>
+       </ul>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#metadata-storage">
+      Metadata storage
+     </a>
+    </li>
+    <li>
+     <a href="#logging-and-statistics">
+      Logging and statistics
+     </a>
+    </li>
+    <li>
+     <a href="#apache-configuration">
+      Apache configuration
+     </a>
+    </li>
+    <li>
+     <a href="#php-configuration">
+      PHP configuration
+     </a>
+    </li>
+    <li>
+     <a href="#getting-ready-for-production">
+      Getting ready for production
+     </a>
+    </li>
+    <li>
+     <a href="#error-handling-error-reporting-and-metadata-reporting">
+      Error handling, error reporting and metadata reporting
+     </a>
+    </li>
+    <li>
+     <a href="#multi-language-support">
+      Multi-language support
+     </a>
+    </li>
+    <li>
+     <a href="#customizing-the-web-frontend-with-themes">
+      Customizing the web frontend with themes
+     </a>
+     <ul>
+      <li>
+       <a href="#support">
+        Support
+       </a>
+      </li>
+     </ul>
+    </li>
+   </ul>
+  </li>
+ </ul>
+</div>
 <h2 id="simplesamlphp-news-and-documentation">
  SimpleSAMLphp news and documentation
 </h2>
@@ -104,7 +227,7 @@
 </p>
 <ul>
  <li>
-  <a href="http://simplesamlphp.org/docs">
+  <a href="https://simplesamlphp.org/docs">
    SimpleSAMLphp documentation
   </a>
  </li>
@@ -116,11 +239,6 @@
  <li>
   <a href="https://simplesamlphp.org/lists">
    SimpleSAMLphp mailing lists
-  </a>
- </li>
- <li>
-  <a href="https://twitter.com/simplesamlphp">
-   SimpleSAMLphp in twitter
   </a>
  </li>
 </ul>
@@ -141,13 +259,34 @@
  </code>
  allows you to select which method SimpleSAMLphp should use to store the session information. Currently, three session handlers are included in the distribution:
 </p>
+<ul>
+ <li>
+  <code>
+   phpsession
+  </code>
+  uses the built in session management in PHP. This is the default, and is simplest to use. It will not work in a load-balanced environment in most configurations.
+ </li>
+ <li>
+  <code>
+   memcache
+  </code>
+  uses the memcache software to cache sessions in memory. Sessions can be distributed and replicated among several memcache servers, enabling both load-balancing and fail-over.
+ </li>
+ <li>
+  <code>
+   sql
+  </code>
+  stores the session in an SQL database.
+ </li>
+ <li>
+  <code>
+   redis
+  </code>
+  stores the session in Redis.
+ </li>
+</ul>
 <div class="codehilite">
- <pre><span></span><code><span class="o">*</span><span class="w"> </span><span class="n n-Quoted">`phpsession`</span><span class="w"> </span><span class="n">uses</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">built</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">session</span><span class="w"> </span><span class="n">management</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">PHP</span><span class="p">.</span><span class="w"> </span><span class="n">This</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">default</span><span class="p">,</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">simplest</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">use</span><span class="p">.</span><span class="w"> </span><span class="n">It</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">work</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">load</span><span class="o">-</span><span class="n">balanced</span><span class="w"> </span><span class="n">environment</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">most</span><span class="w"> </span><span class="n">configurations</span><span class="p">.</span>
-<span class="o">*</span><span class="w"> </span><span class="n n-Quoted">`memcache`</span><span class="w"> </span><span class="n">uses</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">memcache</span><span class="w"> </span><span class="n">software</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">cache</span><span class="w"> </span><span class="n">sessions</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">memory</span><span class="p">.</span><span class="w"> </span><span class="n">Sessions</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">distributed</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">replicated</span><span class="w"> </span><span class="n">among</span><span class="w"> </span><span class="n">several</span><span class="w"> </span><span class="n">memcache</span><span class="w"> </span><span class="n">servers</span><span class="p">,</span><span class="w"> </span><span class="n">enabling</span><span class="w"> </span><span class="k">both</span><span class="w"> </span><span class="k">load</span><span class="o">-</span><span class="n">balancing</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">fail</span><span class="o">-</span><span class="k">over</span><span class="p">.</span>
-<span class="o">*</span><span class="w"> </span><span class="n n-Quoted">`sql`</span><span class="w"> </span><span class="n">stores</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">session</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="k">SQL</span><span class="w"> </span><span class="k">database</span><span class="p">.</span>
-<span class="o">*</span><span class="w"> </span><span class="n n-Quoted">`redis`</span><span class="w"> </span><span class="n">stores</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">session</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">Redis</span><span class="p">.</span>
-
-<span class="w">  </span><span class="s1">'store.type'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'phpsession'</span><span class="p">,</span>
+ <pre><span></span><code><span class="x">'store.type' =&gt; 'phpsession',</span>
 </code></pre>
 </div>
 <h3 id="configuring-php-sessions">
@@ -165,7 +304,7 @@
  :
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'store.type' =&gt; 'phpsession',
+ <pre><span></span><code><span class="x">'store.type' =&gt; 'phpsession',</span>
 </code></pre>
 </div>
 <p>
@@ -182,9 +321,9 @@ application and in SimpleSAMLphp at the same time,
 SimpleSAMLphp, it is configured with different options than for other session handlers:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'session.phpsession.cookiename' =&gt; null,
-  'session.phpsession.savepath' =&gt; null,
-  'session.phpsession.httponly' =&gt; true,
+ <pre><span></span><code><span class="x">'session.phpsession.cookiename' =&gt; null,</span>
+<span class="x">'session.phpsession.savepath' =&gt; null,</span>
+<span class="x">'session.phpsession.httponly' =&gt; true,</span>
 </code></pre>
 </div>
 <p>
@@ -230,7 +369,7 @@ settings by leaving these options unset or setting them to
  :
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'store.type' =&gt; 'memcache',
+ <pre><span></span><code><span class="x">'store.type' =&gt; 'memcache',</span>
 </code></pre>
 </div>
 <p>
@@ -249,105 +388,101 @@ settings by leaving these options unset or setting them to
 <p>
  Each server is an array of parameters for the server. The following options are available:
 </p>
-<dl>
- <dt>
-  <code>
-   hostname
-  </code>
- </dt>
- <dd>
-  Host name or ip address where the memcache server runs, or specify other transports like
-  <em>
-   unix:///path/ssp.sock
-  </em>
-  to
-  use UNIX domain sockets. In that case, port will be ignored and forced to
-  <em>
-   0
-  </em>
-  .
-  <div class="codehilite">
-   <pre><span></span><code>This is the only required option.
-</code></pre>
-  </div>
- </dd>
- <dt>
-  <code>
-   port
-  </code>
- </dt>
- <dd>
-  Port number of the memcache server. If not set, the
-  <code>
-   memcache.default_port
-  </code>
-  ini setting is used. This is 11211 by
-  default.
-  <div class="codehilite">
-   <pre><span></span><code>The port will be forced to *0* when a UNIX domain socket is specified in *hostname*.
-</code></pre>
-  </div>
- </dd>
- <dt>
-  <code>
-   weight
-  </code>
- </dt>
- <dd>
-  Weight of this server in this server group.
-  <a href="http://php.net/manual/en/function.Memcache-addServer.php">
-   http://php.net/manual/en/function.Memcache-addServer.php
-  </a>
-  has more information about the weight option.
- </dd>
- <dt>
-  <code>
-   timeout
-  </code>
- </dt>
- <dd>
-  Timeout for this server. By default, the timeout is 3
-  seconds.
- </dd>
-</dl>
+<p>
+ <code>
+  hostname
+ </code>
+ :
+Host name or ip address where the memcache server runs, or specify other transports like
+ <em>
+  unix:///path/ssp.sock
+ </em>
+ to
+use UNIX domain sockets. In that case, port will be ignored and forced to
+ <em>
+  0
+ </em>
+ .
+</p>
+<p>
+ This is the only required option.
+</p>
+<p>
+ <code>
+  port
+ </code>
+ :
+Port number of the memcache server. If not set, the
+ <code>
+  memcache.default_port
+ </code>
+ ini setting is used. This is 11211 by
+default.
+</p>
+<p>
+ The port will be forced to
+ <em>
+  0
+ </em>
+ when a UNIX domain socket is specified in
+ <em>
+  hostname
+ </em>
+ .
+</p>
+<p>
+ <code>
+  weight
+ </code>
+ :
+Weight of this server in this server group.
+ <a href="http://php.net/manual/en/function.Memcache-addServer.php">
+  http://php.net/manual/en/function.Memcache-addServer.php
+ </a>
+ has more information about the weight option.
+</p>
+<p>
+ <code>
+  timeout
+ </code>
+ :
+Timeout for this server. By default, the timeout is 3
+seconds.
+</p>
 <p>
  Here are two examples of configuration of memcache session handling:
 </p>
-<p>
- <strong>
-  Example 1. Example of redundant configuration with load balancing
- </strong>
-</p>
+<h3 id="example-1-example-of-redundant-configuration-with-load-balancing">
+ Example 1. Example of redundant configuration with load balancing
+</h3>
 <p>
  Example of redundant configuration with load balancing: This configuration makes it possible to lose both servers in the a-group or both servers in the b-group without losing any sessions. Note that sessions will be lost if one server is lost from both the a-group and the b-group.
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'memcache_store.servers' =&gt; [
-    [
-      ['hostname' =&gt; 'mc_a1'],
-      ['hostname' =&gt; 'mc_a2'],
-    ],
-    [
-      ['hostname' =&gt; 'mc_b1'],
-      ['hostname' =&gt; 'mc_b2'],
-    ],
-  ],
+ <pre><span></span><code><span class="x">'memcache_store.servers' =&gt; [</span>
+<span class="x">    [</span>
+<span class="x">        ['hostname' =&gt; 'mc_a1'],</span>
+<span class="x">        ['hostname' =&gt; 'mc_a2'],</span>
+<span class="x">    ],</span>
+<span class="x">    [</span>
+<span class="x">        ['hostname' =&gt; 'mc_b1'],</span>
+<span class="x">        ['hostname' =&gt; 'mc_b2'],</span>
+<span class="x">    ],</span>
+<span class="x">],</span>
 </code></pre>
 </div>
-<p>
- <strong>
-  Example 2. Example of simple configuration with only one memcache server
- </strong>
-</p>
+<h3 id="example-2-example-of-simple-configuration-with-only-one-memcache-server">
+ Example 2. Example of simple configuration with only one memcache server
+</h3>
 <p>
  Example of simple configuration with only one memcache server, running on the same computer as the web server: Note that all sessions will be lost if the memcache server crashes.
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'memcache_store.servers' =&gt; [
-    [
-      ['hostname' =&gt; 'localhost'],
-    ],
-  ],
+ <pre><span></span><code><span class="x">'memcache_store.servers' =&gt; [</span>
+<span class="x">    [</span>
+<span class="x">        ['hostname' =&gt; 'localhost'],</span>
+<span class="x">    ],</span>
+<span class="x">],</span>
 </code></pre>
 </div>
 <p>
@@ -367,23 +502,23 @@ settings by leaving these options unset or setting them to
 <p>
  Set this value to 0 if you don't want data to expire.
 </p>
-<h4 id="note">
- Note
-</h4>
+<p>
+ <code>
+  Note
+ </code>
+</p>
 <p>
  The oldest data will always be deleted if the memcache server runs
 out of storage space.
 </p>
-<p>
- <strong>
-  Example 3. Example of configuration setting for session expiration
- </strong>
-</p>
+<h3 id="example-3-example-of-configuration-setting-for-session-expiration">
+ Example 3. Example of configuration setting for session expiration
+</h3>
 <p>
  Here is an example of this configuration parameter:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'memcache_store.expires' =&gt;  36 * (60*60), // 36 hours.
+ <pre><span></span><code><span class="x">'memcache_store.expires' =&gt;  36 * (60*60), // 36 hours.</span>
 </code></pre>
 </div>
 <h4 id="memcache-php-configuration">
@@ -398,7 +533,7 @@ configured in
  .
 </p>
 <div class="codehilite">
- <pre><span></span><code>  memcache.allow_failover = Off
+ <pre><span></span><code><span class="x">memcache.allow_failover = Off</span>
 </code></pre>
 </div>
 <h4 id="environmental-configuration">
@@ -489,15 +624,90 @@ Username and password for accessing the database can be configured in the
  <code>
   store.redis.prefix
  </code>
- option. For Redis instances that
+ option.
+</p>
+<p>
+ For Redis instances that
  <a href="https://redis.io/commands/auth">
   require authentication
  </a>
- , use the
+ :
+</p>
+<ul>
+ <li>
+  If authentication is managed with the
+  <code>
+   requirepass
+  </code>
+  directive (legacy password protection): use the
+  <code>
+   store.redis.password
+  </code>
+  option
+ </li>
+ <li>
+  If authentication is managed with
+  <a href="https://redis.io/docs/manual/security/acl/">
+   ACL's
+  </a>
+  (which are recommended as of Redis 6): use the
+  <code>
+   store.redis.password
+  </code>
+  and
+  <code>
+   store.redis.username
+  </code>
+  options
+ </li>
+</ul>
+<h4 id="redis-sentinel">
+ Redis-Sentinel
+</h4>
+<p>
+ If your Redis servers are controlled by
+ <a href="https://redis.io/docs/manual/sentinel/">
+  Redis-Sentinel
+ </a>
+ , then configure your sentinels by setting
+ <code>
+  store.redis.sentinels
+ </code>
+ to
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="x">[</span>
+<span class="x">    'tcp://[yoursentinel1]:[port]',</span>
+<span class="x">    'tcp://[yoursentinel2]:[port]',</span>
+<span class="x">    'tcp://[yoursentinel3]:[port]',</span>
+<span class="x">]</span>
+</code></pre>
+</div>
+<p>
+ If your sentinels are password-protected and use the same password as your Redis servers, then setting
  <code>
   store.redis.password
  </code>
- option.
+ is enough. However if your sentinels use a different password than that of your Redis servers, then set the password of each sentinel:
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="x">[</span>
+<span class="x">    'tcp://[yoursentinel1]:[port]?password=[password1]',</span>
+<span class="x">    'tcp://[yoursentinel2]:[port]?password=[password2]',</span>
+<span class="x">    'tcp://[yoursentinel3]:[port]?password=[password3]',</span>
+<span class="x">]</span>
+</code></pre>
+</div>
+<p>
+ Configure your master group by setting
+ <code>
+  store.redis.mastergroup
+ </code>
+ (
+ <code>
+  mymaster
+ </code>
+ by default).
 </p>
 <h2 id="metadata-storage">
  Metadata storage
@@ -525,11 +735,11 @@ Username and password for accessing the database can be configured in the
 example configuration of different metadata sources in use at the same time:
 </p>
 <div class="codehilite">
- <pre><span></span><code>'metadata.sources' =&gt; [
-    ['type' =&gt; 'flatfile'],
-    ['type' =&gt; 'flatfile', 'directory' =&gt; 'metadata/metarefresh-kalmar'],
-    ['type' =&gt; 'serialize', 'directory' =&gt; 'metadata/metarefresh-ukaccess'],
-],
+ <pre><span></span><code><span class="x">'metadata.sources' =&gt; [</span>
+<span class="x">    ['type' =&gt; 'flatfile'],</span>
+<span class="x">    ['type' =&gt; 'flatfile', 'directory' =&gt; 'metadata/metarefresh-kalmar'],</span>
+<span class="x">    ['type' =&gt; 'serialize', 'directory' =&gt; 'metadata/metarefresh-ukaccess'],</span>
+<span class="x">],</span>
 </code></pre>
 </div>
 <p>
@@ -549,7 +759,7 @@ and override the methods needed to change the backend used. This class
  </strong>
  also be located in the
  <code>
-  lib/MetadataStore/
+  src/MetadataStore/
  </code>
  directory of your custom module.
 </p>
@@ -561,22 +771,22 @@ and override the methods needed to change the backend used. This class
  . This means it needs to be
 named in a particular way, with the use of namespaces being the preferred convention. For example, if your
 module is named
- <em>
+ <code>
   mymodule
- </em>
+ </code>
  and your class is named
- <em>
+ <code>
   MyMetadataHandler
- </em>
+ </code>
  , you should define it like this:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="o">&lt;</span><span class="err">?</span><span class="n">php</span>
-<span class="n">namespace</span><span class="w"> </span><span class="n">SimpleSAML</span>\<span class="n">Module</span>\<span class="n">mymodule</span>\<span class="n">MetadataStore</span><span class="p">;</span>
+ <pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">namespace</span> <span class="nx">SimpleSAML\Module\mymodule\MetadataStore</span><span class="p">;</span>
 
-<span class="k">class</span><span class="w"> </span><span class="n">MyMetadataHandler</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span>\<span class="n">SimpleSAML</span>\<span class="n">Metadata</span>\<span class="n">MetaDataStorageSource</span>
+<span class="k">class</span> <span class="nc">MyMetadataHandler</span> <span class="k">extends</span> <span class="nx">\SimpleSAML\Metadata\MetaDataStorageSource</span>
 <span class="p">{</span>
-<span class="w">    </span><span class="o">...</span>
+    <span class="o">...</span>
 </code></pre>
 </div>
 <p>
@@ -688,11 +898,11 @@ However, your IdP or SP is most likely a valuable website that you want to confi
  :
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="o">/*</span>
-<span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Languages</span><span class="w"> </span><span class="n">available</span><span class="w"> </span><span class="nb">and</span><span class="w"> </span><span class="n">which</span><span class="w"> </span><span class="n">language</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">default</span>
-<span class="w"> </span><span class="o">*/</span>
-<span class="s">'language.available'</span><span class="w"> </span><span class="p">=</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[</span><span class="s">'en'</span><span class="p">,</span><span class="w"> </span><span class="s">'no'</span><span class="p">,</span><span class="w"> </span><span class="s">'da'</span><span class="p">,</span><span class="w"> </span><span class="s">'es'</span><span class="p">,</span><span class="w"> </span><span class="s">'xx'</span><span class="p">],</span>
-<span class="s">'language.default'</span><span class="w">   </span><span class="p">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">'en'</span><span class="p">,</span>
+ <pre><span></span><code><span class="x">/*</span>
+<span class="x"> * Languages available and which language is default</span>
+<span class="x"> */</span>
+<span class="x">'language.available' =&gt; ['en', 'no', 'da', 'es', 'xx'],</span>
+<span class="x">'language.default'   =&gt; 'en',</span>
 </code></pre>
 </div>
 <p>
@@ -713,11 +923,11 @@ However, your IdP or SP is most likely a valuable website that you want to confi
  . Add a new entry for each string, with your language code, like this:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'user_pass_header' =&gt; [
-      'en' =&gt; 'Enter your username and password',
-      'no' =&gt; 'Skriv inn brukernavn og passord',
-      'xx' =&gt; 'Pooa jujjique jamba',
-    ],
+ <pre><span></span><code><span class="x">'user_pass_header' =&gt; [</span>
+<span class="x">    'en' =&gt; 'Enter your username and password',</span>
+<span class="x">    'no' =&gt; 'Skriv inn brukernavn og passord',</span>
+<span class="x">    'xx' =&gt; 'Pooa jujjique jamba',</span>
+<span class="x">],</span>
 </code></pre>
 </div>
 <p>
@@ -733,9 +943,9 @@ However, your IdP or SP is most likely a valuable website that you want to confi
  </a>
  .
 </p>
-<h2 id="support">
+<h3 id="support">
  Support
-</h2>
+</h3>
 <p>
  If you need help to make this work, or want to discuss SimpleSAMLphp with other users of the software, you are fortunate: Around SimpleSAMLphp there is a great Open source community, and you are welcome to join! The forums are open for you to ask questions, contribute answers other further questions, request improvements or contribute with code or plugins of your own.
 </p>

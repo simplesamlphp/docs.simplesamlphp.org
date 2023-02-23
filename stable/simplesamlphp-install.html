@@ -51,8 +51,13 @@
    </p>
    <div class="mtoolbar">
     <div class="menuitem">
+     <a href="/docs/2.0/index.html">
+      2.0 (stable)
+     </a>
+    </div>
+    <div class="menuitem">
      <a href="/docs/1.19/index.html">
-      1.19 (stable)
+      1.19
      </a>
     </div>
     <div class="menuitem">
@@ -169,8 +174,8 @@
      </a>
     </li>
     <li>
-     <a href="#the-simplesamlphp-installation-web-page">
-      The SimpleSAMLphp installation web page
+     <a href="#the-simplesamlphp-admin-interface">
+      The SimpleSAMLphp admin interface
      </a>
      <ul>
       <li>
@@ -179,11 +184,6 @@
        </a>
       </li>
      </ul>
-    </li>
-    <li>
-     <a href="#building-assets">
-      Building assets
-     </a>
     </li>
     <li>
      <a href="#next-steps">
@@ -230,7 +230,7 @@
  This document covers the installation of the latest stable version of SimpleSAMLphp.
 If you want to install the development version, take a look at the instructions for
  <a href="simplesamlphp-install-repo.html">
-  installing SimpleSAMLphp from the 
+  installing SimpleSAMLphp from the
 repository
  </a>
  .
@@ -243,7 +243,7 @@ repository
   A web server capable of executing PHP scripts.
  </li>
  <li>
-  PHP version &gt;= 7.1.0.
+  PHP version &gt;= 7.2.0.
  </li>
  <li>
   Support for the following PHP extensions:
@@ -263,7 +263,19 @@ repository
     </code>
     ,
     <code>
+     intl
+    </code>
+    ,
+    <code>
+     json
+    </code>
+    ,
+    <code>
      libxml
+    </code>
+    ,
+    <code>
+     mbstring
     </code>
     ,
     <code>
@@ -280,14 +292,6 @@ repository
     ,
     <code>
      zlib
-    </code>
-    ,
-    <code>
-     json
-    </code>
-    ,
-    <code>
-     mbstring
     </code>
    </li>
    <li>
@@ -373,9 +377,9 @@ repository
  Go to the directory where you want to install SimpleSAMLphp and extract the archive file you just downloaded:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">    </span><span class="n">cd</span><span class="w"> </span><span class="o">/</span><span class="k">var</span>
-<span class="w">    </span><span class="n">tar</span><span class="w"> </span><span class="n">xzf</span><span class="w"> </span><span class="n">simplesamlphp</span><span class="o">-</span><span class="n">x</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">z</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
-<span class="w">    </span><span class="n">mv</span><span class="w"> </span><span class="n">simplesamlphp</span><span class="o">-</span><span class="n">x</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">z</span><span class="w"> </span><span class="n">simplesamlphp</span>
+ <pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/var
+tar<span class="w"> </span>xzf<span class="w"> </span>simplesamlphp-x.y.z.tar.gz
+mv<span class="w"> </span>simplesamlphp-x.y.z<span class="w"> </span>simplesamlphp
 </code></pre>
 </div>
 <h2 id="upgrading-from-a-previous-version-of-simplesamlphp">
@@ -393,8 +397,8 @@ changes.
  Extract the new version:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">    </span><span class="n">cd</span><span class="w"> </span><span class="o">/</span><span class="k">var</span>
-<span class="w">    </span><span class="n">tar</span><span class="w"> </span><span class="n">xzf</span><span class="w"> </span><span class="n">simplesamlphp</span><span class="o">-</span><span class="n">x</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">z</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+ <pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/var
+tar<span class="w"> </span>xzf<span class="w"> </span>simplesamlphp-x.y.z.tar.gz
 </code></pre>
 </div>
 <p>
@@ -402,10 +406,10 @@ changes.
 keep reading for other alternatives):
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">    </span><span class="n">cd</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">simplesamlphp</span><span class="o">-</span><span class="n">x</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">z</span>
-<span class="w">    </span><span class="n">rm</span><span class="w"> </span><span class="o">-</span><span class="n">rf</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="n">metadata</span>
-<span class="w">    </span><span class="n">cp</span><span class="w"> </span><span class="o">-</span><span class="n">rv</span><span class="w"> </span><span class="o">../</span><span class="n">simplesamlphp</span><span class="o">/</span><span class="n">config</span><span class="w"> </span><span class="n">config</span>
-<span class="w">    </span><span class="n">cp</span><span class="w"> </span><span class="o">-</span><span class="n">rv</span><span class="w"> </span><span class="o">../</span><span class="n">simplesamlphp</span><span class="o">/</span><span class="n">metadata</span><span class="w"> </span><span class="n">metadata</span>
+ <pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/var/simplesamlphp-x.y.z
+rm<span class="w"> </span>-rf<span class="w"> </span>config<span class="w"> </span>metadata
+cp<span class="w"> </span>-rv<span class="w"> </span>../simplesamlphp/config<span class="w"> </span>config
+cp<span class="w"> </span>-rv<span class="w"> </span>../simplesamlphp/metadata<span class="w"> </span>metadata
 </code></pre>
 </div>
 <p>
@@ -417,16 +421,16 @@ keep reading for other alternatives):
  <a href="simplesamlphp-theming.md.html">
   customised the theme
  </a>
- , 
+ ,
 you should check whether your third-party modules need upgrading and then copy or replace those directories too.
 </p>
 <p>
  Replace the old version with the new version:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">    </span><span class="n">cd</span><span class="w"> </span><span class="o">/</span><span class="k">var</span>
-<span class="w">    </span><span class="n">mv</span><span class="w"> </span><span class="n">simplesamlphp</span><span class="w"> </span><span class="n">simplesamlphp</span><span class="o">.</span><span class="n">old</span>
-<span class="w">    </span><span class="n">mv</span><span class="w"> </span><span class="n">simplesamlphp</span><span class="o">-</span><span class="n">x</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">z</span><span class="w"> </span><span class="n">simplesamlphp</span>
+ <pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/var
+mv<span class="w"> </span>simplesamlphp<span class="w"> </span>simplesamlphp.old
+mv<span class="w"> </span>simplesamlphp-x.y.z<span class="w"> </span>simplesamlphp
 </code></pre>
 </div>
 <p>
@@ -447,13 +451,10 @@ upgrade notes), you may have to update your configuration and metadata after upd
  </code>
  file and the new
  <code>
-  config.php
+  config.php.dist
  </code>
- file located in
- <code>
-  config-templates/config.php
- </code>
- , and apply relevant modifications to the new template. This will ensure that all new 
+ file located
+the same directory, and apply relevant modifications to the new template. This will ensure that all new
 entries in the latest version of config.php are included, as well as preserve your local modifications.
 </p>
 <h3 id="upgrading-metadata-files">
@@ -479,7 +480,7 @@ startup indicating how and what you need to update. You should look through the 
   config
  </code>
  directory in the root of its own directory. This
-has some drawbacks, like making it harder to update SimpleSAMLphp or to install it as a composer dependency, or to 
+has some drawbacks, like making it harder to update SimpleSAMLphp or to install it as a composer dependency, or to
 package it for different operating systems.
 </p>
 <p>
@@ -488,7 +489,7 @@ by setting the
  <code>
   SIMPLESAMLPHP_CONFIG_DIR
  </code>
- environment variable to point to this location. This way, the configuration 
+ environment variable to point to this location. This way, the configuration
 directory doesn't need to be inside the library's directory, making it easier to manage and to update. The simplest way
 to set this environment variable is to set it in your web server's configuration. See the next section for more
 information.
@@ -504,7 +505,7 @@ information.
  . You may choose
 another location, but this requires a path update in a few files. See Appendix
  <em>
-  Installing SimpleSAMLphp 
+  Installing SimpleSAMLphp
 in alternative locations
  </em>
  for more details.
@@ -516,7 +517,7 @@ in alternative locations
  </code>
  that needs to be accessible from the web is
  <code>
-  www
+  public
  </code>
  . There are several ways of
 exposing SimpleSAMLphp depending on the way web sites are structured on your Apache web server. The following is just
@@ -527,18 +528,18 @@ one possible configuration.
 look like this:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">    </span><span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="err">*</span><span class="nt">&gt;</span>
-<span class="w">            </span>ServerName<span class="w"> </span>service.example.com
-<span class="w">            </span>DocumentRoot<span class="w"> </span>/var/www/service.example.com
+ <pre><span></span><code><span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="s">*</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nb">ServerName</span><span class="w"> </span>service.example.com
+<span class="w">    </span><span class="nb">DocumentRoot</span><span class="w"> </span><span class="sx">/var/www/service.example.com</span>
 
-<span class="w">            </span>SetEnv<span class="w"> </span>SIMPLESAMLPHP_CONFIG_DIR<span class="w"> </span>/var/simplesamlphp/config
+<span class="w">    </span><span class="nb">SetEnv</span><span class="w"> </span>SIMPLESAMLPHP_CONFIG_DIR<span class="w"> </span><span class="sx">/var/simplesamlphp/config</span>
 
-<span class="w">            </span>Alias<span class="w"> </span>/simplesaml<span class="w"> </span>/var/simplesamlphp/www
+<span class="w">    </span><span class="nb">Alias</span><span class="w"> </span><span class="sx">/simplesaml</span><span class="w"> </span><span class="sx">/var/simplesamlphp/public</span>
 
-<span class="w">            </span><span class="nt">&lt;Directory</span><span class="w"> </span><span class="err">/var/simplesamlphp/www</span><span class="nt">&gt;</span>
-<span class="w">                </span>Require<span class="w"> </span>all<span class="w"> </span>granted
-<span class="w">            </span><span class="nt">&lt;/Directory&gt;</span>
-<span class="w">    </span><span class="nt">&lt;/VirtualHost&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Directory</span><span class="w"> </span><span class="s">/var/simplesamlphp/public</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nb">Require</span><span class="w"> </span><span class="k">all</span><span class="w"> </span>granted
+<span class="w">    </span><span class="nt">&lt;/Directory&gt;</span>
+<span class="nt">&lt;/VirtualHost&gt;</span>
 </code></pre>
 </div>
 <p>
@@ -553,9 +554,9 @@ look like this:
  . SimpleSAMLphp makes several SAML interfaces available on the web; all of
 them are accessible through the
  <code>
-  www
+  public
  </code>
- subdirectory of your SimpleSAMLphp installation. You can name the alias 
+ subdirectory of your SimpleSAMLphp installation. You can name the alias
 whatever you want, but the name must be specified in the
  <code>
   baseurlpath
@@ -564,7 +565,7 @@ whatever you want, but the name must be specified in the
  <code>
   config.php
  </code>
- file of 
+ file of
 SimpleSAMLphp as described in
  <a href="#section_6" title="SimpleSAMLphp configuration: config.php">
   the section called “SimpleSAMLphp configuration: config.php”
@@ -577,11 +578,11 @@ Here is an example of how this configuration may look like in
  :
 </p>
 <div class="codehilite">
- <pre><span></span><code>$config = [
-    [...]
-    'baseurlpath' =&gt; 'simplesaml/',
-    [...]
-]
+ <pre><span></span><code><span class="x">$config = [</span>
+<span class="x">    [...]</span>
+<span class="x">    'baseurlpath' =&gt; 'simplesaml/',</span>
+<span class="x">    [...]</span>
+<span class="x">]</span>
 </code></pre>
 </div>
 <p>
@@ -593,7 +594,7 @@ Here is an example of how this configuration may look like in
  <code>
   SIMPLESAMLPHP_CONFIG_DIR
  </code>
- environment 
+ environment
 variable, in this case, to the default location for the configuration directory. You can omit this environment
 variable, and SimpleSAMLphp will then look for the
  <code>
@@ -631,7 +632,7 @@ further completing your documentation, please see
  . You may choose
 another location, but this requires a path update in a few files. See Appendix
  <em>
-  Installing SimpleSAMLphp 
+  Installing SimpleSAMLphp
 in alternative locations
  </em>
  for more details.
@@ -643,7 +644,7 @@ in alternative locations
  </code>
  that needs to be accessible from the web is
  <code>
-  www
+  public
  </code>
  . There are several ways of
 exposing SimpleSAMLphp depending on the way web sites are structured on your Nginx web server. The following is just
@@ -654,30 +655,30 @@ one possible configuration.
 look like this:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">    </span><span class="n">server</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">listen</span><span class="w"> </span><span class="mi">443</span><span class="w"> </span><span class="n">ssl</span><span class="p">;</span>
-<span class="w">        </span><span class="n">server_name</span><span class="w"> </span><span class="n">idp</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="p">;</span>
+ <pre><span></span><code><span class="k">server</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">listen</span><span class="w"> </span><span class="mi">443</span><span class="w"> </span><span class="s">ssl</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">server_name</span><span class="w"> </span><span class="s">idp.example.com</span><span class="p">;</span>
 
-<span class="w">        </span><span class="n">ssl_certificate</span><span class="w">        </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">pki</span><span class="o">/</span><span class="n">tls</span><span class="o">/</span><span class="n">certs</span><span class="o">/</span><span class="n">idp</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">crt</span><span class="p">;</span>
-<span class="w">        </span><span class="n">ssl_certificate_key</span><span class="w">    </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">pki</span><span class="o">/</span><span class="n">tls</span><span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">idp</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">key</span><span class="p">;</span>
-<span class="w">        </span><span class="n">ssl_protocols</span><span class="w">          </span><span class="n">TLSv1</span><span class="o">.</span><span class="mi">3</span><span class="w"> </span><span class="n">TLSv1</span><span class="o">.</span><span class="mi">2</span><span class="p">;</span>
-<span class="w">        </span><span class="n">ssl_ciphers</span><span class="w">            </span><span class="n">EECDH</span><span class="o">+</span><span class="n">AESGCM</span><span class="p">:</span><span class="n">EDH</span><span class="o">+</span><span class="n">AESGCM</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">ssl_certificate</span><span class="w">        </span><span class="s">/etc/pki/tls/certs/idp.example.com.crt</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">ssl_certificate_key</span><span class="w">    </span><span class="s">/etc/pki/tls/private/idp.example.com.key</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">ssl_protocols</span><span class="w">          </span><span class="s">TLSv1.3</span><span class="w"> </span><span class="s">TLSv1.2</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">ssl_ciphers</span><span class="w">            </span><span class="s">EECDH+AESGCM:EDH+AESGCM</span><span class="p">;</span>
 
-<span class="w">        </span><span class="n">location</span><span class="w"> </span><span class="o">^~</span><span class="w"> </span><span class="o">/</span><span class="n">simplesaml</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="n">alias</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">simplesamlphp</span><span class="o">/</span><span class="n">www</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="s">^~</span><span class="w"> </span><span class="s">/simplesaml</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kn">alias</span><span class="w"> </span><span class="s">/var/simplesamlphp/public</span><span class="p">;</span>
 
-<span class="w">            </span><span class="n">location</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="o">^</span><span class="p">(</span><span class="err">?</span><span class="o">&lt;</span><span class="n">prefix</span><span class="o">&gt;/</span><span class="n">simplesaml</span><span class="p">)(</span><span class="err">?</span><span class="o">&lt;</span><span class="n">phpfile</span><span class="o">&gt;.+</span><span class="err">?</span>\<span class="o">.</span><span class="n">php</span><span class="p">)(</span><span class="err">?</span><span class="o">&lt;</span><span class="n">pathinfo</span><span class="o">&gt;/.*</span><span class="p">)</span><span class="err">?</span><span class="o">$</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="n">include</span><span class="w">          </span><span class="n">fastcgi_params</span><span class="p">;</span>
-<span class="w">                </span><span class="n">fastcgi_pass</span><span class="w">     </span><span class="o">$</span><span class="n">fastcgi_pass</span><span class="p">;</span>
-<span class="w">                </span><span class="n">fastcgi_param</span><span class="w"> </span><span class="n">SCRIPT_FILENAME</span><span class="w"> </span><span class="o">$</span><span class="n">document_root</span><span class="o">$</span><span class="n">phpfile</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">location</span><span class="w"> </span><span class="p">~</span><span class="sr">^(?&lt;prefix&gt;/simplesaml)(?&lt;phpfile&gt;.+?\.php)(?&lt;pathinfo&gt;/.*)?$</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kn">include</span><span class="w">          </span><span class="s">fastcgi_params</span><span class="p">;</span>
+<span class="w">            </span><span class="kn">fastcgi_pass</span><span class="w">     </span><span class="nv">$fastcgi_pass</span><span class="p">;</span>
+<span class="w">            </span><span class="kn">fastcgi_param</span><span class="w"> </span><span class="s">SCRIPT_FILENAME</span><span class="w"> </span><span class="nv">$document_root$phpfile</span><span class="p">;</span>
 
-<span class="w">                </span><span class="c1"># Must be prepended with the baseurlpath</span>
-<span class="w">                </span><span class="n">fastcgi_param</span><span class="w"> </span><span class="n">SCRIPT_NAME</span><span class="w"> </span><span class="o">/</span><span class="n">simplesaml</span><span class="o">$</span><span class="n">phpfile</span><span class="p">;</span>
+<span class="w">            </span><span class="c1"># Must be prepended with the baseurlpath</span>
+<span class="w">            </span><span class="kn">fastcgi_param</span><span class="w"> </span><span class="s">SCRIPT_NAME</span><span class="w"> </span><span class="s">/simplesaml</span><span class="nv">$phpfile</span><span class="p">;</span>
 
-<span class="w">                </span><span class="n">fastcgi_param</span><span class="w"> </span><span class="n">PATH_INFO</span><span class="w"> </span><span class="o">$</span><span class="n">pathinfo</span><span class="w"> </span><span class="n">if_not_empty</span><span class="p">;</span>
-<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="kn">fastcgi_param</span><span class="w"> </span><span class="s">PATH_INFO</span><span class="w"> </span><span class="nv">$pathinfo</span><span class="w"> </span><span class="s">if_not_empty</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 </code></pre>
 </div>
 <h2 id="simplesamlphp-configuration-configphp">
@@ -692,49 +693,30 @@ look like this:
 </p>
 <ul>
  <li>
-  <p>
-   Set the
-   <code>
-    baseurlpath
-   </code>
-   configuration option. Make it point to the canonical URL of your deployment, where
-   SimpleSAMLphp can be reached:
-  </p>
-  <p>
-   <code>
-    'baseurlpath' =&gt; 'https://your.canonical.host.name/simplesaml/',
-   </code>
-  </p>
-  <p>
-   Please note that your canonical URL should always use HTTPS in order to protect your users. Additionally, if you
- are running behind a
-   <strong>
-    reverse proxy
-   </strong>
-   and you are offloading TLS to it, the proper way to tell SimpleSAMLphp that
- its base URL should use HTTPS is to set the
-   <code>
-    baseurlpath
-   </code>
-   configuration option properly. SimpleSAMLphp deliberately
-   <strong>
-    ignores
-   </strong>
-   the
-   <code>
-    X-Forwarded-*
-   </code>
-   set of headers that your proxy might be setting, so
-   <strong>
-    do not rely on those
-   </strong>
-   .
-  </p>
+  Set the
+  <code>
+   baseurlpath
+  </code>
+  configuration option. Make it point to the canonical URL of your deployment, where
+  SimpleSAMLphp can be reached:
  </li>
+</ul>
+<div class="codehilite">
+ <pre><span></span><code><span class="x">'baseurlpath' =&gt; 'https://your.canonical.host.name/simplesaml/',</span>
+</code></pre>
+</div>
+<div class="codehilite">
+ <pre><span></span><code><span class="n">Please</span><span class="w"> </span><span class="n">note</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">canonical</span><span class="w"> </span><span class="n">URL</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="k">always</span><span class="w"> </span><span class="k">use</span><span class="w"> </span><span class="n">HTTPS</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">protect</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">users</span><span class="p">.</span><span class="w"> </span><span class="n">Additionally</span><span class="p">,</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">you</span>
+<span class="n">are</span><span class="w"> </span><span class="n">running</span><span class="w"> </span><span class="n">behind</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">**</span><span class="k">reverse</span><span class="w"> </span><span class="k">proxy</span><span class="o">**</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="n">offloading</span><span class="w"> </span><span class="k">TLS</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">it</span><span class="p">,</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">proper</span><span class="w"> </span><span class="n">way</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">tell</span><span class="w"> </span><span class="n">SimpleSAMLphp</span><span class="w"> </span><span class="n">that</span>
+<span class="n">its</span><span class="w"> </span><span class="n">base</span><span class="w"> </span><span class="n">URL</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="k">use</span><span class="w"> </span><span class="n">HTTPS</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n n-Quoted">`baseurlpath`</span><span class="w"> </span><span class="n">configuration</span><span class="w"> </span><span class="k">option</span><span class="w"> </span><span class="n">properly</span><span class="p">.</span><span class="w"> </span><span class="n">SimpleSAMLphp</span><span class="w"> </span><span class="n">deliberately</span>
+<span class="o">**</span><span class="n">ignores</span><span class="o">**</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n n-Quoted">`X-Forwarded-*`</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">headers</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="k">proxy</span><span class="w"> </span><span class="n">might</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="k">set</span><span class="n">ting</span><span class="p">,</span><span class="w"> </span><span class="n">so</span><span class="w"> </span><span class="o">**</span><span class="k">do</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="n">rely</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">those</span><span class="o">**</span><span class="p">.</span>
+</code></pre>
+</div>
+<ul>
  <li>
   <p>
    Set an administrator password. This is needed to access some of the pages in your SimpleSAMLphp installation web
-   interface.
+  interface.
   </p>
   <p>
    Hashed passwords can also be used here. See the
@@ -744,40 +726,38 @@ look like this:
     </code>
    </a>
    documentation
- for more information.
-  </p>
-  <p>
-   <code>
-    'auth.adminpassword' =&gt; 'setnewpasswordhere',
-   </code>
+for more information.
   </p>
  </li>
+</ul>
+<div class="codehilite">
+ <pre><span></span><code><span class="x">'auth.adminpassword' =&gt; 'setnewpasswordhere',</span>
+</code></pre>
+</div>
+<ul>
  <li>
-  <p>
-   Set a secret salt. This should be a random string. Some parts of the SimpleSAMLphp needs this salt to generate
-   cryptographically secure hashes. SimpleSAMLphp will give an error if the salt is not changed from the default value.
-   The command below can help you to generated a random string on (some) unix systems:
-  </p>
-  <p>
-   <code>
-    tr -c -d '0123456789abcdefghijklmnopqrstuvwxyz' &lt;/dev/urandom | dd bs=32 count=1 2&gt;/dev/null;echo
-   </code>
-  </p>
-  <p>
-   Here is an example of the configuration option:
-  </p>
-  <p>
-   <code>
-    'secretsalt' =&gt; 'randombytesinsertedhere',
-   </code>
-  </p>
-  <p>
-   <strong>
-    Please note that changing the secret salt may break access to services for your users
-   </strong>
-   .
-  </p>
+  Set a secret salt. This should be a random string. Some parts of the SimpleSAMLphp needs this salt to generate
+  cryptographically secure hashes. SimpleSAMLphp will give an error if the salt is not changed from the default value.
+  The command below can help you to generated a random string on (some) unix systems:
  </li>
+</ul>
+<div class="codehilite">
+ <pre><span></span><code>tr<span class="w"> </span>-c<span class="w"> </span>-d<span class="w"> </span><span class="s1">'0123456789abcdefghijklmnopqrstuvwxyz'</span><span class="w"> </span>&lt;/dev/urandom<span class="w"> </span><span class="p">|</span><span class="w"> </span>dd<span class="w"> </span><span class="nv">bs</span><span class="o">=</span><span class="m">32</span><span class="w"> </span><span class="nv">count</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="p">;</span><span class="nb">echo</span>
+</code></pre>
+</div>
+<div class="codehilite">
+ <pre><span></span><code>Here is an example of the configuration option:
+</code></pre>
+</div>
+<div class="codehilite">
+ <pre><span></span><code><span class="x">'secretsalt' =&gt; 'randombytesinsertedhere',</span>
+</code></pre>
+</div>
+<div class="codehilite">
+ <pre><span></span><code><span class="o">**</span><span class="nv">Please</span><span class="w"> </span><span class="nv">note</span><span class="w"> </span><span class="nv">that</span><span class="w"> </span><span class="nv">changing</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">secret</span><span class="w"> </span><span class="nv">salt</span><span class="w"> </span><span class="nv">may</span><span class="w"> </span><span class="k">break</span><span class="w"> </span><span class="nv">access</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">services</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">your</span><span class="w"> </span><span class="nv">users</span><span class="o">**</span>.
+</code></pre>
+</div>
+<ul>
  <li>
   <p>
    Configure your data storage. You can do this by editing the
@@ -785,13 +765,13 @@ look like this:
     store.type
    </code>
    configuration option, and setting it to
-   one of the supported values. Now configure the backend of your choice with the relevant options, if needed.
+  one of the supported values. Now configure the backend of your choice with the relevant options, if needed.
   </p>
  </li>
  <li>
   <p>
    Configure your sessions. You have to configure your sessions with the appropriate parameters so that the cookies
-   used by SimpleSAMLphp to track users are always delivered to the software. You may do this by editing the
+  used by SimpleSAMLphp to track users are always delivered to the software. You may do this by editing the
    <code>
     session.*
    </code>
@@ -800,7 +780,7 @@ look like this:
     phpsession
    </code>
    data storage, the cookie-related
-   configuration options are configured in the
+  configuration options are configured in the
    <code>
     session.phpsession.*
    </code>
@@ -810,44 +790,38 @@ look like this:
  <li>
   <p>
    Set technical contact information. This information will be available in the generated metadata. The e-mail address
-   will also be used for receiving error reports sent automatically by SimpleSAMLphp. Here is an example:
-  </p>
-  <p>
-   <code>
-    'technicalcontact_name' =&gt; 'John Smith',
-     'technicalcontact_email' =&gt; 'john.smith@example.com',
-   </code>
-  </p>
- </li>
- <li>
-  <p>
-   If you use SimpleSAMLphp in a country where English is not widespread, you may want to change the default language
-   from English to something else:
-  </p>
-  <p>
-   <code>
-    'language.default' =&gt; 'no',
-   </code>
-  </p>
- </li>
- <li>
-  <p>
-   Set your timezone
-  </p>
-  <p>
-   <code>
-    'timezone' =&gt; 'Europe/Oslo',
-   </code>
-  </p>
-  <p>
-   You can see
-   <a href="http://php.net/manual/en/timezones.php">
-    a list of Supported Timezones at php.net
-   </a>
-   .
+  will also be used for receiving error reports sent automatically by SimpleSAMLphp. Here is an example:
   </p>
  </li>
 </ul>
+<div class="codehilite">
+ <pre><span></span><code><span class="x">'technicalcontact_name' =&gt; 'John Smith',</span>
+<span class="x">'technicalcontact_email' =&gt; 'john.smith@example.com',</span>
+</code></pre>
+</div>
+<ul>
+ <li>
+  If you use SimpleSAMLphp in a country where English is not widespread, you may want to change the default language
+  from English to something else:
+ </li>
+</ul>
+<div class="codehilite">
+ <pre><span></span><code><span class="x">'language.default' =&gt; 'no',</span>
+</code></pre>
+</div>
+<ul>
+ <li>
+  Set your timezone
+ </li>
+</ul>
+<div class="codehilite">
+ <pre><span></span><code><span class="x">'timezone' =&gt; 'Europe/Oslo',</span>
+</code></pre>
+</div>
+<div class="codehilite">
+ <pre><span></span><code>You can see [a list of Supported Timezones at php.net](http://php.net/manual/en/timezones.php).
+</code></pre>
+</div>
 <h2 id="configuring-php">
  Configuring PHP
 </h2>
@@ -883,15 +857,15 @@ For more advanced configuration, including using a remote SMTP server, see the
  Enabling and disabling modules
 </h2>
 <p>
- If you want to enable some of the modules that are installed with SimpleSAMLphp, but are disabled by default, you 
+ If you want to enable some of the modules that are installed with SimpleSAMLphp, but are disabled by default, you
 can do that in the configuration:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">    </span><span class="s1">'module.enable'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>[
-<span class="w">         </span><span class="s1">'exampleauth'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nv">true</span>,<span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="nv">Setting</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">TRUE</span><span class="w"> </span><span class="nv">enables</span>.
-<span class="w">         </span><span class="s1">'saml'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nv">false</span>,<span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="nv">Setting</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">FALSE</span><span class="w"> </span><span class="nv">disables</span>.
-<span class="w">         </span><span class="s1">'core'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nv">null</span>,<span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="nv">Unset</span><span class="w"> </span><span class="nv">or</span><span class="w"> </span><span class="nv">NULL</span><span class="w"> </span><span class="nv">uses</span><span class="w"> </span><span class="nv">default</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">this</span><span class="w"> </span><span class="nv">module</span>.
-<span class="w">    </span>],
+ <pre><span></span><code><span class="x">'module.enable' =&gt; [</span>
+<span class="x">    'exampleauth' =&gt; true, // Setting to TRUE enables.</span>
+<span class="x">    'saml' =&gt; false, // Setting to FALSE disables.</span>
+<span class="x">    'core' =&gt; null, // Unset or NULL uses default for this module.</span>
+<span class="x">],</span>
 </code></pre>
 </div>
 <p>
@@ -906,61 +880,54 @@ can do that in the configuration:
  those that you want to disable.
 </p>
 <p>
- Alternatively, you can enable or disable modules by setting empty files with given names in the module's root 
-directory. For example, in order to enable the
- <em>
-  consent
- </em>
- module:
-</p>
-<div class="codehilite">
- <pre><span></span><code>    cd modules/consent
-    touch enable
-</code></pre>
-</div>
-<p>
- If you later want to disable the module, you can rename the
+ Prior to SSP V2 you could enable or disable modules by setting empty files with names (
  <code>
   enable
  </code>
- file to
+ ,
  <code>
   disable
  </code>
- .
+ ,
+ <code>
+  default-enable
+ </code>
+ ) in the module's root directory. You need to now use the
+ <code>
+  module.enable
+ </code>
+ config option.
 </p>
-<div class="codehilite">
- <pre><span></span><code>    cd modules/consent
-    mv enable disable
-</code></pre>
-</div>
-<p>
- This is the traditional way of enabling and disabling modules, but it is
- <strong>
-  deprecated
- </strong>
- . Please do not rely on this in
-new installations of the software.
-</p>
-<h2 id="the-simplesamlphp-installation-web-page">
- The SimpleSAMLphp installation web page
+<h2 id="the-simplesamlphp-admin-interface">
+ The SimpleSAMLphp admin interface
 </h2>
 <p>
- After installing SimpleSAMLphp, you can access the homepage of your installation, which contains some information and
-a few links to the test services. The URL of an installation can be e.g.:
+ After installing SimpleSAMLphp, you can access the homepage of your installation, which by default does
+not show much information:
 </p>
-<div class="codehilite">
- <pre><span></span><code>  https://service.example.org/simplesaml/
-</code></pre>
-</div>
+<p>
+ <code>
+  https://service.example.org/simplesaml/
+ </code>
+</p>
 <p>
  The exact URL depends on how you set it up with your web server, and of course on your hostname.
+If this works, you can now also acceas the admin module by adding
+ <code>
+  admin/
+ </code>
+ to your base URL:
+</p>
+<p>
+ <code>
+  https://service.example.org/simplesaml/admin/
+ </code>
 </p>
 <p>
  <strong>
   Warning
  </strong>
- : before you can actually use SimpleSAMLphp for something useful, you need to configure it either as a 
+ : before you can actually use SimpleSAMLphp for something useful, you need to configure it either as a
 Service Provider or as an Identity Provider, depending on your use case.
 </p>
 <p>
@@ -973,28 +940,17 @@ Service Provider or as an Identity Provider, depending on your use case.
  Check your PHP environment
 </h3>
 <p>
- At the bottom of the installation page there are some green lights. SimpleSAMLphp runs some tests to see whether the 
-required and recommended prerequisites are met. If any of the lights are red, you may have to install some PHP 
+ At the bottom of the admin page there are some green lights. SimpleSAMLphp runs some tests to see whether the
+required and recommended prerequisites are met. If any of the lights are red, you may have to install some PHP
 extensions or external PHP packages (e.g. you need the PHP LDAP extension to use the LDAP authentication module).
 </p>
-<h2 id="building-assets">
- Building assets
-</h2>
-<p>
- Run the following commands to build the default theme.
-</p>
-<div class="codehilite">
- <pre><span></span><code>npm install
-npm run build
-</code></pre>
-</div>
 <h2 id="next-steps">
  Next steps
 </h2>
 <p>
  You have now successfully installed SimpleSAMLphp, and the next steps depend on whether you want to setup a Service
-Provider (in order to protect access to an existing application) or an Identity Provider (which you would connect to 
-a user database where your users can authenticate). Documentation on bridging between federation protocols is found 
+Provider (in order to protect access to an existing application) or an Identity Provider (which you would connect to
+a user database where your users can authenticate). Documentation on bridging between federation protocols is found
 in a separate document.
 </p>
 <ul>
@@ -1058,8 +1014,8 @@ in a separate document.
 </h2>
 <p>
  If you need help to make this work, or want to discuss SimpleSAMLphp with other users of the software, you are
-in luck: there is a great Open Source community around SimpleSAMLphp, and you are welcome to join! The forums are open 
-for you to ask questions, help others by answering their questions, request improvements or contribute with 
+in luck: there is a great Open Source community around SimpleSAMLphp, and you are welcome to join! The forums are open
+for you to ask questions, help others by answering their questions, request improvements or contribute with
 code or plugins of your own.
 </p>
 <ul>
@@ -1089,13 +1045,13 @@ code or plugins of your own.
  <li>
   <p>
    You are installing SimpleSAMLphp in a hosted environment where you do not have root access, and cannot change
-   Apache configuration. You can still install SimpleSAMLphp, keep on reading!
+  Apache configuration. You can still install SimpleSAMLphp, keep on reading!
   </p>
  </li>
  <li>
   <p>
-   You have full permissions to the server, but cannot edit web server configuration for some reason like internal 
-policies.
+   You have full permissions to the server, but cannot edit web server configuration for some reason like internal
+  policies.
   </p>
  </li>
 </ul>
@@ -1108,10 +1064,10 @@ policies.
  <code>
   x.y.z
  </code>
- is the version number). In 
+ is the version number). In
 this folder there are a lot of subfolders for library, metadata, configuration, etc. One of these folders is named
  <code>
-  www
+  public
  </code>
  .
  <strong>
@@ -1123,13 +1079,13 @@ this folder there are a lot of subfolders for library, metadata, configuration, 
  </code>
  folder outside the web root, and then link to the
  <code>
-  www
+  public
  </code>
  folder by using the
  <code>
   Alias
  </code>
- directive, as 
+ directive, as
 described in
  <a href="#section_4" title="Configuring Apache">
   the section called “Configuring Apache”
@@ -1147,7 +1103,8 @@ possible way, though.
   </p>
   <p>
    <code>
-    cd ~
+    bash
+ cd ~
  tar xzf simplesamlphp-1.x.y.tar.gz
  mv simplesamlphp-1.x.y simplesamlphp
    </code>
@@ -1163,8 +1120,9 @@ possible way, though.
   </p>
   <p>
    <code>
-    cd ~/public_html
- ln -s ../simplesamlphp/www simplesaml
+    bash
+ cd ~/public_html
+ ln -s ../simplesamlphp/public simplesaml
    </code>
   </p>
  </li>
@@ -1178,8 +1136,8 @@ possible way, though.
    <code>
     simplesaml
    </code>
-   link you 
-just created in your
+   link you
+   just created in your
    <code>
     public_html
    </code>
@@ -1191,21 +1149,23 @@ just created in your
   </p>
   <p>
    <code>
-    'baseurlpath' =&gt; 'https://host.example/~myaccount/simplesaml/',
+    bash
+ 'baseurlpath' =&gt; 'https://host.example/~myaccount/simplesaml/',
    </code>
   </p>
   <p>
    Now, you can go to the URL of your installation and check if things work:
   </p>
-  <div class="codehilite">
-   <pre><span></span><code>   https://host.example/~myaccount/simplesaml/
-</code></pre>
-  </div>
+  <p>
+   <code>
+    https://host.example/~myaccount/simplesaml/
+   </code>
+  </p>
  </li>
 </ol>
-<h4 id="tip">
+<h3 id="tip">
  Tip
-</h4>
+</h3>
 <p>
  Symlinking may fail, because some Apache configurations do not allow you to link to files from outside the
  <code>
@@ -1213,13 +1173,13 @@ just created in your
  </code>
  folder. If so, you can move the
  <code>
-  www
+  public
  </code>
  folder instead of symlinking it:
 </p>
 <div class="codehilite">
- <pre><span></span><code>    cd ~/public_html
-    mv ../simplesamlphp/www simplesaml
+ <pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/public_html
+mv<span class="w"> </span>../simplesamlphp/public<span class="w"> </span>simplesaml
 </code></pre>
 </div>
 <p>
@@ -1244,7 +1204,7 @@ just created in your
    </code>
    is the
    <code>
-    www
+    public
    </code>
    directory from the
    <code>
@@ -1266,14 +1226,14 @@ just created in your
  Change the two lines from:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">    </span><span class="n">require_once</span><span class="p">(</span><span class="n">dirname</span><span class="p">(</span><span class="n">dirname</span><span class="p">(</span><span class="n">__FILE__</span><span class="p">))</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="s1">'/lib/_autoload.php'</span><span class="p">);</span>
+ <pre><span></span><code><span class="x">require_once(dirname(_FILE__, 2) . '/lib/_autoload.php');</span>
 </code></pre>
 </div>
 <p>
  to something like:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">    </span><span class="n">require_once</span><span class="p">(</span><span class="n">dirname</span><span class="p">(</span><span class="n">dirname</span><span class="p">(</span><span class="n">dirname</span><span class="p">(</span><span class="n">__FILE__</span><span class="p">)))</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="s1">'/lib/_autoload.php'</span><span class="p">);</span>
+ <pre><span></span><code><span class="x">require_once(dirname(__FILE__, 3) . '/lib/_autoload.php');</span>
 </code></pre>
 </div>
 <p>
@@ -1282,7 +1242,7 @@ just created in your
  </strong>
  : note that this will make upgrading SimpleSAMLphp much more difficult, since you will need to move the
  <code>
-  www
+  public
  </code>
  directory and manually edit files every time you upgrade. It is also possible that this method does not work in
 future versions of SimpleSAMLphp, and therefore it is discouraged and should be used only as a last resort.
