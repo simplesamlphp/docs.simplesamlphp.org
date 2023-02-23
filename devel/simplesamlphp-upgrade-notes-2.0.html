@@ -163,7 +163,11 @@ For example, to use the LDAP module:
   <code>
    false
   </code>
-  . If unset (or set to true) signatures will be
+  . If unset (or set to
+  <code>
+   true
+  </code>
+  ) signatures will be
   validated if present and requests not passing validation will be refused.
  </li>
  <li>
@@ -224,7 +228,11 @@ For example, to use the LDAP module:
   </code>
   (or to the existing entityIDs when
   upgrading an existing installation).
-  If you are using a database to store metadata, make sure to replace any __DYNAMIC% entityID's with
+  If you are using a database to store metadata, make sure to replace any
+  <code>
+   __DYNAMIC:&lt;n&gt;__
+  </code>
+  entityID's with
   a real value manually. Dynamic records are no longer loaded from the database.
  </li>
 </ul>
@@ -274,26 +282,55 @@ an empty array (
 </p>
 <ul>
  <li>
-  simplesaml.nameidattribute. Use the appropriate authproc-filters instead
+  <code>
+   simplesaml.nameidattribute
+  </code>
+  . Use the appropriate authproc-filters instead.
  </li>
  <li>
-  languages[priorities]. No replacement.
+  <code>
+   languages[priorities]
+  </code>
+  . No replacement.
  </li>
  <li>
-  attributes.extradictionaries. Add an attributes.po to your configured theme instead.
+  <code>
+   attributes.extradictionaries
+  </code>
+  . Add an attributes.po to your configured theme instead.
  </li>
  <li>
-  admin.protectindexpage. Replaced by the admin module which always requires login.
+  <code>
+   admin.protectindexpage
+  </code>
+  . Replaced by the admin module which always requires login.
  </li>
  <li>
-  base64attributes. Obsolete functionality, individual attributes can still be en/decoded
+  <code>
+   base64attributes
+  </code>
+  . Obsolete functionality, individual attributes can still be en/decoded
   with the existing attributeencodings feature.
  </li>
  <li>
-  database.slaves. This is now called database.secondaries.
+  <code>
+   database.slaves
+  </code>
+  . This is now called
+  <code>
+   database.secondaries
+  </code>
+  .
  </li>
  <li>
-  metadata.handler. Since a long time the preferred option is metadata.sources.
+  <code>
+   metadata.handler
+  </code>
+  . Since a long time the preferred option is
+  <code>
+   metadata.sources
+  </code>
+  .
  </li>
  <li>
   Our assets have been moved from the
@@ -304,7 +341,7 @@ an empty array (
   <code>
    public
   </code>
-  directory. You may have to update
+  directory. You will have to update
   your webserver to reflect this change.
  </li>
 </ul>
@@ -313,16 +350,43 @@ an empty array (
 </h2>
 <p>
  The following changes are relevant for those having custom developed modules, authentication
-processing filters, themes, or interface with the SimpleSAMLphp development API.
+processing filters, themes, or that interface with the SimpleSAMLphp development API.
 </p>
 <ul>
  <li>
-  We expect your source-files to exist in the src/ directory within your module. This used to be the
-  lib/ directory, so you have to rename the directory and for composer-modules you have to update
-  your composer.json file (specifically the psr-0 and psr-4 entries if you have them).
+  We expect your source files to exist in the
+  <code>
+   src/
+  </code>
+  directory within your module. This used to be the
+  <code>
+   lib/
+  </code>
+  directory, so you have to rename the directory and for composer-modules you have to update
+  your
+  <code>
+   composer.json
+  </code>
+  file (specifically the
+  <code>
+   psr-0
+  </code>
+  and
+  <code>
+   psr-4
+  </code>
+  entries if you have them).
  </li>
  <li>
-  We exoect your module assets to exist in the public/ directory within your module (was: www).
+  We expect your module assets to exist in the
+  <code>
+   public/
+  </code>
+  directory within your module (was:
+  <code>
+   www/
+  </code>
+  ).
  </li>
  <li>
   Old JSON-formatted dictionaries have been replaced by gettext / .po-files; see
@@ -372,40 +436,64 @@ processing filters, themes, or interface with the SimpleSAMLphp development API.
   </p>
   <ul>
    <li>
-    \SimpleSAML\Utils\Arrays
+    <code>
+     \SimpleSAML\Utils\Arrays
+    </code>
    </li>
    <li>
-    \SimpleSAML\Utils\Attributes
+    <code>
+     \SimpleSAML\Utils\Attributes
+    </code>
    </li>
    <li>
-    \SimpleSAML\Utils\Auth
+    <code>
+     \SimpleSAML\Utils\Auth
+    </code>
    </li>
    <li>
-    \SimpleSAML\Utils\Config
+    <code>
+     \SimpleSAML\Utils\Config
+    </code>
    </li>
    <li>
-    \SimpleSAML\Utils\Crypto
+    <code>
+     \SimpleSAML\Utils\Crypto
+    </code>
    </li>
    <li>
-    \SimpleSAML\Utils\EMail
+    <code>
+     \SimpleSAML\Utils\EMail
+    </code>
    </li>
    <li>
-    \SimpleSAML\Utils\HTTP
+    <code>
+     \SimpleSAML\Utils\HTTP
+    </code>
    </li>
    <li>
-    \SimpleSAML\Utils\Net
+    <code>
+     \SimpleSAML\Utils\Net
+    </code>
    </li>
    <li>
-    \SimpleSAML\Utils\Random
+    <code>
+     \SimpleSAML\Utils\Random
+    </code>
    </li>
    <li>
-    \SimpleSAML\Utils\System
+    <code>
+     \SimpleSAML\Utils\System
+    </code>
    </li>
    <li>
-    \SimpleSAML\Utils\Time
+    <code>
+     \SimpleSAML\Utils\Time
+    </code>
    </li>
    <li>
-    \SimpleSAML\Utils\XML
+    <code>
+     \SimpleSAML\Utils\XML
+    </code>
    </li>
   </ul>
   <p>
@@ -448,19 +536,48 @@ processing filters, themes, or interface with the SimpleSAMLphp development API.
   </p>
   <ul>
    <li>
-    lib/SimpleSAML/Store.php has been renamed to lib/SimpleSAML/Store/StoreFactory.php and is now solely a Factory-class
+    <code>
+     lib/SimpleSAML/Store.php
+    </code>
+    has been renamed to
+    <code>
+     lib/SimpleSAML/Store/StoreFactory.php
+    </code>
+    and is now solely a Factory-class
    </li>
    <li>
-    All store implementations now implement \SimpleSAML\Store\StoreInterface:
+    All store implementations now implement
+    <code>
+     \SimpleSAML\Store\StoreInterface
+    </code>
+    :
     <ul>
      <li>
-      lib/SimpleSAML/Store/SQL.php has been renamed to lib/SimpleSAML/Store/SQLStore.php
+      <code>
+       lib/SimpleSAML/Store/SQL.php
+      </code>
+      has been renamed to
+      <code>
+       lib/SimpleSAML/Store/SQLStore.php
+      </code>
      </li>
      <li>
-      lib/SimpleSAML/Store/Memcache.php has been renamed to lib/SimpleSAML/Store/MemcacheStore.php
+      <code>
+       lib/SimpleSAML/Store/Memcache.php
+      </code>
+      has been renamed to
+      <code>
+       lib/SimpleSAML/Store/MemcacheStore.php
+      </code>
      </li>
      <li>
-      lib/SimpleSAML/Store/Redis.php has been renamed to lib/SimpleSAML/Store/RedisStore.php
+      <code>
+       lib/SimpleSAML/Store/Redis.php
+      </code>
+      has been renamed to
+      <code>
+       lib/SimpleSAML/Store/RedisStore.php
+      </code>
      </li>
     </ul>
    </li>
@@ -472,37 +589,59 @@ processing filters, themes, or interface with the SimpleSAMLphp development API.
   </p>
   <ul>
    <li>
-    Configuration::getValue
+    <code>
+     Configuration::getValue
+    </code>
    </li>
    <li>
-    Configuration::getBoolean
+    <code>
+     Configuration::getBoolean
+    </code>
    </li>
    <li>
-    Configuration::getString
+    <code>
+     Configuration::getString
+    </code>
    </li>
    <li>
-    Configuration::getInteger
+    <code>
+     Configuration::getInteger
+    </code>
    </li>
    <li>
-    Configuration::getIntegerRange
+    <code>
+     Configuration::getIntegerRange
+    </code>
    </li>
    <li>
-    Configuration::getValueValidate
+    <code>
+     Configuration::getValueValidate
+    </code>
    </li>
    <li>
-    Configuration::getArray
+    <code>
+     Configuration::getArray
+    </code>
    </li>
    <li>
-    Configuration::getArrayize
+    <code>
+     Configuration::getArrayize
+    </code>
    </li>
    <li>
-    Configuration::getArrayizeString
+    <code>
+     Configuration::getArrayizeString
+    </code>
    </li>
    <li>
-    Configuration::getConfigItem
+    <code>
+     Configuration::getConfigItem
+    </code>
    </li>
    <li>
-    Configuration::getLocalizedString
+    <code>
+     Configuration::getLocalizedString
+    </code>
    </li>
   </ul>
   <p>
