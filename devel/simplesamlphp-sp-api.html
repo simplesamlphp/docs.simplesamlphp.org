@@ -170,7 +170,7 @@ Some SimpleSAMLphp calls replace the current active PHP session. If you previous
 <span class="x">$auth = new \SimpleSAML\Auth\Simple('default-sp');</span>
 <span class="x">$auth-&gt;isAuthenticated(); // Replaces our session with the SimpleSAMLphp one</span>
 <span class="x">// $_SESSION['key'] = 'value'; // This would save to the SimpleSAMLphp session which isn't what we want</span>
-<span class="x">SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup(); // Reverts to our PHP session</span>
+<span class="x">\SimpleSAML\Session::getSessionFromRequest()-&gt;cleanup(); // Reverts to our PHP session</span>
 <span class="x">// Save to our session</span>
 <span class="x">$_SESSION['key'] = 'value';</span>
 </code></pre>
@@ -235,7 +235,7 @@ This authentication source must exist in
 </p>
 <div class="codehilite">
  <pre><span></span><code><span class="x">if (!$auth-&gt;isAuthenticated()) {</span>
-<span class="x">    SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup();</span>
+<span class="x">    \SimpleSAML\Session::getSessionFromRequest()-&gt;cleanup();</span>
 <span class="x">    /* Show login link. */</span>
 <span class="x">    print('&lt;a href="/login"&gt;Login&lt;/a&gt;');</span>
 <span class="x">}</span>
@@ -278,7 +278,7 @@ See the documentation for the
 </p>
 <div class="codehilite">
  <pre><span></span><code><span class="x">$auth-&gt;requireAuth();</span>
-<span class="x">SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup();</span>
+<span class="x">\SimpleSAML\Session::getSessionFromRequest()-&gt;cleanup();</span>
 <span class="x">print("Hello, authenticated user!");</span>
 </code></pre>
 </div>
@@ -297,7 +297,7 @@ See the documentation for the
 <span class="x">    'ReturnTo' =&gt; 'https://sp.example.org/',</span>
 <span class="x">    'KeepPost' =&gt; FALSE,</span>
 <span class="x">]);</span>
-<span class="x">SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup();</span>
+<span class="x">\SimpleSAML\Session::getSessionFromRequest()-&gt;cleanup();</span>
 <span class="x">print("Hello, authenticated user!");</span>
 </code></pre>
 </div>
@@ -414,7 +414,7 @@ This function will always start a new authentication process.
 <span class="x">    'isPassive' =&gt; true,</span>
 <span class="x">    'ErrorURL' =&gt; 'https://.../error_handler.php',</span>
 <span class="x">]);</span>
-<span class="x">SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup();</span>
+<span class="x">\SimpleSAML\Session::getSessionFromRequest()-&gt;cleanup();</span>
 </code></pre>
 </div>
 <h3 id="logout">
@@ -495,7 +495,7 @@ This function never returns.
 </p>
 <div class="codehilite">
  <pre><span></span><code><span class="x">$auth-&gt;logout('https://sp.example.org/logged_out.php');</span>
-<span class="x">SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup();</span>
+<span class="x">\SimpleSAML\Session::getSessionFromRequest()-&gt;cleanup();</span>
 </code></pre>
 </div>
 <p>
@@ -513,7 +513,7 @@ This function never returns.
 <span class="x">    'ReturnStateParam' =&gt; 'LogoutState',</span>
 <span class="x">    'ReturnStateStage' =&gt; 'MyLogoutState',</span>
 <span class="x">]);</span>
-<span class="x">SimpleSAML_Session::getSessionFromRequest()-&gt;cleanup();</span>
+<span class="x">\SimpleSAML\Session::getSessionFromRequest()-&gt;cleanup();</span>
 </code></pre>
 </div>
 <p>
