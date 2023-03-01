@@ -112,6 +112,11 @@
       IdP-initiated logout
      </a>
     </li>
+    <li>
+     <a href="#adding-links-to-the-login-page">
+      Adding links to the login page
+     </a>
+    </li>
    </ul>
   </li>
  </ul>
@@ -265,5 +270,38 @@ Consumer URL with the
   ReturnTo
  </code>
  parameter. Bear in mind that IdPs might disallow redirecting to URLs other than those of their own for security reasons, so in order to get the redirection to work, it might be necessary to ask the IdP to whitelist the URL we are planning to redirect to.
+</p>
+<h2 id="adding-links-to-the-login-page">
+ Adding links to the login page
+</h2>
+<p>
+ If you want to add some helpful links to the login page, you can add
+the following to the
+ <code>
+  authsources.php
+ </code>
+ config of the authentication
+source you are using:
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="x">    'example-userpass' =&gt; [</span>
+<span class="x">        ...</span>
+<span class="x">        'core:loginpage_links' =&gt; [</span>
+<span class="x">            [</span>
+<span class="x">                'href' =&gt; 'https://example.com/reset',</span>
+<span class="x">                'text' =&gt; 'Forgot your password?',</span>
+<span class="x">            ],</span>
+<span class="x">            [</span>
+<span class="x">                'href' =&gt; 'https://example.com/news',</span>
+<span class="x">                'text' =&gt; 'Latest news about us',</span>
+<span class="x">            ],</span>
+<span class="x">        ],</span>
+<span class="x">        ...</span>
+<span class="x">    ],</span>
+</code></pre>
+</div>
+<p>
+ The given text will also be translated via SimpleSAMLphp's translation
+system if translations are available in the messages catalog.
 </p></main></body>
 </html>
