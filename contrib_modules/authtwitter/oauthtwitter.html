@@ -85,11 +85,18 @@
 </p>
 <ul>
  <li>
-  <a href="http://twitter.com/oauth_clients">
-   http://twitter.com/oauth_clients
+  <a href="https://developer.twitter.com/en/apps">
+   https://developer.twitter.com/en/apps
   </a>
  </li>
 </ul>
+<p>
+ The callback URI is
+ <code>
+  https://service.example.com/&lt;baseurlpath&gt;/module.php/authtwitter/linkback
+ </code>
+ .
+</p>
 <p>
  Now you have you configure the authsource in
  <code>
@@ -100,7 +107,7 @@
 <div class="codehilite">
  <pre><span></span><code><span class="x">    // Twitter OAuth Authentication API.</span>
 <span class="x">    // Register your application to get an API key here:</span>
-<span class="x">    //  http://twitter.com/oauth_clients</span>
+<span class="x">    // https://developer.twitter.com/en/apps</span>
 <span class="x">    'twitter' =&gt; [</span>
 <span class="x">        'authtwitter:Twitter',</span>
 <span class="x">        'key' =&gt; 'key retrieved during registration of your app',</span>
