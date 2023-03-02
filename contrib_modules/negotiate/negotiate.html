@@ -123,6 +123,9 @@ implements.
  <li>
   Supports enabling/disabling a client
  </li>
+ <li>
+  Supports multiple realm/ldap config for complex AD topology
+ </li>
 </ul>
 <p>
  In effect this module aims to extend the Microsoft AD SSO session to
@@ -163,7 +166,9 @@ client.
  <pre><span></span><code><span class="x">'weblogin' =&gt; [</span>
 <span class="x">    'negotiate:Negotiate',</span>
 <span class="x">    'keytab' =&gt; '/path/to/keytab-file',</span>
-<span class="x">    'backend' =&gt; 'ldap',</span>
+<span class="x">    'realms' =&gt; [</span>
+<span class="x">        '*' =&gt; 'ldap',</span>
+<span class="x">    ],</span>
 <span class="x">    'fallback' =&gt; 'crypto-hash',</span>
 <span class="x">    'spn' =&gt; null,</span>
 <span class="x">],</span>
@@ -262,6 +267,25 @@ attributes as defined by SimpleSAMLphp metadata.
 <p>
  Read the documentation of the LDAP auth module for more information.
 </p>
+<p>
+ This module supports using several Kerberos realms. This requires you to
+specify an LDAP configuration for each Kerberos realm that may be used.
+If you're using only one realm (one AD domain for example) then you could
+let your ldap configuration with the magic "*" key. For multi realms the
+syntax is :
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="x">'weblogin' =&gt; [</span>
+<span class="x">    'negotiate:Negotiate',</span>
+<span class="x">    ...</span>
+<span class="x">    'realms' =&gt; [</span>
+<span class="x">        'realm1' =&gt; 'backend for realm1',</span>
+<span class="x">        'realm2' =&gt; 'backend for realm2',</span>
+<span class="x">        '*' =&gt; 'backend for any other realm',</span>
+<span class="x">    ],</span>
+<span class="x">],</span>
+</code></pre>
+</div>
 <h3 id="subnet-filtering">
  Subnet filtering
 </h3>
