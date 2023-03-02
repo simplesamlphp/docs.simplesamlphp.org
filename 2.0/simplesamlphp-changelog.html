@@ -108,7 +108,20 @@ See the upgrade notes for specific information about upgrading.
 <h2 id="version-201">
  Version 2.0.1
 </h2>
+<p>
+ Released 2023-03-10
+</p>
 <ul>
+ <li>
+  The language-menu on mobile devices was fixed
+ </li>
+ <li>
+  The
+  <code>
+   loginpage_links
+  </code>
+  functionality for authsources was restored and documented (#1773)
+ </li>
  <li>
   Several issues regarding the use of the back-button were fixed (#1720)
  </li>
@@ -124,10 +137,109 @@ See the upgrade notes for specific information about upgrading.
  <li>
   Fixed config/authsources.php.dist so you can just rename it for new deployments to get you started (#1771)
  </li>
+ <li>
+  Fixed incompatibility with SSP 2.0 for the following modules;
+  <ul>
+   <li>
+    consent
+   </li>
+   <li>
+    consentadmin
+   </li>
+   <li>
+    consentsimpleadmin
+   </li>
+   <li>
+    exampleattributeserver
+   </li>
+   <li>
+    expirycheck
+   </li>
+   <li>
+    memcachemonitor
+   </li>
+   <li>
+    memcookie
+   </li>
+   <li>
+    metaedit
+   </li>
+   <li>
+    negotiate
+   </li>
+   <li>
+    negotiateext
+   </li>
+   <li>
+    preprodwarning
+   </li>
+   <li>
+    saml2debug
+   </li>
+   <li>
+    sanitycheck
+   </li>
+   <li>
+    sqlauth
+   </li>
+  </ul>
+ </li>
+</ul>
+<p>
+ <code>
+  authtwitter
+ </code>
+</p>
+<ul>
+ <li>
+  A legacy route was added for backwards compatibility
+ </li>
+ <li>
+  Docs have been updated
+ </li>
+</ul>
+<p>
+ <code>
+  ldap
+ </code>
+</p>
+<ul>
+ <li>
+  Fixed the possibility to return ALL attributes (simplesamlphp/simplesamlphp-module-ldap#39)
+ </li>
+</ul>
+<p>
+ <code>
+  negotiate
+ </code>
+</p>
+<ul>
+ <li>
+  Added support for multi-realm environments
+ </li>
+</ul>
+<p>
+ <code>
+  statistics
+ </code>
+</p>
+<ul>
+ <li>
+  Fixed missing script-tag to load jQuery
+ </li>
+ <li>
+  Fixed static calls to SSP utilities
+ </li>
+ <li>
+  Docs have been updated
+ </li>
 </ul>
 <h2 id="version-200">
  Version 2.0.0
 </h2>
+<p>
+ Released 2023-02-23
+</p>
 <ul>
  <li>
   Many changes, upgrades and improvements since the 1.x series.
