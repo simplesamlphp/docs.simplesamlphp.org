@@ -303,11 +303,53 @@ in
  </code>
  in your module's
  <code>
-  lib
+  src
  </code>
  -directory.
 The class can then modify the Twig Environment and the variables passed to the theme's templates. In short, this allows you to set additional global variables and to write your own Twig filters and functions.
 </p>
+<p>
+ An example to put in
+ <code>
+  src/FancyThemeController.php
+ </code>
+ :
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="cp">&lt;?php</span>
+
+<span class="k">namespace</span> <span class="nx">SimpleSAML\Module\mymodule</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Twig\Environment</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">SimpleSAML\XHTML\TemplateControllerInterface</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">FancyThemeController</span> <span class="k">implements</span> <span class="nx">TemplateControllerInterface</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * Modify the twig environment after its initialization (e.g. add filters or extensions).</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param \Twig\Environment $twig The current twig environment.</span>
+<span class="sd">     * @return void</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">setUpTwig</span><span class="p">(</span><span class="nx">Environment</span> <span class="o">&amp;</span><span class="nv">$twig</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
+    <span class="p">{</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * Add, delete or modify the data passed to the template.</span>
+<span class="sd">     *</span>
+<span class="sd">     * This method will be called right before displaying the template.</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param array $data The current data used by the template.</span>
+<span class="sd">     * @return void</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">display</span><span class="p">(</span><span class="k">array</span> <span class="o">&amp;</span><span class="nv">$data</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
+    <span class="p">{</span>
+        <span class="nv">$data</span><span class="p">{</span><span class="s1">'extra_info'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'Extra information to use in your template'</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
 <p>
  See the
  <a href="https://twig.symfony.com/doc/2.x/templates.html">
