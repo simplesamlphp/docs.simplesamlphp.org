@@ -107,25 +107,18 @@ have one log file like this:
 <p>
  With content that looks like this:
 </p>
-<p>
- <code>
- </code>
-</p>
-<h1 id="tail-varlogsimplesamlphpstat">
- tail /var/log/simplesamlphp.stat
-</h1>
-<p>
- Nov 15 12:01:49 www1 simplesamlphp-foodle[31960]: 5 STAT [77013b4b6e] saml20-sp-SSO urn:mace:feide.no:services:no.feide.foodle sam.feide.no andreas@uninett.no
-</p>
-<p>
- Nov 15 13:01:14 www1 simplesamlphp-openwiki[2247]: 5 STAT [50292b9d04] saml20-sp-SSO urn:mace:feide.no:services:no.feide.openwikicore sam.feide.no NA
-</p>
-<p>
- Nov 15 13:16:39 www1 simplesamlphp-openwiki[2125]: 5 STAT [3493d5d87f] saml20-sp-SSO urn:mace:feide.no:services:no.feide.openwikicore sam.feide.no NA
-</p>
-<p>
- Nov 15 13:37:27 www1 simplesamlphp-foodle[3146]: 5 STAT [77013b4b6e] AUTH-login-admin OK
-</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="c1"># tail /var/log/simplesamlphp.stat</span>
+
+Nov<span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="m">12</span>:01:49<span class="w"> </span>www1<span class="w"> </span>simplesamlphp-foodle<span class="o">[</span><span class="m">31960</span><span class="o">]</span>:<span class="w"> </span><span class="m">5</span><span class="w"> </span>STAT<span class="w"> </span><span class="o">[</span>77013b4b6e<span class="o">]</span><span class="w"> </span>saml20-sp-SSO<span class="w"> </span>urn:mace:feide.no:services:no.feide.foodle<span class="w"> </span>sam.feide.no<span class="w"> </span>andreas@uninett.no
+
+Nov<span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="m">13</span>:01:14<span class="w"> </span>www1<span class="w"> </span>simplesamlphp-openwiki<span class="o">[</span><span class="m">2247</span><span class="o">]</span>:<span class="w"> </span><span class="m">5</span><span class="w"> </span>STAT<span class="w"> </span><span class="o">[</span>50292b9d04<span class="o">]</span><span class="w"> </span>saml20-sp-SSO<span class="w"> </span>urn:mace:feide.no:services:no.feide.openwikicore<span class="w"> </span>sam.feide.no<span class="w"> </span>NA
+
+Nov<span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="m">13</span>:16:39<span class="w"> </span>www1<span class="w"> </span>simplesamlphp-openwiki<span class="o">[</span><span class="m">2125</span><span class="o">]</span>:<span class="w"> </span><span class="m">5</span><span class="w"> </span>STAT<span class="w"> </span><span class="o">[</span>3493d5d87f<span class="o">]</span><span class="w"> </span>saml20-sp-SSO<span class="w"> </span>urn:mace:feide.no:services:no.feide.openwikicore<span class="w"> </span>sam.feide.no<span class="w"> </span>NA
+
+Nov<span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="m">13</span>:37:27<span class="w"> </span>www1<span class="w"> </span>simplesamlphp-foodle<span class="o">[</span><span class="m">3146</span><span class="o">]</span>:<span class="w"> </span><span class="m">5</span><span class="w"> </span>STAT<span class="w"> </span><span class="o">[</span>77013b4b6e<span class="o">]</span><span class="w"> </span>AUTH-login-admin<span class="w"> </span>OK
+</code></pre>
+</div>
 <p>
  Here you can see that I collect statistics in one file for several
 installations. You could easily separate each instance of SimpleSAMLphp
@@ -164,14 +157,22 @@ into separate files (your preference).
 </code></pre>
 </div>
 <p>
- Configure the path of the log file:
+ Make sure the
+ <code>
+  simplesamlphp.stat
+ </code>
+ file is readable. SimpleSAMLphp will read data from it:
 </p>
 <div class="codehilite">
  <pre><span></span><code><span class="x">'inputfile' =&gt; '/var/log/simplesamlphp.stat',</span>
 </code></pre>
 </div>
 <p>
- Make sure the stat dir is writable. SimpleSAMLphp will write data here:
+ Make sure the
+ <code>
+  stats
+ </code>
+ dir is writable. SimpleSAMLphp will write data here:
 </p>
 <div class="codehilite">
  <pre><span></span><code><span class="x">'statdir' =&gt; '/var/lib/simplesamlphp/stats/',</span>
@@ -237,30 +238,24 @@ example if the STAT keyword is not in column 3.
 <p>
  Here is some example output:
 </p>
-<p>
- <code>
-  bash $ cd modules/statistics/bin
- </code>
-</p>
-<p>
- $ ./loganalyzer.php --debug
-</p>
-<p>
- Statistics directory   : /var/lib/simplesamlphp/stats/
-</p>
-<p>
- Input file             : /Users/andreas/Desktop/simplesamlphp.log
-</p>
-<p>
- Offset                 : 4237200
-</p>
-<hr/>
-<p>
- Log line: Feb 11 11:32:57 moria-app1 syslog_moria-app1[6630]: 5 STAT [2d41ee3f1e] AUTH-login-admin Failed
-</p>
-<p>
- Date parse [Feb 11 11:32:57] to [Wed, 11 Feb 09 11:32:57 +0100]
-</p>
+<div class="codehilite">
+ <pre><span></span><code>bash<span class="w"> </span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>modules/statistics/bin
+
+$<span class="w"> </span>./loganalyzer.php<span class="w"> </span>--debug
+
+Statistics<span class="w"> </span>directory<span class="w">   </span>:<span class="w"> </span>/var/lib/simplesamlphp/stats/
+
+Input<span class="w"> </span>file<span class="w">             </span>:<span class="w"> </span>/Users/andreas/Desktop/simplesamlphp.log
+
+Offset<span class="w">                 </span>:<span class="w"> </span><span class="m">4237200</span>
+
+----------------------------------------
+
+Log<span class="w"> </span>line:<span class="w"> </span>Feb<span class="w"> </span><span class="m">11</span><span class="w"> </span><span class="m">11</span>:32:57<span class="w"> </span>moria-app1<span class="w"> </span>syslog_moria-app1<span class="o">[</span><span class="m">6630</span><span class="o">]</span>:<span class="w"> </span><span class="m">5</span><span class="w"> </span>STAT<span class="w"> </span><span class="o">[</span>2d41ee3f1e<span class="o">]</span><span class="w"> </span>AUTH-login-admin<span class="w"> </span>Failed
+
+Date<span class="w"> </span>parse<span class="w"> </span><span class="o">[</span>Feb<span class="w"> </span><span class="m">11</span><span class="w"> </span><span class="m">11</span>:32:57<span class="o">]</span><span class="w"> </span>to<span class="w"> </span><span class="o">[</span>Wed,<span class="w"> </span><span class="m">11</span><span class="w"> </span>Feb<span class="w"> </span><span class="m">09</span><span class="w"> </span><span class="m">11</span>:32:57<span class="w"> </span>+0100<span class="o">]</span>
+</code></pre>
+</div>
 <div class="codehilite">
  <pre><span></span><code><span class="x">Array</span>
 <span class="x">(</span>
@@ -316,6 +311,40 @@ example if the STAT keyword is not in column 3.
 <span class="x">],</span>
 </code></pre>
 </div>
+<p>
+ Then take the configuration template:
+</p>
+<div class="codehilite">
+ <pre><span></span><code>cp<span class="w"> </span>modules/cron/config-templates/*.php<span class="w"> </span>config/
+</code></pre>
+</div>
+<p>
+ Then configure the
+ <code>
+  cron
+ </code>
+ module.
+</p>
+<p>
+ Replace, at least, the value
+ <code>
+  secret
+ </code>
+ with your secret value into the
+ <code>
+  module_cron.php
+ </code>
+ config file:
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="x">$config = [</span>
+<span class="x">    'key' =&gt; 'secret',</span>
+<span class="x">    'allowed_tags' =&gt; ['daily', 'hourly', 'frequent'],</span>
+<span class="x">    'debug_message' =&gt; true,</span>
+<span class="x">    'sendemail' =&gt; true,</span>
+<span class="x">];</span>
+</code></pre>
+</div>
 <h3 id="alternative-to-using-the-cron-module">
  Alternative to using the cron module
 </h3>
@@ -353,6 +382,42 @@ cron or the script you will see statistics. Enjoy.
  </code>
  Content-Security-Policy header.
 </p>
+<h2 id="error-handling">
+ Error Handling
+</h2>
+<p>
+ If the execution of the script
+ <code>
+  loganalyzer.php
+ </code>
+ generates the error:
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="c1"># php loganalyzer.php --debug</span>
+PHP<span class="w"> </span>Fatal<span class="w"> </span>error:<span class="w">  </span>Uncaught<span class="w"> </span>SimpleSAML<span class="se">\E</span>rror<span class="se">\C</span>riticalConfigurationError:<span class="w"> </span>The<span class="w"> </span>configuration<span class="w"> </span><span class="o">(</span>config/config.php<span class="o">)</span><span class="w"> </span>is<span class="w"> </span>invalid:<span class="w"> </span>Missing<span class="w"> </span>configuration<span class="w"> </span>file
+</code></pre>
+</div>
+<p>
+ It means that the script doesn't find the
+ <code>
+  config.php
+ </code>
+ under the main SimpleSAMLphp directory.
+</p>
+<p>
+ (Probably you've installed SimpleSAMLphp as a composer dependency)
+</p>
+<p>
+ The problem can be solved easily by setting the following environment variable to the right path of
+ <code>
+  config/
+ </code>
+ dir:
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">SIMPLESAMLPHP_CONFIG_DIR</span><span class="o">=</span>/var/simplesamlphp/config/
+</code></pre>
+</div>
 <h3 id="support">
  Support
 </h3>
