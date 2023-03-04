@@ -129,7 +129,7 @@
  </ul>
 </div>
 <p>
- In SimpleSAMLphp every part that needs to interact with the user by using a web page, uses templates to present the HTML. SimpleSAMLphp comes with a default set of templates that presents a anonymous look.
+ In SimpleSAMLphp every part that needs to interact with the user by using a web page, uses templates to present the HTML. SimpleSAMLphp comes with a default set of templates that presents an anonymous look.
 </p>
 <p>
  You may create your own theme, where you add one or more template files that will override the default ones. This document explains how to achieve that.
@@ -152,15 +152,15 @@
  <code>
   config.php
  </code>
- there is a configuration option that controls theming. You need to set that option and enable the module that contains the theme. Here is an example:
+ there is a configuration option that controls theming. You need to set that option and also add the module that contains the theme to the list of enabled modules. Here is an example:
 </p>
 <div class="codehilite">
  <pre><span></span><code><span class="x">'module.enable' =&gt; [</span>
 <span class="x">    ...</span>
-<span class="x">    'fancymodule' =&gt; true,</span>
+<span class="x">    'mymodule' =&gt; true,</span>
 <span class="x">],</span>
 
-<span class="x">'theme.use' =&gt; 'fancymodule:fancytheme',</span>
+<span class="x">'theme.use' =&gt; 'mymodule:fancytheme',</span>
 </code></pre>
 </div>
 <p>
@@ -205,12 +205,6 @@ mkdir<span class="w"> </span>mymodule
 </code></pre>
 </div>
 <p>
- Enable the module by setting
- <code>
-  $config['module.enable' =&gt; ['mymodule' =&gt; true]]
- </code>
-</p>
-<p>
  Then within this module, you can create a new theme named
  <code>
   fancytheme
@@ -223,14 +217,18 @@ mkdir<span class="w"> </span>-p<span class="w"> </span>themes/fancytheme/default
 </code></pre>
 </div>
 <p>
- Now, configure SimpleSAMLphp to use your new theme in
+ Now, in
  <code>
   config.php
  </code>
- :
+ , add the module to the list of enabled modules, and configure SimpleSAMLphp to actually use your new theme:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="x">'theme.use' =&gt; 'mymodule:fancytheme',</span>
+ <pre><span></span><code><span class="x">'module.enable' =&gt; [</span>
+<span class="x">    ...</span>
+<span class="x">    'mymodule' =&gt; true,</span>
+<span class="x">],</span>
+<span class="x">'theme.use' =&gt; 'mymodule:fancytheme',</span>
 </code></pre>
 </div>
 <p>
@@ -257,16 +255,17 @@ mkdir<span class="w"> </span>-p<span class="w"> </span>themes/fancytheme/default
  </code>
  folder of your module, to make your module completely independent with included css, icons etc.
 </p>
-<p>
- modules
+<div class="codehilite">
+ <pre><span></span><code>modules
 └───mymodule
-    └───lib
-    └───themes
-    └───public
-        └───assets
-            └───logo.svg
-            └───style.css
-</p>
+<span class="w">    </span>└───src
+<span class="w">    </span>└───themes
+<span class="w">    </span>└───public
+<span class="w">        </span>└───assets
+<span class="w">            </span>└───logo.svg
+<span class="w">            </span>└───style.css
+</code></pre>
+</div>
 <p>
  Reference these resources in your custom templates under
  <code>
@@ -345,7 +344,7 @@ The class can then modify the Twig Environment and the variables passed to the t
 <span class="sd">     */</span>
     <span class="k">public</span> <span class="k">function</span> <span class="nf">display</span><span class="p">(</span><span class="k">array</span> <span class="o">&amp;</span><span class="nv">$data</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
     <span class="p">{</span>
-        <span class="nv">$data</span><span class="p">{</span><span class="s1">'extra_info'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'Extra information to use in your template'</span><span class="p">;</span>
+        <span class="nv">$data</span><span class="p">[</span><span class="s1">'extra_info'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'Extra information to use in your template'</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
