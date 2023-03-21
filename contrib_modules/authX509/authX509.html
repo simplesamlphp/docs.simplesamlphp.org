@@ -198,14 +198,13 @@ how to convert from PEM to DER:
 <p>
  Here is some LDIF to upload the certificate in the directory:
 </p>
-<blockquote>
- <p>
-  dn: uid=jdoe,dc=example,dc=net
-changetype: modify
-add: userCertificate;binary
-userCertificate;binary:&lt; file:///path/to/cert.der
- </p>
-</blockquote>
+<div class="codehilite">
+ <pre><span></span><code><span class="n">dn</span><span class="o">:</span><span class="w"> </span><span class="n">uid</span><span class="o">=</span><span class="n">jdoe</span><span class="o">,</span><span class="n">dc</span><span class="o">=</span><span class="n">example</span><span class="o">,</span><span class="n">dc</span><span class="o">=</span><span class="n">net</span>
+<span class="n">changetype</span><span class="o">:</span><span class="w"> </span><span class="n">modify</span>
+<span class="n">add</span><span class="o">:</span><span class="w"> </span><span class="n">userCertificate</span><span class="o">;</span><span class="n">binary</span>
+<span class="n">userCertificate</span><span class="o">;</span><span class="n">binary</span><span class="o">:&lt;</span><span class="w"> </span><span class="n">file</span><span class="o">:///</span><span class="n">path</span><span class="sr">/to/</span><span class="n">cert</span><span class="o">.</span><span class="na">der</span>
+</code></pre>
+</div>
 <h2 id="supporting-both-certificate-and-login-authentication">
  Supporting both certificate and login authentication
 </h2>
