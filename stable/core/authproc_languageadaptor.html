@@ -103,12 +103,12 @@ If executed early at the IdP it will check if the
  <code>
   preferredLanguage
  </code>
- attribute is among the users attributes, and if it is, SimpleSAMLphp will use that language in the user interface.
+ attribute is among the user's attributes, and if it is, SimpleSAMLphp will use that language in the user interface.
  <strong>
-  Notice that
+  Note:
  </strong>
- the login page itself is to early to be influenced by the user attributes, because the IdP does not know any user attributes before the user logs in.
-In contrast, the consent module will be presented in the correct language based on user attribute.
+ the login page itself is too early to be influenced by the user attributes, because the IdP does not know any user attributes before the user logs in.
+In contrast, the consent module will be presented in the correct language based on the user attribute.
 </p>
 <p>
  The LanguageAdaptor also works the other way around.
