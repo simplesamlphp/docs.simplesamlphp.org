@@ -115,20 +115,56 @@
   </code>
   .
  </dd>
- <dd>
-  The format string accepts the following replacements:
-  <div class="codehilite">
-   <pre><span></span><code><span class="o">*</span><span class="w"> </span><span class="n n-Quoted">`%I`</span><span class="o">:</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">IdP</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">issued</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">NameID</span><span class="p">.</span>
-<span class="w">        </span><span class="n">This</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n n-Quoted">`NameQualifier`</span><span class="w"> </span><span class="n">element</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">NameID</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">present</span><span class="p">,</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">entity</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">IdP</span><span class="w"> </span><span class="n">we</span><span class="w"> </span><span class="n">received</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">response</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">not</span><span class="p">.</span>
-<span class="o">*</span><span class="w"> </span><span class="n n-Quoted">`%S`</span><span class="o">:</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">SP</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">NameID</span><span class="w"> </span><span class="n">was</span><span class="w"> </span><span class="n">issued</span><span class="w"> </span><span class="k">to</span><span class="p">.</span>
-<span class="w">        </span><span class="n">This</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n n-Quoted">`SPNameQualifier`</span><span class="w"> </span><span class="n">element</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">NameID</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">present</span><span class="p">,</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">entity</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">SP</span><span class="w"> </span><span class="n">otherwise</span><span class="p">.</span>
-<span class="o">*</span><span class="w"> </span><span class="n n-Quoted">`%V`</span><span class="o">:</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="k">value</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">NameID</span><span class="p">.</span>
-<span class="o">*</span><span class="w"> </span><span class="n n-Quoted">`%F`</span><span class="o">:</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="k">format</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">NameID</span><span class="p">.</span>
-<span class="o">*</span><span class="w"> </span><span class="n n-Quoted">`%%`</span><span class="o">:</span><span class="w"> </span><span class="n">Will</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">replaced</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">single</span><span class="w"> </span><span class="n n-Quoted">`%`</span><span class="p">.</span>
-</code></pre>
-  </div>
- </dd>
 </dl>
+<p>
+ The format string accepts the following replacements:
+</p>
+<ul>
+ <li>
+  <code>
+   %I
+  </code>
+  : The IdP that issued the NameID.
+   This will be the
+  <code>
+   NameQualifier
+  </code>
+  element of the NameID if it is present, or the entity ID of the IdP we received the response from if not.
+ </li>
+ <li>
+  <code>
+   %S
+  </code>
+  : The SP the NameID was issued to.
+  This will be the
+  <code>
+   SPNameQualifier
+  </code>
+  element of the NameID if it is present, or the entity ID of this SP otherwise.
+ </li>
+ <li>
+  <code>
+   %V
+  </code>
+  : The value of the NameID.
+ </li>
+ <li>
+  <code>
+   %F
+  </code>
+  : The format of the NameID.
+ </li>
+ <li>
+  <code>
+   %%
+  </code>
+  : Will be replaced with a single
+  <code>
+   %
+  </code>
+  .
+ </li>
+</ul>
 <h2 id="examples">
  Examples
 </h2>
@@ -179,7 +215,7 @@
 </h2>
 <ul>
  <li>
-  <a href="./saml/sp.html">
+  <a href="../saml/sp.html">
    The description of the
    <code>
     saml:SP
@@ -188,7 +224,7 @@
   </a>
  </li>
  <li>
-  <a href="./saml/nameid.html">
+  <a href="../saml/nameid.html">
    How to generate various NameIDs on the IdP.
   </a>
  </li>
