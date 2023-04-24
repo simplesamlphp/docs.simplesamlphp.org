@@ -77,7 +77,8 @@
  </nav>
  <div id="content">
  </div>
-</header><main><h1 id="adding-holder-of-key-web-browser-sso-profile-support-to-the-idp">
+</header>
+<main><h1 id="adding-holder-of-key-web-browser-sso-profile-support-to-the-idp">
  Adding Holder-of-Key Web Browser SSO Profile support to the IdP
 </h1>
 <p>
@@ -156,17 +157,17 @@ The
  metadata for SimpleSAMLphp SPs should contain something like the following code:
 </p>
 <div class="codehilite">
- <pre><span></span><code>'SingleSignOnService' =&gt; array (
-  array (
-    'hoksso:ProtocolBinding' =&gt; 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
-    'Binding' =&gt; 'urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser',
-    'Location' =&gt; 'https://idp.example.org/simplesaml/saml2/idp/SSOService.php',
-  ),
-  array (
-    'Binding' =&gt; 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
-    'Location' =&gt; 'https://idp.example.org/simplesaml/saml2/idp/SSOService.php',
-  ),
-),
+ <pre><span></span><code><span class="err">'</span><span class="nx">SingleSignOnService</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nx">array</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="nx">array</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="err">'</span><span class="nx">hoksso</span><span class="p">:</span><span class="nx">ProtocolBinding</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="nx">urn</span><span class="p">:</span><span class="nx">oasis</span><span class="p">:</span><span class="nx">names</span><span class="p">:</span><span class="nx">tc</span><span class="p">:</span><span class="nx">SAML</span><span class="p">:</span><span class="m m-Double">2.0</span><span class="p">:</span><span class="nx">bindings</span><span class="p">:</span><span class="nx">HTTP</span><span class="o">-</span><span class="nx">Redirect</span><span class="err">'</span><span class="p">,</span>
+<span class="w">    </span><span class="err">'</span><span class="nx">Binding</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="nx">urn</span><span class="p">:</span><span class="nx">oasis</span><span class="p">:</span><span class="nx">names</span><span class="p">:</span><span class="nx">tc</span><span class="p">:</span><span class="nx">SAML</span><span class="p">:</span><span class="m m-Double">2.0</span><span class="p">:</span><span class="nx">profiles</span><span class="p">:</span><span class="nx">holder</span><span class="o">-</span><span class="nx">of</span><span class="o">-</span><span class="nx">key</span><span class="p">:</span><span class="nx">SSO</span><span class="p">:</span><span class="nx">browser</span><span class="err">'</span><span class="p">,</span>
+<span class="w">    </span><span class="err">'</span><span class="nx">Location</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="nx">https</span><span class="p">:</span><span class="c1">//idp.example.org/simplesaml/saml2/idp/SSOService.php',</span>
+<span class="w">  </span><span class="p">),</span>
+<span class="w">  </span><span class="nx">array</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="err">'</span><span class="nx">Binding</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="nx">urn</span><span class="p">:</span><span class="nx">oasis</span><span class="p">:</span><span class="nx">names</span><span class="p">:</span><span class="nx">tc</span><span class="p">:</span><span class="nx">SAML</span><span class="p">:</span><span class="m m-Double">2.0</span><span class="p">:</span><span class="nx">bindings</span><span class="p">:</span><span class="nx">HTTP</span><span class="o">-</span><span class="nx">Redirect</span><span class="err">'</span><span class="p">,</span>
+<span class="w">    </span><span class="err">'</span><span class="nx">Location</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="nx">https</span><span class="p">:</span><span class="c1">//idp.example.org/simplesaml/saml2/idp/SSOService.php',</span>
+<span class="w">  </span><span class="p">),</span>
+<span class="p">),</span>
 </code></pre>
 </div>
 <h2 id="sp-metadata-on-the-idp">
@@ -186,21 +187,22 @@ This means that you have to use the complex endpoint format in
 In general, this should look like the following code:
 </p>
 <div class="codehilite">
- <pre><span></span><code>'AssertionConsumerService' =&gt; array (
-  [
-    'Binding' =&gt; 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
-    'Location' =&gt; 'https://sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp',
-    'index' =&gt; 0,
-  ],
-  [
-    'Binding' =&gt; 'urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser',
-    'Location' =&gt; 'https://sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp',
-    'index' =&gt; 4,
-  ],
-),
+ <pre><span></span><code><span class="err">'</span><span class="nx">AssertionConsumerService</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nx">array</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="p">[</span>
+<span class="w">    </span><span class="err">'</span><span class="nx">Binding</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="nx">urn</span><span class="p">:</span><span class="nx">oasis</span><span class="p">:</span><span class="nx">names</span><span class="p">:</span><span class="nx">tc</span><span class="p">:</span><span class="nx">SAML</span><span class="p">:</span><span class="m m-Double">2.0</span><span class="p">:</span><span class="nx">bindings</span><span class="p">:</span><span class="nx">HTTP</span><span class="o">-</span><span class="nx">POST</span><span class="err">'</span><span class="p">,</span>
+<span class="w">    </span><span class="err">'</span><span class="nx">Location</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="nx">https</span><span class="p">:</span><span class="c1">//sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp',</span>
+<span class="w">    </span><span class="err">'</span><span class="nx">index</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="p">[</span>
+<span class="w">    </span><span class="err">'</span><span class="nx">Binding</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="nx">urn</span><span class="p">:</span><span class="nx">oasis</span><span class="p">:</span><span class="nx">names</span><span class="p">:</span><span class="nx">tc</span><span class="p">:</span><span class="nx">SAML</span><span class="p">:</span><span class="m m-Double">2.0</span><span class="p">:</span><span class="nx">profiles</span><span class="p">:</span><span class="nx">holder</span><span class="o">-</span><span class="nx">of</span><span class="o">-</span><span class="nx">key</span><span class="p">:</span><span class="nx">SSO</span><span class="p">:</span><span class="nx">browser</span><span class="err">'</span><span class="p">,</span>
+<span class="w">    </span><span class="err">'</span><span class="nx">Location</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="nx">https</span><span class="p">:</span><span class="c1">//sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp',</span>
+<span class="w">    </span><span class="err">'</span><span class="nx">index</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="p">),</span>
 </code></pre>
 </div>
 <p>
  (The specific values of the various fields will vary depending on the SP.)
-</p></main></body>
+</p>
+</main></body>
 </html>

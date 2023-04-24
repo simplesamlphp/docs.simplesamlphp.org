@@ -77,7 +77,8 @@
  </nav>
  <div id="content">
  </div>
-</header><main><h1 id="simplesamlphp-identity-provider-advanced-topics">
+</header>
+<main><h1 id="simplesamlphp-identity-provider-advanced-topics">
  SimpleSAMLphp Identity Provider Advanced Topics
 </h1>
 <div class="toc">
@@ -130,7 +131,7 @@
  If you have read about the AJAX iFrame Single Log-Out approach at Andreas' blog and want to enable it, edit your saml20-idp-hosted.php metadata, and add this configuration line for the IdP:
 </p>
 <div class="codehilite">
- <pre><span></span><code>'logouttype' =&gt; 'iframe',
+ <pre><span></span><code><span class="err">'</span><span class="nx">logouttype</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="nx">iframe</span><span class="err">'</span><span class="p">,</span>
 </code></pre>
 </div>
 <h2 id="attribute-release-consent">
@@ -200,7 +201,7 @@
  Here is an example of such a URL:
 </p>
 <div class="codehilite">
- <pre><span></span><code>https://idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=urn:mace:feide.no:someservice
+ <pre><span></span><code><span class="nx">https</span><span class="p">:</span><span class="c1">//idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=urn:mace:feide.no:someservice</span>
 </code></pre>
 </div>
 <p>
@@ -211,7 +212,7 @@
  parameter to the IdP-first URL:
 </p>
 <div class="codehilite">
- <pre><span></span><code>https://idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=urn:mace:feide.no:someservice&amp;RelayState=https://sp.example.org/somepage
+ <pre><span></span><code><span class="nx">https</span><span class="p">:</span><span class="c1">//idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=urn:mace:feide.no:someservice&amp;RelayState=https://sp.example.org/somepage</span>
 </code></pre>
 </div>
 <p>
@@ -261,7 +262,7 @@ Consumer URL with the
 If you want to do it manually, you can access the following URL:
 </p>
 <div class="codehilite">
- <pre><span></span><code>https://idp.example.org/simplesaml/shib13/idp/SSOService.php?providerId=urn:mace:feide.no:someservice&amp;shire=https://sp.example.org/acs-endpoint&amp;target=https://sp.example.org/somepage
+ <pre><span></span><code><span class="nx">https</span><span class="p">:</span><span class="c1">//idp.example.org/simplesaml/shib13/idp/SSOService.php?providerId=urn:mace:feide.no:someservice&amp;shire=https://sp.example.org/acs-endpoint&amp;target=https://sp.example.org/somepage</span>
 </code></pre>
 </div>
 <p>
@@ -318,7 +319,7 @@ If you want to do it manually, you can access the following URL:
  IdP-initiated logout can be initiated by visiting the URL:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="nv">https</span>:<span class="o">//</span><span class="nv">idp</span>.<span class="nv">example</span>.<span class="nv">org</span><span class="o">/</span><span class="nv">simplesaml</span><span class="o">/</span><span class="nv">saml2</span><span class="o">/</span><span class="nv">idp</span><span class="o">/</span><span class="nv">SingleLogoutService</span>.<span class="nv">php</span>?<span class="nv">ReturnTo</span><span class="o">=&lt;</span><span class="nv">URL</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">after</span><span class="w"> </span><span class="nv">logout</span><span class="o">&gt;</span>
+ <pre><span></span><code><span class="w">  </span><span class="nx">https</span><span class="p">:</span><span class="c1">//idp.example.org/simplesaml/saml2/idp/SingleLogoutService.php?ReturnTo=&lt;URL to return to after logout&gt;</span>
 </code></pre>
 </div>
 <p>
@@ -327,5 +328,6 @@ If you want to do it manually, you can access the following URL:
   ReturnTo
  </code>
  parameter. Bear in mind that IdPs might disallow redirecting to URLs other than those of their own for security reasons, so in order to get the redirection to work, it might be necessary to ask the IdP to whitelist the URL we are planning to redirect to.
-</p></main></body>
+</p>
+</main></body>
 </html>

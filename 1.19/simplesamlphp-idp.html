@@ -77,7 +77,8 @@
  </nav>
  <div id="content">
  </div>
-</header><main><h1 id="simplesamlphp-identity-provider-quickstart">
+</header>
+<main><h1 id="simplesamlphp-identity-provider-quickstart">
  SimpleSAMLphp Identity Provider QuickStart
 </h1>
 <div class="toc">
@@ -652,7 +653,7 @@ on the same machine. See the instructions for
  Here is an example of such a URL:
 </p>
 <div class="codehilite">
- <pre><span></span><code>https://idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=sp.example.org
+ <pre><span></span><code><span class="nx">https</span><span class="p">:</span><span class="c1">//idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=sp.example.org</span>
 </code></pre>
 </div>
 <p>
@@ -674,7 +675,7 @@ The
 To send the RelayState parameter from a SimpleSAMLphp IdP, specify it in the query string to SSOService.php:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  https://idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=sp.example.org&amp;RelayState=https://sp.example.org/welcome.php
+ <pre><span></span><code><span class="w">  </span><span class="nx">https</span><span class="p">:</span><span class="c1">//idp.example.org/simplesaml/saml2/idp/SSOService.php?spentityid=sp.example.org&amp;RelayState=https://sp.example.org/welcome.php</span>
 </code></pre>
 </div>
 <p>
@@ -690,5 +691,6 @@ To send the RelayState parameter from a SimpleSAMLphp IdP, specify it in the que
       'RelayState' =&gt; 'https://sp.example.org/welcome.php',
   ],
 </code></pre>
-</div></main></body>
+</div>
+</main></body>
 </html>

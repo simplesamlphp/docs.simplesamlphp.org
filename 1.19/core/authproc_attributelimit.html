@@ -77,7 +77,8 @@
  </nav>
  <div id="content">
  </div>
-</header><main><h1 id="coreattributelimit">
+</header>
+<main><h1 id="coreattributelimit">
  <code>
   core:AttributeLimit
  </code>
@@ -215,13 +216,13 @@ like this:
  option:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'https://saml2sp.example.org'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span>
-<span class="w">      </span><span class="s1">'AssertionConsumerService'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp'</span><span class="o">,</span>
-<span class="w">      </span><span class="s1">'SingleLogoutService'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-logout.php/default-sp'</span><span class="o">,</span>
+ <pre><span></span><code><span class="w">  </span><span class="err">$</span><span class="nx">metadata</span><span class="p">[</span><span class="err">'</span><span class="nx">https</span><span class="p">:</span><span class="c1">//saml2sp.example.org'] = array(</span>
+<span class="w">      </span><span class="err">'</span><span class="nx">AssertionConsumerService</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="nx">https</span><span class="p">:</span><span class="c1">//saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp',</span>
+<span class="w">      </span><span class="err">'</span><span class="nx">SingleLogoutService</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="nx">https</span><span class="p">:</span><span class="c1">//saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-logout.php/default-sp',</span>
 <span class="w">      </span><span class="o">...</span>
-<span class="w">      </span><span class="s1">'attributes'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span><span class="s1">'cn'</span><span class="o">,</span><span class="w"> </span><span class="s1">'mail'</span><span class="o">),</span>
+<span class="w">      </span><span class="err">'</span><span class="nx">attributes</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nx">array</span><span class="p">(</span><span class="err">'</span><span class="nx">cn</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="nx">mail</span><span class="err">'</span><span class="p">),</span>
 <span class="w">      </span><span class="o">...</span>
-<span class="w">  </span><span class="o">);</span>
+<span class="w">  </span><span class="p">);</span>
 </code></pre>
 </div>
 <p>
@@ -229,20 +230,20 @@ like this:
 to be used by a service provider (among other attributes):
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'https://saml2sp.example.org'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span>
-<span class="w">      </span><span class="s1">'AssertionConsumerService'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp'</span><span class="o">,</span>
-<span class="w">      </span><span class="s1">'SingleLogoutService'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-logout.php/default-sp'</span><span class="o">,</span>
+ <pre><span></span><code><span class="w">  </span><span class="err">$</span><span class="nx">metadata</span><span class="p">[</span><span class="err">'</span><span class="nx">https</span><span class="p">:</span><span class="c1">//saml2sp.example.org'] = array(</span>
+<span class="w">      </span><span class="err">'</span><span class="nx">AssertionConsumerService</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="nx">https</span><span class="p">:</span><span class="c1">//saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp',</span>
+<span class="w">      </span><span class="err">'</span><span class="nx">SingleLogoutService</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="nx">https</span><span class="p">:</span><span class="c1">//saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-logout.php/default-sp',</span>
 <span class="w">      </span><span class="o">...</span>
-<span class="w">      </span><span class="s1">'attributes'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span>
-<span class="w">          </span><span class="s1">'uid'</span><span class="o">,</span>
-<span class="w">          </span><span class="s1">'mail'</span><span class="o">,</span>
-<span class="w">          </span><span class="s1">'eduPersonEntitlement'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span>
-<span class="w">              </span><span class="s1">'urn:mace:example.org:admin'</span><span class="o">,</span>
-<span class="w">              </span><span class="s1">'urn:mace:example.org:user'</span><span class="o">,</span>
-<span class="w">          </span><span class="o">),</span>
-<span class="w">      </span><span class="o">),</span>
+<span class="w">      </span><span class="err">'</span><span class="nx">attributes</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nx">array</span><span class="p">(</span>
+<span class="w">          </span><span class="err">'</span><span class="nx">uid</span><span class="err">'</span><span class="p">,</span>
+<span class="w">          </span><span class="err">'</span><span class="nx">mail</span><span class="err">'</span><span class="p">,</span>
+<span class="w">          </span><span class="err">'</span><span class="nx">eduPersonEntitlement</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nx">array</span><span class="p">(</span>
+<span class="w">              </span><span class="err">'</span><span class="nx">urn</span><span class="p">:</span><span class="nx">mace</span><span class="p">:</span><span class="nx">example</span><span class="p">.</span><span class="nx">org</span><span class="p">:</span><span class="nx">admin</span><span class="err">'</span><span class="p">,</span>
+<span class="w">              </span><span class="err">'</span><span class="nx">urn</span><span class="p">:</span><span class="nx">mace</span><span class="p">:</span><span class="nx">example</span><span class="p">.</span><span class="nx">org</span><span class="p">:</span><span class="nx">user</span><span class="err">'</span><span class="p">,</span>
+<span class="w">          </span><span class="p">),</span>
+<span class="w">      </span><span class="p">),</span>
 <span class="w">      </span><span class="o">...</span>
-<span class="w">  </span><span class="o">);</span>
+<span class="w">  </span><span class="p">);</span>
 </code></pre>
 </div>
 <p>
@@ -263,5 +264,6 @@ values ever reach the service providers. Bear in mind that this configuration ca
       ),
   ),
 </code></pre>
-</div></main></body>
+</div>
+</main></body>
 </html>

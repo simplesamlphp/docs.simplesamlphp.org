@@ -77,7 +77,8 @@
  </nav>
  <div id="content">
  </div>
-</header><main><h1 id="saml-v20-metadata-attribute-extensions">
+</header>
+<main><h1 id="saml-v20-metadata-attribute-extensions">
  SAML V2.0 Metadata Attribute Extensions
 </h1>
 <div class="toc">
@@ -186,9 +187,9 @@ array. Each item in this array produces a separate
  element.
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'EntityAttributes' =&gt; [
-      'urn:simplesamlphp:v1:simplesamlphp' =&gt; ['is', 'really', 'cool'],
-  ],
+ <pre><span></span><code><span class="w">  </span><span class="err">'</span><span class="nx">EntityAttributes</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="err">'</span><span class="nx">urn</span><span class="p">:</span><span class="nx">simplesamlphp</span><span class="p">:</span><span class="nx">v1</span><span class="p">:</span><span class="nx">simplesamlphp</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="err">'</span><span class="k">is</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="nx">really</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="nx">cool</span><span class="err">'</span><span class="p">],</span>
+<span class="w">  </span><span class="p">],</span>
 </code></pre>
 </div>
 <p>
@@ -215,9 +216,9 @@ array. Each item in this array produces a separate
 specified using curly braces at the beginning of the key name:
 </p>
 <div class="codehilite">
- <pre><span></span><code>  'EntityAttributes' =&gt; [
-      '{urn:simplesamlphp:v1}foo' =&gt; ['bar'],
-  ],
+ <pre><span></span><code><span class="w">  </span><span class="err">'</span><span class="nx">EntityAttributes</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="err">'</span><span class="p">{</span><span class="nx">urn</span><span class="p">:</span><span class="nx">simplesamlphp</span><span class="p">:</span><span class="nx">v1</span><span class="p">}</span><span class="nx">foo</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="err">'</span><span class="nx">bar</span><span class="err">'</span><span class="p">],</span>
+<span class="w">  </span><span class="p">],</span>
 </code></pre>
 </div>
 <p>
@@ -240,17 +241,17 @@ to "urn:oasis:names:tc:SAML:2.0:attrname-format:uri".
  If given the following configuration...
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">metadata</span><span class="cp">[</span><span class="s1">'https://example.com/saml-idp'</span><span class="cp">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cp">[</span>
-<span class="w">      </span><span class="s1">'host'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'www.example.com'</span><span class="p">,</span>
-<span class="w">      </span><span class="s1">'certificate'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'example.com.crt'</span><span class="p">,</span>
-<span class="w">      </span><span class="s1">'privatekey'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'example.com.pem'</span><span class="p">,</span>
-<span class="w">      </span><span class="s1">'auth'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'example-userpass'</span><span class="p">,</span>
+ <pre><span></span><code><span class="w">  </span><span class="err">$</span><span class="nx">metadata</span><span class="p">[</span><span class="err">'</span><span class="nx">https</span><span class="p">:</span><span class="c1">//example.com/saml-idp'] = [</span>
+<span class="w">      </span><span class="err">'</span><span class="nx">host</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="nx">www</span><span class="p">.</span><span class="nx">example</span><span class="p">.</span><span class="nx">com</span><span class="err">'</span><span class="p">,</span>
+<span class="w">      </span><span class="err">'</span><span class="nx">certificate</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="nx">example</span><span class="p">.</span><span class="nx">com</span><span class="p">.</span><span class="nx">crt</span><span class="err">'</span><span class="p">,</span>
+<span class="w">      </span><span class="err">'</span><span class="nx">privatekey</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="nx">example</span><span class="p">.</span><span class="nx">com</span><span class="p">.</span><span class="nx">pem</span><span class="err">'</span><span class="p">,</span>
+<span class="w">      </span><span class="err">'</span><span class="nx">auth</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="nx">example</span><span class="o">-</span><span class="nx">userpass</span><span class="err">'</span><span class="p">,</span>
 
-<span class="w">      </span><span class="s1">'EntityAttributes'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span>
-<span class="w">          </span><span class="s1">'urn:simplesamlphp:v1:simplesamlphp'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">[</span><span class="s1">'is'</span><span class="p">,</span><span class="w"> </span><span class="s1">'really'</span><span class="p">,</span><span class="w"> </span><span class="s1">'cool'</span><span class="cp">]</span><span class="o">,</span>
-<span class="w">          </span><span class="s1">'{urn:simplesamlphp:v1}foo'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="cp">[</span><span class="s1">'bar'</span><span class="cp">]</span><span class="o">,</span>
-<span class="w">      </span><span class="o">],</span>
-<span class="w">  </span><span class="o">];</span>
+<span class="w">      </span><span class="err">'</span><span class="nx">EntityAttributes</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="err">'</span><span class="nx">urn</span><span class="p">:</span><span class="nx">simplesamlphp</span><span class="p">:</span><span class="nx">v1</span><span class="p">:</span><span class="nx">simplesamlphp</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="err">'</span><span class="k">is</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="nx">really</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="nx">cool</span><span class="err">'</span><span class="p">],</span>
+<span class="w">          </span><span class="err">'</span><span class="p">{</span><span class="nx">urn</span><span class="p">:</span><span class="nx">simplesamlphp</span><span class="p">:</span><span class="nx">v1</span><span class="p">}</span><span class="nx">foo</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="err">'</span><span class="nx">bar</span><span class="err">'</span><span class="p">],</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">  </span><span class="p">];</span>
 </code></pre>
 </div>
 <p>
@@ -314,5 +315,6 @@ entity category support for a service provider in
       ]
   ],
 </code></pre>
-</div></main></body>
+</div>
+</main></body>
 </html>

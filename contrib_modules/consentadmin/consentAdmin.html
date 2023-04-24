@@ -77,7 +77,8 @@
  </nav>
  <div id="content">
  </div>
-</header><main><h1 id="installing-and-configuring-the-consentadmin-module">
+</header>
+<main><h1 id="installing-and-configuring-the-consentadmin-module">
  Installing and configuring the consentAdmin module
 </h1>
 <p>
@@ -131,12 +132,12 @@ table as the consent module, but you still need the set the correct
 credentials in the config file. Example:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="s1">'consentadmin'</span><span class="w">  </span><span class="o">=&gt;</span><span class="w"> </span><span class="nt">array</span><span class="o">(</span>
-<span class="w">  </span><span class="s1">'consent:Database'</span><span class="o">,</span>
-<span class="w">  </span><span class="s1">'dsn'</span><span class="w">   </span><span class="o">=&gt;</span><span class="w">  </span><span class="s1">'mysql:host=sql.uninett.no;dbname=andreas_consent'</span><span class="o">,</span>
-<span class="w">  </span><span class="s1">'username'</span><span class="w">  </span><span class="o">=&gt;</span><span class="w">  </span><span class="s1">'simplesaml'</span><span class="o">,</span><span class="w"> </span>
-<span class="w">  </span><span class="s1">'password'</span><span class="w">  </span><span class="o">=&gt;</span><span class="w">  </span><span class="s1">'sdfsdf'</span><span class="o">,</span>
-<span class="o">),</span>
+ <pre><span></span><code><span class="err">'</span><span class="nx">consentadmin</span><span class="err">'</span><span class="w">  </span><span class="o">=&gt;</span><span class="w"> </span><span class="nx">array</span><span class="p">(</span>
+<span class="w">  </span><span class="err">'</span><span class="nx">consent</span><span class="p">:</span><span class="nx">Database</span><span class="err">'</span><span class="p">,</span>
+<span class="w">  </span><span class="err">'</span><span class="nx">dsn</span><span class="err">'</span><span class="w">   </span><span class="o">=&gt;</span><span class="w">  </span><span class="err">'</span><span class="nx">mysql</span><span class="p">:</span><span class="nx">host</span><span class="p">=</span><span class="nx">sql</span><span class="p">.</span><span class="nx">uninett</span><span class="p">.</span><span class="nx">no</span><span class="p">;</span><span class="nx">dbname</span><span class="p">=</span><span class="nx">andreas_consent</span><span class="err">'</span><span class="p">,</span>
+<span class="w">  </span><span class="err">'</span><span class="nx">username</span><span class="err">'</span><span class="w">  </span><span class="o">=&gt;</span><span class="w">  </span><span class="err">'</span><span class="nx">simplesaml</span><span class="err">'</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="err">'</span><span class="nx">password</span><span class="err">'</span><span class="w">  </span><span class="o">=&gt;</span><span class="w">  </span><span class="err">'</span><span class="nx">sdfsdf</span><span class="err">'</span><span class="p">,</span>
+<span class="p">),</span>
 </code></pre>
 </div>
 <p>
@@ -189,5 +190,6 @@ The preferred thing to do is to make your setup so that only filters that
 modify attributes is run. Othervise it is recommended that developers of
 filters to throw a 'NoPassive' exception, if the filter can not run without
 userinteraction.
-</p></main></body>
+</p>
+</main></body>
 </html>

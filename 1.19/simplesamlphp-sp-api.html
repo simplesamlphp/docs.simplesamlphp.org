@@ -77,7 +77,8 @@
  </nav>
  <div id="content">
  </div>
-</header><main><h1 id="simplesamlphp-sp-api-reference">
+</header>
+<main><h1 id="simplesamlphp-sp-api-reference">
  SimpleSAMLphp SP API reference
 </h1>
 <!-- {{TOC}} -->
@@ -106,7 +107,7 @@ This is the preferred API for integrating SimpleSAMLphp with other applications.
  Constructor
 </h2>
 <div class="codehilite">
- <pre><span></span><code>  new \SimpleSAML\Auth\Simple(string $authSource)
+ <pre><span></span><code><span class="w">  </span><span class="nx">new</span><span class="w"> </span><span class="err">\</span><span class="nx">SimpleSAML</span><span class="err">\</span><span class="nx">Auth</span><span class="err">\</span><span class="nx">Simple</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="err">$</span><span class="nx">authSource</span><span class="p">)</span>
 </code></pre>
 </div>
 <p>
@@ -127,7 +128,7 @@ This authentication source must exist in
  Example
 </h3>
 <div class="codehilite">
- <pre><span></span><code>  $auth = new \SimpleSAML\Auth\Simple('default-sp');
+ <pre><span></span><code><span class="w">  </span><span class="err">$</span><span class="nx">auth</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">new</span><span class="w"> </span><span class="err">\</span><span class="nx">SimpleSAML</span><span class="err">\</span><span class="nx">Auth</span><span class="err">\</span><span class="nx">Simple</span><span class="p">(</span><span class="err">'</span><span class="k">default</span><span class="o">-</span><span class="nx">sp</span><span class="err">'</span><span class="p">);</span>
 </code></pre>
 </div>
 <h2 id="isauthenticated">
@@ -193,25 +194,25 @@ See the documentation for the
  Example 1
 </h3>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">auth-</span><span class="o">&gt;</span><span class="nt">requireAuth</span><span class="o">();</span>
-<span class="w">  </span><span class="nt">SimpleSAML_Session</span><span class="p">::</span><span class="nd">getSessionFromRequest</span><span class="o">()</span><span class="nt">-</span><span class="o">&gt;</span><span class="nt">cleanup</span><span class="o">();</span>
-<span class="w">  </span><span class="nt">print</span><span class="o">(</span><span class="s2">"Hello, authenticated user!"</span><span class="o">);</span>
+ <pre><span></span><code><span class="w">  </span><span class="err">$</span><span class="nx">auth</span><span class="o">-&gt;</span><span class="nx">requireAuth</span><span class="p">();</span>
+<span class="w">  </span><span class="nx">SimpleSAML_Session</span><span class="o">::</span><span class="nx">getSessionFromRequest</span><span class="p">()</span><span class="o">-&gt;</span><span class="nx">cleanup</span><span class="p">();</span>
+<span class="w">  </span><span class="nx">print</span><span class="p">(</span><span class="s">"Hello, authenticated user!"</span><span class="p">);</span>
 </code></pre>
 </div>
 <h3 id="example-2">
  Example 2
 </h3>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">/*</span>
-<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">Return</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nb">user</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">frontpage</span><span class="w"> </span><span class="n">after</span><span class="w"> </span><span class="n">authentication</span><span class="p">,</span><span class="w"> </span><span class="n">don</span><span class="o">'</span><span class="n">t</span><span class="w"> </span><span class="n">post</span>
-<span class="w">   </span><span class="o">*</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="n">POST</span><span class="w"> </span><span class="n">data</span><span class="p">.</span>
-<span class="w">   </span><span class="o">*/</span>
-<span class="w">  </span><span class="no">$</span><span class="n">auth</span><span class="o">-&gt;</span><span class="n">requireAuth</span><span class="p">([</span>
-<span class="w">      </span><span class="s">'ReturnTo'</span><span class="w"> </span><span class="p">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">'https://sp.example.org/'</span><span class="p">,</span>
-<span class="w">      </span><span class="s">'KeepPost'</span><span class="w"> </span><span class="p">=</span><span class="o">&gt;</span><span class="w"> </span><span class="n">FALSE</span><span class="p">,</span>
+ <pre><span></span><code><span class="w">  </span><span class="cm">/*</span>
+<span class="cm">   * Return the user to the frontpage after authentication, don't post</span>
+<span class="cm">   * the current POST data.</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="err">$</span><span class="nx">auth</span><span class="o">-&gt;</span><span class="nx">requireAuth</span><span class="p">([</span>
+<span class="w">      </span><span class="err">'</span><span class="nx">ReturnTo</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="nx">https</span><span class="p">:</span><span class="c1">//sp.example.org/',</span>
+<span class="w">      </span><span class="err">'</span><span class="nx">KeepPost</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nx">FALSE</span><span class="p">,</span>
 <span class="w">  </span><span class="p">]);</span>
-<span class="w">  </span><span class="n">SimpleSAML_Session</span><span class="p">::</span><span class="n">getSessionFromRequest</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">cleanup</span><span class="p">();</span>
-<span class="w">  </span><span class="nb">print</span><span class="p">(</span><span class="s">"Hello, authenticated user!"</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">SimpleSAML_Session</span><span class="o">::</span><span class="nx">getSessionFromRequest</span><span class="p">()</span><span class="o">-&gt;</span><span class="nx">cleanup</span><span class="p">();</span>
+<span class="w">  </span><span class="nx">print</span><span class="p">(</span><span class="s">"Hello, authenticated user!"</span><span class="p">);</span>
 </code></pre>
 </div>
 <h2 id="login">
@@ -318,12 +319,12 @@ This function will always start a new authentication process.
  Example
 </h3>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="nt">Send</span><span class="w"> </span><span class="nt">a</span><span class="w"> </span><span class="nt">passive</span><span class="w"> </span><span class="nt">authentication</span><span class="w"> </span><span class="nt">request</span><span class="o">.</span>
-<span class="w">  </span><span class="o">$</span><span class="nt">auth-</span><span class="o">&gt;</span><span class="nt">login</span><span class="o">(</span><span class="cp">[</span>
-<span class="w">      </span><span class="s1">'isPassive'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span>
-<span class="w">      </span><span class="s1">'ErrorURL'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://.../error_handler.php'</span><span class="p">,</span>
-<span class="w">  </span><span class="cp">]</span><span class="o">);</span>
-<span class="w">  </span><span class="nt">SimpleSAML_Session</span><span class="p">::</span><span class="nd">getSessionFromRequest</span><span class="o">()</span><span class="nt">-</span><span class="o">&gt;</span><span class="nt">cleanup</span><span class="o">();</span>
+ <pre><span></span><code><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="nx">Send</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="nx">passive</span><span class="w"> </span><span class="nx">authentication</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span>
+<span class="w">  </span><span class="err">$</span><span class="nx">auth</span><span class="o">-&gt;</span><span class="nx">login</span><span class="p">([</span>
+<span class="w">      </span><span class="err">'</span><span class="nx">isPassive</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nx">TRUE</span><span class="p">,</span>
+<span class="w">      </span><span class="err">'</span><span class="nx">ErrorURL</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="nx">https</span><span class="p">:</span><span class="c1">//.../error_handler.php',</span>
+<span class="w">  </span><span class="p">]);</span>
+<span class="w">  </span><span class="nx">SimpleSAML_Session</span><span class="o">::</span><span class="nx">getSessionFromRequest</span><span class="p">()</span><span class="o">-&gt;</span><span class="nx">cleanup</span><span class="p">();</span>
 </code></pre>
 </div>
 <h2 id="logout">
@@ -373,8 +374,8 @@ This function never returns.
  Logout, and redirect to the specified URL.
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">auth-</span><span class="o">&gt;</span><span class="nt">logout</span><span class="o">(</span><span class="s1">'https://sp.example.org/logged_out.php'</span><span class="o">);</span>
-<span class="w">  </span><span class="nt">SimpleSAML_Session</span><span class="p">::</span><span class="nd">getSessionFromRequest</span><span class="o">()</span><span class="nt">-</span><span class="o">&gt;</span><span class="nt">cleanup</span><span class="o">();</span>
+ <pre><span></span><code><span class="w">  </span><span class="err">$</span><span class="nx">auth</span><span class="o">-&gt;</span><span class="nx">logout</span><span class="p">(</span><span class="err">'</span><span class="nx">https</span><span class="p">:</span><span class="c1">//sp.example.org/logged_out.php');</span>
+<span class="w">  </span><span class="nx">SimpleSAML_Session</span><span class="o">::</span><span class="nx">getSessionFromRequest</span><span class="p">()</span><span class="o">-&gt;</span><span class="nx">cleanup</span><span class="p">();</span>
 </code></pre>
 </div>
 <h3 id="example-2_1">
@@ -384,12 +385,12 @@ This function never returns.
  Same as the previous, but check the result of the logout operation afterwards.
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="o">$</span><span class="nt">auth-</span><span class="o">&gt;</span><span class="nt">logout</span><span class="o">(</span><span class="cp">[</span>
-<span class="w">      </span><span class="s1">'ReturnTo'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://sp.example.org/logged_out.php'</span><span class="p">,</span>
-<span class="w">      </span><span class="s1">'ReturnStateParam'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'LogoutState'</span><span class="p">,</span>
-<span class="w">      </span><span class="s1">'ReturnStateStage'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'MyLogoutState'</span><span class="p">,</span>
-<span class="w">  </span><span class="cp">]</span><span class="o">);</span>
-<span class="w">  </span><span class="nt">SimpleSAML_Session</span><span class="p">::</span><span class="nd">getSessionFromRequest</span><span class="o">()</span><span class="nt">-</span><span class="o">&gt;</span><span class="nt">cleanup</span><span class="o">();</span>
+ <pre><span></span><code><span class="w">  </span><span class="err">$</span><span class="nx">auth</span><span class="o">-&gt;</span><span class="nx">logout</span><span class="p">([</span>
+<span class="w">      </span><span class="err">'</span><span class="nx">ReturnTo</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="nx">https</span><span class="p">:</span><span class="c1">//sp.example.org/logged_out.php',</span>
+<span class="w">      </span><span class="err">'</span><span class="nx">ReturnStateParam</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="nx">LogoutState</span><span class="err">'</span><span class="p">,</span>
+<span class="w">      </span><span class="err">'</span><span class="nx">ReturnStateStage</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="nx">MyLogoutState</span><span class="err">'</span><span class="p">,</span>
+<span class="w">  </span><span class="p">]);</span>
+<span class="w">  </span><span class="nx">SimpleSAML_Session</span><span class="o">::</span><span class="nx">getSessionFromRequest</span><span class="p">()</span><span class="o">-&gt;</span><span class="nx">cleanup</span><span class="p">();</span>
 </code></pre>
 </div>
 <p>
@@ -521,7 +522,7 @@ You can easily create your own links without using this function.
 The URL should be:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">   </span>...<span class="o">/</span><span class="nv">simplesaml</span><span class="o">/</span><span class="nv">module</span>.<span class="nv">php</span><span class="o">/</span><span class="nv">core</span><span class="o">/</span><span class="nv">as_login</span>.<span class="nv">php</span>?<span class="nv">AuthId</span><span class="o">=&lt;</span><span class="nv">authentication</span><span class="w"> </span><span class="nv">source</span><span class="o">&gt;&amp;</span><span class="nv">ReturnTo</span><span class="o">=&lt;</span><span class="k">return</span><span class="w"> </span><span class="nv">URL</span><span class="o">&gt;</span>
+ <pre><span></span><code><span class="w">   </span><span class="o">.../</span><span class="nx">simplesaml</span><span class="o">/</span><span class="nx">module</span><span class="p">.</span><span class="nx">php</span><span class="o">/</span><span class="nx">core</span><span class="o">/</span><span class="nx">as_login</span><span class="p">.</span><span class="nx">php</span><span class="p">?</span><span class="nx">AuthId</span><span class="p">=&lt;</span><span class="nx">authentication</span><span class="w"> </span><span class="nx">source</span><span class="p">&gt;</span><span class="o">&amp;</span><span class="nx">ReturnTo</span><span class="p">=&lt;</span><span class="k">return</span><span class="w"> </span><span class="nx">URL</span><span class="p">&gt;</span>
 </code></pre>
 </div>
 <h2 id="getlogouturl">
@@ -570,7 +571,8 @@ You can easily create your own links without using this function.
 The URL should be:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">   </span>...<span class="o">/</span><span class="nv">simplesaml</span><span class="o">/</span><span class="nv">module</span>.<span class="nv">php</span><span class="o">/</span><span class="nv">core</span><span class="o">/</span><span class="nv">as_logout</span>.<span class="nv">php</span>?<span class="nv">AuthId</span><span class="o">=&lt;</span><span class="nv">authentication</span><span class="w"> </span><span class="nv">source</span><span class="o">&gt;&amp;</span><span class="nv">ReturnTo</span><span class="o">=&lt;</span><span class="k">return</span><span class="w"> </span><span class="nv">URL</span><span class="o">&gt;</span>
+ <pre><span></span><code><span class="w">   </span><span class="o">.../</span><span class="nx">simplesaml</span><span class="o">/</span><span class="nx">module</span><span class="p">.</span><span class="nx">php</span><span class="o">/</span><span class="nx">core</span><span class="o">/</span><span class="nx">as_logout</span><span class="p">.</span><span class="nx">php</span><span class="p">?</span><span class="nx">AuthId</span><span class="p">=&lt;</span><span class="nx">authentication</span><span class="w"> </span><span class="nx">source</span><span class="p">&gt;</span><span class="o">&amp;</span><span class="nx">ReturnTo</span><span class="p">=&lt;</span><span class="k">return</span><span class="w"> </span><span class="nx">URL</span><span class="p">&gt;</span>
 </code></pre>
-</div></main></body>
+</div>
+</main></body>
 </html>

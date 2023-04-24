@@ -77,7 +77,8 @@
  </nav>
  <div id="content">
  </div>
-</header><main><h1 id="scoping">
+</header>
+<main><h1 id="scoping">
  Scoping
 </h1>
 <div class="toc">
@@ -244,11 +245,11 @@ AuthenticatingAuthority elements.
 can be retrieved as an array from the authentication data.
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="nt">Get</span><span class="w"> </span><span class="nt">the</span><span class="w"> </span><span class="nt">authentication</span><span class="w"> </span><span class="nt">source</span><span class="o">.</span>
-<span class="w">  </span><span class="o">$</span><span class="nt">as</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">new</span><span class="w"> </span><span class="err">\</span><span class="nt">SimpleSAML</span><span class="err">\</span><span class="nt">Auth</span><span class="err">\</span><span class="nt">Simple</span><span class="o">();</span>
+ <pre><span></span><code><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="nx">Get</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">authentication</span><span class="w"> </span><span class="nx">source</span><span class="p">.</span>
+<span class="w">  </span><span class="err">$</span><span class="k">as</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">new</span><span class="w"> </span><span class="err">\</span><span class="nx">SimpleSAML</span><span class="err">\</span><span class="nx">Auth</span><span class="err">\</span><span class="nx">Simple</span><span class="p">();</span>
 
-<span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="nt">Get</span><span class="w"> </span><span class="nt">the</span><span class="w"> </span><span class="nt">AuthenticatingAuthority</span>
-<span class="w">  </span><span class="o">$</span><span class="nt">aa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="nt">as-</span><span class="o">&gt;</span><span class="nt">getAuthData</span><span class="o">(</span><span class="s1">'saml:AuthenticatingAuthority'</span><span class="o">);</span>
+<span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="nx">Get</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">AuthenticatingAuthority</span>
+<span class="w">  </span><span class="err">$</span><span class="nx">aa</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="err">$</span><span class="k">as</span><span class="o">-&gt;</span><span class="nx">getAuthData</span><span class="p">(</span><span class="err">'</span><span class="nx">saml</span><span class="p">:</span><span class="nx">AuthenticatingAuthority</span><span class="err">'</span><span class="p">);</span>
 </code></pre>
 </div>
 <h2 id="support">
@@ -273,5 +274,6 @@ can be retrieved as an array from the authentication data.
    Join the SimpleSAMLphp user's mailing list
   </a>
  </li>
-</ul></main></body>
+</ul>
+</main></body>
 </html>

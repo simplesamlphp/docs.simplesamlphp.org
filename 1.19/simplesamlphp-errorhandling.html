@@ -77,7 +77,8 @@
  </nav>
  <div id="content">
  </div>
-</header><main><h1 id="exception-and-error-handling-in-simplesamlphp">
+</header>
+<main><h1 id="exception-and-error-handling-in-simplesamlphp">
  Exception and error handling in SimpleSAMLphp
 </h1>
 <!--
@@ -120,11 +121,11 @@ The simplest case is if you want to throw it during the
 In those methods, you can just throw an exception:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="nv">public</span><span class="w"> </span><span class="nv">function</span><span class="w"> </span><span class="nv">process</span><span class="ss">(</span><span class="o">&amp;</span>$<span class="nv">state</span><span class="ss">)</span><span class="w"> </span>{
-<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="ss">(</span>$<span class="nv">state</span>[<span class="s1">'something'</span>]<span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nv">false</span><span class="ss">)</span><span class="w"> </span>{
-<span class="w">          </span><span class="nv">throw</span><span class="w"> </span><span class="nv">new</span><span class="w"> </span>\<span class="nv">SimpleSAML</span>\<span class="nv">Error</span>\<span class="nv">Exception</span><span class="ss">(</span><span class="s1">'Something is wrong...'</span><span class="ss">)</span><span class="c1">;</span>
-<span class="w">      </span>}
-<span class="w">  </span>}
+ <pre><span></span><code><span class="w">  </span><span class="nx">public</span><span class="w"> </span><span class="nx">function</span><span class="w"> </span><span class="nx">process</span><span class="p">(</span><span class="o">&amp;</span><span class="err">$</span><span class="nx">state</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="err">$</span><span class="nx">state</span><span class="p">[</span><span class="err">'</span><span class="nx">something</span><span class="err">'</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="p">=</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nx">throw</span><span class="w"> </span><span class="nx">new</span><span class="w"> </span><span class="err">\</span><span class="nx">SimpleSAML</span><span class="err">\</span><span class="nx">Error</span><span class="err">\</span><span class="nx">Exception</span><span class="p">(</span><span class="err">'</span><span class="nx">Something</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="nx">wrong</span><span class="o">...</span><span class="err">'</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
 </code></pre>
 </div>
 <p>
@@ -571,12 +572,13 @@ This is done to be consistent in what the application receives - now it will alw
  Example code for this function, which implements the same functionality as \SimpleSAML\Error\Error::show, looks something like:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="n">public</span><span class="w"> </span><span class="n">static</span><span class="w"> </span><span class="kr">function</span><span class="w"> </span><span class="n">show</span><span class="p">(</span><span class="err">\</span><span class="n">SimpleSAML</span><span class="err">\</span><span class="n">Configuration</span><span class="w"> </span><span class="err">$</span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="n">array</span><span class="w"> </span><span class="err">$</span><span class="n">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="err">$</span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="err">\</span><span class="n">SimpleSAML</span><span class="err">\</span><span class="n">XHTML</span><span class="err">\</span><span class="n">Template</span><span class="p">(</span><span class="err">$</span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="s">'error.php'</span><span class="p">,</span><span class="w"> </span><span class="s">'errors'</span><span class="p">);</span>
-<span class="w">      </span><span class="err">$</span><span class="n">t</span><span class="o">-&gt;</span><span class="kt">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">array_merge</span><span class="p">(</span><span class="err">$</span><span class="n">t</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="err">$</span><span class="n">data</span><span class="p">);</span>
-<span class="w">      </span><span class="err">$</span><span class="n">t</span><span class="o">-&gt;</span><span class="n">show</span><span class="p">();</span>
-<span class="w">      </span><span class="n">exit</span><span class="p">;</span>
+ <pre><span></span><code><span class="w">  </span><span class="nx">public</span><span class="w"> </span><span class="nx">static</span><span class="w"> </span><span class="nx">function</span><span class="w"> </span><span class="nx">show</span><span class="p">(</span><span class="err">\</span><span class="nx">SimpleSAML</span><span class="err">\</span><span class="nx">Configuration</span><span class="w"> </span><span class="err">$</span><span class="nx">config</span><span class="p">,</span><span class="w"> </span><span class="nx">array</span><span class="w"> </span><span class="err">$</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="err">$</span><span class="nx">t</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">new</span><span class="w"> </span><span class="err">\</span><span class="nx">SimpleSAML</span><span class="err">\</span><span class="nx">XHTML</span><span class="err">\</span><span class="nx">Template</span><span class="p">(</span><span class="err">$</span><span class="nx">config</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="nx">error</span><span class="p">.</span><span class="nx">php</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="nx">errors</span><span class="err">'</span><span class="p">);</span>
+<span class="w">      </span><span class="err">$</span><span class="nx">t</span><span class="o">-&gt;</span><span class="nx">data</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">array_merge</span><span class="p">(</span><span class="err">$</span><span class="nx">t</span><span class="o">-&gt;</span><span class="nx">data</span><span class="p">,</span><span class="w"> </span><span class="err">$</span><span class="nx">data</span><span class="p">);</span>
+<span class="w">      </span><span class="err">$</span><span class="nx">t</span><span class="o">-&gt;</span><span class="nx">show</span><span class="p">();</span>
+<span class="w">      </span><span class="nx">exit</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}</span>
 </code></pre>
-</div></main></body>
+</div>
+</main></body>
 </html>
