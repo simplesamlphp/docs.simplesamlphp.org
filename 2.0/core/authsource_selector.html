@@ -114,8 +114,13 @@ Authentication Source to use, based on whatever logic is necessary.
  that
 uses the client IP to decide what Authentication Source is called.
 It works by defining zones with corresponding IP-ranges and Authentication
-Sources. The 'default' zone is required and acts as a fallback when none
-of the zones match a client's IP-address.
+Sources. The 'default' zone is optional and acts as a fallback when none
+of the zones match a client's IP-address. When set to
+ <code>
+  null
+ </code>
+ a NotFound-
+exception will be thrown.
 </p>
 <p>
  An example configuration would look like this:
