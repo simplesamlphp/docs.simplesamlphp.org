@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Language" content="en">
+  <meta name="google-site-verification" content="2S8M18BgYs8cLRL6ClTrfW_xGxfFtMZu2b2jhjrNlss">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>SimpleSAMLphp Documentation</title>
+
+  <link rel="stylesheet" href="/res/css/style.css">
+  <link rel="stylesheet" href="/res/css/layout.css">
+</head>
+<body>
+<header>
+ <div id="header">
+  <div class="right">
+   <form action="https://www.google.com/cse" method="get" style="margin-top: 2.5rem; margin-right: 2rem">
+    <input name="cx" type="hidden" value="004202914224971217557:8ks4jjstupq"/>
+    <input name="siteurl" type="hidden" value="www.google.com/cse/home?cx=004202914224971217557:8ks4jjstupq"/>
+    <input name="adkw" type="hidden" value="AELymgVJ6Sk-kOvUjbxvgShTLwiFlma2evFuVCh0r8q23vn_4eVnkcdnPfbgMvYUTpJpVlb-KkGAKkbn0i-AlWHsVRR9O0J4CNb6cXFkEKRdjXxsC_NlVD4"/>
+    <input name="q" placeholder="Search" type="search" value=""/>
+   </form>
+  </div>
+  <div class="v-center logo-header">
+   <div id="logo">
+    <a href="https://simplesamlphp.org" style="color: #fff; text-decoration: none">
+     <span class="simple">
+      Simple
+     </span>
+     <span class="saml">
+      SAML
+     </span>
+     <span class="simple">
+      php
+     </span>
+    </a>
+   </div>
+  </div>
+ </div>
+ <!-- Grey header bar below -->
+ <nav>
+  <div id="headerbar" style="clear: both">
+   <p id="breadcrumb">
+    <a href="https://simplesamlphp.org">
+     Home
+    </a>
+    » Documentation
+   </p>
+   <div class="mtoolbar">
+    <div class="menuitem">
+     <a href="/docs/2.0/index.html">
+      2.0 (stable)
+     </a>
+    </div>
+    <div class="menuitem">
+     <a href="/docs/1.19/index.html">
+      1.19
+     </a>
+    </div>
+    <div class="menuitem first">
+     <a href="/docs/devel/index.html">
+      devel
+     </a>
+    </div>
+    <div class="menuitem last">
+     <a href="/docs/contributed_modules.html">
+      Contributed modules
+     </a>
+    </div>
+   </div>
+   <br style="height: 0px; clear: both"/>
+  </div>
+  <!-- /#headerbar -->
+ </nav>
+ <div id="content">
+ </div>
+</header>
+<main><h1 id="authentication-processing-filters-in-simplesamlphp">
+ Authentication Processing Filters in SimpleSAMLphp
+</h1>
+<!-- 
+  This file is written in Markdown syntax. 
+  For more information about how to use the Markdown syntax, read here:
+  http://daringfireball.net/projects/markdown/syntax
+-->
+<!-- {{TOC}} -->
+<p>
+ In SimpleSAMLphp, there is an API where you can
+ <em>
+  do stuff
+ </em>
+ at the IdP after authentication is complete, and just before you are sent back to the SP. The same API is available on the SP, after you have received a successful Authentication Response from the IdP and before you are sent back to the SP application.
+</p>
+<p>
+ Authentication processing filters postprocess authentication information received from authentication sources. It is possible to use this for additional authentication checks, requesting the user's consent before delivering attributes about the user, modifying the user's attributes, and other things which should be performed before returning the user to the service provider he came from.
+</p>
+<p>
+ Examples of neat things to do using Authentication Processing Filters:
+</p>
+<ul>
+ <li>
+  Filter out a subset of available attributes that are sent to a SP.
+ </li>
+ <li>
+  Modify the name of attributes.
+ </li>
+ <li>
+  Generate new attributes that are composed of others, for example eduPersonTargetedID.
+ </li>
+ <li>
+  Ask the user for consent, before the user is sent back to a service.
+ </li>
+ <li>
+  Implement basic Access Control on the IdP (not necessarily a good idea), limiting access for some users to some SPs.
+ </li>
+</ul>
+<p>
+ Be aware that Authentication Processing Filters do replace some of the previous features in SimpleSAMLphp, named:
+</p>
+<ul>
+ <li>
+  <code>
+   attributemap
+  </code>
+ </li>
+ <li>
+  <code>
+   attributealter
+  </code>
+ </li>
+ <li>
+  <code>
+   attribute filter
+  </code>
+ </li>
+</ul>
+<p>
+ Later in this document, we will describe in detail the alternative Authentication Processing Filters that will replicate these functionalities.
+</p>
+<h2 id="how-to-configure-auth-proc-filters">
+ How to configure Auth Proc Filters
+</h2>
+<p>
+ <em>
+  Auth Proc Filters
+ </em>
+ can be set globally, or to be specific for only one SP or one IdP. That means there are five locations where you can configure
+ <em>
+  Auth Proc Filters
+ </em>
+ :
+</p>
+<ul>
+ <li>
+  Globally in
+  <code>
+   config.php
+  </code>
+ </li>
+ <li>
+  On the SP: Specific for only the SP in
+  <code>
+   authsources.php
+  </code>
+ </li>
+ <li>
+  On the SP: Specific for only one remote IdP in
+  <code>
+   saml20-idp-remote
+  </code>
+  or
+  <code>
+   shib13-idp-remote
+  </code>
+ </li>
+ <li>
+  On the IdP: Specific for only one hosted IdP in
+  <code>
+   saml20-idp-hosted
+  </code>
+  or
+  <code>
+   shib13-idp-hosted
+  </code>
+ </li>
+ <li>
+  On the IdP: Specific for only one remote SP in
+  <code>
+   saml20-sp-remote
+  </code>
+  or
+  <code>
+   shib13-sp-remote
+  </code>
+ </li>
+</ul>
+<p>
+ The configuration of
+ <em>
+  Auth Proc Filters
+ </em>
+ is a list of filters with priority as
+ <em>
+  index
+ </em>
+ . Here is an example of
+ <em>
+  Auth Proc Filters
+ </em>
+ configured in
+ <code>
+  config.php
+ </code>
+ :
+</p>
+<div class="highlight">
+ <pre><span></span><code><span class="x">'authproc.idp' =&gt; [</span>
+<span class="x">    10 =&gt; [</span>
+<span class="x">        'class' =&gt; 'core:AttributeMap', </span>
+<span class="x">        'addurnprefix'</span>
+<span class="x">    ],</span>
+<span class="x">    20 =&gt; 'core:TargetedID',</span>
+<span class="x">    50 =&gt; 'core:AttributeLimit',</span>
+<span class="x">    90 =&gt; [</span>
+<span class="x">        'class' =&gt; 'consent:Consent', </span>
+<span class="x">        'store' =&gt; 'consent:Cookie', </span>
+<span class="x">        'focus' =&gt; 'yes', </span>
+<span class="x">        'checked' =&gt; true</span>
+<span class="x">    ],</span>
+<span class="x">],</span>
+</code></pre>
+</div>
+<p>
+ This configuration will execute
+ <em>
+  Auth Proc Filters
+ </em>
+ one by one, with the priority value in increasing order. When
+ <em>
+  Auth Proc Filters
+ </em>
+ is configured in multiple places, in example both globally, in the hosted IdP and remote SP metadata, then the list is interleaved sorted by priority.
+</p>
+<p>
+ The most important parameter of each item on the list is the
+ <em>
+  class
+ </em>
+ of the
+ <em>
+  Auth Proc Filter
+ </em>
+ . The syntax of the class is
+ <code>
+  modulename:classname
+ </code>
+ . As an example the class definition
+ <code>
+  core:AttributeLimit
+ </code>
+ will be expanded to look for the class
+ <code>
+  \SimpleSAML\Module\core\Auth\Process\AttributeLimit
+ </code>
+ . The location of this class file
+ <em>
+  must
+ </em>
+ then be:
+ <code>
+  modules/core/lib/Auth/Process/AttributeLimit.php
+ </code>
+ .
+</p>
+<p>
+ You will see that a bunch of useful filters is included in the
+ <code>
+  core
+ </code>
+ module. In addition the
+ <code>
+  consent
+ </code>
+ module that is included in the SimpleSAMLphp distribution implements a filter. Beyond that, you are encouraged to create your own filters and share with the community. If you have created a cool
+ <em>
+  Auth Proc Filter
+ </em>
+ that does something useful, let us know, and we may share it on the
+ <a href="http://simplesamlphp.org">
+  SimpleSAMLphp web site
+ </a>
+ .
+</p>
+<p>
+ When you know the class definition of a filter, and the priority, the simple way to configure the filter is:
+</p>
+<div class="highlight">
+ <pre><span></span><code><span class="x">20 =&gt; 'core:TargetedID',</span>
+</code></pre>
+</div>
+<p>
+ This is analogous to:
+</p>
+<div class="highlight">
+ <pre><span></span><code><span class="x">20 =&gt; [</span>
+<span class="x">    'class' =&gt; 'core:TargetedID'</span>
+<span class="x">],</span>
+</code></pre>
+</div>
+<p>
+ Some
+ <em>
+  Auth Proc Filters
+ </em>
+ have optional or required
+ <em>
+  parameters
+ </em>
+ . To send parameters to
+ <em>
+  Auth Proc Filters
+ </em>
+ , you need to choose the second of the two alernatives above. Here is an example of provided parameters to the consent module:
+</p>
+<div class="highlight">
+ <pre><span></span><code><span class="x">90 =&gt; [</span>
+<span class="x">    'class' =&gt; 'consent:Consent', </span>
+<span class="x">    'store' =&gt; 'consent:Cookie', </span>
+<span class="x">    'focus' =&gt; 'yes', </span>
+<span class="x">    'checked' =&gt; true</span>
+<span class="x">],</span>
+</code></pre>
+</div>
+<h3 id="filters-in-configphp">
+ Filters in
+ <code>
+  config.php
+ </code>
+</h3>
+<p>
+ Global
+ <em>
+  Auth Proc Filters
+ </em>
+ are configured in the
+ <code>
+  config.php
+ </code>
+ file. You will see that the config template already includes an example configuration.
+</p>
+<p>
+ There are two config parameters:
+</p>
+<ul>
+ <li>
+  <code>
+   authproc.idp
+  </code>
+  and
+ </li>
+ <li>
+  <code>
+   authproc.sp
+  </code>
+ </li>
+</ul>
+<p>
+ The filters in
+ <code>
+  authproc.idp
+ </code>
+ will be executed at the IdP side regardless of which IdP and SP entity that is involved.
+</p>
+<p>
+ The filters in
+ <code>
+  authproc.sp
+ </code>
+ will be executed at the SP side regardless of which SP and IdP entity that is involved.
+</p>
+<h3 id="filters-in-metadata">
+ Filters in metadata
+</h3>
+<p>
+ Filters can be added both in
+ <code>
+  hosted
+ </code>
+ and
+ <code>
+  remote
+ </code>
+ metadata. Here is an example of a filter added in a metadata file:
+</p>
+<div class="highlight">
+ <pre><span></span><code><span class="x">'__DYNAMIC:1__' =&gt; [</span>
+<span class="x">    'host' =&gt; '__DEFAULT_',</span>
+<span class="x">    'privatekey' =&gt; 'example.org.pem',</span>
+<span class="x">    'certificate' =&gt; 'example.org.crt',</span>
+<span class="x">    'auth' =&gt; 'feide',</span>
+<span class="x">    'authproc' =&gt; [</span>
+<span class="x">        40 =&gt; 'core:TargetedID',</span>
+<span class="x">    ],</span>
+<span class="x">]</span>
+</code></pre>
+</div>
+<p>
+ The example above is in
+ <code>
+  saml20-idp-hosted
+ </code>
+ .
+</p>
+<h2 id="auth-proc-filters-included-in-the-simplesamlphp-distribution">
+ Auth Proc Filters included in the SimpleSAMLphp distribution
+</h2>
+<p>
+ The following filters are included in the SimpleSAMLphp distribution:
+</p>
+<ul>
+ <li>
+  <a href="./core/authproc_attributeadd.html">
+   <code>
+    core:AttributeAdd
+   </code>
+  </a>
+  : Add attributes to the response.
+ </li>
+ <li>
+  <a href="./core/authproc_attributecopy.html">
+   <code>
+    core:AttributeCopy
+   </code>
+  </a>
+  : Copy existing attributes to the response.
+ </li>
+ <li>
+  <a href="./core/authproc_attributealter.html">
+   <code>
+    core:AttributeAlter
+   </code>
+  </a>
+  : Do search-and-replace on attributevalues.
+ </li>
+ <li>
+  <a href="./core/authproc_attributelimit.html">
+   <code>
+    core:AttributeLimit
+   </code>
+  </a>
+  : Limit the attributes in the response.
+ </li>
+ <li>
+  <a href="./core/authproc_attributemap.html">
+   <code>
+    core:AttributeMap
+   </code>
+  </a>
+  : Change the name of the attributes.
+ </li>
+ <li>
+  <a href="./core/authproc_attributerealm.html">
+   <code>
+    core:AttributeRealm
+   </code>
+  </a>
+  : (deprecated) Create an attribute with the realm of the user.
+ </li>
+ <li>
+  <a href="./core/authproc_attributevaluemap.html">
+   <code>
+    core:AttributeValueMap
+   </code>
+  </a>
+  : Map attribute values to new values and attribute name.
+ </li>
+ <li>
+  <a href="./core/authproc_cardinality.html">
+   <code>
+    core:Cardinality
+   </code>
+  </a>
+  : Ensure the number of attribute values is within the specified multiplicity.
+ </li>
+ <li>
+  <a href="./core/authproc_cardinalitysingle.html">
+   <code>
+    core:CardinalitySingle
+   </code>
+  </a>
+  : Ensure the correct cardinality of single-valued attributes.
+ </li>
+ <li>
+  <a href="./core/authproc_generategroups.html">
+   <code>
+    core:GenerateGroups
+   </code>
+  </a>
+  : Generate a
+  <code>
+   group
+  </code>
+  attribute for the user.
+ </li>
+ <li>
+  <a href="./core/authproc_languageadaptor.html">
+   <code>
+    core:LanguageAdaptor
+   </code>
+  </a>
+  : Transferring language setting from IdP to SP.
+ </li>
+ <li>
+  <a href="./core/authproc_php.html">
+   <code>
+    core:PHP
+   </code>
+  </a>
+  : Modify attributes with custom PHP code.
+ </li>
+ <li>
+  <a href="./core/authproc_scopeattribute.html">
+   <code>
+    core:ScopeAttribute
+   </code>
+  </a>
+  : Add scope to attribute.
+ </li>
+ <li>
+  <a href="./core/authproc_scopefromattribute.html">
+   <code>
+    core:ScopeFromAttribute
+   </code>
+  </a>
+  : Create a new attribute based on the scope on a different attribute.
+ </li>
+ <li>
+  <a href="./core/authproc_statisticswithattribute.html">
+   <code>
+    core:StatisticsWithAttribute
+   </code>
+  </a>
+  : Create a statistics logentry.
+ </li>
+ <li>
+  <a href="./core/authproc_targetedid.html">
+   <code>
+    core:TargetedID
+   </code>
+  </a>
+  : Generate the
+  <code>
+   eduPersonTargetedID
+  </code>
+  attribute.
+ </li>
+ <li>
+  <a href="./core/authproc_warnshortssointerval.html">
+   <code>
+    core:WarnShortSSOInterval
+   </code>
+  </a>
+  : Give a warning if the user logs into the same SP twice within a few seconds.
+ </li>
+ <li>
+  <a href="./saml/nameid.html">
+   <code>
+    saml:AttributeNameID
+   </code>
+  </a>
+  : Generate custom NameID with the value of an attribute.
+ </li>
+ <li>
+  <a href="./saml/authproc_authncontextclassref.html">
+   <code>
+    saml:AuthnContextClassRef
+   </code>
+  </a>
+  : Set the authentication context in the response.
+ </li>
+ <li>
+  <a href="./saml/authproc_expectedauthncontextclassref.html">
+   <code>
+    saml:ExpectedAuthnContextClassRef
+   </code>
+  </a>
+  : Verify the user's authentication context.
+ </li>
+ <li>
+  <a href="./saml/filterscopes.html">
+   <code>
+    saml:FilterScopes
+   </code>
+  </a>
+  : Filter attribute values with scopes forbidden for an IdP.
+ </li>
+ <li>
+  <a href="./saml/nameidattribute.html">
+   <code>
+    saml:NameIDAttribute
+   </code>
+  </a>
+  : Create an attribute based on the NameID we receive from the IdP.
+ </li>
+ <li>
+  <a href="./saml/nameid.html">
+   <code>
+    saml:PersistentNameID
+   </code>
+  </a>
+  : Generate persistent NameID from an attribute.
+ </li>
+ <li>
+  <a href="./saml/nameid.html">
+   <code>
+    saml:PersistentNameID2TargetedID
+   </code>
+  </a>
+  : Store persistent NameID as eduPersonTargetedID.
+ </li>
+ <li>
+  <a href="./saml/nameid.html">
+   <code>
+    saml:TransientNameID
+   </code>
+  </a>
+  : Generate transient NameID.
+ </li>
+</ul>
+<p>
+ See the
+ <a href="https://simplesamlphp.org/modules">
+  Third-party modules
+ </a>
+ page on the SimpleSAMLphp website
+for externally hosted modules that may provide a processing filter.
+</p>
+<h2 id="writing-your-own-auth-proc-filter">
+ Writing your own Auth Proc Filter
+</h2>
+<p>
+ Look at the included
+ <em>
+  Auth Proc Filters
+ </em>
+ as examples. Copy the classes into your own module and start playing around.
+</p>
+<p>
+ Authentication processing filters are created by creating a class under
+ <code>
+  Auth/Process/
+ </code>
+ in a module. This class is expected to subclass
+ <code>
+  \SimpleSAML\Auth\ProcessingFilter
+ </code>
+ . A filter must implement at least one function - the
+ <code>
+  process(&amp;$request)
+ </code>
+ -function. This function can access the
+ <code>
+  $request
+ </code>
+ -array to add, delete and modify attributes, and can also do more advanced processing based on the SP/IdP metadata (which is also included in the
+ <code>
+  $request
+ </code>
+ -array). When this function returns, it is assumed that the filter has finished processing.
+</p>
+<p>
+ If a filter for some reason needs to redirect the user, for example to show a web page, it should save the current request. Upon completion it should retrieve the request, update it with the changes it is going to make, and call
+ <code>
+  \SimpleSAML\Auth\ProcessingChain::resumeProcessing
+ </code>
+ . This function will continue processing the next configured filter.
+</p>
+<p>
+ Requirements for authentication processing filters:
+</p>
+<ul>
+ <li>
+  Must be derived from the
+  <code>
+   \SimpleSAML\Auth\ProcessingFilter
+  </code>
+  -class.
+ </li>
+ <li>
+  If a constructor is implemented, it must first call the parent constructor, passing along all parameters, before accessing any of the parameters. In general, only the $config parameter should be accessed.
+ </li>
+ <li>
+  The
+  <code>
+   process(&amp;$request)
+  </code>
+  -function must be implemented. If this function completes, it is assumed that processing is completed, and that the $request array has been updated.
+ </li>
+ <li>
+  If the
+  <code>
+   process
+  </code>
+  -function does not return, it must at a later time call
+  <code>
+   \SimpleSAML\Auth\ProcessingChain::resumeProcessing
+  </code>
+  with the new request state. The request state must be an update of the array passed to the
+  <code>
+   process
+  </code>
+  -function.
+ </li>
+ <li>
+  No pages may be shown to the user from the
+  <code>
+   process
+  </code>
+  -function. Instead, the request state should be saved, and the user should be redirected to a new page. This must be done to prevent unpredictable events if the user for example reloads the page.
+ </li>
+ <li>
+  No state information should be stored in the filter object. It must instead be stored in the request state array. Any changes to variables in the filter object may be lost.
+ </li>
+ <li>
+  The filter object must be serializable. It may be serialized between being constructed and the call to the
+  <code>
+   process
+  </code>
+  -function. This means that, for example, no database connections should be created in the constructor and later used in the
+  <code>
+   process
+  </code>
+  -function.
+ </li>
+</ul>
+<p>
+ <em>
+  Note
+ </em>
+ : An Auth Proc Filter will not work in the "Test authentication sources" option in the web UI of a SimpleSAMLphp IdP. It will only be triggered in conjunction with an actual SP. So you need to set up an IdP
+ <em>
+  and
+ </em>
+ and SP when testing your filter.
+</p>
+<p>
+ Don't hestitate to ask on the SimpleSAMLphp mailinglist if you have problems or questions, or want to share your
+ <em>
+  Auth Proc Filter
+ </em>
+ with others.
+</p>
+</main></body>
+</html>

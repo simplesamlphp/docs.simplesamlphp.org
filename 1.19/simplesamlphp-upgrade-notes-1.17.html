@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Language" content="en">
+  <meta name="google-site-verification" content="2S8M18BgYs8cLRL6ClTrfW_xGxfFtMZu2b2jhjrNlss">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>SimpleSAMLphp Documentation</title>
+
+  <link rel="stylesheet" href="/res/css/style.css">
+  <link rel="stylesheet" href="/res/css/layout.css">
+</head>
+<body>
+<header>
+ <div id="header">
+  <div class="right">
+   <form action="https://www.google.com/cse" method="get" style="margin-top: 2.5rem; margin-right: 2rem">
+    <input name="cx" type="hidden" value="004202914224971217557:8ks4jjstupq"/>
+    <input name="siteurl" type="hidden" value="www.google.com/cse/home?cx=004202914224971217557:8ks4jjstupq"/>
+    <input name="adkw" type="hidden" value="AELymgVJ6Sk-kOvUjbxvgShTLwiFlma2evFuVCh0r8q23vn_4eVnkcdnPfbgMvYUTpJpVlb-KkGAKkbn0i-AlWHsVRR9O0J4CNb6cXFkEKRdjXxsC_NlVD4"/>
+    <input name="q" placeholder="Search" type="search" value=""/>
+   </form>
+  </div>
+  <div class="v-center logo-header">
+   <div id="logo">
+    <a href="https://simplesamlphp.org" style="color: #fff; text-decoration: none">
+     <span class="simple">
+      Simple
+     </span>
+     <span class="saml">
+      SAML
+     </span>
+     <span class="simple">
+      php
+     </span>
+    </a>
+   </div>
+  </div>
+ </div>
+ <!-- Grey header bar below -->
+ <nav>
+  <div id="headerbar" style="clear: both">
+   <p id="breadcrumb">
+    <a href="https://simplesamlphp.org">
+     Home
+    </a>
+    » Documentation
+   </p>
+   <div class="mtoolbar">
+    <div class="menuitem">
+     <a href="/docs/2.0/index.html">
+      2.0 (stable)
+     </a>
+    </div>
+    <div class="menuitem">
+     <a href="/docs/1.19/index.html">
+      1.19
+     </a>
+    </div>
+    <div class="menuitem first">
+     <a href="/docs/devel/index.html">
+      devel
+     </a>
+    </div>
+    <div class="menuitem last">
+     <a href="/docs/contributed_modules.html">
+      Contributed modules
+     </a>
+    </div>
+   </div>
+   <br style="height: 0px; clear: both"/>
+  </div>
+  <!-- /#headerbar -->
+ </nav>
+ <div id="content">
+ </div>
+</header>
+<main><h1 id="upgrade-notes-for-simplesamlphp-117">
+ Upgrade notes for SimpleSAMLphp 1.17
+</h1>
+<p>
+ The minimum PHP version required is now PHP 5.5.
+</p>
+<p>
+ All (remaining) classes have been changed to namespaces. There are mappings
+from the legacy names so calling code should remain working. Custom code
+(e.g. modules) that test for class names, e.g. when catching specific
+exceptions, may need to be changed.
+</p>
+<p>
+ The possibility has been reintroduced to omit the NameIdPolicy from SP
+AuthnRequests by setting NameIDPolicy to
+ <code>
+  false
+ </code>
+ . The preferred way is
+to configure it as an array
+ <code>
+  [ 'Format' =&gt; format, 'AllowCreate' =&gt; true/false ]
+ </code>
+ ,
+which is now also the format used in the
+ <code>
+  saml:NameIDPolicy
+ </code>
+ variable
+in
+ <code>
+  $state
+ </code>
+ .
+</p>
+<p>
+ The code, config and documentation have switched to using the modern PHP
+array syntax. This should not have an impact as both will remain working
+equally, but the code examples and config templates look slightly different.
+The following are equivalent:
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="w">  </span><span class="c1">// Old style array syntax</span>
+<span class="w">  </span><span class="no">$</span><span class="n">config</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">array</span><span class="p">(</span>
+<span class="w">      </span><span class="s">'authproc'</span><span class="w"> </span><span class="p">=</span><span class="o">&gt;</span><span class="w"> </span><span class="n">array</span><span class="p">(</span>
+<span class="w">          </span><span class="mi">60</span><span class="w"> </span><span class="p">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">'class:etc'</span>
+<span class="w">      </span><span class="p">),</span>
+<span class="w">      </span><span class="s">'other example'</span><span class="w"> </span><span class="p">=</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">  </span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// Current style array syntax</span>
+<span class="w">  </span><span class="no">$</span><span class="n">config</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="s">'authproc'</span><span class="w"> </span><span class="p">=</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="mi">60</span><span class="w"> </span><span class="p">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">'class:etc'</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="s">'other example'</span><span class="w"> </span><span class="p">=</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">  </span><span class="p">];</span>
+</code></pre>
+</div>
+</main></body>
+</html>

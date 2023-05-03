@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Language" content="en">
+  <meta name="google-site-verification" content="2S8M18BgYs8cLRL6ClTrfW_xGxfFtMZu2b2jhjrNlss">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>SimpleSAMLphp Documentation</title>
+
+  <link rel="stylesheet" href="/res/css/style.css">
+  <link rel="stylesheet" href="/res/css/layout.css">
+</head>
+<body>
+<header>
+ <div id="header">
+  <div class="right">
+   <form action="https://www.google.com/cse" method="get" style="margin-top: 2.5rem; margin-right: 2rem">
+    <input name="cx" type="hidden" value="004202914224971217557:8ks4jjstupq"/>
+    <input name="siteurl" type="hidden" value="www.google.com/cse/home?cx=004202914224971217557:8ks4jjstupq"/>
+    <input name="adkw" type="hidden" value="AELymgVJ6Sk-kOvUjbxvgShTLwiFlma2evFuVCh0r8q23vn_4eVnkcdnPfbgMvYUTpJpVlb-KkGAKkbn0i-AlWHsVRR9O0J4CNb6cXFkEKRdjXxsC_NlVD4"/>
+    <input name="q" placeholder="Search" type="search" value=""/>
+   </form>
+  </div>
+  <div class="v-center logo-header">
+   <div id="logo">
+    <a href="https://simplesamlphp.org" style="color: #fff; text-decoration: none">
+     <span class="simple">
+      Simple
+     </span>
+     <span class="saml">
+      SAML
+     </span>
+     <span class="simple">
+      php
+     </span>
+    </a>
+   </div>
+  </div>
+ </div>
+ <!-- Grey header bar below -->
+ <nav>
+  <div id="headerbar" style="clear: both">
+   <p id="breadcrumb">
+    <a href="https://simplesamlphp.org">
+     Home
+    </a>
+    » Documentation
+   </p>
+   <div class="mtoolbar">
+    <div class="menuitem">
+     <a href="/docs/2.0/index.html">
+      2.0 (stable)
+     </a>
+    </div>
+    <div class="menuitem">
+     <a href="/docs/1.19/index.html">
+      1.19
+     </a>
+    </div>
+    <div class="menuitem first">
+     <a href="/docs/devel/index.html">
+      devel
+     </a>
+    </div>
+    <div class="menuitem last">
+     <a href="/docs/contributed_modules.html">
+      Contributed modules
+     </a>
+    </div>
+   </div>
+   <br style="height: 0px; clear: both"/>
+  </div>
+  <!-- /#headerbar -->
+ </nav>
+ <div id="content">
+ </div>
+</header>
+<main><h1 id="creating-authentication-sources">
+ Creating authentication sources
+</h1>
+<p>
+ All authentication sources are located in the
+ <code>
+  lib/Auth/Source/
+ </code>
+ directory in a module, and the class name is
+ <code>
+  \SimpleSAML\Module\&lt;module&gt;\Auth\Source\&lt;name&gt;
+ </code>
+ .
+The authentication source must extend the
+ <code>
+  \SimpleSAML\Auth\Source
+ </code>
+ class or one of its subclasses.
+</p>
+<p>
+ The "entry point" of an authentication source is the
+ <code>
+  authenticate()
+ </code>
+ -function.
+Once that function is called, the authentication module can do whatever it wishes to do.
+There are only two requirements:
+</p>
+<ul>
+ <li>
+  <p>
+   Never show any pages to the user directly from within the
+   <code>
+    authenticate()
+   </code>
+   -function.
+  (This will lead to problems if the user decides to reload the page.)
+  </p>
+ </li>
+ <li>
+  <p>
+   Return control to SimpleSAMLphp after authenticating the user.
+  If the module is able to authenticate the user without doing any redirects, it should just update the state-array and return.
+  If the module does a redirect, it must call
+   <code>
+    \SimpleSAML\Auth\Source::completeAuth()
+   </code>
+   with the updated state array.
+  </p>
+ </li>
+</ul>
+<p>
+ Everything else is up to the module.
+If the module needs to redirect the user, for example because it needs to show the user a page asking for credentials, it needs to save the state array.
+For that we have the
+ <code>
+  \SimpleSAML\Auth\State
+ </code>
+ class.
+This is only a convenience class, and you are not required to use it (but its use is encouraged, since it handles some potential pitfalls).
+</p>
+<h2 id="saving-state">
+ Saving state
+</h2>
+<p>
+ The
+ <code>
+  \SimpleSAML\Auth\State
+ </code>
+ class has two functions that you should use:
+ <code>
+  saveState($state, $stage)
+ </code>
+ , and
+ <code>
+  loadState($id, $stage)
+ </code>
+ .
+The
+ <code>
+  $stage
+ </code>
+ parameter must be an unique identifier for the current position in the authentication.
+It is used to prevent a malicious user from taking a state you save in one location, and give it to a different location.
+</p>
+<p>
+ The
+ <code>
+  saveState()
+ </code>
+ -function returns an id, which you should pass to the
+ <code>
+  loadState()
+ </code>
+ -function later.
+</p>
+<h2 id="usernamepassword-authentication">
+ Username/password authentication
+</h2>
+<p>
+ Since username/password authentication is quite a common operation, a base class has been created for this.
+This is the
+ <code>
+  \SimpleSAML\Module\core\Auth\UserPassBase
+ </code>
+ class, which is can be found as
+ <code>
+  modules/core/lib/Auth/UserPassBase.php
+ </code>
+ .
+</p>
+<p>
+ The only function you need to implement is the
+ <code>
+  login($username, $password)
+ </code>
+ -function.
+This function receives the username and password the user entered, and is expected to return the attributes of that user.
+If the username or password is incorrect, it should throw an error saying so:
+</p>
+<div class="highlight">
+ <pre><span></span><code><span class="x">throw new \SimpleSAML\Error\Error('WRONGUSERPASS');</span>
+</code></pre>
+</div>
+<p>
+ "
+ <a href="./simplesamlphp-customauth.html">
+  Implementing custom username/password authentication
+ </a>
+ " describes how to implement username/password authentication using that base class.
+</p>
+<h2 id="generic-rules-requirements">
+ Generic rules &amp; requirements
+</h2>
+<ul>
+ <li>
+  <p>
+   Must be derived from the
+   <code>
+    \SimpleSAML\Auth\Source
+   </code>
+   -class.
+  </p>
+  <p>
+   <strong>
+    Rationale
+   </strong>
+   :
+- Deriving all authentication sources from a single base class allows us extend all authentication sources by extending the base class.
+  </p>
+ </li>
+ <li>
+  <p>
+   If a constructor is implemented, it must first call the parent constructor, passing along all parameters, before accessing any of the parameters.
+  In general, only the $config parameter should be accessed when implementing the authentication source.
+  </p>
+  <p>
+   <strong>
+    Rationale
+   </strong>
+   :
+- PHP doesn't automatically call any parent constructor, so it needs to be done manually.
+- The
+   <code>
+    $info
+   </code>
+   -array is used to provide information to the
+   <code>
+    \SimpleSAML\Auth\Source
+   </code>
+   base class, and therefore needs to be included.
+- Including the
+   <code>
+    $config
+   </code>
+   -array makes it possible to add generic configuration options that are valid for all authentication sources.
+  </p>
+ </li>
+ <li>
+  <p>
+   The
+   <code>
+    authenticate(&amp;$state)
+   </code>
+   -function must be implemented.
+  If this function completes, it is assumed that the user is authenticated, and that the
+   <code>
+    $state
+   </code>
+   -array has been updated with the user's attributes.
+  </p>
+  <p>
+   <strong>
+    Rationale
+   </strong>
+   :
+- Allowing the
+   <code>
+    authenticate()
+   </code>
+   -function to return after updating the
+   <code>
+    $state
+   </code>
+   -array enables us to do authentication without redirecting the user.
+  This can be used if the authentication doesn't require user input, for example if the authentication can be done based on the IP-address of the user.
+  </p>
+ </li>
+ <li>
+  <p>
+   If the
+   <code>
+    authenticate
+   </code>
+   -function does not return, it must at a later time call
+   <code>
+    \SimpleSAML\Auth\Source::completeAuth
+   </code>
+   with the new state array.
+  The state array must be an update of the array passed to the
+   <code>
+    authenticate
+   </code>
+   -function.
+  </p>
+  <p>
+   <strong>
+    Rationale
+   </strong>
+   :
+- Preserving the same state array allows us to save information in that array before the authentication starts, and restoring it when authentication completes.
+  </p>
+ </li>
+ <li>
+  <p>
+   No pages may be shown to the user from the
+   <code>
+    authenticate()
+   </code>
+   -function.
+  Instead, the state should be saved, and the user should be redirected to a new page.
+  </p>
+  <p>
+   <strong>
+    Rationale
+   </strong>
+   :
+- The
+   <code>
+    authenticate()
+   </code>
+   -function is called in the context of a different PHP page.
+  If the user reloads that page, unpredictable results may occur.
+  </p>
+ </li>
+ <li>
+  <p>
+   No state information about any authentication should be stored in the authentication source object.
+  It must instead be stored in the state array.
+  Any changes to variables in the authentication source object may be lost.
+  </p>
+  <p>
+   <strong>
+    Rationale
+   </strong>
+   :
+- This saves us from having to save the entire authentication object between requests.
+  Instead, we can recreate it from the configuration.
+  </p>
+ </li>
+ <li>
+  <p>
+   The authentication source object must be serializable.
+  It may be serialized between being constructed and the call to the
+   <code>
+    authenticate()
+   </code>
+   -function.
+  This means that, for example, no database connections should be created in the constructor and later used in the
+   <code>
+    authenticate()
+   </code>
+   -function.
+  </p>
+  <p>
+   <strong>
+    Rationale
+   </strong>
+   :
+- If parsing the configuration and creating the authentication object is shown to be a bottleneck, we can cache an initialized authentication source.
+  </p>
+ </li>
+</ul>
+</main></body>
+</html>
