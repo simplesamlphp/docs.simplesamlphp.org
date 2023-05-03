@@ -747,18 +747,19 @@ for more information.
  <pre><span></span><code>tr<span class="w"> </span>-c<span class="w"> </span>-d<span class="w"> </span><span class="s1">'0123456789abcdefghijklmnopqrstuvwxyz'</span><span class="w"> </span>&lt;/dev/urandom<span class="w"> </span><span class="p">|</span><span class="w"> </span>dd<span class="w"> </span><span class="nv">bs</span><span class="o">=</span><span class="m">32</span><span class="w"> </span><span class="nv">count</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="p">;</span><span class="nb">echo</span>
 </code></pre>
 </div>
-<div class="codehilite">
- <pre><span></span><code>Here is an example of the configuration option:
-</code></pre>
-</div>
+<p>
+ Here is an example of the configuration option:
+</p>
 <div class="highlight">
  <pre><span></span><code><span class="x">'secretsalt' =&gt; 'randombytesinsertedhere',</span>
 </code></pre>
 </div>
-<div class="codehilite">
- <pre><span></span><code><span class="o">**</span><span class="nv">Please</span><span class="w"> </span><span class="nv">note</span><span class="w"> </span><span class="nv">that</span><span class="w"> </span><span class="nv">changing</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">secret</span><span class="w"> </span><span class="nv">salt</span><span class="w"> </span><span class="nv">may</span><span class="w"> </span><span class="k">break</span><span class="w"> </span><span class="nv">access</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">services</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">your</span><span class="w"> </span><span class="nv">users</span><span class="o">**</span>.
-</code></pre>
-</div>
+<p>
+ <strong>
+  Please note that changing the secret salt may break access to services for your users
+ </strong>
+ .
+</p>
 <ul>
  <li>
   <p>
@@ -820,10 +821,13 @@ for more information.
  <pre><span></span><code><span class="x">'timezone' =&gt; 'Europe/Oslo',</span>
 </code></pre>
 </div>
-<div class="codehilite">
- <pre><span></span><code>You can see [a list of Supported Timezones at php.net](http://php.net/manual/en/timezones.php).
-</code></pre>
-</div>
+<p>
+ You can see
+ <a href="http://php.net/manual/en/timezones.php">
+  a list of Supported Timezones at php.net
+ </a>
+ .
+</p>
 <h2 id="configuring-php">
  Configuring PHP
 </h2>
