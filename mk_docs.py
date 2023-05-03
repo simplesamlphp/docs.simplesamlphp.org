@@ -8,10 +8,9 @@ import json
 from bs4 import BeautifulSoup
 
 # Set up the markdown converter
-md_ext = ['toc', 'fenced_code', 'codehilite', 'def_list']
-md_ext_confs = {
-}
-pymd = markdown.Markdown(extensions=md_ext,extension_configs=md_ext_confs, tab_length=2)
+md_ext = ['toc', 'fenced_code', 'codehilite', 'def_list', 'pymdownx.superfences']
+
+pymd = markdown.Markdown(extensions=md_ext, tab_length=2)
 
 # Convert md file to html file
 # - make sure links remain working

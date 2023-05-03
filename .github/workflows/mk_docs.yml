@@ -23,7 +23,7 @@ jobs:
       with:
         python-version: 3.8 #install the python needed
 
-    - run: pip install markdown glob2 urllib3 beautifulsoup4 Pygments
+    - run: pip install markdown glob2 urllib3 beautifulsoup4 Pygments md_ext mkdocs_custom_fences
 
     - name: execute py script # run the run.py to get the latest data
       run: |
