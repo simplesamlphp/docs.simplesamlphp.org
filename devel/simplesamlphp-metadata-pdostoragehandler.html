@@ -55,11 +55,6 @@
       2.0 (stable)
      </a>
     </div>
-    <div class="menuitem">
-     <a href="/docs/1.19/index.html">
-      1.19
-     </a>
-    </div>
     <div class="menuitem first">
      <a href="/docs/devel/index.html">
       devel
@@ -143,14 +138,14 @@
 <p>
  You will first need to configure a PDO metadata source.
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="o">[</span>root@simplesamlphp<span class="w"> </span>simplesamlphp<span class="o">]</span><span class="c1"># vi config/config.php</span>
 </code></pre>
 </div>
 <p>
  Here is an example of flatfile plus PDO:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'metadata.sources' =&gt; [</span>
 <span class="x">    ['type' =&gt; 'flatfile'],</span>
 <span class="x">    ['type' =&gt; 'pdo'],</span>
@@ -163,7 +158,7 @@
 <p>
  Once you have configured your metadata sources to include a PDO source, you will need to initialize the database. This process will create tables in the database for each type of metadata set (saml20-idp-hosted, saml20-idp-remote, saml20-sp-remote, etc).
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="o">[</span>root@simplesamlphp<span class="w"> </span>simplesamlphp<span class="o">]</span><span class="c1"># php bin/initMDSPdo.php</span>
 </code></pre>
 </div>
@@ -208,7 +203,7 @@
 <p>
  To import all flatfile metadata files into the PDO database, run the following script
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="o">[</span>root@simplesamlphp<span class="w"> </span>simplesamlphp<span class="o">]</span><span class="c1"># php bin/importPdoMetadata.php</span>
 </code></pre>
 </div>

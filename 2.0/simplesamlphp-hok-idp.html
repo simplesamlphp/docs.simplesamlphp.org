@@ -55,11 +55,6 @@
       2.0 (stable)
      </a>
     </div>
-    <div class="menuitem">
-     <a href="/docs/1.19/index.html">
-      1.19
-     </a>
-    </div>
     <div class="menuitem first">
      <a href="/docs/devel/index.html">
       devel
@@ -102,7 +97,7 @@ This certificate is usually selfsigned and stored in the certificate store of th
 <p>
  The IdP requests a client certificate from the user agent during the TLS handshake. This behaviour is enabled with the following Apache webserver configuration:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="nb">SSLEngine</span><span class="w"> </span><span class="k">on</span>
 <span class="nb">SSLCertificateFile</span><span class="w"> </span><span class="sx">/etc/openssl/certs/server.crt</span>
 <span class="nb">SSLCertificateKeyFile</span><span class="w"> </span><span class="sx">/etc/openssl/private/server.key</span>
@@ -132,7 +127,7 @@ environment variable
  </code>
  metadata file:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">$metadata['https://example.org/saml-idp'] = [</span>
 <span class="x">    [....]</span>
 <span class="x">    'auth' =&gt; 'example-userpass',</span>
@@ -156,7 +151,7 @@ The
  </code>
  metadata for SimpleSAMLphp SPs should contain something like the following code:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'SingleSignOnService' =&gt; [</span>
 <span class="x">    [</span>
 <span class="x">        'hoksso:ProtocolBinding' =&gt; 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',</span>
@@ -186,7 +181,7 @@ This means that you have to use the complex endpoint format in
  metadata.
 In general, this should look like the following code:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'AssertionConsumerService' =&gt; [</span>
 <span class="x">    [</span>
 <span class="x">        'Binding' =&gt; 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',</span>

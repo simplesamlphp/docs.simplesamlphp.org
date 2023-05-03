@@ -55,11 +55,6 @@
       2.0 (stable)
      </a>
     </div>
-    <div class="menuitem">
-     <a href="/docs/1.19/index.html">
-      1.19
-     </a>
-    </div>
     <div class="menuitem first">
      <a href="/docs/devel/index.html">
       devel
@@ -169,7 +164,7 @@ It is shipped with the SimpleSAMLphp core.
  The metarefresh module will download and parse the metadata document and store it in metadata files cached locally
 and needs to be installed separately:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code>composer<span class="w"> </span>require<span class="w"> </span>simplesamlphp/simplesamlphp-module-metarefresh
 </code></pre>
 </div>
@@ -192,7 +187,7 @@ and needs to be installed separately:
  </code>
  to true:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">    'module.enable' =&gt; [</span>
 <span class="x">         'cron' =&gt; true,</span>
 <span class="x">         'metarefresh' =&gt; true,</span>
@@ -211,7 +206,7 @@ and needs to be installed separately:
  </code>
  directory.
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/var/simplesamlphp
 cp<span class="w"> </span>modules/cron/config-templates/*.php<span class="w"> </span>config/
 cp<span class="w"> </span>modules/metarefresh/config-templates/*.php<span class="w"> </span>config/
@@ -227,7 +222,7 @@ so in the command line, by invoking metarefresh with the URL of the metadata
 set we want to check. For instance, if we want to configure the metadata of the
 SWITCH AAI Test Federation:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="nb">cd</span><span class="w"> </span>modules/metarefresh/bin
 ./metarefresh.php<span class="w"> </span>-s<span class="w"> </span>http://metadata.aai.switch.ch/metadata.aaitest.xml
 </code></pre>
@@ -246,7 +241,7 @@ SWITCH AAI Test Federation:
  </em>
  running the commands above.
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">SIMPLESAMLPHP_CONFIG_DIR</span><span class="o">=</span><span class="s1">'/custom/config/location'</span>
 </code></pre>
 </div>
@@ -275,7 +270,7 @@ the SimpleSAMLphp mailing list and ask for advice.
  Here's an example of a possible configuration for the Kalmar Federation,
 UK Access Management Federation, and eduGAIN:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">$config = [</span>
 <span class="x">    'sets' =&gt; [</span>
 <span class="x">        'kalmar' =&gt; [</span>
@@ -540,7 +535,7 @@ be sure to use them from the authoritative source.
  After you have configured the metadata sources, you need to give the
 web-server write access to the output directories. Following the previous example:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code>chown<span class="w"> </span>www-data<span class="w"> </span>/var/simplesamlphp/metadata/metarefresh-kalmar/
 chown<span class="w"> </span>www-data<span class="w"> </span>/var/simplesamlphp/metadata/metarefresh-ukaccess/
 </code></pre>
@@ -553,7 +548,7 @@ config.php file, and modify the
  </code>
  directive accordingly:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'metadata.sources' =&gt; [</span>
 <span class="x">    ['type' =&gt; 'flatfile'],</span>
 <span class="x">    ['type' =&gt; 'flatfile', 'directory' =&gt; 'metadata/metarefresh-kalmar'],</span>

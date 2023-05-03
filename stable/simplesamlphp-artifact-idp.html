@@ -55,11 +55,6 @@
       2.0 (stable)
      </a>
     </div>
-    <div class="menuitem">
-     <a href="/docs/1.19/index.html">
-      1.19
-     </a>
-    </div>
     <div class="menuitem first">
      <a href="/docs/devel/index.html">
       devel
@@ -110,7 +105,7 @@ You need both a memcache server and a the PHP memcached client (extension).
  How this is done depends on the distribution.
 If you are running Debian or Ubuntu, you can install this by running:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code>apt<span class="w"> </span>install<span class="w"> </span>memcached<span class="w"> </span>php-memcached
 </code></pre>
 </div>
@@ -171,7 +166,7 @@ If you are running memcache on a different server than the IdP, you must also ch
  </code>
  metadata file:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">$metadata['https://example.org/saml-idp'] = [</span>
 <span class="x">    [....]</span>
 <span class="x">    'auth' =&gt; 'example-userpass',</span>
@@ -190,7 +185,7 @@ You therefore need to update the metadata for your IdP at your SPs.
  </code>
  metadata for SimpleSAMLphp SPs should contain something like:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'ArtifactResolutionService' =&gt; [</span>
 <span class="x">    [</span>
 <span class="x">        'index' =&gt; 0,</span>
@@ -212,7 +207,7 @@ This means that you must use the complex endpoint format in
  metadata.
 In general, that should look something like:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'AssertionConsumerService' =&gt; [</span>
 <span class="x">    [</span>
 <span class="x">        'Binding' =&gt; 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',</span>
@@ -247,7 +242,7 @@ To do this, you need to set the
  metadata file.
 That option should refer to a file containing the webserver certificate.
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">$metadata['https://example.org/saml-idp'] = [</span>
 <span class="x">    [....]</span>
 <span class="x">    'auth' =&gt; 'example-userpass',</span>

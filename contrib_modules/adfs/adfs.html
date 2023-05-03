@@ -55,11 +55,6 @@
       2.0 (stable)
      </a>
     </div>
-    <div class="menuitem">
-     <a href="/docs/1.19/index.html">
-      1.19
-     </a>
-    </div>
     <div class="menuitem first">
      <a href="/docs/devel/index.html">
       devel
@@ -129,15 +124,13 @@ Compatible with VS 2012 Identity and Access
    </code>
    to true:
   </p>
-  <p>
-   <code>
-    php
-     'module.enable' =&gt; [
-          'adfs' =&gt; true,
-          …
-     ],
-   </code>
-  </p>
+  <div class="highlight">
+   <pre><span></span><code><span class="x">    'module.enable' =&gt; [</span>
+<span class="x">         'adfs' =&gt; true,</span>
+<span class="x">         …</span>
+<span class="x">    ],</span>
+</code></pre>
+  </div>
  </li>
  <li>
   <p>
@@ -164,15 +157,13 @@ Compatible with VS 2012 Identity and Access
   <p>
    The recommended settings for /metadata/adfs-idp-hosted.php is:
   </p>
-  <p>
-   <code>
-    php
-     'authproc' =&gt; [
-          // Convert LDAP names to WS-Fed Claims.
-          100 =&gt; ['class' =&gt; 'core:AttributeMap', 'name2claim'],
-     ],
-   </code>
-  </p>
+  <div class="highlight">
+   <pre><span></span><code><span class="x">    'authproc' =&gt; [</span>
+<span class="x">         // Convert LDAP names to WS-Fed Claims.</span>
+<span class="x">         100 =&gt; ['class' =&gt; 'core:AttributeMap', 'name2claim'],</span>
+<span class="x">    ],</span>
+</code></pre>
+  </div>
  </li>
  <li>
   <p>
@@ -181,14 +172,12 @@ Compatible with VS 2012 Identity and Access
   <p>
    The minimal configuration for /metadata/adfs-sp-remote.php is:
   </p>
-  <p>
-   <code>
-    php
- $metadata['urn:federation:localhost'] = [
-     'prp' =&gt; 'https://localhost/adfs/ls/',
- ];
-   </code>
-  </p>
+  <div class="highlight">
+   <pre><span></span><code><span class="x">$metadata['urn:federation:localhost'] = [</span>
+<span class="x">    'prp' =&gt; 'https://localhost/adfs/ls/',</span>
+<span class="x">];</span>
+</code></pre>
+  </div>
  </li>
  <li>
   <p>

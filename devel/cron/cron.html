@@ -55,11 +55,6 @@
       2.0 (stable)
      </a>
     </div>
-    <div class="menuitem">
-     <a href="/docs/1.19/index.html">
-      1.19
-     </a>
-    </div>
     <div class="menuitem first">
      <a href="/docs/devel/index.html">
       devel
@@ -162,7 +157,7 @@ panel to trigger jobs manually.
  </code>
  directory.
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="o">[</span>root@simplesamlphp<span class="o">]</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/var/simplesamlphp
 <span class="o">[</span>root@simplesamlphp<span class="w"> </span>simplesamlphp<span class="o">]</span><span class="w"> </span>touch<span class="w"> </span>modules/cron/enable
 <span class="o">[</span>root@simplesamlphp<span class="w"> </span>simplesamlphp<span class="o">]</span><span class="w"> </span>cp<span class="w"> </span>modules/cron/config/module_cron.php.dist<span class="w"> </span>config/module_cron.php
@@ -178,7 +173,7 @@ panel to trigger jobs manually.
  </code>
  ) should look similar to this:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">$config = [</span>
 <span class="x">   'key' =&gt; 'RANDOM_KEY',</span>
 <span class="x">   'allowed_tags' =&gt; ['daily', 'hourly', 'frequent'],</span>
@@ -228,7 +223,7 @@ your SimpleSAMLphp installation.
 <p>
  Now, copy the cron configuration suggested on that page:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code># Run cron [daily]
 02 0 * * * curl -sS "https://YOUR_SERVER/simplesaml/module.php/cron/run/daily/RANDOM_KEY"
 # Run cron [hourly]
@@ -238,7 +233,7 @@ your SimpleSAMLphp installation.
 <p>
  Finally, add it to your crontab by going back to the terminal, and editing with:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="o">[</span>root@simplesamlphp<span class="w"> </span>config<span class="o">]</span><span class="c1"># crontab -e</span>
 </code></pre>
 </div>
@@ -250,7 +245,7 @@ the one you use normally appears, exit, and configure the
  </code>
  variable to tell the command line which editor it should use:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="o">[</span>root@simplesamlphp<span class="w"> </span>config<span class="o">]</span><span class="c1"># export EDITOR=emacs</span>
 </code></pre>
 </div>
@@ -341,7 +336,7 @@ logging configuration from
   to lower the priority below that of web server processes
  </li>
 </ul>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code>su<span class="w"> </span>-s<span class="w"> </span><span class="s2">"/bin/sh"</span><span class="w"> </span><span class="se">\</span>
 <span class="w">   </span>-c<span class="w"> </span><span class="s2">"nice -n 10 \</span>
 <span class="s2">       php -d max_execution_time=120 -d memory_limit=600M \</span>

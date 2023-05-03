@@ -55,11 +55,6 @@
       2.0 (stable)
      </a>
     </div>
-    <div class="menuitem">
-     <a href="/docs/1.19/index.html">
-      1.19
-     </a>
-    </div>
     <div class="menuitem first">
      <a href="/docs/devel/index.html">
       devel
@@ -134,7 +129,7 @@ server with all the users. To create an LDAP authentication source, open
  in a text editor, and add an entry for the
 authentication source:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">    'example-ldap' =&gt; [</span>
 <span class="x">        'ldap:Ldap',</span>
 
@@ -423,7 +418,7 @@ TIMEOUT         20
 <p>
  Example:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">    /* Configuration that uses two ldap servers. */</span>
 <span class="x">    'example-ldap' =&gt; [</span>
 <span class="x">        'ldap:Ldap',</span>
@@ -448,7 +443,7 @@ authentication module, open
  in a text editor,
 and add an entry which uses this module:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">    'example-ldapmulti' =&gt; [</span>
 <span class="x">        'ldap:LdapMulti',</span>
 
@@ -530,7 +525,7 @@ and will be shown to the user in a dropdown list on the login page.
  -option can also be an array with descriptions in
 different languages:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">    'description' =&gt; [</span>
 <span class="x">        'en' =&gt; 'Employees',</span>
 <span class="x">        'no' =&gt; 'Ansatte',</span>
@@ -557,7 +552,7 @@ an LDAP directory. In addition to all the configuration options available
 in the ldap:AttributeAddUsersGroups filter (below), these are the filter
 specific configuration options:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">    50 =&gt; [</span>
 <span class="x">        'class' =&gt; 'ldap:AttributeAddFromLDAP',</span>
 
@@ -622,7 +617,7 @@ old configuration style is deprecated now and will be removed in 2.0.
 authsource for all LDAP connection information and queries LDAP for
 the specific attributes requested.
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">    50 =&gt; [</span>
 <span class="x">        'class' =&gt; 'ldap:AttributeAddFromLDAP',</span>
 <span class="x">        'authsource' =&gt; 'example-ldap',</span>
@@ -636,7 +631,7 @@ the specific attributes requested.
 using the filter configuration. Note: Not all of the options below are
 required, see the config options for ldap:AttributeAddFromLDAP above.
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">    50 =&gt; [</span>
 <span class="x">        'class' =&gt; 'ldap:AttributeAddFromLDAP',</span>
 <span class="x">        'ldap.hostname' =&gt; 'ldap.example.org',</span>
@@ -662,7 +657,7 @@ checking the hierarchy for all groups the user would technically be
 a member of. This can be helpful for other filters to know. Below is
 a listing of all configuration options and their details.
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">    50 =&gt; [</span>
 <span class="x">        'class' =&gt; 'ldap:AttributeAddUsersGroups',</span>
 
@@ -860,7 +855,7 @@ a listing of all configuration options and their details.
 authsource for all LDAP connection information and manually search
 the hierarchy for the users group memberships.
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">    50 =&gt; [</span>
 <span class="x">        'class' =&gt; 'ldap:AttributeAddUsersGroups',</span>
 <span class="x">        'authsource' =&gt; 'example-ldap'</span>
@@ -871,7 +866,7 @@ the hierarchy for the users group memberships.
  By making one small change we can optimize the filter to use better
 group search methods and eliminate un-needed LDAP queries.
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">    50 =&gt; [</span>
 <span class="x">        'class' =&gt; 'ldap:AttributeAddUsersGroups',</span>
 <span class="x">        'authsource' =&gt; 'example-ldap',</span>
@@ -884,7 +879,7 @@ group search methods and eliminate un-needed LDAP queries.
 using the filter configuration. Note: Not all of the options below are
 required, see the config info above for details.
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">    50 =&gt; [</span>
 <span class="x">        'class' =&gt; 'ldap:AttributeAddUsersGroups',</span>
 <span class="x">        'ldap.hostname' =&gt; 'ldap.example.org',</span>
@@ -910,7 +905,7 @@ Intention is to filter in
  </code>
  (=name of the group).
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">    50 =&gt; [</span>
 <span class="x">        'class' =&gt; 'ldap:AttributeAddUsersGroups',</span>
 <span class="x">        'ldap.product' =&gt; 'OpenLDAP',</span>

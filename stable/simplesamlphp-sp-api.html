@@ -55,11 +55,6 @@
       2.0 (stable)
      </a>
     </div>
-    <div class="menuitem">
-     <a href="/docs/1.19/index.html">
-      1.19
-     </a>
-    </div>
     <div class="menuitem first">
      <a href="/docs/devel/index.html">
       devel
@@ -150,7 +145,7 @@ This is the preferred API for integrating SimpleSAMLphp with other applications.
  :
 Some SimpleSAMLphp calls replace the current active PHP session. If you previously started a session and wish to write to it, then you must cleanup the SimpleSAMLphp session before you can write to your session. If you do not need to modify your own session, then you can leave the cleanup call out; however, forgetting to call cleanup is a common source of hard to find bugs.
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">session_start();</span>
 <span class="x">// ...</span>
 <span class="x">$auth = new \SimpleSAML\Auth\Simple('default-sp');</span>
@@ -164,7 +159,7 @@ Some SimpleSAMLphp calls replace the current active PHP session. If you previous
 <h2 id="constructor">
  Constructor
 </h2>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">new \SimpleSAML\Auth\Simple(string $authSource)</span>
 </code></pre>
 </div>
@@ -191,14 +186,14 @@ This authentication source must exist in
  </code>
  :
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">$auth = new \SimpleSAML\Auth\Simple('default-sp');</span>
 </code></pre>
 </div>
 <h3 id="isauthenticated">
  isAuthenticated
 </h3>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">bool isAuthenticated()</span>
 </code></pre>
 </div>
@@ -219,7 +214,7 @@ This authentication source must exist in
  </code>
  :
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">if (!$auth-&gt;isAuthenticated()) {</span>
 <span class="x">    \SimpleSAML\Session::getSessionFromRequest()-&gt;cleanup();</span>
 <span class="x">    /* Show login link. */</span>
@@ -230,7 +225,7 @@ This authentication source must exist in
 <h3 id="requireauth">
  requireAuth
 </h3>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">void requireAuth(array $params = [])</span>
 </code></pre>
 </div>
@@ -262,7 +257,7 @@ See the documentation for the
  </code>
  :
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">$auth-&gt;requireAuth();</span>
 <span class="x">\SimpleSAML\Session::getSessionFromRequest()-&gt;cleanup();</span>
 <span class="x">print("Hello, authenticated user!");</span>
@@ -274,7 +269,7 @@ See the documentation for the
  </code>
  :
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">/*</span>
 <span class="x"> * Return the user to the frontpage after authentication, don't post</span>
 <span class="x"> * the current POST data.</span>
@@ -290,7 +285,7 @@ See the documentation for the
 <h3 id="login">
  login
 </h3>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">void login(array $params = [])</span>
 </code></pre>
 </div>
@@ -394,7 +389,7 @@ This function will always start a new authentication process.
  </code>
  :
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x"># Send a passive authentication request.</span>
 <span class="x">$auth-&gt;login([</span>
 <span class="x">    'isPassive' =&gt; true,</span>
@@ -406,7 +401,7 @@ This function will always start a new authentication process.
 <h3 id="logout">
  logout
 </h3>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">void logout(mixed $params = null)</span>
 </code></pre>
 </div>
@@ -479,7 +474,7 @@ This function never returns.
 <p>
  Logout, and redirect to the specified URL.
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">$auth-&gt;logout('https://sp.example.org/logged_out.php');</span>
 <span class="x">\SimpleSAML\Session::getSessionFromRequest()-&gt;cleanup();</span>
 </code></pre>
@@ -493,7 +488,7 @@ This function never returns.
 <p>
  Same as the previous, but check the result of the logout operation afterwards.
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">$auth-&gt;logout([</span>
 <span class="x">    'ReturnTo' =&gt; 'https://sp.example.org/logged_out.php',</span>
 <span class="x">    'ReturnStateParam' =&gt; 'LogoutState',</span>
@@ -505,7 +500,7 @@ This function never returns.
 <p>
  And in logged_out.php:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">$state = \SimpleSAML\Auth\State::loadState((string)$_REQUEST['LogoutState'], 'MyLogoutState');</span>
 <span class="x">$ls = $state['saml:sp:LogoutStatus']; /* Only works for SAML SP */</span>
 <span class="x">if ($ls['Code'] === 'urn:oasis:names:tc:SAML:2.0:status:Success' &amp;&amp; !isset($ls['SubCode'])) {</span>
@@ -520,7 +515,7 @@ This function never returns.
 <h3 id="getattributes">
  getAttributes
 </h3>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">array getAttributes()</span>
 </code></pre>
 </div>
@@ -531,7 +526,7 @@ If the user isn't authenticated, an empty array will be returned.
 <p>
  The attributes will be returned as an associative array with the name of the attribute as the key and the value as an array of one or more strings:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">[</span>
 <span class="x">    'uid' =&gt; ['testuser'],</span>
 <span class="x">    'eduPersonAffiliation' =&gt; ['student', 'member'],</span>
@@ -544,7 +539,7 @@ If the user isn't authenticated, an empty array will be returned.
  </code>
  :
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">$attrs = $auth-&gt;getAttributes();</span>
 <span class="x">if (!isset($attrs['displayName'][0])) {</span>
 <span class="x">    throw new Exception('displayName attribute missing.');</span>
@@ -557,7 +552,7 @@ If the user isn't authenticated, an empty array will be returned.
 <h3 id="getauthdata">
  getAuthData
 </h3>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">mixed getAuthData(string $name)</span>
 </code></pre>
 </div>
@@ -581,7 +576,7 @@ See the
  </code>
  :
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">$idp = $auth-&gt;getAuthData('saml:sp:IdP');</span>
 <span class="x">$nameID = $auth-&gt;getAuthData('saml:sp:NameID')-&gt;getValue();</span>
 <span class="x">printf('You are %s, logged in from %s', htmlspecialchars($nameID), htmlspecialchars($idp));</span>
@@ -590,7 +585,7 @@ See the
 <h3 id="getloginurl">
  getLoginURL
 </h3>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">string getLoginURL(string $returnTo = null)</span>
 </code></pre>
 </div>
@@ -622,7 +617,7 @@ See the
  </code>
  :
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">$url = $auth-&gt;getLoginURL();</span>
 
 <span class="x">print('&lt;a href="' . htmlspecialchars($url) . '"&gt;Login&lt;/a&gt;');</span>
@@ -645,7 +640,7 @@ The URL should be:
 <h3 id="getlogouturl">
  getLogoutURL
 </h3>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">string getLogoutURL(string $returnTo = NULL)</span>
 </code></pre>
 </div>
@@ -677,7 +672,7 @@ The URL should be:
  </code>
  :
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">$url = $auth-&gt;getLogoutURL();</span>
 
 <span class="x">print('&lt;a href="' . htmlspecialchars($url) . '"&gt;Logout&lt;/a&gt;');</span>

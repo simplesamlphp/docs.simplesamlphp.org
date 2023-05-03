@@ -55,11 +55,6 @@
       2.0 (stable)
      </a>
     </div>
-    <div class="menuitem">
-     <a href="/docs/1.19/index.html">
-      1.19
-     </a>
-    </div>
     <div class="menuitem first">
      <a href="/docs/devel/index.html">
       devel
@@ -159,7 +154,7 @@ It will be located under
 <p>
  First we need to create the module directory:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="nb">cd</span><span class="w"> </span>modules
 mkdir<span class="w"> </span>mymodule
 </code></pre>
@@ -192,7 +187,7 @@ Create the file
  </code>
  with the following contents:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="cp">&lt;?php</span>
 
 <span class="k">namespace</span> <span class="nx">SimpleSAML\Module\mymodule\Auth\Source</span><span class="p">;</span>
@@ -286,7 +281,7 @@ Create the file
 <p>
  The entry looks like this:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'myauthinstance' =&gt; [</span>
 <span class="x">    'mymodule:MyAuth',</span>
 <span class="x">],</span>
@@ -295,7 +290,7 @@ Create the file
 <p>
  You can add it to the beginning of the list, so that the file looks something like this:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="cp">&lt;?php</span>
 
 <span class="nv">$config</span> <span class="o">=</span> <span class="p">[</span>
@@ -379,7 +374,7 @@ In that file you should locate the
  </code>
  :
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="cp">&lt;?php</span>
 
 <span class="cm">/* ... */</span>
@@ -412,7 +407,7 @@ We are now going to extend our authentication source to allow us to configure th
 <p>
  First, we need to define the properties in the class that should hold our configuration:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">private $username;</span>
 <span class="x">private $password;</span>
 </code></pre>
@@ -421,7 +416,7 @@ We are now going to extend our authentication source to allow us to configure th
  Next, we create a constructor for the class.
 The constructor is responsible for parsing the configuration and storing it in the properties.
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">public function __construct($info, $config)</span>
 <span class="x">{</span>
 <span class="x">    parent::__construct($info, $config);</span>
@@ -446,7 +441,7 @@ The constructor is responsible for parsing the configuration and storing it in t
  function.
 The complete class file should look like this:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="cp">&lt;?php</span>
 
 <span class="k">class</span> <span class="nc">MyAuth</span> <span class="k">extends</span> <span class="nx">\SimpleSAML\Module\core\Auth\UserPassBase</span>
@@ -490,7 +485,7 @@ The complete class file should look like this:
  </code>
  with the configuration options:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'myauthinstance' =&gt; [</span>
 <span class="x">    'mymodule:MyAuth',</span>
 <span class="x">    'username' =&gt; 'theconfigusername',</span>
@@ -518,7 +513,7 @@ What follows is an example of an authentication source that fetches an user from
 <p>
  This code assumes that the database contains a table that looks like this:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">userdb</span><span class="w"> </span><span class="p">(</span>
 <span class="w">    </span><span class="n">username</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
 <span class="w">    </span><span class="n">password_hash</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
@@ -528,7 +523,7 @@ What follows is an example of an authentication source that fetches an user from
 <p>
  An example user (with password "secret"):
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">userdb</span><span class="w"> </span><span class="p">(</span><span class="n">username</span><span class="p">,</span><span class="w"> </span><span class="n">password_hash</span><span class="p">,</span><span class="w"> </span><span class="n">full_name</span><span class="p">)</span>
 <span class="w">    </span><span class="k">VALUES</span><span class="p">(</span><span class="s1">'exampleuser'</span><span class="p">,</span><span class="w"> </span><span class="s1">'QwVYkvlrAMsXIgULyQ/pDDwDI3dF2aJD4XeVxg=='</span><span class="p">,</span><span class="w"> </span><span class="s1">'Example User'</span><span class="p">);</span>
 </code></pre>
@@ -541,7 +536,7 @@ What follows is an example of an authentication source that fetches an user from
  contains a base64 encoded SSHA password.
 A SSHA password is created like this:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">$password = 'secret';</span>
 <span class="x">$numSalt = 8; /* Number of bytes with salt. */</span>
 <span class="x">$salt = '';</span>
@@ -555,7 +550,7 @@ A SSHA password is created like this:
 <p>
  The class follows:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="cp">&lt;?php</span>
 
 <span class="k">class</span> <span class="nc">MyAuth</span> <span class="k">extends</span> <span class="nx">\SimpleSAML\Module\core\Auth\UserPassBase</span>
@@ -671,7 +666,7 @@ A SSHA password is created like this:
  </code>
  :
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'myauthinstance' =&gt; [</span>
 <span class="x">    'mymodule:MyAuth',</span>
 <span class="x">    'dsn' =&gt; 'mysql:host=sql.example.org;dbname=userdatabase',</span>

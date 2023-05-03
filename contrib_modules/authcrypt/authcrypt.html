@@ -55,11 +55,6 @@
       2.0 (stable)
      </a>
     </div>
-    <div class="menuitem">
-     <a href="/docs/1.19/index.html">
-      1.19
-     </a>
-    </div>
     <div class="menuitem first">
      <a href="/docs/devel/index.html">
       devel
@@ -123,7 +118,7 @@ Hashes can be generated with the included command line tool
 This tool will interactively ask for a password, a hashing algorithm, and
 whether or not you want to use a salt:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="o">[</span>user@server<span class="w"> </span>simplesamlphp<span class="o">]</span>$<span class="w"> </span>bin/pwgen.php
 Enter<span class="w"> </span>password:<span class="w"> </span>hackme
 
@@ -138,7 +133,7 @@ Enter<span class="w"> </span>password:<span class="w"> </span>hackme
  and use the
 resulting string as the password:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'example-hashed' =&gt; [</span>
 <span class="x">    'authCrypt:Hash',</span>
 <span class="x">    'student:$2y$10$PnFsSEv.lda1Qlw4iMtmB.B.ab5y.aT56stBmo9hdCN.rUywQMChC' =&gt; [</span>
@@ -171,7 +166,7 @@ and some attributes.
  for the
 administrative password:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'auth.adminpassword' =&gt; '$2y$10$PnFsSEv.lda1Qlw4iMtmB.B.ab5y.aT56stBmo9hdCN.rUywQMChC',</span>
 </code></pre>
 </div>
@@ -213,7 +208,7 @@ attributes, but you can define some static attributes for all users.
  could look
 like this:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">    'htpasswd' =&gt; [</span>
 <span class="x">        'authcrypt:Htpasswd',</span>
 <span class="x">        'htpasswd_file' =&gt; '/var/www/foo.edu/legacy_app/.htpasswd',</span>

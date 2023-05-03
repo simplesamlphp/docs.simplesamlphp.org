@@ -55,11 +55,6 @@
       2.0 (stable)
      </a>
     </div>
-    <div class="menuitem">
-     <a href="/docs/1.19/index.html">
-      1.19
-     </a>
-    </div>
     <div class="menuitem first">
      <a href="/docs/devel/index.html">
       devel
@@ -90,21 +85,21 @@
 <p>
  Go to the directory where you want to install SimpleSAMLphp:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/var
 </code></pre>
 </div>
 <p>
  Then do a git clone:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/simplesamlphp/simplesamlphp.git<span class="w"> </span>simplesamlphp
 </code></pre>
 </div>
 <p>
  Initialize configuration and metadata:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/var/simplesamlphp
 cp<span class="w"> </span>config/config.php.dist<span class="w"> </span>config/config.php
 cp<span class="w"> </span>config/authsources.php.dist<span class="w"> </span>config/authsources.php
@@ -121,7 +116,7 @@ cp<span class="w"> </span>metadata/saml20-sp-remote.php.dist<span class="w"> </s
  to get detailed
 instructions on how to install Composer itself):
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code>php<span class="w"> </span>composer.phar<span class="w"> </span>install
 </code></pre>
 </div>
@@ -131,14 +126,14 @@ instructions on how to install Composer itself):
 <p>
  Go to the root directory of your SimpleSAMLphp installation:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/var/simplesamlphp
 </code></pre>
 </div>
 <p>
  Ask git to update to the latest version:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code>git<span class="w"> </span>fetch<span class="w"> </span>origin
 git<span class="w"> </span>pull<span class="w"> </span>origin<span class="w"> </span>master
 </code></pre>
@@ -146,7 +141,7 @@ git<span class="w"> </span>pull<span class="w"> </span>origin<span class="w"> </
 <p>
  Install or upgrade the external dependencies with Composer:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code>php<span class="w"> </span>composer.phar<span class="w"> </span>install
 </code></pre>
 </div>

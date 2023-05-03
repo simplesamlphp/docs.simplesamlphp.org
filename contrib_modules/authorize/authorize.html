@@ -55,11 +55,6 @@
       2.0 (stable)
      </a>
     </div>
-    <div class="menuitem">
-     <a href="/docs/1.19/index.html">
-      1.19
-     </a>
-    </div>
     <div class="menuitem first">
      <a href="/docs/devel/index.html">
       devel
@@ -231,7 +226,7 @@ For unstructured attributes use
  </code>
  to anchor your regex as necessary:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'authproc.sp' =&gt; [</span>
 <span class="x">    60 =&gt; [</span>
 <span class="x">        'class' =&gt; 'authorize:Authorize',</span>
@@ -254,7 +249,7 @@ For unstructured attributes use
 multiple filters to create a simple ACL, by first allowing a group of users but
 then denying a "black list" of users.
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'authproc.sp' =&gt; [</span>
 <span class="x">    60 =&gt; array[</span>
 <span class="x">        'class' =&gt; 'authorize:Authorize',</span>
@@ -276,7 +271,7 @@ ldap:AttributeAddUsersGroups filter with the group attribute.
 <p>
  Additionally, some helpful instructions are shown.
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'authproc.sp' =&gt; [</span>
 <span class="x">    60 =&gt; [</span>
 <span class="x">        'class' =&gt; 'authorize:Authorize',</span>

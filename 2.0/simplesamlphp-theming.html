@@ -55,11 +55,6 @@
       2.0 (stable)
      </a>
     </div>
-    <div class="menuitem">
-     <a href="/docs/1.19/index.html">
-      1.19
-     </a>
-    </div>
     <div class="menuitem first">
      <a href="/docs/devel/index.html">
       devel
@@ -155,7 +150,7 @@
  </code>
  there is a configuration option that controls theming. You need to set that option and also add the module that contains the theme to the list of enabled modules. Here is an example:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'module.enable' =&gt; [</span>
 <span class="x">    ...</span>
 <span class="x">    'mymodule' =&gt; true,</span>
@@ -200,7 +195,7 @@ SimpleSAMLphp allows themes to override the included templates files only, if ne
 <p>
  The first thing you need to do is having a SimpleSAMLphp module to place your theme in. If you do not have a module already, create a new one:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="nb">cd</span><span class="w"> </span>modules
 mkdir<span class="w"> </span>mymodule
 </code></pre>
@@ -212,7 +207,7 @@ mkdir<span class="w"> </span>mymodule
  </code>
  .
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="nb">cd</span><span class="w"> </span>modules/mymodule
 mkdir<span class="w"> </span>-p<span class="w"> </span>themes/fancytheme/default/
 </code></pre>
@@ -224,7 +219,7 @@ mkdir<span class="w"> </span>-p<span class="w"> </span>themes/fancytheme/default
  </code>
  , add the module to the list of enabled modules, and configure SimpleSAMLphp to actually use your new theme:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'module.enable' =&gt; [</span>
 <span class="x">    ...</span>
 <span class="x">    'mymodule' =&gt; true,</span>
@@ -235,7 +230,7 @@ mkdir<span class="w"> </span>-p<span class="w"> </span>themes/fancytheme/default
 <p>
  Next, we copy the header file from the base theme:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code>cp<span class="w"> </span>templates/_header.twig<span class="w"> </span>modules/mymodule/themes/fancytheme/default/
 </code></pre>
 </div>
@@ -256,7 +251,7 @@ mkdir<span class="w"> </span>-p<span class="w"> </span>themes/fancytheme/default
  </code>
  folder of your module, to make your module completely independent with included css, icons etc.
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code>modules
 └───mymodule
 <span class="w">    </span>└───src
@@ -275,7 +270,7 @@ mkdir<span class="w"> </span>-p<span class="w"> </span>themes/fancytheme/default
  by using a generator for the URL.
 Example for a custom CSS stylesheet file:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="cp">{%</span> <span class="k">block</span> <span class="nv">preload</span> <span class="cp">%}</span>
 <span class="x">&lt;link rel="stylesheet" href="</span><span class="cp">{{</span> <span class="nv">asset</span><span class="o">(</span><span class="s1">'style.css'</span><span class="o">,</span> <span class="s1">'mymodule'</span><span class="o">)</span> <span class="cp">}}</span><span class="x">"&gt;</span>
 <span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span>
@@ -292,7 +287,7 @@ in
  </code>
  :
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'theme.controller' =&gt; '\SimpleSAML\Module\mymodule\FancyThemeController',</span>
 </code></pre>
 </div>
@@ -315,7 +310,7 @@ The class can then modify the Twig Environment and the variables passed to the t
  </code>
  :
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="cp">&lt;?php</span>
 
 <span class="k">namespace</span> <span class="nx">SimpleSAML\Module\mymodule</span><span class="p">;</span>
@@ -379,14 +374,14 @@ templating engine to be compatible with SimpleSAMLphp 2.0.
  </code>
  file. This can be customized by copying it from the base template:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code>cp<span class="w"> </span>templates/_header.twig<span class="w"> </span>modules/mymodule/themes/fancytheme/default/
 </code></pre>
 </div>
 <p>
  If you need to make more extensive customizations to the base template, you should copy it from the base theme:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code>cp<span class="w"> </span>templates/base.twig<span class="w"> </span>modules/mymodule/themes/fancytheme/default/
 </code></pre>
 </div>

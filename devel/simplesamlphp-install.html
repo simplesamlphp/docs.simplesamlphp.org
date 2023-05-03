@@ -55,11 +55,6 @@
       2.0 (stable)
      </a>
     </div>
-    <div class="menuitem">
-     <a href="/docs/1.19/index.html">
-      1.19
-     </a>
-    </div>
     <div class="menuitem first">
      <a href="/docs/devel/index.html">
       devel
@@ -378,7 +373,7 @@ repository
 <p>
  Go to the directory where you want to install SimpleSAMLphp and extract the archive file you just downloaded:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/var
 tar<span class="w"> </span>xzf<span class="w"> </span>simplesamlphp-x.y.z.tar.gz
 mv<span class="w"> </span>simplesamlphp-x.y.z<span class="w"> </span>simplesamlphp
@@ -398,7 +393,7 @@ changes.
 <p>
  Extract the new version:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/var
 tar<span class="w"> </span>xzf<span class="w"> </span>simplesamlphp-x.y.z.tar.gz
 </code></pre>
@@ -407,7 +402,7 @@ tar<span class="w"> </span>xzf<span class="w"> </span>simplesamlphp-x.y.z.tar.gz
  Copy the configuration files from the previous version (in case the configuration directory is inside SimpleSAMLphp,
 keep reading for other alternatives):
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/var/simplesamlphp-x.y.z
 rm<span class="w"> </span>-rf<span class="w"> </span>config<span class="w"> </span>metadata
 cp<span class="w"> </span>-rv<span class="w"> </span>../simplesamlphp/config<span class="w"> </span>config
@@ -429,7 +424,7 @@ you should check whether your third-party modules need upgrading and then copy o
 <p>
  Replace the old version with the new version:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/var
 mv<span class="w"> </span>simplesamlphp<span class="w"> </span>simplesamlphp.old
 mv<span class="w"> </span>simplesamlphp-x.y.z<span class="w"> </span>simplesamlphp
@@ -529,7 +524,7 @@ one possible configuration.
  Find the Apache configuration file for the virtual hosts where you want to run SimpleSAMLphp. The configuration may
 look like this:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="s">*</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="nb">ServerName</span><span class="w"> </span>service.example.com
 <span class="w">    </span><span class="nb">DocumentRoot</span><span class="w"> </span><span class="sx">/var/www/service.example.com</span>
@@ -579,7 +574,7 @@ Here is an example of how this configuration may look like in
  </code>
  :
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">$config = [</span>
 <span class="x">    [...]</span>
 <span class="x">    'baseurlpath' =&gt; 'simplesaml/',</span>
@@ -656,7 +651,7 @@ one possible configuration.
  Find the Nginx configuration file for the virtual hosts where you want to run SimpleSAMLphp. The configuration may
 look like this:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="k">server</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kn">listen</span><span class="w"> </span><span class="mi">443</span><span class="w"> </span><span class="s">ssl</span><span class="p">;</span>
 <span class="w">    </span><span class="kn">server_name</span><span class="w"> </span><span class="s">idp.example.com</span><span class="p">;</span>
@@ -703,7 +698,7 @@ look like this:
   SimpleSAMLphp can be reached:
  </li>
 </ul>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'baseurlpath' =&gt; 'https://your.canonical.host.name/simplesaml/',</span>
 </code></pre>
 </div>
@@ -732,7 +727,7 @@ for more information.
   </p>
  </li>
 </ul>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'auth.adminpassword' =&gt; 'setnewpasswordhere',</span>
 </code></pre>
 </div>
@@ -743,7 +738,7 @@ for more information.
   The command below can help you to generated a random string on (some) unix systems:
  </li>
 </ul>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code>tr<span class="w"> </span>-c<span class="w"> </span>-d<span class="w"> </span><span class="s1">'0123456789abcdefghijklmnopqrstuvwxyz'</span><span class="w"> </span>&lt;/dev/urandom<span class="w"> </span><span class="p">|</span><span class="w"> </span>dd<span class="w"> </span><span class="nv">bs</span><span class="o">=</span><span class="m">32</span><span class="w"> </span><span class="nv">count</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="p">;</span><span class="nb">echo</span>
 </code></pre>
 </div>
@@ -751,7 +746,7 @@ for more information.
  <pre><span></span><code>Here is an example of the configuration option:
 </code></pre>
 </div>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'secretsalt' =&gt; 'randombytesinsertedhere',</span>
 </code></pre>
 </div>
@@ -796,7 +791,7 @@ for more information.
   </p>
  </li>
 </ul>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'technicalcontact_name' =&gt; 'John Smith',</span>
 <span class="x">'technicalcontact_email' =&gt; 'john.smith@example.com',</span>
 </code></pre>
@@ -807,7 +802,7 @@ for more information.
   from English to something else:
  </li>
 </ul>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'language.default' =&gt; 'no',</span>
 </code></pre>
 </div>
@@ -816,7 +811,7 @@ for more information.
   Set your timezone
  </li>
 </ul>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'timezone' =&gt; 'Europe/Oslo',</span>
 </code></pre>
 </div>
@@ -862,7 +857,7 @@ For more advanced configuration, including using a remote SMTP server, see the
  If you want to enable some of the modules that are installed with SimpleSAMLphp, but are disabled by default, you
 can do that in the configuration:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'module.enable' =&gt; [</span>
 <span class="x">    'exampleauth' =&gt; true, // Setting to TRUE enables.</span>
 <span class="x">    'saml' =&gt; false, // Setting to FALSE disables.</span>
@@ -1103,14 +1098,12 @@ possible way, though.
   <p>
    Extract the SimpleSAMLphp archive in your home directory:
   </p>
-  <p>
-   <code>
-    bash
- cd ~
- tar xzf simplesamlphp-1.x.y.tar.gz
- mv simplesamlphp-1.x.y simplesamlphp
-   </code>
-  </p>
+  <div class="highlight">
+   <pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~
+tar<span class="w"> </span>xzf<span class="w"> </span>simplesamlphp-1.x.y.tar.gz
+mv<span class="w"> </span>simplesamlphp-1.x.y<span class="w"> </span>simplesamlphp
+</code></pre>
+  </div>
  </li>
  <li>
   <p>
@@ -1120,13 +1113,11 @@ possible way, though.
    </code>
    directory.
   </p>
-  <p>
-   <code>
-    bash
- cd ~/public_html
- ln -s ../simplesamlphp/public simplesaml
-   </code>
-  </p>
+  <div class="highlight">
+   <pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/public_html
+ln<span class="w"> </span>-s<span class="w"> </span>../simplesamlphp/public<span class="w"> </span>simplesaml
+</code></pre>
+  </div>
  </li>
  <li>
   <p>
@@ -1149,12 +1140,10 @@ possible way, though.
    </code>
    , set the base URL path accordingly:
   </p>
-  <p>
-   <code>
-    php
- 'baseurlpath' =&gt; 'https://host.example/~myaccount/simplesaml/',
-   </code>
-  </p>
+  <div class="highlight">
+   <pre><span></span><code><span class="x">'baseurlpath' =&gt; 'https://host.example/~myaccount/simplesaml/',</span>
+</code></pre>
+  </div>
   <p>
    Now, you can go to the URL of your installation and check if things work:
   </p>
@@ -1179,7 +1168,7 @@ possible way, though.
  </code>
  folder instead of symlinking it:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/public_html
 mv<span class="w"> </span>../simplesamlphp/public<span class="w"> </span>simplesaml
 </code></pre>
@@ -1227,14 +1216,14 @@ mv<span class="w"> </span>../simplesamlphp/public<span class="w"> </span>simples
 <p>
  Change the two lines from:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">require_once(dirname(_FILE__, 2) . '/lib/_autoload.php');</span>
 </code></pre>
 </div>
 <p>
  to something like:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">require_once(dirname(__FILE__, 3) . '/lib/_autoload.php');</span>
 </code></pre>
 </div>

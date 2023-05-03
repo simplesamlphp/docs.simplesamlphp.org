@@ -55,11 +55,6 @@
       2.0 (stable)
      </a>
     </div>
-    <div class="menuitem">
-     <a href="/docs/1.19/index.html">
-      1.19
-     </a>
-    </div>
     <div class="menuitem first">
      <a href="/docs/devel/index.html">
       devel
@@ -89,7 +84,7 @@
 dedicated to statistics. You need to get all statistics log entries
 in one log file. Here is how I do it in syslog.conf:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="c1"># SimpleSAMLphp logging</span>
 local5.*<span class="w">                        </span>/var/log/simplesamlphp.log
 <span class="c1"># Notice level is reserved for statistics only...</span>
@@ -100,7 +95,7 @@ local5.<span class="o">=</span>notice<span class="w">                  </span>/v
  Then make sure you have configured this correctly such that you
 have one log file like this:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="c1"># ls -la /var/log/simplesamlphp.stat</span>
 -rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span><span class="m">76740</span><span class="w"> </span>Nov<span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="m">13</span>:37<span class="w"> </span>/var/log/simplesamlphp.stat
 </code></pre>
@@ -108,7 +103,7 @@ have one log file like this:
 <p>
  With content that looks like this:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="c1"># tail /var/log/simplesamlphp.stat</span>
 
 Nov<span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="m">12</span>:01:49<span class="w"> </span>www1<span class="w"> </span>simplesamlphp-foodle<span class="o">[</span><span class="m">31960</span><span class="o">]</span>:<span class="w"> </span><span class="m">5</span><span class="w"> </span>STAT<span class="w"> </span><span class="o">[</span>77013b4b6e<span class="o">]</span><span class="w"> </span>saml20-sp-SSO<span class="w"> </span>urn:mace:feide.no:services:no.feide.foodle<span class="w"> </span>sam.feide.no<span class="w"> </span>andreas@uninett.no
@@ -143,7 +138,7 @@ into separate files (your preference).
  </code>
  to true:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'module.enable' =&gt; [</span>
 <span class="x">    'statistics' =&gt; true,</span>
 <span class="x">    …</span>
@@ -153,7 +148,7 @@ into separate files (your preference).
 <p>
  Then take the configuration template:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code>cp<span class="w"> </span>modules/statistics/config-templates/*.php<span class="w"> </span>config/
 </code></pre>
 </div>
@@ -164,7 +159,7 @@ into separate files (your preference).
  </code>
  file is readable. SimpleSAMLphp will read data from it:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'inputfile' =&gt; '/var/log/simplesamlphp.stat',</span>
 </code></pre>
 </div>
@@ -175,7 +170,7 @@ into separate files (your preference).
  </code>
  dir is writable. SimpleSAMLphp will write data here:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'statdir' =&gt; '/var/lib/simplesamlphp/stats/',</span>
 </code></pre>
 </div>
@@ -190,7 +185,7 @@ logs.
 <p>
  There are three parameter values you need to make sure are correct.
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'datestart'  =&gt; 1,</span>
 <span class="x">'datelength' =&gt; 15,</span>
 <span class="x">'offsetspan' =&gt; 21,</span>
@@ -239,7 +234,7 @@ example if the STAT keyword is not in column 3.
 <p>
  Here is some example output:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code>bash<span class="w"> </span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>modules/statistics/bin
 
 $<span class="w"> </span>./loganalyzer.php<span class="w"> </span>--debug
@@ -257,7 +252,7 @@ Log<span class="w"> </span>line:<span class="w"> </span>Feb<span class="w"> </sp
 Date<span class="w"> </span>parse<span class="w"> </span><span class="o">[</span>Feb<span class="w"> </span><span class="m">11</span><span class="w"> </span><span class="m">11</span>:32:57<span class="o">]</span><span class="w"> </span>to<span class="w"> </span><span class="o">[</span>Wed,<span class="w"> </span><span class="m">11</span><span class="w"> </span>Feb<span class="w"> </span><span class="m">09</span><span class="w"> </span><span class="m">11</span>:32:57<span class="w"> </span>+0100<span class="o">]</span>
 </code></pre>
 </div>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">Array</span>
 <span class="x">(</span>
 <span class="x">    [0] =&gt; moria-app1</span>
@@ -305,7 +300,7 @@ Date<span class="w"> </span>parse<span class="w"> </span><span class="o">[</span
 <p>
  You also should setup the cron module:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'module.enable' =&gt; [</span>
 <span class="x">    'cron' =&gt; true,</span>
 <span class="x">    …</span>
@@ -315,7 +310,7 @@ Date<span class="w"> </span>parse<span class="w"> </span><span class="o">[</span
 <p>
  Then take the configuration template:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code>cp<span class="w"> </span>modules/cron/config-templates/*.php<span class="w"> </span>config/
 </code></pre>
 </div>
@@ -337,7 +332,7 @@ Date<span class="w"> </span>parse<span class="w"> </span><span class="o">[</span
  </code>
  config file:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">$config = [</span>
 <span class="x">    'key' =&gt; 'secret',</span>
 <span class="x">    'allowed_tags' =&gt; ['daily', 'hourly', 'frequent'],</span>
@@ -393,7 +388,7 @@ cron or the script you will see statistics. Enjoy.
  </code>
  generates the error:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="c1"># php loganalyzer.php --debug</span>
 PHP<span class="w"> </span>Fatal<span class="w"> </span>error:<span class="w">  </span>Uncaught<span class="w"> </span>SimpleSAML<span class="se">\E</span>rror<span class="se">\C</span>riticalConfigurationError:<span class="w"> </span>The<span class="w"> </span>configuration<span class="w"> </span><span class="o">(</span>config/config.php<span class="o">)</span><span class="w"> </span>is<span class="w"> </span>invalid:<span class="w"> </span>Missing<span class="w"> </span>configuration<span class="w"> </span>file
 </code></pre>
@@ -415,7 +410,7 @@ PHP<span class="w"> </span>Fatal<span class="w"> </span>error:<span class="w">  
  </code>
  dir:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">SIMPLESAMLPHP_CONFIG_DIR</span><span class="o">=</span>/var/simplesamlphp/config/
 </code></pre>
 </div>

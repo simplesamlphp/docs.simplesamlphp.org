@@ -55,11 +55,6 @@
       2.0 (stable)
      </a>
     </div>
-    <div class="menuitem">
-     <a href="/docs/1.19/index.html">
-      1.19
-     </a>
-    </div>
     <div class="menuitem first">
      <a href="/docs/devel/index.html">
       devel
@@ -94,7 +89,7 @@ the only difference is this is authentication module and not a script.
 <p>
  Example authsource.php:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'example-cas' =&gt; [</span>
 <span class="x">    'cas:CAS',</span>
 <span class="x">    'cas' =&gt; [</span>
@@ -140,7 +135,7 @@ for the service you're calling. Here the service publishes
  </code>
  , either directly:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'cas' =&gt; [</span>
 <span class="x">    'serviceValidate' =&gt; 'https://cas.example.com/serviceValidate',</span>
 <span class="x">]</span>
@@ -153,7 +148,7 @@ for the service you're calling. Here the service publishes
  </strong>
  :
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'cas' =&gt; [</span>
 <span class="x">    'serviceValidate' =&gt; 'https://cas.example.com/p3/serviceValidate',</span>
 <span class="x">]</span>
@@ -162,7 +157,7 @@ for the service you're calling. Here the service publishes
 <p>
  which would return something like
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="nt">&lt;cas:authenticationSuccess&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cas:user&gt;</span>jdoe<span class="nt">&lt;/cas:user&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cas:attributes&gt;</span>
@@ -187,7 +182,7 @@ for the service you're calling. Here the service publishes
  , providing the XPath
 for each value:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'cas' =&gt; [</span>
 <span class="x">    'attributes' =&gt; [</span>
 <span class="x">        'uid' =&gt; '/cas:serviceResponse/cas:authenticationSuccess/cas:user',</span>
@@ -201,7 +196,7 @@ for each value:
 <p>
  and even some custom attributes if they're set:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'customabc' =&gt; '/cas:serviceResponse/cas:authenticationSuccess/custom:abc',</span>
 </code></pre>
 </div>
@@ -217,7 +212,7 @@ set
  </code>
  :
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'example-cas' =&gt; [</span>
 <span class="x">    'cas:CAS',</span>
 <span class="x">    'cas' =&gt; [</span>

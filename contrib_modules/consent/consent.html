@@ -55,11 +55,6 @@
       2.0 (stable)
      </a>
     </div>
-    <div class="menuitem">
-     <a href="/docs/1.19/index.html">
-      1.19
-     </a>
-    </div>
     <div class="menuitem first">
      <a href="/docs/devel/index.html">
       devel
@@ -121,7 +116,7 @@ user the exact same attributes that are sent to the SP.
  </code>
  :
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'module.enable' =&gt; [</span>
 <span class="x">     'consent' =&gt; true,</span>
 <span class="x">     …</span>
@@ -142,7 +137,7 @@ sure that you select an attribute that is available to all users.
  Add the filter to your Identity Provider hosted metadata authproc filters
 list, specifying the attribute you've selected.
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">90 =&gt; [</span>
 <span class="x">    'class' =&gt; 'consent:Consent',</span>
 <span class="x">    'identifyingAttribute' =&gt; 'uid',</span>
@@ -181,7 +176,7 @@ cookies as storage you need to set the
 <p>
  Example:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">90 =&gt; [</span>
 <span class="x">    'class'                =&gt; 'consent:Consent',</span>
 <span class="x">    'identifyingAttribute' =&gt; 'uid',</span>
@@ -193,7 +188,7 @@ cookies as storage you need to set the
  If necessary, you can set the cookie parameters in the config array using the
 same semantics as other cookies (default values shown):
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">90 =&gt; [</span>
 <span class="x">    'class'                =&gt; 'consent:Consent',</span>
 <span class="x">    'identifyingAttribute' =&gt; 'uid',</span>
@@ -219,7 +214,7 @@ database.
 <p>
  Here is the initialization SQL script:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">consent</span><span class="w"> </span><span class="p">(</span>
 <span class="w">    </span><span class="n">consent_date</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span><span class="p">,</span>
 <span class="w">    </span><span class="n">usage_date</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span><span class="p">,</span>
@@ -300,7 +295,7 @@ database.
 <p>
  Example config using PostgreSQL database:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">90 =&gt; [</span>
 <span class="x">    'class' =&gt; 'consent:Consent', </span>
 <span class="x">    'identifyingAttribute' =&gt; 'uid',</span>
@@ -316,7 +311,7 @@ database.
 <p>
  Example config using MySQL database:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">90 =&gt; [</span>
 <span class="x">    'class' =&gt; 'consent:Consent', </span>
 <span class="x">    'identifyingAttribute' =&gt; 'uid',</span>
@@ -510,7 +505,7 @@ more IdPs for a given SP, add the
 <p>
  Disable consent for a given IdP:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">$metadata['https://idp.example.org/'] = [</span>
 <span class="x">    [...],</span>
 <span class="x">    'consent.disable' =&gt; true,</span>
@@ -520,7 +515,7 @@ more IdPs for a given SP, add the
 <p>
  Disable consent for some SPs connected to a given IdP:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">$metadata['https://idp.example.org/'] = [</span>
 <span class="x">    [...],</span>
 <span class="x">    'consent.disable' =&gt; [</span>
@@ -533,7 +528,7 @@ more IdPs for a given SP, add the
 <p>
  Disable consent for a given SP:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">$metadata['https://sp.example.org'] = [</span>
 <span class="x">    [...]</span>
 <span class="x">    'consent.disable' =&gt; true,</span>
@@ -543,7 +538,7 @@ more IdPs for a given SP, add the
 <p>
  Disable consent for some IdPs for a given SP:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">$metadata['https://sp.example.org'] = [</span>
 <span class="x">    [...]</span>
 <span class="x">    'consent.disable' =&gt; [</span>
@@ -563,7 +558,7 @@ for a range of specific entityIds.  Just use an array instead of a flat string
 with the following format (note that flat string and array entries are allowed
 at the same time) :
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">$metadata['https://sp.example.org'] = [</span>
 <span class="x">    [...]</span>
 <span class="x">    'consent.disable' =&gt; [</span>
@@ -628,7 +623,7 @@ attribute tree.
 <p>
  These values will be listed as an bullet list
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">Array (</span>
 <span class="x">    [objectClass] =&gt; Array (</span>
 <span class="x">        [0] =&gt; top</span>
@@ -641,7 +636,7 @@ attribute tree.
  This array has two child arrays. These will be listed in two separate sub
 tables.
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">Array (</span>
 <span class="x">    [child_eduPersonOrgUnitDN] =&gt; Array (</span>
 <span class="x">        [0] =&gt; Array (</span>

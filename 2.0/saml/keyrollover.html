@@ -55,11 +55,6 @@
       2.0 (stable)
      </a>
     </div>
-    <div class="menuitem">
-     <a href="/docs/1.19/index.html">
-      1.19
-     </a>
-    </div>
     <div class="menuitem first">
      <a href="/docs/devel/index.html">
       devel
@@ -118,7 +113,7 @@ entity publishes metadata with two certificates in it. Meanwhile it continues to
  First you must create the new key that you are going to use.
 To create a self signed certificate, you may use the following command:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="nb">cd</span><span class="w"> </span>cert
 openssl<span class="w"> </span>req<span class="w"> </span>-newkey<span class="w"> </span>rsa:3072<span class="w"> </span>-new<span class="w"> </span>-x509<span class="w"> </span>-days<span class="w"> </span><span class="m">3652</span><span class="w"> </span>-nodes<span class="w"> </span>-out<span class="w"> </span>new.crt<span class="w"> </span>-keyout<span class="w"> </span>new.pem
 </code></pre>
@@ -165,7 +160,7 @@ This ensures that both those entities that use your old metadata and those that 
  </code>
  :
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">    'default-sp' =&gt; [</span>
 <span class="x">        'saml:SP',</span>
 <span class="x">        'privatekey' =&gt; 'old.pem',</span>
@@ -187,7 +182,7 @@ This ensures that both those entities that use your old metadata and those that 
  </code>
  :
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">    $metadata['urn:x-simplesamlphp:idp'] = [</span>
 <span class="x">        'host' =&gt; '__DEFAULT__',</span>
 <span class="x">        'auth' =&gt; 'example-userpass',</span>
@@ -261,7 +256,7 @@ This will cause your old key to be removed from your metadata.
  </code>
  :
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">    'default-sp' =&gt; [</span>
 <span class="x">        'saml:SP',</span>
 <span class="x">        'certificate' =&gt; 'new.crt',</span>

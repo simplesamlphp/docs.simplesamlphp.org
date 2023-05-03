@@ -55,11 +55,6 @@
       2.0 (stable)
      </a>
     </div>
-    <div class="menuitem">
-     <a href="/docs/1.19/index.html">
-      1.19
-     </a>
-    </div>
     <div class="menuitem first">
      <a href="/docs/devel/index.html">
       devel
@@ -101,7 +96,7 @@ validation. For now there is only one authentication source:
 stores it in the environment variable SSL_CLIENT_CERT. This can be achieved
 with such a configuration:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="w">    </span><span class="nb">SSLEngine</span><span class="w"> </span><span class="k">on</span>
 <span class="w">    </span><span class="nb">SSLCertificateFile</span><span class="w"> </span><span class="sx">/etc/openssl/certs/server.crt</span>
 <span class="w">    </span><span class="nb">SSLCertificateKeyFile</span><span class="w"> </span><span class="sx">/etc/openssl/private/server.key</span>
@@ -141,7 +136,7 @@ must not appear in a &lt;Directory&gt;, &lt;Location&gt;, or in a name-based
  </code>
  to true:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">    'module.enable' =&gt; [</span>
 <span class="x">         'authX509' =&gt; true,</span>
 <span class="x">         …</span>
@@ -152,7 +147,7 @@ must not appear in a &lt;Directory&gt;, &lt;Location&gt;, or in a name-based
  Then you must add it as an authentication source. Here is an
 example authsources.php entry:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">    'x509' =&gt; [</span>
 <span class="x">        'authX509:X509userCert',</span>
 <span class="x">        'hostname' =&gt; 'ldaps://ldap.example.net',</span>
@@ -192,19 +187,19 @@ two options:
  Certificates are usually stored in LDAP as DER, in binary. Here is
 how to convert from PEM to DER:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="w">    </span>openssl<span class="w"> </span>x509<span class="w"> </span>-in<span class="w"> </span>cert.pem<span class="w"> </span>-inform<span class="w"> </span>PEM<span class="w"> </span>-outform<span class="w"> </span>DER<span class="w"> </span>-out<span class="w"> </span>cert.der
 </code></pre>
 </div>
 <p>
  Here is some LDIF to upload the certificate in the directory:
 </p>
-<div class="codehilite">
- <pre><span></span><code><span class="n">dn</span><span class="o">:</span><span class="w"> </span><span class="n">uid</span><span class="o">=</span><span class="n">jdoe</span><span class="o">,</span><span class="n">dc</span><span class="o">=</span><span class="n">example</span><span class="o">,</span><span class="n">dc</span><span class="o">=</span><span class="n">net</span>
-<span class="n">changetype</span><span class="o">:</span><span class="w"> </span><span class="n">modify</span>
-<span class="n">add</span><span class="o">:</span><span class="w"> </span><span class="n">userCertificate</span><span class="o">;</span><span class="n">binary</span>
-<span class="n">userCertificate</span><span class="o">;</span><span class="n">binary</span><span class="o">:&lt;</span><span class="w"> </span><span class="n">file</span><span class="o">:</span><span class="n">cert</span><span class="o">.</span><span class="na">der</span>
-<span class="o">-</span>
+<div class="highlight">
+ <pre><span></span><code>dn: uid=jdoe,dc=example,dc=net
+changetype: modify
+add: userCertificate;binary
+userCertificate;binary:&lt; file:cert.der
+-
 </code></pre>
 </div>
 <h2 id="supporting-both-certificate-and-login-authentication">
@@ -214,7 +209,7 @@ how to convert from PEM to DER:
  In your Apache configuration, set SSLVerifyClient to optional. Then you
 can hack your metadata/saml20-idp-hosted.php file that way:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">    $auth_source = empty($_SERVER['SSL_CLIENT_CERT']) ? 'ldap' : 'x509';</span>
 <span class="x">    $metadata = array(</span>
 <span class="x">        '__DYNAMIC:1__' =&gt; [</span>
@@ -239,7 +234,7 @@ configure an authproc filter.
 <p>
  Example:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">     10 =&gt; [</span>
 <span class="x">         'class' =&gt; 'authX509:ExpiryWarning',</span>
 <span class="x">         'warndaysbefore' =&gt; 30,</span>

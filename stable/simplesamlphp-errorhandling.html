@@ -55,11 +55,6 @@
       2.0 (stable)
      </a>
     </div>
-    <div class="menuitem">
-     <a href="/docs/1.19/index.html">
-      1.19
-     </a>
-    </div>
     <div class="menuitem first">
      <a href="/docs/devel/index.html">
       devel
@@ -186,7 +181,7 @@ The simplest case is if you want to throw it during the
  -method in a processing filter.
 In those methods, you can just throw an exception:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">public function process(array &amp;$state): void</span>
 <span class="x">{</span>
 <span class="x">    if ($state['something'] === false) {</span>
@@ -205,7 +200,7 @@ In those methods, you can just throw an exception:
  </code>
  function:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="cp">&lt;?php</span>
 
 <span class="nv">$id</span> <span class="o">=</span> <span class="nv">$_REQUEST</span><span class="p">[</span><span class="s1">'StateId'</span><span class="p">];</span>
@@ -551,7 +546,7 @@ The exception can be located in a field named
  .
 The following code illustrates this behaviour:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">if (array_key_exists(\SimpleSAML\Auth\State::EXCEPTION_PARAM, $_REQUEST)) {</span>
 <span class="x">    $state = \SimpleSAML\Auth\State::loadExceptionState();</span>
 <span class="x">    $exception = $state[\SimpleSAML\Auth\State::EXCEPTION_DATA];</span>
@@ -585,7 +580,7 @@ The result will be delivered directly if it is possible, but if not, it will be 
 <p>
  The code for handling this becomes something like:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">if (array_key_exists(\SimpleSAML\Auth\State::EXCEPTION_PARAM, $_REQUEST)) {</span>
 <span class="x">    $state = \SimpleSAML\Auth\State::loadExceptionState();</span>
 <span class="x">    $exception = $state[\SimpleSAML\Auth\State::EXCEPTION_DATA];</span>

@@ -55,11 +55,6 @@
       2.0 (stable)
      </a>
     </div>
-    <div class="menuitem">
-     <a href="/docs/1.19/index.html">
-      1.19
-     </a>
-    </div>
     <div class="menuitem first">
      <a href="/docs/devel/index.html">
       devel
@@ -171,7 +166,7 @@
  </code>
  to them:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'enable.saml20-idp' =&gt; true,</span>
 </code></pre>
 </div>
@@ -359,7 +354,7 @@
  </code>
  to true:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'module.enable' =&gt; [</span>
 <span class="x">    'exampleauth' =&gt; true,</span>
 <span class="x">    …</span>
@@ -376,7 +371,7 @@
 <p>
  In this setup, this file should contain a single entry:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="cp">&lt;?php</span>
 
 <span class="nv">$config</span> <span class="o">=</span> <span class="p">[</span>
@@ -421,7 +416,7 @@
  </code>
  -user). The attributes for each user are configured in the array referenced by the index. So for the student user, these are:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">[</span>
 <span class="x">    'uid' =&gt; ['student'],</span>
 <span class="x">    'eduPersonAffiliation' =&gt; ['member', 'student'],</span>
@@ -448,7 +443,7 @@
 <p>
  This key and certificate can be used to sign SAML messages:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code>openssl<span class="w"> </span>req<span class="w"> </span>-newkey<span class="w"> </span>rsa:3072<span class="w"> </span>-new<span class="w"> </span>-x509<span class="w"> </span>-days<span class="w"> </span><span class="m">3652</span><span class="w"> </span>-nodes<span class="w"> </span>-out<span class="w"> </span>example.org.crt<span class="w"> </span>-keyout<span class="w"> </span>example.org.pem
 </code></pre>
 </div>
@@ -475,7 +470,7 @@
  .
 This is a minimal configuration:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="cp">&lt;?php</span>
 
 <span class="nv">$metadata</span><span class="p">[</span><span class="s1">'https://example.org/saml-idp'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
@@ -530,7 +525,7 @@ files, see the
 We therefore recommended enabling this in new installations.
 This can be done by adding the following to the saml20-idp-hosted configuration:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'attributes.NameFormat' =&gt; 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',</span>
 <span class="x">'authproc' =&gt; [</span>
 <span class="x">    // Convert LDAP names to oids.</span>
@@ -554,7 +549,7 @@ This is a minimal example of a
  </code>
  metadata file for a SimpleSAMLphp SP:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="cp">&lt;?php</span>
 
 <span class="nv">$metadata</span><span class="p">[</span><span class="s1">'https://sp.example.org/simplesaml/module.php/saml/sp/metadata.php/default-sp'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
@@ -683,7 +678,7 @@ To send the RelayState parameter from a SimpleSAMLphp IdP, specify it in the que
  </code>
  :
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'default-sp' =&gt; [</span>
 <span class="x">    'saml:SP',</span>
 <span class="x">    'RelayState' =&gt; 'https://sp.example.org/welcome.php',</span>

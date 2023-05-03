@@ -55,11 +55,6 @@
       2.0 (stable)
      </a>
     </div>
-    <div class="menuitem">
-     <a href="/docs/1.19/index.html">
-      1.19
-     </a>
-    </div>
     <div class="menuitem first">
      <a href="/docs/devel/index.html">
       devel
@@ -223,7 +218,7 @@
  </code>
  :
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'authproc.idp' =&gt; [</span>
 <span class="x">    10 =&gt; [</span>
 <span class="x">        'class' =&gt; 'core:AttributeMap', </span>
@@ -304,14 +299,14 @@ we may add it on the Modules overview.
 <p>
  When you know the class definition of a filter, and the priority, the simple way to configure the filter is:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">20 =&gt; 'core:TargetedID',</span>
 </code></pre>
 </div>
 <p>
  This is analogous to:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">20 =&gt; [</span>
 <span class="x">    'class' =&gt; 'core:TargetedID'</span>
 <span class="x">],</span>
@@ -332,7 +327,7 @@ we may add it on the Modules overview.
  </em>
  , you need to choose the second of the two alernatives above. Here is an example of provided parameters to the consent module:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">90 =&gt; [</span>
 <span class="x">    'class' =&gt; 'consent:Consent', </span>
 <span class="x">    'store' =&gt; 'consent:Cookie', </span>
@@ -402,7 +397,7 @@ we may add it on the Modules overview.
  </code>
  metadata. Here is an example of a filter added in a metadata file:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">$metadata['https://example.org/saml-idp'] = [</span>
 <span class="x">    'host' =&gt; '__DEFAULT_',</span>
 <span class="x">    'privatekey' =&gt; 'example.org.pem',</span>

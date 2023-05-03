@@ -55,11 +55,6 @@
       2.0 (stable)
      </a>
     </div>
-    <div class="menuitem">
-     <a href="/docs/1.19/index.html">
-      1.19
-     </a>
-    </div>
     <div class="menuitem first">
      <a href="/docs/devel/index.html">
       devel
@@ -102,7 +97,7 @@
  </code>
  to true:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">    'module.enable' =&gt; [</span>
 <span class="x">         'discopower' =&gt; true,</span>
 <span class="x">         …</span>
@@ -234,7 +229,7 @@
  </code>
  parameter to point at the DiscoPower module:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="cp">&lt;?php</span>
 <span class="nv">$config</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">'default-sp'</span> <span class="o">=&gt;</span> <span class="p">[</span>
@@ -264,7 +259,7 @@
  </code>
  attribute in the entity's metadata. If you're using locally hosted metadata, you can do this by simply editing your metadata as follows:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">$metadata['https://idp1.example.net/'] = [</span>
 <span class="x">    // ...</span>
 <span class="x">    'tags' =&gt; ['tag1', 'tag2'],</span>
@@ -292,7 +287,7 @@
  </code>
  stanza.
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">$metadata['https://sp1.example.org/'] = [</span>
 <span class="x">    // ...</span>
 <span class="x">    'discopower.filter' =&gt; [</span>
@@ -395,7 +390,7 @@
 <p>
  Thus to force a particular identity provider to the top of the list, you can set it's weight very high, like this:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">$metadata['https://idp2.example.net/'] = [</span>
 <span class="x">    // ...</span>
 <span class="x">    'name' =&gt; ['en' =&gt; 'IdP 1'],</span>
@@ -415,7 +410,7 @@
  </code>
  directory. This file should contain a function named:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">&lt;module_name&gt;_hook_discosort(&amp;$entities)</span>
 </code></pre>
 </div>

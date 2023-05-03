@@ -55,11 +55,6 @@
       2.0 (stable)
      </a>
     </div>
-    <div class="menuitem">
-     <a href="/docs/1.19/index.html">
-      1.19
-     </a>
-    </div>
     <div class="menuitem first">
      <a href="/docs/devel/index.html">
       devel
@@ -105,7 +100,7 @@ releases. The following changes are relevant for installers and/or developers.
 If you used some of the modules that were shipped with SimpleSAMLphp, you now have to manually install them using Composer.
 For example, to use the LDAP module:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code>composer<span class="w"> </span>require<span class="w"> </span>simplesamlphp/simplesamlphp-module-ldap<span class="w"> </span>--update-no-dev
 </code></pre>
 </div>
@@ -491,7 +486,7 @@ processing filters, themes, or that interface with the SimpleSAMLphp development
   </p>
  </li>
 </ul>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">// Old style</span>
 <span class="x">$x = \SimpleSAML\Utils\Arrays::arrayize($someVar)</span>
 </code></pre>
@@ -500,7 +495,7 @@ processing filters, themes, or that interface with the SimpleSAMLphp development
  <pre><span></span><code>becomes:
 </code></pre>
 </div>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">  // New style</span>
 <span class="x">  $arrayUtils = new \SimpleSAML\Utils\Arrays();</span>
 <span class="x">  $x = $arrayUtils-&gt;arrayize($someVar);</span>

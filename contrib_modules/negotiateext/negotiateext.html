@@ -55,11 +55,6 @@
       2.0 (stable)
      </a>
     </div>
-    <div class="menuitem">
-     <a href="/docs/1.19/index.html">
-      1.19
-     </a>
-    </div>
     <div class="menuitem first">
      <a href="/docs/devel/index.html">
       devel
@@ -162,7 +157,7 @@ client.
 <p>
  All configuration is handled in authsources.php:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'weblogin' =&gt; [</span>
 <span class="x">    'negotiateext:Negotiate',</span>
 <span class="x">    'backend' =&gt; 'ldap',</span>
@@ -218,7 +213,7 @@ follows: (Example for
  </code>
  )
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="nt">&lt;LocationMatch</span><span class="w"> </span><span class="s">/negotiateext/auth</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="nb">AuthType</span><span class="w"> </span>KerberosV5
 <span class="w">    </span><span class="nb">KrbMethodK5Passwd</span><span class="w"> </span><span class="k">off</span>
@@ -254,7 +249,7 @@ WWW-Authenticate request.
 <p>
  Syntax is:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'subnet' =&gt; ['127.0.0.0/16','192.168.0.0/16'],</span>
 </code></pre>
 </div>
@@ -301,7 +296,7 @@ box of information to the user explaining what's happening.
  One can add this bit of code to the template in the fallback AuthN
 module:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">// This should be placed in your www script modules/core/www/loginuserpass.php</span>
 
 <span class="x">$nego_perm = false;</span>
@@ -332,7 +327,7 @@ module:
 <span class="x">];</span>
 </code></pre>
 </div>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">// This should reside in your template modules/core/templates/loginuserpass.php</span>
 
 <span class="cp">&lt;?php</span>
@@ -420,7 +415,7 @@ this is true (on a Windows machine). Next locate
  Chrome on Linux: Create a file /etc/opt/chrome/policies/managed/company_policy.json
 with the following content:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="p">{</span><span class="nt">"AuthServerWhitelist"</span><span class="p">:</span><span class="s2">"your.idp.host"</span><span class="p">}</span>
 </code></pre>
 </div>

@@ -55,11 +55,6 @@
       2.0 (stable)
      </a>
     </div>
-    <div class="menuitem">
-     <a href="/docs/1.19/index.html">
-      1.19
-     </a>
-    </div>
     <div class="menuitem first">
      <a href="/docs/devel/index.html">
       devel
@@ -181,7 +176,7 @@ a version of SimpleSAMLphp at your server.
  </code>
  , and enable the SAML 2.0 IdP:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'enable.saml20-idp' =&gt; true,</span>
 </code></pre>
 </div>
@@ -192,7 +187,7 @@ a version of SimpleSAMLphp at your server.
  You must generate a certificate for your IdP.
 Here is an example of an openssl command to generate a new key and a self signed certificate to use for signing SAML messages:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code>openssl<span class="w"> </span>req<span class="w"> </span>-newkey<span class="w"> </span>rsa:3072<span class="w"> </span>-new<span class="w"> </span>-x509<span class="w"> </span>-days<span class="w"> </span><span class="m">3652</span><span class="w"> </span>-nodes<span class="w"> </span>-out<span class="w"> </span>googleworkspaceidp.crt<span class="w"> </span>-keyout<span class="w"> </span>googleworkspaceidp.pem
 </code></pre>
 </div>
@@ -312,7 +307,7 @@ An optional company name []:
  </code>
  to true:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'module.enable' =&gt; [</span>
 <span class="x">    'exampleauth' =&gt; true,</span>
 <span class="x">    …</span>
@@ -333,7 +328,7 @@ An optional company name []:
  </code>
  , and hence that section is what matters and will be used.
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="cp">&lt;?php</span>
 
 <span class="nv">$config</span> <span class="o">=</span> <span class="p">[</span>
@@ -400,7 +395,7 @@ An optional company name []:
 <p>
  This is the configuration of the IdP itself. Here is some example config:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">// The SAML entity ID is the index of this config.</span>
 <span class="x">$metadata['https://example.org/saml-idp'] =&gt; [</span>
 <span class="x">    // The hostname of the server (VHOST) that this SAML entity will use.</span>
@@ -434,7 +429,7 @@ An optional company name []:
  </code>
  file we will configure an entry for Google Workspace for Education. There is already an entry for Google Workspace in the template, but we will change the domain name:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">/*</span>
 <span class="x"> * This example shows an example config that works with Google Workspace for education.</span>
 <span class="x"> * You send the email address that identifies the user from your IdP in the SAML Name ID.</span>

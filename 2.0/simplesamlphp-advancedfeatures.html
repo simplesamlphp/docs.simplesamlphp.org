@@ -55,11 +55,6 @@
       2.0 (stable)
      </a>
     </div>
-    <div class="menuitem">
-     <a href="/docs/1.19/index.html">
-      1.19
-     </a>
-    </div>
     <div class="menuitem first">
      <a href="/docs/devel/index.html">
       devel
@@ -178,7 +173,7 @@ The SAML 2.0 SP talks to the SAML 2.0 IdP, which hands the request over to the S
  </code>
  :
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'auth' =&gt; 'default-sp',</span>
 </code></pre>
 </div>
@@ -189,7 +184,7 @@ The SAML 2.0 SP talks to the SAML 2.0 IdP, which hands the request over to the S
  </code>
  :
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'default-sp' =&gt; [</span>
 <span class="x">    'saml:SP',</span>
 <span class="x">],</span>
@@ -355,7 +350,7 @@ Please see the
 <p>
  Example code for the function with GeoIP country check:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">public static function checkSession(\SimpleSAML\Session $session, bool $init = false)</span>
 <span class="x">{</span>
 <span class="x">    $data_type = 'example:check_session';</span>

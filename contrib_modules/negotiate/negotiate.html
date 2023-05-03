@@ -55,11 +55,6 @@
       2.0 (stable)
      </a>
     </div>
-    <div class="menuitem">
-     <a href="/docs/1.19/index.html">
-      1.19
-     </a>
-    </div>
     <div class="menuitem first">
      <a href="/docs/devel/index.html">
       devel
@@ -163,7 +158,7 @@ client.
 <p>
  All configuration is handled in authsources.php:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'weblogin' =&gt; [</span>
 <span class="x">    'negotiate:Negotiate',</span>
 <span class="x">    'keytab' =&gt; '/path/to/keytab-file',</span>
@@ -204,7 +199,7 @@ by php_krb5.
 might need to change the 'spn' variable to 0 (match any entry in the
 keytab file) or set it to the specific entry you are trying to match.
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'spn' =&gt; 'HTTP/host',</span>
 
 <span class="x">'spn' =&gt; 0,</span>
@@ -214,7 +209,7 @@ keytab file) or set it to the specific entry you are trying to match.
  Depending on you apache config you may need a rewrite rule to allow
 php_krb5 to read the HTTP_AUTHORIZATION header:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="nb">RewriteEngine</span><span class="w"> </span><span class="k">on</span>
 <span class="nb">RewriteCond</span><span class="w"> </span>%{HTTP:Authorization}<span class="w">  </span>!^$
 <span class="nb">RewriteRule</span><span class="w"> </span>.*<span class="w"> </span>-<span class="w"> </span>[E=HTTP_AUTHORIZATION:%{HTTP:Authorization},L]
@@ -223,7 +218,7 @@ php_krb5 to read the HTTP_AUTHORIZATION header:
 <p>
  Test the Kerberos setup with the following script:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">if(!extension_loaded('krb5')) {</span>
 <span class="x">    die('KRB5 Extension not installed');</span>
 <span class="x">}</span>
@@ -275,7 +270,7 @@ If you're using only one realm (one AD domain for example) then you could
 let your ldap configuration with the magic "*" key. For multi realms the
 syntax is :
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'weblogin' =&gt; [</span>
 <span class="x">    'negotiate:Negotiate',</span>
 <span class="x">    ...</span>
@@ -297,7 +292,7 @@ WWW-Authenticate request.
 <p>
  Syntax is:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'subnet' =&gt; [ '127.0.0.0/16','192.168.0.0/16' ],</span>
 </code></pre>
 </div>
@@ -344,7 +339,7 @@ box of information to the user explaining what's happening.
  One can add this bit of code to the template in the fallback AuthN
 module:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">// This should be placed in your www script</span>
 <span class="x">$nego_session = false;</span>
 <span class="x">$nego_perm = false;</span>
@@ -405,39 +400,39 @@ this:
 <p>
  ```plain text
 Sep 27 13:47:36 simplesamlphp WARNING [b99e6131ee] Wrong stage in state. Was 'foo', should be '\SimpleSAML\Module\negotiate\Auth\Source\Negotiate.StageId'.
-</p>
-<div class="codehilite">
- <pre><span></span><code><span class="n">It</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">work</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">loadState</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">take</span><span class="w"> </span><span class="n">control</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">call</span>
-<span class="n">Negotiate</span><span class="o">-&gt;</span><span class="n">authenticate</span><span class="p">()</span><span class="w"> </span><span class="n">but</span><span class="w"> </span><span class="n">remaining</span><span class="w"> </span><span class="n">code</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">retry</span><span class="o">.</span><span class="n">php</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">be</span>
-<span class="n">discarded</span><span class="o">.</span><span class="w"> </span><span class="n">Other</span><span class="w"> </span><span class="n">side</span><span class="o">-</span><span class="n">effects</span><span class="w"> </span><span class="n">may</span><span class="w"> </span><span class="n">occur</span><span class="o">.</span>
+ <div class="highlight">
+  <pre><span></span><code>It will work as loadState will take control and call
+Negotiate-&gt;authenticate() but remaining code in retry.php will be
+discarded. Other side-effects may occur.
 
-<span class="c1">### Clients</span>
+### Clients
 
-<span class="c1">#### Internet Explorer</span>
+#### Internet Explorer
 
-<span class="n">YMMV</span><span class="w"> </span><span class="n">but</span><span class="w"> </span><span class="n">generally</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">need</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">IdP</span><span class="w"> </span><span class="n">defined</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="s2">"Internet</span>
-<span class="n">Options</span><span class="s2">" -&gt; "</span><span class="n">Security</span><span class="s2">" -&gt; "</span><span class="n">Local</span><span class="w"> </span><span class="n">intranet</span><span class="s2">" -&gt; "</span><span class="n">Sites</span><span class="s2">" -&gt; "</span><span class="n">Advanced</span><span class="s2">".</span>
-<span class="n">You</span><span class="w"> </span><span class="n">also</span><span class="w"> </span><span class="n">need</span><span class="w"> </span><span class="s2">"Internet Options"</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s2">"Advanced"</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s2">"Security"</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Enable</span>
-<span class="n">Integrated</span><span class="w"> </span><span class="n">Windows</span><span class="w"> </span><span class="n">Authentication</span><span class="s2">" enabled.</span>
+YMMV but generally you need to have your IdP defined in "Internet
+Options" -&gt; "Security" -&gt; "Local intranet" -&gt; "Sites" -&gt; "Advanced".
+You also need "Internet Options" -&gt; "Advanced" -&gt; "Security" -&gt; Enable
+Integrated Windows Authentication" enabled.
 
-<span class="c1">#### Firefox</span>
+#### Firefox
 
-<span class="n">Open</span><span class="w"> </span><span class="s2">"about:config"</span><span class="o">.</span><span class="w"> </span><span class="n">Locate</span><span class="w"> </span><span class="s2">"network.auth.use-sspi"</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">verify</span><span class="w"> </span><span class="n">that</span>
-<span class="n">this</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="bp">true</span><span class="w"> </span><span class="p">(</span><span class="n">on</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">Windows</span><span class="w"> </span><span class="n">machine</span><span class="p">)</span><span class="o">.</span><span class="w"> </span><span class="n">Next</span><span class="w"> </span><span class="n">locate</span>
-<span class="s2">"network.negotiate-auth.trusted-uris"</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">insert</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">IdP</span><span class="o">.</span>
+Open "about:config". Locate "network.auth.use-sspi" and verify that
+this is true (on a Windows machine). Next locate
+"network.negotiate-auth.trusted-uris" and insert your IdP.
 
-<span class="c1">#### Safari</span>
+#### Safari
 
-<span class="n">TODO</span>
+TODO
 
-<span class="c1">#### Chromium</span>
+#### Chromium
 
-<span class="n">To</span><span class="w"> </span><span class="n">allow</span><span class="w"> </span><span class="n">Kerberos</span><span class="w"> </span><span class="n">SPN</span><span class="w"> </span><span class="n">generation</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="n">Linux</span><span class="o">-</span><span class="n">based</span><span class="w"> </span><span class="n">platforms</span><span class="p">,</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="n">the</span>
-<span class="n">following</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">chromium</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">default</span><span class="o">-</span><span class="n">flags</span><span class="p">:</span>
+To allow Kerberos SPN generation on Linux-based platforms, add the
+following line to /etc/chromium.d/default-flags:
 
-<span class="err">```</span><span class="n">bash</span>
-<span class="k">export</span><span class="w"> </span><span class="n">CHROMIUM_FLAGS</span><span class="o">=</span><span class="s2">"$CHROMIUM_FLAGS --auth-server-whitelist=.example.com"</span>
+```bash
+export CHROMIUM_FLAGS="$CHROMIUM_FLAGS --auth-server-whitelist=.example.com"
 </code></pre>
-</div>
+ </div>
+</p>
 </main></body>
 </html>

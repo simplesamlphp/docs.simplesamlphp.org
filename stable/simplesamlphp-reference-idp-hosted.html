@@ -55,11 +55,6 @@
       2.0 (stable)
      </a>
     </div>
-    <div class="menuitem">
-     <a href="/docs/1.19/index.html">
-      1.19
-     </a>
-    </div>
     <div class="menuitem first">
      <a href="/docs/devel/index.html">
       devel
@@ -134,7 +129,7 @@
  .
 The file has the following format:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="cp">&lt;?php</span>
 <span class="cm">/* The index of the array is the entity ID of this IdP. */</span>
 <span class="nv">$metadata</span><span class="p">[</span><span class="s1">'entity-id-1'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
@@ -228,7 +223,7 @@ entry matches.
   For example, specifying a support contact:
  </dd>
  <dt>
-  <div class="codehilite">
+  <div class="highlight">
    <pre><span></span><code><span class="x">'contacts' =&gt; [</span>
 <span class="x">    [</span>
 <span class="x">        'contactType'       =&gt; 'support',</span>
@@ -248,7 +243,7 @@ entry matches.
   </p>
  </dd>
 </dl>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'contacts' =&gt; [</span>
 <span class="x">    [</span>
 <span class="x">        'contactType'       =&gt; 'other',</span>
@@ -333,7 +328,7 @@ entry matches.
   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
  </dd>
 </dl>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'OrganizationName' =&gt; [</span>
 <span class="x">    'en' =&gt; 'Voorbeeld Organisatie Foundation b.a.',</span>
 <span class="x">    'nl' =&gt; 'Stichting Voorbeeld Organisatie b.a.',</span>
@@ -1050,7 +1045,7 @@ messages from that SP.
  </strong>
  :
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="x">'redirect.sign' =&gt; true,</span>
 </code></pre>
 </div>
@@ -1115,7 +1110,7 @@ See the documentation for those extensions for more details:
 <h3 id="minimal-saml-20-idp">
  Minimal SAML 2.0 IdP
 </h3>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="cp">&lt;?php</span>
 
 <span class="nv">$metadata</span><span class="p">[</span><span class="s1">'https://example.org/saml-idp'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
@@ -1140,7 +1135,7 @@ See the documentation for those extensions for more details:
 <h3 id="a-custom-metadata-extension-edugain-republish-request">
  A custom metadata extension (eduGAIN republish request)
 </h3>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="cp">&lt;?php</span>
 
 <span class="nv">$dom</span> <span class="o">=</span> <span class="nx">\SAML2\DOMDocumentFactory</span><span class="o">::</span><span class="na">create</span><span class="p">();</span>
@@ -1165,7 +1160,7 @@ See the documentation for those extensions for more details:
 <p>
  this generates the following metadata:
 </p>
-<div class="codehilite">
+<div class="highlight">
  <pre><span></span><code><span class="nt">&lt;EntityDescriptor</span><span class="w"> </span><span class="na">entityID=</span><span class="s">"..."</span><span class="nt">&gt;</span>
 <span class="w">  </span><span class="nt">&lt;Extensions</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">"urn:oasis:names:tc:SAML:2.0:metadata"</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="nt">&lt;eduidmd:RepublishRequest</span><span class="w"> </span><span class="na">xmlns:eduidmd=</span><span class="s">"http://eduid.cz/schema/metadata/1.0"</span><span class="nt">&gt;</span>
