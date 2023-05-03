@@ -137,7 +137,7 @@ def mkContentHeader(versions):
     content += '<div id="content">'
     content += '</header>'
    
-    s = BeautifulSoup(content)   
+    s = BeautifulSoup(content, 'html.parser')   
    
     return s.prettify()
 
