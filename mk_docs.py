@@ -16,7 +16,7 @@ pymd = markdown.Markdown(extensions=md_ext, tab_length=2)
 # - make sure links remain working
 # - add header, navigation and footer to the converted file
 def md2html(md_file, html_file, file_name):
-    #print("Transforming " + md_file + " into " + html_file)
+    print("Transforming " + md_file + " into " + html_file)
     
     with open(md_file, 'r') as f:
        text = f.read()
@@ -51,7 +51,7 @@ def getsubdirs(dir_path):
 
 # search a filesystem directory for markdown (md) files and parse these into html using the md2html function
 def parsefiles(docsdir, outputdir):
-    #print("parsing files from '" + docsdir + "' into '" + outputdir + "'")
+    print("parsing files from '" + docsdir + "' into '" + outputdir + "'")
 
     if os.path.isdir(docsdir):
 
