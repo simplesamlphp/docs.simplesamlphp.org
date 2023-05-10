@@ -87,26 +87,75 @@
 <p>
  The endpoints we have are:
 </p>
-<p>
- Endpoint                       | Indexed | Default binding
--------------------------------|---------|----------------
- <code>
-  ArtifactResolutionService
- </code>
- | Y       | SOAP
- <code>
-  AssertionConsumerService
- </code>
- | Y       | HTTP-POST
- <code>
-  SingleLogoutService
- </code>
- | N       | HTTP-Redirect
- <code>
-  SingleSignOnService
- </code>
- | N       | HTTP-Redirect
-</p>
+<table>
+ <thead>
+  <tr>
+   <th>
+    Endpoint
+   </th>
+   <th>
+    Indexed
+   </th>
+   <th>
+    Default binding
+   </th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+   <td>
+    <code>
+     ArtifactResolutionService
+    </code>
+   </td>
+   <td>
+    Y
+   </td>
+   <td>
+    SOAP
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <code>
+     AssertionConsumerService
+    </code>
+   </td>
+   <td>
+    Y
+   </td>
+   <td>
+    HTTP-POST
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <code>
+     SingleLogoutService
+    </code>
+   </td>
+   <td>
+    N
+   </td>
+   <td>
+    HTTP-Redirect
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <code>
+     SingleSignOnService
+    </code>
+   </td>
+   <td>
+    N
+   </td>
+   <td>
+    HTTP-Redirect
+   </td>
+  </tr>
+ </tbody>
+</table>
 <p>
  The various endpoints can be specified in three different ways:
 </p>
