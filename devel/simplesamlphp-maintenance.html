@@ -752,11 +752,10 @@ and override the methods needed to change the backend used. This class
 <p>
  Bear in mind that
  <strong>
-  your class name must follow the PSR-0 autoloading standard
+  your class name must follow the PSR-4 autoloading standard
  </strong>
  . This means it needs to be
-named in a particular way, with the use of namespaces being the preferred convention. For example, if your
-module is named
+properly namespaced. For example, if your module is named
  <code>
   mymodule
  </code>
@@ -764,7 +763,8 @@ module is named
  <code>
   MyMetadataHandler
  </code>
- , you should define it like this:
+ ,
+you should define it like this:
 </p>
 <div class="highlight">
  <pre><span></span><code><span class="cp">&lt;?php</span>
