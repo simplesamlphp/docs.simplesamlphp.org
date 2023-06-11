@@ -162,6 +162,14 @@ The
 <span class="x">        'hoksso:ProtocolBinding' =&gt; 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',</span>
 <span class="x">        'Binding' =&gt; 'urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser',</span>
 <span class="x">        'Location' =&gt; 'https://idp.example.org/simplesaml/saml2/idp/SSOService.php',</span>
+<span class="x">        'attributes' =&gt; [</span>
+<span class="x">            [</span>
+<span class="x">                'namespaceURI' =&gt; 'urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser',</span>
+<span class="x">                'namespacePrefix' =&gt; 'hoksso',</span>
+<span class="x">                'attrName' =&gt; 'ProtocolBinding',</span>
+<span class="x">                'attrValue' =&gt; 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',</span>
+<span class="x">            ],</span>
+<span class="x">        ],</span>
 <span class="x">    ],</span>
 <span class="x">    [</span>
 <span class="x">        'Binding' =&gt; 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',</span>
