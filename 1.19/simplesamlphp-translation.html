@@ -130,16 +130,16 @@
  When the template library is about to lookup the translation of a term, it will lookup
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="o">*</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">definition</span><span class="w"> </span><span class="nv">file</span>,<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">English</span><span class="w"> </span><span class="nv">translation</span>,<span class="w"> </span><span class="nv">and</span><span class="w"> </span>
-<span class="o">*</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">translation</span><span class="w"> </span><span class="nv">file</span>,<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">translation</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">other</span><span class="w"> </span><span class="nv">languages</span>.
+ <pre><span></span><code><span class="k">*</span> the definition file, for the English translation, and 
+<span class="k">*</span> the translation file, for translation to other languages.
 </code></pre>
 </div>
 <p>
  SimpleSAMLphp will always fallback to the English translation using the definition file, both:
 </p>
 <div class="codehilite">
- <pre><span></span><code>* when the term is not translated into the *current selected language*, and
-* when the translation file is not available at all.
+ <pre><span></span><code><span class="k">*</span> when the term is not translated into the <span class="gs">*current selected language*</span>, and
+<span class="k">*</span> when the translation file is not available at all.
 </code></pre>
 </div>
 <p>
@@ -197,10 +197,10 @@
  index is used in order to at a later point in time introduce more meta information for each term, like in example:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="s2">"header"</span>:<span class="w"> </span>{
-<span class="w">      </span><span class="s2">"en"</span>:<span class="w"> </span><span class="s2">"Missing cookie"</span>,
-<span class="w">      </span><span class="s2">"_note"</span>:<span class="w"> </span><span class="s2">"This text shows up on the error page when the browser do not support cookies."</span>
-<span class="w">  </span>},
+ <pre><span></span><code>  "header": {
+      "en": "Missing cookie",
+      "_note": "This text shows up on the error page when the browser do not support cookies."
+  },
 </code></pre>
 </div>
 <p>
