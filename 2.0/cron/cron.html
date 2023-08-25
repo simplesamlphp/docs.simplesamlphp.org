@@ -152,7 +152,11 @@ panel to trigger jobs manually.
  Preparations
 </h2>
 <p>
- You need to enable the module and copy the
+ You need to enable the module in
+ <code>
+  config.php
+ </code>
+ and copy the
  <code>
   config-templates
  </code>
@@ -163,9 +167,15 @@ panel to trigger jobs manually.
  directory.
 </p>
 <div class="highlight">
- <pre><span></span><code><span class="o">[</span>root@simplesamlphp<span class="o">]</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/var/simplesamlphp
-<span class="o">[</span>root@simplesamlphp<span class="w"> </span>simplesamlphp<span class="o">]</span><span class="w"> </span>touch<span class="w"> </span>modules/cron/enable
-<span class="o">[</span>root@simplesamlphp<span class="w"> </span>simplesamlphp<span class="o">]</span><span class="w"> </span>cp<span class="w"> </span>modules/cron/config/module_cron.php.dist<span class="w"> </span>config/module_cron.php
+ <pre><span></span><code><span class="s1">'module.enable'</span><span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>
+<span class="w">     </span><span class="s1">'cron'</span><span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>true,
+<span class="w">     </span>…
+<span class="o">]</span>,
+</code></pre>
+</div>
+<div class="highlight">
+ <pre><span></span><code><span class="o">[</span>user@simplesamlphp<span class="o">]</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/var/simplesamlphp
+<span class="o">[</span>user@simplesamlphp<span class="w"> </span>simplesamlphp<span class="o">]</span><span class="w"> </span>cp<span class="w"> </span>modules/cron/config/module_cron.php.dist<span class="w"> </span>config/module_cron.php
 </code></pre>
 </div>
 <h2 id="configuring-the-cron-module">
@@ -239,7 +249,7 @@ your SimpleSAMLphp installation.
  Finally, add it to your crontab by going back to the terminal, and editing with:
 </p>
 <div class="highlight">
- <pre><span></span><code><span class="o">[</span>root@simplesamlphp<span class="w"> </span>config<span class="o">]</span><span class="c1"># crontab -e</span>
+ <pre><span></span><code><span class="o">[</span>user@simplesamlphp<span class="w"> </span>config<span class="o">]</span><span class="c1"># crontab -e</span>
 </code></pre>
 </div>
 <p>
@@ -251,7 +261,7 @@ the one you use normally appears, exit, and configure the
  variable to tell the command line which editor it should use:
 </p>
 <div class="highlight">
- <pre><span></span><code><span class="o">[</span>root@simplesamlphp<span class="w"> </span>config<span class="o">]</span><span class="c1"># export EDITOR=emacs</span>
+ <pre><span></span><code><span class="o">[</span>user@simplesamlphp<span class="w"> </span>config<span class="o">]</span><span class="c1"># export EDITOR=emacs</span>
 </code></pre>
 </div>
 <p>
