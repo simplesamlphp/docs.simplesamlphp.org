@@ -89,6 +89,11 @@
    </a>
    <ul>
     <li>
+     <a href="#version-210">
+      Version 2.1.0
+     </a>
+    </li>
+    <li>
      <a href="#version-205">
       Version 2.0.5
      </a>
@@ -126,6 +131,40 @@
  This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 </p>
+<h2 id="version-210">
+ Version 2.1.0
+</h2>
+<p>
+ Released 2023-07-31
+</p>
+<ul>
+ <li>
+  Functionality that before was provided by the sanitycheck-module is now implicit.
+  The module has been archived and should no longer be used. (#1843)
+ </li>
+ <li>
+  Add support for TLS configuration for Redis Store (#1828)
+ </li>
+ <li>
+  Add support for Metadata Deployment Profile for errorURL (#1841)
+ </li>
+ <li>
+  Raised minimum Symfony version to 6.0
+ </li>
+ <li>
+  Raise minimum PHP version to 8.0
+ </li>
+ <li>
+  Specified the allowed HTTP methods for each route
+ </li>
+ <li>
+  Our dependency on
+  <code>
+   composer/composer
+  </code>
+  was dropped in favour of a packaged phar-file.
+ </li>
+</ul>
 <h2 id="version-205">
  Version 2.0.5
 </h2>
