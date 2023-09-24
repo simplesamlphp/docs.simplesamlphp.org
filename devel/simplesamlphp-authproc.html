@@ -106,6 +106,11 @@
      </ul>
     </li>
     <li>
+     <a href="#preconditional-filters">
+      Preconditional filters
+     </a>
+    </li>
+    <li>
      <a href="#auth-proc-filters-included-in-the-simplesamlphp-distribution">
       Auth Proc Filters included in the SimpleSAMLphp distribution
      </a>
@@ -421,6 +426,42 @@ we may add it on the Modules overview.
  </code>
  .
 </p>
+<h2 id="preconditional-filters">
+ Preconditional filters
+</h2>
+<p>
+ Any filter can be configured with a precondition that will determine whether or not a filter should run.
+The condition is represented as a string that will be evaluated, similar to the
+ <code>
+  core:PHP
+ </code>
+ filter. It also has
+the
+ <code>
+  $attributes
+ </code>
+ and
+ <code>
+  $state
+ </code>
+ variable available for use.
+The code must return either
+ <code>
+  true
+ </code>
+ to run the filter, or
+ <code>
+  false
+ </code>
+ to skip it.
+</p>
+<div class="highlight">
+ <pre><span></span><code><span class="x">'authproc' =&gt; [</span>
+<span class="x">    40 =&gt; 'core:TargetedID',</span>
+<span class="x">    '%precondition' =&gt; 'return $attributes["displayName"] === "John Doe";',</span>
+<span class="x">],</span>
+</code></pre>
+</div>
 <h2 id="auth-proc-filters-included-in-the-simplesamlphp-distribution">
  Auth Proc Filters included in the SimpleSAMLphp distribution
 </h2>
