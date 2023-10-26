@@ -4,7 +4,8 @@ import markdown
 import glob
 import os
 import urllib.request
-import json 
+import json
+import time
 from bs4 import BeautifulSoup
 
 # Set up the markdown converter
@@ -293,6 +294,8 @@ for ssp_version in ssp_versions:
      module_dir = os.path.join(module, "docs/")
      module_output_dir = os.path.join(versioned_site_root, module_name + "/" )
      parsefiles(module_dir, module_output_dir)
+
+   time.sleep(30)
 
 # Fetch and generate documentation for contributed modules as made availabe in various ssp repos
 # Contributes modules are not version dependent on the main source and hence are generated seperately from versioned documentation
