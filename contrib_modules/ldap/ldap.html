@@ -167,11 +167,11 @@ authentication source:
 <span class="x">         * Default: FALSE</span>
 <span class="x">         * Required: No</span>
 <span class="x">         */</span>
-<span class="x">        'ldap.debug' =&gt; false,</span>
+<span class="x">        'debug' =&gt; false,</span>
 
 <span class="x">        /**</span>
 <span class="x">         * The LDAP-options to pass when setting up a connection</span>
-<span class="x">         * See [Symfony documentation][1]</span>
+<span class="x">         * See [Symfony documentation]</span>
 <span class="x">         */</span>
 <span class="x">        'options' =&gt; [</span>
 <span class="x">            /**</span>
@@ -254,8 +254,8 @@ authentication source:
 <span class="x">         * Additional filters that must match for the entire LDAP search to</span>
 <span class="x">         * be true.</span>
 <span class="x">         *</span>
-<span class="x">         * This should be a single string conforming to [RFC 1960][2]</span>
-<span class="x">         * and [RFC 2544][3]. The string is appended to the search attributes</span>
+<span class="x">         * This should be a single string conforming to [RFC 1960]</span>
+<span class="x">         * and [RFC 2544]. The string is appended to the search attributes</span>
 <span class="x">         */</span>
 <span class="x">        'search.filter' =&gt; '(&amp;(objectClass=Person)(|(sn=Doe)(cn=John *)))',</span>
 
@@ -269,6 +269,20 @@ authentication source:
 <span class="x">    ],</span>
 </code></pre>
 </div>
+<p>
+ See:
+</p>
+<p>
+ <a href="https://github.com/symfony/symfony/blob/5.4/src/Symfony/Component/Ldap/Adapter/ExtLdap/ConnectionOptions.php">
+  Symfony documentation
+ </a>
+ <a href="https://datatracker.ietf.org/doc/html/rfc1960">
+  RFC 1960
+ </a>
+ <a href="https://datatracker.ietf.org/doc/html/rfc2544">
+  RFC 2544
+ </a>
+</p>
 <p>
  You should update the name of this authentication source
 (
@@ -644,12 +658,12 @@ required, see the config options for ldap:AttributeAddFromLDAP above.
 <div class="highlight">
  <pre><span></span><code><span class="x">    50 =&gt; [</span>
 <span class="x">        'class' =&gt; 'ldap:AttributeAddFromLDAP',</span>
-<span class="x">        'ldap.hostname' =&gt; 'ldap.example.org',</span>
-<span class="x">        'ldap.username' =&gt; 'CN=LDAP User,CN=Users,DC=example,DC=org',</span>
-<span class="x">        'ldap.password' =&gt; 'Abc123',</span>
-<span class="x">        'ldap.basedn' =&gt; ['DC=example,DC=org'],</span>
-<span class="x">        'attributes' =&gt; ['displayName' =&gt; 'cn', 'jpegPhoto'],</span>
+<span class="x">        'connection_string' =&gt; 'ldap.example.org',</span>
+<span class="x">        'search.username' =&gt; 'CN=LDAP User,CN=Users,DC=example,DC=org',</span>
+<span class="x">        'search.password' =&gt; 'Abc123',</span>
+<span class="x">        'search.base' =&gt; ['DC=example,DC=org'],</span>
 <span class="x">        'search.filter' =&gt; '(uid=%uid%)',</span>
+<span class="x">        'attributes' =&gt; ['displayName' =&gt; 'cn', 'jpegPhoto'],</span>
 <span class="x">    ]</span>
 </code></pre>
 </div>
@@ -707,7 +721,7 @@ a listing of all configuration options and their details.
 <span class="x">         * Required: No</span>
 <span class="x">         * AuthSource: search.base</span>
 <span class="x">         */</span>
-<span class="x">        'ldap.basedn' =&gt; [</span>
+<span class="x">        'search.base' =&gt; [</span>
 <span class="x">            'OU=Staff,DC=example,DC=org',</span>
 <span class="x">            'OU=Students,DC=example,DC=org'</span>
 <span class="x">        ],</span>
@@ -721,22 +735,16 @@ a listing of all configuration options and their details.
 <span class="x">         * Required: No</span>
 <span class="x">         * AuthSource: debug</span>
 <span class="x">         */</span>
-<span class="x">        'ldap.debug' =&gt; false,</span>
-<span class="x">        'ldap.debug' =&gt; true,</span>
+<span class="x">        'debug' =&gt; false,</span>
+<span class="x">        'debug' =&gt; true,</span>
 
 
 <span class="x">        /**</span>
-<span class="x">         * Set to TRUE to force the LDAP connection to use TLS.</span>
-<span class="x">         *</span>
-<span class="x">         * Note: If ldaps:// is specified in the hostname then it</span>
-<span class="x">         *       will automatically use TLS.</span>
-<span class="x">         *</span>
-<span class="x">         * Default: FALSE</span>
-<span class="x">         * Required: No</span>
-<span class="x">         * AuthSource: enable_tls</span>
+<span class="x">         * Whether SSL/TLS should be used when contacting the LDAP server.</span>
+<span class="x">         * Possible values are 'ssl', 'tls' or 'none'</span>
 <span class="x">         */</span>
-<span class="x">        'ldap.enable_tls' =&gt; false,</span>
-<span class="x">        'ldap.enable_tls' =&gt; true,</span>
+<span class="x">        'encryption' =&gt; 'tls',</span>
+<span class="x">        'encryption' =&gt; 'ssl',</span>
 
 
 <span class="x">        /**</span>
@@ -750,19 +758,8 @@ a listing of all configuration options and their details.
 <span class="x">         * Required: Yes, unless authsource is used</span>
 <span class="x">         * AuthSource: hostname</span>
 <span class="x">         */</span>
-<span class="x">        'ldap.hostname' =&gt; 'ldap.example.org',</span>
-<span class="x">        'ldap.hostname' =&gt; 'ad1.example.org ad2.example.org',</span>
-
-
-<span class="x">        /**</span>
-<span class="x">         * This is the port where the LDAP server(s) listen for</span>
-<span class="x">         * connections.</span>
-<span class="x">         *</span>
-<span class="x">         * Default: 389</span>
-<span class="x">         * Required: No</span>
-<span class="x">         * AuthSource: port</span>
-<span class="x">         */</span>
-<span class="x">        'ldap.port' =&gt; 389,</span>
+<span class="x">        'connection_string' =&gt; 'ldap.example.org',</span>
+<span class="x">        'connection_string' =&gt; 'ad1.example.org ad2.example.org',</span>
 
 
 <span class="x">        /**</span>
@@ -772,7 +769,7 @@ a listing of all configuration options and their details.
 <span class="x">         * Required: No, only if required for binding.</span>
 <span class="x">         * AuthSource: search.password OR priv.password</span>
 <span class="x">         */</span>
-<span class="x">        'ldap.password' =&gt; 'Abc123',</span>
+<span class="x">        'search.password' =&gt; 'Abc123',</span>
 
 
 <span class="x">        /**</span>
@@ -799,8 +796,8 @@ a listing of all configuration options and their details.
 <span class="x">         * Required: No</span>
 <span class="x">         * AuthSource: timeout</span>
 <span class="x">         */</span>
-<span class="x">        'ldap.timeout' =&gt; 0,</span>
-<span class="x">        'ldap.timeout' =&gt; 30,</span>
+<span class="x">        'timeout' =&gt; 0,</span>
+<span class="x">        'timeout' =&gt; 30,</span>
 
 
 <span class="x">        /**</span>
@@ -812,7 +809,7 @@ a listing of all configuration options and their details.
 <span class="x">         * Required: No, only if required for binding.</span>
 <span class="x">         * AuthSource: search.username OR priv.username</span>
 <span class="x">         */</span>
-<span class="x">        'ldap.username' =&gt; 'CN=LDAP User,CN=Users,DC=example,DC=org',</span>
+<span class="x">        'search.username' =&gt; 'CN=LDAP User,CN=Users,DC=example,DC=org',</span>
 
 
 <span class="x">        /**</span>
@@ -892,10 +889,10 @@ required, see the config info above for details.
 <div class="highlight">
  <pre><span></span><code><span class="x">    50 =&gt; [</span>
 <span class="x">        'class' =&gt; 'ldap:AttributeAddUsersGroups',</span>
-<span class="x">        'ldap.hostname' =&gt; 'ldap.example.org',</span>
-<span class="x">        'ldap.username' =&gt; 'CN=LDAP User,CN=Users,DC=example,DC=org',</span>
-<span class="x">        'ldap.password' =&gt; 'Abc123',</span>
-<span class="x">        'ldap.basedn' =&gt; ['DC=example,DC=org'],</span>
+<span class="x">        'connection_string' =&gt; 'ldaps://ldap.example.org',</span>
+<span class="x">        'search.username' =&gt; 'CN=LDAP User,CN=Users,DC=example,DC=org',</span>
+<span class="x">        'search.password' =&gt; 'Abc123',</span>
+<span class="x">        'search.base' =&gt; ['DC=example,DC=org'],</span>
 <span class="x">    ]</span>
 </code></pre>
 </div>
@@ -919,7 +916,7 @@ Intention is to filter in
  <pre><span></span><code><span class="x">    50 =&gt; [</span>
 <span class="x">        'class' =&gt; 'ldap:AttributeAddUsersGroups',</span>
 <span class="x">        'ldap.product' =&gt; 'OpenLDAP',</span>
-<span class="x">        'ldap.basedn' =&gt; ['ou=groups,dc=example,dc=org'],</span>
+<span class="x">        'search.base' =&gt; ['ou=groups,dc=example,dc=org'],</span>
 <span class="x">        'attribute.username' =&gt; 'uid',</span>
 <span class="x">        'attribute.member' =&gt; 'cn',</span>
 <span class="x">        'attribute.memberOf' =&gt; 'memberUid',</span>
