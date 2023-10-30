@@ -89,6 +89,16 @@
 <p>
  These are some notes about running SimpleSAMLphp from the repository.
 </p>
+<h2 id="prerequisites">
+ Prerequisites
+</h2>
+<p>
+ Review the
+ <a href="../simplesamlphp-install.html">
+  prerequisites
+ </a>
+ from the main installation guide.
+</p>
 <h2 id="installing-from-git">
  Installing from git
 </h2>
@@ -100,10 +110,22 @@
 </code></pre>
 </div>
 <p>
+ The
+ <code>
+  master
+ </code>
+ branch is not stable and targets the next major release.
+Pick a
+ <a href="https://github.com/simplesamlphp/simplesamlphp/tags">
+  tag
+ </a>
+ to use.
+</p>
+<p>
  Then do a git clone:
 </p>
 <div class="highlight">
- <pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/simplesamlphp/simplesamlphp.git<span class="w"> </span>simplesamlphp
+ <pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>--branch<span class="w"> </span>&lt;tag_name&gt;<span class="w"> </span>https://github.com/simplesamlphp/simplesamlphp.git<span class="w"> </span>simplesamlphp
 </code></pre>
 </div>
 <p>
