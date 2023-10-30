@@ -106,6 +106,11 @@
      </ul>
     </li>
     <li>
+     <a href="#version-207">
+      Version 2.0.7
+     </a>
+    </li>
+    <li>
      <a href="#version-206">
       Version 2.0.6
      </a>
@@ -152,7 +157,7 @@ See the upgrade notes for specific information about upgrading.
  Version 2.1.0
 </h2>
 <p>
- Released 2023-07-31
+ Released 2023-10-30
 </p>
 <ul>
  <li>
@@ -208,6 +213,29 @@ See the upgrade notes for specific information about upgrading.
 <ul>
  <li>
   The custom error- and exception handlers were moved to their very own classes (#1858)
+ </li>
+</ul>
+<h2 id="version-207">
+ Version 2.0.7
+</h2>
+<p>
+ Released 2023-10-30
+</p>
+<ul>
+ <li>
+  Fixed a missing Accept-header for metadata queries (#1865)
+ </li>
+ <li>
+  Update vulnerable composer (CVE-2023-43655; not affected)
+ </li>
+ <li>
+  Fixed a potential XSS-through-DOM (3x; not affected)
+ </li>
+ <li>
+  Fixed a warning in the RequestedAuthnContextSelector
+ </li>
+ <li>
+  Fixed file logging handler to not fail on the first write after file-creation (#1877)
  </li>
 </ul>
 <h2 id="version-206">
