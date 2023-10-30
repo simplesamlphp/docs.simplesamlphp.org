@@ -102,11 +102,11 @@ The logic in this filter exceeds what is possible with the standard filters such
  </code>
  ].
 </p>
-<h1 id="smartattributessmartid">
+<h2 id="smartattributessmartid">
  <code>
   smartattributes:SmartID
  </code>
-</h1>
+</h2>
 <p>
  A filter to add an identifier attribute, based on the first non-empty attribute from a given list of attribute names.
 This is useful when there are multiple SAML IdPs configured, and there is no common identifier among them.
@@ -163,7 +163,7 @@ The filter has the following configuration options:
   <code>
    add_authority
   </code>
-  . A boolean to indicate whether or not to append the SAML AuthenticatingAuthority to the resulting identifier. This can be useful to indicate what SAML IdP was used, in case the original identifier is not scoped. Defaults to
+  . A boolean to indicate whether or not to append the SAML AuthenticatingAuthority to the resulting identifier. This can be useful to indicate what SAML IdP was used, in case the original identifier is not scoped. When multiple values are in the AuthenticatingAuthority element, the last (closest to us) will be used. Defaults to
   <code>
    TRUE
   </code>
@@ -216,12 +216,12 @@ The filter has the following configuration options:
 <p>
  Without any configuration:
 </p>
-<div class="codehilite">
- <pre><span></span><code>'authproc' =&gt; array(
-  50 =&gt; array(
-    'class' =&gt; 'smartattributes:SmartID'
-  ),
-),
+<div class="highlight">
+ <pre><span></span><code><span class="x">'authproc' =&gt; [</span>
+<span class="x">    50 =&gt; [</span>
+<span class="x">        'class' =&gt; 'smartattributes:SmartID'</span>
+<span class="x">    ],</span>
+<span class="x">],</span>
 </code></pre>
 </div>
 <p>
@@ -239,15 +239,15 @@ The filter has the following configuration options:
 <p>
  Custom configuration:
 </p>
-<div class="codehilite">
- <pre><span></span><code>'authproc' =&gt; array(
-  50 =&gt; array(
-    'class' =&gt; 'smartattributes:SmartID',
-    'candidates' =&gt; array('eduPersonTargetedID', 'eduPersonPrincipalName'),
-    'id_attribute' =&gt; 'FooUniversityLocalID',
-    'add_authority' =&gt; FALSE,
-  ),
-),
+<div class="highlight">
+ <pre><span></span><code><span class="x">'authproc' =&gt; [</span>
+<span class="x">    50 =&gt; [</span>
+<span class="x">        'class' =&gt; 'smartattributes:SmartID',</span>
+<span class="x">        'candidates' =&gt; ['eduPersonTargetedID', 'eduPersonPrincipalName'],</span>
+<span class="x">        'id_attribute' =&gt; 'FooUniversityLocalID',</span>
+<span class="x">        'add_authority' =&gt; FALSE,</span>
+<span class="x">    ],</span>
+<span class="x">],</span>
 </code></pre>
 </div>
 <p>
@@ -265,16 +265,16 @@ The filter has the following configuration options:
 <p>
  If you also want to remove the name of the originating attribute, you could configure it like this:
 </p>
-<div class="codehilite">
- <pre><span></span><code>'authproc' =&gt; array(
-  50 =&gt; array(
-    'class' =&gt; 'smartattributes:SmartID',
-    'candidates' =&gt; array('eduPersonTargetedID', 'eduPersonPrincipalName'),
-    'id_attribute' =&gt; 'FooUniversityLocalID',
-    'add_authority' =&gt; FALSE,
-    'add_candidate' =&gt; FALSE,
-  ),
-),
+<div class="highlight">
+ <pre><span></span><code><span class="x">'authproc' =&gt; [</span>
+<span class="x">    50 =&gt; [</span>
+<span class="x">        'class' =&gt; 'smartattributes:SmartID',</span>
+<span class="x">        'candidates' =&gt; ['eduPersonTargetedID', 'eduPersonPrincipalName'],</span>
+<span class="x">        'id_attribute' =&gt; 'FooUniversityLocalID',</span>
+<span class="x">        'add_authority' =&gt; FALSE,</span>
+<span class="x">        'add_candidate' =&gt; FALSE,</span>
+<span class="x">    ],</span>
+<span class="x">],</span>
 </code></pre>
 </div>
 <p>
