@@ -407,7 +407,7 @@ An<span class="w"> </span>optional<span class="w"> </span>company<span class="w"
 </p>
 <div class="highlight">
  <pre><span></span><code><span class="x">// The SAML entity ID is the index of this config.</span>
-<span class="x">$metadata['https://example.org/saml-idp'] =&gt; [</span>
+<span class="x">$metadata['https://example.org/saml-idp'] = [</span>
 <span class="x">    // The hostname of the server (VHOST) that this SAML entity will use.</span>
 <span class="x">    'host' =&gt; '__DEFAULT__',</span>
 
@@ -444,7 +444,7 @@ An<span class="w"> </span>optional<span class="w"> </span>company<span class="w"
 <span class="x"> * This example shows an example config that works with Google Workspace for education.</span>
 <span class="x"> * You send the email address that identifies the user from your IdP in the SAML Name ID.</span>
 <span class="x"> */</span>
-<span class="x">$metadata['https://www.google.com/a/g.feide.no'] =&gt; [</span>
+<span class="x">$metadata['https://www.google.com/a/g.feide.no'] = [</span>
 <span class="x">    'AssertionConsumerService' =&gt; 'https://www.google.com/a/g.feide.no/acs',</span>
 <span class="x">    'NameIDFormat' =&gt; 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress',</span>
 <span class="x">    'simplesaml.attributes' =&gt; false,</span>
