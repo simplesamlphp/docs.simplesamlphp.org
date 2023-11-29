@@ -94,6 +94,11 @@
    </a>
    <ul>
     <li>
+     <a href="#version-212">
+      Version 2.1.2
+     </a>
+    </li>
+    <li>
      <a href="#version-211">
       Version 2.1.1
      </a>
@@ -109,6 +114,11 @@
        </a>
       </li>
      </ul>
+    </li>
+    <li>
+     <a href="#version-208">
+      Version 2.0.8
+     </a>
     </li>
     <li>
      <a href="#version-207">
@@ -158,11 +168,17 @@
  This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 </p>
+<h2 id="version-212">
+ Version 2.1.2
+</h2>
+<p>
+ Released TBD
+</p>
 <h2 id="version-211">
  Version 2.1.1
 </h2>
 <p>
- Released TBD
+ Released 2023-11-28
 </p>
 <ul>
  <li>
@@ -257,6 +273,39 @@ See the upgrade notes for specific information about upgrading.
 <ul>
  <li>
   The custom error- and exception handlers were moved to their very own classes (#1858)
+ </li>
+</ul>
+<h2 id="version-208">
+ Version 2.0.8
+</h2>
+<p>
+ Released 2023-11-28
+</p>
+<ul>
+ <li>
+  Fix static call for non-static method in bin/initMDSPdo.php (#1892)
+ </li>
+ <li>
+  Restore logout-behaviour for IdP's that do not send a saml:NameID in their LogoutRequest (#1894)
+ </li>
+ <li>
+  Fix code error in docs (#1895)
+ </li>
+ <li>
+  Fixed a TypeError when accessing the module.php endpoint without specifying a module (#1907)
+ </li>
+ <li>
+  Drop ext-intl in favour of a polyfill (#1908)
+ </li>
+</ul>
+<p>
+ <code>
+  multiauth
+ </code>
+</p>
+<ul>
+ <li>
+  Fix TypeError due to missing keys in source array (#1900)
  </li>
 </ul>
 <h2 id="version-207">
