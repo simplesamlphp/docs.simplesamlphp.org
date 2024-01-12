@@ -176,10 +176,13 @@ See the upgrade notes for specific information about upgrading.
 </p>
 <ul>
  <li>
-  Restore posibility to use HTTP-Artifact on AuthnRequests (regression from 2.0.4)
+  Restore possibility to use HTTP-Artifact on AuthnRequests (regression from 2.0.4)
  </li>
  <li>
   Fixed undefined variable exception when using MS SQL store (#1917 + #1918)
+ </li>
+ <li>
+  Fix legacy-endpoints to not send responses twice
  </li>
 </ul>
 <p>
@@ -190,6 +193,9 @@ See the upgrade notes for specific information about upgrading.
 <ul>
  <li>
   Fixed a broken template for the WarnShortSSOInterval authproc-filter (#1920)
+ </li>
+ <li>
+  Fixed the order of the routes so that the least specific error-controller is hit last (#1923)
  </li>
 </ul>
 <p>
