@@ -159,7 +159,7 @@ See the upgrade notes for specific information about upgrading.
 </p>
 <ul>
  <li>
-  Restore posibility to use HTTP-Artifact on AuthnRequests (regression from 2.0.4)
+  Restore possibility to use HTTP-Artifact on AuthnRequests (regression from 2.0.4)
  </li>
  <li>
   Fix legacy endpoints to not send response twice
@@ -173,6 +173,16 @@ See the upgrade notes for specific information about upgrading.
 <ul>
  <li>
   Fixed a broken template for the WarnShortSSOInterval authproc-filter (#1920)
+ </li>
+</ul>
+<p>
+ <code>
+  saml
+ </code>
+</p>
+<ul>
+ <li>
+  Disable caching for metadata-endpoint when protect.metadata is true (#1926)
  </li>
 </ul>
 <h2 id="version-208">
