@@ -106,7 +106,7 @@ attributes.
   This is the name of the filter.
   It must be
   <code>
-   'core:AttributeAlter'
+   core:AttributeAlter
   </code>
   .
  </dd>
@@ -114,20 +114,20 @@ attributes.
   <code>
    subject
   </code>
+  (required)
  </dt>
  <dd>
   The attribute in which the search is performed.
-  This parameter is REQUIRED and the filter will throw an exception if it is not set. The filter will
-  stop quietly if the attribute specified here is empty or not found.
+  The filter will stop quietly if the attribute specified here is empty or not found.
  </dd>
  <dt>
   <code>
    pattern
   </code>
+  (required)
  </dt>
  <dd>
   The pattern to look for inside the subject. Supports full Perl Compatible Regular Expressions (PCRE).
-  This parameter is REQUIRED and the filter will throw an exception if it is not set.
  </dd>
  <dt>
   <code>
@@ -136,7 +136,11 @@ attributes.
  </dt>
  <dd>
   The value used to replace the match. Back references are not supported.
-  This parameter is REQUIRED, except when using the
+  This parameter is
+  <em>
+   required
+  </em>
+  , except when using the
   <code>
    %replace
   </code>
@@ -161,7 +165,11 @@ attributes.
  </dt>
  <dd>
   The attribute where the replaced value will be placed.
-  This parameter is OPTIONAL, and if not set,
+  This parameter is
+  <em>
+   optional
+  </em>
+  , and if not set,
   <code>
    subject
   </code>
@@ -178,7 +186,11 @@ attributes.
  </dt>
  <dd>
   Indicates that the whole value of the attribute should be replaced if there is a match,
-  instead of just the match. If there's no match, the value will not be changed. This parameter is OPTIONAL.
+  instead of just the match. If there's no match, the value will not be changed. This parameter is
+  <em>
+   optional
+  </em>
+  .
  </dd>
  <dt>
   <code>
@@ -188,7 +200,11 @@ attributes.
  <dd>
   Indicates that the whole value of the attribute should be removed completely if there is a match.
   If no other values exist, the attribute will be removed completely.
-  This parameter is OPTIONAL.
+  This parameter is
+  <em>
+   optional
+  </em>
+  .
  </dd>
  <dt>
   <code>
@@ -198,7 +214,11 @@ attributes.
  <dd>
   Indicates whether the altered values must be merged with the target attribute values. The default
   behaviour is to overwrite the target attribute completely.
-  This parameter is OPTIONAL.
+  This parameter is
+  <em>
+   optional
+  </em>
+  .
  </dd>
 </dl>
 <h2 id="examples">
