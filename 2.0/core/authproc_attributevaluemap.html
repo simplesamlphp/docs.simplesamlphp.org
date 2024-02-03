@@ -118,38 +118,37 @@
  Add student affiliation based on LDAP groupmembership
 </h2>
 <p>
- Will add eduPersonAffiliation containing value "
+ Will add eduPersonAffiliation containing value
  <code>
   student
  </code>
- " if the
+ if the
  <code>
   memberOf
  </code>
  attribute contains
-either '
+either
  <code>
   cn=student,o=some,o=organization,dc=org
  </code>
- ' or '
+ or
  <code>
   cn=student,o=other,o=organization,dc=org
  </code>
- '.
-The '
+ .
+The
  <code>
   memberOf
  </code>
- ' attribute will be removed (use
+ attribute will be removed (use
  <code>
   %keep
  </code>
  , to keep it) and existing values in
-'
  <code>
   eduPersonAffiliation
  </code>
- ' will be merged (use
+ will be merged (use
  <code>
   %replace
  </code>
@@ -225,15 +224,15 @@ The '
  Replace and Keep
 </h2>
 <p>
- Replace any existing '
+ Replace any existing
  <code>
   affiliation
  </code>
- ' attribute values and keep the '
+ attribute values and keep the
  <code>
   groups
  </code>
- ' attribute.
+ attribute.
 </p>
 <div class="codehilite">
  <pre><span></span><code>  'authproc' =&gt; [
