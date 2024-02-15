@@ -196,14 +196,13 @@ See the upgrade notes for specific information about upgrading.
  </li>
 </ul>
 <p>
- <code>
-  core
- </code>
+ Deprecations:
 </p>
 <ul>
  <li>
-  Deprecated the core:StatisticsWithAttribute authproc-filter. It is now available in
-  the statistics-module and will be removed from SimpleSAMLphp in a future release.
+  The core:StatisticsWithAttribute authproc-filter has been deprecated. It is now available
+  in the 'statistics' module (v1.2+) as 'statistics:StatisticsWithAttribute', while only the
+  'core:StatisticsWithAttribute' filter will be removed from SimpleSAMLphp in a future release.
  </li>
 </ul>
 <h2 id="version-212">
@@ -297,6 +296,9 @@ See the upgrade notes for specific information about upgrading.
   Fix inheritance - There is no relation between BaseID and NameID
  </li>
 </ul>
+<p>
+ NOTE: Clear your session store after updating, because old serialized sessions can no longer be unserialized
+</p>
 <h2 id="version-211">
  Version 2.1.1
 </h2>
