@@ -176,6 +176,18 @@ different values allowed for it.
 </code></pre>
 </div>
 <p>
+ Only allow attributes that match a regex pattern
+</p>
+<div class="codehilite">
+ <pre><span></span><code>  'authproc' =&gt; [
+      50 =&gt; [
+          'class' =&gt; 'core:AttributeLimit',
+          '/^eduPerson' =&gt; [ 'nameIsRegex' =&gt; true ]
+      ],
+  ],
+</code></pre>
+</div>
+<p>
  Only allow specific values for an attribute that match a regex pattern
 </p>
 <div class="codehilite">
@@ -218,14 +230,19 @@ like this:
  <code>
   attributes
  </code>
- option:
+ option (for exact matches) or
+ <code>
+  attributesRegex
+ </code>
+ (for regular expression matches):
 </p>
 <div class="codehilite">
  <pre><span></span><code><span class="w">  </span><span class="err">$</span><span class="nx">metadata</span><span class="p">[</span><span class="err">'</span><span class="nx">https</span><span class="p">:</span><span class="c1">//saml2sp.example.org'] = [</span>
 <span class="w">      </span><span class="err">'</span><span class="nx">AssertionConsumerService</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="nx">https</span><span class="p">:</span><span class="c1">//saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp',</span>
 <span class="w">      </span><span class="err">'</span><span class="nx">SingleLogoutService</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">'</span><span class="nx">https</span><span class="p">:</span><span class="c1">//saml2sp.example.org/simplesaml/module.php/saml/sp/saml2-logout.php/default-sp',</span>
 <span class="w">      </span><span class="o">...</span>
-<span class="w">      </span><span class="err">'</span><span class="nx">attributes</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="err">'</span><span class="nx">cn</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="nx">mail</span><span class="err">'</span><span class="p">],</span>
+<span class="w">      </span><span class="err">'</span><span class="nx">attributes</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="err">'</span><span class="nx">cn</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="o">...</span><span class="w"> </span><span class="p">],</span>
+<span class="w">      </span><span class="err">'</span><span class="nx">attributesRegex</span><span class="err">'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">'</span><span class="o">/^</span><span class="nx">mail</span><span class="err">$</span><span class="o">/</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="o">...</span><span class="w"> </span><span class="p">],</span>
 <span class="w">      </span><span class="o">...</span>
 <span class="w">  </span><span class="p">];</span>
 </code></pre>
