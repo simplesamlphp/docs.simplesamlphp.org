@@ -51,8 +51,13 @@
    </p>
    <div class="mtoolbar">
     <div class="menuitem">
+     <a href="/docs/2.2/index.html">
+      2.2 (stable)
+     </a>
+    </div>
+    <div class="menuitem">
      <a href="/docs/2.1/index.html">
-      2.1 (stable)
+      2.1
      </a>
     </div>
     <div class="menuitem">
@@ -204,7 +209,7 @@ This function receives the username and password the user entered, and is expect
 If the username or password is incorrect, it should throw an error saying so:
 </p>
 <div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="nx">throw</span><span class="w"> </span><span class="nx">new</span><span class="w"> </span><span class="err">\</span><span class="nx">SimpleSAML</span><span class="err">\</span><span class="nx">Error</span><span class="err">\</span><span class="nx">Error</span><span class="p">(</span><span class="err">'</span><span class="nx">WRONGUSERPASS</span><span class="err">'</span><span class="p">);</span>
+ <pre><span></span><code><span class="w">  </span><span class="nx">throw</span><span class="w"> </span><span class="nx">new</span><span class="w"> </span><span class="err">\</span><span class="nx">SimpleSAML</span><span class="err">\</span><span class="nx">Error</span><span class="err">\</span><span class="nx">Error</span><span class="p">(</span><span class="err">\</span><span class="nx">SimpleSAML</span><span class="err">\</span><span class="nx">Error</span><span class="err">\</span><span class="nx">ErrorCodes</span><span class="o">::</span><span class="nx">WRONGUSERPASS</span><span class="p">);</span>
 </code></pre>
 </div>
 <p>

@@ -51,8 +51,13 @@
    </p>
    <div class="mtoolbar">
     <div class="menuitem">
+     <a href="/docs/2.2/index.html">
+      2.2 (stable)
+     </a>
+    </div>
+    <div class="menuitem">
      <a href="/docs/2.1/index.html">
-      2.1 (stable)
+      2.1
      </a>
     </div>
     <div class="menuitem">
@@ -207,7 +212,7 @@ Create the file
     <span class="k">protected</span> <span class="k">function</span> <span class="nf">login</span><span class="p">(</span><span class="nv">$username</span><span class="p">,</span> <span class="nv">$password</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nv">$username</span> <span class="o">!==</span> <span class="s1">'theusername'</span> <span class="o">||</span> <span class="nv">$password</span> <span class="o">!==</span> <span class="s1">'thepassword'</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="nx">\SimpleSAML\Error\Error</span><span class="p">(</span><span class="s1">'WRONGUSERPASS'</span><span class="p">);</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nx">\SimpleSAML\Error\Error</span><span class="p">(</span><span class="nx">\SimpleSAML\Error\ErrorCodes</span><span class="o">::</span><span class="na">WRONGUSERPASS</span><span class="p">);</span>
         <span class="p">}</span>
 
         <span class="k">return</span> <span class="p">[</span>
@@ -476,7 +481,7 @@ The complete class file should look like this:
     <span class="k">protected</span> <span class="k">function</span> <span class="nf">login</span><span class="p">(</span><span class="nv">$username</span><span class="p">,</span> <span class="nv">$password</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nv">$username</span> <span class="o">!==</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">username</span> <span class="o">||</span> <span class="nv">$password</span> <span class="o">!==</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">password</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="nx">\SimpleSAML\Error\Error</span><span class="p">(</span><span class="s1">'WRONGUSERPASS'</span><span class="p">);</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nx">\SimpleSAML\Error\Error</span><span class="p">(</span><span class="nx">\SimpleSAML\Error\ErrorCodes</span><span class="o">::</span><span class="na">WRONGUSERPASS</span><span class="p">);</span>
         <span class="p">}</span>
 
         <span class="k">return</span> <span class="p">[</span>
@@ -646,14 +651,14 @@ A SSHA password is created like this:
         <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$row</span><span class="p">)</span> <span class="p">{</span>
             <span class="cm">/* User not found. */</span>
             <span class="nx">SimpleSAML\Logger</span><span class="o">::</span><span class="na">warning</span><span class="p">(</span><span class="s1">'MyAuth: Could not find user '</span> <span class="o">.</span> <span class="nb">var_export</span><span class="p">(</span><span class="nv">$username</span><span class="p">,</span> <span class="k">true</span><span class="p">)</span> <span class="o">.</span> <span class="s1">'.'</span><span class="p">);</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="nx">\SimpleSAML\Error\Error</span><span class="p">(</span><span class="s1">'WRONGUSERPASS'</span><span class="p">);</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nx">\SimpleSAML\Error\Error</span><span class="p">(</span><span class="nx">\SimpleSAML\Error\ErrorCodes</span><span class="o">::</span><span class="na">WRONGUSERPASS</span><span class="p">);</span>
         <span class="p">}</span>
 
         <span class="cm">/* Check the password. */</span>
         <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">checkPassword</span><span class="p">(</span><span class="nv">$row</span><span class="p">[</span><span class="s1">'password_hash'</span><span class="p">],</span> <span class="nv">$password</span><span class="p">))</span> <span class="p">{</span>
             <span class="cm">/* Invalid password. */</span>
             <span class="nx">SimpleSAML\Logger</span><span class="o">::</span><span class="na">warning</span><span class="p">(</span><span class="s1">'MyAuth: Wrong password for user '</span> <span class="o">.</span> <span class="nb">var_export</span><span class="p">(</span><span class="nv">$username</span><span class="p">,</span> <span class="k">true</span><span class="p">)</span> <span class="o">.</span> <span class="s1">'.'</span><span class="p">);</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="nx">\SimpleSAML\Error\Error</span><span class="p">(</span><span class="s1">'WRONGUSERPASS'</span><span class="p">);</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nx">\SimpleSAML\Error\Error</span><span class="p">(</span><span class="nx">\SimpleSAML\Error\ErrorCodes</span><span class="o">::</span><span class="na">WRONGUSERPASS</span><span class="p">);</span>
         <span class="p">}</span>
 
         <span class="cm">/* Create the attribute array of the user. */</span>

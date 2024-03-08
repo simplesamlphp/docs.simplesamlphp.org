@@ -51,8 +51,13 @@
    </p>
    <div class="mtoolbar">
     <div class="menuitem">
+     <a href="/docs/2.2/index.html">
+      2.2 (stable)
+     </a>
+    </div>
+    <div class="menuitem">
      <a href="/docs/2.1/index.html">
-      2.1 (stable)
+      2.1
      </a>
     </div>
     <div class="menuitem">
@@ -165,11 +170,11 @@ The
  <pre><span></span><code><span class="x">'SingleSignOnService' =&gt; [</span>
 <span class="x">    0 =&gt; [</span>
 <span class="x">        'Binding' =&gt; 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',</span>
-<span class="x">        'Location' =&gt; 'https://idp.example.org/simplesaml/module.php/saml/idp/singleSignOnService',</span>
+<span class="x">        'Location' =&gt; 'https://idp.example.org/simplesaml/saml2/idp/SSOService.php',</span>
 <span class="x">    ],</span>
 <span class="x">    1 =&gt; [</span>
 <span class="x">        'index' =&gt; 0,</span>
-<span class="x">        'Location' =&gt; 'https://didp.example.org/simplesaml/module.php/saml/idp/singleSignOnService',</span>
+<span class="x">        'Location' =&gt; 'https://didp.example.org/simplesaml/saml2/idp/SSOService.php',</span>
 <span class="x">        'Binding' =&gt; 'urn:oasis:names:tc:SAML:2.0:bindings:SOAP',</span>
 <span class="x">    ],</span>
 <span class="x">],</span>

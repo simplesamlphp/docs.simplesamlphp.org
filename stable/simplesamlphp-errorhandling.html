@@ -51,8 +51,13 @@
    </p>
    <div class="mtoolbar">
     <div class="menuitem">
+     <a href="/docs/2.2/index.html">
+      2.2 (stable)
+     </a>
+    </div>
+    <div class="menuitem">
      <a href="/docs/2.1/index.html">
-      2.1 (stable)
+      2.1
      </a>
     </div>
     <div class="menuitem">
@@ -378,7 +383,11 @@ This is handled by the
   \SimpleSAML\Module\saml\Error
  </code>
  .
-The assertion consumer service of the SAML 2 authentication source uses this method.
+The assertion consumer script of the SAML 2 authentication source (
+ <code>
+  modules/saml2/sp/acs.php
+ </code>
+ ) uses this method.
 The result is that generic exceptions are thrown from that authentication source.
 </p>
 <p>
