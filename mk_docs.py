@@ -254,7 +254,7 @@ site_base_path = '/docs/'
 # for which versions should we generate documentation?
 # - "devel" corresponds to git master
 # - an alias "stable" will point to the first item in the list
-ssp_versions=["2.1", "2.0", "1.19", "devel"]
+ssp_versions=["2.2", "2.1", "2.0", "1.19", "devel"]
 
 # Make sure we have a working site subdir to put stuff in
 os.system('mkdir ' +  site_root_dir)
