@@ -99,6 +99,26 @@
    </a>
    <ul>
     <li>
+     <a href="#version-220">
+      Version 2.2.0
+     </a>
+    </li>
+    <li>
+     <a href="#version-214">
+      Version 2.1.4
+     </a>
+    </li>
+    <li>
+     <a href="#version-213">
+      Version 2.1.3
+     </a>
+    </li>
+    <li>
+     <a href="#version-212">
+      Version 2.1.2
+     </a>
+    </li>
+    <li>
      <a href="#version-211">
       Version 2.1.1
      </a>
@@ -160,6 +180,171 @@
 <p>
  This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
+</p>
+<h2 id="version-220">
+ Version 2.2.0
+</h2>
+<p>
+ Released 2024-03-08
+</p>
+<ul>
+ <li>
+  Make error codes easier to extend (#1870)
+ </li>
+ <li>
+  Updated eduPerson attributes in attribute maps (#1948)
+ </li>
+ <li>
+  Add regex support for attribute names in AttributeLimit authproc filter (#1971)
+ </li>
+ <li>
+  Reverted the .mo files change introduced in 2.1.x
+ </li>
+ <li>
+  NOTE: 'core:StatisticsWithAttribute' filter was removed from SimpleSAMLphp, but is still
+  available from the
+  <a href="https://github.com/simplesamlphp/simplesamlphp-module-statistics">
+   statistics
+  </a>
+  -module.
+  It was previously enabled in the default configuration file (config/config.php.dist), so
+  many lightly configured installations will have it enabled by default. Please check your
+  config/config.php (and anywhere else you have authprocs configured) that you've either
+  disabled "core:StatisticsWithAttribute" or migrated to "statistics:StatisticsWithAttribute"
+  before upgrading to SimpleSAMLphp 2.2.0.
+ </li>
+</ul>
+<h2 id="version-214">
+ Version 2.1.4
+</h2>
+<p>
+ Released 2024-02-29
+</p>
+<ul>
+ <li>
+  Fix static call for non-static method in bin/importPdoMetadata.php (#1969)
+ </li>
+ <li>
+  Validate AuthState before processing it (#1706)
+ </li>
+ <li>
+  Fix possible incompatible dependency-set (#1981)
+ </li>
+</ul>
+<h2 id="version-213">
+ Version 2.1.3
+</h2>
+<p>
+ Released 2024-02-12
+</p>
+<ul>
+ <li>
+  Fix backwards compatibility for mandatory cachedir-setting introduced in 2.1.2
+ </li>
+</ul>
+<p>
+ Deprecations:
+</p>
+<ul>
+ <li>
+  The core:StatisticsWithAttribute authproc-filter has been deprecated. It is now available
+  in the 'statistics' module (v1.2+) as 'statistics:StatisticsWithAttribute', while only the
+  'core:StatisticsWithAttribute' filter will be removed from SimpleSAMLphp in a future release.
+ </li>
+</ul>
+<h2 id="version-212">
+ Version 2.1.2
+</h2>
+<p>
+ Released 2024-02-05
+</p>
+<ul>
+ <li>
+  Restore possibility to use HTTP-Artifact on AuthnRequests (regression from 2.0.4)
+ </li>
+ <li>
+  Fixed undefined variable exception when using MS SQL store (#1917 + #1918)
+ </li>
+ <li>
+  Fix legacy-endpoints to not send responses twice
+ </li>
+ <li>
+  Fix exception when using iframe-logout (#1936)
+ </li>
+ <li>
+  Look for the schema files in the right place (#1929)
+ </li>
+ <li>
+  Fixed file logging handler to not fail on the first write after file-creation (#1877)
+ </li>
+ <li>
+  Fixed a warning in the RequestedAuthnContextSelector
+ </li>
+</ul>
+<p>
+ <code>
+  adfs
+ </code>
+</p>
+<ul>
+ <li>
+  Fixed incorrect use of StreamedResponse (v2.1.3)
+ </li>
+</ul>
+<p>
+ <code>
+  core
+ </code>
+</p>
+<ul>
+ <li>
+  Fixed a broken template for the WarnShortSSOInterval authproc-filter (#1920)
+ </li>
+ <li>
+  Fixed the order of the routes so that the least specific error-controller is hit last (#1923)
+ </li>
+</ul>
+<p>
+ <code>
+  ldap
+ </code>
+</p>
+<ul>
+ <li>
+  Restored 1.x functionality to be able to fetch operational attributes (v2.3.0)
+ </li>
+ <li>
+  Fixed undesirable side-effect introduced in v2.3.0 (v2.3.1)
+ </li>
+ <li>
+  Restore the ability to read attributes using a privileged account (v2.3.2)
+ </li>
+</ul>
+<p>
+ <code>
+  saml
+ </code>
+</p>
+<ul>
+ <li>
+  Disable caching for metadata-endpoint when protect.metadata is true (#1926)
+ </li>
+</ul>
+<p>
+ <code>
+  saml2 library
+ </code>
+</p>
+<ul>
+ <li>
+  Fix serialization for the NameID element
+ </li>
+ <li>
+  Fix inheritance - There is no relation between BaseID and NameID
+ </li>
+</ul>
+<p>
+ NOTE: Clear your session store after updating, because old serialized sessions can no longer be unserialized
 </p>
 <h2 id="version-211">
  Version 2.1.1
