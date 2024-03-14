@@ -200,6 +200,19 @@ See the upgrade notes for specific information about upgrading.
  <li>
   Reverted the .mo files change introduced in 2.1.x
  </li>
+ <li>
+  NOTE: 'core:StatisticsWithAttribute' filter was removed from SimpleSAMLphp, but is still
+  available from the
+  <a href="https://github.com/simplesamlphp/simplesamlphp-module-statistics">
+   statistics
+  </a>
+  -module.
+  It was previously enabled in the default configuration file (config/config.php.dist), so
+  many lightly configured installations will have it enabled by default. Please check your
+  config/config.php (and anywhere else you have authprocs configured) that you've either
+  disabled "core:StatisticsWithAttribute" or migrated to "statistics:StatisticsWithAttribute"
+  before upgrading to SimpleSAMLphp 2.2.0.
+ </li>
 </ul>
 <h2 id="version-214">
  Version 2.1.4
