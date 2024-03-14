@@ -135,84 +135,285 @@
   </code>
  </dt>
  <dd>
-  The SQL query which should be used to retrieve the user.
-  The parameters :username and :password are available.
-  If the username/password is incorrect, the query should return no rows.
-  The name of the columns in resultset will be used as attribute names.
-  If the query returns multiple rows, they will be merged into the attributes.
-  Duplicate values and NULL values will be removed.
+  The SQL query or queries which should be used to authenticate the user and retrieve their attributes.
  </dd>
 </dl>
-<h2 id="examples">
- Examples
+<h2 id="writing-a-query-queries">
+ Writing a Query / Queries
 </h2>
 <p>
- Database layout used in some of the examples:
+ A
+ <code>
+  query
+ </code>
+ can be either a single string with an SQL statement, or an array of queries, run in order. That single string (or the first query in the array) is the "authentication query" - the parameters
+ <code>
+  :username
+ </code>
+ and
+ <code>
+  :password
+ </code>
+ are available and should be evaluated by the query for authenticaion purposes. If the username/password is incorrect, the "authentication query" should return no rows. The rows returned represent attributes to be returned.
 </p>
-<div class="codehilite">
- <pre><span></span><code>  CREATE TABLE users (
-    uid VARCHAR(30) NOT NULL PRIMARY KEY,
-    password TEXT NOT NULL,
-    salt TEXT NOT NULL,
-    givenName TEXT NOT NULL,
-    email TEXT NOT NULL,
-    eduPersonPrincipalName TEXT NOT NULL
-  );
-  CREATE TABLE usergroups (
-    uid VARCHAR(30) NOT NULL REFERENCES users (uid) ON DELETE CASCADE ON UPDATE CASCADE,
-    groupname VARCHAR(30) NOT NULL,
-    UNIQUE(uid, groupname)
-  );
+<p>
+ Taking this example schema:
+</p>
+<div class="highlight">
+ <pre><span></span><code><span class="w">    </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="n">uid</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">      </span><span class="n">password</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">      </span><span class="n">salt</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">      </span><span class="n">givenName</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">      </span><span class="n">email</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">      </span><span class="n">eduPersonPrincipalName</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">    </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">usergroups</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="n">uid</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="p">(</span><span class="n">uid</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">CASCADE</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">CASCADE</span><span class="p">,</span>
+<span class="w">      </span><span class="n">groupname</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">      </span><span class="k">UNIQUE</span><span class="p">(</span><span class="n">uid</span><span class="p">,</span><span class="w"> </span><span class="n">groupname</span><span class="p">)</span>
+<span class="w">    </span><span class="p">);</span>
 </code></pre>
 </div>
 <p>
- Example query - SHA256 of salt + password, with the salt stored in an independent column, MySQL server:
+ a basic entry with a single SQL string in
+ <code>
+  authsources.php
+ </code>
+ might look like this (PostgreSQL, SHA512 of salt + password, base64 encoded with the salt stored in an independent column):
 </p>
-<div class="codehilite">
- <pre><span></span><code>  SELECT uid, givenName, email, eduPersonPrincipalName
-  FROM users
-  WHERE uid = :username
-  AND PASSWORD = SHA2(
-      CONCAT(
-          (SELECT salt FROM users WHERE uid = :username),
-          :password
-      ),
-      256
-  )
+<div class="highlight">
+ <pre><span></span><code><span class="x">    'example-sql' =&gt; [</span>
+<span class="x">        'sqlauth:SQL',</span>
+<span class="x">        'dsn' =&gt; 'pgsql:host=postgresql;port=5432;dbname=simplesaml',</span>
+<span class="x">        'username' =&gt; 'simplesaml',</span>
+<span class="x">        'password' =&gt; 'secretpassword',</span>
+<span class="x">        'query' =&gt; "select uid, givenName as \"givenName\", email from users where uid=:username and password=encode(sha512(concat((select salt from users where uid=1),  :password)::bytea), 'base64')",</span>
+<span class="x">    ],</span>
+</code></pre>
+</div>
+<p>
+ It's worth repeating at this point that if authentication is unsuccessful (ie. the username / password pair don't match), this query
+ <strong>
+  must
+ </strong>
+ return zero rows. Assuming the username / password pair provided was a match, the name of the columns in result set will be used as attribute names. In the above case, PostgreSQL lowercases the names by default, which we correct with the "as" clause. The result might look like this:
+</p>
+<table>
+ <thead>
+  <tr>
+   <th>
+    Attribute Name
+   </th>
+   <th>
+    Attribute Value
+   </th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+   <td>
+    uid
+   </td>
+   <td>
+    [ bobsmith ]
+   </td>
+  </tr>
+  <tr>
+   <td>
+    givenName
+   </td>
+   <td>
+    [ Bob ]
+   </td>
+  </tr>
+  <tr>
+   <td>
+    email
+   </td>
+   <td>
+    [ bob@example.com ]
+   </td>
+  </tr>
+ </tbody>
+</table>
+<p>
+ You'll likely need to collect attributes from more than just the table with the username and password hash. There are two supported ways to do this: table joins on your authentication query, or providing an array of queries for the
+ <code>
+  query
+ </code>
+ parameter instead of just the single query.
+</p>
+<p>
+ A basic example of the single query with join:
+</p>
+<div class="highlight">
+ <pre><span></span><code><span class="x">    'example-sql' =&gt; [</span>
+<span class="x">        'sqlauth:SQL',</span>
+<span class="x">        'dsn' =&gt; 'pgsql:host=postgresql;port=5432;dbname=simplesaml',</span>
+<span class="x">        'username' =&gt; 'simplesaml',</span>
+<span class="x">        'password' =&gt; 'secretpassword',</span>
+<span class="x">        'query' =&gt; "select u.uid, u.givenName as \"givenName\", ug.groupname as \"groupName\" from users u left join usergroups ug on (u.uid=ug.uid) where u.uid=:username and u.password=encode(sha512(concat((select salt from users where uid=1),  :password)::bytea), 'base64')",</span>
+<span class="x">    ],</span>
+</code></pre>
+</div>
+<p>
+ which can also be written as:
+</p>
+<div class="highlight">
+ <pre><span></span><code><span class="x">    'example-sql' =&gt; [</span>
+<span class="x">        'sqlauth:SQL',</span>
+<span class="x">        'dsn' =&gt; 'pgsql:host=postgresql;port=5432;dbname=simplesaml',</span>
+<span class="x">        'username' =&gt; 'simplesaml',</span>
+<span class="x">        'password' =&gt; 'secretpassword',</span>
+<span class="x">        'query' =&gt; [</span>
+<span class="x">            "select uid, givenName as \"givenName\", email from users where uid=:username and password=encode(sha512(concat((select salt from users where uid=1),  :password)::bytea), 'base64')",</span>
+<span class="x">            "select groupName as \"groupName\" from usergroups where uid=:username",</span>
+<span class="x">        ],</span>
+<span class="x">        "select u.uid, u.givenName, ug.groupname from users u left join usergroups ug on (u.uid=ug.uid) where u.uid=:username and u.password=encode(sha512(concat((select salt from users where uid=1),  :password)::bytea), 'base64')",</span>
+<span class="x">    ],</span>
+</code></pre>
+</div>
+<p>
+ both of which will return attributes like:
+</p>
+<table>
+ <thead>
+  <tr>
+   <th>
+    Attribute Name
+   </th>
+   <th>
+    Attribute Value
+   </th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+   <td>
+    uid
+   </td>
+   <td>
+    [ bobsmith ]
+   </td>
+  </tr>
+  <tr>
+   <td>
+    givenName
+   </td>
+   <td>
+    [ Bob ]
+   </td>
+  </tr>
+  <tr>
+   <td>
+    email
+   </td>
+   <td>
+    [ bob@example.com ]
+   </td>
+  </tr>
+  <tr>
+   <td>
+    groupName
+   </td>
+   <td>
+    [ users, staff ]
+   </td>
+  </tr>
+ </tbody>
+</table>
+<p>
+ For simple cases, the single query will suffice. As the number of tables you are joining to collate your attributes gets higher, then using the query list will make your configuration more maintainable.
+</p>
+<p>
+ In summary:
+</p>
+<ul>
+ <li>
+  If the single string query (or the first query if it's an array of queries) returns no rows, that indicates authentication failed.
+ </li>
+ <li>
+  The single string query (or the first query if it's an array of queries) should use the passed
+  <code>
+   :username
+  </code>
+  and
+  <code>
+   :password
+  </code>
+  query parameters to do authentication.
+ </li>
+ <li>
+  If more than one query is desirable or required to get all of the attributes, you can specify an array of queries. In this case, the result set of the second and subsequent queries in that array provide attributes only - only the first query is used to determine if the username/password is correct or not, and as such :password is only passed to the first query in the list.
+ </li>
+ <li>
+  If
+  <code>
+   query
+  </code>
+  is an array of queries, because the second and subsequent queries have no role in authentication, these queries may return no rows, simply indicating that query should have no effect on the final returned attribute set.
+ </li>
+ <li>
+  If any query returns multiple rows, they will be merged into the attributes.
+ </li>
+ <li>
+  If multiple queries return the same column names, they will also be merged into the same attributes.
+ </li>
+ <li>
+  Duplicate values and NULL values will be removed.
+ </li>
+</ul>
+<h2 id="further-examples">
+ Further Examples
+</h2>
+<div class="highlight">
+ <pre><span></span><code><span class="n">Example</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">SHA256</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">salt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">password</span><span class="p">,</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">salt</span><span class="w"> </span><span class="n">stored</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">independent</span><span class="w"> </span><span class="k">column</span><span class="p">,</span><span class="w"> </span><span class="n">MySQL</span><span class="w"> </span><span class="n">server</span><span class="p">:</span>
+
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">uid</span><span class="p">,</span><span class="w"> </span><span class="n">givenName</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="n">eduPersonPrincipalName</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span>
+<span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">uid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">:</span><span class="n">username</span>
+<span class="w">    </span><span class="k">AND</span><span class="w"> </span><span class="n">PASSWORD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SHA2</span><span class="p">(</span>
+<span class="w">        </span><span class="n">CONCAT</span><span class="p">(</span>
+<span class="w">            </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">salt</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">uid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">:</span><span class="n">username</span><span class="p">),</span>
+<span class="w">            </span><span class="p">:</span><span class="n">password</span>
+<span class="w">        </span><span class="p">),</span>
+<span class="w">        </span><span class="mi">256</span>
+<span class="w">    </span><span class="p">)</span>
 </code></pre>
 </div>
 <p>
  Example query - SHA256 of salt + password, with the salt stored in an independent column. Multiple groups, MySQL server:
 </p>
-<div class="codehilite">
- <pre><span></span><code>  SELECT users.uid, givenName, email, eduPersonPrincipalName, groupname AS groups
-  FROM users LEFT JOIN usergroups ON users.uid = usergroups.username
-  WHERE users.uid = :username
-  AND PASSWORD = SHA2(
-      CONCAT(
-          (SELECT salt FROM users WHERE uid = :username),
-          :password
-      ),
-      256
-  )
+<div class="highlight">
+ <pre><span></span><code><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">users</span><span class="p">.</span><span class="n">uid</span><span class="p">,</span><span class="w"> </span><span class="n">givenName</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="n">eduPersonPrincipalName</span><span class="p">,</span><span class="w"> </span><span class="n">groupname</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">groups</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">usergroups</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">users</span><span class="p">.</span><span class="n">uid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">usergroups</span><span class="p">.</span><span class="n">username</span>
+<span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">users</span><span class="p">.</span><span class="n">uid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">:</span><span class="n">username</span>
+<span class="w">    </span><span class="k">AND</span><span class="w"> </span><span class="n">PASSWORD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SHA2</span><span class="p">(</span>
+<span class="w">        </span><span class="n">CONCAT</span><span class="p">(</span>
+<span class="w">            </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">salt</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">uid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">:</span><span class="n">username</span><span class="p">),</span>
+<span class="w">            </span><span class="p">:</span><span class="n">password</span>
+<span class="w">        </span><span class="p">),</span>
+<span class="w">        </span><span class="mi">256</span>
+<span class="w">    </span><span class="p">)</span>
 </code></pre>
 </div>
 <p>
  Example query - SHA512 of salt + password, stored as salt (32 bytes) + sha256(salt + password) in password-field, PostgreSQL server:
 </p>
-<div class="codehilite">
- <pre><span></span><code><span class="w">  </span><span class="nv">SELECT</span><span class="w"> </span><span class="nv">uid</span>,<span class="w"> </span><span class="nv">givenName</span>,<span class="w"> </span><span class="nv">email</span>,<span class="w"> </span><span class="nv">eduPersonPrincipalName</span>
-<span class="w">  </span><span class="nv">FROM</span><span class="w"> </span><span class="nv">users</span>
-<span class="w">  </span><span class="nv">WHERE</span><span class="w"> </span><span class="nv">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>:<span class="nv">username</span>
-<span class="w">  </span><span class="nv">AND</span><span class="w"> </span><span class="nv">SUBSTRING</span><span class="ss">(</span>
-<span class="w">      </span><span class="nv">password</span><span class="w"> </span><span class="nv">FROM</span><span class="w"> </span><span class="nv">LENGTH</span><span class="ss">(</span><span class="nv">password</span><span class="ss">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">31</span>
-<span class="w">  </span><span class="ss">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">SHA2</span><span class="ss">(</span>
-<span class="w">      </span><span class="nv">CONCAT</span><span class="ss">(</span>
-<span class="w">          </span><span class="nv">SUBSTRING</span><span class="ss">(</span><span class="nv">password</span><span class="w"> </span><span class="nv">FROM</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="nv">LENGTH</span><span class="ss">(</span><span class="nv">password</span><span class="ss">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">32</span><span class="ss">)</span>,
-<span class="w">          </span>:<span class="nv">password</span>
-<span class="w">      </span><span class="ss">)</span>,
-<span class="w">      </span><span class="mi">512</span>
-<span class="w">  </span><span class="ss">)</span>
+<div class="highlight">
+ <pre><span></span><code><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">uid</span><span class="p">,</span><span class="w"> </span><span class="n">givenName</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="n">eduPersonPrincipalName</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span>
+<span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">:</span><span class="n">username</span>
+<span class="w">    </span><span class="k">AND</span><span class="w"> </span><span class="k">SUBSTRING</span><span class="p">(</span>
+<span class="w">        </span><span class="n">password</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="k">LENGTH</span><span class="p">(</span><span class="n">password</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">31</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SHA2</span><span class="p">(</span>
+<span class="w">        </span><span class="n">CONCAT</span><span class="p">(</span>
+<span class="w">            </span><span class="k">SUBSTRING</span><span class="p">(</span><span class="n">password</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="k">LENGTH</span><span class="p">(</span><span class="n">password</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">32</span><span class="p">),</span>
+<span class="w">            </span><span class="p">:</span><span class="n">password</span>
+<span class="w">        </span><span class="p">),</span>
+<span class="w">        </span><span class="mi">512</span>
+<span class="w">    </span><span class="p">)</span>
 </code></pre>
 </div>
 <h2 id="security-considerations">
