@@ -95,6 +95,17 @@
  SimpleSAMLphp 2.2 is a minor new release which introduces a few new features.
 The following changes are relevant for installers and/or developers.
 </p>
+<h2 id="software-requirements">
+ Software requirements
+</h2>
+<ul>
+ <li>
+  The minimum PHP version required is now PHP 8.1.
+ </li>
+ <li>
+  Symfony was upgraded to 6.4 (LTS).
+ </li>
+</ul>
 <h2 id="deprecations">
  Deprecations
 </h2>
@@ -137,5 +148,24 @@ The following changes are relevant for installers and/or developers.
   SimpleSAML\Error\Errorcodes::getErrorCodeMessage - Use getMessage instead
  </li>
 </ul>
+<p>
+ The
+ <code>
+  tempdir
+ </code>
+ configuration setting was marked
+ <code>
+  deprecated
+ </code>
+ . Use
+ <code>
+  cachedir
+ </code>
+ instead.
+</p>
+<p>
+ The core:StatisticsWithAttribute authproc-filter was removed from SimpleSAMLphp.
+It is now available in the statistics-module from v2.1 and up.
+</p>
 </main></body>
 </html>
