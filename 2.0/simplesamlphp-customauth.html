@@ -175,8 +175,7 @@ mkdir<span class="w"> </span>mymodule
 </code></pre>
 </div>
 <p>
- Since this is a custom module, it should always be enabled in the configuration.
-Now that we have our own module, we can move on to creating an authentication source.
+ Now that we have our own module, we can move on to creating an authentication source.
 </p>
 <h2 id="creating-a-basic-authentication-source">
  Creating a basic authentication source
@@ -209,7 +208,7 @@ Create the file
 
 <span class="k">class</span> <span class="nc">MyAuth</span> <span class="k">extends</span> <span class="nx">\SimpleSAML\Module\core\Auth\UserPassBase</span>
 <span class="p">{</span>
-    <span class="k">protected</span> <span class="k">function</span> <span class="nf">login</span><span class="p">(</span><span class="nv">$username</span><span class="p">,</span> <span class="nv">$password</span><span class="p">)</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">login</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$username</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$password</span><span class="p">)</span><span class="o">:</span> <span class="k">array</span>
     <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nv">$username</span> <span class="o">!==</span> <span class="s1">'theusername'</span> <span class="o">||</span> <span class="nv">$password</span> <span class="o">!==</span> <span class="s1">'thepassword'</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">throw</span> <span class="k">new</span> <span class="nx">\SimpleSAML\Error\Error</span><span class="p">(</span><span class="s1">'WRONGUSERPASS'</span><span class="p">);</span>
@@ -291,7 +290,7 @@ Create the file
  <code>
   config/authsources.php
  </code>
- contains an list of enabled authentication sources.
+ contains a list of enabled authentication sources.
 </p>
 <p>
  The entry looks like this:
@@ -336,6 +335,27 @@ This tells SimpleSAMLphp to look for the
  </code>
  class.
 </p>
+<p>
+ We also need to enable our new module in
+ <code>
+  config/config.php
+ </code>
+ .
+ <code>
+  config/config.php
+ </code>
+ contains a list of enabled modules.
+</p>
+<p>
+ We want to add our new module to the list of other enabled modules.  We can add it to the beginning of the list, so the enabled modules section looks something like this:
+</p>
+<div class="highlight">
+ <pre><span></span><code><span class="x">'module.enable' =&gt; [</span>
+<span class="x">    'mymodule' =&gt; true,</span>
+<span class="x">    /* Other enabled modules follow. */</span>
+<span class="x">],</span>
+</code></pre>
+</div>
 <h2 id="testing-our-authentication-source">
  Testing our authentication source
 </h2>
@@ -478,7 +498,7 @@ The complete class file should look like this:
         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">password</span> <span class="o">=</span> <span class="nv">$config</span><span class="p">[</span><span class="s1">'password'</span><span class="p">];</span>
     <span class="p">}</span>
 
-    <span class="k">protected</span> <span class="k">function</span> <span class="nf">login</span><span class="p">(</span><span class="nv">$username</span><span class="p">,</span> <span class="nv">$password</span><span class="p">)</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">login</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$username</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$password</span><span class="p">)</span><span class="o">:</span> <span class="k">array</span>
     <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nv">$username</span> <span class="o">!==</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">username</span> <span class="o">||</span> <span class="nv">$password</span> <span class="o">!==</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">password</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">throw</span> <span class="k">new</span> <span class="nx">\SimpleSAML\Error\Error</span><span class="p">(</span><span class="s1">'WRONGUSERPASS'</span><span class="p">);</span>
@@ -626,7 +646,7 @@ A SSHA password is created like this:
         <span class="k">return</span> <span class="nv">$digest</span> <span class="o">===</span> <span class="nv">$checkDigest</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="k">protected</span> <span class="k">function</span> <span class="nf">login</span><span class="p">(</span><span class="nv">$username</span><span class="p">,</span> <span class="nv">$password</span><span class="p">)</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">login</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$username</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$password</span><span class="p">)</span><span class="o">:</span> <span class="k">array</span>
     <span class="p">{</span>
         <span class="cm">/* Connect to the database. */</span>
         <span class="nv">$db</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PDO</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dsn</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">username</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">password</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">options</span><span class="p">);</span>
@@ -675,7 +695,7 @@ A SSHA password is created like this:
 </code></pre>
 </div>
 <p>
- And configured in
+ Configured in
  <code>
   config/authsources.php
  </code>
@@ -687,6 +707,20 @@ A SSHA password is created like this:
 <span class="x">    'dsn' =&gt; 'mysql:host=sql.example.org;dbname=userdatabase',</span>
 <span class="x">    'username' =&gt; 'db_username',</span>
 <span class="x">    'password' =&gt; 'secret_db_password',</span>
+<span class="x">],</span>
+</code></pre>
+</div>
+<p>
+ And enabled in
+ <code>
+  config/config.php
+ </code>
+ :
+</p>
+<div class="highlight">
+ <pre><span></span><code><span class="x">'module.enable' =&gt; [</span>
+<span class="x">    'mymodule' =&gt; true,</span>
+<span class="x">    /* Other enabled modules follow. */</span>
 <span class="x">],</span>
 </code></pre>
 </div>
