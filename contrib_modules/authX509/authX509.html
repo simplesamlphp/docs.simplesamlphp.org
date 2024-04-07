@@ -165,14 +165,18 @@ example authsources.php entry:
 <div class="highlight">
  <pre><span></span><code><span class="x">    'x509' =&gt; [</span>
 <span class="x">        'authX509:X509userCert',</span>
-<span class="x">        'hostname' =&gt; 'ldaps://ldap.example.net',</span>
-<span class="x">        'enable_tls' =&gt; false,</span>
+<span class="x">        'backend' =&gt; 'ldap',</span>
+<span class="x">        'authX509:x509attributes' =&gt; ['UID' =&gt; 'uid'],</span>
+<span class="x">        'authX509:ldapusercert' =&gt; ['userCertificate;binary'],</span>
+<span class="x">    ],</span>
+
+<span class="x">    'ldap' =&gt; [</span>
+<span class="x">        'connection_string' =&gt; 'ldaps://ldap.example.net',</span>
+<span class="x">        'encryption' =&gt; 'ssl',</span>
 <span class="x">        'attributes' =&gt; ['cn', 'uid', 'mail', 'ou', 'sn'],</span>
 <span class="x">        'search.enable' =&gt; true,</span>
 <span class="x">        'search.attributes' =&gt; ['uid', 'mail'],</span>
-<span class="x">        'search.base' =&gt; 'dc=example,dc=net',</span>
-<span class="x">        'authX509:x509attributes' =&gt; ['UID' =&gt; 'uid'],</span>
-<span class="x">        'authX509:ldapusercert' =&gt; ['userCertificate;binary'],</span>
+<span class="x">        'search.base' =&gt; ['dc=example,dc=net'],</span>
 <span class="x">    ],</span>
 </code></pre>
 </div>
