@@ -124,6 +124,25 @@ For example, to use the LDAP module:
 </h2>
 <ul>
  <li>
+  EntityIDs are no longer auto-generated. Make sure to set something sensible in the array-keys in
+  <code>
+   metadata/saml20-idp-hosted.php
+  </code>
+  and for any saml:SP in
+  <code>
+   config/authsources.php
+  </code>
+  (or to the existing entityIDs when
+  upgrading an existing installation).
+  If you are using a database to store metadata, make sure to replace any
+  <code>
+   __DYNAMIC:&lt;n&gt;__
+  </code>
+  entityID's with
+  a real value manually. Dynamic records are no longer loaded from the database. See the "Upgrading and EntityIDs"
+  section at the end of the document for more information.
+ </li>
+ <li>
   Modules must be enabled through the
   <code>
    module.enable
@@ -217,24 +236,6 @@ For example, to use the LDAP module:
  <li>
   Sessions are no longer backwards compatible with previous versions. Make sure to clear your session cache during
   the upgrade process. How to do this depends on your session backend.
- </li>
- <li>
-  EntityIDs are no longer auto-generated. Make sure to set something sensible in the array-keys in
-  <code>
-   metadata/saml20-idp-hosted.php
-  </code>
-  and for any saml:SP in
-  <code>
-   config/authsources.php
-  </code>
-  (or to the existing entityIDs when
-  upgrading an existing installation).
-  If you are using a database to store metadata, make sure to replace any
-  <code>
-   __DYNAMIC:&lt;n&gt;__
-  </code>
-  entityID's with
-  a real value manually. Dynamic records are no longer loaded from the database.
  </li>
 </ul>
 <h2 id="configuration-changes">
@@ -649,5 +650,68 @@ processing filters, themes, or that interface with the SimpleSAMLphp development
   </p>
  </li>
 </ul>
+<h2 id="upgrading-and-entityids">
+ Upgrading and EntityIDs
+</h2>
+<p>
+ If you still have your 1.x installation available, the entityID you
+are using for your SP and IdP should be available in
+module.php/core/frontpage_federation.php location on your
+SimpleSAMLphp server.
+</p>
+<p>
+ For a service provider, if it was set as auto-generated in 1.19, it
+will likely have the form of (
+ <a href="https://yourhostname/simplesaml/module.php/saml/sp/metadata.php/default-sp">
+  https://yourhostname/simplesaml/module.php/saml/sp/metadata.php/default-sp
+ </a>
+ ).
+</p>
+<p>
+ The EntityID is set in two locations, as the property 'entityID' for
+an SP and as the index in the $metadata array for an IdP. Examples of
+both are shown below.
+</p>
+<p>
+ For the SP you can set the EntityID as shown in the below fragment of
+authsources.php. In all of the below configuration fragments the
+EntityID is set to (
+ <a href="https://example.com/the-service/">
+  https://example.com/the-service/
+ </a>
+ ).
+</p>
+<div class="highlight">
+ <pre><span></span><code><span class="x">...</span>
+<span class="x">    'default-sp' =&gt; [</span>
+<span class="x">        'saml:SP',</span>
+<span class="x">        // The entity ID of this SP.</span>
+<span class="x">        'entityID' =&gt; 'https://example.com/the-service/',</span>
+<span class="x">...</span>
+</code></pre>
+</div>
+<p>
+ One suggestion for forming an EntityID is to use the below scheme.
+</p>
+<div class="highlight">
+ <pre><span></span><code><span class="x">$entityid_sp = 'https://'</span>
+<span class="x">   . $_SERVER['HTTP_HOST']</span>
+<span class="x">   . '/simplesaml/module.php/saml/sp/metadata.php/default-sp';</span>
+</code></pre>
+</div>
+<p>
+ For an IdP you might like to look at saml20-idp-hosted.php where the
+EntityID is used as the key in the metadata array.
+</p>
+<div class="highlight">
+ <pre><span></span><code><span class="x">...</span>
+<span class="x">$metadata['https://example.com/the-service/'] = [</span>
+<span class="x">...</span>
+</code></pre>
+</div>
+<p>
+ If you use SimpleSAMLphp as an SP, the IdP you are using will have
+your correct entityID configured.
+</p>
 </main></body>
 </html>
