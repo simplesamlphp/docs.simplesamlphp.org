@@ -137,6 +137,14 @@
  <dd>
   The SQL query or queries which should be used to authenticate the user and retrieve their attributes.
  </dd>
+ <dt>
+  <code>
+   username_regex
+  </code>
+ </dt>
+ <dd>
+  (Optional) A regular expression that the username must match. Useful if the type of the username column in the database isn't a string (eg. an integer), or if the format is well known (eg. email address, single word with no spaces, etc) to avoid going to the database for a query that will never result in successful authentication.
+ </dd>
 </dl>
 <h2 id="writing-a-query-queries">
  Writing a Query / Queries
@@ -189,6 +197,7 @@
 <span class="x">        'username' =&gt; 'simplesaml',</span>
 <span class="x">        'password' =&gt; 'secretpassword',</span>
 <span class="x">        'query' =&gt; "select uid, givenName as \"givenName\", email from users where uid=:username and password=encode(sha512(concat((select salt from users where uid=1),  :password)::bytea), 'base64')",</span>
+<span class="x">        'username_regex' =&gt; '/^[a-z]+$/', // Username will only be acceptable if it is a single lower case word</span>
 <span class="x">    ],</span>
 </code></pre>
 </div>
