@@ -214,6 +214,19 @@ See the upgrade notes for specific information about upgrading.
   Fix controller for External-authsource
  </li>
 </ul>
+<p>
+ <code>
+  saml2 library
+ </code>
+</p>
+<p>
+ Fixed a bug where base64 encoded strings were not decoded using the
+ <code>
+  strict
+ </code>
+ flag, leading
+to an incorrect error message.
+</p>
 <h2 id="version-2011">
  Version 2.0.11
 </h2>

@@ -251,6 +251,19 @@ See the upgrade notes for specific information about upgrading.
   Fix exception being thrown when password is empty
  </li>
 </ul>
+<p>
+ <code>
+  saml2 library
+ </code>
+</p>
+<p>
+ Fixed a bug where base64 encoded strings were not decoded using the
+ <code>
+  strict
+ </code>
+ flag, leading
+to an incorrect error message.
+</p>
 <h2 id="version-221">
  Version 2.2.1
 </h2>
