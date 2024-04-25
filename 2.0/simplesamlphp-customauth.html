@@ -638,7 +638,11 @@ A SSHA password is created like this:
 <span class="sd">     */</span>
     <span class="k">private</span> <span class="k">function</span> <span class="nf">checkPassword</span><span class="p">(</span><span class="nv">$passwordHash</span><span class="p">,</span> <span class="nv">$password</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="nv">$passwordHash</span> <span class="o">=</span> <span class="nb">base64_decode</span><span class="p">(</span><span class="nv">$passwordHash</span><span class="p">);</span>
+        <span class="nv">$passwordHash</span> <span class="o">=</span> <span class="nb">base64_decode</span><span class="p">(</span><span class="nv">$passwordHash</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$passwordHash</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nx">\InvalidArgumentException</span><span class="p">(</span><span class="s2">"Password hash is empty or not a valid base64 encoded string."</span><span class="p">);</span>
+        <span class="p">}</span>
+
         <span class="nv">$digest</span> <span class="o">=</span> <span class="nb">substr</span><span class="p">(</span><span class="nv">$passwordHash</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
         <span class="nv">$salt</span> <span class="o">=</span> <span class="nb">substr</span><span class="p">(</span><span class="nv">$passwordHash</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
 
