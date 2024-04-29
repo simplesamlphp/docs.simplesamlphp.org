@@ -94,7 +94,18 @@
  </code>
 </h1>
 <p>
- This is a authentication module for authenticating a user against a SQL database.
+ These are authentication modules for authenticating a user against a
+SQL database.
+</p>
+<p>
+ The SQL module performs password verification in the database itself
+using database functions such as sha512 and storing a salt in the
+database. The PasswordVerify module verifies passwords in php using
+the password_verify() function. The PasswordVerify module was created
+to ask the least of the database either because there is minimal
+support in the database or to allow the same code to work against many
+databases without modification. More information on PasswordVerify is
+provided at the end of this document.
 </p>
 <h2 id="options">
  Options
@@ -144,6 +155,14 @@
  </dt>
  <dd>
   (Optional) A regular expression that the username must match. Useful if the type of the username column in the database isn't a string (eg. an integer), or if the format is well known (eg. email address, single word with no spaces, etc) to avoid going to the database for a query that will never result in successful authentication.
+ </dd>
+ <dt>
+  <code>
+   passwordhashcolumn
+  </code>
+ </dt>
+ <dd>
+  (Optional) Only When using the sqlauth:PasswordVerify module. This is the name of the column that contains the hashed password. The default is to look for a column 'passwordhash' in the database.
  </dd>
 </dl>
 <h2 id="writing-a-query-queries">
@@ -439,5 +458,58 @@ used instead as an additional security measure.
 <p>
  One way hashing algorithms like MD5 or SHA1 are considered insecure and should therefore be avoided.
 </p>
+<h2 id="the-passwordverify-module">
+ The PasswordVerify module
+</h2>
+<p>
+ Users and passwords have to be set in the database by other means than the PasswordVerify module.
+</p>
+<p>
+ For example:
+</p>
+<div class="highlight">
+ <pre><span></span><code><span class="w">    </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="n">uid</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">      </span><span class="n">passwordhash</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">      </span><span class="n">givenName</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">      </span><span class="n">email</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">      </span><span class="n">eduPersonPrincipalName</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
+<span class="w">    </span><span class="p">);</span>
+</code></pre>
+</div>
+<p>
+ A user can be added with a known password "FIXMEPASSWORD" as shown below.
+</p>
+<div class="highlight">
+ <pre><span></span><code><span class="x">$dsn = "pgsql:host=...";</span>
+<span class="x">$username = "fixme";</span>
+<span class="x">$password = "";</span>
+<span class="x">$options = array();</span>
+
+<span class="x">$query = "insert into users values ('test@example.com',:passwordhash, 'test', 'test@example.com', 'test@example.com' )";</span>
+
+<span class="x">$db = new PDO($dsn, $username, $password, $options);</span>
+<span class="x">$db-&gt;exec("SET NAMES 'UTF8'");</span>
+
+<span class="x">$params = ["passwordhash" =&gt; password_hash("FIXMEPASSWORD", PASSWORD_ARGON2ID ) ];</span>
+<span class="x">$sth = $db-&gt;prepare($query);</span>
+<span class="x">$sth-&gt;execute($params);</span>
+</code></pre>
+</div>
+<p>
+ Since the above is using the default passwordhash column name this can
+then be used with the following addition to authsources.php.
+</p>
+<div class="highlight">
+ <pre><span></span><code><span class="x">'smalldb-dbauth' =&gt; [</span>
+<span class="x">    'sqlauth:PasswordVerify',</span>
+<span class="x">    'dsn' =&gt; 'pgsql:host=...',</span>
+<span class="x">    'username' =&gt; 'dbuser',</span>
+<span class="x">    'password' =&gt; 'dbpassword',</span>
+<span class="x">    'passwodhashcolumn' =&gt;  'passwordhash',</span>
+<span class="x">    'query' =&gt; 'select uid, email, passwordhash, eduPersonPrincipalName from users where uid = :username ',</span>
+<span class="x">],</span>
+</code></pre>
+</div>
 </main></body>
 </html>
