@@ -220,6 +220,29 @@ See the upgrade notes for specific information about upgrading.
   Prevent metadata-download from ever being cached
  </li>
 </ul>
+<p>
+ <code>
+  ldap
+ </code>
+</p>
+<ul>
+ <li>
+  Fixed a bug that would throw an unhandled exception to the user if they would enter
+  a non-existing organization and
+  <code>
+   username_organization_method
+  </code>
+  is set to
+  <code>
+   allow
+  </code>
+  or
+  <code>
+   force
+  </code>
+  (v2.3.6).
+ </li>
+</ul>
 <h2 id="version-222">
  Version 2.2.2
 </h2>
