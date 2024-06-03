@@ -143,6 +143,10 @@ For example, to use the LDAP module:
   section at the end of the document for more information.
  </li>
  <li>
+  EntityIDs are now checked for validity in accordance to SAML 2.0 Core specification, section 8.3.6 Entity Identifier:
+  "... The syntax of such an identifier is a URI of not more than 1024 characters in length."
+ </li>
+ <li>
   Modules must be enabled through the
   <code>
    module.enable

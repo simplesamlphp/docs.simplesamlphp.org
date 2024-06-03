@@ -180,6 +180,7 @@ client.
 <span class="x">    'realms' =&gt; [</span>
 <span class="x">        '*' =&gt; 'ldap',</span>
 <span class="x">    ],</span>
+<span class="x">    'allowedCertificateHashes' =&gt; [],</span>
 <span class="x">    'fallback' =&gt; 'crypto-hash',</span>
 <span class="x">    'spn' =&gt; null,</span>
 <span class="x">],</span>
@@ -332,6 +333,46 @@ disabling Negotiate for any given client. The pages simplly set/delete
 a cookie that Negotiate will look for when a client attempts AuthN.
 The help text in the JSON files should be locally overwritten to fully
 explain which clients are accepted by Negotiate.
+</p>
+<h3 id="channel-binding">
+ Channel binding
+</h3>
+<p>
+ A shortage of Kerberos-over-HTTP is that there are no distinguished SPN's for HTTP- and HTTPS-services
+ <a href="https://techcommunity.microsoft.com/t5/iis-support-blog/how-to-use-spns-when-you-configure-web-applications-thatare/ba-p/324648">
+  1
+ </a>
+ .
+This means that a ticket that's being transmitted over an insecure HTTP-connection can also be used for
+HTTPS-connections to the same host. Besides this, Kerberos is also known to be vulnerable for MitM-attacks
+where the service-label of the SPN can be altered when an alternative service is available on the same host
+ <a href="https://googleprojectzero.blogspot.com/2021/10/using-kerberos-for-authentication-relay.html">
+  2
+ </a>
+ .
+</p>
+<p>
+ To prevent this, certificate-based channel binding is supported by this module as of version v1.1.6.
+Syntax for this is:
+</p>
+<div class="highlight">
+ <pre><span></span><code><span class="x">'enforceChannelBinding' =&gt; true,</span>
+<span class="x">'allowedCertificateHashes' =&gt; [&lt;SHA-256 finterprint 1&gt;, &lt;SHA-256 fingerprint 2&gt;],</span>
+</code></pre>
+</div>
+<p>
+ Usually this array will contain just the one fingerprint for the current HTTPS-certificate of this IdP, but multiple can be
+used in a certificate-rollover situation.
+If the
+ <code>
+  enforceChannelBinding
+ </code>
+ setting is set to
+ <code>
+  true
+ </code>
+ , clients that do not provide binding-info will automatically be sent
+to the fallback authsource.
 </p>
 <h3 id="logoutlogin-loop-and-reauthenticating">
  Logout/Login loop and reauthenticating
