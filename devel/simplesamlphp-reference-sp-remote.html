@@ -102,35 +102,33 @@
      <a href="#common-options">
       Common options
      </a>
+    </li>
+    <li>
+     <a href="#encrypting-assertions">
+      Encrypting assertions
+     </a>
+    </li>
+    <li>
+     <a href="#fields-for-signing-and-validating-messages">
+      Fields for signing and validating messages
+     </a>
      <ul>
       <li>
-       <a href="#encrypting-assertions">
-        Encrypting assertions
+       <a href="#example-configuration-for-validating-messages">
+        Example: Configuration for validating messages
        </a>
       </li>
+     </ul>
+    </li>
+    <li>
+     <a href="#fields-for-scoping">
+      Fields for scoping
+     </a>
+     <ul>
       <li>
-       <a href="#fields-for-signing-and-validating-messages">
-        Fields for signing and validating messages
+       <a href="#example-configuration-for-scoping">
+        Example: Configuration for scoping
        </a>
-       <ul>
-        <li>
-         <a href="#example-configuration-for-validating-messages">
-          Example: Configuration for validating messages
-         </a>
-        </li>
-       </ul>
-      </li>
-      <li>
-       <a href="#fields-for-scoping">
-        Fields for scoping
-       </a>
-       <ul>
-        <li>
-         <a href="#example-configuration-for-scoping">
-          Example: Configuration for scoping
-         </a>
-        </li>
-       </ul>
       </li>
      </ul>
     </li>
@@ -890,9 +888,9 @@
   SP metadata config as a parameter and return a boolean.
  </dd>
 </dl>
-<h3 id="encrypting-assertions">
+<h2 id="encrypting-assertions">
  Encrypting assertions
-</h3>
+</h2>
 <p>
  It is possible to encrypt the assertions sent to a SP. Currently the
 only algorithm supported is
@@ -982,9 +980,9 @@ of the SP.
   </code>
  </li>
 </ul>
-<h3 id="fields-for-signing-and-validating-messages">
+<h2 id="fields-for-signing-and-validating-messages">
  Fields for signing and validating messages
-</h3>
+</h2>
 <p>
  SimpleSAMLphp only signs authentication responses by default.
 Signing of logout requests and logout responses can be enabled by
@@ -1033,20 +1031,20 @@ can be enabled by the
   </code>
  </dd>
 </dl>
-<h4 id="example-configuration-for-validating-messages">
+<h3 id="example-configuration-for-validating-messages">
  Example: Configuration for validating messages
-</h4>
+</h3>
 <div class="highlight">
  <pre><span></span><code><span class="x">'redirect.validate' =&gt; true,</span>
 <span class="x">'certificate' =&gt; 'example.org.crt',</span>
 </code></pre>
 </div>
-<h3 id="fields-for-scoping">
+<h2 id="fields-for-scoping">
  Fields for scoping
-</h3>
+</h2>
 <p>
- Only relevant if you are a proxy/bridge and wants to limit the idps this
-sp can use.
+ Only relevant if you are a proxy/bridge and want to limit the IdPs on your proxy
+that this SP can use.
 </p>
 <dl>
  <dt>
@@ -1060,9 +1058,9 @@ relevant for this SP. It will override any list set in the IdP's
 metadata.
  </dd>
 </dl>
-<h4 id="example-configuration-for-scoping">
+<h3 id="example-configuration-for-scoping">
  Example: Configuration for scoping
-</h4>
+</h3>
 <div class="highlight">
  <pre><span></span><code><span class="x">'IDPList' =&gt; ['https://idp1.wayf.dk', 'https://idp2.wayf.dk'],</span>
 </code></pre>
