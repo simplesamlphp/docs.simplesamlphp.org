@@ -168,11 +168,25 @@ instructions on how to install Composer itself):
 </code></pre>
 </div>
 <p>
- Ask git to update to the latest version:
+ Ask git to update to update the local repository information:
 </p>
 <div class="highlight">
  <pre><span></span><code>git<span class="w"> </span>fetch<span class="w"> </span>origin
-git<span class="w"> </span>pull<span class="w"> </span>origin<span class="w"> </span>master
+</code></pre>
+</div>
+<p>
+ If you installed as described above, you will be using a
+ <a href="https://github.com/simplesamlphp/simplesamlphp/tags">
+  tag
+ </a>
+ for a
+specific release. You can see the current tag you are using and
+checkout a newer one with the below commands:
+</p>
+<div class="highlight">
+ <pre><span></span><code>git<span class="w"> </span>branch
+*<span class="w"> </span><span class="o">(</span>HEAD<span class="w"> </span>detached<span class="w"> </span>at<span class="w"> </span>v2.2.1<span class="o">)</span>
+git<span class="w"> </span>checkout<span class="w"> </span>v2.2.2
 </code></pre>
 </div>
 <p>
@@ -182,5 +196,9 @@ git<span class="w"> </span>pull<span class="w"> </span>origin<span class="w"> </
  <pre><span></span><code>php<span class="w"> </span>composer.phar<span class="w"> </span>install
 </code></pre>
 </div>
+<p>
+ When using Windows see the additional options for this composer
+command shown at the end of the installation step above.
+</p>
 </main></body>
 </html>
