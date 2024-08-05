@@ -213,6 +213,23 @@ REFEDS SAML2 Metadata Deployment Profile for errorURL. Defaults to TRUE.
  : This option needs to be boolean (TRUE/FALSE) else it will be
           considered an attribute matching rule.
 </p>
+<h3 id="allow_reauthentication">
+ <code>
+  allow_reauthentication
+ </code>
+</h3>
+<p>
+ This option can be used to allow users to re-authenticate if they are
+unauthorized. If set to TRUE, the user will be shown a button to re-authenticate.
+If set to FALSE, the user will not be shown a button to re-authenticate.
+</p>
+<p>
+ <strong>
+  Note
+ </strong>
+ : This option needs to be boolean (TRUE/FALSE) else it will be
+          considered FALSE.
+</p>
 <h2 id="attribute-rules">
  Attribute Rules
 </h2>
