@@ -51,8 +51,13 @@
    </p>
    <div class="mtoolbar">
     <div class="menuitem">
+     <a href="/docs/2.3/index.html">
+      2.3 (stable)
+     </a>
+    </div>
+    <div class="menuitem">
      <a href="/docs/2.2/index.html">
-      2.2 (stable)
+      2.2
      </a>
     </div>
     <div class="menuitem">
@@ -108,8 +113,19 @@ into a scoped identifier that is globally unique for a given user.
  <strong>
   Note
  </strong>
- If privacy is of your concern, you may want to use the PairwiseID-filter
-instead.
+ If privacy is of your concern, you may want to hash the unique part of the subject-id. Hashing also ensures
+that the output is compliant with the specification. If you do not want to hash the unique part, you
+ <em>
+  have
+ </em>
+ to ensure that the
+ <code>
+  identifyingAttribute
+ </code>
+ always contains a value that is in line with the specification!
+</p>
+<p>
+ If you are also worried about correlation of IDs between diffent SP's, use the PairwiseID-filter instead.
 </p>
 <p>
  <strong>
@@ -135,6 +151,7 @@ value of
 <span class="x">            'class' =&gt; 'saml:SubjectID',</span>
 <span class="x">            'identifyingAttribute' =&gt; 'uid',</span>
 <span class="x">            'scopeAttribute' =&gt; 'scope',</span>
+<span class="x">            'hashed' =&gt; true,</span>
 <span class="x">        ],</span>
 <span class="x">    ],</span>
 </code></pre>

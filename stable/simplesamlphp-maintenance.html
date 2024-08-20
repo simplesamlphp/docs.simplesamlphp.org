@@ -51,8 +51,13 @@
    </p>
    <div class="mtoolbar">
     <div class="menuitem">
+     <a href="/docs/2.3/index.html">
+      2.3 (stable)
+     </a>
+    </div>
+    <div class="menuitem">
      <a href="/docs/2.2/index.html">
-      2.2 (stable)
+      2.2
      </a>
     </div>
     <div class="menuitem">
@@ -715,6 +720,10 @@ Username and password for accessing the database can be configured in the
  </code>
  ,
  <code>
+  directory
+ </code>
+ ,
+ <code>
   serialize
  </code>
  ,
@@ -735,9 +744,19 @@ example configuration of different metadata sources in use at the same time:
 <span class="x">    ['type' =&gt; 'flatfile'],</span>
 <span class="x">    ['type' =&gt; 'flatfile', 'directory' =&gt; 'metadata/metarefresh-kalmar'],</span>
 <span class="x">    ['type' =&gt; 'serialize', 'directory' =&gt; 'metadata/metarefresh-ukaccess'],</span>
+<span class="x">    ['type' =&gt; 'directory'],</span>
+<span class="x">    ['type' =&gt; 'directory', 'directory' =&gt; 'metadata/somewhere-else'],</span>
 <span class="x">],</span>
 </code></pre>
 </div>
+<p>
+ The directory type storage backend will look in subdirectories such as
+saml20-idp-hosted.d and saml20-sp-remote.d in the given directory (or
+the 'metadatadir' configuration option in 'config.php' by default).
+All xml and php files found in those subdirectories will be loaded. It is
+currently an error to have subdirectories inside the
+saml20-sp-remote.d directories.
+</p>
 <p>
  You may also implement your own metadata storage handler, in a very similar way to how you would implement
 your own session handler. Your class
