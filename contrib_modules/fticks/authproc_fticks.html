@@ -100,7 +100,7 @@
 </h1>
 <p>
  Log statistics in the
- <a href="F-ticks federation log format.html">
+ <a href="https://wiki.geant.org/display/gn42jra3/F-ticks+standard">
   F-ticks federation log format
  </a>
  .
@@ -189,6 +189,86 @@ SAML service provider.
  </dd>
  <dt>
   <code>
+   pnHashIsTargeted
+  </code>
+ </dt>
+ <dd>
+  When generating the F-Ticks
+  <em>
+   PN
+  </em>
+  attribute, include the source or
+  destination entityId to create a targeted version of the subject. Must
+  be one of the following options:
+ </dd>
+</dl>
+<blockquote>
+ <ul>
+  <li>
+   <code>
+    none
+   </code>
+   -
+   <em>
+    PN
+   </em>
+   depends only on the
+   <code>
+    federation
+   </code>
+   and
+   <code>
+    identifyingAttribute
+   </code>
+   (this is the default, and compatible with
+    other implementations).
+  </li>
+  <li>
+   <code>
+    source
+   </code>
+   -
+   <em>
+    PN
+   </em>
+   is targeted based on the SAML source. This is useful
+    for
+   <a href="bridging.html">
+    bridging configurations
+   </a>
+   where the
+   <code>
+    identifyingAttribute
+   </code>
+   may not be unique.
+  </li>
+  <li>
+   <code>
+    destination
+   </code>
+   -
+   <em>
+    PN
+   </em>
+   is targeted based on the SAML destination
+  </li>
+  <li>
+   <code>
+    both
+   </code>
+   -
+   <em>
+    PN
+   </em>
+   is targeted based on both the SAML source and destination
+    (this option exists to preserve backwards-compatibility, and may
+    lead to overcounting of subjects).
+  </li>
+ </ul>
+</blockquote>
+<dl>
+ <dt>
+  <code>
    exclude
   </code>
  </dt>
@@ -218,7 +298,7 @@ SAML service provider.
     local
    </code>
    - log using the PHP
-   <a href="syslog.html">
+   <a href="https://php.net/manual/en/function.syslog.php">
     syslog
    </a>
    functions, potentially
@@ -235,7 +315,7 @@ SAML service provider.
     errorlog
    </code>
    - log using PHP's
-   <a href="error_log.html">
+   <a href="https://php.net/manual/en/function.error-log.php">
     error_log
    </a>
    function, probably
@@ -437,7 +517,7 @@ generated/derived:
   </code>
   when one of the
   authentication sources based on the
-  <a href="UserPassBase.html">
+  <a href="https://github.com/simplesamlphp/simplesamlphp/blob/master/modules/core/lib/Auth/UserPassBase.php">
    UserPassBase
   </a>
   class.
@@ -459,9 +539,13 @@ generated/derived:
  <dd>
   The PN is generated in a similar way too, but completely independently from
   a
-  <a href="saml/PersistentNameID.html">
+  <a href="https://simplesamlphp.org/docs/stable/saml:nameid">
    saml:PersistentNameID
   </a>
+  . Depends on the setting of
+  <code>
+   pnHashIsTargeted
+  </code>
   .
  </dd>
  <dt>
