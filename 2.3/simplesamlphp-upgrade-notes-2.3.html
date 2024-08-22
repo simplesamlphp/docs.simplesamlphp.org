@@ -179,5 +179,16 @@ The following changes are relevant for installers and/or developers.
   SimpleSAML\Locale\Language::$language_names - Use \Symfony\Component\Intl\Languages::getNames() instead
  </li>
 </ul>
+<h2 id="bc-break">
+ BC break
+</h2>
+<p>
+ Plain-text admin-passwords are no longer allowed.
+Please use the
+ <code>
+  bin/pwgen.php
+ </code>
+ script to generate a secure password hash.
+</p>
 </main></body>
 </html>
