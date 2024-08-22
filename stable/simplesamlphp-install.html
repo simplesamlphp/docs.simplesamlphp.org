@@ -743,20 +743,12 @@ look like this:
 </div>
 <ul>
  <li>
-  <p>
-   Set an administrator password. This is needed to access some of the pages in your SimpleSAMLphp installation web
-  interface.
-  </p>
-  <p>
-   Hashed passwords can also be used here. See the
-   <a href="./authcrypt/authcrypt.html">
-    <code>
-     authcrypt
-    </code>
-   </a>
-   documentation
-for more information.
-  </p>
+  Set an administrator password. This is needed to access some of the pages in your SimpleSAMLphp installation web
+  interface. Plain-text passwords are not allowed, but you can generate a safe password-hash using the
+  <code>
+   bin/pwgen.php
+  </code>
+  script.
  </li>
 </ul>
 <div class="highlight">
