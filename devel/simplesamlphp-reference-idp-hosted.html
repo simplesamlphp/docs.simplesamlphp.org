@@ -423,10 +423,26 @@ entry matches.
   <code>
    FALSE
   </code>
-  .
+  . When set to
+  <code>
+   TRUE
+  </code>
+  encryption will be enforced for all
+  remote SP's and an exception is thrown if encryption fails.
  </dd>
  <dd>
   Note that this option can be set for each SP in the SP-remote metadata.
+ </dd>
+ <dd>
+  Note that enforcement can be disabled by setting
+  <code>
+   encryption.optional
+  </code>
+  to
+  <code>
+   TRUE
+  </code>
+  .
  </dd>
  <dt>
   <code>
@@ -558,6 +574,19 @@ entry matches.
   any value in the SP-remote metadata overrides the one configured
   in the IdP metadata.
   </p>
+ </dd>
+ <dt>
+  <code>
+   encryption.optional
+  </code>
+ </dt>
+ <dd>
+  Whether or not we may continue to send an unencrypted assertion if the SP has no encryption certificate.
+  The default value is
+  <code>
+   FALSE
+  </code>
+  .
  </dd>
  <dt>
   <code>
