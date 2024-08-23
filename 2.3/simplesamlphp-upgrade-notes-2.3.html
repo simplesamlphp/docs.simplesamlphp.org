@@ -182,13 +182,39 @@ The following changes are relevant for installers and/or developers.
 <h2 id="bc-break">
  BC break
 </h2>
-<p>
- Plain-text admin-passwords are no longer allowed.
-Please use the
- <code>
-  bin/pwgen.php
- </code>
- script to generate a secure password hash.
-</p>
+<ul>
+ <li>
+  <p>
+   Plain-text admin-passwords are no longer allowed.
+  Please use the
+   <code>
+    bin/pwgen.php
+   </code>
+   script to generate a secure password hash.
+  </p>
+ </li>
+ <li>
+  <p>
+   The language codes
+   <code>
+    pt-br
+   </code>
+   and
+   <code>
+    zh-tw
+   </code>
+   have been renamed to
+   <code>
+    pt_BR
+   </code>
+   and
+   <code>
+    zh_TW
+   </code>
+   .
+  Please update your configuration to match the new names.
+  </p>
+ </li>
+</ul>
 </main></body>
 </html>
