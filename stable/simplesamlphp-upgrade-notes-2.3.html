@@ -179,46 +179,36 @@ The following changes are relevant for installers and/or developers.
   SimpleSAML\Locale\Language::$language_names - Use \Symfony\Component\Intl\Languages::getNames() instead
  </li>
 </ul>
+<p>
+ The use of plain-text admin-passwords has been deprecated. Generate a secure hash using the
+ <code>
+  bin/pwgen.php
+ </code>
+ script instead.
+</p>
 <h2 id="bc-break">
  BC break
 </h2>
 <ul>
  <li>
-  <p>
-   As of 2.3.1+ Plain-text admin-passwords are allowed again.
-  No change is needed to auth.adminpassword to upgrade from 2.2 to 2.3.1+.
-  In 2.3.0 only Plain-text admin-passwords were not allowed.
-  </p>
-  <p>
-   In either case you might like to use the
-   <code>
-    bin/pwgen.php
-   </code>
-   script to
-generate a secure password hash for auth.adminpassword.
-  </p>
- </li>
- <li>
-  <p>
-   The language codes
-   <code>
-    pt-br
-   </code>
-   and
-   <code>
-    zh-tw
-   </code>
-   have been renamed to
-   <code>
-    pt_BR
-   </code>
-   and
-   <code>
-    zh_TW
-   </code>
-   .
+  The language codes
+  <code>
+   pt-br
+  </code>
+  and
+  <code>
+   zh-tw
+  </code>
+  have been renamed to
+  <code>
+   pt_BR
+  </code>
+  and
+  <code>
+   zh_TW
+  </code>
+  .
   Please update your configuration to match the new names.
-  </p>
  </li>
 </ul>
 </main></body>
