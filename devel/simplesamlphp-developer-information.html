@@ -129,6 +129,11 @@
      </a>
     </li>
     <li>
+     <a href="#css-and-common-asset-setup">
+      CSS and common asset setup
+     </a>
+    </li>
+    <li>
      <a href="#following-a-simple-login">
       Following a simple login
      </a>
@@ -250,6 +255,22 @@ solved for you execute
  </code>
  which will update the code to remedy
 as many issues as it can.
+</p>
+<h2 id="css-and-common-asset-setup">
+ CSS and common asset setup
+</h2>
+<p>
+ The common assets such as CSS in SimpleSAMLphp, for example, that
+stored in public/assets/base/css/stylesheet.css comes from the
+ <a href="https://github.com/simplesamlphp/simplesamlphp-assets-base">
+  simplesamlphp-assets-base
+ </a>
+ package.
+</p>
+<p>
+ The dependencies are updated using github actions in
+simplesamlphp-assets-base. Select a recent branch such as release-2.2
+and dig into the .github directory for details.
 </p>
 <h2 id="following-a-simple-login">
  Following a simple login
