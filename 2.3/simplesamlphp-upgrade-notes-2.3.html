@@ -102,19 +102,8 @@ The following changes are relevant for installers and/or developers.
 </p>
 <ul>
  <li>
-  <p>
-   Session ID's are now hashed when stored in a database. This means all old sessions are effectively
+  Session ID's are now hashed when stored in a database. This means all old sessions are effectively
   invalidated by this upgrade. We recommend clearing your session store as part of the upgrade-routine.
-  </p>
- </li>
- <li>
-  <p>
-   Endpoints are now only accepted in array-style. The old string-style was deprecated for 9 yrs
-  already and was broken anyway. See
-   <a href="https://simplesamlphp.org/docs/stable/simplesamlphp-metadata-endpoints.html">
-    endpoints
-   </a>
-  </p>
  </li>
 </ul>
 <h2 id="deprecations">
@@ -191,24 +180,35 @@ The following changes are relevant for installers and/or developers.
 </h2>
 <ul>
  <li>
-  The language codes
-  <code>
-   pt-br
-  </code>
-  and
-  <code>
-   zh-tw
-  </code>
-  have been renamed to
-  <code>
-   pt_BR
-  </code>
-  and
-  <code>
-   zh_TW
-  </code>
-  .
+  <p>
+   The language codes
+   <code>
+    pt-br
+   </code>
+   and
+   <code>
+    zh-tw
+   </code>
+   have been renamed to
+   <code>
+    pt_BR
+   </code>
+   and
+   <code>
+    zh_TW
+   </code>
+   .
   Please update your configuration to match the new names.
+  </p>
+ </li>
+ <li>
+  <p>
+   Endpoints are now only accepted in array-style. The old string-style was deprecated for 9 yrs
+  already and was broken anyway. See
+   <a href="https://simplesamlphp.org/docs/stable/simplesamlphp-metadata-endpoints.html">
+    endpoints
+   </a>
+  </p>
  </li>
 </ul>
 </main></body>
