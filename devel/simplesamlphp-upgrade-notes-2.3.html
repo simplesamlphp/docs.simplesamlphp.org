@@ -206,11 +206,12 @@ The following changes are relevant for installers and/or developers.
  </li>
  <li>
   <p>
-   Endpoints are now only accepted in array-style. The old string-style was deprecated for 9 yrs
+   Endpoints in metadata (e.g. "SingleSignOnLocation" and "AssertionCosumerService") can no longer be simple strings and are now only accepted in array-style. The old string-style was deprecated for 9 yrs
   already and was broken anyway. See
    <a href="https://simplesamlphp.org/docs/stable/simplesamlphp-metadata-endpoints.html">
     endpoints
    </a>
+   for the current format.
   </p>
  </li>
 </ul>
