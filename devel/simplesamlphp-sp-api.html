@@ -193,12 +193,29 @@ Some SimpleSAMLphp calls replace the current active PHP session. If you previous
  :
 </p>
 <p>
- It has a single parameter, which is the ID of the authentication source that should be used.
-This authentication source must exist in
+ It has a single parameter, which is the ID of the authentication
+source that should be used. This authentication source must exist in
  <code>
   config/authsources.php
  </code>
- .
+ and be of type saml:SP. Note that
+authentication methods such as
+ <code>
+  ldap:Ldap
+ </code>
+ and
+ <code>
+  sqlauth
+ </code>
+ are defined
+in
+ <code>
+  config/authsources.php
+ </code>
+ but those are only to be used by an IdP.
+A normal setup would have your application talking to an SP, that SP
+talking with an IdP, and that IdP using an authentication method to
+authenticate the user.
 </p>
 <p>
  <code>
