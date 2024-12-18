@@ -27,8 +27,11 @@ def md2html(md_file, html_file, file_name):
        for a in soup.findAll('a'):
          
          if not a['href'].startswith(('http://', 'https://', '#')):
-           if not a['href'].endswith(('html')):
-              a['href'] = a['href']+".html"
+           parts = a['href'].split('#')
+           if not parts[0].endswith(('html')):
+              a['href'] = parts[0]+".html"
+	   if (len(parts) > 1):
+	      a['href'] = a['href'] + '#' + parts[1]
        
            if (str(a['href']).find(":") > 0):
              a['href'] = a['href'].replace(":", "/")
